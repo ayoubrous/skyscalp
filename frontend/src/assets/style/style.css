@@ -1,0 +1,60 @@
+/* NAVBAR STYLING  */
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 2rem;
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.11);
+}
+.navbar .logo img{
+    width: 170px;
+}
+.navbar .links-section{
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+}
+.navbar .links{
+    display: flex;
+    gap: 30px;
+}
+.navbar .links .link{
+    font-size: 16px;
+    transition: all .2s ease;
+}
+.navbar .links .link.active{
+    color: var(--primary-color);
+}
+.navbar .links .link:hover{
+    color: var(--primary-color);
+}
+.navbar .account{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.navbar .account .link{
+    font-size: 16px;
+}
+
+
+/* ========== HERO ==============  */
+.hero{
+    background-color: var(--primary-color);
+    padding: 2rem 0;
+    color: var(--white-color);
+    text-align: center;
+}
+.hero .hero-heading{
+    color: var(--white-color);
+    margin-bottom: 12px;
+    font-size: 3rem;
+}
+.hero .slogan{
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+.hero img{
+    width: 25%;
+    margin: 15px 0;
+}
