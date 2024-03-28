@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from "react-i18next";
 
 // importing css 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -10,7 +9,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 
 const App = () => {
-  const [t] = useTranslation()
   return (
     <Router>
       <Routes>

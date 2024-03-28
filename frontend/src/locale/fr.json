@@ -1,3 +1,18 @@
 {
-    "welcome": "wellComE"
+    "heroTitle": "Votre partenaire immobilier tout-en-un",
+    "heroSlogan": "De la recherche à la réussite",
+    "heroPara": "Simplifiez votre parcours immobilier : Achetez, Louez ou Construisez en toute confiance.",
+    "featureCard1": "ACHETER, LOUER UN BIEN",
+    "featureCard2": "CONSTRUIRE VOTRE BIEN",
+    "featureCard3": "ESTIMER",
+    "featureCard4": "PUBLIER",
+    "home": "Accueil",
+    "about": "À propos",
+    "estimate": "Estimation",
+    "buy": "Acheter",
+    "rent": "Louer",
+    "build": "Construire",
+    "publish": "Publier",
+    "login": "CONNEXION",
+    "signup": "S'INSCRIRE"
 }

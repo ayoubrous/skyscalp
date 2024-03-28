@@ -1,3 +1,19 @@
 {
-    "welcome": "welcome"
+    "heroTitle": "Your All-in-One Real Estate Partner",
+    "heroSlogan": "From Search to Success",
+    "heroPara": "Streamline your real estate journey: Buy, Rent or Build with confidence.",
+    "featureCard1": "BUY, RENT PROPERTY",
+    "featureCard2": "BUILD YOUR PROPERTY",
+    "featureCard3": "ESTIMATE",
+    "featureCard4": "PUBLISH",
+    "home": "Home",
+    "about": "About",
+    "estimate": "Estimate",
+    "buy": "Buy",
+    "rent": "Rent",
+    "build": "Build",
+    "publish": "Publish",
+    "login": "LOGIN",
+    "signup": "SIGN UP"
+
 }
