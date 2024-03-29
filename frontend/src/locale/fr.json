@@ -20,5 +20,13 @@
     "propertySectionSubTitle": "Explorez tous les biens à vendre et à louer",
     "bedrooms": "chambres",
     "baths": "Salles de bains",
-    "areaUnit": "pi²"
+    "areaUnit": "pi²",
+    "machinerySectionTitle": "Construisez votre propriété",
+    "machinerySectionSubTitle": "Explorez tous les articles de machinerie à vendre et à louer",
+    "modal": "Modal",
+    "condition": "Condition",
+    "category": "Catégorie",
+    "datePosted": "Date de publication",
+    "viewAllMachinery": "Voir toutes les machines",
+    "viewAllConstruction": "Voir toutes les constructions"
 }
