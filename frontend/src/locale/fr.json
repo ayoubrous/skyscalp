@@ -14,5 +14,11 @@
     "build": "Construire",
     "publish": "Publier",
     "login": "CONNEXION",
-    "signup": "S'INSCRIRE"
+    "signup": "S'INSCRIRE",
+    "seeMore": "Voir plus",
+    "propertySectionTitle": "Acheter, Louer un bien immobilier",
+    "propertySectionSubTitle": "Explorez tous les biens à vendre et à louer",
+    "bedrooms": "chambres",
+    "baths": "Salles de bains",
+    "areaUnit": "pi²"
 }

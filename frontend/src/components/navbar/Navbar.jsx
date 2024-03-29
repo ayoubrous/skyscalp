@@ -2,11 +2,16 @@ import React, { useState } from 'react'
 import logo from '../../assets/images/logo.png'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
+import { FaBarsStaggered } from "react-icons/fa6";
+
 
 export default function Navbar() {
     const [t, i18n] = useTranslation();
 
     const [selectedLanguage, setSelectedLanguage] = useState('en')
+
+    const [showNavInPhone, setShowNavInPhone] = useState(false)
+
     const handleLanguageChange = (newLanguage) => {
         setSelectedLanguage(newLanguage);
         i18n.changeLanguage(newLanguage);
@@ -16,7 +21,7 @@ export default function Navbar() {
             <div className="logo">
                 <img src={logo} alt="web-logo" />
             </div>
-            <div className="links-section">
+            <div className={`links-section ${showNavInPhone ? 'show': ''}`}>
                 <div className="commercial-links links">
                     <Link className='link' to="/" >{t("buy")}</Link>
                     <Link className='link' to="/" >{t("rent")}</Link>
@@ -42,6 +47,7 @@ export default function Navbar() {
                     <option value="fr">FR</option>
                 </select>
             </div>
+            <FaBarsStaggered className='bars-icon' onClick={() => setShowNavInPhone(!showNavInPhone)}/>
         </nav>
     )
 }

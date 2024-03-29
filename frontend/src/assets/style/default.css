@@ -26,6 +26,7 @@ html {
 body {
     font-family: "Poppins", sans-serif;
     color: var(--dark-color);
+    background-color: var(--panel-color);
 }
 
 
@@ -72,7 +73,7 @@ body {
 }
 
 section {
-    padding: 8rem 0;
+    padding: 4rem 0;
     overflow: hidden;
 }
 
@@ -82,6 +83,9 @@ hr {
 
 .color-primary {
     color: var(--primary-color);
+}
+.color-secondary {
+    color: var(--semi-dark-color) !important;
 }
 
 .paragraph {
@@ -105,6 +109,14 @@ a {
 }
 a:hover {
     color: var(--dark-color);
+    text-decoration: none;
+}
+.underlineLink{
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+.underlineLink:hover{
+    color: var(--primary-color);
     text-decoration: none;
 }
 
@@ -135,6 +147,7 @@ a:hover {
     border: none;
     outline: none;
     background-color: var(--panel-color);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.09147);
     border: 1.5px solid var(--primary-color);
     color: var(--primary-color);
     transition: all .2s ease;

@@ -2,6 +2,8 @@ import React from 'react'
 import Navbar from '../components/navbar/Navbar'
 import Hero from '../components/sections/Hero'
 import FeatureCards from '../components/sections/FeatureCards'
+import Properties from '../components/sections/Properties'
+import Machinery from '../components/sections/Machinery'
 
 export default function Home() {
   return (
@@ -9,8 +11,8 @@ export default function Home() {
         <Navbar />
         <Hero />
         <FeatureCards />
-        <section></section>
-        <section></section>
+        <Properties />
+        <Machinery />
     </>
   )
 }

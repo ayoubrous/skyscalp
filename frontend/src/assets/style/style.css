@@ -42,7 +42,9 @@
 .navbar .account .custom-select{
     font-size: 14px;
 }
-
+.navbar .bars-icon{
+    display: none;
+}
 
 /* ========== HERO ==============  */
 .hero{
@@ -87,4 +89,73 @@
 .feature-card .icon{
     font-size: 57px;
     margin-bottom: 8px;
+}
+
+
+/* ============ Cards ===============  */
+.cards-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 24.5%);
+    grid-template-columns: repeat(3, 32%);
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px 0;
+}
+
+.cards-grid .custom-card{
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+}
+.cards-grid .custom-card:hover .image img{
+    transform: scale(1.025);
+}
+.cards-grid .custom-card .image{
+    width: 100%;
+    overflow: hidden;
+}
+.cards-grid .custom-card .image img{
+    transition: all .2s ease-in;
+
+    width: 100%;
+}
+.cards-grid .custom-card .content{
+    padding: 10px 14px;
+    background-color: var(--white-color);
+}
+.cards-grid .custom-card .content .custom-badge{
+    padding: 3px 14px;
+    color: var(--primary-color);
+    border: 1.2px solid var(--primary-color);
+    border-radius: 6px;
+}
+.custom-card .content .card-title{
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin: 8px 0;
+}
+.custom-card .content .street-address{
+    color: var(--semi-dark-color-2);
+    margin-bottom: 4px;
+}
+.custom-card .content .city{
+    font-size: 17px;
+    font-weight: 400;
+}
+.custom-card .content .favourite-icon{
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--semi-dark-color);
+}
+.custom-card .content .favourite-icon.filled{
+    color: red;
+}
+.custom-card .property-features .feature-text{
+    font-size: 12px;
+    color: var(--semi-dark-color-2);
+    margin-left: 4px;
+}
+.custom-card .property-features .feature-icon{
+    font-size: 16px;
+    color: var(--semi-dark-color-2);
 }
