@@ -1,5 +1,5 @@
 /* NAVBAR STYLING  */
-.navbar{
+.navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -7,86 +7,101 @@
     box-shadow: 0 0 18px rgba(0, 0, 0, 0.11);
     background-color: #076c8f21;
 }
-.navbar .logo img{
+
+.navbar .logo img {
     width: 140px;
 }
-.navbar .links-section{
+
+.navbar .links-section {
     display: flex;
     justify-content: space-between;
     width: 60%;
 }
-.navbar .links{
+
+.navbar .links {
     display: flex;
     gap: 25px;
 }
-.navbar .links .link{
+
+.navbar .links .link {
     font-size: 14px;
     transition: all .2s ease;
     color: var(--primary-color);
     font-weight: 700;
 }
-.navbar .links .link.active{
+
+.navbar .links .link.active {
     color: var(--primary-color);
     text-decoration: underline;
     text-underline-offset: 10px;
 }
-.navbar .links .link:hover{
+
+.navbar .links .link:hover {
     color: var(--primary-color);
 }
-.navbar .account{
+
+.navbar .account {
     display: flex;
     gap: 20px;
     align-items: center;
 }
-.navbar .account .link{
+
+.navbar .account .link {
     font-size: 14px;
     color: var(--primary-color);
     font-weight: 700;
 }
-.navbar .account .custom-btn{
+
+.navbar .account .custom-btn {
     font-size: 14px;
 }
-.navbar .account .custom-select{
+
+.navbar .account .custom-select {
     font-size: 14px;
     border: none;
     background-color: transparent;
     color: var(--primary-color);
     font-weight: 700;
 }
-.navbar .bars-icon{
+
+.navbar .bars-icon {
     display: none;
 }
 
 /* ========== HERO ==============  */
-.hero{
+.hero {
     background-color: var(--primary-color);
     padding: 1.5rem 0;
     color: var(--white-color);
     text-align: center;
 }
-.hero .hero-heading{
+
+.hero .hero-heading {
     color: var(--white-color);
     margin-bottom: 12px;
     font-size: 2rem;
 }
-.hero .slogan{
+
+.hero .slogan {
     font-size: 15px;
     margin-bottom: 6px;
 }
-.hero img{
+
+.hero img {
     width: 20%;
     margin: 15px 0;
 }
 
 /* ======== Feature Cards ==========  */
-.feature-cards{
+.feature-cards {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 15px;
 }
-.feature-cards .feature-card{
+
+.feature-cards .feature-card {
     padding: 25px 45px;
     background-color: var(--white-color);
     color: var(--primary-color);
@@ -98,18 +113,20 @@
     height: 150px;
     top: -40px;
 }
-.feature-cards .feature-card p{
+
+.feature-cards .feature-card p {
     font-weight: 600;
     color: var(--dark-color);
 }
-.feature-card .icon{
+
+.feature-card .icon {
     font-size: 57px;
     margin-bottom: 8px;
 }
 
 
 /* ============ Cards ===============  */
-.cards-grid{
+.cards-grid {
     display: grid;
     grid-template-columns: repeat(4, 24.5%);
     grid-template-columns: repeat(3, 32%);
@@ -118,60 +135,105 @@
     gap: 15px 0;
 }
 
-.cards-grid .custom-card{
+.cards-grid .custom-card {
     border: 1px solid var(--border-color);
     border-radius: 6px;
     overflow: hidden;
 }
-.cards-grid .custom-card:hover .image img{
+
+.swiper-button-prev,
+.swiper-button-next {
+    color: var(--primary-color) !important;
+    /* color: white !important; */
+    padding: 10px;
+    border-radius: 5px;
+    width: 30px !important;
+    height: 30px !important;
+    &:hover {
+        color: var(--primary-color-hover);
+    }
+}
+
+.cards-grid .custom-card:hover .image img {
     transform: scale(1.025);
 }
-.cards-grid .custom-card .image{
+
+.cards-grid .custom-card .image {
     width: 100%;
     overflow: hidden;
 }
-.cards-grid .custom-card .image img{
+
+.cards-grid .custom-card .image img {
     transition: all .2s ease-in;
 
     width: 100%;
 }
-.cards-grid .custom-card .content{
+
+.cards-grid .custom-card .content {
     padding: 10px 14px;
     background-color: var(--white-color);
 }
-.cards-grid .custom-card .content .custom-badge{
+
+.cards-grid .custom-card .content .custom-badge {
     padding: 3px 14px;
     color: var(--primary-color);
     border: 1.2px solid var(--primary-color);
     border-radius: 6px;
 }
-.custom-card .content .card-title{
+
+.custom-card .content .card-title {
     font-weight: 700;
     font-size: 1.3rem;
     margin: 8px 0;
 }
-.custom-card .content .street-address{
+
+.custom-card .content .street-address {
     color: var(--semi-dark-color-2);
     margin-bottom: 4px;
 }
-.custom-card .content .city{
+
+.custom-card .content .city {
     font-size: 17px;
     font-weight: 400;
 }
-.custom-card .content .favourite-icon{
+
+.custom-card .content .favourite-icon {
     cursor: pointer;
     font-size: 18px;
     color: var(--semi-dark-color);
 }
-.custom-card .content .favourite-icon.filled{
+
+.custom-card .content .favourite-icon.filled {
     color: red;
 }
-.custom-card .property-features .feature-text{
+
+.custom-card .property-features .feature-text {
     font-size: 12px;
     color: var(--semi-dark-color-2);
     margin-left: 4px;
 }
-.custom-card .property-features .feature-icon{
+
+.custom-card .property-features .feature-icon {
     font-size: 16px;
     color: var(--semi-dark-color-2);
+}
+
+/* ========= Estimate Section =============  */
+.flexSection .split{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.flexSection .split .image{
+    width: 48%;
+    overflow: hidden;
+}
+.flexSection .split .image img{
+    width: 100%;
+}
+.flexSection .split .content{
+    width: 48%;
+}
+.publishSection .split{
+    flex-direction: row-reverse;
 }

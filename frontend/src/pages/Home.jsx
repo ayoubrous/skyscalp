@@ -4,6 +4,9 @@ import Hero from '../components/sections/Hero'
 import FeatureCards from '../components/sections/FeatureCards'
 import Properties from '../components/sections/Properties'
 import Machinery from '../components/sections/Machinery'
+import Construction from '../components/sections/Construction'
+import Estimation from '../components/sections/Estimation'
+import Publish from '../components/sections/Publish'
 
 export default function Home() {
   return (
@@ -13,6 +16,9 @@ export default function Home() {
         <FeatureCards />
         <Properties />
         <Machinery />
+        <Construction />
+        <Estimation />
+        <Publish />
     </>
   )
 }

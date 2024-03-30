@@ -117,6 +117,19 @@
     .custom-card .property-features .feature-icon {
         font-size: 12px;
     }
+
+
+    .flexSection .split{
+        display: flex;
+        flex-direction: column;
+    }
+    .flexSection .split .image{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .flexSection .split .content{
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 576px) {}

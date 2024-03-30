@@ -17,9 +17,9 @@ export default function Properties() {
                 <h3 className='my-3'>{t("propertySectionSubTitle")}</h3>
 
                 <div className="cards-grid">
-                    <PropertyCard id="" imgUrl="https://www.loans.com.au/dA/9de8aa8d-512d-40f5-91a6-e7f94f2b0b79/webp/75"  title="Classic Home" type={t("rent")} price="1200" streetAddress="5232 North Carolina Ave. 21BC" city="Carolina, USA" bedrooms="3" baths="2" area="120"/>
-                    <PropertyCard id="" imgUrl="https://www.loans.com.au/dA/9de8aa8d-512d-40f5-91a6-e7f94f2b0b79/webp/75"  title="Classic Home" type={t("rent")} price="1200" streetAddress="5232 North Carolina Ave. 21BC" city="Carolina, USA" bedrooms="3" baths="2" area="120"/>
-                    <PropertyCard id="" imgUrl="https://www.loans.com.au/dA/9de8aa8d-512d-40f5-91a6-e7f94f2b0b79/webp/75"  title="Classic Home" type={t("rent")} price="1200" streetAddress="5232 North Carolina Ave. 21BC" city="Carolina, USA" bedrooms="3" baths="2" area="120"/>
+                    <PropertyCard id="" imgUrl={["https://www.loans.com.au/dA/9de8aa8d-512d-40f5-91a6-e7f94f2b0b79/webp/75", "https://www.loans.com.au/dA/9de8aa8d-512d-40f5-91a6-e7f94f2b0b79/webp/75"]}  title="Classic Home" type={t("rent")} price="1200" streetAddress="5232 North Carolina Ave. 21BC" city="Carolina, USA" bedrooms="3" baths="2" area="120"/>
+                    <PropertyCard id="" imgUrl={["https://www.loans.com.au/dA/9de8aa8d-512d-40f5-91a6-e7f94f2b0b79/webp/75", "https://www.loans.com.au/dA/9de8aa8d-512d-40f5-91a6-e7f94f2b0b79/webp/75"]}  title="Classic Home" type={t("rent")} price="1200" streetAddress="5232 North Carolina Ave. 21BC" city="Carolina, USA" bedrooms="3" baths="2" area="120"/>
+                    <PropertyCard id="" imgUrl={["https://www.loans.com.au/dA/9de8aa8d-512d-40f5-91a6-e7f94f2b0b79/webp/75", "https://www.loans.com.au/dA/9de8aa8d-512d-40f5-91a6-e7f94f2b0b79/webp/75"]}  title="Classic Home" type={t("rent")} price="1200" streetAddress="5232 North Carolina Ave. 21BC" city="Carolina, USA" bedrooms="3" baths="2" area="120"/>
                 </div>
                 <button className="outline-btn d-block mx-auto my-4">{t("viewAllProperty")}</button>
             </div>

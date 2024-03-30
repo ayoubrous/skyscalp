@@ -15,12 +15,12 @@ export default function Machinery() {
                     <h1 className="color-primary">{t("machinerySectionTitle")}</h1>
                     <Link to="/" className='underlineLink'>{t("seeMore")}</Link>
                 </div>
-                <h3 className='my-3'>{t("machinerySectionSubTitle")}</h3>
+                <h3 className='my-3 fw-bolder'>{t("machinerySectionSubTitle")}</h3>
 
                 <div className="cards-grid">
-                    <MachineryCard id="" imgUrl="https://t3.ftcdn.net/jpg/00/22/43/58/360_F_22435844_WOsydnWjBjCfdAaGId0CxXk0ahEOWeqs.jpg" title="Classic Home" type={t("rent")} price="1200" modal="Modal: 2022 R" condition="New" category="Cranes" datePosted="17 March 2024" />
-                    <MachineryCard id="" imgUrl="https://t3.ftcdn.net/jpg/00/22/43/58/360_F_22435844_WOsydnWjBjCfdAaGId0CxXk0ahEOWeqs.jpg" title="Classic Home" type={t("rent")} price="1200" modal="Modal: 2022 R" condition="New" category="Cranes" datePosted="17 March 2024" />
-                    <MachineryCard id="" imgUrl="https://t3.ftcdn.net/jpg/00/22/43/58/360_F_22435844_WOsydnWjBjCfdAaGId0CxXk0ahEOWeqs.jpg" title="Classic Home" type={t("rent")} price="1200" modal="Modal: 2022 R" condition="New" category="Cranes" datePosted="17 March 2024" />
+                    <MachineryCard id="" imgUrl={["https://t3.ftcdn.net/jpg/00/22/43/58/360_F_22435844_WOsydnWjBjCfdAaGId0CxXk0ahEOWeqs.jpg", "https://filesblog.technavio.org/wp-content/uploads/2019/10/Construction-machinery-manufacturers.jpg"]} title="Classic Home" description="Find out the hight quality stone crusher" type={t("rent")} price="1200" modal="Modal: 2022 R" condition="New" category="Cranes" datePosted="17 March 2024" />
+                    <MachineryCard id="" imgUrl={["https://t3.ftcdn.net/jpg/00/22/43/58/360_F_22435844_WOsydnWjBjCfdAaGId0CxXk0ahEOWeqs.jpg", "https://filesblog.technavio.org/wp-content/uploads/2019/10/Construction-machinery-manufacturers.jpg"]} title="Classic Home" description="Find out the hight quality stone crusher" type={t("rent")} price="1200" modal="Modal: 2022 R" condition="New" category="Cranes" datePosted="17 March 2024" />
+                    <MachineryCard id="" imgUrl={["https://t3.ftcdn.net/jpg/00/22/43/58/360_F_22435844_WOsydnWjBjCfdAaGId0CxXk0ahEOWeqs.jpg", "https://filesblog.technavio.org/wp-content/uploads/2019/10/Construction-machinery-manufacturers.jpg"]} title="Classic Home" description="Find out the hight quality stone crusher" type={t("rent")} price="1200" modal="Modal: 2022 R" condition="New" category="Cranes" datePosted="17 March 2024" />
                 </div>
                 <button className="outline-btn d-block mx-auto my-4">{t("viewAllMachinery")}</button>
             </div>
