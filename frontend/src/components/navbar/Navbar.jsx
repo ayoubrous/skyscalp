@@ -29,7 +29,7 @@ export default function Navbar() {
                     <Link className='link' to="/" >{t("publish")}</Link>
                 </div>
                 <div className="about-company-links links">
-                    <Link className='link' to="/" >{t("home")}</Link>
+                    <Link className='link active' to="/" >{t("home")}</Link>
                     <Link className='link' to="/" >{t("about")}</Link>
                     <Link className='link' to="/" >{t("estimate")}</Link>
                 </div>
