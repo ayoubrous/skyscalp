@@ -73,7 +73,7 @@ body {
 }
 
 section {
-    padding: 2.5rem 0;
+    padding: 3rem 0;
     overflow: hidden;
 }
 
@@ -89,7 +89,7 @@ hr {
 }
 
 .paragraph {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .paragraph-light {
@@ -121,7 +121,7 @@ a:hover {
 }
 
 .custom-btn {
-    font-size: 16px;
+    font-size: 15px;
     border-radius: 8px;
     border: none;
     outline: none;
@@ -142,7 +142,7 @@ a:hover {
 }
 
 .outline-btn {
-    font-size: 16px;
+    font-size: 15px;
     border-radius: 8px;
     border: none;
     outline: none;
@@ -190,11 +190,11 @@ a:hover {
 
 .custom-input {
     outline: none;
-    border: 0.8px solid var(--semi-dark-color);
+    border: 1.4px solid var(--semi-dark-color-2);
     border-radius: 6px;
     padding: 10px 14px;
     width: 100%;
-    font-size: 15px;
+    font-size: 14px;
     color: var(--semi-dark-color);
 }
 
@@ -202,12 +202,13 @@ a:hover {
 
 .custom-textarea {
     outline: none;
-    border: 0.8px solid var(--semi-dark-color);
+    border: 1.6px solid var(--semi-dark-color-2);
     border-radius: 6px;
     padding: 10px 14px;
     width: 100%;
     font-size: 15px;
     color: var(--semi-dark-color);
+    min-height: 100px;
 }
 
 .cursor-pointer {

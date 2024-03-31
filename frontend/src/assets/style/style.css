@@ -92,6 +92,21 @@
     margin: 15px 0;
 }
 
+.up-arrow{
+    position: fixed;
+    bottom: 30px;
+    right: 14px;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    box-shadow: 0 0 22px rgba(0, 0, 0, 0.11);
+    z-index: 10;
+    cursor: pointer;
+}
+.up-arrow .icon{
+    font-size: 22px;
+}
+
 /* ======== Feature Cards ==========  */
 .feature-cards {
     position: relative;
@@ -135,10 +150,20 @@
     gap: 15px 0;
 }
 
-.cards-grid .custom-card {
+.properties-section .cards-grid .custom-card:last-child{
+    display: none;
+}
+.machinery-section .cards-grid .custom-card:last-child{
+    display: none;
+}
+.construction-section .cards-grid .custom-card:last-child{
+    display: none;
+}
+.custom-card {
     border: 1px solid var(--border-color);
     border-radius: 6px;
     overflow: hidden;
+    /* height: 475px; */
 }
 
 .swiper-button-prev,
@@ -149,32 +174,33 @@
     border-radius: 5px;
     width: 30px !important;
     height: 30px !important;
+
     &:hover {
         color: var(--primary-color-hover);
     }
 }
 
-.cards-grid .custom-card:hover .image img {
+.custom-card:hover .image img {
     transform: scale(1.025);
 }
 
-.cards-grid .custom-card .image {
+.custom-card .image {
     width: 100%;
     overflow: hidden;
+    max-height: 250px;
 }
 
-.cards-grid .custom-card .image img {
+.custom-card .image img {
     transition: all .2s ease-in;
-
     width: 100%;
 }
 
-.cards-grid .custom-card .content {
+.custom-card .content {
     padding: 10px 14px;
     background-color: var(--white-color);
 }
 
-.cards-grid .custom-card .content .custom-badge {
+.custom-card .content .custom-badge {
     padding: 3px 14px;
     color: var(--primary-color);
     border: 1.2px solid var(--primary-color);
@@ -219,21 +245,127 @@
 }
 
 /* ========= Estimate Section =============  */
-.flexSection .split{
+.flexSection .split {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
 }
-.flexSection .split .image{
+
+.flexSection .split .image {
     width: 48%;
     overflow: hidden;
 }
-.flexSection .split .image img{
-    width: 100%;
+
+.flexSection .split .image img {
+    width: 90%;
 }
-.flexSection .split .content{
+
+.flexSection .split .content {
     width: 48%;
 }
-.publishSection .split{
+
+.publishSection .split {
     flex-direction: row-reverse;
+}
+
+
+/* ====== Blogs Section =========  */
+.blog-card{
+    height: 300px;
+}
+.blog-card .image {
+    width: 100%;
+    overflow: hidden;
+    height: 200px;
+}
+
+.blog-card .image img {
+    height: 100%;
+    width: 100%;
+}
+
+
+/* ========= Testimonials ===========  */
+.testimonials {
+    background-color: var(--primary-color);
+    padding: 4rem 0;
+}
+
+.testimonials .review {
+    width: 60%;
+    display: block;
+    margin: 3rem auto;
+    text-align: center;
+    color: var(--white-color);
+}
+
+.testimonials .customers {
+    width: 80%;
+    margin: 1rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+.testimonials .customers .customer {
+    display: flex;
+    align-items: center;
+    margin: auto 0;
+    gap: 15px;
+    width: 27%;
+    background-color: var(--white-color);
+    padding: 14px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+.testimonials .customers .customer.active {
+    background-color: #afe3f4;
+}
+.testimonials .customers .customer .image {
+    width: 20%;
+    border-radius: 50%;
+}
+
+.testimonials .customers .customer .image img {
+    width: 100%;
+}
+
+
+/* ============= Contact Us =============  */
+.contactUs .wraper{
+    display: flex;
+    gap: 27px;
+}
+.contactUs .wraper .support{
+    background-color: var(--primary-color);
+    padding: 30px;
+    width: 40%;
+    border-radius: 12px;
+}
+.contactUs .wraper .support .information{
+    margin-top: 45px;
+}
+.contactUs .wraper .support .supportTitle{
+    font-weight: 500;
+    line-height: 38px;
+}
+.contactUs .wraper .support .supportDescription{
+    color: var(--semi-dark-color-2) !important;
+}
+.contactUs .wraper .form{
+    padding: 22px 20px;
+}
+.contactUs .wraper .split{
+    display: flex;
+    gap: 24px;
+}
+.contactUs .wraper .split .form-group{
+    width: 50%;
+}
+.contactUs .wraper .form .form-group{
+    margin-bottom: 14px;
+}
+.contactUs .wraper .form label{
+    margin-bottom: 8px;
 }

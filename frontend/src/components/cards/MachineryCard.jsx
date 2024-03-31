@@ -43,7 +43,7 @@ const MachineryCard = ({ id, imgUrl, title, description, type, price, modal, con
                     <div className="custom-badge">{type}</div>
                 </div>
 
-                <h3 className="card-title">{title}</h3>
+                <h3 className="card-title">{title && (title.slice(0, 27)) + (title.length > 37 ? "..." : "")}</h3>
                 <div className="d-flex justify-content-between align-items-center my-2">
                     <p className='color-secondary'>{t("modal")}: {modal}</p>
                     <p className='color-secondary'>{t("condition")}: {condition}</p>
