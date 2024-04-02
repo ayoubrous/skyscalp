@@ -15,7 +15,7 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 
 
-const PropertyCard = ({ id, imgUrl, title, description, category, type, price, streetAddress, city, bedrooms, baths, area }) => {
+const PropertyCard = ({ id, imgUrl, title, description, category, type, price, streetAddress, city, bedrooms, baths, area, sellerName, sellerImg }) => {
     const [t] = useTranslation();
     const [favourite, setFavourite] = useState(false)
 
@@ -76,7 +76,6 @@ const PropertyCard = ({ id, imgUrl, title, description, category, type, price, s
 
                     </div>
                 </div>
-                <hr className="line-break my-2" />
                 <div className="d-flex justify-content-between align-items-center property-features">
                     <div className='d-flex align-items-center'>
                         <TbBed className='feature-icon' />
@@ -90,6 +89,13 @@ const PropertyCard = ({ id, imgUrl, title, description, category, type, price, s
                         <BsBuildings className='feature-icon' />
                         <p className="feature-text">{area} {t("areaUnit")}</p>
                     </div>
+                </div>
+                <hr className="line-break my-2" />
+                <div className="seller-info">
+                    <div className="seller-img">
+
+                    </div>
+                    <p>{sellerName}</p>
                 </div>
             </div>
         </div>

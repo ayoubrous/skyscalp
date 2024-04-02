@@ -291,6 +291,20 @@
     color: var(--semi-dark-color-2);
 }
 
+
+.custom-card .content .seller-info{
+    display: flex;
+    align-items: center;
+    margin: 6px 0;
+    gap: 4px;
+}
+.custom-card .seller-info .seller-img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: var(--semi-dark-color-2);
+}
 /* ========= Estimate Section =============  */
 .flexSection .split {
     display: flex;

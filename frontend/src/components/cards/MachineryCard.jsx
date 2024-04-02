@@ -47,7 +47,6 @@ const MachineryCard = ({ id, imgUrl, title, description, type, price, modal, con
     return (
         <div className="custom-card property-card">
             <div className="image">
-                {/* <img src={imgUrl} alt="" /> */}
                 <OwlCarousel id="" className="owl-carousel owl-theme" {...options}>
                 {
                     imgUrl.map(image => {
@@ -61,7 +60,7 @@ const MachineryCard = ({ id, imgUrl, title, description, type, price, modal, con
             <div className="content">
                 <div className="d-flex justify-content-between align-items-center">
                     <h5 className='color-primary'>MAD {price}</h5>
-                    <div className="custom-badge">{type}</div>
+                    {/* <div className="custom-badge">{type}</div> */}
                 </div>
 
                 <h3 className="card-title">{title && (title.slice(0, 27)) + (title.length > 37 ? "..." : "")}</h3>
