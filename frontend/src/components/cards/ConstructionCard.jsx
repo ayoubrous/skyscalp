@@ -6,37 +6,56 @@ import { BsBuildings } from "react-icons/bs";
 import { useTranslation } from 'react-i18next';
 import { FiCalendar } from "react-icons/fi";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import { Navigation } from 'swiper/modules';
+// import 'swiper/css';
+// import 'swiper/css/navigation';
+
+
+
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 
 const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, category, datePosted }) => {
     const [t] = useTranslation();
     const [favourite, setFavourite] = useState(false)
+
+    const options = {
+        loop: true,
+        center: true,
+        items: 1,
+        margin: 0,
+        autoplay: false,
+        dots: false,
+        autoplayTimeout: 8500,
+        smartSpeed: 450,
+        nav: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 1
+            },
+            1000: {
+                items: 1
+            }
+        }
+    };
     return (
         <div className="custom-card property-card">
             <div className="image">
-                {/* <img src={imgUrl} alt="" /> */}
-                <Swiper
-                    spaceBetween={10}
-                    slidesPerView={1}
-                    modules={[Navigation]}
-                    navigation={true}
-                    loop={true}
-                >
-                    {
-                        imgUrl.map(image => {
-                            return (
-                                <SwiperSlide>
-                                    <img src={image} alt="" />
-                                </SwiperSlide>
-                            )
-                        })
-                    }
-
-                </Swiper>
+            <OwlCarousel id="customer-testimonoals" className="owl-carousel owl-theme" {...options}>
+                {
+                    imgUrl.map(image => {
+                        return (
+                            <img src={image} alt="" />
+                        )
+                    })
+                }
+            </OwlCarousel>
             </div>
             <div className="content">
                 <div className="d-flex justify-content-between align-items-center">
