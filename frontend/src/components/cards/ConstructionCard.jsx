@@ -47,7 +47,7 @@ const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, categ
     return (
         <div className="custom-card property-card">
             <div className="image">
-            <OwlCarousel id="customer-testimonoals" className="owl-carousel owl-theme" {...options}>
+            <OwlCarousel id="" className="owl-carousel owl-theme" {...options}>
                 {
                     imgUrl.map(image => {
                         return (

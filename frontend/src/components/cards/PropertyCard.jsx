@@ -15,7 +15,7 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 
 
-const PropertyCard = ({ id, imgUrl, title, type, price, streetAddress, city, bedrooms, baths, area }) => {
+const PropertyCard = ({ id, imgUrl, title, description, category, type, price, streetAddress, city, bedrooms, baths, area }) => {
     const [t] = useTranslation();
     const [favourite, setFavourite] = useState(false)
 
@@ -44,25 +44,28 @@ const PropertyCard = ({ id, imgUrl, title, type, price, streetAddress, city, bed
 
     return (
         <div className="custom-card property-card">
-
-            <OwlCarousel id="customer-testimonoals" className="owl-carousel owl-theme" {...options}>
-                {
-                    imgUrl.map(image => {
-                        return (
-                            <img src={image} alt="" />
-                        )
-                    })
-                }
-            </OwlCarousel>
+            <div className="image">
+                <OwlCarousel id="" className="owl-carousel owl-theme" {...options}>
+                    {
+                        imgUrl.map(image => {
+                            return (
+                                <img src={image} alt="" />
+                            )
+                        })
+                    }
+                </OwlCarousel>
+                <div className="custom-badge">{type}</div>
+            </div>
 
             <div className="content">
+                <small className='color-secondary mb-0 '>{t("category")}: {category}</small>
                 <div className="d-flex justify-content-between align-items-center">
+                    <h3 className="card-title">{title && (title.slice(0, 13)) + (title.length > 13 ? "..." : "")}</h3>
                     <h5 className='color-primary'>MAD {price}</h5>
-                    <div className="custom-badge">{type}</div>
                 </div>
 
-                <h3 className="card-title">{title && (title.slice(0, 27)) + (title.length > 37 ? "..." : "")}</h3>
-                <p className="street-address">{streetAddress}</p>
+                {description && <p className='my-2 color-secondary'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
+
 
                 <div className="d-flex justify-content-between align-items-center">
                     <p className='city'>{city}</p>

@@ -48,7 +48,7 @@ const MachineryCard = ({ id, imgUrl, title, description, type, price, modal, con
         <div className="custom-card property-card">
             <div className="image">
                 {/* <img src={imgUrl} alt="" /> */}
-                <OwlCarousel id="customer-testimonoals" className="owl-carousel owl-theme" {...options}>
+                <OwlCarousel id="" className="owl-carousel owl-theme" {...options}>
                 {
                     imgUrl.map(image => {
                         return (
