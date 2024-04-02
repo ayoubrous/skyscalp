@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
-import 'swiper/css/navigation';
+// import 'swiper/css/navigation';
 
 
 const PropertyCard = ({ id, imgUrl, title, type, price, streetAddress, city, bedrooms, baths, area }) => {
@@ -22,6 +22,7 @@ const PropertyCard = ({ id, imgUrl, title, type, price, streetAddress, city, bed
                     slidesPerView={1}
                     modules={[Navigation]}
                     navigation={true}
+                    loop={true}
                 >
                     {
                         imgUrl.map(image => {

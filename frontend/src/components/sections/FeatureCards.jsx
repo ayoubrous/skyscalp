@@ -17,11 +17,11 @@ export default function FeatureCards() {
             </div>
             <div className="feature-card">
                 <BsBuildings className='icon' />
-                <p>{t("featureCard3")}</p>
+                <p className='mt-2'>{t("featureCard3")}</p>
             </div>
             <div className="feature-card">
                 <BsBuildings className='icon' />
-                <p>{t("featureCard4")}</p>
+                <p className='mt-2'>{t("featureCard4")}</p>
             </div>
         </div>
     )

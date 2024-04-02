@@ -17,7 +17,7 @@ export default function Estimation() {
                     <h1 className='color-primary fw-bolder mb-3'>{t("estimate")}</h1>
                     <p className="paragraph mb-3 mt-5 color-secondary">{t("homeEstimateSectionPara")}</p>
                     <Link to="/">
-                        <button className="custom-btn">{t("viewProperties")}</button>
+                        <button className="custom-btn">{t("contactOurExperts")}</button>
                     </Link>
                 </div>
             </div>

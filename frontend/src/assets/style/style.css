@@ -5,7 +5,7 @@
     justify-content: space-between;
     padding: 7px 2rem;
     box-shadow: 0 0 18px rgba(0, 0, 0, 0.11);
-    background-color: #076c8f21;
+    /* background-color: #076c8f21; */
 }
 
 .navbar .logo img {
@@ -62,6 +62,7 @@
     background-color: transparent;
     color: var(--primary-color);
     font-weight: 700;
+    padding: 0;
 }
 
 .navbar .bars-icon {
@@ -88,11 +89,12 @@
 }
 
 .hero img {
-    width: 20%;
-    margin: 15px 0;
+    width: 23%;
+    margin: 25px 0;
+    margin-bottom: 33px;
 }
 
-.up-arrow{
+.up-arrow {
     position: fixed;
     bottom: 30px;
     right: 14px;
@@ -102,8 +104,13 @@
     box-shadow: 0 0 22px rgba(0, 0, 0, 0.11);
     z-index: 10;
     cursor: pointer;
+    display: none;
 }
-.up-arrow .icon{
+.up-arrow.show{
+    display: block;
+}
+
+.up-arrow .icon {
     font-size: 22px;
 }
 
@@ -117,14 +124,14 @@
 }
 
 .feature-cards .feature-card {
-    padding: 25px 45px;
+    padding: 18px 25px;
     background-color: var(--white-color);
     color: var(--primary-color);
     text-align: center;
     border-radius: 6px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.18);
     position: relative;
-    width: 16%;
+    width: 13%;
     height: 150px;
     top: -40px;
 }
@@ -139,7 +146,9 @@
     margin-bottom: 8px;
 }
 
-
+.construction-section{
+    padding: 1rem 0;
+}
 /* ============ Cards ===============  */
 .cards-grid {
     display: grid;
@@ -150,15 +159,18 @@
     gap: 15px 0;
 }
 
-.properties-section .cards-grid .custom-card:last-child{
+.properties-section .cards-grid .custom-card:last-child {
     display: none;
 }
-.machinery-section .cards-grid .custom-card:last-child{
+
+.machinery-section .cards-grid .custom-card:last-child {
     display: none;
 }
-.construction-section .cards-grid .custom-card:last-child{
+
+.construction-section .cards-grid .custom-card:last-child {
     display: none;
 }
+
 .custom-card {
     border: 1px solid var(--border-color);
     border-radius: 6px;
@@ -270,9 +282,10 @@
 
 
 /* ====== Blogs Section =========  */
-.blog-card{
-    height: 300px;
+.blog-card {
+    height: 380px;
 }
+
 .blog-card .image {
     width: 100%;
     overflow: hidden;
@@ -284,6 +297,24 @@
     width: 100%;
 }
 
+.swiper-nav-btns button {
+    width: 60px;
+    height: 50px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    background-color: hsl(210, 100%, 50%);
+    color: #fff;
+    margin: 0px 0.5rem;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    margin-top: 30px;
+    transition: all .5s;
+  }
+  
+  .swiper-nav-btns button:hover {
+    background-color: hsl(210, 100%, 40%);
+    cursor: pointer;
+  }
 
 /* ========= Testimonials ===========  */
 .testimonials {
@@ -319,9 +350,11 @@
     border-radius: 50px;
     cursor: pointer;
 }
+
 .testimonials .customers .customer.active {
     background-color: #afe3f4;
 }
+
 .testimonials .customers .customer .image {
     width: 20%;
     border-radius: 50%;
@@ -333,39 +366,48 @@
 
 
 /* ============= Contact Us =============  */
-.contactUs .wraper{
+.contactUs .wraper {
     display: flex;
     gap: 27px;
 }
-.contactUs .wraper .support{
+
+.contactUs .wraper .support {
     background-color: var(--primary-color);
     padding: 30px;
     width: 40%;
     border-radius: 12px;
 }
-.contactUs .wraper .support .information{
+
+.contactUs .wraper .support .information {
     margin-top: 45px;
 }
-.contactUs .wraper .support .supportTitle{
+
+.contactUs .wraper .support .supportTitle {
     font-weight: 500;
     line-height: 38px;
 }
-.contactUs .wraper .support .supportDescription{
+
+.contactUs .wraper .support .supportDescription {
     color: var(--semi-dark-color-2) !important;
 }
-.contactUs .wraper .form{
+
+.contactUs .wraper .form {
     padding: 22px 20px;
 }
-.contactUs .wraper .split{
+
+.contactUs .wraper .split {
     display: flex;
     gap: 24px;
 }
-.contactUs .wraper .split .form-group{
+
+.contactUs .wraper .split .form-group {
     width: 50%;
 }
-.contactUs .wraper .form .form-group{
+
+.contactUs .wraper .form .form-group {
     margin-bottom: 14px;
 }
-.contactUs .wraper .form label{
+
+.contactUs .wraper .form label {
     margin-bottom: 8px;
 }

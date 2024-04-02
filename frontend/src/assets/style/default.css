@@ -202,7 +202,7 @@ a:hover {
 
 .custom-textarea {
     outline: none;
-    border: 1.6px solid var(--semi-dark-color-2);
+    border: 1.4px solid var(--semi-dark-color-2);
     border-radius: 6px;
     padding: 10px 14px;
     width: 100%;

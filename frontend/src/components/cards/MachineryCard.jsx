@@ -24,6 +24,7 @@ const MachineryCard = ({ id, imgUrl, title, description, type, price, modal, con
                     slidesPerView={1}
                     modules={[Navigation]}
                     navigation={true}
+                    loop={true}
                 >
                     {
                         imgUrl.map(image => {

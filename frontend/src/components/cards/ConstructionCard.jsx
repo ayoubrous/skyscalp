@@ -24,6 +24,7 @@ const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, categ
                     slidesPerView={1}
                     modules={[Navigation]}
                     navigation={true}
+                    loop={true}
                 >
                     {
                         imgUrl.map(image => {
