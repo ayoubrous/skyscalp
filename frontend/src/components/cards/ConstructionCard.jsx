@@ -18,7 +18,7 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 
-const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, category, datePosted }) => {
+const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, category, datePosted, sellerName, city, description }) => {
     const [t] = useTranslation();
     const [favourite, setFavourite] = useState(false)
 
@@ -47,44 +47,49 @@ const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, categ
     return (
         <div className="custom-card property-card">
             <div className="image">
-            <OwlCarousel id="" className="owl-carousel owl-theme" {...options}>
-                {
-                    imgUrl.map(image => {
-                        return (
-                            <img src={image} alt="" />
-                        )
-                    })
-                }
-            </OwlCarousel>
+                <OwlCarousel id="" className="owl-carousel owl-theme" {...options}>
+                    {
+                        imgUrl.map(image => {
+                            return (
+                                <img src={image} alt="" />
+                            )
+                        })
+                    }
+                </OwlCarousel>
+                <div className="icon-area">
+                    {
+                        favourite ? (<FaHeart className='icon favourite-icon filled' onClick={() => { setFavourite(!favourite) }} />) : (<FaRegHeart className='icon favourite-icon' onClick={() => { setFavourite(!favourite) }} />)
+                    }
+
+                </div>
+
             </div>
             <div className="content">
                 <div className="d-flex justify-content-between align-items-center">
+                    <h3 className="card-title">{title && (title.slice(0, 20)) + (title.length > 20 ? "..." : "")}</h3>
                     <h5 className='color-primary'>MAD {price}</h5>
-                    {/* <div className="custom-badge">{type}</div> */}
                 </div>
 
-                <h3 className="card-title">{title && (title.slice(0, 27)) + (title.length > 37 ? "..." : "")}</h3>
+                <p className='mb-1'>{t("category")}: {category}</p>
+                <p className='mb-1'>{t("application")}: Finishing, Foundations...</p>
+                <p className='city'>{t("category")}: {city}</p>
 
-                <div className="d-flex justify-content-between align-items-center my-2">
-                    <p className='color-secondary'>{t("quantity")}: {quantity}</p>
-                    <p className='color-secondary'>{t("available")}: {available}</p>
-                </div>
-                <div className="d-flex justify-content-between align-items-center">
-                    <p className='city'>{t("category")}: {category}</p>
-                    <div className="icon-area">
-                        {
-                            favourite ? (<FaHeart className='icon favourite-icon filled' onClick={() => { setFavourite(!favourite) }} />) : (<FaRegHeart className='icon favourite-icon' onClick={() => { setFavourite(!favourite) }} />)
-                        }
+                {description && <p className='mb-3 mt-1 color-secondary'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
 
-                    </div>
-                </div>
-                <hr className="line-break my-2" />
+
                 <div className="d-flex justify-content-between align-items-center property-features">
                     <div className='d-flex align-items-center'>
-                        <FiCalendar className='feature-icon'/>
+                        <FiCalendar className='feature-icon' />
                         <p className="feature-text">{t("datePosted")}: {datePosted}</p>
                     </div>
-                    
+
+                </div>
+                <hr className="line-break my-2" />
+                <div className="seller-info">
+                    <div className="seller-img">
+
+                    </div>
+                    <p>{sellerName}</p>
                 </div>
             </div>
         </div>

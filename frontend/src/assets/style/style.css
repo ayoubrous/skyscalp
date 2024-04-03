@@ -106,7 +106,8 @@
     cursor: pointer;
     display: none;
 }
-.up-arrow.show{
+
+.up-arrow.show {
     display: block;
 }
 
@@ -131,7 +132,7 @@
     border-radius: 6px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.18);
     position: relative;
-    width: 14%;
+    width: 170px;
     height: 140px;
     top: -40px;
 }
@@ -146,9 +147,10 @@
     margin-bottom: 8px;
 }
 
-.construction-section{
+.construction-section {
     padding: 1rem 0;
 }
+
 /* ============ Cards ===============  */
 .cards-grid {
     display: grid;
@@ -181,13 +183,13 @@
 .owl-prev,
 .owl-next {
     position: absolute;
-    top: 50%;
+    top: 120px;
     transform: translateY(-50%);
-    width: 40px; /* Adjust width as needed */
-    height: 40px; /* Adjust height as needed */
-    background-color: #ffffffa6 !important; /* Background color of the arrows */
-    color: var(--primary-color) !important; /* Color of the arrows */
-    border-radius: 50% !important; /* Make it round */
+    width: 40px;
+    height: 40px;
+    background-color: #ffffffa6 !important;
+    color: var(--primary-color) !important;
+    border-radius: 50% !important;
     display: flex !important;
     justify-content: center;
     align-items: center;
@@ -196,57 +198,50 @@
 }
 
 .owl-prev span,
-.owl-next span{
+.owl-next span {
     font-size: 50px;
     position: absolute;
     top: -20px;
     right: 0;
     left: 0;
 }
-
-/* Styles for the previous arrow */
 .owl-prev {
-    left: 6px; /* Adjust distance from left edge */
+    left: 6px;
 }
-
-/* Styles for the next arrow */
 .owl-next {
-    right: 6px; /* Adjust distance from right edge */
+    right: 6px;
 }
-
-/* Hover effect for navigation arrows */
 .owl-prev:hover,
 .owl-next:hover {
-    background-color: #e3e0e0 !important; /* Change background color on hover */
+    background-color: #e3e0e0 !important;
 }
-.custom-card:hover .image img {
-    transform: scale(1.025);
-}
+
 
 .custom-card .image {
     width: 100%;
     overflow: hidden;
-    max-height: 250px;
+    height: 230px;
     position: relative;
 }
-.custom-card .custom-badge{
+.custom-card .image .owl-item{
+    height: 230px;
+}
+
+.custom-card .image img {
+    transition: all .2s ease-in;
+    /* width: 100%; */
+    z-index: -1;
+    height: 100%;
+}
+.custom-card:hover .image img {
+    transform: scale(1.006);
+}
+
+.custom-card .custom-badge {
     position: absolute;
     top: 15px;
     left: 8px;
     z-index: 1;
-}
-.custom-card .image img {
-    transition: all .2s ease-in;
-    width: 100%;
-    z-index: -1;
-}
-
-.custom-card .content {
-    padding: 4px 14px;
-    background-color: var(--white-color);
-}
-
-.custom-card  .custom-badge {
     padding: 3px 14px;
     color: var(--primary-color);
     border: 1.4px solid var(--primary-color);
@@ -254,9 +249,34 @@
     border-radius: 6px;
 }
 
+.custom-card .image .icon-area {
+    position: absolute;
+    top: 15px;
+    right: 8px;
+    z-index: 1;
+}
+
+
+.custom-card .favourite-icon {
+    cursor: pointer;
+    font-size: 22px;
+    color: var(--semi-dark-color);
+}
+
+.custom-card .favourite-icon.filled {
+    color: red;
+}
+
+
+.custom-card .content {
+    padding: 4px 14px;
+    background-color: var(--white-color);
+    cursor: pointer;
+}
+
 .custom-card .content .card-title {
     font-weight: 700;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     margin: 8px 0;
 }
 
@@ -270,15 +290,6 @@
     font-weight: 400;
 }
 
-.custom-card .content .favourite-icon {
-    cursor: pointer;
-    font-size: 18px;
-    color: var(--semi-dark-color);
-}
-
-.custom-card .content .favourite-icon.filled {
-    color: red;
-}
 
 .custom-card .property-features .feature-text {
     font-size: 12px;
@@ -292,19 +303,21 @@
 }
 
 
-.custom-card .content .seller-info{
+.custom-card .content .seller-info {
     display: flex;
     align-items: center;
     margin: 6px 0;
     gap: 4px;
 }
-.custom-card .seller-info .seller-img{
+
+.custom-card .seller-info .seller-img {
     width: 30px;
     height: 30px;
     border-radius: 50%;
     overflow: hidden;
     background-color: var(--semi-dark-color-2);
 }
+
 /* ========= Estimate Section =============  */
 .flexSection .split {
     display: flex;
@@ -358,12 +371,12 @@
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     margin-top: 30px;
     transition: all .5s;
-  }
-  
-  .swiper-nav-btns button:hover {
+}
+
+.swiper-nav-btns button:hover {
     background-color: hsl(210, 100%, 40%);
     cursor: pointer;
-  }
+}
 
 /* ========= Testimonials ===========  */
 .testimonials {

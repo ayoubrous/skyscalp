@@ -1,6 +1,11 @@
 import React from 'react'
 import { BsBuildings } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
+import { FaTools } from 'react-icons/fa';
+import { BsTools } from "react-icons/bs";
+import { BsBuildingsFill } from "react-icons/bs";
+import { RiContactsFill, RiAdvertisementFill } from "react-icons/ri";
+
 
 export default function FeatureCards() {
     const [t] = useTranslation()
@@ -8,19 +13,19 @@ export default function FeatureCards() {
     return (
         <div className='feature-cards'>
             <div className="feature-card">
-                <BsBuildings className='icon' />
+                <BsBuildingsFill className='icon' />
                 <p>{t("featureCard1")}</p>
             </div>
             <div className="feature-card">
-                <BsBuildings className='icon' />
+                <BsTools className='icon' />
                 <p>{t("featureCard2")}</p>
             </div>
             <div className="feature-card">
-                <BsBuildings className='icon' />
+                <RiContactsFill className='icon' />
                 <p className='mt-2'>{t("featureCard3")}</p>
             </div>
             <div className="feature-card">
-                <BsBuildings className='icon' />
+                <RiAdvertisementFill className='icon' />
                 <p className='mt-2'>{t("featureCard4")}</p>
             </div>
         </div>

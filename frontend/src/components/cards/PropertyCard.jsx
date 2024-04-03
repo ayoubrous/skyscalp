@@ -15,7 +15,9 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 
 
-const PropertyCard = ({ id, imgUrl, title, description, category, type, price, streetAddress, city, bedrooms, baths, area, sellerName, sellerImg }) => {
+const PropertyCard = ({ propertyData }) => {
+    const { id, imgUrl, title, description, category, type, price, streetAddress, city, bedrooms, baths, area, sellerName, sellerImg, datePosted } = propertyData;
+
     const [t] = useTranslation();
     const [favourite, setFavourite] = useState(false)
 
@@ -55,27 +57,27 @@ const PropertyCard = ({ id, imgUrl, title, description, category, type, price, s
                     }
                 </OwlCarousel>
                 <div className="custom-badge">{type}</div>
+                <div className="icon-area">
+                    {
+                        favourite ? (<FaHeart className='icon favourite-icon filled' onClick={() => { setFavourite(!favourite) }} />) : (<FaRegHeart className='icon favourite-icon' onClick={() => { setFavourite(!favourite) }} />)
+                    }
+
+                </div>
             </div>
 
             <div className="content">
-                <small className='color-secondary mb-0 '>{t("category")}: {category}</small>
                 <div className="d-flex justify-content-between align-items-center">
-                    <h3 className="card-title">{title && (title.slice(0, 13)) + (title.length > 13 ? "..." : "")}</h3>
+                    <h3 className="card-title">{title && (title.slice(0, 20)) + (title.length > 20 ? "..." : "")}</h3>
                     <h5 className='color-primary'>MAD {price}</h5>
                 </div>
-
-                {description && <p className='my-2 color-secondary'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
-
-
+                <p className='paragraph mb-0 '>{category}</p>
                 <div className="d-flex justify-content-between align-items-center">
                     <p className='city'>{city}</p>
-                    <div className="icon-area">
-                        {
-                            favourite ? (<FaHeart className='icon favourite-icon filled' onClick={() => { setFavourite(!favourite) }} />) : (<FaRegHeart className='icon favourite-icon' onClick={() => { setFavourite(!favourite) }} />)
-                        }
-
-                    </div>
                 </div>
+
+                {description && <p className='mb-3 mt-1 color-secondary'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
+
+
                 <div className="d-flex justify-content-between align-items-center property-features">
                     <div className='d-flex align-items-center'>
                         <TbBed className='feature-icon' />
@@ -90,6 +92,9 @@ const PropertyCard = ({ id, imgUrl, title, description, category, type, price, s
                         <p className="feature-text">{area} {t("areaUnit")}</p>
                     </div>
                 </div>
+
+                <p className="color-secondary my-2">{t("datePosted")}: {datePosted}</p>
+
                 <hr className="line-break my-2" />
                 <div className="seller-info">
                     <div className="seller-img">
