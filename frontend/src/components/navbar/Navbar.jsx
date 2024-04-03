@@ -18,9 +18,9 @@ export default function Navbar() {
     };
     return (
         <nav className="navbar">
-            <div className="logo">
+            <Link to='/' className="logo">
                 <img src={logo} alt="web-logo" />
-            </div>
+            </Link>
             <div className={`links-section ${showNavInPhone ? 'show': ''}`}>
                 <div className="commercial-links links">
                     <Link className='link' to="/" >{t("buy")}</Link>
