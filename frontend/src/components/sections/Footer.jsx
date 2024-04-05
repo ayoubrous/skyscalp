@@ -2,8 +2,11 @@ import React from 'react'
 import { FaEnvelope, FaFacebook, FaFacebookF, FaInstagram, FaLocationArrow, FaPhone } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+    const [t] = useTranslation()
+
     return (
         <footer className="footer">
             <div className="custom-container">
@@ -12,7 +15,7 @@ export default function Footer() {
                         <h4 className='text-white'>LOGO</h4>
                     </div>
                     <div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 mb-3">
-                        <h4 className='mb-5 text-white'>Support Information</h4>
+                        <h4 className='mb-5 text-white'>{t("supportInfo")}</h4>
 
                         <div className="d-flex gap-3 mb-3">
                             <FaLocationArrow />
@@ -36,7 +39,7 @@ export default function Footer() {
                     </div>
 
                     <div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 mb-3">
-                        <h4 className='mb-5 text-white'>Company</h4>
+                        <h4 className='mb-5 text-white'>{t("company")}</h4>
 
                         <div className="d-flex gap-3 mb-3">
                             <div>

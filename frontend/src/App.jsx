@@ -5,16 +5,26 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './admin/assets/css/styles.min.css'
 import './assets/style/default.css'
 import './assets/style/style.css'
+import './assets/style/pages.css'
 import './assets/style/media.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
+import Properties from './pages/Properties';
+import Machinery from './pages/Machinery';
+import Construction from './pages/Construction';
+import ScrollToTop from './components/utils/ScrollToTop';
 
 const App = () => {
   return (
     <Router>
-      <Routes>
-        <Route path='/' exact index element={<Home />} />
-      </Routes>
+      <ScrollToTop >
+        <Routes>
+          <Route path='/' exact index element={<Home />} />
+          <Route path='/properties' exact element={<Properties />} />
+          <Route path='/machinery' exact element={<Machinery />} />
+          <Route path='/construction' exact element={<Construction />} />
+        </Routes>
+      </ScrollToTop>
     </Router>
 
   )

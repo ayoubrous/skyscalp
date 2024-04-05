@@ -51,7 +51,9 @@ export default function Construction() {
                         description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
                     />
                 </div>
+                <Link to="./construction">
                 <button className="outline-btn d-block mx-auto my-4">{t("viewAllConstruction")}</button>
+                </Link>
             </div>
         </section>
     )

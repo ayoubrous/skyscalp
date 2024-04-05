@@ -47,7 +47,9 @@ export default function Properties() {
                     <PropertyCard propertyData={propertyData} />
                     <PropertyCard propertyData={propertyData} />
                 </div>
-                <button className="outline-btn d-block mx-auto my-4">{t("viewAllProperty")}</button>
+                <Link to="./properties">
+                    <button className="outline-btn d-block mx-auto my-4">{t("viewAllProperty")}</button>
+                </Link>
             </div>
         </section>
     )

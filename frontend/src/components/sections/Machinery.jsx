@@ -39,7 +39,9 @@ export default function Machinery() {
                         city="Carolina, USA"
                     />
                 </div>
-                <button className="outline-btn d-block mx-auto my-4">{t("viewAllMachinery")}</button>
+                <Link to="./machinery">
+                    <button className="outline-btn d-block mx-auto my-4">{t("viewAllMachinery")}</button>
+                </Link>
             </div>
         </section>
     )

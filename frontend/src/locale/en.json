@@ -2,7 +2,8 @@
     "heroTitle": "Your All-in-One Real Estate Partner",
     "heroSlogan": "From Search to Success",
     "heroPara": "Streamline your real estate journey: Buy, Rent or Build with confidence.",
-    "featureCard1": "BUY, RENT PROPERTY",
+    "featureCard1": "BUY, RENT ",
+    "featureCard1ii": "A PROPERTY",
     "featureCard2": "BUILD YOUR PROPERTY",
     "featureCard3": "ESTIMATE",
     "featureCard4": "PUBLISH",
@@ -46,6 +47,21 @@
     "homeSupportDescription": "Tips and valuable information for every project stage.",
     "contactUsTitle": "Contact Us for a Free Consultation",
     "blog": "Blog",
-    "application": "Application"
-
+    "application": "Application",
+    "supportInfo": "Support Information",
+    "company": "Company",
+    "properties": "Properties",
+    "exploreProperties": "Explore Properties",
+    "exploreMachinery": "Explore Machinery",
+    "exploreConstruction": "Explore Construction",
+    "allProperties": "All Properties",
+    "allMachinery": "All Machinery",
+    "allConstruction": "All Construction",
+    "propertySupportTitle": "Communicate directly with your advisor",
+    "propertySupportDescription": "Tips and valuable information for every project stage.",
+    "machinerySupportTitle": "Communicate directly with your advisor",
+    "machinerySupportDescription": "Gain direct access to expert advice and guidance for purchasing machinery items.",
+    "constructionSupportTitle": "Communicate directly with your advisor",
+    "constructionSupportDescription": "Access direct communication with knowledgeable advisors to facilitate your construction item purchases"
+    
 }

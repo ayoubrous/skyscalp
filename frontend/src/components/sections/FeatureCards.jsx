@@ -15,6 +15,7 @@ export default function FeatureCards() {
             <div className="feature-card">
                 <BsBuildingsFill className='icon' />
                 <p>{t("featureCard1")}</p>
+                <p>{t("featureCard1ii")}</p>
             </div>
             <div className="feature-card">
                 <BsTools className='icon' />
