@@ -76,6 +76,10 @@ section {
     padding: 3rem 0;
     overflow: hidden;
 }
+footer {
+    padding: 3rem 0;
+    overflow: hidden;
+}
 
 hr {
     margin: 2px 0;

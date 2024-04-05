@@ -11,6 +11,7 @@ import BlogSection from '../components/sections/BlogSection'
 import Testimonials from '../components/sections/Testimonials'
 import ContactUs from '../components/sections/ContactUs'
 import { t } from 'i18next'
+import Footer from '../components/sections/Footer'
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
         <BlogSection />
         <Testimonials />
         <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} />
+        <Footer />
     </>
   )
 }
