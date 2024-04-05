@@ -31,17 +31,6 @@ const PropertyCard = ({ propertyData }) => {
         autoplayTimeout: 8500,
         smartSpeed: 450,
         nav: true,
-        responsive: {
-            0: {
-                items: 1
-            },
-            600: {
-                items: 1
-            },
-            1000: {
-                items: 1
-            }
-        }
     };
 
     return (
@@ -67,18 +56,16 @@ const PropertyCard = ({ propertyData }) => {
 
             <div className="content">
                 <div className="d-flex justify-content-between align-items-center">
-                    <h3 className="card-title">{title && (title.slice(0, 20)) + (title.length > 20 ? "..." : "")}</h3>
+                    <h1 className="card-title">{title && (title.slice(0, 17)) + (title.length > 17 ? "..." : "")}</h1>
                     <h5 className='color-primary'>MAD {price}</h5>
                 </div>
-                <p className='paragraph mb-0 '>{category}</p>
-                <div className="d-flex justify-content-between align-items-center">
-                    <p className='city'>{city}</p>
-                </div>
+                <p className='paragraph mb-0 '>{category}, ({area} sq ft)</p>
+                <p className=''>{city}</p>
 
                 {description && <p className='mb-3 mt-1 color-secondary'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
 
 
-                <div className="d-flex justify-content-between align-items-center property-features">
+                <div className="d-flex justify-content-between align-items-center property-features mb-2">
                     <div className='d-flex align-items-center'>
                         <TbBed className='feature-icon' />
                         <p className="feature-text">{bedrooms} {t("bedrooms")}</p>
@@ -93,8 +80,11 @@ const PropertyCard = ({ propertyData }) => {
                     </div>
                 </div>
 
-                <p className="color-secondary my-2">{t("datePosted")}: {datePosted}</p>
-
+                <div className="d-flex justify-content-between align-items-center property-features">
+                    <div className='d-flex align-items-center'>
+                        <p className="feature-text">{t("datePosted")}: {datePosted}</p>
+                    </div>
+                </div>
                 <hr className="line-break my-2" />
                 <div className="seller-info">
                     <div className="seller-img">

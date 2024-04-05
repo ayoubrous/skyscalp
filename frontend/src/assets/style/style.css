@@ -149,6 +149,10 @@
 
 .construction-section {
     padding: 1rem 0;
+    padding-top: 0;
+}
+.publishSection{
+    padding-top: 0;
 }
 
 /* ============ Cards ===============  */
@@ -177,7 +181,9 @@
     border: 1px solid var(--border-color);
     border-radius: 6px;
     overflow: hidden;
-    /* height: 475px; */
+}
+.property-card{
+    height: 510px;
 }
 
 .owl-prev,
@@ -275,8 +281,8 @@
 }
 
 .custom-card .content .card-title {
-    font-weight: 700;
-    font-size: 1.1rem;
+    font-weight: 600;
+    font-size: 1.3rem;
     margin: 8px 0;
 }
 
@@ -344,8 +350,11 @@
 
 
 /* ====== Blogs Section =========  */
+.blogs-section .owl-nav{
+    display: block !important;
+}
 .blog-card {
-    height: 380px;
+    height: 350px;
 }
 
 .blog-card .image {
