@@ -75,7 +75,10 @@
     "dreamList3": "Offer machinery rentals for properties, ensuring operational convenience.",
     "estimateYourProperty": "How to Estimate your Property",
     "estimateDesc1": "Unlock the true value of your property or product with our cutting-edge estimation services. Utilizing advanced algorithms and comprehensive market data, we provide accurate and reliable valuations tailored to your specific needs. Whether you're selling a home, commercial property, or unique product, our platform offers the insights you need to make informed decisions.",
-    "estimateDesc2": "Say goodbye to uncertainty and hello to confidence in your pricing strategy. Explore our estimation services today and discover the true worth of your assets"
+    "estimateDesc2": "Say goodbye to uncertainty and hello to confidence in your pricing strategy. Explore our estimation services today and discover the true worth of your assets",
+    "estimatePropertyOrProduct": "ESTIMATE YOUR PROPERTY OR PRODUCT",
+    "contactSupportTitle": "Communicate directly with your advisor",
+    "contactSupportDescription": "Tips and valuable information for every project stage."
 
     
 }

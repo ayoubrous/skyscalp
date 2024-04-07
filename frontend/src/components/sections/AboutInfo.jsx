@@ -5,6 +5,7 @@ import dreamImg from '../../assets/images/dream.png'
 import { useTranslation } from 'react-i18next'
 import AnimatedNumbers from "react-animated-numbers";
 import { FaAngleRight } from 'react-icons/fa6'
+import Estimate from './Estimate'
 
 export default function AboutInfo() {
     const [t] = useTranslation()
@@ -130,20 +131,7 @@ export default function AboutInfo() {
                 </div>
             </section>
 
-            <section className="estimate flexSection flex-reverse">
-                <div className="custom-container">
-                    <div className="split">
-                        <div className="image">
-                            <img src={estimateImg} alt="" />
-                        </div>
-                        <div className="content mt-3">
-                            <h2 className=' fw-bolder mb-3'>{t("estimateYourProperty")}</h2>
-                            <p className="paragraph mb-1 mt-5 color-secondary">{t("estimateDesc1")}</p>
-                            <p className="paragraph mb-3 color-secondary">{t("estimateDesc2")}</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <Estimate />
 
             <section className="faq-section">
                 <div className="custom-container">

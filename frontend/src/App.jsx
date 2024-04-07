@@ -14,6 +14,7 @@ import Machinery from './pages/Machinery';
 import Construction from './pages/Construction';
 import ScrollToTop from './components/utils/ScrollToTop';
 import About from './pages/About';
+import Contact from './pages/Contact';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Routes>
           <Route path='/' exact index element={<Home />} />
           <Route path='/about' exact element={<About />} />
+          <Route path='/contact' exact element={<Contact />} />
           <Route path='/properties' exact element={<Properties />} />
           <Route path='/machinery' exact element={<Machinery />} />
           <Route path='/construction' exact element={<Construction />} />
