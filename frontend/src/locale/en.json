@@ -78,7 +78,12 @@
     "estimateDesc2": "Say goodbye to uncertainty and hello to confidence in your pricing strategy. Explore our estimation services today and discover the true worth of your assets",
     "estimatePropertyOrProduct": "ESTIMATE YOUR PROPERTY OR PRODUCT",
     "contactSupportTitle": "Communicate directly with your advisor",
-    "contactSupportDescription": "Tips and valuable information for every project stage."
+    "contactSupportDescription": "Tips and valuable information for every project stage.",
+    "messageOwner": "Message Owner",
+    "phone": "Phone",
+    "email": "Email",
+    "message": "Message",
+    "description": "Description"
 
     
 }

@@ -1,8 +1,10 @@
 @media screen and (max-width: 1200px) {
+
     /* height of card  */
     .property-card {
         height: 550px;
     }
+
     .blog-card {
         height: 400px;
     }
@@ -98,6 +100,7 @@
     .property-card {
         height: 600px;
     }
+
     .blog-card {
         height: 450px;
     }
@@ -161,12 +164,15 @@
         justify-content: center;
         gap: 25px 12px;
     }
+
     .property-card {
         height: 500px;
     }
+
     .blog-card {
         height: 400px;
     }
+
     .custom-card .content .card-title {
         font-weight: 500;
         font-size: 1.2rem;
@@ -202,6 +208,7 @@
         width: 100%;
         margin-bottom: 10px;
     }
+
     .flexSection .split .image img {
         width: 100%;
     }
@@ -218,6 +225,7 @@
         font-size: 12px;
         margin-top: 0 !important;
     }
+
     .flexSection.flex-reverse .split {
         flex-direction: column;
     }
@@ -227,6 +235,7 @@
         width: 90%;
         margin: 2rem auto;
     }
+
     .testimonials .customers {
         width: 100%;
         margin: 1rem auto;
@@ -242,16 +251,19 @@
         width: 33%;
         padding: 7px;
     }
+
     .testimonials .customers .customer .image {
         width: 22%;
     }
-    .testimonials .customers .customer small{
+
+    .testimonials .customers .customer small {
         font-size: 10px;
     }
-    .testimonials .customers .customer p{
+
+    .testimonials .customers .customer p {
         font-size: 12px;
     }
-    
+
     /* contact ------  */
     .contactUs .wraper {
         flex-direction: column;
@@ -275,48 +287,70 @@
     .contactUs .wraper .split {
         gap: 5px;
     }
+
+    .details-section .split {
+        flex-direction: column;
+    }
+
+    .details-section .split .side-lg {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .details-section .split .side-sm {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 }
 
 @media screen and (max-width: 595px) {
-    
-    .cards-grid{
+
+    .cards-grid {
         grid-template-columns: repeat(1, 100%);
     }
+
     .property-card {
         height: 460px;
     }
-    .custom-card .image img{
+
+    .custom-card .image img {
         width: 100% !important;
     }
-    .blog-card{
+
+    .blog-card {
         height: 360px;
     }
 
-    .faq-section{
+    .faq-section {
         padding: 2rem 0;
     }
+
     .faq-section .faq .faq-row {
         padding: 15px;
     }
 
 
-    .view-blog{
+    .view-blog {
         padding: 2rem 0;
     }
 }
-@media screen and (max-width: 450px){
+
+@media screen and (max-width: 450px) {
     .property-card {
         height: 475px;
     }
-    .blog-card{
+
+    .blog-card {
         height: 360px;
     }
+
     .testimonials .customers {
         width: 80%;
         flex-direction: column;
         gap: 10px;
     }
-    .testimonials .customers .customer{
+
+    .testimonials .customers .customer {
         width: 100%;
     }
 }

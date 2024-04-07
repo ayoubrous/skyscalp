@@ -203,3 +203,47 @@
 .view-blog{
     padding: 2rem 11rem;
 }
+
+
+/* ======= Detailed pages ========  */
+.details-section .split{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.details-section .split .side{
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 12px;
+}
+.details-section .split .side-lg{
+    width: 70%;
+}
+.details-section .split .side-sm{
+    width: 29%;
+}
+
+.details-section .seller-details .seller-info{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    .image{
+        width: 20%;
+        overflow: hidden;
+    }
+    .image img{
+        width: 100%;
+    }
+}
+
+
+.details-section .favourite-icon {
+    cursor: pointer;
+    font-size: 22px;
+    color: var(--semi-dark-color);
+}
+
+.details-section .favourite-icon.filled {
+    color: red;
+}

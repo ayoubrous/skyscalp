@@ -16,6 +16,7 @@ import ScrollToTop from './components/utils/ScrollToTop';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import ViewBlog from './pages/ViewBlog';
+import ViewProperty from './pages/ViewProperty';
 
 const App = () => {
   return (
@@ -26,9 +27,14 @@ const App = () => {
           <Route path='/about' exact element={<About />} />
           <Route path='/contact' exact element={<Contact />} />
           <Route path='/blog/:id' exact element={<ViewBlog />} />
+          {/* ----- Listing pages -----  */}
           <Route path='/properties' exact element={<Properties />} />
           <Route path='/machinery' exact element={<Machinery />} />
           <Route path='/construction' exact element={<Construction />} />
+          {/* ------ Detailed Pages -------  */}
+          <Route path='/property/:id' exact element={<ViewProperty />} />
+          <Route path='/construction/:id' exact element={<ViewProperty />} />
+          <Route path='/machinery/:id' exact element={<ViewProperty />} />
         </Routes>
       </ScrollToTop>
     </Router>
