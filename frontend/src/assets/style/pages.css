@@ -196,3 +196,10 @@
 .faq-section .faq.show .arrow-icon {
     transform: rotate(90deg);
 }
+
+
+
+/* ======= Blog ======  */
+.view-blog{
+    padding: 2rem 11rem;
+}
