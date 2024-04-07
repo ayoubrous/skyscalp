@@ -13,6 +13,7 @@ import Properties from './pages/Properties';
 import Machinery from './pages/Machinery';
 import Construction from './pages/Construction';
 import ScrollToTop from './components/utils/ScrollToTop';
+import About from './pages/About';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
       <ScrollToTop >
         <Routes>
           <Route path='/' exact index element={<Home />} />
+          <Route path='/about' exact element={<About />} />
           <Route path='/properties' exact element={<Properties />} />
           <Route path='/machinery' exact element={<Machinery />} />
           <Route path='/construction' exact element={<Construction />} />

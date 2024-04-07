@@ -139,3 +139,60 @@
     background-color: #e3e0e0 !important;
 }
 
+
+
+
+/* ======= About ========  */
+.journey .achievements{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.journey .achievements .ach-card{
+    padding: 22px 33px;
+    width: 33%;
+    color: #c0c0c0;
+    background-color: var(--primary-color);
+    box-shadow: 0 0 32px rgba(0, 0, 0, 0.097668);
+    border-radius: 6px;
+}
+
+
+
+/* Faq section  */
+.faq-section{
+    padding: 4rem 8rem;
+}
+.faq-section .faq .faq-row {
+    padding: 25px;
+    background-color: var(--white-color);
+    margin-bottom: 8px;
+}
+
+.faq-section .faq .question {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    cursor: pointer;
+    border: 1px solid var(--semi-dark-color);
+    border-radius: 6px;
+}
+
+.faq-section .faq .answer {
+    display: none;
+}
+
+.faq-section .faq.show .answer {
+    display: block;
+    padding-left: 50px;
+}
+
+.faq-section .faq .arrow-icon {
+    transform: rotate(0);
+    transition: all .2s ease;
+}
+
+.faq-section .faq.show .arrow-icon {
+    transform: rotate(90deg);
+}

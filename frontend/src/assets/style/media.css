@@ -202,6 +202,9 @@
         width: 100%;
         margin-bottom: 10px;
     }
+    .flexSection .split .image img {
+        width: 100%;
+    }
 
     .flexSection .split .content {
         width: 100%;
@@ -214,6 +217,9 @@
     .flexSection .split .paragraph {
         font-size: 12px;
         margin-top: 0 !important;
+    }
+    .flexSection.flex-reverse .split {
+        flex-direction: column;
     }
 
     /* testimonial  */
@@ -284,6 +290,13 @@
     }
     .blog-card{
         height: 360px;
+    }
+
+    .faq-section{
+        padding: 2rem 0;
+    }
+    .faq-section .faq .faq-row {
+        padding: 15px;
     }
 }
 @media screen and (max-width: 450px){

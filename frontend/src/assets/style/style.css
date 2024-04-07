@@ -330,6 +330,9 @@
     align-items: flex-start;
     justify-content: space-between;
 }
+.flexSection.flex-reverse .split{
+    flex-direction: row-reverse;
+}
 
 .flexSection .split .image {
     width: 48%;
