@@ -23,7 +23,7 @@ export default function Navbar() {
             </Link>
             <div className={`links-section ${showNavInPhone ? 'show': ''}`}>
                 <div className="commercial-links links">
-                    <Link className='link' to="/" >{t("buy")}</Link>
+                    <Link className='link' to="/properties" >{t("buy")}</Link>
                     <Link className='link' to="/" >{t("rent")}</Link>
                     <Link className='link' to="/" >{t("build")}</Link>
                     <Link className='link' to="/" >{t("estimate")}</Link>
