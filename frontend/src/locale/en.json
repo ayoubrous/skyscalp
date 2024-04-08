@@ -20,7 +20,7 @@
     "propertySectionTitle": "Buy, Rent a property",
     "propertySectionSubTitle": "Explore all properties  for sale and rent",
     "viewAllProperty": "View All Property",
-    "bedrooms": "bedrooms",
+    "bedrooms": "Bedrooms",
     "baths": "Baths",
     "areaUnit": "Sq ft",
     "machinerySectionTitle": "Build your property",
@@ -83,7 +83,14 @@
     "phone": "Phone",
     "email": "Email",
     "message": "Message",
-    "description": "Description"
+    "description": "Description",
+    "moreDetails": "More Details",
+    "garden": "Garden",
+    "garage": "Garage",
+    "pool": "Pool",
+    "sizeArea": "Size/Area",
+    "buildYear": "Year Build"
+
 
     
 }
