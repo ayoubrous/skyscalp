@@ -16,6 +16,7 @@ import { FiCalendar } from "react-icons/fi";
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import { Link } from 'react-router-dom';
 
 
 const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, category, datePosted, sellerName, city, description }) => {
@@ -64,7 +65,7 @@ const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, categ
                 </div>
 
             </div>
-            <div className="content">
+            <Link to='../construction/123' className="content">
                 <div className="d-flex justify-content-between align-items-center">
                     <h3 className="card-title">{title && (title.slice(0, 17)) + (title.length > 17 ? "..." : "")}</h3>
                     <h5 className='color-primary'>MAD {price}</h5>
@@ -89,7 +90,7 @@ const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, categ
                     </div>
                     <p>{sellerName}</p>
                 </div>
-            </div>
+            </Link>
         </div>
     )
 }

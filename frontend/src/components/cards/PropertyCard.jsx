@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import { Link } from 'react-router-dom';
 
 
 
@@ -54,7 +55,7 @@ const PropertyCard = ({ propertyData }) => {
                 </div>
             </div>
 
-            <div className="content">
+            <Link to='../property/123' className="content">
                 <div className="d-flex justify-content-between align-items-center">
                     <h1 className="card-title">{title && (title.slice(0, 17)) + (title.length > 17 ? "..." : "")}</h1>
                     <h5 className='color-primary'>MAD {price}</h5>
@@ -92,7 +93,7 @@ const PropertyCard = ({ propertyData }) => {
                     </div>
                     <p>{sellerName}</p>
                 </div>
-            </div>
+            </Link>
         </div>
     )
 }

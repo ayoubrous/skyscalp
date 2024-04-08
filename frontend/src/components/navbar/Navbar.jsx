@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import logo from '../../assets/images/logo.png'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
 import { FaBarsStaggered } from "react-icons/fa6";
 
@@ -21,17 +21,18 @@ export default function Navbar() {
             <Link to='/' className="logo">
                 <img src={logo} alt="web-logo" />
             </Link>
-            <div className={`links-section ${showNavInPhone ? 'show': ''}`}>
+            <div className={`links-section ${showNavInPhone ? 'show' : ''}`}>
                 <div className="commercial-links links">
-                    <Link className='link' to="/properties" >{t("buy")}</Link>
-                    <Link className='link' to="/" >{t("rent")}</Link>
-                    <Link className='link' to="/" >{t("build")}</Link>
-                    <Link className='link' to="/" >{t("estimate")}</Link>
-                    <Link className='link' to="/" >{t("publish")}</Link>
+                    <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/properties" >{t("buy")}</NavLink>
+                    <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/properties" >{t("rent")}</NavLink>
+                    <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/construction" >{t("build")}</NavLink>
+                    <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/contact" >{t("estimate")}</NavLink>
+                    <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/" >{t("publish")}</NavLink>
                 </div>
                 <div className="about-company-links links">
-                    <Link className='link active' to="/" >{t("home")}</Link>
-                    <Link className='link' to="/" >{t("about")}</Link>
+                    <NavLink to='/' className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false">{t("home")}</NavLink>
+                    <NavLink to='/about' className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false">{t("about")} </NavLink>
+
                 </div>
             </div>
             <div className="account">
@@ -47,7 +48,7 @@ export default function Navbar() {
                     <option value="fr">FR</option>
                 </select>
             </div>
-            <FaBarsStaggered className='bars-icon' onClick={() => setShowNavInPhone(!showNavInPhone)}/>
+            <FaBarsStaggered className='bars-icon' onClick={() => setShowNavInPhone(!showNavInPhone)} />
         </nav>
     )
 }

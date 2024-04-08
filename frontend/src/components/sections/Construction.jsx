@@ -14,7 +14,7 @@ export default function Construction() {
             <div className="custom-container">
                 <div className="d-flex justify-content-between align-items-center mb-3">
                     <h3 className='fw-bolder'>{t("constructionSectionTitle")}</h3>
-                    <Link to="/" className='underlineLink'>{t("seeMore")}</Link>
+                    <Link to="../construction" className='underlineLink'>{t("seeMore")}</Link>
                 </div>
 
                 <div className="cards-grid">

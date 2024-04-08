@@ -13,7 +13,7 @@ export default function Machinery() {
             <div className="custom-container">
                 <div className="d-flex justify-content-between align-items-center">
                     <h1 className="color-primary fw-bolder text-uppercase">{t("machinerySectionTitle")}</h1>
-                    <Link to="/" className='underlineLink'>{t("seeMore")}</Link>
+                    <Link to="../machinery" className='underlineLink'>{t("seeMore")}</Link>
                 </div>
                 <h3 className='my-3 fw-bolder'>{t("machinerySectionSubTitle")}</h3>
 

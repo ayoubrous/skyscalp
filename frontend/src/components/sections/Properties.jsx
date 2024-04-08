@@ -36,7 +36,7 @@ export default function Properties() {
             <div className="custom-container">
                 <div className="d-flex justify-content-between align-items-center">
                     <h1 className="color-primary text-uppercase fw-bolder">{t("propertySectionTitle")}</h1>
-                    <Link to="/" className='underlineLink'>{t("seeMore")}</Link>
+                    <Link to="../properties" className='underlineLink'>{t("seeMore")}</Link>
                 </div>
                 <h3 className='my-3 fw-bolder'>{t("propertySectionSubTitle")}</h3>
 
