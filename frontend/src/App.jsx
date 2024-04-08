@@ -17,6 +17,8 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import ViewBlog from './pages/ViewBlog';
 import ViewProperty from './pages/ViewProperty';
+import ViewMachinery from './pages/ViewMachinery';
+import ViewConstruction from './pages/ViewConstruction';
 
 const App = () => {
   return (
@@ -33,8 +35,8 @@ const App = () => {
           <Route path='/construction' exact element={<Construction />} />
           {/* ------ Detailed Pages -------  */}
           <Route path='/property/:id' exact element={<ViewProperty />} />
-          <Route path='/construction/:id' exact element={<ViewProperty />} />
-          <Route path='/machinery/:id' exact element={<ViewProperty />} />
+          <Route path='/construction/:id' exact element={<ViewConstruction />} />
+          <Route path='/machinery/:id' exact element={<ViewMachinery />} />
         </Routes>
       </ScrollToTop>
     </Router>

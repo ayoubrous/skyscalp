@@ -74,7 +74,7 @@ const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, categ
 
                     <p className='mb-1'>{t("category")}: {category}</p>
                     <p className='mb-1'>{t("application")}: Finishing, Foundations...</p>
-                    <p className='mb-2'>{t("category")}: {city}</p>
+                    <p className='mb-2'>{t("location")}: {city}</p>
 
                     {description && <p className='mb-3 mt-1 color-secondary'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
 

@@ -89,8 +89,14 @@
     "garage": "Garage",
     "pool": "Pool",
     "sizeArea": "Size/Area",
-    "buildYear": "Year Build"
-
-
-    
+    "buildYear": "Year Build",
+    "location": "Location",
+    "quality": "Quality",
+    "unit": "Unit",
+    "size": "Size",
+    "dimension": "Dimension",
+    "color": "Color",
+    "weight": "Weight",
+    "power": "Power",
+    "fuelType": "Fuel Type"
 }
