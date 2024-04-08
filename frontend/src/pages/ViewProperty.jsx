@@ -23,9 +23,16 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 export default function ViewProperty() {
+    
+    const propertyImages = [
+        "https://media.istockphoto.com/id/1165384568/photo/europe-modern-complex-of-residential-buildings.jpg?s=612x612&w=0&k=20&c=iW4NBiMPKEuvaA7h8wIsPHikhS64eR-5EVPfjQ9GPOA=",
+        "https://img.lovepik.com/photo/48012/2630.jpg_wh860.jpg",
+        "https://assets.architecturaldesigns.com/plan_assets/3199/original/3199D_front_1557350260.jpg"
+
+    ];
     const [t] = useTranslation()
     const [favourite, setFavourite] = useState(false)
-    const [mainImage, setMainImage] = useState('');
+    const [mainImage, setMainImage] = useState(propertyImages[0]);
 
     const options = {
         loop: true,
@@ -50,12 +57,6 @@ export default function ViewProperty() {
         }
     };
 
-    const propertyImages = [
-        "https://media.istockphoto.com/id/1165384568/photo/europe-modern-complex-of-residential-buildings.jpg?s=612x612&w=0&k=20&c=iW4NBiMPKEuvaA7h8wIsPHikhS64eR-5EVPfjQ9GPOA=",
-        "https://img.lovepik.com/photo/48012/2630.jpg_wh860.jpg",
-        "https://assets.architecturaldesigns.com/plan_assets/3199/original/3199D_front_1557350260.jpg"
-
-    ];
     const handleImageClick = (image) => {
         setMainImage(image);
     };

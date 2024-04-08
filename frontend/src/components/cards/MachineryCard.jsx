@@ -65,32 +65,35 @@ const MachineryCard = ({ id, imgUrl, title, description, type, price, modal, con
 
                 </div>
             </div>
-            <Link to='../machinery/123' className="content">
-                <div className="d-flex justify-content-between align-items-center">
-                    <h3 className="card-title">{title && (title.slice(0, 17)) + (title.length > 17 ? "..." : "")}</h3>
-                    <h5 className='color-primary'>MAD {price}</h5>
-                </div>
+            <Link to='../machinery/123'>
 
-                <p className='fw-bold mb-1'>{t("category")} {category}</p>
-                <p className='fw-bold mb-1'>{t("modal")} {modal}</p>
-                <p className='fw-bold mb-1'>{t("application")} {modal}</p>
-                <p className='fw-bold mb-1'>{t("condition")} {condition}</p>
-                <p className='fw-bold'>{city}</p>
-
-                {description && <p className='mb-3 mt-1 color-secondary'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
-
-
-                <div className="d-flex justify-content-between align-items-center property-features">
-                    <div className='d-flex align-items-center'>
-                        <p className="feature-text">{t("datePosted")}: {datePosted}</p>
+                <div to='' className="content">
+                    <div className="d-flex justify-content-between align-items-center">
+                        <h3 className="card-title">{title && (title.slice(0, 17)) + (title.length > 17 ? "..." : "")}</h3>
+                        <h5 className='color-primary'>MAD {price}</h5>
                     </div>
-                </div>
-                <hr className="line-break my-2" />
-                <div className="seller-info">
-                    <div className="seller-img">
 
+                    <p className='fw-bold mb-1'>{t("category")} {category}</p>
+                    <p className='fw-bold mb-1'>{t("modal")} {modal}</p>
+                    <p className='fw-bold mb-1'>{t("application")} {modal}</p>
+                    <p className='fw-bold mb-1'>{t("condition")} {condition}</p>
+                    <p className='fw-bold'>{city}</p>
+
+                    {description && <p className='mb-3 mt-1 color-secondary'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
+
+
+                    <div className="d-flex justify-content-between align-items-center property-features">
+                        <div className='d-flex align-items-center'>
+                            <p className="feature-text">{t("datePosted")}: {datePosted}</p>
+                        </div>
                     </div>
-                    <p>{sellerName}</p>
+                    <hr className="line-break my-2" />
+                    <div className="seller-info">
+                        <div className="seller-img">
+
+                        </div>
+                        <p>{sellerName}</p>
+                    </div>
                 </div>
             </Link>
         </div>

@@ -55,43 +55,45 @@ const PropertyCard = ({ propertyData }) => {
                 </div>
             </div>
 
-            <Link to='../property/123' className="content">
-                <div className="d-flex justify-content-between align-items-center">
-                    <h1 className="card-title">{title && (title.slice(0, 17)) + (title.length > 17 ? "..." : "")}</h1>
-                    <h5 className='color-primary'>MAD {price}</h5>
-                </div>
-                <p className='paragraph mb-0 '>{category}, ({area} sq ft)</p>
-                <p className=''>{city}</p>
-
-                {description && <p className='mb-3 mt-1 color-secondary'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
-
-
-                <div className="d-flex justify-content-between align-items-center property-features mb-2">
-                    <div className='d-flex align-items-center'>
-                        <TbBed className='feature-icon' />
-                        <p className="feature-text">{bedrooms} {t("bedrooms")}</p>
+            <Link to='../property/123'>
+                <div className="content">
+                    <div className="d-flex justify-content-between align-items-center">
+                        <h1 className="card-title">{title && (title.slice(0, 17)) + (title.length > 17 ? "..." : "")}</h1>
+                        <h5 className='color-primary'>MAD {price}</h5>
                     </div>
-                    <div className='d-flex align-items-center'>
-                        <LuBath className='feature-icon' />
-                        <p className="feature-text">{baths} {t("baths")}</p>
-                    </div>
-                    <div className='d-flex align-items-center'>
-                        <BsBuildings className='feature-icon' />
-                        <p className="feature-text">{area} {t("areaUnit")}</p>
-                    </div>
-                </div>
+                    <p className='paragraph mb-0 '>{category}, ({area} sq ft)</p>
+                    <p className=''>{city}</p>
 
-                <div className="d-flex justify-content-between align-items-center property-features">
-                    <div className='d-flex align-items-center'>
-                        <p className="feature-text">{t("datePosted")}: {datePosted}</p>
-                    </div>
-                </div>
-                <hr className="line-break my-2" />
-                <div className="seller-info">
-                    <div className="seller-img">
+                    {description && <p className='mb-3 mt-1 color-secondary'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
 
+
+                    <div className="d-flex justify-content-between align-items-center property-features mb-2">
+                        <div className='d-flex align-items-center'>
+                            <TbBed className='feature-icon' />
+                            <p className="feature-text">{bedrooms} {t("bedrooms")}</p>
+                        </div>
+                        <div className='d-flex align-items-center'>
+                            <LuBath className='feature-icon' />
+                            <p className="feature-text">{baths} {t("baths")}</p>
+                        </div>
+                        <div className='d-flex align-items-center'>
+                            <BsBuildings className='feature-icon' />
+                            <p className="feature-text">{area} {t("areaUnit")}</p>
+                        </div>
                     </div>
-                    <p>{sellerName}</p>
+
+                    <div className="d-flex justify-content-between align-items-center property-features">
+                        <div className='d-flex align-items-center'>
+                            <p className="feature-text">{t("datePosted")}: {datePosted}</p>
+                        </div>
+                    </div>
+                    <hr className="line-break my-2" />
+                    <div className="seller-info">
+                        <div className="seller-img">
+
+                        </div>
+                        <p>{sellerName}</p>
+                    </div>
                 </div>
             </Link>
         </div>

@@ -65,30 +65,32 @@ const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, categ
                 </div>
 
             </div>
-            <Link to='../construction/123' className="content">
-                <div className="d-flex justify-content-between align-items-center">
-                    <h3 className="card-title">{title && (title.slice(0, 17)) + (title.length > 17 ? "..." : "")}</h3>
-                    <h5 className='color-primary'>MAD {price}</h5>
-                </div>
-
-                <p className='mb-1'>{t("category")}: {category}</p>
-                <p className='mb-1'>{t("application")}: Finishing, Foundations...</p>
-                <p className='mb-2'>{t("category")}: {city}</p>
-
-                {description && <p className='mb-3 mt-1 color-secondary'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
-
-
-                <div className="d-flex justify-content-between align-items-center property-features">
-                    <div className='d-flex align-items-center'>
-                        <p className="feature-text">{t("datePosted")}: {datePosted}</p>
+            <Link to='../construction/123'>
+                <div className="content">
+                    <div className="d-flex justify-content-between align-items-center">
+                        <h3 className="card-title">{title && (title.slice(0, 17)) + (title.length > 17 ? "..." : "")}</h3>
+                        <h5 className='color-primary'>MAD {price}</h5>
                     </div>
-                </div>
-                <hr className="line-break my-2" />
-                <div className="seller-info">
-                    <div className="seller-img">
 
+                    <p className='mb-1'>{t("category")}: {category}</p>
+                    <p className='mb-1'>{t("application")}: Finishing, Foundations...</p>
+                    <p className='mb-2'>{t("category")}: {city}</p>
+
+                    {description && <p className='mb-3 mt-1 color-secondary'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
+
+
+                    <div className="d-flex justify-content-between align-items-center property-features">
+                        <div className='d-flex align-items-center'>
+                            <p className="feature-text">{t("datePosted")}: {datePosted}</p>
+                        </div>
                     </div>
-                    <p>{sellerName}</p>
+                    <hr className="line-break my-2" />
+                    <div className="seller-info">
+                        <div className="seller-img">
+
+                        </div>
+                        <p>{sellerName}</p>
+                    </div>
                 </div>
             </Link>
         </div>
