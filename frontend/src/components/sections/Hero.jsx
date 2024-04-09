@@ -42,6 +42,7 @@ export default function Hero() {
         <FaArrowUp className='icon' />
       </div> */}
 
+
     </>
 
   )

@@ -12,6 +12,7 @@ import Testimonials from '../components/sections/Testimonials'
 import ContactUs from '../components/sections/ContactUs'
 import { t } from 'i18next'
 import Footer from '../components/sections/Footer'
+import HomeFilter from '../components/filters/HomeFilter'
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
         <Navbar />
         <Hero />
         <FeatureCards />
+        <HomeFilter />
         <Properties />
         <Machinery />
         <Construction />

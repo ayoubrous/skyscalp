@@ -42,14 +42,6 @@ export default function Construction() {
                         city="Carolina, USA"
                         description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
                     />
-                    <ConstructionCard id=""
-                        imgUrl={["https://5.imimg.com/data5/GY/OT/DS/SELLER-54664232/ultratech-cement-500x500.jpg", "https://media.istockphoto.com/id/987409372/photo/cement-in-bags-3d-rendering-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=qPFDhwtjy9VAfmKPK4lfbuA0sTS8dOMSbeoX6ngclC0="]}
-                        title="Best quality Cement for home construction" price="1200"
-                        quantity="20 KG" available="Yes" category="Cement"
-                        datePosted="17 March 2024" sellerName="Hendrich Klasen"
-                        city="Carolina, USA"
-                        description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
-                    />
                 </div>
                 <Link to="./construction">
                 <button className="outline-btn d-block mx-auto my-4">{t("viewAllConstruction")}</button>

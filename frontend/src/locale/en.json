@@ -100,5 +100,8 @@
     "power": "Power",
     "fuelType": "Fuel Type",
     "viewOnMap": "View on Map",
-    "similar": "Similar"
+    "similar": "Similar",
+    "property": "Property",
+    "machinery": "Machinery",
+    "construction": "Construction"
 }
