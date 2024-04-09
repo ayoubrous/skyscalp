@@ -146,7 +146,7 @@
         display: none;
     }
 
-    .properties-section .cards-grid .custom-card:last-child {
+    /* .properties-section .cards-grid .custom-card:last-child {
         display: block;
     }
 
@@ -156,7 +156,7 @@
 
     .construction-section .cards-grid .custom-card:last-child {
         display: block;
-    }
+    } */
 
     .cards-grid {
         /* grid-template-columns: repeat(1, 70%); */

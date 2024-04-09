@@ -164,7 +164,7 @@
     align-items: center;
     gap: 15px 0;
 }
-
+/* 
 .properties-section .cards-grid .custom-card:last-child {
     display: none;
 }
@@ -175,7 +175,7 @@
 
 .construction-section .cards-grid .custom-card:last-child {
     display: none;
-}
+} */
 
 .custom-card {
     border: 1px solid var(--border-color);
@@ -282,7 +282,7 @@
 
 .custom-card .content .card-title {
     font-weight: 600;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin: 8px 0;
 }
 

@@ -98,5 +98,7 @@
     "color": "Color",
     "weight": "Weight",
     "power": "Power",
-    "fuelType": "Fuel Type"
+    "fuelType": "Fuel Type",
+    "viewOnMap": "View on Map",
+    "similar": "Similar"
 }

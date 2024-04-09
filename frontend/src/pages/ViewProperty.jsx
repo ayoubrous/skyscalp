@@ -21,9 +21,12 @@ import { MdOutlineGarage } from "react-icons/md";
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import Map from '../components/map/Map'
+import Properties from '../components/sections/Properties'
+import SimilarProperties from '../components/sections/SimilarProperties'
 
 export default function ViewProperty() {
-    
+
     const propertyImages = [
         "https://media.istockphoto.com/id/1165384568/photo/europe-modern-complex-of-residential-buildings.jpg?s=612x612&w=0&k=20&c=iW4NBiMPKEuvaA7h8wIsPHikhS64eR-5EVPfjQ9GPOA=",
         "https://img.lovepik.com/photo/48012/2630.jpg_wh860.jpg",
@@ -78,11 +81,11 @@ export default function ViewProperty() {
 
                                 <div className="more-images">
                                     {/* <OwlCarousel id="" className="owl-carousel owl-theme" {...options}> */}
-                                        {propertyImages.map((image, i) => (
-                                            <div key={i} className={`image ${mainImage === image ? 'active' : ''}`} onClick={() => handleImageClick(image)}>
-                                                <img src={image} alt="" />
-                                            </div>
-                                        ))}
+                                    {propertyImages.map((image, i) => (
+                                        <div key={i} className={`image ${mainImage === image ? 'active' : ''}`} onClick={() => handleImageClick(image)}>
+                                            <img src={image} alt="" />
+                                        </div>
+                                    ))}
 
 
                                     {/* </OwlCarousel> */}
@@ -144,7 +147,7 @@ export default function ViewProperty() {
 
                             </div>
 
-                            <div className="side more-details">
+                            <div className="side more-details mb-2">
                                 <h4 className="fw-bolder mb-4">{t("moreDetails")}</h4>
 
                                 <div className="features-grid">
@@ -205,6 +208,12 @@ export default function ViewProperty() {
                                 </div>
                             </div>
 
+                            <div className="side map mb-2">
+                                <h3 className="fw-bolder mb-4">{t("viewOnMap")}</h3>
+                                <Map />
+                            </div>
+
+
                         </div>
 
 
@@ -232,6 +241,7 @@ export default function ViewProperty() {
             </section>
 
 
+            <SimilarProperties />
             <BlogSection />
             <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} />
             <Footer />

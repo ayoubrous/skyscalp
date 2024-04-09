@@ -8,6 +8,7 @@ import BlogSection from '../components/sections/BlogSection'
 import sellerImage from '../assets/images/sellerImage.png'
 import { FaBath, FaBed, FaBuilding, FaEnvelope, FaHeart, FaPhone, FaRegHeart, FaRoadSpikes } from 'react-icons/fa6'
 import MessageOwner from '../components/utils/MessageOwner'
+import SimilarProperties from '../components/sections/SimilarProperties'
 
 
 export default function ViewConstruction() {
@@ -168,6 +169,7 @@ export default function ViewConstruction() {
             </section>
 
 
+            <SimilarProperties />
             <BlogSection />
             <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} />
             <Footer />

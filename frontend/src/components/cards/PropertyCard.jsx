@@ -58,7 +58,7 @@ const PropertyCard = ({ propertyData }) => {
             <Link to='../property/123'>
                 <div className="content">
                     <div className="d-flex justify-content-between align-items-center">
-                        <h1 className="card-title">{title && (title.slice(0, 17)) + (title.length > 17 ? "..." : "")}</h1>
+                        <h1 className="card-title">{title && (title.slice(0, 18)) + (title.length > 18 ? "..." : "")}</h1>
                         <h5 className='color-primary'>MAD {price}</h5>
                     </div>
                     <p className='paragraph mb-0 '>{category}, ({area} sq ft)</p>

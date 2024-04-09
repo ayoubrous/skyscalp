@@ -340,3 +340,9 @@
 .details-section .feature .label {
     width: 50%;
 }
+
+/* map conainer  */
+.leaflet-container{
+    width: 100%;
+    height: 400px;
+}

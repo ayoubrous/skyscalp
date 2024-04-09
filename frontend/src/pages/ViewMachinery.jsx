@@ -21,6 +21,7 @@ import { MdOutlineGarage } from "react-icons/md";
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import SimilarProperties from '../components/sections/SimilarProperties'
 
 export default function ViewMachinery() {
     
@@ -208,6 +209,7 @@ export default function ViewMachinery() {
             </section>
 
 
+            <SimilarProperties />
             <BlogSection />
             <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} />
             <Footer />
