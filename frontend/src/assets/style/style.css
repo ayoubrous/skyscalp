@@ -585,12 +585,16 @@
 .filter .user-input .category-list {
     position: relative;
     width: 20%;
-    padding: 20px 19px;
     border-left: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
+}
+
+.filter .user-input .location-input{
+    padding: 0;
+    padding: 20px 19px;
+
 }
 
 .user-input .category-list .category-dropdown,
@@ -598,7 +602,9 @@
     position: absolute;
     top: 104%;
     left: 0;
-    width: 100%;
+    /* width: 100%; */
+    width: fit-content;
+    max-width: 300px;
     border-radius: 6px;
     box-shadow: 0 0 5px rgba(0, 0, 8, 0.11);
     background-color: var(--white-color);

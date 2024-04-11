@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaAngleDown, FaXmark } from 'react-icons/fa6';
+import PlacesAutocomplete from 'react-places-autocomplete';
+import {
+    geocodeByAddress,
+    geocodeByPlaceId,
+    getLatLng,
+} from 'react-places-autocomplete';
 
 export default function HomeFilter() {
     const [t] = useTranslation();
@@ -12,6 +18,7 @@ export default function HomeFilter() {
     const [showSearchDropdown, setShowSearchDropdown] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState(t("property"));
     const [selectedTypes, setSelectedTypes] = useState([])
+    const [location, setLocation] = useState("")
 
     const types = [
         "Excavators",
@@ -71,6 +78,14 @@ export default function HomeFilter() {
         };
     }, []);
 
+
+    const handleLocationSelect = async value => {
+        // const results = await geocodeByAddress(value);
+        // const latLng = await getLatLng(results[0]);
+        setLocation(value);
+        // setCoordinates(latLng);
+    };
+
     return (
         <div className="filter-area">
             <div className="custom-container">
@@ -90,7 +105,7 @@ export default function HomeFilter() {
                                 }
                             </div>
                         </div>
-                        <div className="category-list" onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}>
+                        {/* <div className="category-list" onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}>
                             <p className="color-primary">{selectedCategory}</p>
                             <FaAngleDown className='color-primary' />
                             <div ref={categoryDropdownRef} className={`category-dropdown ${showCategoryDropdown ? 'show' : ''}`}>
@@ -98,6 +113,34 @@ export default function HomeFilter() {
                                 <p className="dropdown-item" onClick={() => handleCategorySelect(t("machinery"))}>Machinery</p>
                                 <p className="dropdown-item" onClick={() => handleCategorySelect(t("construction"))}>Construction</p>
                             </div>
+                        </div> */}
+                        <div className="category-list" onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}>
+                            <PlacesAutocomplete
+                                value={location}
+                                onChange={setLocation}
+                                onSelect={handleLocationSelect}
+                            >
+                                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                                    <div>
+
+                                        <input className="custom-input location-input" {...getInputProps({ placeholder: "Type city" })} />
+
+                                        <div className='category-dropdown show'>
+
+                                            {suggestions.map(suggestion => {
+
+                                                return (
+                                                    <>
+                                                        <div className='dropdown-item' {...getSuggestionItemProps(suggestion, {})}>
+                                                            {suggestion.description}
+                                                        </div>
+                                                    </>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                )}
+                            </PlacesAutocomplete>
                         </div>
                     </div>
                     <div className="filter-btn">
