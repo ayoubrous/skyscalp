@@ -13,6 +13,7 @@ html {
 :root {
     --primary-color: #076C8F;
     --primary-color-hover: #07617f;
+    --primary-color-light: rgb(230, 246, 252);
     --panel-color: #FCFCFC;
     --semi-dark-color: #5C5C5C;
     --semi-dark-color-2: #9E9E9E;

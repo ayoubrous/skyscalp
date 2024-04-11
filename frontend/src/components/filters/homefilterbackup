@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaAngleDown, FaXmark } from 'react-icons/fa6';
-import Select from 'react-select';
-
 import PlacesAutocomplete from 'react-places-autocomplete';
 import {
     geocodeByAddress,
@@ -14,39 +12,50 @@ export default function HomeFilter() {
     const [t] = useTranslation();
 
     const categoryDropdownRef = useRef();
+    const searchDropdownRef = useRef();
 
     const [showLocationDropdown, setShowLocationDropdown] = useState(false);
+    const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState("")
     const [location, setLocation] = useState("")
 
-    const formattedCategories = [
-        { value: 'Excavators', label: 'Excavators' },
-        { value: 'Bulldozers', label: 'Bulldozers' },
-        { value: 'Cranes', label: 'Cranes' },
-        { value: 'Loaders', label: 'Loaders' },
-        { value: 'Backhoes', label: 'Backhoes' },
-        { value: 'Dump Trucks', label: 'Dump Trucks' },
-        { value: 'Pavers', label: 'Pavers' },
-        { value: 'Residential', label: 'Residential' },
-        { value: 'Commercial', label: 'Commercial' },
-        { value: 'Industrial', label: 'Industrial' },
-        { value: 'Agricultural', label: 'Agricultural' },
-        { value: 'Vacant Land', label: 'Vacant Land' },
-        { value: 'Rental', label: 'Rental' },
-        { value: 'Condominium', label: 'Condominium' },
-        { value: 'Townhouse', label: 'Townhouse' },
-        { value: 'Multi-family', label: 'Multi-family' }
-    ];
-
+    const categories = [
+        "Excavators",
+        "Bulldozers",
+        "Cranes",
+        "Loaders",
+        "Backhoes",
+        "Dump Trucks",
+        "Pavers",
+        "Residential",
+        "Commercial",
+        "Industrial",
+        "Agricultural",
+        "Vacant Land",
+        "Rental",
+        "Condominium",
+        "Townhouse",
+        "Multi-family",
+    ]
 
     const handleClickOutside = (e) => {
         if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(e.target)) {
             setShowLocationDropdown(false);
         }
+        if (searchDropdownRef.current && !searchDropdownRef.current.contains(e.target)) {
+            setShowCategoriesDropdown(false);
+        }
     };
 
-    const handleCategoryChange = value => {
-        setSelectedCategory(value)
+    const handleCategorySelect = category => {
+        setShowCategoriesDropdown(false);
+        setSelectedCategory(category)
+        document.removeEventListener("mousedown", handleClickOutside);
+    };
+
+    const handleCategoryChange = e => {
+        setShowCategoriesDropdown(true)
+        setSelectedCategory(e.target.value)
     }
 
     useEffect(() => {
@@ -65,11 +74,6 @@ export default function HomeFilter() {
         // setCoordinates(latLng);
     };
 
-    const handleFilter = () => {
-        console.log(selectedCategory)
-        console.log(location)
-    }
-
     return (
         <div className="filter-area">
             <div className="custom-container">
@@ -77,17 +81,17 @@ export default function HomeFilter() {
                 <div className="filter hero-filter">
                     <div className="user-input">
                         <div className="search-input">
-                            {/* <input type="text" className="custom-input" placeholder='Try Excavator, Apartment, Cement' value={selectedCategory} onChange={handleCategoryChange}/> */}
-                            <Select
-                                className="custom-input bordor-0"
-                                classNamePrefix="select"
-                                placeholder="Select Category"
-                                name="color"
-                                options={formattedCategories}
-                                onChange={handleCategoryChange}
-                                value={selectedCategory}
-                                isClearable={true}
-                            />
+                            <input type="text" className="custom-input" placeholder='Try Excavator, Apartment, Cement' value={selectedCategory} onChange={handleCategoryChange}/>
+
+                            <div className={`search-dropdown ${showCategoriesDropdown ? 'show' : ''}`} ref={searchDropdownRef}>
+                                {
+                                    categories.map((category, i) => {
+                                        return (
+                                            <p key={i} className="dropdown-item" onClick={() => handleCategorySelect(category)}>{category}</p>
+                                        )
+                                    })
+                                }
+                            </div>
                         </div>
                         <div className="category-list" onClick={() => setShowLocationDropdown(!showLocationDropdown)}>
                             <PlacesAutocomplete
@@ -96,7 +100,7 @@ export default function HomeFilter() {
                                 onSelect={handleLocationSelect}
                             >
                                 {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                                    <>
+                                    <div>
 
                                         <input className="custom-input location-input" {...getInputProps({ placeholder: "Type city" })} />
 
@@ -113,13 +117,13 @@ export default function HomeFilter() {
                                                 );
                                             })}
                                         </div>
-                                    </>
+                                    </div>
                                 )}
                             </PlacesAutocomplete>
                         </div>
                     </div>
                     <div className="filter-btn">
-                        <button className="custom-btn" onClick={handleFilter}>Search</button>
+                        <button className="custom-btn">Search</button>
                     </div>
                 </div>
 

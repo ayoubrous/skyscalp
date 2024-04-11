@@ -571,15 +571,44 @@
     border-radius: 6px;
 }
 
+/* Styling for react select  */
+.select__control{
+    border: none !important;
+}
+.filter .select__menu{
+    z-index: 10;
+}
+.filter .css-t3ipsp-control{
+    /* box-shadow: 0 0 0 1px var(--primary-color); */
+    box-shadow: none;
+}
+/* selected optino in dropdown  */
+.filter .css-tr4s17-option{
+    background-color: var(--primary-color);
+}
+
+.filter .select__option:active{
+    color: var(--white-color);
+    background-color: var(--primary-color);
+}
+/* highlighted option in dropdown  */
+.filter .css-d7l1ni-option{
+    background-color: var(--primary-color-light);
+}
+.select__control .select__indicator-separator{
+    display: none;
+}
+
 .filter .user-input .search-input {
     width: 80%;
     position: relative;
 }
 .filter .user-input .custom-input {
-    padding: 20px 19px;
+    padding: 11px 19px;
     border: none;
     top: 0;
     left: 0;
+
 }
 
 .filter .user-input .category-list {
@@ -589,6 +618,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0;
 }
 
 .filter .user-input .location-input{
@@ -611,9 +641,13 @@
     display: none;
     overflow: hidden;
     z-index: 10;
-    max-height: 400px;
+    max-height: 350px;
     overflow-y: auto;
 } 
+.filter .user-input .search-input .search-dropdown{
+    width: 100%;
+    max-width: none;
+}
 
 .user-input .category-list .category-dropdown.show,
 .filter .user-input .search-input .search-dropdown.show {
