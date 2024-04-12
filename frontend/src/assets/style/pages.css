@@ -118,7 +118,7 @@
 .categories .owl-prev,
 .categories .owl-next {
     position: absolute;
-    top: 22px;
+    top: 78px;
     transform: translateY(-50%);
     width: 40px;
     height: 40px;

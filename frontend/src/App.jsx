@@ -6,6 +6,7 @@ import './admin/assets/css/styles.min.css'
 import './assets/style/default.css'
 import './assets/style/style.css'
 import './assets/style/pages.css'
+import './assets/style/filters.css'
 import './assets/style/media.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
