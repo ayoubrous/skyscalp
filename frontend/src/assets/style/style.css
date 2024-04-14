@@ -28,6 +28,31 @@
     transition: all .2s ease;
     color: var(--primary-color);
     font-weight: 700;
+    position: relative;
+}
+.navbar .link .link-dropdown{
+    position: absolute;
+    top: 170%;
+    left: 0;
+    background-color: var(--white-color);
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    box-shadow: 0 0 29px rgba(0, 0, 0, 0.11);
+    overflow: hidden;
+    display: none;
+}
+.navbar .link .link-dropdown.show{
+    display: flex;
+}
+.navbar .link .link-dropdown .link-dropdown-item{
+    padding: 4px 14px;
+    font-weight: 700;
+    color: var(--primary-color);
+
+}
+.navbar .link .link-dropdown .link-dropdown-item:hover{
+    background-color: var(--border-color);
 }
 
 .navbar .links .link.active {

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaAngleDown, FaXmark } from 'react-icons/fa6';
 import Select from 'react-select';
+import * as geolib from 'geolib';
 
 import PlacesAutocomplete from 'react-places-autocomplete';
 import {
@@ -9,6 +10,9 @@ import {
     geocodeByPlaceId,
     getLatLng,
 } from 'react-places-autocomplete';
+import MapSearch from './MapSearch';
+import TestNestedDropdown from './TestNestedDropdown';
+import NestedDropdown from './NestedDropdown';
 
 export default function MachineryFilter() {
     const [t] = useTranslation();
@@ -19,13 +23,19 @@ export default function MachineryFilter() {
     const brandRef = useRef();
     const availableRef = useRef();
     const condtionRef = useRef();
+    const guaranteeRef = useRef();
+    const yearBuildRef = useRef();
+    const categoriesRef = useRef()
 
     const [showLocationDropdown, setShowLocationDropdown] = useState(false);
+    const [showCategoriesDrp, setShowCategoriesDrp] = useState(false)
     const [showMinPriceDrp, setShowMinPriceDrp] = useState(false);
     const [showMaxPriceDrp, setShowMaxPriceDrp] = useState(false);
     const [showBrandDrp, setShowBrandDrp] = useState(false);
     const [showAvailableDrp, setShowAvailableDrp] = useState(false);
     const [showConditionDrp, setShowConditionDrp] = useState(false);
+    const [showGuaranteeDrp, setShowGuaranteeDrp] = useState(false)
+    const [showYearDrp, setShowYearDrp] = useState(false)
     const [selectedCategory, setSelectedCategory] = useState("")
     const [location, setLocation] = useState("")
 
@@ -34,8 +44,14 @@ export default function MachineryFilter() {
     const [maxPrice, setMaxPrice] = useState('')
     const [available, setAvailable] = useState('')
     const [condition, setCondtion] = useState('')
-    const [selectedBrands, setSelectedBrands] = useState([])
+    const [selectedFilters, setSelectedFilters] = useState([])
+    const [guarantee, setGuarantee] = useState('')
+    const [yearBuild, setYearBuild] = useState('')
 
+    const [selectedBrands, setSelectedBrands] = useState([])
+    const [selectedCondtions, setSelectedConditions] = useState([])
+    // for nested dropdown 
+    const [checkedSubcategories, setCheckedSubcategories] = useState([]);
 
     const machineryData = [
         {
@@ -102,6 +118,7 @@ export default function MachineryFilter() {
         { value: 'Pavers', label: 'Pavers' },
     ];
 
+
     const sellType = [
         { value: "sale", label: "Sale" },
         { value: "rent", label: "Rent" },
@@ -112,9 +129,29 @@ export default function MachineryFilter() {
     ]
 
     const brands = [
-        'Caterpillar', 'Hitachi', 'Zoomlion', 'Doosan'
-    ]
+        "Caterpillar",
+        "Komatsu",
+        "Volvo",
+        "John-Deere",
+        "Hitachi",
+        "Liebherr",
+        "Bobcat",
+        "JCB",
+        "Doosan",
+        "Kubota"
+    ];
 
+    const conditionData = [
+        'Excellent', 'Good', 'Fair', 'Poor'
+    ]
+    const yearBuildData = [
+        "Less than 1 year",
+        "1 to 3 years",
+        "3 to 5 years",
+        "5 to 10 years",
+        "10 to 15 years",
+        "More than 15 years"
+    ];
     const handleClickOutside = (e) => {
         if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(e.target)) {
             setShowLocationDropdown(false);
@@ -134,11 +171,17 @@ export default function MachineryFilter() {
         if (condtionRef.current && !condtionRef.current.contains(e.target)) {
             setShowConditionDrp(false);
         }
+        if (guaranteeRef.current && !guaranteeRef.current.contains(e.target)) {
+            setShowGuaranteeDrp(false);
+        }
+        if (yearBuildRef.current && !yearBuildRef.current.contains(e.target)) {
+            setShowYearDrp(false);
+        }
+        if (categoriesRef.current && !categoriesRef.current.contains(e.target)) {
+            setShowCategoriesDrp(false);
+        }
     };
 
-    const handleCategoryChange = value => {
-        setSelectedCategory(value)
-    }
 
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
@@ -148,12 +191,27 @@ export default function MachineryFilter() {
         };
     }, []);
 
+    const getAddressComponents = (place) => {
+        const addressComponents = {};
+        place.address_components.forEach((component) => {
+            const types = component.types;
+            if (types.includes('country')) {
+                addressComponents.country = component.long_name;
+            } else if (types.includes('locality') || types.includes('administrative_area_level_1')) {
+                addressComponents.city = component.long_name;
+            } else if (types.includes('route')) {
+                addressComponents.street = component.long_name;
+            }
+        });
+        return addressComponents;
+    };
 
     const handleLocationSelect = async value => {
-        // const results = await geocodeByAddress(value);
-        // const latLng = await getLatLng(results[0]);
+        console.log(value)
+        const results = await geocodeByAddress(value);
+        const latLng = await getLatLng(results[0]);
         setLocation(value);
-        // setCoordinates(latLng);
+
     };
 
     const handleType = (value) => {
@@ -169,8 +227,9 @@ export default function MachineryFilter() {
     }
     const handleBrand = brand => {
         setShowBrandDrp(false)
-        if (!selectedBrands.includes(brand)) {
-            setSelectedBrands([...selectedBrands, brand]);
+        if (!selectedFilters.includes(brand)) {
+            setSelectedFilters([...selectedFilters, brand]);
+            setSelectedBrands([...selectedBrands, brand])
         }
     }
     const handleAvailability = val => {
@@ -180,7 +239,20 @@ export default function MachineryFilter() {
     const handleCondtion = val => {
         setShowConditionDrp(false)
         setCondtion(val)
+        if (!selectedFilters.includes(val)) {
+            setSelectedFilters([...selectedFilters, val]);
+        }
     }
+
+    const handleGuarantee = (val) => {
+        setShowGuaranteeDrp(false)
+        setGuarantee(val)
+    }
+    const handleYearBuild = (val) => {
+        setShowYearDrp(false)
+        setYearBuild(val)
+    }
+
 
     const handleFilter = () => {
         console.log(selectedCategory)
@@ -189,10 +261,42 @@ export default function MachineryFilter() {
 
     const removeTypeFilter = (index) => {
         // filtering out the item at the specified index
-        const updatedTypes = selectedBrands.filter((_, i) => i !== index);
-        setSelectedBrands(updatedTypes);
+        const updatedTypes = selectedFilters.filter((_, i) => i !== index);
+        setSelectedFilters(updatedTypes);
     };
 
+
+    const [extendedCategory, setExtendedCategory] = useState(null)
+    const [checkedCategory, setCheckedCategory] = useState(null)
+    const handleCategoryCheck = (index) => {
+        setCheckedCategory(index)
+    }
+
+    const clearAllFilters = () => {
+        setSelectedCategory("");
+        setLocation("");
+        setType('sale');
+        setMinPrice('');
+        setMaxPrice('');
+        setAvailable('');
+        setCondtion('');
+        setSelectedFilters([]);
+        setGuarantee('');
+        setYearBuild('');
+        setSelectedBrands([]);
+        setSelectedConditions([]);
+        setCheckedSubcategories([])
+    }
+
+    // only for cities 
+    // const searchOptions = {
+    //     types: ['(cities)'] // Restrict to city type
+    // };
+
+    // for countries and cities 
+    const searchOptions = {
+        types: ['(regions)'] // Restrict to regions (which can include countries)
+    };
     return (
         <div className="filter-area my-4">
             <div className="custom-container">
@@ -216,6 +320,7 @@ export default function MachineryFilter() {
                             </div>
                             <div className="category-list" onClick={() => setShowLocationDropdown(!showLocationDropdown)}>
                                 <PlacesAutocomplete
+                                    searchOptions={searchOptions}
                                     value={location}
                                     onChange={setLocation}
                                     onSelect={handleLocationSelect}
@@ -227,11 +332,11 @@ export default function MachineryFilter() {
 
                                             <div className='category-dropdown show'>
 
-                                                {suggestions.map(suggestion => {
+                                                {suggestions.map((suggestion, i) => {
 
                                                     return (
                                                         <>
-                                                            <div className='dropdown-item' {...getSuggestionItemProps(suggestion, {})}>
+                                                            <div key={i} className='dropdown-item' {...getSuggestionItemProps(suggestion, {})}>
                                                                 {suggestion.description}
                                                             </div>
                                                         </>
@@ -242,18 +347,34 @@ export default function MachineryFilter() {
                                     )}
                                 </PlacesAutocomplete>
                             </div>
-                            <div className="search-input">
+                            <div className="search-input" onClick={() => setShowCategoriesDrp(true)}>
                                 {/* <input type="text" className="custom-input" placeholder='Try Excavator, Apartment, Cement' value={selectedCategory} onChange={handleCategoryChange}/> */}
-                                <Select
+                                {/* <Select
                                     className="custom-input bordor-0"
                                     classNamePrefix="select"
                                     placeholder="Select Category"
                                     name="color"
+                                    isMulti
                                     options={formattedCategories}
                                     onChange={handleCategoryChange}
                                     value={selectedCategory}
                                     isClearable={true}
-                                />
+                                /> */}
+
+                                {
+                                    checkedSubcategories.length < 1 ?
+                                        (
+                                            <p>Select Category</p>
+                                        )
+                                        :
+                                        (
+                                            <p>{checkedSubcategories.length} Categories Selected</p>
+                                        )
+                                }
+
+                                <FaAngleDown />
+
+                                <NestedDropdown show={showCategoriesDrp} categoriesRef={categoriesRef} categories={machineryData} setCheckedSubcategories={setCheckedSubcategories} checkedSubcategories={checkedSubcategories} />
                             </div>
                         </div>
                         <div className="filter-btn">
@@ -269,6 +390,9 @@ export default function MachineryFilter() {
                                 </div>
 
                                 <div className={`custom-dropdown ${showMinPriceDrp ? 'show' : ''}`} ref={minPriceRef}>
+                                    <div className="custom-dropdown-item">
+                                        <input className='custom-input py-1' type="number" placeholder='Any' value={minPrice} onChange={(e) => setMinPrice(e.target.value)} />
+                                    </div>
                                     {
                                         budget.map((n, i) => {
                                             return (
@@ -286,10 +410,15 @@ export default function MachineryFilter() {
                                 </div>
 
                                 <div className={`custom-dropdown ${showMaxPriceDrp ? 'show' : ''}`} ref={maxPriceRef}>
+                                    <div className="custom-dropdown-item">
+                                        <input className='custom-input py-1' type="number" placeholder='Any' value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} />
+                                    </div>
                                     {
                                         budget.map((n, i) => {
                                             return (
-                                                <p className="custom-dropdown-item" onClick={() => handleMaxPrice(n)} key={i}>MAD {n}</p>
+                                                <>
+                                                    <p className="custom-dropdown-item" onClick={() => handleMaxPrice(n)} key={i}>MAD {n}</p>
+                                                </>
                                             )
                                         })
                                     }
@@ -314,29 +443,66 @@ export default function MachineryFilter() {
                             </div>
 
                             <div className="other-filter">
+                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowConditionDrp(!showConditionDrp)}>
+                                    <p className='text-white'>{condition === '' ? 'Condition' : `Condition: ${condition}`}</p>
+                                    <FaAngleDown className='text-white' />
+                                </div>
+
+                                <div className={`custom-dropdown ${showConditionDrp ? 'show' : ''}`} ref={condtionRef}>
+                                    {
+                                        conditionData.map((data, i) => {
+                                            return (
+                                                <p key={i} className="custom-dropdown-item" onClick={() => handleCondtion(data)}>{data}</p>
+
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>
+
+                            <div className="other-filter">
+                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowYearDrp(!showYearDrp)}>
+                                    <p className='text-white'>{yearBuild === '' ? 'Build' : `Build: ${yearBuild}`}</p>
+                                    <FaAngleDown className='text-white' />
+                                </div>
+
+                                <div className={`custom-dropdown ${showYearDrp ? 'show' : ''}`} ref={yearBuildRef}>
+                                    {
+                                        yearBuildData.map((data, i) => {
+                                            return (
+                                                <p key={i} className="custom-dropdown-item" onClick={() => handleYearBuild(data)}>{data}</p>
+
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>
+
+
+                            <div className="other-filter">
+                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowGuaranteeDrp(!showGuaranteeDrp)}>
+                                    <p className='text-white'>{guarantee === '' ? 'Guarantee' : `Guarantee: ${guarantee}`}</p>
+                                    <FaAngleDown className='text-white' />
+                                </div>
+
+                                <div className={`custom-dropdown ${showGuaranteeDrp ? 'show' : ''}`} ref={guaranteeRef}>
+                                    <p className="custom-dropdown-item" onClick={() => handleGuarantee('Yes')}>Yes</p>
+                                    <p className="custom-dropdown-item" onClick={() => handleGuarantee('No')}>No</p>
+                                </div>
+                            </div>
+
+
+                            <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowAvailableDrp(!showAvailableDrp)}>
                                     <p className='text-white'>{available === '' ? 'Availablity' : `Available: ${available}`}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
                                 <div className={`custom-dropdown ${showAvailableDrp ? 'show' : ''}`} ref={availableRef}>
-                                    <p className="custom-dropdown-item" onClick={() => handleAvailability('yes')}>Yes</p>
-                                    <p className="custom-dropdown-item" onClick={() => handleAvailability('no')}>No</p>
+                                    <p className="custom-dropdown-item" onClick={() => handleAvailability('Yes')}>Yes</p>
+                                    <p className="custom-dropdown-item" onClick={() => handleAvailability('No')}>No</p>
                                 </div>
                             </div>
-
-                            <div className="other-filter">
-                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowConditionDrp(!showConditionDrp)}>
-                                    <p className='text-white'>{condition === '' ? 'Condtion' : `Condition: ${condition}`}</p>
-                                    <FaAngleDown className='text-white' />
-                                </div>
-
-                                <div className={`custom-dropdown ${showConditionDrp ? 'show' : ''}`} ref={condtionRef}>
-                                    <p className="custom-dropdown-item" onClick={() => handleCondtion('new')}>New</p>
-                                    <p className="custom-dropdown-item" onClick={() => handleCondtion('used')}>Used</p>
-                                </div>
-                            </div>
-
 
                         </div>
 
@@ -344,17 +510,25 @@ export default function MachineryFilter() {
 
                 </div>
 
-                <div className="selected-filters">
-                    {
-                        selectedBrands.map((type, i) => {
-                            return (
-                                <span key={i} className='selected-filter'>{type} <FaXmark style={{ cursor: "pointer" }} onClick={() => removeTypeFilter(i)} /></span>
-                            )
-                        })
-                    }
+                <div className="selected-filters w-100">
+                    <div className="d-flex justify-content-between gap-2 w-100">
+                        <div className="tags">
+                            {
+                                selectedFilters.map((type, i) => {
+                                    return (
+                                        <span key={i} className='selected-filter'>{type} <FaXmark style={{ cursor: "pointer" }} onClick={() => removeTypeFilter(i)} /></span>
+                                    )
+                                })
+                            }
+                        </div>
+                        <div className="selected-filter" style={{ cursor: "pointer" }} onClick={clearAllFilters}>Clear Filters</div>
+                    </div>
                 </div>
 
             </div>
+
+
+
         </div>
     );
 }

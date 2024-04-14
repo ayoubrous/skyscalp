@@ -75,51 +75,53 @@ export default function HomeFilter() {
             <div className="custom-container">
                 <p className="color-primary mb-2">Looking for something?</p>
                 <div className="filter hero-filter">
-                    <div className="user-input">
-                        <div className="search-input">
-                            {/* <input type="text" className="custom-input" placeholder='Try Excavator, Apartment, Cement' value={selectedCategory} onChange={handleCategoryChange}/> */}
-                            <Select
-                                className="custom-input bordor-0"
-                                classNamePrefix="select"
-                                placeholder="Select Category"
-                                name="color"
-                                options={formattedCategories}
-                                onChange={handleCategoryChange}
-                                value={selectedCategory}
-                                isClearable={true}
-                            />
+                    <div className="split">
+                        <div className="user-input">
+                            <div className="search-input">
+                                {/* <input type="text" className="custom-input" placeholder='Try Excavator, Apartment, Cement' value={selectedCategory} onChange={handleCategoryChange}/> */}
+                                <Select
+                                    className="custom-input bordor-0"
+                                    classNamePrefix="select"
+                                    placeholder="Select Category"
+                                    name="color"
+                                    options={formattedCategories}
+                                    onChange={handleCategoryChange}
+                                    value={selectedCategory}
+                                    isClearable={true}
+                                />
+                            </div>
+                            <div className="category-list" onClick={() => setShowLocationDropdown(!showLocationDropdown)}>
+                                <PlacesAutocomplete
+                                    value={location}
+                                    onChange={setLocation}
+                                    onSelect={handleLocationSelect}
+                                >
+                                    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                                        <>
+
+                                            <input className="custom-input location-input" {...getInputProps({ placeholder: "Type city" })} />
+
+                                            <div className='category-dropdown show'>
+
+                                                {suggestions.map(suggestion => {
+
+                                                    return (
+                                                        <>
+                                                            <div className='dropdown-item' {...getSuggestionItemProps(suggestion, {})}>
+                                                                {suggestion.description}
+                                                            </div>
+                                                        </>
+                                                    );
+                                                })}
+                                            </div>
+                                        </>
+                                    )}
+                                </PlacesAutocomplete>
+                            </div>
                         </div>
-                        <div className="category-list" onClick={() => setShowLocationDropdown(!showLocationDropdown)}>
-                            <PlacesAutocomplete
-                                value={location}
-                                onChange={setLocation}
-                                onSelect={handleLocationSelect}
-                            >
-                                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                                    <>
-
-                                        <input className="custom-input location-input" {...getInputProps({ placeholder: "Type city" })} />
-
-                                        <div className='category-dropdown show'>
-
-                                            {suggestions.map(suggestion => {
-
-                                                return (
-                                                    <>
-                                                        <div className='dropdown-item' {...getSuggestionItemProps(suggestion, {})}>
-                                                            {suggestion.description}
-                                                        </div>
-                                                    </>
-                                                );
-                                            })}
-                                        </div>
-                                    </>
-                                )}
-                            </PlacesAutocomplete>
+                        <div className="filter-btn">
+                            <button className="custom-btn" onClick={handleFilter}>Search</button>
                         </div>
-                    </div>
-                    <div className="filter-btn">
-                        <button className="custom-btn" onClick={handleFilter}>Search</button>
                     </div>
                 </div>
 

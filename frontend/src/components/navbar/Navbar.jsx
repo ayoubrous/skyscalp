@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import logo from '../../assets/images/logo.png'
 import { Link, NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
@@ -6,13 +6,14 @@ import { FaArrowUp, FaBarsStaggered } from "react-icons/fa6";
 
 
 export default function Navbar() {
+    const navDrpRef = useRef()
     const [t, i18n] = useTranslation();
 
     const [selectedLanguage, setSelectedLanguage] = useState('en')
 
     const [showNavInPhone, setShowNavInPhone] = useState(false)
     const [showGoToTopArrow, setShowGoToTopArrow] = useState(false)
-
+    const [showDrp, setshowDrp] = useState(false)
     const handleLanguageChange = (newLanguage) => {
         setSelectedLanguage(newLanguage);
         i18n.changeLanguage(newLanguage);
@@ -34,6 +35,21 @@ export default function Navbar() {
             window.removeEventListener('scroll', handleScroll);
         };
     }, [])
+
+
+    const handleClickOutside = (e) => {
+        if (navDrpRef.current && !navDrpRef.current.contains(e.target)) {
+            setshowDrp(false);
+        }
+    };
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     const handleGoToTop = () => {
         window.scrollTo(0, 0)
     }
@@ -45,9 +61,13 @@ export default function Navbar() {
                 </Link>
                 <div className={`links-section ${showNavInPhone ? 'show' : ''}`}>
                     <div className="commercial-links links">
-                        <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/properties" >{t("buy")}</NavLink>
-                        <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/properties" >{t("rent")}</NavLink>
-                        <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/construction" >{t("build")}</NavLink>
+                        <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/properties" >{t("buy")} {t("rent")}</NavLink>
+                        <Link className="link" onClick={() => setshowDrp(true)} >{t("build")}
+                            <div className={`link-dropdown ${showDrp ? 'show' : ''}`} ref={navDrpRef}>
+                                <Link to="/machinery" className='link-dropdown-item' onClick={() => setshowDrp(false)}>{t("machinery")}</Link>
+                                <Link to="/construction" className='link-dropdown-item' onClick={() => setshowDrp(false)}>{t("construction")}</Link>
+                            </div>
+                        </Link>
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/contact" >{t("estimate")}</NavLink>
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/" >{t("publish")}</NavLink>
                     </div>
