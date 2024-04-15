@@ -182,46 +182,21 @@ export default function TestNestedDropdown() {
         setSuggestions(filteredSuggestions);
     };
 
-    const renderSuggestions = () => {
-        const groupedSuggestions = {};
+    const groupedSuggestions = {};
 
-        // Group suggestions by label and group
-        suggestions.forEach(location => {
-            if (!groupedSuggestions[location.label]) {
-                groupedSuggestions[location.label] = {};
-            }
+    // Group suggestions by label and group
+    suggestions.forEach(location => {
+        if (!groupedSuggestions[location.label]) {
+            groupedSuggestions[location.label] = {};
+        }
 
-            if (!groupedSuggestions[location.label][location.group]) {
-                groupedSuggestions[location.label][location.group] = [];
-            }
+        if (!groupedSuggestions[location.label][location.group]) {
+            groupedSuggestions[location.label][location.group] = [];
+        }
 
-            groupedSuggestions[location.label][location.group].push(location);
-        });
+        groupedSuggestions[location.label][location.group].push(location);
+    });
 
-        return (
-            <div className="custom-dropdown show">
-                {Object.entries(groupedSuggestions).map(([label, groups]) => (
-                    <div key={label}>
-                        <p className='fw-bold'>{label}</p>
-                        {Object.entries(groups).map(([group, locations]) => (
-                            <div key={group}>
-                                <ul>
-                                    {locations.map((location, index) => (
-                                        <li className='custom-dropdown-item' key={index}>
-                                            {location.name}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ))}
-                    </div>
-                ))}
-                <div>
-                    <p>Radius</p>
-                </div>
-            </div>
-        );
-    };
 
     return (
         <div className='all-locations' style={{ position: "relative" }}>
@@ -232,7 +207,27 @@ export default function TestNestedDropdown() {
                 placeholder="Type to search locations..."
             />
             {inputText && suggestions.length > 0 && (
-                renderSuggestions()
+                <div className="custom-dropdown show">
+                    {Object.entries(groupedSuggestions).map(([label, groups]) => (
+                        <div key={label}>
+                            <p className='fw-bold'>{label}</p>
+                            {Object.entries(groups).map(([group, locations]) => (
+                                <div key={group}>
+                                    <ul>
+                                        {locations.map((location, index) => (
+                                            <li className='custom-dropdown-item' key={index}>
+                                                {location.name}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
+                    ))}
+                    <div>
+                        <p>Radius</p>
+                    </div>
+                </div>
             )}
         </div>
     );

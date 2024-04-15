@@ -21,6 +21,10 @@ import ViewProperty from './pages/ViewProperty';
 import ViewMachinery from './pages/ViewMachinery';
 import ViewConstruction from './pages/ViewConstruction';
 
+
+import Dashboard from './admin/pages/Dashboard';
+import DashboardProperties from './admin/pages/Properties';
+
 const App = () => {
   return (
     <Router>
@@ -38,6 +42,11 @@ const App = () => {
           <Route path='/property/:id' exact element={<ViewProperty />} />
           <Route path='/construction/:id' exact element={<ViewConstruction />} />
           <Route path='/machinery/:id' exact element={<ViewMachinery />} />
+
+
+          <Route path='/app/dashboard' exact element={<Dashboard />} />
+          <Route path='/app/properties' exact element={<DashboardProperties />} />
+
         </Routes>
       </ScrollToTop>
     </Router>

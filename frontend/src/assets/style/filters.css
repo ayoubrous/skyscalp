@@ -166,6 +166,30 @@
     border-right: 1px solid var(--border-color);
 
 }
+.machinery-filter .category-list .select-radius-strip{
+    padding: 8px;
+    background-color: var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.machinery-filter .category-list .select-radius-strip.disabled{
+    pointer-events: none;
+}
+.category-list .select-radius-strip .radius-options{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.category-list .select-radius-strip .radius-options .rad-opt{
+    padding: 3px 16px;
+    background-color: var(--white-color);
+    cursor: pointer;
+}
+.category-list .select-radius-strip .radius-options .rad-opt.active{
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
 
 .filter .user-input .type-select {
     width: 20%;
@@ -183,6 +207,9 @@
     font-size: 12px;
 }
 
+.machinery-filter .other-filters .custom-dropdown{
+    width: 250px;
+}
 
 
 /* NESTED DROPDOWN  */

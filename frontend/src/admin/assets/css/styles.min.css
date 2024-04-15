@@ -10,6 +10,7 @@
 
 :root,
 [data-bs-theme=light] {
+    --web-primary-color: #076C8F;
     --bs-blue: #5D87FF;
     --bs-indigo: #6610f2;
     --bs-purple: #6f42c1;
@@ -12039,6 +12040,10 @@ fieldset:disabled .btn {
     color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important
 }
 
+.text-secondary {
+    --bs-text-opacity: 1;
+    color: rgba(var(--bs-secondary-rgb), var(--bs-text-opacity)) !important
+}
 
 .text-success {
     --bs-text-opacity: 1;
@@ -19727,7 +19732,7 @@ fieldset:disabled .btn {
 
 .sidebar-nav ul .sidebar-item .sidebar-link:hover {
     background-color: rgba(93, 135, 255, 0.1);
-    color: #5D87FF
+    color: #076C8F;
 }
 
 .sidebar-nav ul .sidebar-item .sidebar-link:hover.has-arrow:after {
@@ -19745,7 +19750,7 @@ fieldset:disabled .btn {
 .sidebar-nav ul .sidebar-item.selected>.sidebar-link,
 .sidebar-nav ul .sidebar-item.selected>.sidebar-link.active,
 .sidebar-nav ul .sidebar-item>.sidebar-link.active {
-    background-color: #5D87FF;
+    background-color: var(--web-primary-color);
     color: #fff
 }
 
@@ -19778,7 +19783,8 @@ fieldset:disabled .btn {
 
 .app-header .navbar {
     min-height: 70px;
-    padding: 0
+    padding: 0;
+    box-shadow: none !important;
 }
 
 .app-header .navbar .navbar-nav .nav-item .nav-link {
@@ -20187,4 +20193,23 @@ ul {
 
 .loader-container.show {
     display: flex;
+}
+
+
+.dashboard-table th{
+    border: 1px solid #ccc;
+    background-color: #076C8F;
+    color: #fff;
+    padding: 10px 8px;
+    text-align: center;
+}
+.dashboard-table td{
+    font-size: 13px;
+    padding: 8px 4px;
+    border: 1px solid #ccc;
+    text-align: center;
+    color: #1a1d20;
+}
+.dashboard-table svg{
+    font-size: 16px;
 }
