@@ -15,26 +15,32 @@ import TestNestedDropdown from './TestNestedDropdown';
 import NestedDropdown from './NestedDropdown';
 import CustomLocationsDropdown from './CustomLocationsDropdown';
 
-export default function MachineryFilter() {
+export default function PropertyFilter() {
     const [t] = useTranslation();
 
     const categoryDropdownRef = useRef();
     const minPriceRef = useRef();
-    const brandRef = useRef();
     const condtionRef = useRef();
     const yearBuildRef = useRef();
     const categoriesRef = useRef()
+    const bedsRef = useRef()
+    const sizeRef = useRef()
 
     const [showLocationDropdown, setShowLocationDropdown] = useState(false);
     const [showCategoriesDrp, setShowCategoriesDrp] = useState(false)
     const [showPriceDrp, setShowPriceDrp] = useState(false);
-    const [showBrandDrp, setShowBrandDrp] = useState(false);
+    const [showSizeDrp, setShowSizeDrp] = useState(false);
+    const [showBedsDrp, setShowBedsDrp] = useState(false);
     const [showConditionDrp, setShowConditionDrp] = useState(false);
     const [showYearDrp, setShowYearDrp] = useState(false)
 
     const [type, setType] = useState('sale')
     const [minPrice, setMinPrice] = useState('')
     const [maxPrice, setMaxPrice] = useState('')
+    const [minSize, setMinSize] = useState('')
+    const [maxSize, setMaxSize] = useState('')
+    const [minBeds, setMinBeds] = useState('')
+    const [maxBeds, setMaxBeds] = useState('')
     const [available, setAvailable] = useState('')
     const [condition, setCondtion] = useState('')
 
@@ -58,54 +64,60 @@ export default function MachineryFilter() {
     // for nested dropdown 
     const [checkedSubcategories, setCheckedSubcategories] = useState([]);
 
-    const machineryData = [
+    const realEstatePropertyData = [
         {
-            categoryName: 'Foundation',
+            categoryName: 'Land',
             subcategories: [
-                'Excavator shovel',
-                'Dump truck',
-                'Cement mixer',
-                'Vibrator',
-                'Formwork'
+                'Residential',
+                'Commercial',
+                'Industrial',
+                'Agricultural',
+                'Vacant'
             ]
         },
         {
-            categoryName: 'Construction of walls and posts',
+            categoryName: 'Buildings',
             subcategories: [
-                'Crane',
-                'Cherry picker',
-                'Concrete blocks or concrete blocks',
-                'Mortar',
-                'Coatings'
+                'Residential',
+                'Commercial',
+                'Industrial',
+                'Mixed-use',
+                'Institutional (e.g., schools, hospitals)',
+                'Apartments'
             ]
         },
         {
-            categoryName: 'Installation of slabs and floors',
+            categoryName: 'Infrastructure',
             subcategories: [
-                'Steel or concrete beams',
-                'Collaborative floors',
-                'Float'
+                'Roads and highways',
+                'Bridges',
+                'Tunnels',
+                'Utilities (e.g., water, electricity)',
+                'Railways'
             ]
         },
         {
-            categoryName: 'Frame and roofing',
+            categoryName: 'Real Estate Development',
             subcategories: [
-                'Lumber',
-                'Tiles or slates',
-                'Scaffolding',
-                'Carpenter tools',
-                'Miter saw'
+                'Residential subdivisions',
+                'Commercial complexes',
+                'Industrial parks',
+                'Mixed-use developments',
+                'Redevelopment projects'
             ]
         },
         {
-            categoryName: 'Earthworks and excavation work',
+            categoryName: 'Natural Resources',
             subcategories: [
-                'Bulldozer',
-                'Compactor',
-                'Level'
+                'Mineral rights',
+                'Timber rights',
+                'Water rights',
+                'Oil and gas rights',
+                'Conservation easements'
             ]
         }
     ];
+
 
 
     const sellType = [
@@ -117,22 +129,10 @@ export default function MachineryFilter() {
         0, 1000, 5000, 10000, 25000, 50000
     ]
 
-    const brands = [
-        "Caterpillar",
-        "Komatsu",
-        "Volvo",
-        "John-Deere",
-        "Hitachi",
-        "Liebherr",
-        "Liebherr",
-        "Liebherr",
-        "Liebherr",
-        "Liebherr",
-        "Bobcat",
-        "JCB",
-        "Doosan",
-        "Kubota"
-    ];
+    const size = [
+        0, 20, 30, 40, 50, 60, 70, 80, 90, 100, 150, 200, 250, 300
+    ]
+
 
     const conditionData = [
         'Excellent', 'Good', 'Fair', 'Poor'
@@ -145,15 +145,16 @@ export default function MachineryFilter() {
         "10 to 15 years",
         "More than 15 years"
     ];
+    const numbers = [
+        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+    ]
+
     const handleClickOutside = (e) => {
         if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(e.target)) {
             setShowLocationDropdown(false);
         }
         if (minPriceRef.current && !minPriceRef.current.contains(e.target)) {
             setShowPriceDrp(false);
-        }
-        if (brandRef.current && !brandRef.current.contains(e.target)) {
-            setShowBrandDrp(false);
         }
         if (condtionRef.current && !condtionRef.current.contains(e.target)) {
             setShowConditionDrp(false);
@@ -163,6 +164,12 @@ export default function MachineryFilter() {
         }
         if (categoriesRef.current && !categoriesRef.current.contains(e.target)) {
             setShowCategoriesDrp(false);
+        }
+        if (bedsRef.current && !bedsRef.current.contains(e.target)) {
+            setShowBedsDrp(false);
+        }
+        if (sizeRef.current && !sizeRef.current.contains(e.target)) {
+            setShowSizeDrp(false);
         }
     };
 
@@ -182,24 +189,33 @@ export default function MachineryFilter() {
     const handleMinPrice = (e) => {
         // setShowMinPriceDrp(false)
         setMinPrice(e)
-        // if (!selectedFilters.includes(e)) {
-        //     setSelectedFilters([...selectedFilters, (`Min Price: ${e}`)]);
-        // }
     }
     const handleMaxPrice = (e) => {
         setShowPriceDrp(false)
         setMaxPrice(e)
-        // if (!selectedFilters.includes(e)) {
-        //     setSelectedFilters([...selectedFilters, (`Max Price: ${e}`)]);
-        // }
     }
-    const handleBrand = brand => {
-        setShowBrandDrp(false)
-        if (!selectedFilters.includes(brand)) {
-            setSelectedFilters([...selectedFilters, brand]);
-            setSelectedBrands([...selectedBrands, brand])
-        }
+
+    const handleMinBeds = (e) => {
+        // setShowMinPriceDrp(false)
+        setMinBeds(e)
     }
+    const handleMaxBeds = (e) => {
+        setShowBedsDrp(false)
+        setMaxBeds(e)
+    }
+
+
+
+    const handleMinSize = (e) => {
+        // setShowMinPriceDrp(false)
+        setMinSize(e)
+    }
+    const handleMaxSize = (e) => {
+        setShowSizeDrp(false)
+        setMaxSize(e)
+    }
+
+
     const handleCondtion = val => {
         setShowConditionDrp(false)
         if (!selectedFilters.includes(val)) {
@@ -265,9 +281,6 @@ export default function MachineryFilter() {
         const updatedTypes = selectedFilters.filter((_, i) => i !== index);
         setSelectedFilters(updatedTypes);
 
-        if (selectedBrands.includes(name)) {
-            setSelectedBrands(prevBrands => prevBrands.filter(item => item !== name));
-        }
         if (selectedCondtions.includes(name)) {
             setSelectedConditions(item => item.filter(item => item !== name));
         }
@@ -305,7 +318,6 @@ export default function MachineryFilter() {
         setSelectedFilters([]);
         setGuarantee('');
         setYearBuild([]);
-        setSelectedBrands([]);
         setSelectedConditions([]);
         setCheckedSubcategories([]);
     }
@@ -371,18 +383,6 @@ export default function MachineryFilter() {
                                 </PlacesAutocomplete> */}
                             </div>
                             <div className="search-input" onClick={() => setShowCategoriesDrp(true)}>
-                                {/* <input type="text" className="custom-input" placeholder='Try Excavator, Apartment, Cement' value={selectedCategory} onChange={handleCategoryChange}/> */}
-                                {/* <Select
-                                    className="custom-input bordor-0"
-                                    classNamePrefix="select"
-                                    placeholder="Select Category"
-                                    name="color"
-                                    isMulti
-                                    options={formattedCategories}
-                                    onChange={handleCategoryChange}
-                                    value={selectedCategory}
-                                    isClearable={true}
-                                /> */}
 
                                 {
                                     checkedSubcategories.length < 1 ?
@@ -397,7 +397,7 @@ export default function MachineryFilter() {
 
                                 <FaAngleDown />
 
-                                <NestedDropdown show={showCategoriesDrp} categoriesRef={categoriesRef} categories={machineryData} setCheckedSubcategories={setCheckedSubcategories} checkedSubcategories={checkedSubcategories} />
+                                <NestedDropdown show={showCategoriesDrp} categoriesRef={categoriesRef} categories={realEstatePropertyData} setCheckedSubcategories={setCheckedSubcategories} checkedSubcategories={checkedSubcategories} />
                             </div>
                         </div>
                         <div className="filter-btn">
@@ -406,6 +406,8 @@ export default function MachineryFilter() {
                     </div>
                     <div className="other-filters p-1 pt-3 pb-0">
                         <div className="d-flex gap-4">
+
+                            {/* Budget Filter  */}
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowPriceDrp(!showPriceDrp)}>
                                     <p className='text-white'>
@@ -451,23 +453,99 @@ export default function MachineryFilter() {
                                 </div>
                             </div>
 
+                            {/* Size Filter  */}
                             <div className="other-filter">
-                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowBrandDrp(!showBrandDrp)}>
-                                    <p className='text-white'>Brand</p>
+                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowSizeDrp(!showSizeDrp)}>
+                                    <p className='text-white'>
+                                        {(minSize === '' && maxSize === '') ?
+                                            'Size/Area' :
+                                            `${minSize === '' ? 'All' : minSize} ${minSize === '' ? '' : 'Sq ft'} - ${maxSize === '' ? 'All' : maxSize} ${maxSize === '' ? '' : 'Sq ft'}`}
+                                    </p>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
-                                <div className={`custom-dropdown ${showBrandDrp ? 'show' : ''}`} ref={brandRef}>
-                                    {
-                                        brands.map((n, i) => {
-                                            return (
-                                                <p className="custom-dropdown-item" onClick={() => handleBrand(n)} key={i}>{n}</p>
-                                            )
-                                        })
-                                    }
+                                <div className={`custom-dropdown budget-dropdown ${showSizeDrp ? 'show' : ''}`} ref={sizeRef}>
+                                    <div className="d-flex">
+                                        <div className="side">
+                                            <div className="custom-dropdown-item custom-dropdown-item-fixed">
+                                                <input className='custom-input py-1' type="number" placeholder='Min' value={minSize} onChange={(e) => setMinSize(e.target.value)} />
+                                            </div>
+                                            {
+                                                size.map((n, i) => {
+                                                    return (
+                                                        <p className="custom-dropdown-item" onClick={() => handleMinSize(n)} key={i}>{n} sq ft</p>
+                                                    )
+                                                })
+                                            }
+                                            <p className="custom-dropdown-item text-danger" onClick={() => setMinSize('')}>Clear</p>
+
+                                        </div>
+                                        <div className="side">
+                                            <div className="custom-dropdown-item custom-dropdown-item-fixed">
+                                                <input className='custom-input py-1' type="number" placeholder='Max' value={maxSize} onChange={(e) => setMaxSize(e.target.value)} />
+                                            </div>
+                                            {
+                                                size.map((n, i) => {
+                                                    return (
+                                                        <p className="custom-dropdown-item" onClick={() => handleMaxSize(n)} key={i}>{n} sq ft</p>
+                                                    )
+                                                })
+                                            }
+                                            <p className="custom-dropdown-item text-danger" onClick={() => setMaxSize('')}>Clear</p>
+
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 
+                            {/* Beds filter  */}
+                            <div className="other-filter">
+                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowBedsDrp(!showBedsDrp)}>
+                                    <p className='text-white'>
+                                        {(minBeds === '' && maxBeds === '') ?
+                                            'Beds' :
+                                            `${minBeds === '' ? 'All' : minBeds} ${minBeds === '' ? '' : 'Beds'} - ${maxBeds === '' ? 'All' : maxBeds} ${maxBeds === '' ? '' : 'Beds'}`}
+                                    </p>
+                                    <FaAngleDown className='text-white' />
+                                </div>
+
+                                <div className={`custom-dropdown budget-dropdown ${showBedsDrp ? 'show' : ''}`} ref={bedsRef}>
+                                    <div className="d-flex">
+                                        <div className="side">
+                                            <div className="custom-dropdown-item custom-dropdown-item-fixed">
+                                                <input className='custom-input py-1' type="number" placeholder='Min' value={minBeds} onChange={(e) => setMinBeds(e.target.value)} />
+                                            </div>
+                                            {
+                                                numbers.map((n, i) => {
+                                                    return (
+                                                        <p className="custom-dropdown-item" onClick={() => handleMinBeds(n)} key={i}>{n}</p>
+                                                    )
+                                                })
+                                            }
+                                            <p className="custom-dropdown-item text-danger" onClick={() => setMinPrice('')}>Clear</p>
+
+                                        </div>
+                                        <div className="side">
+                                            <div className="custom-dropdown-item custom-dropdown-item-fixed">
+                                                <input className='custom-input py-1' type="number" placeholder='Max' value={maxBeds} onChange={(e) => setMaxBeds(e.target.value)} />
+                                            </div>
+                                            {
+                                                numbers.map((n, i) => {
+                                                    return (
+                                                        <p className="custom-dropdown-item" onClick={() => handleMaxBeds(n)} key={i}>{n}</p>
+                                                    )
+                                                })
+                                            }
+                                            <p className="custom-dropdown-item text-danger" onClick={() => setMaxBeds('')}>Clear</p>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            {/* condition  */}
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowConditionDrp(!showConditionDrp)}>
                                     <p className='text-white'>{condition === '' ? 'Condition' : `Condition: ${condition}`}</p>
@@ -486,6 +564,7 @@ export default function MachineryFilter() {
                                 </div>
                             </div>
 
+                            {/* Build  */}
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowYearDrp(!showYearDrp)}>
                                     <p className='text-white'>Build</p>
@@ -505,12 +584,12 @@ export default function MachineryFilter() {
                             </div>
 
 
-                            <div className="other-filter">
+                            {/* <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }}>
                                     <label htmlFor="guarantee" className='text-white' style={{ fontSize: "12px" }}>Guarantee</label>
                                     <input type="checkbox" name="" id="guarantee" onChange={() => setGuarantee(!guarantee)} />
                                 </div>
-                            </div>
+                            </div> */}
 
 
                             <div className="other-filter">

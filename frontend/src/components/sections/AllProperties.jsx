@@ -64,11 +64,11 @@ export default function AllProperties() {
                 </div>
 
                 <div className="pagination mt-5">
-                    <div className="pagination-item previous">Previous</div>
+                    <div className="pagination-item previous">First</div>
                     <div className="pagination-item active">1</div>
                     <div className="pagination-item">2</div>
-                    <div className="pagination-item">4</div>
-                    <div className="pagination-item next">Next</div>
+                    <div className="pagination-item">3</div>
+                    <div className="pagination-item next">Last</div>
                 </div>
             </div>
         </div>

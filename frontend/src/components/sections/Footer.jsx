@@ -43,17 +43,22 @@ export default function Footer() {
 
                         <div className="d-flex gap-3 mb-3">
                             <div>
-                                <Link to='/'>Home</Link>
+                                <Link to='../'>Home</Link>
                             </div>
                         </div>
                         <div className="d-flex gap-3 mb-3">
                             <div>
-                                <Link to='/'>Buy</Link>
+                                <Link to='../properties'>Buy</Link>
                             </div>
                         </div>
                         <div className="d-flex gap-3 mb-3">
                             <div>
-                                <Link to='/'>Build</Link>
+                                <Link to='../machinery'>Machinery</Link>
+                            </div>
+                        </div>
+                        <div className="d-flex gap-3 mb-3">
+                            <div>
+                                <Link to='../construction'>Construction</Link>
                             </div>
                         </div>
                         <div className="d-flex gap-3 mb-3">

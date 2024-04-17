@@ -15,7 +15,7 @@ import TestNestedDropdown from './TestNestedDropdown';
 import NestedDropdown from './NestedDropdown';
 import CustomLocationsDropdown from './CustomLocationsDropdown';
 
-export default function MachineryFilter() {
+export default function ConstructionFilter() {
     const [t] = useTranslation();
 
     const categoryDropdownRef = useRef();
@@ -58,54 +58,79 @@ export default function MachineryFilter() {
     // for nested dropdown 
     const [checkedSubcategories, setCheckedSubcategories] = useState([]);
 
-    const machineryData = [
+    const constructionItemsData = [
         {
-            categoryName: 'Foundation',
+            categoryName: 'Concrete Materials',
             subcategories: [
-                'Excavator shovel',
-                'Dump truck',
-                'Cement mixer',
-                'Vibrator',
-                'Formwork'
+                'Cement',
+                'Concrete mix',
+                'Reinforcing steel bars (rebar)',
+                'Concrete blocks',
+                'Precast concrete elements'
             ]
         },
         {
-            categoryName: 'Construction of walls and posts',
+            categoryName: 'Steel and Metal',
             subcategories: [
-                'Crane',
-                'Cherry picker',
-                'Concrete blocks or concrete blocks',
-                'Mortar',
-                'Coatings'
+                'Structural steel beams',
+                'Steel bars',
+                'Metal roofing materials',
+                'Sheet metal',
+                'Steel pipes'
             ]
         },
         {
-            categoryName: 'Installation of slabs and floors',
-            subcategories: [
-                'Steel or concrete beams',
-                'Collaborative floors',
-                'Float'
-            ]
-        },
-        {
-            categoryName: 'Frame and roofing',
+            categoryName: 'Wood and Timber',
             subcategories: [
                 'Lumber',
-                'Tiles or slates',
-                'Scaffolding',
-                'Carpenter tools',
-                'Miter saw'
+                'Plywood',
+                'Wood studs',
+                'Timber beams',
+                'Wood panels'
             ]
         },
         {
-            categoryName: 'Earthworks and excavation work',
+            categoryName: 'Masonry Materials',
             subcategories: [
-                'Bulldozer',
-                'Compactor',
-                'Level'
+                'Bricks',
+                'Clay tiles',
+                'Mortar',
+                'Concrete blocks',
+                'Stone veneer'
+            ]
+        },
+        {
+            categoryName: 'Roofing Materials',
+            subcategories: [
+                'Asphalt shingles',
+                'Metal roofing panels',
+                'Roofing membranes',
+                'Roof tiles',
+                'Underlayment materials'
+            ]
+        },
+        {
+            categoryName: 'Insulation and Sealants',
+            subcategories: [
+                'Fiberglass insulation',
+                'Spray foam insulation',
+                'Foam board insulation',
+                'Sealant caulk',
+                'Weatherstripping'
+            ]
+        },
+        {
+            categoryName: 'Finishing Materials',
+            subcategories: [
+                'Paints and coatings',
+                'Drywall panels',
+                'Flooring materials',
+                'Tiles',
+                'Trim and molding'
             ]
         }
     ];
+
 
 
     const sellType = [
@@ -118,20 +143,27 @@ export default function MachineryFilter() {
     ]
 
     const brands = [
-        "Caterpillar",
-        "Komatsu",
-        "Volvo",
-        "John-Deere",
-        "Hitachi",
-        "Liebherr",
-        "Liebherr",
-        "Liebherr",
-        "Liebherr",
-        "Liebherr",
-        "Bobcat",
-        "JCB",
-        "Doosan",
-        "Kubota"
+        'LafargeHolcim',
+        'Cemex',
+        'HeidelbergCement',
+        'CRH plc',
+        'Boral',
+        'Saint-Gobain',
+        'Nippon Steel Corporation',
+        'ArcelorMittal',
+        'BlueScope Steel',
+        'USG Corporation',
+        'Georgia-Pacific',
+        'James Hardie Industries',
+        'Owens Corning',
+        'Johns Manville',
+        'Knauf',
+        'Dow Building Solutions',
+        'Sherwin-Williams',
+        'Behr',
+        'Valspar',
+        'PPG Industries',
+        'Other'
     ];
 
     const conditionData = [
@@ -323,23 +355,10 @@ export default function MachineryFilter() {
         <div className="filter-area my-4">
             <div className="custom-container">
                 <p className="color-primary mb-2">Looking for something?</p>
-                <div className="filter machinery-filter">
+                <div className="filter machinery-filter construction-filter">
                     <div className="split">
 
                         <div className="user-input">
-                            <div className="type-select">
-                                <Select
-                                    className="custom-input bordor-0"
-                                    classNamePrefix="select"
-                                    placeholder='Type'
-                                    name="color"
-                                    options={sellType}
-                                    defaultValue={[sellType[1]]}
-                                    onChange={handleType}
-                                    value={type}
-                                    isClearable={true}
-                                />
-                            </div>
                             <div className="category-list" onClick={() => setShowLocationDropdown(!showLocationDropdown)}>
                                 <CustomLocationsDropdown selectedLocations={selectedAllLocations} handleLocationSelect={handleLocationSelect} />
                                 {/* <PlacesAutocomplete
@@ -397,7 +416,7 @@ export default function MachineryFilter() {
 
                                 <FaAngleDown />
 
-                                <NestedDropdown show={showCategoriesDrp} categoriesRef={categoriesRef} categories={machineryData} setCheckedSubcategories={setCheckedSubcategories} checkedSubcategories={checkedSubcategories} />
+                                <NestedDropdown show={showCategoriesDrp} categoriesRef={categoriesRef} categories={constructionItemsData} setCheckedSubcategories={setCheckedSubcategories} checkedSubcategories={checkedSubcategories} />
                             </div>
                         </div>
                         <div className="filter-btn">
@@ -486,7 +505,7 @@ export default function MachineryFilter() {
                                 </div>
                             </div>
 
-                            <div className="other-filter">
+                            {/* <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowYearDrp(!showYearDrp)}>
                                     <p className='text-white'>Build</p>
                                     <FaAngleDown className='text-white' />
@@ -502,7 +521,7 @@ export default function MachineryFilter() {
                                         })
                                     }
                                 </div>
-                            </div>
+                            </div> */}
 
 
                             <div className="other-filter">

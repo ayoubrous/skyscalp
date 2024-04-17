@@ -8,7 +8,7 @@ import { TbCarCrane } from 'react-icons/tb'
 import logo from '../assets/images/profile/user-1.jpg'
 import { Link } from 'react-router-dom'
 
-export default function Properties() {
+export default function Machinery() {
 
     return (
         <>
@@ -19,7 +19,7 @@ export default function Properties() {
                 <div className="body-wrapper">
                     <Header />
                     <div className="container-fluid">
-                        <h2 className='fw-bolder mb-3'>Published Properties</h2>
+                        <h2 className='fw-bolder mb-3'>Published Machinery</h2>
 
                         <div className="d-flex justify-content-end">
                             <a href=""></a>
@@ -34,9 +34,10 @@ export default function Properties() {
                                     <tr>
                                         <th className='col-1'>S. No</th>
                                         <th className='col-2'>Title</th>
-                                        <th className='col-2'>Address</th>
+                                        <th className='col-2'>Application</th>
                                         <th className='col-1'>Category</th>
-                                        <th className='col-1'>Type</th>
+                                        <th className='col-1'>Modal</th>
+                                        <th className='col-1'>Condtion</th>
                                         <th className='col-1'>Favourites</th>
                                         <th className='col-1'>Status</th>
                                         <th className='col-1'>Action</th>
@@ -45,13 +46,14 @@ export default function Properties() {
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td>Title of property</td>
-                                        <td>Address of Property</td>
-                                        <td>Appartment</td>
-                                        <td>Rent</td>
-                                        <td>32</td>
+                                        <td>4x4 Crane</td>
+                                        <td>Earthwork</td>
+                                        <td>Cranes</td>
+                                        <td>2022</td>
+                                        <td>Good</td>
+                                        <td>1</td>
                                         <td>
-                                            <span class="badge text-bg-success" style={{ fontSize: "12px" }}>Active</span>
+                                            <span class="badge text-bg-warning" style={{ fontSize: "13px" }}>Pending</span>
                                         </td>
                                         <td>
                                             <Link className='mx-1'>
@@ -67,11 +69,12 @@ export default function Properties() {
                                     </tr>
                                     <tr>
                                         <td>2</td>
-                                        <td>Title of property</td>
-                                        <td>Address of Property</td>
-                                        <td>Appartment</td>
-                                        <td>Rent</td>
-                                        <td>32</td>
+                                        <td>4x4 Crane</td>
+                                        <td>Earthwork</td>
+                                        <td>Cranes</td>
+                                        <td>2022</td>
+                                        <td>Good</td>
+                                        <td>2</td>
                                         <td>
                                             <span class="badge text-bg-warning" style={{ fontSize: "12px" }}>Pending</span>
                                         </td>
@@ -89,13 +92,14 @@ export default function Properties() {
                                     </tr>
                                     <tr>
                                         <td>3</td>
-                                        <td>Title of property</td>
-                                        <td>Address of Property</td>
-                                        <td>Appartment</td>
-                                        <td>Rent</td>
-                                        <td>32</td>
+                                        <td>4x4 Crane</td>
+                                        <td>Earthwork</td>
+                                        <td>Cranes</td>
+                                        <td>2022</td>
+                                        <td>Good</td>
+                                        <td>5</td>
                                         <td>
-                                            <span class="badge text-bg-warning" style={{ fontSize: "12px" }}>Pending</span>
+                                            <span class="badge text-bg-success" style={{ fontSize: "12px" }}>Active</span>
                                         </td>
                                         <td>
                                             <Link className='mx-1'>

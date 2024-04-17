@@ -250,7 +250,7 @@ a:hover {
     left: 0;
     /* width: 100%; */
     /* width: 140px; */
-    min-width: 100px;
+    min-width: 160px;
     border-radius: 6px;
     box-shadow: 0 0 5px rgba(0, 0, 8, 0.11);
     background-color: var(--white-color);

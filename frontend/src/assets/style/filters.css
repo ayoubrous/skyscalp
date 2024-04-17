@@ -154,7 +154,7 @@
 .machinery-filter .user-input .search-input {
     width: 30%;
     position: relative;
-    display: flex;   
+    display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 8px;
@@ -166,27 +166,34 @@
     border-right: 1px solid var(--border-color);
 
 }
-.machinery-filter .category-list .select-radius-strip{
+
+.machinery-filter .category-list .select-radius-strip {
     padding: 8px;
     background-color: var(--border-color);
     display: flex;
     align-items: center;
     gap: 20px;
+    position: sticky;
+    bottom: 0;
 }
-.machinery-filter .category-list .select-radius-strip.disabled{
+
+.machinery-filter .category-list .select-radius-strip.disabled {
     pointer-events: none;
 }
-.category-list .select-radius-strip .radius-options{
+
+.category-list .select-radius-strip .radius-options {
     display: flex;
     align-items: center;
     gap: 5px;
 }
-.category-list .select-radius-strip .radius-options .rad-opt{
+
+.category-list .select-radius-strip .radius-options .rad-opt {
     padding: 3px 16px;
     background-color: var(--white-color);
     cursor: pointer;
 }
-.category-list .select-radius-strip .radius-options .rad-opt.active{
+
+.category-list .select-radius-strip .radius-options .rad-opt.active {
     background-color: var(--primary-color);
     color: var(--white-color);
 }
@@ -199,24 +206,50 @@
     position: relative;
 }
 
-.filter .other-filters .other-filter p{
+.filter .other-filters .other-filter p {
     font-size: 12px;
 }
 
-.filter .other-filters .other-filter svg{
+.filter .other-filters .other-filter svg {
     font-size: 12px;
 }
 
-.machinery-filter .other-filters .custom-dropdown{
+.machinery-filter .other-filters .custom-dropdown {
     width: 250px;
 }
 
+.machinery-filter .budget-dropdown .side {
+    position: relative;
+}
+
+.machinery-filter .budget-dropdown .side .custom-dropdown-item-fixed {
+    position: sticky;
+    top: 0;
+    left: 0;
+    padding: 5px 8px;
+    background-color: var(--border-color);
+}
+
+
+/* CONSTRUCTION FILTER  */
+.construction-filter .user-input .category-list {
+    width: 70%;
+}
+
+.machinery-filter .user-input .search-input {
+    width: 30%;
+}
+
+.construction-filter .user-input .category-list .custom-input {
+    padding: 20px 19px;
+}
 
 /* NESTED DROPDOWN  */
 .categories-select-dropdown {
     position: absolute;
     top: 105%;
     left: 0;
+    min-width: 260px;
     width: fit-content;
     background-color: white;
     z-index: 10;
@@ -226,28 +259,35 @@
     border-radius: 6px;
     display: none;
 }
-.categories-select-dropdown.show{
+
+.categories-select-dropdown.show {
     display: block;
 }
-.categories-select-dropdown .dropdown-item{
+
+.categories-select-dropdown .dropdown-item {
     padding: 4px 10px;
     cursor: pointer;
 }
-.categories-select-dropdown .dropdown-item:hover{
-   background-color: var(--border-color);
+
+.categories-select-dropdown .dropdown-item:hover {
+    background-color: var(--border-color);
 }
-.categories-select-dropdown .dropdown-item .nested-dropdown{
+
+.categories-select-dropdown .dropdown-item .nested-dropdown {
     display: none;
 }
-.categories-select-dropdown .dropdown-item.extended{
+
+.categories-select-dropdown .dropdown-item.extended {
     background-color: var(--white-color);
 }
-.categories-select-dropdown .dropdown-item.extended .nested-dropdown{
+
+.categories-select-dropdown .dropdown-item.extended .nested-dropdown {
     display: block;
     width: 100%;
 }
-.categories-select-dropdown .dropdown-item.extended .nested-dropdown .dropdown-item:hover{
-   background-color: var(--border-color);
+
+.categories-select-dropdown .dropdown-item.extended .nested-dropdown .dropdown-item:hover {
+    background-color: var(--border-color);
 
 }
 

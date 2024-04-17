@@ -20198,8 +20198,9 @@ ul {
 
 .dashboard-table th{
     border: 1px solid #ccc;
-    background-color: #076C8F;
-    color: #fff;
+    /* background-color: #076C8F;
+    color: #fff; */
+    color: var(--web-primary-color);
     padding: 10px 8px;
     text-align: center;
 }
@@ -20212,4 +20213,26 @@ ul {
 }
 .dashboard-table svg{
     font-size: 16px;
+}
+
+.favourites-page .fav-tabs{
+    width: 40%;
+    border-radius: 33px;
+    display: flex;
+    justify-content: space-between;
+    padding: 4px;
+    margin: 20px auto;
+    border: 1.4px solid var(--web-primary-color);
+}
+.fav-tabs .fav-tab{
+    padding: 8px 19px;
+    border-radius: 33px;
+cursor: pointer;
+}
+.fav-tabs .fav-tab.active{
+    background-color: var(--web-primary-color);
+    color: #fff;
+}
+.favourites-page .cards-grid{
+    grid-template-columns: repeat(2, 49%);
 }

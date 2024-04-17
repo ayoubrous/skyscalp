@@ -61,7 +61,7 @@ export default function CustomLocationsDropdown({handleLocationSelect, selectedL
                 style={{width: "100%"}}
             />
             {inputText && suggestions.length > 0 && (
-                <div className={`custom-dropdown ${showDrp ? 'show': ''}`} ref={drpRef}>
+                <div className={`custom-dropdown ${showDrp ? 'show': ''}`} ref={drpRef} style={{maxHeight: "250px"}}>
                     {Object.entries(groupedSuggestions).map(([label, groups]) => (
                         <div key={label}>
                             <p className='fw-bold px-2 py-1 color-primary'>{label}</p>

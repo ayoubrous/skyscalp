@@ -16,6 +16,9 @@ export default function MessageOwner() {
             <div className="form-group mb-2">
                 <textarea name="" id="" cols="30" rows="3" placeholder={t("message")} className="custom-textarea"></textarea>
             </div>
+            <div className="form-group mb-2">
+                <button className="custom-btn w-100">Send Message</button>
+            </div>
         </form>
     )
 }

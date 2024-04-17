@@ -24,6 +24,11 @@ import ViewConstruction from './pages/ViewConstruction';
 
 import Dashboard from './admin/pages/Dashboard';
 import DashboardProperties from './admin/pages/Properties';
+import DashboardMachinery from './admin/pages/Machinery';
+import DashboardConstruction from './admin/pages/Construction';
+import DashboardMessages from './admin/pages/Messages';
+import DashboardFavourites from './admin/pages/Favourites';
+import Categories from './pages/Categories';
 
 const App = () => {
   return (
@@ -38,6 +43,7 @@ const App = () => {
           <Route path='/properties' exact element={<Properties />} />
           <Route path='/machinery' exact element={<Machinery />} />
           <Route path='/construction' exact element={<Construction />} />
+          <Route path='/categories/:id' exact element={<Categories />} />
           {/* ------ Detailed Pages -------  */}
           <Route path='/property/:id' exact element={<ViewProperty />} />
           <Route path='/construction/:id' exact element={<ViewConstruction />} />
@@ -46,6 +52,10 @@ const App = () => {
 
           <Route path='/app/dashboard' exact element={<Dashboard />} />
           <Route path='/app/properties' exact element={<DashboardProperties />} />
+          <Route path='/app/machinery' exact element={<DashboardMachinery />} />
+          <Route path='/app/construction' exact element={<DashboardConstruction />} />
+          <Route path='/app/favourites' exact element={<DashboardFavourites />} />
+          <Route path='/app/messages' exact element={<DashboardMessages />} />
 
         </Routes>
       </ScrollToTop>

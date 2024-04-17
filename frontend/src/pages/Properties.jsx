@@ -6,6 +6,7 @@ import ContactUs from '../components/sections/ContactUs'
 import BlogSection from '../components/sections/BlogSection'
 import Footer from '../components/sections/Footer'
 import AllProperties from '../components/sections/AllProperties'
+import PropertyFilter from '../components/filters/PropertyFilter'
 
 export default function Properties() {
     const [t] = useTranslation()
@@ -13,6 +14,7 @@ export default function Properties() {
     <>
     <Navbar />
     <Breadcrumb title={t("exploreProperties")} link={t("properties")}/>
+    <PropertyFilter />
     <AllProperties />
     <BlogSection />
     <ContactUs supportTitle={t("propertySupportTitle")} supportDescription={t("propertySupportDescription")} />
