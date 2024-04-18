@@ -6,7 +6,7 @@ import ContactUs from '../components/sections/ContactUs'
 import Footer from '../components/sections/Footer'
 import BlogSection from '../components/sections/BlogSection'
 import sellerImage from '../assets/images/sellerImage.png'
-import { FaBath, FaBed, FaBuilding, FaEnvelope, FaHeart, FaPhone, FaRegHeart, FaRoadSpikes } from 'react-icons/fa6'
+import { FaAngleLeft, FaAngleRight, FaBath, FaBed, FaBuilding, FaEnvelope, FaHeart, FaPhone, FaRegHeart, FaRoadSpikes } from 'react-icons/fa6'
 import MessageOwner from '../components/utils/MessageOwner'
 import { FaRegArrowAltCircleRight, FaSwimmingPool } from 'react-icons/fa'
 
@@ -24,6 +24,7 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 import Map from '../components/map/Map'
 import Properties from '../components/sections/Properties'
 import SimilarProperties from '../components/sections/SimilarProperties'
+import { Link } from 'react-router-dom'
 
 export default function ViewProperty() {
 
@@ -35,7 +36,22 @@ export default function ViewProperty() {
     ];
     const [t] = useTranslation()
     const [favourite, setFavourite] = useState(false)
-    const [mainImage, setMainImage] = useState(propertyImages[0]);
+    
+    const [mainImageIndex, setMainImageIndex] = useState(0);
+
+    const handleImageClick = (index) => {
+        setMainImageIndex(index);
+    };
+
+    const handlePreviousImage = () => {
+        const newIndex = (mainImageIndex - 1 + propertyImages.length) % propertyImages.length;
+        setMainImageIndex(newIndex);
+    };
+
+    const handleNextImage = () => {
+        const newIndex = (mainImageIndex + 1) % propertyImages.length;
+        setMainImageIndex(newIndex);
+    };
 
     const options = {
         loop: true,
@@ -60,9 +76,9 @@ export default function ViewProperty() {
         }
     };
 
-    const handleImageClick = (image) => {
-        setMainImage(image);
-    };
+    // const handleImageClick = (image) => {
+    //     setMainImage(image);
+    // };
 
     return (
         <>
@@ -74,23 +90,27 @@ export default function ViewProperty() {
                     <div className="split">
                         <div className="product-details side-lg">
 
-                            <div className="side images mb-2">
-                                <div className="main-image">
-                                    <img src={mainImage} alt="" />
-                                </div>
-
-                                <div className="more-images">
-                                    {/* <OwlCarousel id="" className="owl-carousel owl-theme" {...options}> */}
-                                    {propertyImages.map((image, i) => (
-                                        <div key={i} className={`image ${mainImage === image ? 'active' : ''}`} onClick={() => handleImageClick(image)}>
-                                            <img src={image} alt="" />
-                                        </div>
-                                    ))}
-
-
-                                    {/* </OwlCarousel> */}
-                                </div>
-                            </div>
+                        <div className="side images mb-2">
+            <Link to='../properties'>
+                <p className="color-secondary mb-3">&lt; Back to list</p>
+            </Link>
+            <div className="main-image">
+                <div className="arrow left-arrow" onClick={handlePreviousImage}>
+                    <FaAngleLeft className='arrow-icon' />
+                </div>
+                <div className="arrow right-arrow" onClick={handleNextImage}>
+                    <FaAngleRight className='arrow-icon' />
+                </div>
+                <img src={propertyImages[mainImageIndex]} alt="" />
+            </div>
+            <div className="more-images">
+                {propertyImages.map((image, i) => (
+                    <div key={i} className={`image ${mainImageIndex === i ? 'active' : ''}`} onClick={() => handleImageClick(i)}>
+                        <img src={image} alt="" />
+                    </div>
+                ))}
+            </div>
+        </div>
 
                             <div className="side basic-information mb-2">
                                 <div className="d-flex align-items-center justify-content-between mb-2">
@@ -211,6 +231,9 @@ export default function ViewProperty() {
                             <div className="side map mb-2">
                                 <h3 className="fw-bolder mb-4">{t("viewOnMap")}</h3>
                                 <Map />
+
+                                <p className="color-secondary my-2">5232 North Carolina Ave. 21BC</p>
+                                <p className="color-secondary my-2">Reference ID: 23828830</p>
                             </div>
 
 

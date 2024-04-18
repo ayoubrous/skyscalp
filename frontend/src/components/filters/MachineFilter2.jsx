@@ -104,7 +104,11 @@ export default function MachineryFilter() {
                 'Compactor',
                 'Level'
             ]
-        }
+        },
+        // {
+        //     categoryName: 'Other',
+        //     subcategories: []
+        // }
     ];
 
 
@@ -143,7 +147,8 @@ export default function MachineryFilter() {
         "3 to 5 years",
         "5 to 10 years",
         "10 to 15 years",
-        "More than 15 years"
+        "More than 15 years",
+        "Under construction"
     ];
     const handleClickOutside = (e) => {
         if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(e.target)) {
@@ -408,11 +413,29 @@ export default function MachineryFilter() {
                         <div className="d-flex gap-4">
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowPriceDrp(!showPriceDrp)}>
-                                    <p className='text-white'>
-                                        {(minPrice === '' && maxPrice === '') ?
-                                            'Budget' :
-                                            `${minPrice === '' ? 'All' : minPrice} ${minPrice === '' ? '' : '(MAD/unit)'} - ${maxPrice === '' ? 'All' : maxPrice} ${maxPrice === '' ? '' : '(MAD/unit)'}`}
-                                    </p>
+                                    
+                                <div className='text-white'>
+                                        {minPrice === '' && maxPrice === '' ? (
+                                            <p style={{ display: 'inline', margin: 0 }}>Budget</p>
+                                        ) : (
+                                            <>
+                                                {minPrice === '' ? (
+                                                    <p style={{ display: 'inline', margin: 0 }}>All</p>
+                                                ) : (
+                                                    <p className='fw-bolder' style={{ display: 'inline', margin: 0 }}>{minPrice}</p>
+                                                )}
+                                                -
+                                                {maxPrice === '' ? (
+                                                    <p style={{ display: 'inline' }}> All </p>
+                                                ) : (
+                                                    <>
+                                                        <p className='fw-bolder' style={{ display: 'inline', margin: 0 }}>{maxPrice}</p>
+                                                        <p style={{ display: 'inline' }}> (MAD/unit) </p>
+                                                    </>
+                                                )}
+                                            </>
+                                        )}
+                                    </div>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
@@ -429,7 +452,7 @@ export default function MachineryFilter() {
                                                     )
                                                 })
                                             }
-                                            <p className="custom-dropdown-item text-danger" onClick={() => setMinPrice('')}>Clear</p>
+                                            <p className="custom-dropdown-item text-danger custom-dropdown-item-clear" onClick={() => setMinPrice('')}>Clear</p>
 
                                         </div>
                                         <div className="side">
@@ -443,7 +466,7 @@ export default function MachineryFilter() {
                                                     )
                                                 })
                                             }
-                                            <p className="custom-dropdown-item text-danger" onClick={() => setMaxPrice('')}>Clear</p>
+                                            <p className="custom-dropdown-item text-danger custom-dropdown-item-clear" onClick={() => setMaxPrice('')}>Clear</p>
 
                                         </div>
                                     </div>

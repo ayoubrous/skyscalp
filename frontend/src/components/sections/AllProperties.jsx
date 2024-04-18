@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaAngleDown, FaArrowUp } from 'react-icons/fa6'
 import PropertyCard from '../cards/PropertyCard'
+import Sortby from '../utils/Sortby'
 
 export default function AllProperties() {
     const [t] = useTranslation()
 
-    const [showSortDropdown, setShowSortDropdown] = useState(false)
+    const [sortby, setSortBy] = useState('')
+    const [sortOrder, setSortOrder] = useState('ascending')
     const propertyData = {
         id: 1,
         imgUrl: [
@@ -34,21 +36,8 @@ export default function AllProperties() {
                 <div className="d-flex justify-content-between align-items-center mb-4">
                     <h2 className="fw-bolder color-primary text-uppercase">{t("allProperties")}</h2>
 
-                    <div className="sortby">
-                        <div className="arrow-icon">
-                            <FaArrowUp className='color-primary' />
-                        </div>
-                        <div className="d-flex gap-2 align-items-center sorting" onClick={() => setShowSortDropdown(!showSortDropdown)}>
-                            <p>Sort By</p>
-                            <FaAngleDown className='color-primary' />
-                        </div>
+                    <Sortby sortBy={sortby} setSortBy={setSortBy} sortOrder={sortOrder} setSortOrder={setSortOrder} />
 
-                        <div className={`sortby-dropdown ${showSortDropdown ? 'show' : ''}`}>
-                            <p className="mb-2 dropdown-item">Relevance</p>
-                            <p className="mb-2 dropdown-item">Price</p>
-                            <p className="mb-2 dropdown-item">Date</p>
-                        </div>
-                    </div>
                 </div>
 
                 <div className="cards-grid">

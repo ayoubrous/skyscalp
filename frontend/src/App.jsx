@@ -29,6 +29,7 @@ import DashboardConstruction from './admin/pages/Construction';
 import DashboardMessages from './admin/pages/Messages';
 import DashboardFavourites from './admin/pages/Favourites';
 import Categories from './pages/Categories';
+import AddProperty from './admin/pages/AddProperty';
 
 const App = () => {
   return (
@@ -56,6 +57,7 @@ const App = () => {
           <Route path='/app/construction' exact element={<DashboardConstruction />} />
           <Route path='/app/favourites' exact element={<DashboardFavourites />} />
           <Route path='/app/messages' exact element={<DashboardMessages />} />
+          <Route path='/app/add-property' exact element={<AddProperty />} />
 
         </Routes>
       </ScrollToTop>

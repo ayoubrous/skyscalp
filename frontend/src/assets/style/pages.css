@@ -101,9 +101,11 @@
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.032);
     transition: all .2s ease;
 }
-.categories .category-card.active{
+
+.categories .category-card.active {
     border: 2px solid var(--primary-color);
 }
+
 .categories .category-card:hover {
     box-shadow: 0 0 22px rgba(0, 0, 0, 0.0955);
 }
@@ -261,7 +263,7 @@
     align-items: center;
     gap: 14px;
 
-    
+
 }
 
 .details-section .seller-details .seller-info .image {
@@ -278,17 +280,20 @@
     font-size: 20px;
     color: var(--semi-dark-color);
 }
-.details-section .images .main-image{
+
+.details-section .images .main-image {
     width: 100%;
     overflow: hidden;
     height: fit-content;
     border-radius: 6px;
+    position: relative;
 
-    
 }
-.details-section .main-image img{
+
+.details-section .main-image img {
     width: 100%;
 }
+
 .details-section .images .more-images {
     display: flex;
     /* align-items: center; */
@@ -308,15 +313,39 @@
 
     cursor: pointer;
 }
-.details-section .more-images .image.active{
+
+.details-section .more-images .image.active {
     border: 3px solid var(--primary-color);
     opacity: .6;
 }
+
 .details-section .more-images .image img {
     overflow: hidden;
     width: 100%;
 }
 
+.details-section .main-image .arrow {
+    position: absolute;
+    top: 45%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--border-color);
+    cursor: pointer;
+}
+.details-section .main-image .right-arrow{
+    right: 6px;
+}
+.details-section .main-image .left-arrow{
+    left: 6px;
+}
+.details-section .main-image .arrow .arrow-icon{
+    font-size: 17px;
+    color: var(--primary-color);
+}
 .details-section .favourite-icon.filled {
     color: red;
 }
@@ -346,8 +375,28 @@
     width: 50%;
 }
 
+/* .similar-items .owl-carousel{
+    display: flex;
+} */
+.similar-items .owl-prev,
+.owl-next {
+    position: absolute;
+    top: 160px;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: #ffffffa6 !important;
+    color: var(--primary-color) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
 /* map conainer  */
-.leaflet-container{
+.leaflet-container {
     width: 100%;
     height: 400px;
 }

@@ -84,6 +84,27 @@ import { FaAngleDown } from 'react-icons/fa';
 export default function NestedDropdown({ show, categoriesRef, categories, setCheckedSubcategories, checkedSubcategories }) {
 	const [extendedCat, setExtendedCat] = useState(null)
 	const [checkedCategory, setCheckedCategory] = useState([])
+	const [checkAll, setCheckAll] = useState(false)
+
+	const handleCheckAll = () => {
+		if (checkAll) {
+			setCheckAll(false)
+
+			// remove all the subcategories to state
+			setCheckedSubcategories([]);
+			setCheckedCategory([])
+
+		}
+		else {
+			setCheckAll(true)
+
+			// add all the subcategories to state
+			const allSubcategories = categories.flatMap(item => item.subcategories);
+			setCheckedSubcategories(allSubcategories);
+			const allCategories = categories.flatMap(item => item.categoryName);
+			setCheckedCategory(allCategories);
+		}
+	}
 
 	const handleExtendCategory = (i) => {
 		if (extendedCat === i) {
@@ -146,6 +167,18 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
 		<>
 
 			<ul className={`categories-select-dropdown ${show ? 'show' : ''}`} ref={categoriesRef}>
+				<li className='dropdown-item extended p-0' >
+					<div className="d-flex gap-2" style={{ backgroundColor: "#f7f7f7", padding: "5px" }}>
+						<input
+							type="checkbox"
+							name="all"
+							id="all"
+							onChange={handleCheckAll}
+							value={checkAll}
+						/>
+						<label htmlFor="all">All</label>
+					</div>
+				</li>
 				{categories.map((category, i) => (
 					<li key={category.categoryName} className='dropdown-item extended p-0' >
 						<div className="d-flex justify-content-between" style={{ backgroundColor: "#f7f7f7", padding: "5px" }}>

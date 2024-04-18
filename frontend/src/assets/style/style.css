@@ -425,6 +425,10 @@
     cursor: pointer;
 }
 
+.owl-theme .owl-dots {
+    display: block !important;
+}
+
 /* ========= Testimonials ===========  */
 .testimonials {
     background-color: var(--primary-color);

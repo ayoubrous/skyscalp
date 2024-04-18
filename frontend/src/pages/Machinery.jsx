@@ -27,8 +27,7 @@ export default function Machinery() {
       <AllMachinery />
       <BlogSection />
       <ContactUs supportTitle={t("machinerySupportTitle")} supportDescription={t("machinerySupportDescription")} />
-      <FilterTagsBackup />
-      <TestNestedDropdown />
+      {/* <FilterTagsBackup /> */}
       <Footer />
 
     </>

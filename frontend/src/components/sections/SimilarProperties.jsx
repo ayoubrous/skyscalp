@@ -4,7 +4,11 @@ import { BsFillBagHeartFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { TbBed } from "react-icons/tb";
 import PropertyCard from '../cards/PropertyCard';
+import SimilarProperty from '../cards/SimilarProperty';
 
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
 export default function SimilarProperties() {
     const [t] = useTranslation()
 
@@ -30,20 +34,45 @@ export default function SimilarProperties() {
         datePosted: "02 March 2024"
     };
 
-
+    const options = {
+        loop: true,
+        center: true,
+        items: 1,
+        margin: 10,
+        autoplay: false,
+        dots: true,
+        autoplayTimeout: 8500,
+        smartSpeed: 450,
+        nav: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            700: {
+                items: 1
+            },
+            1000: {
+                items: 3
+            }
+        }
+    };
     return (
-        <section className="properties-section">
+        <section className="similar-items">
             <div className="custom-container">
                 <div className="d-flex justify-content-between align-items-center">
                 </div>
                 <h3 className='my-3 fw-bolder'>{t("similar")}</h3>
+                {/* Only show 4 cards, 3 will be visible in laptop and 4 on mobile through css */}
+                <OwlCarousel id="" className="owl-carousel owl-theme" {...options}>
+                    {/* <PropertyCard propertyData={propertyData} />
+                        <PropertyCard propertyData={propertyData} />
+                        <PropertyCard propertyData={propertyData} /> */}
 
-                <div className="cards-grid">
-                    {/* Only show 4 cards, 3 will be visible in laptop and 4 on mobile through css */}
-                    <PropertyCard propertyData={propertyData} />
-                    <PropertyCard propertyData={propertyData} />
-                    <PropertyCard propertyData={propertyData} />
-                </div>
+                    <SimilarProperty propertyData={propertyData} />
+
+
+                </OwlCarousel>
+
             </div>
         </section>
     )

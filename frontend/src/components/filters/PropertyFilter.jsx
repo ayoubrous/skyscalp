@@ -24,15 +24,21 @@ export default function PropertyFilter() {
     const yearBuildRef = useRef();
     const categoriesRef = useRef()
     const bedsRef = useRef()
+    const bathRef = useRef()
     const sizeRef = useRef()
+    const proximityRef = useRef()
+    const featureRef = useRef()
 
     const [showLocationDropdown, setShowLocationDropdown] = useState(false);
     const [showCategoriesDrp, setShowCategoriesDrp] = useState(false)
     const [showPriceDrp, setShowPriceDrp] = useState(false);
     const [showSizeDrp, setShowSizeDrp] = useState(false);
     const [showBedsDrp, setShowBedsDrp] = useState(false);
+    const [showBathDrp, setShowBathDrp] = useState(false);
     const [showConditionDrp, setShowConditionDrp] = useState(false);
     const [showYearDrp, setShowYearDrp] = useState(false)
+    const [showProximityDrp, setShowProximityDrp] = useState(false)
+    const [showFeatureDrp, setShowFeatureDrp] = useState(false)
 
     const [type, setType] = useState('sale')
     const [minPrice, setMinPrice] = useState('')
@@ -41,6 +47,8 @@ export default function PropertyFilter() {
     const [maxSize, setMaxSize] = useState('')
     const [minBeds, setMinBeds] = useState('')
     const [maxBeds, setMaxBeds] = useState('')
+    const [minBath, setMinBath] = useState('')
+    const [maxBath, setMaxBath] = useState('')
     const [available, setAvailable] = useState('')
     const [condition, setCondtion] = useState('')
 
@@ -49,6 +57,8 @@ export default function PropertyFilter() {
 
     const [guarantee, setGuarantee] = useState('')
     const [yearBuild, setYearBuild] = useState([])
+    const [proximities, setProximities] = useState([])
+    const [features, setFeatures] = useState([])
 
     const [selectedBrands, setSelectedBrands] = useState([])
     const [selectedCondtions, setSelectedConditions] = useState([])
@@ -143,11 +153,15 @@ export default function PropertyFilter() {
         "3 to 5 years",
         "5 to 10 years",
         "10 to 15 years",
-        "More than 15 years"
+        "More than 15 years",
+        "Under construction"
     ];
     const numbers = [
         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
     ]
+
+    const proximityData = ['School', 'Hospital', 'Super market']
+    const featuresData = ['Balcony', 'Garden', 'Pool', 'Elevator', 'Air conditioning', 'Heating'];
 
     const handleClickOutside = (e) => {
         if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(e.target)) {
@@ -168,8 +182,17 @@ export default function PropertyFilter() {
         if (bedsRef.current && !bedsRef.current.contains(e.target)) {
             setShowBedsDrp(false);
         }
+        if (bathRef.current && !bathRef.current.contains(e.target)) {
+            setShowBathDrp(false);
+        }
         if (sizeRef.current && !sizeRef.current.contains(e.target)) {
             setShowSizeDrp(false);
+        }
+        if (proximityRef.current && !proximityRef.current.contains(e.target)) {
+            setShowProximityDrp(false);
+        }
+        if (featureRef.current && !featureRef.current.contains(e.target)) {
+            setShowFeatureDrp(false);
         }
     };
 
@@ -205,6 +228,16 @@ export default function PropertyFilter() {
     }
 
 
+    const handleMinBath = (e) => {
+        // setShowMinPriceDrp(false)
+        setMinBath(e)
+    }
+    const hanldeMaxBath = (e) => {
+        setShowBathDrp(false)
+        setMaxBath(e)
+    }
+
+
 
     const handleMinSize = (e) => {
         // setShowMinPriceDrp(false)
@@ -231,6 +264,22 @@ export default function PropertyFilter() {
         if (!selectedFilters.includes(val)) {
             setSelectedFilters([...selectedFilters, val]);
             setYearBuild([...yearBuild, val])
+        }
+    }
+    const handleProximity = (val) => {
+        setShowProximityDrp(false)
+        // setYearBuild(val)
+        if (!selectedFilters.includes(val)) {
+            setSelectedFilters([...selectedFilters, val]);
+            setProximities([...proximities, val])
+        }
+    }
+    const handleFeature = (val) => {
+        setShowFeatureDrp(false)
+        // setYearBuild(val)
+        if (!selectedFilters.includes(val)) {
+            setSelectedFilters([...selectedFilters, val]);
+            setFeatures([...features, val])
         }
     }
 
@@ -320,6 +369,14 @@ export default function PropertyFilter() {
         setYearBuild([]);
         setSelectedConditions([]);
         setCheckedSubcategories([]);
+        setMinBeds('')
+        setMaxBeds('')
+        setMinSize('')
+        setMaxSize('')
+        setMinBath('')
+        setMaxBath('')
+        setFeatures([])
+        setProximities([])
     }
 
     // only for cities 
@@ -410,11 +467,29 @@ export default function PropertyFilter() {
                             {/* Budget Filter  */}
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowPriceDrp(!showPriceDrp)}>
-                                    <p className='text-white'>
-                                        {(minPrice === '' && maxPrice === '') ?
-                                            'Budget' :
-                                            `${minPrice === '' ? 'All' : minPrice} ${minPrice === '' ? '' : '(MAD/unit)'} - ${maxPrice === '' ? 'All' : maxPrice} ${maxPrice === '' ? '' : '(MAD/unit)'}`}
-                                    </p>
+
+                                    <div className='text-white'>
+                                        {minPrice === '' && maxPrice === '' ? (
+                                            <p style={{ display: 'inline', margin: 0 }}>Budget</p>
+                                        ) : (
+                                            <>
+                                                {minPrice === '' ? (
+                                                    <p style={{ display: 'inline', margin: 0 }}>All</p>
+                                                ) : (
+                                                    <p className='fw-bolder' style={{ display: 'inline', margin: 0 }}>{minPrice}</p>
+                                                )}
+                                                -
+                                                {maxPrice === '' ? (
+                                                    <p style={{ display: 'inline' }}> All </p>
+                                                ) : (
+                                                    <>
+                                                        <p className='fw-bolder' style={{ display: 'inline', margin: 0 }}>{maxPrice}</p>
+                                                        <p style={{ display: 'inline' }}> (MAD) </p>
+                                                    </>
+                                                )}
+                                            </>
+                                        )}
+                                    </div>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
@@ -431,7 +506,7 @@ export default function PropertyFilter() {
                                                     )
                                                 })
                                             }
-                                            <p className="custom-dropdown-item text-danger" onClick={() => setMinPrice('')}>Clear</p>
+                                            <p className="custom-dropdown-item text-danger custom-dropdown-item-clear" onClick={() => setMinPrice('')}>Clear</p>
 
                                         </div>
                                         <div className="side">
@@ -445,7 +520,7 @@ export default function PropertyFilter() {
                                                     )
                                                 })
                                             }
-                                            <p className="custom-dropdown-item text-danger" onClick={() => setMaxPrice('')}>Clear</p>
+                                            <p className="custom-dropdown-item text-danger custom-dropdown-item-clear" onClick={() => setMaxPrice('')}>Clear</p>
 
                                         </div>
                                     </div>
@@ -456,11 +531,28 @@ export default function PropertyFilter() {
                             {/* Size Filter  */}
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowSizeDrp(!showSizeDrp)}>
-                                    <p className='text-white'>
-                                        {(minSize === '' && maxSize === '') ?
-                                            'Size/Area' :
-                                            `${minSize === '' ? 'All' : minSize} ${minSize === '' ? '' : 'Sq ft'} - ${maxSize === '' ? 'All' : maxSize} ${maxSize === '' ? '' : 'Sq ft'}`}
-                                    </p>
+                                    <div className='text-white'>
+                                        {minSize === '' && maxSize === '' ? (
+                                            <p style={{ display: 'inline', margin: 0 }}>Size/Area</p>
+                                        ) : (
+                                            <>
+                                                {minSize === '' ? (
+                                                    <p style={{ display: 'inline', margin: 0 }}>All</p>
+                                                ) : (
+                                                    <p className='fw-bolder' style={{ display: 'inline', margin: 0 }}>{minSize}</p>
+                                                )}
+                                                -
+                                                {maxSize === '' ? (
+                                                    <p style={{ display: 'inline' }}> All </p>
+                                                ) : (
+                                                    <>
+                                                        <p className='fw-bolder' style={{ display: 'inline', margin: 0 }}>{maxSize}</p>
+                                                        <p style={{ display: 'inline' }}> m <sup>2</sup> </p>
+                                                    </>
+                                                )}
+                                            </>
+                                        )}
+                                    </div>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
@@ -473,11 +565,11 @@ export default function PropertyFilter() {
                                             {
                                                 size.map((n, i) => {
                                                     return (
-                                                        <p className="custom-dropdown-item" onClick={() => handleMinSize(n)} key={i}>{n} sq ft</p>
+                                                        <p className="custom-dropdown-item" onClick={() => handleMinSize(n)} key={i}>{n} m<sup>2</sup></p>
                                                     )
                                                 })
                                             }
-                                            <p className="custom-dropdown-item text-danger" onClick={() => setMinSize('')}>Clear</p>
+                                            <p className="custom-dropdown-item text-danger custom-dropdown-item-clear" onClick={() => setMinSize('')}>Clear</p>
 
                                         </div>
                                         <div className="side">
@@ -487,11 +579,11 @@ export default function PropertyFilter() {
                                             {
                                                 size.map((n, i) => {
                                                     return (
-                                                        <p className="custom-dropdown-item" onClick={() => handleMaxSize(n)} key={i}>{n} sq ft</p>
+                                                        <p className="custom-dropdown-item" onClick={() => handleMaxSize(n)} key={i}>{n} m<sup>2</sup></p>
                                                     )
                                                 })
                                             }
-                                            <p className="custom-dropdown-item text-danger" onClick={() => setMaxSize('')}>Clear</p>
+                                            <p className="custom-dropdown-item text-danger custom-dropdown-item-clear" onClick={() => setMaxSize('')}>Clear</p>
 
                                         </div>
                                     </div>
@@ -502,11 +594,28 @@ export default function PropertyFilter() {
                             {/* Beds filter  */}
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowBedsDrp(!showBedsDrp)}>
-                                    <p className='text-white'>
-                                        {(minBeds === '' && maxBeds === '') ?
-                                            'Beds' :
-                                            `${minBeds === '' ? 'All' : minBeds} ${minBeds === '' ? '' : 'Beds'} - ${maxBeds === '' ? 'All' : maxBeds} ${maxBeds === '' ? '' : 'Beds'}`}
-                                    </p>
+                                    <div className='text-white'>
+                                        {minBeds === '' && maxBeds === '' ? (
+                                            <p style={{ display: 'inline', margin: 0 }}>Rooms</p>
+                                        ) : (
+                                            <>
+                                                {minBeds === '' ? (
+                                                    <p style={{ display: 'inline', margin: 0 }}>All</p>
+                                                ) : (
+                                                    <p className='fw-bolder' style={{ display: 'inline', margin: 0 }}>{minBeds}</p>
+                                                )}
+                                                -
+                                                {maxBeds === '' ? (
+                                                    <p style={{ display: 'inline' }}> All </p>
+                                                ) : (
+                                                    <>
+                                                        <p className='fw-bolder' style={{ display: 'inline', margin: 0 }}>{maxBeds}</p>
+                                                        <p style={{ display: 'inline' }}> bedrooms </p>
+                                                    </>
+                                                )}
+                                            </>
+                                        )}
+                                    </div>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
@@ -523,7 +632,7 @@ export default function PropertyFilter() {
                                                     )
                                                 })
                                             }
-                                            <p className="custom-dropdown-item text-danger" onClick={() => setMinPrice('')}>Clear</p>
+                                            <p className="custom-dropdown-item text-danger custom-dropdown-item-clear" onClick={() => setMinBeds('')}>Clear</p>
 
                                         </div>
                                         <div className="side">
@@ -537,7 +646,70 @@ export default function PropertyFilter() {
                                                     )
                                                 })
                                             }
-                                            <p className="custom-dropdown-item text-danger" onClick={() => setMaxBeds('')}>Clear</p>
+                                            <p className="custom-dropdown-item text-danger custom-dropdown-item-clear" onClick={() => setMaxBeds('')}>Clear</p>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div className="other-filter">
+                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowBathDrp(!showBathDrp)}>
+                                    <div className='text-white'>
+                                        {minBath === '' && maxBath === '' ? (
+                                            <p style={{ display: 'inline', margin: 0 }}>Bathrooms</p>
+                                        ) : (
+                                            <>
+                                                {minBath === '' ? (
+                                                    <p style={{ display: 'inline', margin: 0 }}>All</p>
+                                                ) : (
+                                                    <p className='fw-bolder' style={{ display: 'inline', margin: 0 }}>{minBath}</p>
+                                                )}
+                                                -
+                                                {maxBath === '' ? (
+                                                    <p style={{ display: 'inline' }}> All </p>
+                                                ) : (
+                                                    <>
+                                                        <p className='fw-bolder' style={{ display: 'inline', margin: 0 }}>{maxBath}</p>
+                                                        <p style={{ display: 'inline' }}> Bathrooms </p>
+                                                    </>
+                                                )}
+                                            </>
+                                        )}
+                                    </div>
+                                    <FaAngleDown className='text-white' />
+                                </div>
+
+                                <div className={`custom-dropdown budget-dropdown ${showBathDrp ? 'show' : ''}`} ref={bathRef}>
+                                    <div className="d-flex">
+                                        <div className="side">
+                                            <div className="custom-dropdown-item custom-dropdown-item-fixed">
+                                                <input className='custom-input py-1' type="number" placeholder='Min' value={minBath} onChange={(e) => setMinBath(e.target.value)} />
+                                            </div>
+                                            {
+                                                numbers.map((n, i) => {
+                                                    return (
+                                                        <p className="custom-dropdown-item" onClick={() => handleMinBath(n)} key={i}>{n}</p>
+                                                    )
+                                                })
+                                            }
+                                            <p className="custom-dropdown-item text-danger custom-dropdown-item-clear" onClick={() => setMinBath('')}>Clear</p>
+
+                                        </div>
+                                        <div className="side">
+                                            <div className="custom-dropdown-item custom-dropdown-item-fixed">
+                                                <input className='custom-input py-1' type="number" placeholder='Max' value={maxBath} onChange={(e) => setMaxBath(e.target.value)} />
+                                            </div>
+                                            {
+                                                numbers.map((n, i) => {
+                                                    return (
+                                                        <p className="custom-dropdown-item" onClick={() => hanldeMaxBath(n)} key={i}>{n}</p>
+                                                    )
+                                                })
+                                            }
+                                            <p className="custom-dropdown-item text-danger custom-dropdown-item-clear" onClick={() => setMaxBath('')}>Clear</p>
 
                                         </div>
                                     </div>
@@ -583,6 +755,43 @@ export default function PropertyFilter() {
                                 </div>
                             </div>
 
+                            <div className="other-filter">
+                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowProximityDrp(!showProximityDrp)}>
+                                    <p className='text-white'>Proximity</p>
+                                    <FaAngleDown className='text-white' />
+                                </div>
+
+                                <div className={`custom-dropdown ${showProximityDrp ? 'show' : ''}`} ref={proximityRef}>
+                                    {
+                                        proximityData.map((data, i) => {
+                                            return (
+                                                <p key={i} className="custom-dropdown-item" onClick={() => handleProximity(data)}>{data}</p>
+
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>
+
+
+                            <div className="other-filter">
+                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowFeatureDrp(!showFeatureDrp)}>
+                                    <p className='text-white'>Features</p>
+                                    <FaAngleDown className='text-white' />
+                                </div>
+
+                                <div className={`custom-dropdown ${showFeatureDrp ? 'show' : ''}`} ref={featureRef}>
+                                    {
+                                        featuresData.map((data, i) => {
+                                            return (
+                                                <p key={i} className="custom-dropdown-item" onClick={() => handleFeature(data)}>{data}</p>
+
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>
+
 
                             {/* <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }}>
@@ -592,12 +801,12 @@ export default function PropertyFilter() {
                             </div> */}
 
 
-                            <div className="other-filter">
+                            {/* <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} >
                                     <label htmlFor="available" className='text-white' style={{ fontSize: "12px" }}>Availability</label>
                                     <input type="checkbox" name="available" id="available" onChange={() => setAvailable(!available)} />
                                 </div>
-                            </div>
+                            </div> */}
 
                         </div>
 
