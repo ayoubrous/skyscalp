@@ -22,23 +22,26 @@ export default function Properties() {
         price: "12000",
         streetAddress: "5232 North Carolina Ave. 21BC",
         city: "Carolina, USA",
-        bedrooms: "3",
+        rooms: "3",
         baths: "2",
         area: "120",
         sellerImg: "", // Fill with seller image URL
         sellerName: "Hendrich Klasen",
-        datePosted: "02 March 2024"
+        datePosted: "02 March 2024",
+        pool: 1,
+        garage: 2,
+        garden: 2
     };
 
 
     return (
         <section className="properties-section">
             <div className="custom-container">
+                <h1 className="color-primary text-uppercase fw-bolder">{t("propertySectionTitle")}</h1>
                 <div className="d-flex justify-content-between align-items-center">
-                    <h1 className="color-primary text-uppercase fw-bolder">{t("propertySectionTitle")}</h1>
+                    <h3 className='my-3 fw-bolder w-75'>{t("propertySectionSubTitle")}</h3>
                     <Link to="../properties" className='underlineLink'>{t("seeMore")}</Link>
                 </div>
-                <h3 className='my-3 fw-bolder'>{t("propertySectionSubTitle")}</h3>
 
                 <div className="cards-grid">
                     {/* Only show 4 cards, 3 will be visible in laptop and 4 on mobile through css */}

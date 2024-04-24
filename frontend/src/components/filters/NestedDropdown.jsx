@@ -81,10 +81,9 @@
 import React, { useState } from 'react';
 import { FaAngleDown } from 'react-icons/fa';
 
-export default function NestedDropdown({ show, categoriesRef, categories, setCheckedSubcategories, checkedSubcategories }) {
+export default function NestedDropdown({ show, categoriesRef, categories, setCheckedSubcategories, checkedSubcategories, checkAll, setCheckAll }) {
 	const [extendedCat, setExtendedCat] = useState(null)
 	const [checkedCategory, setCheckedCategory] = useState([])
-	const [checkAll, setCheckAll] = useState(false)
 
 	const handleCheckAll = () => {
 		if (checkAll) {
@@ -165,7 +164,28 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
 
 	return (
 		<>
+			{
+				checkedSubcategories.length < 1 ?
+					(
+						<p>Select Category</p>
+					)
+					:
+					(
+						<>
+							{
+								checkAll ? (
+									<p> Categories (All Selections)</p>
+								)
+									: (
+										<p> Categories ({checkedSubcategories.length} Selections)</p>
 
+									)
+							}
+						</>
+					)
+			}
+
+			<FaAngleDown />
 			<ul className={`categories-select-dropdown ${show ? 'show' : ''}`} ref={categoriesRef}>
 				<li className='dropdown-item extended p-0' >
 					<div className="d-flex gap-2" style={{ backgroundColor: "#f7f7f7", padding: "5px" }}>
@@ -192,7 +212,10 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
 								/>
 								<label htmlFor={category.categoryName}>{category.categoryName}</label>
 							</div>
-							<FaAngleDown onClick={() => handleExtendCategory(i)} />
+							{
+								category.categoryName !== "Others" &&
+								<FaAngleDown onClick={() => handleExtendCategory(i)} />
+							}
 						</div>
 
 						{extendedCat === i && (

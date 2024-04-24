@@ -35,16 +35,29 @@ export default function Testimonials() {
 
 
                 <div className="review">
-                    <p className="paragraph">{
-                        activeReview && reviews.find((review) => review.id === activeReview).review
-                    }</p>
+                    <p className="paragraph">
+                        {activeReview && reviews.length > 0 && (
+                            (() => {
+                                const review = reviews.find((review) => review.id === activeReview);
+                                if (review) {
+                                    const { review: reviewText } = review;
+                                    if (reviewText.length > 178) {
+                                        return reviewText.slice(0, 178) + "...";
+                                    } else {
+                                        return reviewText;
+                                    }
+                                }
+                                return ""; 
+                            })()
+                        )}
+                    </p>
                 </div>
 
                 <div className="customers">
                     {
                         reviews && reviews.map((review) => {
                             return (
-                                <div key={review.id} className={`customer ${activeReview=== review.id ? 'active': ''}`} onClick={() => setActiveReview(review.id)}>
+                                <div key={review.id} className={`customer ${activeReview === review.id ? 'active' : ''}`} onClick={() => setActiveReview(review.id)}>
                                     <div className="image">
                                         <img src={clientImg} alt="" />
                                     </div>
@@ -56,7 +69,7 @@ export default function Testimonials() {
                             )
                         })
                     }
-                    
+
                 </div>
             </div>
         </section>

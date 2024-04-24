@@ -13,7 +13,7 @@ export default function Machinery() {
             <div className="custom-container">
                 <h1 className="color-primary fw-bolder text-uppercase">{t("machinerySectionTitle")}</h1>
                 <div className="d-flex justify-content-between align-items-center">
-                    <h3 className='my-3 fw-bolder'>{t("machinerySectionSubTitle")}</h3>
+                    <h3 className='my-3 fw-bolder w-75'>{t("machinerySectionSubTitle")}</h3>
                     <Link to="../machinery" className='underlineLink'>{t("seeMore")}</Link>
                 </div>
 
@@ -21,17 +21,17 @@ export default function Machinery() {
                     <MachineryCard id="" imgUrl={["https://t3.ftcdn.net/jpg/00/22/43/58/360_F_22435844_WOsydnWjBjCfdAaGId0CxXk0ahEOWeqs.jpg", "https://filesblog.technavio.org/wp-content/uploads/2019/10/Construction-machinery-manufacturers.jpg"]} title="Classic Home"
                         description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher" type={t("rent")} price="1200"
                         modal="2022 R" condition="New" category="Cranes" datePosted="17 March 2024" sellerName="Hendrich Klasen"
-                        city="Carolina, USA"
+                        city="Carolina, USA" application="Land work"
                     />
                     <MachineryCard id="" imgUrl={["https://t3.ftcdn.net/jpg/00/22/43/58/360_F_22435844_WOsydnWjBjCfdAaGId0CxXk0ahEOWeqs.jpg", "https://filesblog.technavio.org/wp-content/uploads/2019/10/Construction-machinery-manufacturers.jpg"]} title="Classic Home"
                         description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher" type={t("rent")} price="1200"
                         modal="2022 R" condition="New" category="Cranes" datePosted="17 March 2024" sellerName="Hendrich Klasen"
-                        city="Carolina, USA"
+                        city="Carolina, USA" application="Land work"
                     />
                     <MachineryCard id="" imgUrl={["https://t3.ftcdn.net/jpg/00/22/43/58/360_F_22435844_WOsydnWjBjCfdAaGId0CxXk0ahEOWeqs.jpg", "https://filesblog.technavio.org/wp-content/uploads/2019/10/Construction-machinery-manufacturers.jpg"]} title="Classic Home"
                         description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher" type={t("rent")} price="1200"
                         modal="2022 R" condition="New" category="Cranes" datePosted="17 March 2024" sellerName="Hendrich Klasen"
-                        city="Carolina, USA"
+                        city="Carolina, USA" application="Land work"
                     />
                 </div>
                 <Link to="./machinery">

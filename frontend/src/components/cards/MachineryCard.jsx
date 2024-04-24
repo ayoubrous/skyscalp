@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
-import { TbBed } from 'react-icons/tb'
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { LuBath } from "react-icons/lu";
-import { BsBuildings } from "react-icons/bs";
 import { useTranslation } from 'react-i18next';
-import { FiCalendar } from "react-icons/fi";
+import { IoIosStats } from "react-icons/io";
 
 // import { Swiper, SwiperSlide } from 'swiper/react';
 // import { Navigation } from 'swiper/modules';
@@ -17,9 +14,11 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import { Link } from 'react-router-dom';
+import { FaCalendar, FaGuaraniSign, FaRegCalendar } from 'react-icons/fa6';
+import CarouselImages from './CarouselImages';
 
 
-const MachineryCard = ({ id, imgUrl, title, description, type, price, modal, condition, category, datePosted, city, sellerName }) => {
+const MachineryCard = ({ id, imgUrl, title, description, type, price, modal, condition, category, datePosted, city, sellerName, application }) => {
     const [t] = useTranslation();
     const [favourite, setFavourite] = useState(false)
 
@@ -48,15 +47,8 @@ const MachineryCard = ({ id, imgUrl, title, description, type, price, modal, con
     return (
         <div className="custom-card machinery-card">
             <div className="image">
-                <OwlCarousel id="" className="owl-carousel owl-theme" {...options}>
-                    {
-                        imgUrl.map(image => {
-                            return (
-                                <img src={image} alt="" />
-                            )
-                        })
-                    }
-                </OwlCarousel>
+                <CarouselImages images={imgUrl} />
+
                 <div className="custom-badge">{type}</div>
                 <div className="icon-area">
                     {
@@ -73,19 +65,32 @@ const MachineryCard = ({ id, imgUrl, title, description, type, price, modal, con
                         <h5 className='color-primary'>MAD {price}</h5>
                     </div>
 
-                    <p className='fw-bold mb-1'>{t("category")} {category}</p>
-                    <p className='fw-bold mb-1'>{t("modal")} {modal}</p>
-                    <p className='fw-bold mb-1'>{t("application")} {modal}</p>
-                    <p className='fw-bold mb-1'>{t("condition")} {condition}</p>
-                    <p className='fw-bold'>{city}</p>
+                    <p className='paragraph'>{city}</p>
+                    <p className='mb-1'>{category} (per Item)</p>
+                    <p className='color-secondary'>{t("modal")} {modal}</p>
+                    <p className='color-secondary'>Land work</p>
+                    <p className='color-secondary'>{condition}</p>
 
-                    {description && <p className='mb-3 mt-1 color-secondary'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
+                    {description && <p className='mb-2 mt-1 color-secondary'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
 
+
+                    <div className="d-flex justify-content-between align-items-center property-features mb-2">
+                        <div className='d-flex align-items-center gap-1'>
+                            <FaRegCalendar className='feature-icon' />
+                            <p className="feature-text">{3}</p>
+                        </div>
+                        <div className='d-flex align-items-center'>
+                            <FaGuaraniSign className='feature-icon' />
+                            <p className="feature-text">{4}</p>
+                        </div>
+                        <div className='d-flex align-items-center'>
+                            <IoIosStats className='feature-icon' />
+                            <p className="feature-text">New</p>
+                        </div>
+                    </div>
 
                     <div className="d-flex justify-content-between align-items-center property-features">
-                        <div className='d-flex align-items-center'>
-                            <p className="feature-text">{t("datePosted")}: {datePosted}</p>
-                        </div>
+                        <p className="feature-text ms-0">{t("datePosted")}: {datePosted}</p>
                     </div>
                     <hr className="line-break my-2" />
                     <div className="seller-info">

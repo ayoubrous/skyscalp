@@ -9,6 +9,10 @@ import sellerImage from '../assets/images/sellerImage.png'
 import { FaBath, FaBed, FaBuilding, FaEnvelope, FaHeart, FaPhone, FaRegHeart, FaRoadSpikes } from 'react-icons/fa6'
 import MessageOwner from '../components/utils/MessageOwner'
 import SimilarProperties from '../components/sections/SimilarProperties'
+import { Link } from 'react-router-dom'
+import ShareProduct from '../components/utils/ShareProduct'
+import Map from '../components/map/Map'
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 
 
 export default function ViewConstruction() {
@@ -22,12 +26,23 @@ export default function ViewConstruction() {
     const [t] = useTranslation()
     const [favourite, setFavourite] = useState(false)
     const [mainImage, setMainImage] = useState(propertyImages[0]);
+    const [mainImageIndex, setMainImageIndex] = useState(0);
 
 
     const handleImageClick = (image) => {
         setMainImage(image);
     };
 
+
+    const handlePreviousImage = () => {
+        const newIndex = (mainImageIndex - 1 + propertyImages.length) % propertyImages.length;
+        setMainImageIndex(newIndex);
+    };
+
+    const handleNextImage = () => {
+        const newIndex = (mainImageIndex + 1) % propertyImages.length;
+        setMainImageIndex(newIndex);
+    };
     return (
         <>
             <Navbar />
@@ -39,14 +54,27 @@ export default function ViewConstruction() {
                         <div className="product-details side-lg">
 
                             <div className="side images mb-2">
+                                <div className="d-flex align-items-center justify-content-between mb-3">
+                                    <Link to='../construction'>
+                                        <p className="color-secondary">&lt; Back to list</p>
+                                    </Link>
+                                    <ShareProduct />
+                                </div>
                                 <div className="main-image">
-                                    <img src={mainImage} alt="" />
+                                    <div className="arrow left-arrow" onClick={handlePreviousImage}>
+                                        <FaAngleLeft className='arrow-icon' />
+                                    </div>
+                                    <div className="arrow right-arrow" onClick={handleNextImage}>
+                                        <FaAngleRight className='arrow-icon' />
+                                    </div>
+                                    <img src={propertyImages[mainImageIndex]} alt="" />
+
                                 </div>
 
                                 <div className="more-images">
                                     {/* <OwlCarousel id="" className="owl-carousel owl-theme" {...options}> */}
                                     {propertyImages.map((image, i) => (
-                                        <div key={i} className={`image ${mainImage === image ? 'active' : ''}`} onClick={() => handleImageClick(image)}>
+                                        <div key={i} className={`image ${mainImageIndex === i ? 'active' : ''}`} onClick={() => handleImageClick(i)}>
                                             <img src={image} alt="" />
                                         </div>
                                     ))}
@@ -87,7 +115,7 @@ export default function ViewConstruction() {
 
                             </div>
 
-                            <div className="side more-details">
+                            <div className="side more-details mb-2">
                                 <h4 className="fw-bolder mb-4">{t("moreDetails")}</h4>
 
                                 <div className="features-grid">
@@ -142,6 +170,14 @@ export default function ViewConstruction() {
                                 </div>
                             </div>
 
+                            <div className="side map mb-2">
+                                <h3 className="fw-bolder mb-4">{t("viewOnMap")}</h3>
+                                <Map />
+
+                                <p className="color-secondary my-2">5232 North Carolina Ave. 21BC</p>
+                                <p className="color-secondary my-2">Reference ID: 23828830</p>
+                            </div>
+
                         </div>
 
 
@@ -171,7 +207,7 @@ export default function ViewConstruction() {
 
             <SimilarProperties />
             <BlogSection />
-            <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} />
+            <ContactUs supportTitle={t("constructionSupportTitle")} supportDescription={t("constructionSupportDesc")} />
             <Footer />
         </>
     )

@@ -14,6 +14,7 @@ import MapSearch from './MapSearch';
 import TestNestedDropdown from './TestNestedDropdown';
 import NestedDropdown from './NestedDropdown';
 import CustomLocationsDropdown from './CustomLocationsDropdown';
+import { constructionCategories } from '../../assets/data/categories';
 
 export default function ConstructionFilter() {
     const [t] = useTranslation();
@@ -32,7 +33,7 @@ export default function ConstructionFilter() {
     const [showConditionDrp, setShowConditionDrp] = useState(false);
     const [showYearDrp, setShowYearDrp] = useState(false)
 
-    const [type, setType] = useState('sale')
+    const [type, setType] = useState('buy')
     const [minPrice, setMinPrice] = useState('')
     const [maxPrice, setMaxPrice] = useState('')
     const [available, setAvailable] = useState('')
@@ -57,84 +58,11 @@ export default function ConstructionFilter() {
 
     // for nested dropdown 
     const [checkedSubcategories, setCheckedSubcategories] = useState([]);
-
-    const constructionItemsData = [
-        {
-            categoryName: 'Concrete Materials',
-            subcategories: [
-                'Cement',
-                'Concrete mix',
-                'Reinforcing steel bars (rebar)',
-                'Concrete blocks',
-                'Precast concrete elements'
-            ]
-        },
-        {
-            categoryName: 'Steel and Metal',
-            subcategories: [
-                'Structural steel beams',
-                'Steel bars',
-                'Metal roofing materials',
-                'Sheet metal',
-                'Steel pipes'
-            ]
-        },
-        {
-            categoryName: 'Wood and Timber',
-            subcategories: [
-                'Lumber',
-                'Plywood',
-                'Wood studs',
-                'Timber beams',
-                'Wood panels'
-            ]
-        },
-        {
-            categoryName: 'Masonry Materials',
-            subcategories: [
-                'Bricks',
-                'Clay tiles',
-                'Mortar',
-                'Concrete blocks',
-                'Stone veneer'
-            ]
-        },
-        {
-            categoryName: 'Roofing Materials',
-            subcategories: [
-                'Asphalt shingles',
-                'Metal roofing panels',
-                'Roofing membranes',
-                'Roof tiles',
-                'Underlayment materials'
-            ]
-        },
-        {
-            categoryName: 'Insulation and Sealants',
-            subcategories: [
-                'Fiberglass insulation',
-                'Spray foam insulation',
-                'Foam board insulation',
-                'Sealant caulk',
-                'Weatherstripping'
-            ]
-        },
-        {
-            categoryName: 'Finishing Materials',
-            subcategories: [
-                'Paints and coatings',
-                'Drywall panels',
-                'Flooring materials',
-                'Tiles',
-                'Trim and molding'
-            ]
-        }
-    ];
-
+    const [checkAll, setCheckAll] = useState(false)
 
 
     const sellType = [
-        { value: "sale", label: "Sale" },
+        { value: "buy", label: "Buy" },
         { value: "rent", label: "Rent" },
     ]
 
@@ -231,13 +159,26 @@ export default function ConstructionFilter() {
             setSelectedFilters([...selectedFilters, brand]);
             setSelectedBrands([...selectedBrands, brand])
         }
+        else {
+            const updatedFilters = selectedFilters.filter(filter => filter !== brand);
+            setSelectedFilters(updatedFilters);
+
+            const updatedData = selectedBrands.filter(type => type !== brand);
+            setSelectedBrands(updatedData);
+        }
     }
     const handleCondtion = val => {
         setShowConditionDrp(false)
         if (!selectedFilters.includes(val)) {
             setSelectedFilters([...selectedFilters, val]);
             setSelectedConditions([...selectedCondtions, val])
+        }
+        else {
+            const updatedFilters = selectedFilters.filter(filter => filter !== val);
+            setSelectedFilters(updatedFilters);
 
+            const updatedData = selectedCondtions.filter(type => type !== val);
+            setSelectedConditions(updatedData);
         }
     }
 
@@ -329,7 +270,7 @@ export default function ConstructionFilter() {
 
 
     const clearAllFilters = () => {
-        setType('sale');
+        setType('buy');
         setMinPrice('');
         setMaxPrice('');
         setAvailable('');
@@ -354,7 +295,7 @@ export default function ConstructionFilter() {
     return (
         <div className="filter-area my-4">
             <div className="custom-container">
-                <p className="color-primary mb-2">Looking for something?</p>
+                <p className="color-primary mb-2">Cement, paints or steel: find what you need at the right price.?</p>
                 <div className="filter machinery-filter construction-filter">
                     <div className="split">
 
@@ -403,20 +344,16 @@ export default function ConstructionFilter() {
                                     isClearable={true}
                                 /> */}
 
-                                {
-                                    checkedSubcategories.length < 1 ?
-                                        (
-                                            <p>Select Category</p>
-                                        )
-                                        :
-                                        (
-                                            <p> Categories ({checkedSubcategories.length} Selections)</p>
-                                        )
-                                }
 
-                                <FaAngleDown />
-
-                                <NestedDropdown show={showCategoriesDrp} categoriesRef={categoriesRef} categories={constructionItemsData} setCheckedSubcategories={setCheckedSubcategories} checkedSubcategories={checkedSubcategories} />
+                                <NestedDropdown
+                                    show={showCategoriesDrp}
+                                    categoriesRef={categoriesRef}
+                                    categories={constructionCategories}
+                                    setCheckedSubcategories={setCheckedSubcategories}
+                                    checkedSubcategories={checkedSubcategories}
+                                    checkAll={checkAll}
+                                    setCheckAll={setCheckAll}
+                                />
                             </div>
                         </div>
                         <div className="filter-btn">
@@ -424,7 +361,7 @@ export default function ConstructionFilter() {
                         </div>
                     </div>
                     <div className="other-filters p-1 pt-3 pb-0">
-                        <div className="d-flex gap-4">
+                        <div className="d-flex gap-4" style={{flexWrap: "wrap"}}>
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowPriceDrp(!showPriceDrp)}>
                                     <div className='text-white'>
@@ -497,10 +434,18 @@ export default function ConstructionFilter() {
 
                                 <div className={`custom-dropdown ${showBrandDrp ? 'show' : ''}`} ref={brandRef}>
                                     {
-                                        brands.map((n, i) => {
+                                        brands.map((data, i) => {
                                             return (
-                                                <p className="custom-dropdown-item" onClick={() => handleBrand(n)} key={i}>{n}</p>
-                                            )
+                                                <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleBrand(data)}>
+                                                    <p htmlFor={data} id={`label-${data}`}>{data}</p>
+                                                    <input
+                                                        type="checkbox"
+                                                        name={data}
+                                                        id={`checkbox-${data}`}
+                                                        checked={selectedFilters.includes(data)}
+                                                        onChange={() => handleBrand(data)}
+                                                    />
+                                                </div>)
                                         })
                                     }
                                 </div>
@@ -516,8 +461,16 @@ export default function ConstructionFilter() {
                                     {
                                         conditionData.map((data, i) => {
                                             return (
-                                                <p key={i} className="custom-dropdown-item" onClick={() => handleCondtion(data)}>{data}</p>
-
+                                                <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleCondtion(data)}>
+                                                    <p htmlFor={data} id={`label-${data}`}>{data}</p>
+                                                    <input
+                                                        type="checkbox"
+                                                        name={data}
+                                                        id={`checkbox-${data}`}
+                                                        checked={selectedFilters.includes(data)}
+                                                        onChange={() => handleCondtion(data)}
+                                                    />
+                                                </div>
                                             )
                                         })
                                     }
@@ -551,13 +504,6 @@ export default function ConstructionFilter() {
                             </div>
 
 
-                            <div className="other-filter">
-                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} >
-                                    <label htmlFor="available" className='text-white' style={{ fontSize: "12px" }}>Availability</label>
-                                    <input type="checkbox" name="available" id="available" onChange={() => setAvailable(!available)} />
-                                </div>
-                            </div>
-
                         </div>
 
                     </div>
@@ -583,6 +529,6 @@ export default function ConstructionFilter() {
 
 
 
-        </div>
+        </div >
     );
 }

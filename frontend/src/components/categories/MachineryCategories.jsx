@@ -1,62 +1,90 @@
-import React from 'react'
+// ConstructionCategories.js
 
-import OwlCarousel from 'react-owl-carousel';
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
+import React, { useState } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Applications from './Applications';
+import { constructionCategories, machineryCategories } from '../../assets/data/categories';
+
 export default function MachineryCategories() {
-    const options = {
-        loop: true,
-        center: false,
-        items: 1,
-        margin: 10,
-        autoplay: false,
-        dots: true,
-        autoplayTimeout: 8500,
-        smartSpeed: 450,
-        nav: true,
-        responsive: {
-            0: {
-                items: 2
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 7,
+        slidesToScroll: 7,
+        initialSlide: 0,
+        arrows: false,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 7,
+                    slidesToScroll: 7,
+
+                },
             },
-            700: {
-                items: 4
+            {
+                breakpoint: 800,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 4,
+
+                },
             },
-            1000: {
-                items: 5
-            }
-        }
+            {
+                breakpoint: 550,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+
+                },
+            },
+        ],
+        // **Solution:** Add margin using the `slick-carousel` class
+        className: 'slick-carousel slick-initialized slick-slider', // Include base classes
+        slickPrev: '.slider-container .slick-prev', // Adjust selectors if needed
+        slickNext: '.slider-container .slick-next', // Adjust selectors if needed
+        afterChange: (currentSlide) => {
+            // Optional: Update other components based on slide change (e.g., indicators)
+        },
     };
+
+    const [activeCatId, setActiveCatId] = useState(null);
+
+
+    const handleActiveCategory = (id) => {
+        setActiveCatId(id); // Update active category ID
+    };
+
     return (
-        <div className='categories machineryCategories'>
+        <div className="categories machineryCategories">
             <div className="custom-container">
-                <OwlCarousel id="" className="owl-carousel owl-theme" {...options}>
-                    <div className="category-card">
-                        <div className="image">
-                        <img src="https://housing.com/news/wp-content/uploads/2023/03/Different-types-of-road-roller-and-their-uses-04.png" alt="" />
-                        </div>
-                        <h5 className='mt-3 text-center mx-auto fw-bolder'>Foundation</h5>
-                    </div>
-                    <div className="category-card">
-                        <div className="image">
-                        <img src="https://w7.pngwing.com/pngs/21/308/png-transparent-yellow-crane-illustration-india-mobile-crane-heavy-equipment-architectural-engineering-crane-company-service-technic-thumbnail.png" alt="" />
-                        </div>
-                        <h5 className='mt-3 text-center mx-auto fw-bolder'>Construction</h5>
-                    </div>
-                    <div className="category-card">
-                        <div className="image">
-                        <img src="https://w7.pngwing.com/pngs/21/308/png-transparent-yellow-crane-illustration-india-mobile-crane-heavy-equipment-architectural-engineering-crane-company-service-technic-thumbnail.png" alt="" />
-                        </div>
-                        <h5 className='mt-3 text-center mx-auto fw-bolder'>Roofing</h5>
-                    </div>
-                    <div className="category-card">
-                        <div className="image">
-                        <img src="https://w7.pngwing.com/pngs/21/308/png-transparent-yellow-crane-illustration-india-mobile-crane-heavy-equipment-architectural-engineering-crane-company-service-technic-thumbnail.png" alt="" />
-                        </div>
-                        <h5 className='mt-3 text-center mx-auto fw-bolder'>Foundation</h5>
-                    </div>
-                    
-                </OwlCarousel>
+                <Applications
+                    constructionCategories={machineryCategories}
+                    activeCatId={activeCatId}
+                    handleActiveCategory={handleActiveCategory}
+                />
+                <div className="subcategories">
+                    <Slider {...settings}>
+                        {activeCatId === null
+                            ? machineryCategories[0].subcategories.map((sub, i) => (
+                                <div key={i} className="subcat-tab">
+                                    {sub.slice(0, 13) + (sub.length > 13 ? '...' : '')}
+                                </div>
+                            ))
+                            : machineryCategories.find(cat => cat.id === activeCatId)?.subcategories.map((sub, i) => (
+                                <div key={i} className="subcat-tab">
+                                    {sub.slice(0, 13) + (sub.length > 13 ? '...' : '')}
+                                </div>
+                            ))
+                        }
+                    </Slider>
+
+
+                </div>
             </div>
         </div>
-    )
+    );
 }

@@ -20,7 +20,7 @@ export default function Construction() {
       <ConstructionFilter />
       <AllConstruction />
       <BlogSection />
-      <ContactUs supportTitle={t("propertySupportTitle")} supportDescription={t("constructionSupportDescription")} />
+      <ContactUs supportTitle={t("constructionSupportTitle")} supportDescription={t("constructionSupportDesc")} />
       <Footer />
 
     </>

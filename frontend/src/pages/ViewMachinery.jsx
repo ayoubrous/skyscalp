@@ -8,7 +8,7 @@ import BlogSection from '../components/sections/BlogSection'
 import sellerImage from '../assets/images/sellerImage.png'
 import { FaBath, FaBed, FaBuilding, FaEnvelope, FaHeart, FaPhone, FaRegHeart, FaRoadSpikes } from 'react-icons/fa6'
 import MessageOwner from '../components/utils/MessageOwner'
-import { FaRegArrowAltCircleRight, FaSwimmingPool } from 'react-icons/fa'
+import { FaAngleLeft, FaAngleRight, FaRegArrowAltCircleRight, FaSwimmingPool } from 'react-icons/fa'
 
 import { LuBath } from "react-icons/lu";
 import { BsBuildings } from "react-icons/bs";
@@ -22,9 +22,12 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import SimilarProperties from '../components/sections/SimilarProperties'
+import ShareProduct from '../components/utils/ShareProduct'
+import { Link } from 'react-router-dom'
+import Map from '../components/map/Map'
 
 export default function ViewMachinery() {
-    
+
     const propertyImages = [
         "https://media.istockphoto.com/id/1165384568/photo/europe-modern-complex-of-residential-buildings.jpg?s=612x612&w=0&k=20&c=iW4NBiMPKEuvaA7h8wIsPHikhS64eR-5EVPfjQ9GPOA=",
         "https://img.lovepik.com/photo/48012/2630.jpg_wh860.jpg",
@@ -34,6 +37,7 @@ export default function ViewMachinery() {
     const [t] = useTranslation()
     const [favourite, setFavourite] = useState(false)
     const [mainImage, setMainImage] = useState(propertyImages[0]);
+    const [mainImageIndex, setMainImageIndex] = useState(0);
 
     const options = {
         loop: true,
@@ -62,6 +66,17 @@ export default function ViewMachinery() {
         setMainImage(image);
     };
 
+    const handlePreviousImage = () => {
+        const newIndex = (mainImageIndex - 1 + propertyImages.length) % propertyImages.length;
+        setMainImageIndex(newIndex);
+    };
+
+    const handleNextImage = () => {
+        const newIndex = (mainImageIndex + 1) % propertyImages.length;
+        setMainImageIndex(newIndex);
+    };
+
+
     return (
         <>
             <Navbar />
@@ -73,17 +88,31 @@ export default function ViewMachinery() {
                         <div className="product-details side-lg">
 
                             <div className="side images mb-2">
+                                <div className="d-flex align-items-center justify-content-between mb-3">
+                                    <Link to='../machinery'>
+                                        <p className="color-secondary">&lt; Back to list</p>
+                                    </Link>
+                                    <ShareProduct />
+                                </div>
+
                                 <div className="main-image">
-                                    <img src={mainImage} alt="" />
+                                    <div className="arrow left-arrow" onClick={handlePreviousImage}>
+                                        <FaAngleLeft className='arrow-icon' />
+                                    </div>
+                                    <div className="arrow right-arrow" onClick={handleNextImage}>
+                                        <FaAngleRight className='arrow-icon' />
+                                    </div>
+                                    <img src={propertyImages[mainImageIndex]} alt="" />
+
                                 </div>
 
                                 <div className="more-images">
                                     {/* <OwlCarousel id="" className="owl-carousel owl-theme" {...options}> */}
-                                        {propertyImages.map((image, i) => (
-                                            <div key={i} className={`image ${mainImage === image ? 'active' : ''}`} onClick={() => handleImageClick(image)}>
-                                                <img src={image} alt="" />
-                                            </div>
-                                        ))}
+                                    {propertyImages.map((image, i) => (
+                                        <div key={i} className={`image ${mainImageIndex === i ? 'active' : ''}`} onClick={() => handleImageClick(i)}>
+                                            <img src={image} alt="" />
+                                        </div>
+                                    ))}
 
 
                                     {/* </OwlCarousel> */}
@@ -121,7 +150,7 @@ export default function ViewMachinery() {
 
                             </div>
 
-                            <div className="side more-details">
+                            <div className="side more-details mb-2">
                                 <h4 className="fw-bolder mb-4">{t("moreDetails")}</h4>
 
                                 <div className="features-grid">
@@ -179,7 +208,52 @@ export default function ViewMachinery() {
                                         </div>
                                         <p className="paragraph">Rent</p>
                                     </div>
+                                    <div className="feature">
+                                        <div className="label">
+                                            <p className="color-secondary">{t("sizeOfMachine")}</p>
+                                        </div>
+                                        <p className="paragraph">20x10 feet</p>
+                                    </div>
+                                    <div className="feature">
+                                        <div className="label">
+                                            <p className="color-secondary">{t("machineType")}</p>
+                                        </div>
+                                        <p className="paragraph">Electric</p>
+                                    </div>
+                                    <div className="feature">
+                                        <div className="label">
+                                            <p className="color-secondary">{t("brand")}</p>
+                                        </div>
+                                        <p className="paragraph">Caterpillar</p>
+                                    </div>
+                                    <div className="feature">
+                                        <div className="label">
+                                            <p className="color-secondary">{t("build")}</p>
+                                        </div>
+                                        <p className="paragraph">2022</p>
+                                    </div>
+                                    <div className="feature">
+                                        <div className="label">
+                                            <p className="color-secondary">{t("certification")}</p>
+                                        </div>
+                                        <p className="paragraph">ISO certified</p>
+                                    </div>
+                                    <div className="feature">
+                                        <div className="label">
+                                            <p className="color-secondary">{t("guarantee")}</p>
+                                        </div>
+                                        <p className="paragraph">Yes</p>
+                                    </div>
                                 </div>
+                            </div>
+
+
+                            <div className="side map mb-2">
+                                <h3 className="fw-bolder mb-4">{t("viewOnMap")}</h3>
+                                <Map />
+
+                                <p className="color-secondary my-2">5232 North Carolina Ave. 21BC</p>
+                                <p className="color-secondary my-2">Reference ID: 23828830</p>
                             </div>
 
                         </div>
@@ -211,7 +285,7 @@ export default function ViewMachinery() {
 
             <SimilarProperties />
             <BlogSection />
-            <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} />
+            <ContactUs supportTitle={t("machinerySupportTitle")} supportDescription={t("machinerySupportDescription")} />
             <Footer />
         </>
     )

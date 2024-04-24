@@ -1,4 +1,35 @@
 /* ========== FILTER =============  */
+.home-filter .module-tabs {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    border-radius: 6px;
+    margin: 8px auto;
+    background-color: var(--white-color);
+    box-shadow: 0 0 29px rgba(0, 0, 0, 0.11);
+}
+
+.home-filter .module-tabs .module-tab {
+    width: 33%;
+    background-color: var(--white-color);
+    color: var(--primary-color);
+    padding: 15px 0;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.home-filter .module-tabs .module-tab.active {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.home-filter .module-tabs .module-tab p {
+    font-size: 16px;
+}
+
 .filter {
     background-color: var(--primary-color);
     border-radius: 6px;
@@ -64,12 +95,18 @@
     border: none;
     top: 0;
     left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
+.home-filter .categories-select-dropdown {
+    width: 60%;
 }
 
 .filter .user-input .category-list {
     position: relative;
-    width: 20%;
+    width: 70%;
     border-left: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
@@ -77,10 +114,15 @@
     padding: 0;
 }
 
-.filter .user-input .location-input {
+.home-filter .filter .user-input .custom-input {
     padding: 0;
     padding: 20px 19px;
 
+}
+
+/* remove cross icon from select dropdown in type   */
+.filter .select__clear-indicator {
+    display: none !important;
 }
 
 .user-input .category-list .category-dropdown,
@@ -139,6 +181,13 @@
     display: flex;
     margin-top: 8px;
     align-items: center;
+}
+
+.filter-area .selected-filters .tags {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px
 }
 
 .filter-area .selected-filters .selected-filter {
@@ -201,13 +250,20 @@
 .filter .user-input .type-select {
     width: 20%;
 }
-
+.filter .other-filters > div{
+    flex-wrap: wrap;
+}
 .filter .other-filter {
     position: relative;
 }
 
 .filter .other-filters .other-filter p {
     font-size: 12px;
+}
+
+.filter .other-filters .other-filter .filter-values {
+    display: inline !important;
+    margin: 0 !important;
 }
 
 .filter .other-filters .other-filter svg {
@@ -218,9 +274,24 @@
     max-height: 200px;
 }
 
+.filter .other-filter .custom-dropdown .custom-input {}
+
+/* removing the updown buttons from input  */
+/* Chrome, Safari, Edge, Opera */
+.filter .other-filter .custom-dropdown .custom-input::-webkit-outer-spin-button,
+.filter .other-filter .custom-dropdown .custom-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.filter .other-filter .custom-dropdown .custom-input[type=number] {
+    -moz-appearance: textfield;
+}
+
 .machinery-filter .other-filters .custom-dropdown {
     width: 250px;
 }
+
 
 .machinery-filter .budget-dropdown .side {
     position: relative;
@@ -235,12 +306,12 @@
     z-index: 10;
 }
 
-.filter .budget-dropdown .side .custom-dropdown-item-clear{
+.filter .budget-dropdown .side .custom-dropdown-item-clear {
     position: sticky;
     bottom: 0;
     z-index: 10;
     background-color: #ece9e9;
-    
+
 }
 
 
@@ -320,13 +391,30 @@
         width: 30%;
         padding: 0 6px;
     }
+
+    .hero-filter .user-input .category-list {
+        width: 60%;
+    }
+
+    .hero-filter .user-input .search-input {
+        width: 40%;
+    }
 }
+
 
 @media screen and (max-width: 768px) {
 
     /* ========== FILTER =============  */
     .filter-area {
         margin: 2rem 0;
+    }
+
+    .home-filter .module-tabs {
+        padding: 5px;
+    }
+
+    .home-filter .module-tabs .module-tab {
+        padding: 9px 0;
     }
 
     .filter {
@@ -340,6 +428,13 @@
         border-radius: 4px;
     }
 
+    .machinery-filter .other-filters .custom-dropdown {
+        width: 170px;
+    }
+
+    .custom-dropdown .custom-dropdown-item {
+        padding: 5px 5px;
+    }
 
     .user-input .category-list .category-dropdown,
     .filter .user-input .search-input .search-dropdown {
@@ -367,6 +462,21 @@
         padding: 7px 3px !important;
     }
 
+    .filter.machinery-filter .user-input .custom-input {
+        padding: 15px 3px !important;
+    }
+
+    .filter.machinery-filter .user-input .custom-input.type-select-dropdown {
+        padding: 7px 3px !important;
+
+    }
+
+    .filter.hero-filter .user-input .custom-input {
+        padding: 14px 3px !important;
+        width: 55%;
+        font-size: 12px;
+    }
+
     .filter-area .selected-filters {
         display: flex;
         margin-top: 8px;
@@ -378,6 +488,8 @@
         background-color: #e3e0e0;
         border-radius: 4px;
         margin-right: 4px;
+        font-size: 13px;
+        height: fit-content;
     }
 
 
@@ -394,8 +506,29 @@
     .filter .select__indicator {
         padding: 0;
     }
+
+
+
+    .hero-filter .user-input .category-list {
+        width: 50%;
+    }
+
+    .hero-filter .user-input .search-input {
+        width: 50%;
+    }
+    .filter-area .selected-filters .tags {
+        width: 75%;
+    }
 }
 
+@media screen and (max-width: 550px) {
+    .home-filter .module-tabs .module-tab p {
+        font-size: 12px;
+    }
+    .filter-area .selected-filters .tags {
+        width: 68%;
+    }
+}
 
 @media screen and (max-width: 450px) {
 

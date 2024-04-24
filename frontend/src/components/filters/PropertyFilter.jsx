@@ -14,7 +14,8 @@ import MapSearch from './MapSearch';
 import TestNestedDropdown from './TestNestedDropdown';
 import NestedDropdown from './NestedDropdown';
 import CustomLocationsDropdown from './CustomLocationsDropdown';
-
+import { useLocation, useNavigate } from 'react-router-dom';
+import { propertyCategories } from '../../assets/data/categories';
 export default function PropertyFilter() {
     const [t] = useTranslation();
 
@@ -40,7 +41,7 @@ export default function PropertyFilter() {
     const [showProximityDrp, setShowProximityDrp] = useState(false)
     const [showFeatureDrp, setShowFeatureDrp] = useState(false)
 
-    const [type, setType] = useState('sale')
+    const [type, setType] = useState('buy')
     const [minPrice, setMinPrice] = useState('')
     const [maxPrice, setMaxPrice] = useState('')
     const [minSize, setMinSize] = useState('')
@@ -73,67 +74,13 @@ export default function PropertyFilter() {
 
     // for nested dropdown 
     const [checkedSubcategories, setCheckedSubcategories] = useState([]);
-
-    const realEstatePropertyData = [
-        {
-            categoryName: 'Land',
-            subcategories: [
-                'Residential',
-                'Commercial',
-                'Industrial',
-                'Agricultural',
-                'Vacant'
-            ]
-        },
-        {
-            categoryName: 'Buildings',
-            subcategories: [
-                'Residential',
-                'Commercial',
-                'Industrial',
-                'Mixed-use',
-                'Institutional (e.g., schools, hospitals)',
-                'Apartments'
-            ]
-        },
-        {
-            categoryName: 'Infrastructure',
-            subcategories: [
-                'Roads and highways',
-                'Bridges',
-                'Tunnels',
-                'Utilities (e.g., water, electricity)',
-                'Railways'
-            ]
-        },
-        {
-            categoryName: 'Real Estate Development',
-            subcategories: [
-                'Residential subdivisions',
-                'Commercial complexes',
-                'Industrial parks',
-                'Mixed-use developments',
-                'Redevelopment projects'
-            ]
-        },
-        {
-            categoryName: 'Natural Resources',
-            subcategories: [
-                'Mineral rights',
-                'Timber rights',
-                'Water rights',
-                'Oil and gas rights',
-                'Conservation easements'
-            ]
-        }
-    ];
-
-
+    const [checkAll, setCheckAll] = useState(false)
 
     const sellType = [
-        { value: "sale", label: "Sale" },
+        { value: "buy", label: "Buy" },
         { value: "rent", label: "Rent" },
     ]
+
 
     const budget = [
         0, 1000, 5000, 10000, 25000, 50000
@@ -148,13 +95,13 @@ export default function PropertyFilter() {
         'Excellent', 'Good', 'Fair', 'Poor'
     ]
     const yearBuildData = [
+        "Under construction",
         "Less than 1 year",
         "1 to 3 years",
         "3 to 5 years",
         "5 to 10 years",
         "10 to 15 years",
-        "More than 15 years",
-        "Under construction"
+        "More than 15 years"
     ];
     const numbers = [
         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
@@ -162,6 +109,16 @@ export default function PropertyFilter() {
 
     const proximityData = ['School', 'Hospital', 'Super market']
     const featuresData = ['Balcony', 'Garden', 'Pool', 'Elevator', 'Air conditioning', 'Heating'];
+
+    const location = useLocation();
+    const navigate = useNavigate()
+    useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+
+        const type = queryParams.get('type') || 'buy';
+        console.log(type)
+        setType(type)
+    }, [location])
 
     const handleClickOutside = (e) => {
         if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(e.target)) {
@@ -206,9 +163,15 @@ export default function PropertyFilter() {
     }, []);
 
 
-    const handleType = (value) => {
-        setType(value)
-    }
+    const handleType = (selectedOption) => {
+        const newType = selectedOption ? selectedOption.value : ''; // Handle clearing selection
+        setType(newType);
+
+        // Update URL query parameter with the selected type
+        const updatedParams = new URLSearchParams(location.search);
+        updatedParams.set('type', newType);
+        navigate(location.pathname + '?' + updatedParams.toString());
+    };
     const handleMinPrice = (e) => {
         // setShowMinPriceDrp(false)
         setMinPrice(e)
@@ -254,7 +217,13 @@ export default function PropertyFilter() {
         if (!selectedFilters.includes(val)) {
             setSelectedFilters([...selectedFilters, val]);
             setSelectedConditions([...selectedCondtions, val])
+        }
+        else {
+            const updatedFilters = selectedFilters.filter(filter => filter !== val);
+            setSelectedFilters(updatedFilters);
 
+            const updatedData = selectedCondtions.filter(type => type !== val);
+            setSelectedConditions(updatedData);
         }
     }
 
@@ -265,6 +234,13 @@ export default function PropertyFilter() {
             setSelectedFilters([...selectedFilters, val]);
             setYearBuild([...yearBuild, val])
         }
+        else {
+            const updatedFilters = selectedFilters.filter(filter => filter !== val);
+            setSelectedFilters(updatedFilters);
+
+            const updatedYearBuild = yearBuild.filter(type => type !== val);
+            setYearBuild(updatedYearBuild);
+        }
     }
     const handleProximity = (val) => {
         setShowProximityDrp(false)
@@ -273,6 +249,13 @@ export default function PropertyFilter() {
             setSelectedFilters([...selectedFilters, val]);
             setProximities([...proximities, val])
         }
+        else {
+            const updatedFilters = selectedFilters.filter(filter => filter !== val);
+            setSelectedFilters(updatedFilters);
+
+            const updatedYearBuild = proximities.filter(type => type !== val);
+            setProximities(updatedYearBuild);
+        }
     }
     const handleFeature = (val) => {
         setShowFeatureDrp(false)
@@ -280,6 +263,13 @@ export default function PropertyFilter() {
         if (!selectedFilters.includes(val)) {
             setSelectedFilters([...selectedFilters, val]);
             setFeatures([...features, val])
+        }
+        else {
+            const updatedFilters = selectedFilters.filter(filter => filter !== val);
+            setSelectedFilters(updatedFilters);
+
+            const updatedYearBuild = features.filter(type => type !== val);
+            setFeatures(updatedYearBuild);
         }
     }
 
@@ -359,7 +349,7 @@ export default function PropertyFilter() {
 
 
     const clearAllFilters = () => {
-        setType('sale');
+        setType('buy');
         setMinPrice('');
         setMaxPrice('');
         setAvailable('');
@@ -391,23 +381,22 @@ export default function PropertyFilter() {
     return (
         <div className="filter-area my-4">
             <div className="custom-container">
-                <p className="color-primary mb-2">Looking for something?</p>
+                <p className="color-primary mb-2">Appartments, Houses or Rooms: find what you need at the right price.?</p>
                 <div className="filter machinery-filter">
                     <div className="split">
 
                         <div className="user-input">
                             <div className="type-select">
                                 <Select
-                                    className="custom-input bordor-0"
+                                    className="custom-input bordor-0  type-select-dropdown"
                                     classNamePrefix="select"
-                                    placeholder='Type'
+                                    placeholder='Buy/Rent'
                                     name="color"
                                     options={sellType}
-                                    defaultValue={[sellType[1]]}
                                     onChange={handleType}
-                                    value={type}
-                                    isClearable={true}
+                                    value={type === 'buy' ? sellType[0] : sellType[1]}
                                 />
+
                             </div>
                             <div className="category-list" onClick={() => setShowLocationDropdown(!showLocationDropdown)}>
                                 <CustomLocationsDropdown selectedLocations={selectedAllLocations} handleLocationSelect={handleLocationSelect} />
@@ -441,27 +430,22 @@ export default function PropertyFilter() {
                             </div>
                             <div className="search-input" onClick={() => setShowCategoriesDrp(true)}>
 
-                                {
-                                    checkedSubcategories.length < 1 ?
-                                        (
-                                            <p>Select Category</p>
-                                        )
-                                        :
-                                        (
-                                            <p> Categories ({checkedSubcategories.length} Selections)</p>
-                                        )
-                                }
-
-                                <FaAngleDown />
-
-                                <NestedDropdown show={showCategoriesDrp} categoriesRef={categoriesRef} categories={realEstatePropertyData} setCheckedSubcategories={setCheckedSubcategories} checkedSubcategories={checkedSubcategories} />
+                                <NestedDropdown
+                                    show={showCategoriesDrp}
+                                    categoriesRef={categoriesRef}
+                                    categories={propertyCategories}
+                                    setCheckedSubcategories={setCheckedSubcategories}
+                                    checkedSubcategories={checkedSubcategories}
+                                    checkAll={checkAll}
+                                    setCheckAll={setCheckAll}
+                                />
                             </div>
                         </div>
                         <div className="filter-btn">
                             <button className="custom-btn" onClick={handleFilter}>Search</button>
                         </div>
                     </div>
-                    <div className="other-filters p-1 pt-3 pb-0">
+                    <div className="other-filters p-1 pt-3 pb-0" style={{flexWrap: "wrap"}}>
                         <div className="d-flex gap-4">
 
                             {/* Budget Filter  */}
@@ -470,20 +454,23 @@ export default function PropertyFilter() {
 
                                     <div className='text-white'>
                                         {minPrice === '' && maxPrice === '' ? (
-                                            <p style={{ display: 'inline', margin: 0 }}>Budget</p>
+                                            <p className='filter-values'>Budget</p>
                                         ) : (
                                             <>
                                                 {minPrice === '' ? (
-                                                    <p style={{ display: 'inline', margin: 0 }}>All</p>
-                                                ) : (
-                                                    <p className='fw-bolder' style={{ display: 'inline', margin: 0 }}>{minPrice}</p>
-                                                )}
-                                                -
-                                                {maxPrice === '' ? (
-                                                    <p style={{ display: 'inline' }}> All </p>
+                                                    <p className='fw-bolder filter-value'>All</p>
                                                 ) : (
                                                     <>
-                                                        <p className='fw-bolder' style={{ display: 'inline', margin: 0 }}>{maxPrice}</p>
+                                                        <p className="fw-bolder filter-values">{minPrice}</p>
+                                                        <p style={{ display: 'inline' }}> (MAD) </p>
+                                                    </>
+                                                )}
+                                                <p className="filter-values"> - </p>
+                                                {maxPrice === '' ? (
+                                                    <p className='fw-bolder' style={{ display: 'inline' }}> All </p>
+                                                ) : (
+                                                    <>
+                                                        <p className="filter-values fw-bolder">{maxPrice}</p>
                                                         <p style={{ display: 'inline' }}> (MAD) </p>
                                                     </>
                                                 )}
@@ -497,7 +484,7 @@ export default function PropertyFilter() {
                                     <div className="d-flex">
                                         <div className="side">
                                             <div className="custom-dropdown-item custom-dropdown-item-fixed">
-                                                <input className='custom-input py-1' type="number" placeholder='Min' value={minPrice} onChange={(e) => setMinPrice(e.target.value)} />
+                                                <input className='custom-input py-1' min={0} type="number" placeholder='Min' value={minPrice} onChange={(e) => setMinPrice(e.target.value)} />
                                             </div>
                                             {
                                                 budget.map((n, i) => {
@@ -511,7 +498,7 @@ export default function PropertyFilter() {
                                         </div>
                                         <div className="side">
                                             <div className="custom-dropdown-item custom-dropdown-item-fixed">
-                                                <input className='custom-input py-1' type="number" placeholder='Max' value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} />
+                                                <input className='custom-input py-1' min={0} type="number" placeholder='Max' value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} />
                                             </div>
                                             {
                                                 budget.map((n, i) => {
@@ -533,20 +520,23 @@ export default function PropertyFilter() {
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowSizeDrp(!showSizeDrp)}>
                                     <div className='text-white'>
                                         {minSize === '' && maxSize === '' ? (
-                                            <p style={{ display: 'inline', margin: 0 }}>Size/Area</p>
+                                            <p className="filter-values">Area</p>
                                         ) : (
                                             <>
                                                 {minSize === '' ? (
-                                                    <p style={{ display: 'inline', margin: 0 }}>All</p>
-                                                ) : (
-                                                    <p className='fw-bolder' style={{ display: 'inline', margin: 0 }}>{minSize}</p>
-                                                )}
-                                                -
-                                                {maxSize === '' ? (
-                                                    <p style={{ display: 'inline' }}> All </p>
+                                                    <p className='fw-bolder filter-values'>All</p>
                                                 ) : (
                                                     <>
-                                                        <p className='fw-bolder' style={{ display: 'inline', margin: 0 }}>{maxSize}</p>
+                                                        <p className='fw-bolder filter-values'>{minSize}</p>
+                                                        <p style={{ display: 'inline' }}> m <sup>2</sup> </p>
+                                                    </>
+                                                )}
+                                                <p className='filter-values'> - </p>
+                                                {maxSize === '' ? (
+                                                    <p className="fw-bolder" style={{ display: 'inline' }}> All </p>
+                                                ) : (
+                                                    <>
+                                                        <p className='fw-bolder filter-values'>{maxSize}</p>
                                                         <p style={{ display: 'inline' }}> m <sup>2</sup> </p>
                                                     </>
                                                 )}
@@ -560,7 +550,7 @@ export default function PropertyFilter() {
                                     <div className="d-flex">
                                         <div className="side">
                                             <div className="custom-dropdown-item custom-dropdown-item-fixed">
-                                                <input className='custom-input py-1' type="number" placeholder='Min' value={minSize} onChange={(e) => setMinSize(e.target.value)} />
+                                                <input className='custom-input py-1' min={0} type="number" placeholder='Min' value={minSize} onChange={(e) => setMinSize(e.target.value)} />
                                             </div>
                                             {
                                                 size.map((n, i) => {
@@ -574,7 +564,7 @@ export default function PropertyFilter() {
                                         </div>
                                         <div className="side">
                                             <div className="custom-dropdown-item custom-dropdown-item-fixed">
-                                                <input className='custom-input py-1' type="number" placeholder='Max' value={maxSize} onChange={(e) => setMaxSize(e.target.value)} />
+                                                <input className='custom-input py-1' min={0} type="number" placeholder='Max' value={maxSize} onChange={(e) => setMaxSize(e.target.value)} />
                                             </div>
                                             {
                                                 size.map((n, i) => {
@@ -596,21 +586,24 @@ export default function PropertyFilter() {
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowBedsDrp(!showBedsDrp)}>
                                     <div className='text-white'>
                                         {minBeds === '' && maxBeds === '' ? (
-                                            <p style={{ display: 'inline', margin: 0 }}>Rooms</p>
+                                            <p className="filter-values">Rooms</p>
                                         ) : (
                                             <>
                                                 {minBeds === '' ? (
-                                                    <p style={{ display: 'inline', margin: 0 }}>All</p>
-                                                ) : (
-                                                    <p className='fw-bolder' style={{ display: 'inline', margin: 0 }}>{minBeds}</p>
-                                                )}
-                                                -
-                                                {maxBeds === '' ? (
-                                                    <p style={{ display: 'inline' }}> All </p>
+                                                    <p className="filter-values fw-bolder">All</p>
                                                 ) : (
                                                     <>
-                                                        <p className='fw-bolder' style={{ display: 'inline', margin: 0 }}>{maxBeds}</p>
-                                                        <p style={{ display: 'inline' }}> bedrooms </p>
+                                                        <p className='fw-bolder filter-values'>{minBeds}</p>
+                                                        <p style={{ display: 'inline' }}> Rooms </p>
+                                                    </>
+                                                )}
+                                                <p className='filter-values'> - </p>
+                                                {maxBeds === '' ? (
+                                                    <p style={{ display: 'inline' }} className='fw-bolder'>All </p>
+                                                ) : (
+                                                    <>
+                                                        <p className='fw-bolder filter-values'>{maxBeds}</p>
+                                                        <p style={{ display: 'inline' }}> Rooms </p>
                                                     </>
                                                 )}
                                             </>
@@ -623,7 +616,7 @@ export default function PropertyFilter() {
                                     <div className="d-flex">
                                         <div className="side">
                                             <div className="custom-dropdown-item custom-dropdown-item-fixed">
-                                                <input className='custom-input py-1' type="number" placeholder='Min' value={minBeds} onChange={(e) => setMinBeds(e.target.value)} />
+                                                <input className='custom-input py-1' min={0} type="number" placeholder='Min' value={minBeds} onChange={(e) => setMinBeds(e.target.value)} />
                                             </div>
                                             {
                                                 numbers.map((n, i) => {
@@ -637,7 +630,7 @@ export default function PropertyFilter() {
                                         </div>
                                         <div className="side">
                                             <div className="custom-dropdown-item custom-dropdown-item-fixed">
-                                                <input className='custom-input py-1' type="number" placeholder='Max' value={maxBeds} onChange={(e) => setMaxBeds(e.target.value)} />
+                                                <input className='custom-input py-1' min={0} type="number" placeholder='Max' value={maxBeds} onChange={(e) => setMaxBeds(e.target.value)} />
                                             </div>
                                             {
                                                 numbers.map((n, i) => {
@@ -659,20 +652,24 @@ export default function PropertyFilter() {
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowBathDrp(!showBathDrp)}>
                                     <div className='text-white'>
                                         {minBath === '' && maxBath === '' ? (
-                                            <p style={{ display: 'inline', margin: 0 }}>Bathrooms</p>
+                                            <p className="filter-values">Bathrooms</p>
                                         ) : (
                                             <>
                                                 {minBath === '' ? (
-                                                    <p style={{ display: 'inline', margin: 0 }}>All</p>
-                                                ) : (
-                                                    <p className='fw-bolder' style={{ display: 'inline', margin: 0 }}>{minBath}</p>
-                                                )}
-                                                -
-                                                {maxBath === '' ? (
-                                                    <p style={{ display: 'inline' }}> All </p>
+                                                    <p className="filter-values fw-bolder">All</p>
                                                 ) : (
                                                     <>
-                                                        <p className='fw-bolder' style={{ display: 'inline', margin: 0 }}>{maxBath}</p>
+                                                        <p className='fw-bolder filter-values'>{minBath}</p>
+                                                        <p style={{ display: 'inline' }}> Bathrooms </p>
+                                                    </>
+                                                )}
+                                                <p className='filter-values'> - </p>
+
+                                                {maxBath === '' ? (
+                                                    <p className='fw-bolder filter-values'> All </p>
+                                                ) : (
+                                                    <>
+                                                        <p className='fw-bolder filter-values'>{maxBath}</p>
                                                         <p style={{ display: 'inline' }}> Bathrooms </p>
                                                     </>
                                                 )}
@@ -686,7 +683,7 @@ export default function PropertyFilter() {
                                     <div className="d-flex">
                                         <div className="side">
                                             <div className="custom-dropdown-item custom-dropdown-item-fixed">
-                                                <input className='custom-input py-1' type="number" placeholder='Min' value={minBath} onChange={(e) => setMinBath(e.target.value)} />
+                                                <input className='custom-input py-1' min={0} type="number" placeholder='Min' value={minBath} onChange={(e) => setMinBath(e.target.value)} />
                                             </div>
                                             {
                                                 numbers.map((n, i) => {
@@ -700,7 +697,7 @@ export default function PropertyFilter() {
                                         </div>
                                         <div className="side">
                                             <div className="custom-dropdown-item custom-dropdown-item-fixed">
-                                                <input className='custom-input py-1' type="number" placeholder='Max' value={maxBath} onChange={(e) => setMaxBath(e.target.value)} />
+                                                <input className='custom-input py-1' min={0} type="number" placeholder='Max' value={maxBath} onChange={(e) => setMaxBath(e.target.value)} />
                                             </div>
                                             {
                                                 numbers.map((n, i) => {
@@ -728,8 +725,16 @@ export default function PropertyFilter() {
                                     {
                                         conditionData.map((data, i) => {
                                             return (
-                                                <p key={i} className="custom-dropdown-item" onClick={() => handleCondtion(data)}>{data}</p>
-
+                                                <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleCondtion(data)}>
+                                                    <p htmlFor={data} id={`label-${data}`}>{data}</p>
+                                                    <input
+                                                        type="checkbox"
+                                                        name={data}
+                                                        id={`checkbox-${data}`}
+                                                        checked={selectedFilters.includes(data)}
+                                                        onChange={() => handleCondtion(data)}
+                                                    />
+                                                </div>
                                             )
                                         })
                                     }
@@ -747,8 +752,16 @@ export default function PropertyFilter() {
                                     {
                                         yearBuildData.map((data, i) => {
                                             return (
-                                                <p key={i} className="custom-dropdown-item" onClick={() => handleYearBuild(data)}>{data}</p>
-
+                                                <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleYearBuild(data)}>
+                                                    <p htmlFor={data} id={`label-${data}`}>{data}</p>
+                                                    <input
+                                                        type="checkbox"
+                                                        name={data}
+                                                        id={`checkbox-${data}`}
+                                                        checked={selectedFilters.includes(data)}
+                                                        onChange={() => handleYearBuild(data)}
+                                                    />
+                                                </div>
                                             )
                                         })
                                     }
@@ -765,8 +778,16 @@ export default function PropertyFilter() {
                                     {
                                         proximityData.map((data, i) => {
                                             return (
-                                                <p key={i} className="custom-dropdown-item" onClick={() => handleProximity(data)}>{data}</p>
-
+                                                <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleProximity(data)}>
+                                                    <p htmlFor={data} id={`label-${data}`}>{data}</p>
+                                                    <input
+                                                        type="checkbox"
+                                                        name={data}
+                                                        id={`checkbox-${data}`}
+                                                        checked={selectedFilters.includes(data)}
+                                                        onChange={() => handleProximity(data)}
+                                                    />
+                                                </div>
                                             )
                                         })
                                     }
@@ -784,8 +805,16 @@ export default function PropertyFilter() {
                                     {
                                         featuresData.map((data, i) => {
                                             return (
-                                                <p key={i} className="custom-dropdown-item" onClick={() => handleFeature(data)}>{data}</p>
-
+                                                <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleFeature(data)}>
+                                                    <p htmlFor={data} id={`label-${data}`}>{data}</p>
+                                                    <input
+                                                        type="checkbox"
+                                                        name={data}
+                                                        id={`checkbox-${data}`}
+                                                        checked={selectedFilters.includes(data)}
+                                                        onChange={() => handleFeature(data)}
+                                                    />
+                                                </div>
                                             )
                                         })
                                     }

@@ -14,7 +14,8 @@ import MapSearch from './MapSearch';
 import TestNestedDropdown from './TestNestedDropdown';
 import NestedDropdown from './NestedDropdown';
 import CustomLocationsDropdown from './CustomLocationsDropdown';
-
+import { machineryCategories } from '../../assets/data/categories';
+import { machineryType } from '../../assets/data/filtersData';
 export default function MachineryFilter() {
     const [t] = useTranslation();
 
@@ -24,6 +25,7 @@ export default function MachineryFilter() {
     const condtionRef = useRef();
     const yearBuildRef = useRef();
     const categoriesRef = useRef()
+    const machineryTypeRef = useRef()
 
     const [showLocationDropdown, setShowLocationDropdown] = useState(false);
     const [showCategoriesDrp, setShowCategoriesDrp] = useState(false)
@@ -31,8 +33,9 @@ export default function MachineryFilter() {
     const [showBrandDrp, setShowBrandDrp] = useState(false);
     const [showConditionDrp, setShowConditionDrp] = useState(false);
     const [showYearDrp, setShowYearDrp] = useState(false)
+    const [showMachineryType, setShowMachineryType] = useState(false)
 
-    const [type, setType] = useState('sale')
+    const [type, setType] = useState('buy')
     const [minPrice, setMinPrice] = useState('')
     const [maxPrice, setMaxPrice] = useState('')
     const [available, setAvailable] = useState('')
@@ -46,6 +49,7 @@ export default function MachineryFilter() {
 
     const [selectedBrands, setSelectedBrands] = useState([])
     const [selectedCondtions, setSelectedConditions] = useState([])
+    const [selectedMachineryType, setSelectedMachineryType] = useState([])
 
     // filters for customLocationDropdown component 
     const [selectedCountries, setSelectedCountries] = useState([])
@@ -57,63 +61,11 @@ export default function MachineryFilter() {
 
     // for nested dropdown 
     const [checkedSubcategories, setCheckedSubcategories] = useState([]);
-
-    const machineryData = [
-        {
-            categoryName: 'Foundation',
-            subcategories: [
-                'Excavator shovel',
-                'Dump truck',
-                'Cement mixer',
-                'Vibrator',
-                'Formwork'
-            ]
-        },
-        {
-            categoryName: 'Construction of walls and posts',
-            subcategories: [
-                'Crane',
-                'Cherry picker',
-                'Concrete blocks or concrete blocks',
-                'Mortar',
-                'Coatings'
-            ]
-        },
-        {
-            categoryName: 'Installation of slabs and floors',
-            subcategories: [
-                'Steel or concrete beams',
-                'Collaborative floors',
-                'Float'
-            ]
-        },
-        {
-            categoryName: 'Frame and roofing',
-            subcategories: [
-                'Lumber',
-                'Tiles or slates',
-                'Scaffolding',
-                'Carpenter tools',
-                'Miter saw'
-            ]
-        },
-        {
-            categoryName: 'Earthworks and excavation work',
-            subcategories: [
-                'Bulldozer',
-                'Compactor',
-                'Level'
-            ]
-        },
-        // {
-        //     categoryName: 'Other',
-        //     subcategories: []
-        // }
-    ];
+    const [checkAll, setCheckAll] = useState(false)
 
 
     const sellType = [
-        { value: "sale", label: "Sale" },
+        { value: "buy", label: "Buy" },
         { value: "rent", label: "Rent" },
     ]
 
@@ -147,8 +99,7 @@ export default function MachineryFilter() {
         "3 to 5 years",
         "5 to 10 years",
         "10 to 15 years",
-        "More than 15 years",
-        "Under construction"
+        "More than 15 years"
     ];
     const handleClickOutside = (e) => {
         if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(e.target)) {
@@ -168,6 +119,9 @@ export default function MachineryFilter() {
         }
         if (categoriesRef.current && !categoriesRef.current.contains(e.target)) {
             setShowCategoriesDrp(false);
+        }
+        if (machineryTypeRef.current && !machineryTypeRef.current.contains(e.target)) {
+            setShowMachineryType(false);
         }
     };
 
@@ -204,13 +158,26 @@ export default function MachineryFilter() {
             setSelectedFilters([...selectedFilters, brand]);
             setSelectedBrands([...selectedBrands, brand])
         }
+        else {
+            const updatedFilters = selectedFilters.filter(filter => filter !== brand);
+            setSelectedFilters(updatedFilters);
+
+            const updatedData = selectedBrands.filter(type => type !== brand);
+            setSelectedBrands(updatedData);
+        }
     }
     const handleCondtion = val => {
         setShowConditionDrp(false)
         if (!selectedFilters.includes(val)) {
             setSelectedFilters([...selectedFilters, val]);
             setSelectedConditions([...selectedCondtions, val])
+        }
+        else {
+            const updatedFilters = selectedFilters.filter(filter => filter !== val);
+            setSelectedFilters(updatedFilters);
 
+            const updatedData = selectedCondtions.filter(type => type !== val);
+            setSelectedConditions(updatedData);
         }
     }
 
@@ -221,7 +188,29 @@ export default function MachineryFilter() {
             setSelectedFilters([...selectedFilters, val]);
             setYearBuild([...yearBuild, val])
         }
+        else {
+            const updatedFilters = selectedFilters.filter(filter => filter !== val);
+            setSelectedFilters(updatedFilters);
+
+            const updatedYearBuild = yearBuild.filter(type => type !== val);
+            setYearBuild(updatedYearBuild);
+        }
     }
+    const handleMachineryType = (val) => {
+        setShowMachineryType(false)
+        const isAlreadySelected = selectedFilters.includes(val);
+
+        if (isAlreadySelected) {
+            const updatedFilters = selectedFilters.filter(filter => filter !== val);
+            setSelectedFilters(updatedFilters);
+
+            const updatedMachineryTypes = selectedMachineryType.filter(type => type !== val);
+            setSelectedMachineryType(updatedMachineryTypes);
+        } else {
+            setSelectedFilters([...selectedFilters, val]);
+            setSelectedMachineryType([...selectedMachineryType, val]);
+        }
+    };
 
 
     // for locations 
@@ -276,6 +265,9 @@ export default function MachineryFilter() {
         if (selectedCondtions.includes(name)) {
             setSelectedConditions(item => item.filter(item => item !== name));
         }
+        if (selectedMachineryType.includes(name)) {
+            setSelectedMachineryType(item => item.filter(item => item !== name));
+        }
         if (selectedCountries.includes(name)) {
             setSelectedCountries(item => item.filter(item => item !== name));
         }
@@ -302,7 +294,7 @@ export default function MachineryFilter() {
 
 
     const clearAllFilters = () => {
-        setType('sale');
+        setType('buy');
         setMinPrice('');
         setMaxPrice('');
         setAvailable('');
@@ -313,6 +305,7 @@ export default function MachineryFilter() {
         setSelectedBrands([]);
         setSelectedConditions([]);
         setCheckedSubcategories([]);
+        setSelectedMachineryType([]);
     }
 
     // only for cities 
@@ -327,16 +320,16 @@ export default function MachineryFilter() {
     return (
         <div className="filter-area my-4">
             <div className="custom-container">
-                <p className="color-primary mb-2">Looking for something?</p>
+                <p className="color-primary mb-2">Cranes, paints or helmets: find what you need at the right price.</p>
                 <div className="filter machinery-filter">
                     <div className="split">
 
                         <div className="user-input">
                             <div className="type-select">
                                 <Select
-                                    className="custom-input bordor-0"
+                                    className="custom-input bordor-0 type-select-dropdown"
                                     classNamePrefix="select"
-                                    placeholder='Type'
+                                    placeholder='Buy/Rent'
                                     name="color"
                                     options={sellType}
                                     defaultValue={[sellType[1]]}
@@ -376,45 +369,30 @@ export default function MachineryFilter() {
                                 </PlacesAutocomplete> */}
                             </div>
                             <div className="search-input" onClick={() => setShowCategoriesDrp(true)}>
-                                {/* <input type="text" className="custom-input" placeholder='Try Excavator, Apartment, Cement' value={selectedCategory} onChange={handleCategoryChange}/> */}
-                                {/* <Select
-                                    className="custom-input bordor-0"
-                                    classNamePrefix="select"
-                                    placeholder="Select Category"
-                                    name="color"
-                                    isMulti
-                                    options={formattedCategories}
-                                    onChange={handleCategoryChange}
-                                    value={selectedCategory}
-                                    isClearable={true}
-                                /> */}
 
-                                {
-                                    checkedSubcategories.length < 1 ?
-                                        (
-                                            <p>Select Category</p>
-                                        )
-                                        :
-                                        (
-                                            <p> Categories ({checkedSubcategories.length} Selections)</p>
-                                        )
-                                }
 
-                                <FaAngleDown />
 
-                                <NestedDropdown show={showCategoriesDrp} categoriesRef={categoriesRef} categories={machineryData} setCheckedSubcategories={setCheckedSubcategories} checkedSubcategories={checkedSubcategories} />
+                                <NestedDropdown
+                                    show={showCategoriesDrp}
+                                    categoriesRef={categoriesRef}
+                                    categories={machineryCategories}
+                                    setCheckedSubcategories={setCheckedSubcategories}
+                                    checkedSubcategories={checkedSubcategories}
+                                    checkAll={checkAll}
+                                    setCheckAll={setCheckAll}
+                                />
                             </div>
                         </div>
                         <div className="filter-btn">
                             <button className="custom-btn" onClick={handleFilter}>Search</button>
                         </div>
                     </div>
-                    <div className="other-filters p-1 pt-3 pb-0">
+                    <div className="other-filters p-1 pt-3 pb-0" style={{flexWrap: "wrap"}}>
                         <div className="d-flex gap-4">
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowPriceDrp(!showPriceDrp)}>
-                                    
-                                <div className='text-white'>
+
+                                    <div className='text-white'>
                                         {minPrice === '' && maxPrice === '' ? (
                                             <p style={{ display: 'inline', margin: 0 }}>Budget</p>
                                         ) : (
@@ -482,9 +460,18 @@ export default function MachineryFilter() {
 
                                 <div className={`custom-dropdown ${showBrandDrp ? 'show' : ''}`} ref={brandRef}>
                                     {
-                                        brands.map((n, i) => {
+                                        brands.map((data, i) => {
                                             return (
-                                                <p className="custom-dropdown-item" onClick={() => handleBrand(n)} key={i}>{n}</p>
+                                                <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleBrand(data)}>
+                                                    <p htmlFor={data} id={`label-${data}`}>{data}</p>
+                                                    <input
+                                                        type="checkbox"
+                                                        name={data}
+                                                        id={`checkbox-${data}`}
+                                                        checked={selectedFilters.includes(data)}
+                                                        onChange={() => handleBrand(data)}
+                                                    />
+                                                </div>
                                             )
                                         })
                                     }
@@ -501,8 +488,16 @@ export default function MachineryFilter() {
                                     {
                                         conditionData.map((data, i) => {
                                             return (
-                                                <p key={i} className="custom-dropdown-item" onClick={() => handleCondtion(data)}>{data}</p>
-
+                                                <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleCondtion(data)}>
+                                                    <p htmlFor={data} id={`label-${data}`}>{data}</p>
+                                                    <input
+                                                        type="checkbox"
+                                                        name={data}
+                                                        id={`checkbox-${data}`}
+                                                        checked={selectedFilters.includes(data)}
+                                                        onChange={() => handleCondtion(data)}
+                                                    />
+                                                </div>
                                             )
                                         })
                                     }
@@ -519,8 +514,43 @@ export default function MachineryFilter() {
                                     {
                                         yearBuildData.map((data, i) => {
                                             return (
-                                                <p key={i} className="custom-dropdown-item" onClick={() => handleYearBuild(data)}>{data}</p>
+                                                <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleYearBuild(data)}>
+                                                    <p htmlFor={data} id={`label-${data}`}>{data}</p>
+                                                    <input
+                                                        type="checkbox"
+                                                        name={data}
+                                                        id={`checkbox-${data}`}
+                                                        checked={selectedFilters.includes(data)}
+                                                        onChange={() => handleYearBuild(data)}
+                                                    />
+                                                </div>
+                                            )
 
+                                        })
+                                    }
+                                </div >
+                            </div>
+
+                            <div className="other-filter">
+                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowMachineryType(!showMachineryType)}>
+                                    <p className='text-white'>Machinery Type</p>
+                                    <FaAngleDown className='text-white' />
+                                </div>
+
+                                <div className={`custom-dropdown ${showMachineryType ? 'show' : ''}`} ref={machineryTypeRef}>
+                                    {
+                                        machineryType.map((data, i) => {
+                                            return (
+                                                <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleMachineryType(data)}>
+                                                    <p htmlFor={data} id={`label-${data}`}>{data}</p>
+                                                    <input
+                                                        type="checkbox"
+                                                        name={data}
+                                                        id={`checkbox-${data}`}
+                                                        checked={selectedFilters.includes(data)}
+                                                        onChange={() => handleMachineryType(data)}
+                                                    />
+                                                </div>
                                             )
                                         })
                                     }
@@ -535,13 +565,6 @@ export default function MachineryFilter() {
                                 </div>
                             </div>
 
-
-                            <div className="other-filter">
-                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} >
-                                    <label htmlFor="available" className='text-white' style={{ fontSize: "12px" }}>Availability</label>
-                                    <input type="checkbox" name="available" id="available" onChange={() => setAvailable(!available)} />
-                                </div>
-                            </div>
 
                         </div>
 

@@ -17,6 +17,9 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import { Link } from 'react-router-dom';
+import { IoIosStats } from 'react-icons/io';
+import { FaGuaraniSign, FaRegCalendar } from 'react-icons/fa6';
+import CarouselImages from './CarouselImages';
 
 
 const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, category, datePosted, sellerName, city, description }) => {
@@ -48,15 +51,8 @@ const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, categ
     return (
         <div className="custom-card construction-card">
             <div className="image">
-                <OwlCarousel id="" className="owl-carousel owl-theme" {...options}>
-                    {
-                        imgUrl.map(image => {
-                            return (
-                                <img src={image} alt="" />
-                            )
-                        })
-                    }
-                </OwlCarousel>
+            <CarouselImages images={imgUrl} />
+
                 <div className="icon-area">
                     {
                         favourite ? (<FaHeart className='icon favourite-icon filled' onClick={() => { setFavourite(!favourite) }} />) : (<FaRegHeart className='icon favourite-icon' onClick={() => { setFavourite(!favourite) }} />)
@@ -72,18 +68,31 @@ const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, categ
                         <h5 className='color-primary'>MAD {price}</h5>
                     </div>
 
-                    <p className='mb-1'>{t("category")}: {category}</p>
-                    <p className='mb-1'>{t("application")}: Finishing, Foundations...</p>
-                    <p className='mb-2'>{t("location")}: {city}</p>
+                    <p className='paragraph'>{city}</p>
+                    <p className=''>{category} (per Unit)</p>
+                    <p className='color-secondary'>Finishing, Foundations</p>
 
-                    {description && <p className='mb-3 mt-1 color-secondary'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
+                    {description && <p className='mb-1 mt-1 color-secondary'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
 
-
-                    <div className="d-flex justify-content-between align-items-center property-features">
+                    <div className="d-flex justify-content-between align-items-center property-features mb-2">
+                        <div className='d-flex align-items-center gap-1'>
+                            <FaRegCalendar className='feature-icon' />
+                            <p className="feature-text">{3}</p>
+                        </div>
                         <div className='d-flex align-items-center'>
-                            <p className="feature-text">{t("datePosted")}: {datePosted}</p>
+                            <FaGuaraniSign className='feature-icon' />
+                            <p className="feature-text">{4}</p>
+                        </div>
+                        <div className='d-flex align-items-center'>
+                            <IoIosStats className='feature-icon' />
+                            <p className="feature-text">New</p>
                         </div>
                     </div>
+
+                    <div className="d-flex justify-content-between align-items-center property-features">
+                        <p className="feature-text ms-0">{t("datePosted")}: {datePosted}</p>
+                    </div>
+
                     <hr className="line-break my-2" />
                     <div className="seller-info">
                         <div className="seller-img">
@@ -92,8 +101,8 @@ const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, categ
                         <p>{sellerName}</p>
                     </div>
                 </div>
-            </Link>
-        </div>
+            </Link >
+        </div >
     )
 }
 

@@ -2,11 +2,17 @@
 
     /* height of card  */
     .property-card {
-        height: 550px;
+        height: 510px;
     }
 
     .blog-card {
         height: 400px;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    .property-card {
+        height: 530px;
     }
 }
 
@@ -34,7 +40,7 @@
     }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
     .navbar .links-section {
         width: 40%;
     }
@@ -96,9 +102,15 @@
         font-size: 12px;
     }
 
+    .cards-grid {
+        /* grid-template-columns: repeat(1, 70%); */
+        grid-template-columns: repeat(2, 49%);
+        justify-content: center;
+        gap: 25px 12px;
+    }
 
     .property-card {
-        height: 600px;
+        height: 510px;
     }
 
     .blog-card {
@@ -106,7 +118,7 @@
     }
 
 
-    
+
 }
 
 @media screen and (max-width: 768px) {
@@ -149,6 +161,14 @@
         display: none;
     }
 
+    .slick-next {
+        right: -15px !important;
+    }
+
+    .slick-prev {
+        left: -20px !important;
+    }
+
     /* .properties-section .cards-grid .custom-card:last-child {
         display: block;
     }
@@ -160,13 +180,6 @@
     .construction-section .cards-grid .custom-card:last-child {
         display: block;
     } */
-
-    .cards-grid {
-        /* grid-template-columns: repeat(1, 70%); */
-        grid-template-columns: repeat(2, 49%);
-        justify-content: center;
-        gap: 25px 12px;
-    }
 
     .property-card {
         height: 500px;
@@ -314,6 +327,7 @@
         width: 40%;
     }
 
+
     .details-section .more-images .image {
         overflow: hidden;
         width: 20%;
@@ -322,7 +336,7 @@
     }
 
 
-   
+
 }
 
 @media screen and (max-width: 595px) {
@@ -356,15 +370,14 @@
         padding: 2rem 0;
     }
 
-}
-
-@media screen and (max-width: 450px) {
-    .property-card {
-        height: 475px;
+    .details-section .images .main-image {
+        height: 270px;
     }
 
-    .blog-card {
-        height: 360px;
+    .details-section .main-image .arrow {
+        top: 42%;
+        width: 30px;
+        height: 30px;
     }
 
     .testimonials .customers {
@@ -375,6 +388,23 @@
 
     .testimonials .customers .customer {
         width: 100%;
+    }
+}
+
+
+@media screen and (max-width: 450px) {
+    .property-card {
+        height: 485px;
+    }
+
+    .blog-card {
+        height: 360px;
+    }
+
+
+
+    .details-section .images .main-image {
+        height: 210px;
     }
 
 }

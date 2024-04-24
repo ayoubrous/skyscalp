@@ -6,7 +6,7 @@ import ContactUs from '../components/sections/ContactUs'
 import Footer from '../components/sections/Footer'
 import BlogSection from '../components/sections/BlogSection'
 import sellerImage from '../assets/images/sellerImage.png'
-import { FaAngleLeft, FaAngleRight, FaBath, FaBed, FaBuilding, FaEnvelope, FaHeart, FaPhone, FaRegHeart, FaRoadSpikes } from 'react-icons/fa6'
+import { FaAngleLeft, FaAngleRight, FaBath, FaBed, FaBuilding, FaEnvelope, FaHeart, FaPhone, FaRegHeart, FaRoadSpikes, FaShare, FaShareNodes } from 'react-icons/fa6'
 import MessageOwner from '../components/utils/MessageOwner'
 import { FaRegArrowAltCircleRight, FaSwimmingPool } from 'react-icons/fa'
 
@@ -25,6 +25,8 @@ import Map from '../components/map/Map'
 import Properties from '../components/sections/Properties'
 import SimilarProperties from '../components/sections/SimilarProperties'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
+import ShareProduct from '../components/utils/ShareProduct'
 
 export default function ViewProperty() {
 
@@ -36,7 +38,7 @@ export default function ViewProperty() {
     ];
     const [t] = useTranslation()
     const [favourite, setFavourite] = useState(false)
-    
+
     const [mainImageIndex, setMainImageIndex] = useState(0);
 
     const handleImageClick = (index) => {
@@ -76,6 +78,8 @@ export default function ViewProperty() {
         }
     };
 
+
+
     // const handleImageClick = (image) => {
     //     setMainImage(image);
     // };
@@ -90,27 +94,30 @@ export default function ViewProperty() {
                     <div className="split">
                         <div className="product-details side-lg">
 
-                        <div className="side images mb-2">
-            <Link to='../properties'>
-                <p className="color-secondary mb-3">&lt; Back to list</p>
-            </Link>
-            <div className="main-image">
-                <div className="arrow left-arrow" onClick={handlePreviousImage}>
-                    <FaAngleLeft className='arrow-icon' />
-                </div>
-                <div className="arrow right-arrow" onClick={handleNextImage}>
-                    <FaAngleRight className='arrow-icon' />
-                </div>
-                <img src={propertyImages[mainImageIndex]} alt="" />
-            </div>
-            <div className="more-images">
-                {propertyImages.map((image, i) => (
-                    <div key={i} className={`image ${mainImageIndex === i ? 'active' : ''}`} onClick={() => handleImageClick(i)}>
-                        <img src={image} alt="" />
-                    </div>
-                ))}
-            </div>
-        </div>
+                            <div className="side images mb-2">
+                                <div className="d-flex align-items-center justify-content-between mb-3">
+                                    <Link to='../properties'>
+                                        <p className="color-secondary">&lt; Back to list</p>
+                                    </Link>
+                                    <ShareProduct />
+                                </div>
+                                <div className="main-image">
+                                    <div className="arrow left-arrow" onClick={handlePreviousImage}>
+                                        <FaAngleLeft className='arrow-icon' />
+                                    </div>
+                                    <div className="arrow right-arrow" onClick={handleNextImage}>
+                                        <FaAngleRight className='arrow-icon' />
+                                    </div>
+                                    <img src={propertyImages[mainImageIndex]} alt="" />
+                                </div>
+                                <div className="more-images">
+                                    {propertyImages.map((image, i) => (
+                                        <div key={i} className={`image ${mainImageIndex === i ? 'active' : ''}`} onClick={() => handleImageClick(i)}>
+                                            <img src={image} alt="" />
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
 
                             <div className="side basic-information mb-2">
                                 <div className="d-flex align-items-center justify-content-between mb-2">
@@ -266,7 +273,7 @@ export default function ViewProperty() {
 
             <SimilarProperties />
             <BlogSection />
-            <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} />
+            <ContactUs supportTitle={t("propertySupportTitle")} supportDescription={t("propertySupportDescription")} />
             <Footer />
         </>
     )
