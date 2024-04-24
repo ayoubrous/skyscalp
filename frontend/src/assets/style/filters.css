@@ -252,6 +252,7 @@
 }
 .filter .other-filters > div{
     flex-wrap: wrap;
+    align-items: center;
 }
 .filter .other-filter {
     position: relative;

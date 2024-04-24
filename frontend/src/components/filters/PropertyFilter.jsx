@@ -458,7 +458,7 @@ export default function PropertyFilter() {
                                         ) : (
                                             <>
                                                 {minPrice === '' ? (
-                                                    <p className='fw-bolder filter-value'>All</p>
+                                                    <p className='fw-bolder filter-values'>All</p>
                                                 ) : (
                                                     <>
                                                         <p className="fw-bolder filter-values">{minPrice}</p>
