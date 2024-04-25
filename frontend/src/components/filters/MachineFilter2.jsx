@@ -321,7 +321,7 @@ export default function MachineryFilter() {
         <div className="filter-area my-4">
             <div className="custom-container">
                 <p className="color-primary mb-2">Cranes, paints or helmets: find what you need at the right price.</p>
-                <div className="filter machinery-filter">
+                <div className="filter machinery-filter three-col-filter">
                     <div className="split">
 
                         <div className="user-input">

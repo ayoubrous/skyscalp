@@ -482,6 +482,7 @@
 
     .filter.machinery-filter .user-input .custom-input {
         padding: 15px 3px !important;
+        font-size: 12px;
     }
 
     .filter.machinery-filter .user-input .custom-input.type-select-dropdown {
@@ -490,7 +491,7 @@
     }
 
     .filter.hero-filter .user-input .custom-input {
-        padding: 14px 3px !important;
+        padding: 15px 3px !important;
         width: 55%;
         font-size: 12px;
     }
@@ -510,19 +511,44 @@
         height: fit-content;
     }
 
-
     .filter .user-input .search-input {
-        width: 60%;
+        width: 50%;
         position: relative;
+        padding: 15px 3px !important;
     }
 
 
     .filter .user-input .category-list {
-        width: 40%;
+        width: 50%;
     }
 
     .filter .select__indicator {
         padding: 0;
+    }
+
+    /* three-col-filter */
+    .machinery-filter.three-col-filter .user-input{
+        width: 84%;
+    }
+    .machinery-filter.three-col-filter .user-input .custom-input.type-select-dropdown{
+        padding: 5px 3px !important;
+    }
+    .machinery-filter.three-col-filter .user-input .type-select{
+        width: 30%;
+    }
+    .machinery-filter.three-col-filter .user-input .category-list{
+        width: 35%;
+    }
+    .machinery-filter.three-col-filter .user-input .search-input{
+        width: 35%;
+        padding: 7px 3px !important;
+    }
+    .machinery-filter.three-col-filter .filter-btn{
+        width: 15%;
+    }
+    .machinery-filter.three-col-filter .filter-btn .custom-btn{
+        padding: 15px 3px;
+        font-size: 12px;
     }
 
 
