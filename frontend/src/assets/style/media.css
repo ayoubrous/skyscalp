@@ -182,7 +182,7 @@
     } */
 
     .property-card {
-        height: 500px;
+        height: 515px;
     }
 
     .blog-card {
@@ -394,7 +394,7 @@
 
 @media screen and (max-width: 450px) {
     .property-card {
-        height: 485px;
+        height: 482px;
     }
 
     .blog-card {
@@ -407,4 +407,11 @@
         height: 210px;
     }
 
+}
+
+
+@media screen and (max-width: 450px) {
+    .property-card {
+        height: 510px;
+    }
 }

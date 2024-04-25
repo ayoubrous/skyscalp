@@ -216,7 +216,7 @@
 
 }
 
-.machinery-filter .category-list .select-radius-strip {
+.filter .category-list .select-radius-strip {
     padding: 8px;
     background-color: var(--border-color);
     display: flex;
@@ -226,7 +226,7 @@
     bottom: 0;
 }
 
-.machinery-filter .category-list .select-radius-strip.disabled {
+.filter .category-list .select-radius-strip.disabled {
     pointer-events: none;
 }
 

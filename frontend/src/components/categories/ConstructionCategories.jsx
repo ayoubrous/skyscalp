@@ -20,13 +20,13 @@ export default function ConstructionCategories() {
             {
                 breakpoint: 1024,
                 settings: {
-                    slidesToShow: 7,
-                    slidesToScroll: 7,
+                    slidesToShow: 6,
+                    slidesToScroll: 6,
 
                 },
             },
             {
-                breakpoint: 800,
+                breakpoint: 870,
                 settings: {
                     slidesToShow: 4,
                     slidesToScroll: 4,
@@ -34,10 +34,18 @@ export default function ConstructionCategories() {
                 },
             },
             {
-                breakpoint: 550,
+                breakpoint: 590,
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 3,
+
+                },
+            },
+            {
+                breakpoint: 450,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
 
                 },
             },
