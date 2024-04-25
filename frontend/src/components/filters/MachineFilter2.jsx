@@ -387,12 +387,12 @@ export default function MachineryFilter() {
                             <button className="custom-btn" onClick={handleFilter}>Search</button>
                         </div>
                     </div>
-                    <div className="other-filters p-1 pt-3 pb-0" style={{flexWrap: "wrap"}}>
+                    <div className="other-filters p-1 pt-3 pb-0" style={{ flexWrap: "wrap" }}>
                         <div className="d-flex gap-4">
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowPriceDrp(!showPriceDrp)}>
 
-                                <div className='text-white'>
+                                    <div className='text-white'>
                                         {minPrice === '' && maxPrice === '' ? (
                                             <p className='filter-values'>Budget</p>
                                         ) : (
@@ -402,12 +402,14 @@ export default function MachineryFilter() {
                                                 ) : (
                                                     <>
                                                         <p className="fw-bolder filter-values">{minPrice}</p>
-                                                        <p style={{ display: 'inline' }}> (MAD) </p>
                                                     </>
                                                 )}
                                                 <p className="filter-values"> - </p>
                                                 {maxPrice === '' ? (
-                                                    <p className='fw-bolder' style={{ display: 'inline' }}> All </p>
+                                                    <>
+                                                        <p className='fw-bolder' style={{ display: 'inline' }}> All </p>
+                                                        <p style={{ display: 'inline' }}> (MAD) </p>
+                                                    </>
                                                 ) : (
                                                     <>
                                                         <p className="filter-values fw-bolder">{maxPrice}</p>

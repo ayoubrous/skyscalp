@@ -374,12 +374,14 @@ export default function ConstructionFilter() {
                                                 ) : (
                                                     <>
                                                         <p className="fw-bolder filter-values">{minPrice}</p>
-                                                        <p style={{ display: 'inline' }}> (MAD) </p>
                                                     </>
                                                 )}
                                                 <p className="filter-values"> - </p>
                                                 {maxPrice === '' ? (
-                                                    <p className='fw-bolder' style={{ display: 'inline' }}> All </p>
+                                                    <>
+                                                        <p className='fw-bolder' style={{ display: 'inline' }}> All </p>
+                                                        <p style={{ display: 'inline' }}> (MAD) </p>
+                                                    </>
                                                 ) : (
                                                     <>
                                                         <p className="filter-values fw-bolder">{maxPrice}</p>
