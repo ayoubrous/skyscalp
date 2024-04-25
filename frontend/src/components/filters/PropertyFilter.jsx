@@ -856,8 +856,12 @@ export default function PropertyFilter() {
                                 })
                             }
                         </div>
-                        <div className="selected-filter" style={{ cursor: "pointer" }} onClick={clearAllFilters}>Clear Filters</div>
-                    </div>
+                        {
+                            selectedFilters.length > 0 && (
+                                <div className="selected-filter" style={{ cursor: "pointer" }} onClick={clearAllFilters}>Clear Filters</div>
+                            )
+                        }
+                        </div>
                 </div>
 
             </div>

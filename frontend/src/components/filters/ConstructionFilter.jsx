@@ -527,7 +527,11 @@ export default function ConstructionFilter() {
                                 })
                             }
                         </div>
-                        <div className="selected-filter" style={{ cursor: "pointer" }} onClick={clearAllFilters}>Clear Filters</div>
+                        {
+                            selectedFilters.length > 0 && (
+                                <div className="selected-filter" style={{ cursor: "pointer" }} onClick={clearAllFilters}>Clear Filters</div>
+                            )
+                        }
                     </div>
                 </div>
 
