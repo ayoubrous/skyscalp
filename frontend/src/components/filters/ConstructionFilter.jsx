@@ -15,6 +15,7 @@ import TestNestedDropdown from './TestNestedDropdown';
 import NestedDropdown from './NestedDropdown';
 import CustomLocationsDropdown from './CustomLocationsDropdown';
 import { constructionCategories } from '../../assets/data/categories';
+import formatNumber from '../../utils/formatNumber';
 
 export default function ConstructionFilter() {
     const [t] = useTranslation();
@@ -67,7 +68,7 @@ export default function ConstructionFilter() {
     ]
 
     const budget = [
-        0, 1000, 5000, 10000, 25000, 50000
+        '0', '1000', '5000', '10 000', '25 000', '50 000'
     ]
 
     const brands = [
@@ -226,6 +227,9 @@ export default function ConstructionFilter() {
     const handleFilter = () => {
         console.log(checkedSubcategories)
         console.log(selectedFilters)
+        const minPriceInt = parseInt(minPrice.replace(/\s/g, ''), 10);
+        const maxPriceInt = parseInt(maxPrice.replace(/\s/g, ''), 10);
+
         // console.log(location)
 
         // console.log(selectedBrands)
@@ -373,7 +377,7 @@ export default function ConstructionFilter() {
                                                     <p className='fw-bolder filter-values'>All</p>
                                                 ) : (
                                                     <>
-                                                        <p className="fw-bolder filter-values">{minPrice}</p>
+                                                        <p className="fw-bolder filter-values">{formatNumber(minPrice)}</p>
                                                     </>
                                                 )}
                                                 <p className="filter-values"> - </p>
@@ -384,7 +388,7 @@ export default function ConstructionFilter() {
                                                     </>
                                                 ) : (
                                                     <>
-                                                        <p className="filter-values fw-bolder">{maxPrice}</p>
+                                                        <p className="filter-values fw-bolder">{formatNumber(maxPrice)}</p>
                                                         <p style={{ display: 'inline' }}> (MAD) </p>
                                                     </>
                                                 )}

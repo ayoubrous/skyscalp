@@ -16,6 +16,7 @@ import NestedDropdown from './NestedDropdown';
 import CustomLocationsDropdown from './CustomLocationsDropdown';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { propertyCategories } from '../../assets/data/categories';
+import formatNumber from '../../utils/formatNumber';
 export default function PropertyFilter() {
     const [t] = useTranslation();
 
@@ -83,7 +84,7 @@ export default function PropertyFilter() {
 
 
     const budget = [
-        0, 1000, 5000, 10000, 25000, 50000
+        '0', '1000', '5000', '10 000', '25 000', '50 000'
     ]
 
     const size = [
@@ -308,6 +309,9 @@ export default function PropertyFilter() {
     const handleFilter = () => {
         console.log(checkedSubcategories)
         console.log(selectedFilters)
+
+        const minPriceInt = parseInt(minPrice.replace(/\s/g, ''), 10);
+        const maxPriceInt = parseInt(maxPrice.replace(/\s/g, ''), 10);
         // console.log(location)
 
         // console.log(selectedBrands)
@@ -445,7 +449,7 @@ export default function PropertyFilter() {
                             <button className="custom-btn" onClick={handleFilter}>Search</button>
                         </div>
                     </div>
-                    <div className="other-filters p-1 pt-3 pb-0" style={{flexWrap: "wrap"}}>
+                    <div className="other-filters p-1 pt-3 pb-0" style={{ flexWrap: "wrap" }}>
                         <div className="d-flex gap-4">
 
                             {/* Budget Filter  */}
@@ -461,18 +465,18 @@ export default function PropertyFilter() {
                                                     <p className='fw-bolder filter-values'>All</p>
                                                 ) : (
                                                     <>
-                                                        <p className="fw-bolder filter-values">{minPrice}</p>
+                                                        <p className="fw-bolder filter-values">{formatNumber(minPrice)}</p>
                                                     </>
                                                 )}
                                                 <p className="filter-values"> - </p>
                                                 {maxPrice === '' ? (
                                                     <>
-                                                    <p className='fw-bolder' style={{ display: 'inline' }}> All </p>
-                                                    <p style={{ display: 'inline' }}> (MAD) </p>
-                                                </>
+                                                        <p className='fw-bolder' style={{ display: 'inline' }}> All </p>
+                                                        <p style={{ display: 'inline' }}> (MAD) </p>
+                                                    </>
                                                 ) : (
                                                     <>
-                                                        <p className="filter-values fw-bolder">{maxPrice}</p>
+                                                        <p className="filter-values fw-bolder">{formatNumber(maxPrice)}</p>
                                                         <p style={{ display: 'inline' }}> (MAD) </p>
                                                     </>
                                                 )}
@@ -861,7 +865,7 @@ export default function PropertyFilter() {
                                 <div className="selected-filter" style={{ cursor: "pointer" }} onClick={clearAllFilters}>Clear Filters</div>
                             )
                         }
-                        </div>
+                    </div>
                 </div>
 
             </div>
