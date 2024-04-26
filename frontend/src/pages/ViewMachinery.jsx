@@ -9,13 +9,9 @@ import sellerImage from '../assets/images/sellerImage.png'
 import { FaBath, FaBed, FaBuilding, FaEnvelope, FaHeart, FaPhone, FaRegHeart, FaRoadSpikes } from 'react-icons/fa6'
 import MessageOwner from '../components/utils/MessageOwner'
 import { FaAngleLeft, FaAngleRight, FaRegArrowAltCircleRight, FaSwimmingPool } from 'react-icons/fa'
+import { TbBed, TbCar } from 'react-icons/tb'
+import { GrStatusInfo } from "react-icons/gr";
 
-import { LuBath } from "react-icons/lu";
-import { BsBuildings } from "react-icons/bs";
-import { TbBed } from 'react-icons/tb'
-import { PiFlowerTulip } from "react-icons/pi";
-import { MdOutlinePool } from "react-icons/md";
-import { MdOutlineGarage } from "react-icons/md";
 
 
 import OwlCarousel from 'react-owl-carousel';
@@ -135,11 +131,23 @@ export default function ViewMachinery() {
                                     }
                                 </div>
 
+                                <div className="info-icons mt-2">
+                                    <small className='color-secondary '>Date Posted: 12 March 2024</small>
+                                </div>
                                 <hr />
 
                                 <div className="info-icons mt-2">
-                                    <small className='color-secondary'>Date Posted: 12 March 2024</small>
+                                    <div className="d-flex align-items-center gap-2">
+                                        <TbCar className='color-secondary' />
+                                        <small className="color-secondary">2</small>
+                                    </div>
+                                    <div className="d-flex align-items-center gap-2">
+                                        <GrStatusInfo className='color-secondary' />
+                                        <small className="color-secondary">2 {t("baths")}</small>
+                                    </div>
                                 </div>
+
+
                             </div>
 
                             <div className="side description mb-2">
