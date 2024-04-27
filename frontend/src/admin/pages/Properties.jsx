@@ -23,7 +23,7 @@ export default function Properties() {
 
                         <div className="d-flex justify-content-end">
                             <a href=""></a>
-                            <Link to='/'>
+                            <Link to='../app/add-property'>
                                 <button className="outline-btn py-1 px-2">+ Add New</button>
                             </Link>
                         </div>

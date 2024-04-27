@@ -20181,7 +20181,8 @@ ul {
     height: 100%;
     background-color: rgba(255, 255, 255, .7);
     z-index: 100;
-    display: none; /* Remove this line */
+    display: none;
+    /* Remove this line */
     align-items: center;
     justify-content: center;
 }
@@ -20196,7 +20197,7 @@ ul {
 }
 
 
-.dashboard-table th{
+.dashboard-table th {
     border: 1px solid #ccc;
     /* background-color: #076C8F;
     color: #fff; */
@@ -20204,18 +20205,20 @@ ul {
     padding: 10px 8px;
     text-align: center;
 }
-.dashboard-table td{
+
+.dashboard-table td {
     font-size: 13px;
     padding: 8px 4px;
     border: 1px solid #ccc;
     text-align: center;
     color: #1a1d20;
 }
-.dashboard-table svg{
+
+.dashboard-table svg {
     font-size: 16px;
 }
 
-.favourites-page .fav-tabs{
+.favourites-page .fav-tabs {
     width: 40%;
     border-radius: 33px;
     display: flex;
@@ -20224,15 +20227,70 @@ ul {
     margin: 20px auto;
     border: 1.4px solid var(--web-primary-color);
 }
-.fav-tabs .fav-tab{
+
+.fav-tabs .fav-tab {
     padding: 8px 19px;
     border-radius: 33px;
-cursor: pointer;
+    cursor: pointer;
 }
-.fav-tabs .fav-tab.active{
+
+.fav-tabs .fav-tab.active {
     background-color: var(--web-primary-color);
     color: #fff;
 }
-.favourites-page .cards-grid{
+
+.favourites-page .cards-grid {
     grid-template-columns: repeat(2, 49%);
+}
+
+.publish-form .react-select {
+    padding: 1px 0;
+}
+.publish-form .upload-image{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1.4px solid var(--border-color);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: var(--semi-dark-color);
+    cursor: pointer;
+    padding-bottom: 25px;
+}
+.publish-form .upload-image:hover{
+    background-color: #f9f9f9;
+}
+.publish-form .upload-image svg{
+    font-size: 33px;
+}
+.publish-form .images-section .uploaded-images {
+    display: none;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.publish-form .images-section .uploaded-images.show{
+    display: flex;
+}
+.publish-form .images-section .uploaded-images .image{
+    width: 100px;
+    height: 70px;
+    overflow: hidden;
+    margin: 4px;
+    position: relative;
+}
+.publish-form .images-section .uploaded-images .image img{
+    width: 100%;
+    height: 100%;
+}
+.publish-form .images-section .uploaded-images .image svg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 4px;
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
 }

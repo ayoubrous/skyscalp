@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { TbBed } from 'react-icons/tb'
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegCheckSquare, FaRegHeart } from "react-icons/fa";
 import { LuBath } from "react-icons/lu";
 import { BsBuildings } from "react-icons/bs";
 import { useTranslation } from 'react-i18next';
@@ -20,6 +20,7 @@ import { Link } from 'react-router-dom';
 import { IoIosStats } from 'react-icons/io';
 import { FaGuaraniSign, FaRegCalendar } from 'react-icons/fa6';
 import CarouselImages from './CarouselImages';
+import { GrStatusInfo } from 'react-icons/gr';
 
 
 const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, category, datePosted, sellerName, city, description }) => {
@@ -76,15 +77,17 @@ const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, categ
 
                     <div className="d-flex justify-content-between align-items-center property-features mb-2">
                         <div className='d-flex align-items-center gap-1'>
-                            <FaRegCalendar className='feature-icon' />
-                            <p className="feature-text">{3}</p>
+                            {/* <FaRegCalendar className='feature-icon' /> */}
+
+                            <p className="feature-text">Year</p>
+                            <p className="feature-text">{2022}</p>
                         </div>
                         <div className='d-flex align-items-center'>
-                            <FaGuaraniSign className='feature-icon' />
+                            <FaRegCheckSquare className='feature-icon' />
                             <p className="feature-text">{4}</p>
                         </div>
                         <div className='d-flex align-items-center'>
-                            <IoIosStats className='feature-icon' />
+                            <GrStatusInfo className='feature-icon' />
                             <p className="feature-text">New</p>
                         </div>
                     </div>

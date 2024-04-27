@@ -7,6 +7,7 @@ import { TbBed } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import CarouselImages from './CarouselImages';
+import { formatPrice } from '../../utils/formatPrice';
 
 
 const PropertyCard = React.memo(({ propertyData }) => {
@@ -36,9 +37,9 @@ const PropertyCard = React.memo(({ propertyData }) => {
                 <div className="content">
                     <div className="d-flex justify-content-between align-items-center">
                         <h1 className="card-title">{title && (title.slice(0, 18)) + (title.length > 18 ? "..." : "")}</h1>
-                        <h5 className="color-primary">MAD {price}</h5>
+                        <h5 className="color-primary">MAD {formatPrice(price)}</h5>
                     </div>
-                    <p className="paragraph mb-0">{category}, ({area} sq ft)</p>
+                    <p className="paragraph mb-0">{category}, ({area} m<sup>2</sup>)</p>
                     <p className="">{city}</p>
                     {description && <p className="mb-3 mt-1 color-secondary">{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
                     <div className="d-flex justify-content-between align-items-center property-features mb-3">

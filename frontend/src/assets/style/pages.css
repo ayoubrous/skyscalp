@@ -433,7 +433,9 @@
     gap: 10px 28px;
     flex-wrap: wrap;
 }
-
+.details-section .info-icons svg{
+    font-size: 20px;
+}
 .details-section .features-grid {
     display: grid;
     grid-template-columns: repeat(2, 40%);

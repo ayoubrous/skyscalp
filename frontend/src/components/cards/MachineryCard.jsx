@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegCheckSquare, FaRegHeart } from "react-icons/fa";
 import { useTranslation } from 'react-i18next';
 import { IoIosStats } from "react-icons/io";
 
@@ -16,6 +16,7 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 import { Link } from 'react-router-dom';
 import { FaCalendar, FaGuaraniSign, FaRegCalendar } from 'react-icons/fa6';
 import CarouselImages from './CarouselImages';
+import { GrStatusInfo } from 'react-icons/gr';
 
 
 const MachineryCard = ({ id, imgUrl, title, description, type, price, modal, condition, category, datePosted, city, sellerName, application }) => {
@@ -76,15 +77,17 @@ const MachineryCard = ({ id, imgUrl, title, description, type, price, modal, con
 
                     <div className="d-flex justify-content-between align-items-center property-features mb-2">
                         <div className='d-flex align-items-center gap-1'>
-                            <FaRegCalendar className='feature-icon' />
-                            <p className="feature-text">{3}</p>
+                            {/* <FaRegCalendar className='feature-icon' /> */}
+
+                            <p className="feature-text  ">Year:</p>
+                            <p className="feature-text ">{2022}</p>
                         </div>
                         <div className='d-flex align-items-center'>
-                            <FaGuaraniSign className='feature-icon' />
+                            <FaRegCheckSquare className='feature-icon' />
                             <p className="feature-text">{4}</p>
                         </div>
                         <div className='d-flex align-items-center'>
-                            <IoIosStats className='feature-icon' />
+                            <GrStatusInfo className='feature-icon' />
                             <p className="feature-text">New</p>
                         </div>
                     </div>

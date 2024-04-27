@@ -30,6 +30,16 @@ const locations = [
         longitude: -7.0926
     },
     {
+        name: "France",
+        label: "Country",
+        group: "World",
+        country: "France",
+        state: null,
+        city: null,
+        latitude: 31.7917,
+        longitude: -7.0926
+    },
+    {
         name: "Rue Mohammed V",
         label: "Street",
         group: "Casablanca",
