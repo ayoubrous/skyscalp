@@ -13,6 +13,7 @@ import locations from '../../assets/data/locations'
 import { machineryType, propertyBudget, constructionBudget, machineryBudget, yearBuildData, propertyYearBuildData, conditionData, constructionBrands, proximityData, featuresData, featuresDataObj } from '../../assets/data/filtersData'
 import { propertyCategories } from '../../assets/data/categories'
 import GetLocationMap from '../../components/map/GetLocationMap'
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function AddProperty() {
 
@@ -117,8 +118,67 @@ export default function AddProperty() {
             prevViews.filter(image => image.id !== lastModified)
         );
     }
+
+    const validateFields = () => {
+        if (
+            // country === "" ||
+            // state === "" ||
+            // city === "" ||
+            title === "" ||
+            budget === "" ||
+            area === "" ||
+            application === "" ||
+            category === "" ||
+            type === "" ||
+            rooms === "" ||
+            bathrooms === "" ||
+            description === ""
+        ) {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        if (!validateFields()) {
+            toast.error("Fill out required fields to continue")
+        }
+        else {
+            toast.success("Your property published successfully!")
+        }
+    }
+
+    const resetAllFields = () => {
+        setShowUploadedImages(false);
+        setUploadedImageViews([]);
+        setCountry('');
+        setState('');
+        setCity('');
+        setStreet('');
+        setTitle('');
+        setBudget('');
+        setArea('');
+        setBuild('');
+        setApplication('');
+        setCategory('');
+        setType('');
+        setRooms('');
+        setBathrooms('');
+        setKitchen('');
+        setGarage('');
+        setPool('');
+        setDescription('');
+        setCondition('');
+        setProximity('');
+        setFeatures('');
+        setMapLocation(null);
+    }
     return (
         <>
+            <Toaster />
             <div className="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
                 data-sidebar-position="fixed" data-header-position="fixed">
                 <Sidebar />
@@ -137,7 +197,7 @@ export default function AddProperty() {
                         </div>
 
                         <div className="card px-3 py-4 my-4 publish-form">
-                            <form action="" className="form">
+                            <form action="" className="form" onSubmit={handleSubmit}>
                                 <div className="row mb-3">
                                     <div className="form-group col-6">
                                         <label htmlFor="" className='mb-1'>Title*</label>
@@ -220,7 +280,7 @@ export default function AddProperty() {
                                 <div className="row mb-3">
                                     <div className="form-group col-4">
                                         <label htmlFor="" className='mb-1'>Application*</label>
-                                        <select name="" id="" className="custom-input" onChange={e => setBuild(e.target.value)} value={build}>
+                                        <select name="" id="" className="custom-input" onChange={e => setApplication(e.target.value)} value={application}>
                                             <option value="">Select Applicaion</option>
                                             {
                                                 propertyCategories.map((data, i) => {
@@ -233,7 +293,7 @@ export default function AddProperty() {
                                     </div>
                                     <div className="form-group col-4">
                                         <label htmlFor="" className='mb-1'>Category*</label>
-                                        <select name="" id="" className="custom-input" onChange={e => setBuild(e.target.value)} value={build}>
+                                        <select name="" id="" className="custom-input" onChange={e => setCategory(e.target.value)} value={category}>
                                             <option value="">Select Category</option>
                                             {
                                                 propertyCategories.map((data) => (
@@ -246,7 +306,7 @@ export default function AddProperty() {
                                     </div>
                                     <div className="form-group col-4">
                                         <label htmlFor="" className='mb-1'>Type*</label>
-                                        <select name="" id="" className="custom-input" onChange={e => setBuild(e.target.value)} value={build}>
+                                        <select name="" id="" className="custom-input" onChange={e => setType(e.target.value)} value={type}>
                                             <option value="">Select Type</option>
                                             <option value="rent">Rent</option>
                                             <option value="buy">Sale</option>
@@ -347,17 +407,17 @@ export default function AddProperty() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="row mb-3 mt-3">
+                                <div className="row mb-3 mt-5">
                                     <div className="col-12">
                                         <h5>Add location by map</h5>
                                         <small>Click on the location address in map</small>
-                                        <GetLocationMap clickedPosition={mapLocation} setClickedPosition={setMapLocation}/>
+                                        <GetLocationMap clickedPosition={mapLocation} setClickedPosition={setMapLocation} />
                                     </div>
                                 </div>
 
                                 <div className="row mb-2">
                                     <div className="form-group d-flex align-items-center justify-content-end gap-2">
-                                        <button className="outline-btn py-2">Reset</button>
+                                        <div className="outline-btn py-2" onClick={resetAllFields}>Reset</div>
                                         <button className="custom-btn" type='submit'>Publish</button>
                                     </div>
                                 </div>
