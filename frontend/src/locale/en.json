@@ -111,5 +111,13 @@
     "machineType": "Machinery Type",
     "brand": "Brand",
     "certification": "Certification",
-    "guarantee": "Guarantee"
+    "guarantee": "Guarantee",
+    "allrightsreserved": "All Rights Reserved",
+    "propertyFilterTitle": "Appartments, Houses or Rooms: find what you need at the right price.?",
+    "budget": "Budget",
+    "area": "Area",
+    "bathrooms": "Bathrooms",
+    "proximit": "Proximity",
+    "features": "Features",
+    "year": "Year"
 }

@@ -45,7 +45,7 @@ export default function FeatureCards() {
                     <BsTools className='icon' />
                     <p>{t("featureCard2")}</p>
                 </Link>
-                <Link to='../contact' className="feature-card">
+                <Link to='../estimate' className="feature-card">
                     <RiContactsFill className='icon' />
                     <p className='mt-2'>{t("featureCard3")}</p>
                 </Link>

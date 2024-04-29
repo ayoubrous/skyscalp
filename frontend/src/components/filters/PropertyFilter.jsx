@@ -385,7 +385,7 @@ export default function PropertyFilter() {
     return (
         <div className="filter-area my-4">
             <div className="custom-container">
-                <p className="color-primary mb-2">Appartments, Houses or Rooms: find what you need at the right price.?</p>
+                <p className="color-primary mb-2">{t("propertyFilterTitle")}</p>
                 <div className="filter machinery-filter">
                     <div className="split">
 
@@ -446,7 +446,7 @@ export default function PropertyFilter() {
                             </div>
                         </div>
                         <div className="filter-btn">
-                            <button className="custom-btn" onClick={handleFilter}>Search</button>
+                            <button className="custom-btn" onClick={handleFilter}>{t("search")}</button>
                         </div>
                     </div>
                     <div className="other-filters p-1 pt-3 pb-0" style={{ flexWrap: "wrap" }}>
@@ -458,7 +458,7 @@ export default function PropertyFilter() {
 
                                     <div className='text-white'>
                                         {minPrice === '' && maxPrice === '' ? (
-                                            <p className='filter-values'>Budget</p>
+                                            <p className='filter-values'>{t("budget")}</p>
                                         ) : (
                                             <>
                                                 {minPrice === '' ? (
@@ -526,7 +526,7 @@ export default function PropertyFilter() {
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowSizeDrp(!showSizeDrp)}>
                                     <div className='text-white'>
                                         {minSize === '' && maxSize === '' ? (
-                                            <p className="filter-values">Area</p>
+                                            <p className="filter-values">{t("area")}</p>
                                         ) : (
                                             <>
                                                 {minSize === '' ? (
@@ -594,7 +594,7 @@ export default function PropertyFilter() {
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowBedsDrp(!showBedsDrp)}>
                                     <div className='text-white'>
                                         {minBeds === '' && maxBeds === '' ? (
-                                            <p className="filter-values">Rooms</p>
+                                            <p className="filter-values">{t("rooms")}</p>
                                         ) : (
                                             <>
                                                 {minBeds === '' ? (
@@ -662,7 +662,7 @@ export default function PropertyFilter() {
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowBathDrp(!showBathDrp)}>
                                     <div className='text-white'>
                                         {minBath === '' && maxBath === '' ? (
-                                            <p className="filter-values">Bathrooms</p>
+                                            <p className="filter-values">{t("bathrooms")}</p>
                                         ) : (
                                             <>
                                                 {minBath === '' ? (
@@ -729,7 +729,7 @@ export default function PropertyFilter() {
                             {/* condition  */}
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowConditionDrp(!showConditionDrp)}>
-                                    <p className='text-white'>{condition === '' ? 'Condition' : `Condition: ${condition}`}</p>
+                                    <p className='text-white'>{condition === '' ? t("condition") : `${t("condition")}: ${condition}`}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
@@ -756,7 +756,7 @@ export default function PropertyFilter() {
                             {/* Build  */}
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowYearDrp(!showYearDrp)}>
-                                    <p className='text-white'>Build</p>
+                                    <p className='text-white'>{t("build")}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
@@ -782,7 +782,7 @@ export default function PropertyFilter() {
 
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowProximityDrp(!showProximityDrp)}>
-                                    <p className='text-white'>Proximity</p>
+                                    <p className='text-white'>{t("proximity")}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
@@ -809,7 +809,7 @@ export default function PropertyFilter() {
 
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowFeatureDrp(!showFeatureDrp)}>
-                                    <p className='text-white'>Features</p>
+                                    <p className='text-white'>{t("features")}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
 

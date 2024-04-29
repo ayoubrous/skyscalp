@@ -84,7 +84,7 @@ const MachineryCard = ({ id, imgUrl, title, description, type, price, modal, con
                         </div>
                         <div className='d-flex align-items-center'>
                             <FaRegCheckSquare className='feature-icon' />
-                            <p className="feature-text">{4}</p>
+                            <p className="feature-text">{4} Years</p>
                         </div>
                         <div className='d-flex align-items-center'>
                             <GrStatusInfo className='feature-icon' />

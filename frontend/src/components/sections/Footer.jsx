@@ -85,7 +85,7 @@ export default function Footer() {
                         </Link>
                     </div>
                     <div className="col-sm-12 col-md-6 col-lg-6 mb-2 mt-1 text-lg-end text-sm-start">
-                        <p className="color-secondary">All Rights Reserved - &copy; SkyScalp {new Date().getFullYear()}</p>
+                        <p className="color-secondary">{t("allrightsreserved")} - &copy; SkyScalp {new Date().getFullYear()}</p>
                     </div>
 
                 </div>

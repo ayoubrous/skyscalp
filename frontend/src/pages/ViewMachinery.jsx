@@ -8,7 +8,7 @@ import BlogSection from '../components/sections/BlogSection'
 import sellerImage from '../assets/images/sellerImage.png'
 import { FaBath, FaBed, FaBuilding, FaEnvelope, FaHeart, FaPhone, FaRegHeart, FaRoadSpikes } from 'react-icons/fa6'
 import MessageOwner from '../components/utils/MessageOwner'
-import { FaAngleLeft, FaAngleRight, FaRegArrowAltCircleRight, FaSwimmingPool } from 'react-icons/fa'
+import { FaAngleLeft, FaAngleRight, FaRegArrowAltCircleRight, FaRegCheckSquare, FaSwimmingPool } from 'react-icons/fa'
 import { TbBed, TbCar } from 'react-icons/tb'
 import { GrStatusInfo } from "react-icons/gr";
 
@@ -138,12 +138,16 @@ export default function ViewMachinery() {
 
                                 <div className="info-icons mt-2">
                                     <div className="d-flex align-items-center gap-2">
-                                        <TbCar className='color-secondary' />
-                                        <small className="color-secondary">2</small>
+                                        <small className="color-secondary">{t("year")}:</small>
+                                        <small className="color-secondary">2021</small>
+                                    </div>
+                                    <div className="d-flex align-items-center gap-2">
+                                        <FaRegCheckSquare className='color-secondary' />
+                                        <small className="color-secondary">2 Years</small>
                                     </div>
                                     <div className="d-flex align-items-center gap-2">
                                         <GrStatusInfo className='color-secondary' />
-                                        <small className="color-secondary">2 {t("baths")}</small>
+                                        <small className="color-secondary">New</small>
                                     </div>
                                 </div>
 

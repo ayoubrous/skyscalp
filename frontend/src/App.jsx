@@ -30,6 +30,8 @@ import DashboardMessages from './admin/pages/Messages';
 import DashboardFavourites from './admin/pages/Favourites';
 import Categories from './pages/Categories';
 import AddProperty from './admin/pages/AddProperty';
+import Login from './admin/pages/Login';
+import Register from './admin/pages/Register';
 
 const App = () => {
   return (
@@ -38,7 +40,7 @@ const App = () => {
         <Routes>
           <Route path='/' exact index element={<Home />} />
           <Route path='/about' exact element={<About />} />
-          <Route path='/contact' exact element={<Contact />} />
+          <Route path='/estimate' exact element={<Contact />} />
           <Route path='/blog/:id' exact element={<ViewBlog />} />
           {/* ----- Listing pages -----  */}
           <Route path='/properties' exact element={<Properties />} />
@@ -51,6 +53,8 @@ const App = () => {
           <Route path='/machinery/:id' exact element={<ViewMachinery />} />
 
 
+          <Route path='/app/register' exact element={<Register />} />
+          <Route path='/app/login' exact element={<Login />} />
           <Route path='/app/dashboard' exact element={<Dashboard />} />
           <Route path='/app/properties' exact element={<DashboardProperties />} />
           <Route path='/app/machinery' exact element={<DashboardMachinery />} />

@@ -12,6 +12,7 @@ import locations from '../../assets/data/locations'
 
 import { machineryType, propertyBudget, constructionBudget, machineryBudget, yearBuildData, propertyYearBuildData, conditionData, constructionBrands, proximityData, featuresData, featuresDataObj } from '../../assets/data/filtersData'
 import { propertyCategories } from '../../assets/data/categories'
+import GetLocationMap from '../../components/map/GetLocationMap'
 
 export default function AddProperty() {
 
@@ -39,6 +40,7 @@ export default function AddProperty() {
     const [condition, setCondition] = useState('')
     const [proximity, setProximity] = useState('')
     const [features, setFeatures] = useState('')
+    const [mapLocation, setMapLocation] = useState(null)
 
     const [countries, setCountries] = useState([])
     const [states, setStates] = useState([])
@@ -343,6 +345,13 @@ export default function AddProperty() {
                                             }
 
                                         </div>
+                                    </div>
+                                </div>
+                                <div className="row mb-3 mt-3">
+                                    <div className="col-12">
+                                        <h5>Add location by map</h5>
+                                        <small>Click on the location address in map</small>
+                                        <GetLocationMap clickedPosition={mapLocation} setClickedPosition={setMapLocation}/>
                                     </div>
                                 </div>
 

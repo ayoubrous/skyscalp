@@ -75,7 +75,7 @@ export default function Navbar() {
                                 <Link to="/construction" className='link-dropdown-item' onClick={() => setshowDrp(false)}>{t("construction")}</Link>
                             </div>
                         </Link>
-                        <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/contact" >{t("estimate")}</NavLink>
+                        <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/estimate" >{t("estimate")}</NavLink>
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/" >{t("publish")}</NavLink>
                     </div>
                     <div className="about-company-links links">

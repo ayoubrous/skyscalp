@@ -12,7 +12,7 @@ import { FaRegArrowAltCircleRight, FaSwimmingPool } from 'react-icons/fa'
 
 import { LuBath } from "react-icons/lu";
 import { BsBuildings } from "react-icons/bs";
-import { TbBed } from 'react-icons/tb'
+import { TbBed, TbCar } from 'react-icons/tb'
 import { PiFlowerTulip } from "react-icons/pi";
 import { MdOutlinePool } from "react-icons/md";
 import { MdOutlineGarage } from "react-icons/md";
@@ -156,7 +156,7 @@ export default function ViewProperty() {
                                         <small className="color-secondary">2 {t("garden")}</small>
                                     </div>
                                     <div className="d-flex align-items-center gap-2">
-                                        <MdOutlineGarage className='color-secondary' />
+                                        <TbCar className='color-secondary' />
                                         <small className="color-secondary">2 {t("garage")}</small>
                                     </div>
                                     <div className="d-flex align-items-center gap-2">

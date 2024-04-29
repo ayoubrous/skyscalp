@@ -3,7 +3,7 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { LuBath } from 'react-icons/lu';
 import { MdOutlineGarage, MdOutlinePool } from 'react-icons/md';
 import { PiFlowerTulip } from 'react-icons/pi';
-import { TbBed } from 'react-icons/tb';
+import { TbBed, TbCar } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import CarouselImages from './CarouselImages';
@@ -56,7 +56,7 @@ const PropertyCard = React.memo(({ propertyData }) => {
                             <p className="feature-text">{pool}</p>
                         </div>
                         <div className="d-flex align-items-center">
-                            <MdOutlineGarage className="feature-icon" />
+                            <TbCar className="feature-icon" />
                             <p className="feature-text">{garage}</p>
                         </div>
                         <div className="d-flex align-items-center">

@@ -12,7 +12,7 @@ import SimilarProperties from '../components/sections/SimilarProperties'
 import { Link } from 'react-router-dom'
 import ShareProduct from '../components/utils/ShareProduct'
 import Map from '../components/map/Map'
-import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
+import { FaAngleLeft, FaAngleRight, FaRegCheckSquare } from 'react-icons/fa'
 import { TbCar } from 'react-icons/tb'
 import { GrStatusInfo } from 'react-icons/gr'
 
@@ -109,12 +109,16 @@ export default function ViewConstruction() {
 
                                 <div className="info-icons mt-2">
                                     <div className="d-flex align-items-center gap-2">
-                                        <TbCar className='color-secondary' />
-                                        <small className="color-secondary">2</small>
+                                        <small className="color-secondary">{t("year")}:</small>
+                                        <small className="color-secondary">2021</small>
+                                    </div>
+                                    <div className="d-flex align-items-center gap-2">
+                                        <FaRegCheckSquare className='color-secondary' />
+                                        <small className="color-secondary">2 Years</small>
                                     </div>
                                     <div className="d-flex align-items-center gap-2">
                                         <GrStatusInfo className='color-secondary' />
-                                        <small className="color-secondary">2 {t("baths")}</small>
+                                        <small className="color-secondary">New</small>
                                     </div>
                                 </div>
                             </div>
