@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { TbBed } from 'react-icons/tb'
-import { FaHeart, FaRegCheckSquare, FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaPaintBrush, FaRegCheckSquare, FaRegHeart } from "react-icons/fa";
 import { LuBath } from "react-icons/lu";
 import { BsBuildings } from "react-icons/bs";
 import { useTranslation } from 'react-i18next';
@@ -23,7 +23,7 @@ import CarouselImages from './CarouselImages';
 import { GrStatusInfo } from 'react-icons/gr';
 
 
-const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, category, datePosted, sellerName, city, description }) => {
+const FurnitureCard = ({ id, imgUrl, title, quantity, price, available, category, datePosted, sellerName, city, description }) => {
     const [t] = useTranslation();
     const [favourite, setFavourite] = useState(false)
 
@@ -62,7 +62,7 @@ const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, categ
                 </div>
 
             </div>
-            <Link to='../construction/123'>
+            <Link to='../furniture/123'>
                 <div className="content">
                     <div className="d-flex justify-content-between align-items-center">
                         <h3 className="card-title">{title && (title.slice(0, 17)) + (title.length > 17 ? "..." : "")}</h3>
@@ -72,17 +72,22 @@ const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, categ
                     <p className='paragraph'>{city}</p>
                     <p className=''>{category} (per Unit)</p>
                     <p className='color-secondary'>Finishing, Foundations</p>
+                    <p className='color-secondary'>12 KG - 9x4 ft</p>
 
                     {description && <p className='mb-1 mt-1 color-secondary'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
 
                     <div className="d-flex justify-content-between align-items-center property-features mb-2">
                         <div className='d-flex align-items-center'>
                             <IoIosColorPalette className='feature-icon' />
-                            <p className="feature-text">Green</p>
+                            <p className="feature-text">Brown</p>
+                        </div>
+                        <div className='d-flex align-items-center'>
+                            <FaRegCheckSquare className='feature-icon' />
+                            <p className="feature-text">2 Years</p>
                         </div>
                         <div className='d-flex align-items-center'>
                             <GrStatusInfo className='feature-icon' />
-                            <p className="feature-text">Outstanding</p>
+                            <p className="feature-text">Excellent</p>
                         </div>
                     </div>
 
@@ -104,4 +109,4 @@ const ConstructionCard = ({ id, imgUrl, title, quantity, price, available, categ
 }
 
 
-export default ConstructionCard
+export default FurnitureCard

@@ -216,7 +216,7 @@ export default function ViewMachinery() {
                                     </div>
                                     <div className="feature">
                                         <div className="label">
-                                            <p className="color-secondary">{t("type")}</p>
+                                            <p className="color-secondary">{t("transaction")}</p>
                                         </div>
                                         <p className="paragraph">Rent</p>
                                     </div>
@@ -224,7 +224,7 @@ export default function ViewMachinery() {
                                         <div className="label">
                                             <p className="color-secondary">{t("sizeOfMachine")}</p>
                                         </div>
-                                        <p className="paragraph">20x10 feet</p>
+                                        <p className="paragraph">20x10 m</p>
                                     </div>
                                     <div className="feature">
                                         <div className="label">
@@ -240,9 +240,9 @@ export default function ViewMachinery() {
                                     </div>
                                     <div className="feature">
                                         <div className="label">
-                                            <p className="color-secondary">{t("build")}</p>
+                                            <p className="color-secondary">{t("color")}</p>
                                         </div>
-                                        <p className="paragraph">2022</p>
+                                        <p className="paragraph">Black</p>
                                     </div>
                                     <div className="feature">
                                         <div className="label">

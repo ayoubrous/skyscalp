@@ -33,6 +33,7 @@ import AddProperty from './admin/pages/AddProperty';
 import Login from './admin/pages/Login';
 import Register from './admin/pages/Register';
 import MarketPlace from './pages/MarketPlace';
+import ViewFurniture from './pages/ViewFurniture';
 
 const App = () => {
   return (
@@ -53,6 +54,7 @@ const App = () => {
           <Route path='/property/:id' exact element={<ViewProperty />} />
           <Route path='/construction/:id' exact element={<ViewConstruction />} />
           <Route path='/machinery/:id' exact element={<ViewMachinery />} />
+          <Route path='/furniture/:id' exact element={<ViewFurniture />} />
 
 
           <Route path='/app/register' exact element={<Register />} />

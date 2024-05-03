@@ -5,6 +5,7 @@ import PropertyCard from '../cards/PropertyCard'
 import MachineryCard from '../cards/MachineryCard'
 import ConstructionCard from '../cards/ConstructionCard'
 import Sortby from '../utils/Sortby'
+import FurnitureCard from '../cards/FurnitureCard'
 
 export default function AllFurniture() {
     const [t] = useTranslation()
@@ -16,61 +17,38 @@ export default function AllFurniture() {
         <div className="allConstruction allItems">
             <div className="custom-container">
                 <div className="d-flex justify-content-between align-items-center mb-4">
-                    <h2 className="fw-bolder color-primary text-uppercase">{t("allFurniture")}</h2>
+                    <h2 className="fw-bolder color-primary text-uppercase">{t("furnitureAppliances")}</h2>
 
                     <Sortby sortBy={sortby} setSortBy={setSortBy} sortOrder={sortOrder} setSortOrder={setSortOrder} />
 
                 </div>
 
                 <div className="cards-grid">
-                    <ConstructionCard id=""
-                        imgUrl={["https://5.imimg.com/data5/GY/OT/DS/SELLER-54664232/ultratech-cement-500x500.jpg", "https://media.istockphoto.com/id/987409372/photo/cement-in-bags-3d-rendering-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=qPFDhwtjy9VAfmKPK4lfbuA0sTS8dOMSbeoX6ngclC0="]}
-                        title="Best quality Cement for home construction" price="1200"
-                        quantity="20 KG" available="Yes" category="Cement"
+                    <FurnitureCard id=""
+                        imgUrl={["https://homefactree.com/wp-content/uploads/2021/07/CADIZ-WARDROBE-HF.jpg", "https://images.woodenstreet.de/image/cache/data%2Fwardrobes-mdf%2Fzyra-4-door-wardrobe-without-mirror-gothic-grey-classic-oak-finish%2F1-750x650.jpg"]}
+                        title="Cupboard for hanging purpose" price="300"
+                         available="Yes" category="Cabinets"
                         datePosted="17 March 2024" sellerName="Hendrich Klasen"
                         city="Carolina, USA"
                         description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
                     />
-                    <ConstructionCard id=""
-                        imgUrl={["https://5.imimg.com/data5/GY/OT/DS/SELLER-54664232/ultratech-cement-500x500.jpg", "https://media.istockphoto.com/id/987409372/photo/cement-in-bags-3d-rendering-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=qPFDhwtjy9VAfmKPK4lfbuA0sTS8dOMSbeoX6ngclC0="]}
-                        title="Best quality Cement for home construction" price="1200"
-                        quantity="20 KG" available="Yes" category="Cement"
+                    <FurnitureCard id=""
+                        imgUrl={["https://homefactree.com/wp-content/uploads/2021/07/CADIZ-WARDROBE-HF.jpg", "https://images.woodenstreet.de/image/cache/data%2Fwardrobes-mdf%2Fzyra-4-door-wardrobe-without-mirror-gothic-grey-classic-oak-finish%2F1-750x650.jpg"]}
+                        title="Cupboard for hanging purpose" price="300"
+                         available="Yes" category="Cabinets"
                         datePosted="17 March 2024" sellerName="Hendrich Klasen"
                         city="Carolina, USA"
                         description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
                     />
-                    <ConstructionCard id=""
-                        imgUrl={["https://5.imimg.com/data5/GY/OT/DS/SELLER-54664232/ultratech-cement-500x500.jpg", "https://media.istockphoto.com/id/987409372/photo/cement-in-bags-3d-rendering-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=qPFDhwtjy9VAfmKPK4lfbuA0sTS8dOMSbeoX6ngclC0="]}
-                        title="Best quality Cement for home construction" price="1200"
-                        quantity="20 KG" available="Yes" category="Cement"
+                    <FurnitureCard id=""
+                        imgUrl={["https://homefactree.com/wp-content/uploads/2021/07/CADIZ-WARDROBE-HF.jpg", "https://images.woodenstreet.de/image/cache/data%2Fwardrobes-mdf%2Fzyra-4-door-wardrobe-without-mirror-gothic-grey-classic-oak-finish%2F1-750x650.jpg"]}
+                        title="Cupboard for hanging purpose" price="300"
+                         available="Yes" category="Cabinets"
                         datePosted="17 March 2024" sellerName="Hendrich Klasen"
                         city="Carolina, USA"
                         description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
                     />
-                    <ConstructionCard id=""
-                        imgUrl={["https://5.imimg.com/data5/GY/OT/DS/SELLER-54664232/ultratech-cement-500x500.jpg", "https://media.istockphoto.com/id/987409372/photo/cement-in-bags-3d-rendering-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=qPFDhwtjy9VAfmKPK4lfbuA0sTS8dOMSbeoX6ngclC0="]}
-                        title="Best quality Cement for home construction" price="1200"
-                        quantity="20 KG" available="Yes" category="Cement"
-                        datePosted="17 March 2024" sellerName="Hendrich Klasen"
-                        city="Carolina, USA"
-                        description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
-                    />
-                    <ConstructionCard id=""
-                        imgUrl={["https://5.imimg.com/data5/GY/OT/DS/SELLER-54664232/ultratech-cement-500x500.jpg", "https://media.istockphoto.com/id/987409372/photo/cement-in-bags-3d-rendering-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=qPFDhwtjy9VAfmKPK4lfbuA0sTS8dOMSbeoX6ngclC0="]}
-                        title="Best quality Cement for home construction" price="1200"
-                        quantity="20 KG" available="Yes" category="Cement"
-                        datePosted="17 March 2024" sellerName="Hendrich Klasen"
-                        city="Carolina, USA"
-                        description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
-                    />
-                    <ConstructionCard id=""
-                        imgUrl={["https://5.imimg.com/data5/GY/OT/DS/SELLER-54664232/ultratech-cement-500x500.jpg", "https://media.istockphoto.com/id/987409372/photo/cement-in-bags-3d-rendering-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=qPFDhwtjy9VAfmKPK4lfbuA0sTS8dOMSbeoX6ngclC0="]}
-                        title="Best quality Cement for home construction" price="1200"
-                        quantity="20 KG" available="Yes" category="Cement"
-                        datePosted="17 March 2024" sellerName="Hendrich Klasen"
-                        city="Carolina, USA"
-                        description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
-                    />
+                    
 
                 </div>
 

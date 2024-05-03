@@ -145,98 +145,137 @@ const propertyCategories = [
         subcategories: []
     }
 ];
+// const constructionCategories = [
+//     {
+//         id: 1,
+//         categoryName: 'Concrete Materials',
+//         image: concrete,
+//         subcategories: [
+//             'Cement',
+//             'Concrete mix',
+//             'Reinforcing steel bars (rebar)',
+//             'Concrete blocks',
+//             'Precast concrete elements'
+//         ]
+//     },
+//     {
+//         id: 2,
+//         categoryName: 'Steel and Metal',
+//         image: steel,
+//         subcategories: [
+//             'Structural steel beams',
+//             'Steel bars',
+//             'Metal roofing materials',
+//             'Sheet metal',
+//             'Steel pipes'
+//         ]
+//     },
+//     {
+//         id: 3,
+//         categoryName: 'Wood and Timber',
+//         image: wood,
+//         subcategories: [
+//             'Lumber',
+//             'Plywood',
+//             'Wood studs',
+//             'Timber beams',
+//             'Wood panels'
+//         ]
+//     },
+//     {
+//         id: 4,
+//         categoryName: 'Masonry Materials',
+//         image: masonry,
+//         subcategories: [
+//             'Bricks',
+//             'Clay tiles',
+//             'Mortar',
+//             'Concrete blocks',
+//             'Stone veneer'
+//         ]
+//     },
+//     {
+//         id: 5,
+//         categoryName: 'Roofing Materials',
+//         image: roofing,
+//         subcategories: [
+//             'Asphalt shingles',
+//             'Metal roofing panels',
+//             'Roofing membranes',
+//             'Roof tiles',
+//             'Underlayment materials'
+//         ]
+//     },
+//     {
+//         id: 6,
+//         categoryName: 'Insulation and Sealants',
+//         image: insulation,
+//         subcategories: [
+//             'Fiberglass insulation',
+//             'Spray foam insulation',
+//             'Foam board insulation',
+//             'Sealant caulk',
+//             'Weatherstripping'
+//         ]
+//     },
+//     {
+//         id: 7,
+//         categoryName: 'Finishing Materials',
+//         image: finishing,
+//         subcategories: [
+//             'Paints and coatings',
+//             'Drywall panels',
+//             'Flooring materials',
+//             'Tiles',
+//             'Trim and molding'
+//         ]
+//     },
+//     {
+//         id: 8,
+//         image: others,
+//         categoryName: "Others",
+//         subcategories: []
+//     }
+// ];
 const constructionCategories = [
     {
         id: 1,
-        categoryName: 'Concrete Materials',
-        image: concrete,
-        subcategories: [
-            'Cement',
-            'Concrete mix',
-            'Reinforcing steel bars (rebar)',
-            'Concrete blocks',
-            'Precast concrete elements'
-        ]
+        image: "foundation",
+        categoryName: "Foundation",
+        subcategories: ["Concrete", "Masonry", "Steel", "Wood"]
     },
     {
         id: 2,
-        categoryName: 'Steel and Metal',
-        image: steel,
-        subcategories: [
-            'Structural steel beams',
-            'Steel bars',
-            'Metal roofing materials',
-            'Sheet metal',
-            'Steel pipes'
-        ]
+        image: "wall",
+        categoryName: "Construction of walls and posts",
+        subcategories: ["Concrete", "Masonry", "Steel", "Wood", "Insulation", "Drywall", "Paint", "Caulking"]
     },
     {
         id: 3,
-        categoryName: 'Wood and Timber',
-        image: wood,
-        subcategories: [
-            'Lumber',
-            'Plywood',
-            'Wood studs',
-            'Timber beams',
-            'Wood panels'
-        ]
+        image: "floor",
+        categoryName: "Installation of slabs and floors",
+        subcategories: ["Tile", "Stone"]
     },
     {
         id: 4,
-        categoryName: 'Masonry Materials',
-        image: masonry,
-        subcategories: [
-            'Bricks',
-            'Clay tiles',
-            'Mortar',
-            'Concrete blocks',
-            'Stone veneer'
-        ]
+        image: "roofing",
+        categoryName: "Frame and roofing",
+        subcategories: ["Asphalt Shingles", "Metal Roofing", "Tile Roofing", "Shingle Siding"]
     },
     {
         id: 5,
-        categoryName: 'Roofing Materials',
-        image: roofing,
-        subcategories: [
-            'Asphalt shingles',
-            'Metal roofing panels',
-            'Roofing membranes',
-            'Roof tiles',
-            'Underlayment materials'
-        ]
+        image: "excavation",
+        categoryName: "Earthworks and excavation work",
+        subcategories: ["Soil", "Rock", "Sand", "Gravel"]
     },
     {
         id: 6,
-        categoryName: 'Insulation and Sealants',
-        image: insulation,
-        subcategories: [
-            'Fiberglass insulation',
-            'Spray foam insulation',
-            'Foam board insulation',
-            'Sealant caulk',
-            'Weatherstripping'
-        ]
-    },
-    {
-        id: 7,
-        categoryName: 'Finishing Materials',
-        image: finishing,
-        subcategories: [
-            'Paints and coatings',
-            'Drywall panels',
-            'Flooring materials',
-            'Tiles',
-            'Trim and molding'
-        ]
-    },
-    {
-        id: 8,
-        image: others,
+        image: "others",
         categoryName: "Others",
         subcategories: []
     }
 ];
+
 const furnitureCategories = [
     {
         id: 1,
@@ -360,4 +399,4 @@ const marketplaceCategories = [
     },
 ]
 
-export { machineryCategories, propertyCategories, constructionCategories,furnitureCategories, marketplaceCategories }
+export { machineryCategories, propertyCategories, constructionCategories, furnitureCategories, marketplaceCategories }

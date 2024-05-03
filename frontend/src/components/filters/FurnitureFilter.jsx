@@ -14,8 +14,11 @@ import MapSearch from './MapSearch';
 import TestNestedDropdown from './TestNestedDropdown';
 import NestedDropdown from './NestedDropdown';
 import CustomLocationsDropdown from './CustomLocationsDropdown';
-import { constructionCategories, furnitureCategories } from '../../assets/data/categories';
+import { furnitureCategories, machineryCategories } from '../../assets/data/categories';
+import { furnitureBrands, furnitureTypes, machineryType } from '../../assets/data/filtersData';
 import formatNumber from '../../utils/formatNumber';
+
+
 
 export default function FurnitureFilter() {
     const [t] = useTranslation();
@@ -26,6 +29,7 @@ export default function FurnitureFilter() {
     const condtionRef = useRef();
     const yearBuildRef = useRef();
     const categoriesRef = useRef()
+    const machineryTypeRef = useRef()
 
     const [showLocationDropdown, setShowLocationDropdown] = useState(false);
     const [showCategoriesDrp, setShowCategoriesDrp] = useState(false)
@@ -33,6 +37,7 @@ export default function FurnitureFilter() {
     const [showBrandDrp, setShowBrandDrp] = useState(false);
     const [showConditionDrp, setShowConditionDrp] = useState(false);
     const [showYearDrp, setShowYearDrp] = useState(false)
+    const [showMachineryType, setShowMachineryType] = useState(false)
 
     const [type, setType] = useState('buy')
     const [minPrice, setMinPrice] = useState('')
@@ -48,6 +53,7 @@ export default function FurnitureFilter() {
 
     const [selectedBrands, setSelectedBrands] = useState([])
     const [selectedCondtions, setSelectedConditions] = useState([])
+    const [selectedMachineryType, setSelectedMachineryType] = useState([])
 
     // filters for customLocationDropdown component 
     const [selectedCountries, setSelectedCountries] = useState([])
@@ -72,27 +78,20 @@ export default function FurnitureFilter() {
     ]
 
     const brands = [
-        'LafargeHolcim',
-        'Cemex',
-        'HeidelbergCement',
-        'CRH plc',
-        'Boral',
-        'Saint-Gobain',
-        'Nippon Steel Corporation',
-        'ArcelorMittal',
-        'BlueScope Steel',
-        'USG Corporation',
-        'Georgia-Pacific',
-        'James Hardie Industries',
-        'Owens Corning',
-        'Johns Manville',
-        'Knauf',
-        'Dow Building Solutions',
-        'Sherwin-Williams',
-        'Behr',
-        'Valspar',
-        'PPG Industries',
-        'Other'
+        "Caterpillar",
+        "Komatsu",
+        "Volvo",
+        "John-Deere",
+        "Hitachi",
+        "Liebherr",
+        "Liebherr",
+        "Liebherr",
+        "Liebherr",
+        "Liebherr",
+        "Bobcat",
+        "JCB",
+        "Doosan",
+        "Kubota"
     ];
 
     const conditionData = [
@@ -124,6 +123,9 @@ export default function FurnitureFilter() {
         }
         if (categoriesRef.current && !categoriesRef.current.contains(e.target)) {
             setShowCategoriesDrp(false);
+        }
+        if (machineryTypeRef.current && !machineryTypeRef.current.contains(e.target)) {
+            setShowMachineryType(false);
         }
     };
 
@@ -190,7 +192,29 @@ export default function FurnitureFilter() {
             setSelectedFilters([...selectedFilters, val]);
             setYearBuild([...yearBuild, val])
         }
+        else {
+            const updatedFilters = selectedFilters.filter(filter => filter !== val);
+            setSelectedFilters(updatedFilters);
+
+            const updatedYearBuild = yearBuild.filter(type => type !== val);
+            setYearBuild(updatedYearBuild);
+        }
     }
+    const handleMachineryType = (val) => {
+        setShowMachineryType(false)
+        const isAlreadySelected = selectedFilters.includes(val);
+
+        if (isAlreadySelected) {
+            const updatedFilters = selectedFilters.filter(filter => filter !== val);
+            setSelectedFilters(updatedFilters);
+
+            const updatedMachineryTypes = selectedMachineryType.filter(type => type !== val);
+            setSelectedMachineryType(updatedMachineryTypes);
+        } else {
+            setSelectedFilters([...selectedFilters, val]);
+            setSelectedMachineryType([...selectedMachineryType, val]);
+        }
+    };
 
 
     // for locations 
@@ -227,9 +251,9 @@ export default function FurnitureFilter() {
     const handleFilter = () => {
         console.log(checkedSubcategories)
         console.log(selectedFilters)
+
         const minPriceInt = parseInt(minPrice.replace(/\s/g, ''), 10);
         const maxPriceInt = parseInt(maxPrice.replace(/\s/g, ''), 10);
-
         // console.log(location)
 
         // console.log(selectedBrands)
@@ -247,6 +271,9 @@ export default function FurnitureFilter() {
         }
         if (selectedCondtions.includes(name)) {
             setSelectedConditions(item => item.filter(item => item !== name));
+        }
+        if (selectedMachineryType.includes(name)) {
+            setSelectedMachineryType(item => item.filter(item => item !== name));
         }
         if (selectedCountries.includes(name)) {
             setSelectedCountries(item => item.filter(item => item !== name));
@@ -285,6 +312,7 @@ export default function FurnitureFilter() {
         setSelectedBrands([]);
         setSelectedConditions([]);
         setCheckedSubcategories([]);
+        setSelectedMachineryType([]);
     }
 
     // only for cities 
@@ -299,11 +327,24 @@ export default function FurnitureFilter() {
     return (
         <div className="filter-area my-4">
             <div className="custom-container">
-                <p className="color-primary mb-2">Sofa, cupboard or furniture: find what you need at the right price.?</p>
-                <div className="filter machinery-filter construction-filter">
+                <p className="color-primary mb-2">Cranes, paints or helmets: find what you need at the right price.</p>
+                <div className="filter machinery-filter three-col-filter">
                     <div className="split">
 
                         <div className="user-input">
+                            <div className="type-select">
+                                <Select
+                                    className="custom-input bordor-0 type-select-dropdown"
+                                    classNamePrefix="select"
+                                    placeholder='Buy/Rent'
+                                    name="color"
+                                    options={sellType}
+                                    defaultValue={[sellType[1]]}
+                                    onChange={handleType}
+                                    value={type}
+                                    isClearable={true}
+                                />
+                            </div>
                             <div className="category-list" onClick={() => setShowLocationDropdown(!showLocationDropdown)}>
                                 <CustomLocationsDropdown selectedLocations={selectedAllLocations} handleLocationSelect={handleLocationSelect} />
                                 {/* <PlacesAutocomplete
@@ -335,18 +376,7 @@ export default function FurnitureFilter() {
                                 </PlacesAutocomplete> */}
                             </div>
                             <div className="search-input" onClick={() => setShowCategoriesDrp(true)}>
-                                {/* <input type="text" className="custom-input" placeholder='Try Excavator, Apartment, Cement' value={selectedCategory} onChange={handleCategoryChange}/> */}
-                                {/* <Select
-                                    className="custom-input bordor-0"
-                                    classNamePrefix="select"
-                                    placeholder="Select Category"
-                                    name="color"
-                                    isMulti
-                                    options={formattedCategories}
-                                    onChange={handleCategoryChange}
-                                    value={selectedCategory}
-                                    isClearable={true}
-                                /> */}
+
 
 
                                 <NestedDropdown
@@ -364,10 +394,11 @@ export default function FurnitureFilter() {
                             <button className="custom-btn" onClick={handleFilter}>Search</button>
                         </div>
                     </div>
-                    <div className="other-filters p-1 pt-3 pb-0">
-                        <div className="d-flex gap-4" style={{ flexWrap: "wrap" }}>
+                    <div className="other-filters p-1 pt-3 pb-0" style={{ flexWrap: "wrap" }}>
+                        <div className="d-flex gap-4">
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowPriceDrp(!showPriceDrp)}>
+
                                     <div className='text-white'>
                                         {minPrice === '' && maxPrice === '' ? (
                                             <p className='filter-values'>Budget</p>
@@ -395,9 +426,6 @@ export default function FurnitureFilter() {
                                             </>
                                         )}
                                     </div>
-
-
-
                                     <FaAngleDown className='text-white' />
                                 </div>
 
@@ -436,7 +464,7 @@ export default function FurnitureFilter() {
                                 </div>
                             </div>
 
-                            {/* <div className="other-filter">
+                            <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowBrandDrp(!showBrandDrp)}>
                                     <p className='text-white'>Brand</p>
                                     <FaAngleDown className='text-white' />
@@ -444,7 +472,7 @@ export default function FurnitureFilter() {
 
                                 <div className={`custom-dropdown ${showBrandDrp ? 'show' : ''}`} ref={brandRef}>
                                     {
-                                        brands.map((data, i) => {
+                                        furnitureBrands.map((data, i) => {
                                             return (
                                                 <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleBrand(data)}>
                                                     <p htmlFor={data} id={`label-${data}`}>{data}</p>
@@ -455,13 +483,14 @@ export default function FurnitureFilter() {
                                                         checked={selectedFilters.includes(data)}
                                                         onChange={() => handleBrand(data)}
                                                     />
-                                                </div>)
+                                                </div>
+                                            )
                                         })
                                     }
                                 </div>
-                            </div> */}
+                            </div>
 
-                            <div className="other-filter">
+                            {/* <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowConditionDrp(!showConditionDrp)}>
                                     <p className='text-white'>{condition === '' ? 'Condition' : `Condition: ${condition}`}</p>
                                     <FaAngleDown className='text-white' />
@@ -485,11 +514,11 @@ export default function FurnitureFilter() {
                                         })
                                     }
                                 </div>
-                            </div>
+                            </div> */}
 
-                            {/* <div className="other-filter">
+                            <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowYearDrp(!showYearDrp)}>
-                                    <p className='text-white'>Build</p>
+                                    <p className='text-white'>Year</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
@@ -497,21 +526,56 @@ export default function FurnitureFilter() {
                                     {
                                         yearBuildData.map((data, i) => {
                                             return (
-                                                <p key={i} className="custom-dropdown-item" onClick={() => handleYearBuild(data)}>{data}</p>
+                                                <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleYearBuild(data)}>
+                                                    <p htmlFor={data} id={`label-${data}`}>{data}</p>
+                                                    <input
+                                                        type="checkbox"
+                                                        name={data}
+                                                        id={`checkbox-${data}`}
+                                                        checked={selectedFilters.includes(data)}
+                                                        onChange={() => handleYearBuild(data)}
+                                                    />
+                                                </div>
+                                            )
 
+                                        })
+                                    }
+                                </div >
+                            </div>
+
+                            <div className="other-filter">
+                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowMachineryType(!showMachineryType)}>
+                                    <p className='text-white'>Furniture Type</p>
+                                    <FaAngleDown className='text-white' />
+                                </div>
+
+                                <div className={`custom-dropdown ${showMachineryType ? 'show' : ''}`} ref={machineryTypeRef}>
+                                    {
+                                        furnitureTypes.map((data, i) => {
+                                            return (
+                                                <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleMachineryType(data)}>
+                                                    <p htmlFor={data} id={`label-${data}`}>{data}</p>
+                                                    <input
+                                                        type="checkbox"
+                                                        name={data}
+                                                        id={`checkbox-${data}`}
+                                                        checked={selectedFilters.includes(data)}
+                                                        onChange={() => handleMachineryType(data)}
+                                                    />
+                                                </div>
                                             )
                                         })
                                     }
                                 </div>
-                            </div> */}
+                            </div>
 
 
-                            {/* <div className="other-filter">
+                            <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }}>
                                     <label htmlFor="guarantee" className='text-white' style={{ fontSize: "12px" }}>Guarantee</label>
                                     <input type="checkbox" name="" id="guarantee" onChange={() => setGuarantee(!guarantee)} />
                                 </div>
-                            </div> */}
+                            </div>
 
 
                         </div>
@@ -543,6 +607,6 @@ export default function FurnitureFilter() {
 
 
 
-        </div >
+        </div>
     );
 }

@@ -14,7 +14,7 @@ export default function AllMachinery() {
         <div className="allMachinery allItems">
             <div className="custom-container">
                 <div className="d-flex justify-content-between align-items-center mb-4">
-                    <h2 className="fw-bolder color-primary text-uppercase">{t("allMachinery")}</h2>
+                    <h2 className="fw-bolder color-primary text-uppercase">{t("machineryTools")}</h2>
 
                     <Sortby sortBy={sortby} setSortBy={setSortBy} sortOrder={sortOrder} setSortOrder={setSortOrder} />
 

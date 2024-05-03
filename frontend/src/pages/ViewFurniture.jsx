@@ -6,44 +6,35 @@ import ContactUs from '../components/sections/ContactUs'
 import Footer from '../components/sections/Footer'
 import BlogSection from '../components/sections/BlogSection'
 import sellerImage from '../assets/images/sellerImage.png'
-import { FaAngleLeft, FaAngleRight, FaBath, FaBed, FaBuilding, FaEnvelope, FaHeart, FaPhone, FaRegHeart, FaRoadSpikes, FaShare, FaShareNodes } from 'react-icons/fa6'
+import { FaBath, FaBed, FaBuilding, FaEnvelope, FaHeart, FaPhone, FaRegHeart, FaRoadSpikes } from 'react-icons/fa6'
 import MessageOwner from '../components/utils/MessageOwner'
-import { FaRegArrowAltCircleRight, FaSwimmingPool } from 'react-icons/fa'
-
-import { LuBath } from "react-icons/lu";
-import { BsBuildings } from "react-icons/bs";
-import { TbBed, TbCar } from 'react-icons/tb'
-import { PiFlowerTulip } from "react-icons/pi";
-import { MdOutlinePool } from "react-icons/md";
-import { MdOutlineGarage } from "react-icons/md";
-
-
-import OwlCarousel from 'react-owl-carousel';
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
-import Map from '../components/map/Map'
-import Properties from '../components/sections/Properties'
 import SimilarProperties from '../components/sections/SimilarProperties'
 import { Link } from 'react-router-dom'
-import Swal from 'sweetalert2'
 import ShareProduct from '../components/utils/ShareProduct'
+import Map from '../components/map/Map'
+import { FaAngleLeft, FaAngleRight, FaRegCheckSquare } from 'react-icons/fa'
+import { TbCar } from 'react-icons/tb'
+import { GrStatusInfo } from 'react-icons/gr'
+import { IoIosColorPalette } from 'react-icons/io'
 
-export default function ViewProperty() {
+
+export default function ViewFurniture() {
 
     const propertyImages = [
-        "https://media.istockphoto.com/id/1165384568/photo/europe-modern-complex-of-residential-buildings.jpg?s=612x612&w=0&k=20&c=iW4NBiMPKEuvaA7h8wIsPHikhS64eR-5EVPfjQ9GPOA=",
+        "https://homefactree.com/wp-content/uploads/2021/07/CADIZ-WARDROBE-HF.jpg",
         "https://img.lovepik.com/photo/48012/2630.jpg_wh860.jpg",
-        "https://assets.architecturaldesigns.com/plan_assets/3199/original/3199D_front_1557350260.jpg"
 
     ];
     const [t] = useTranslation()
     const [favourite, setFavourite] = useState(false)
-
+    const [mainImage, setMainImage] = useState(propertyImages[0]);
     const [mainImageIndex, setMainImageIndex] = useState(0);
 
-    const handleImageClick = (index) => {
-        setMainImageIndex(index);
+
+    const handleImageClick = (image) => {
+        setMainImage(image);
     };
+
 
     const handlePreviousImage = () => {
         const newIndex = (mainImageIndex - 1 + propertyImages.length) % propertyImages.length;
@@ -54,40 +45,10 @@ export default function ViewProperty() {
         const newIndex = (mainImageIndex + 1) % propertyImages.length;
         setMainImageIndex(newIndex);
     };
-
-    const options = {
-        loop: true,
-        center: false,
-        items: 1,
-        margin: 10,
-        autoplay: false,
-        dots: true,
-        autoplayTimeout: 8500,
-        smartSpeed: 450,
-        nav: true,
-        responsive: {
-            0: {
-                items: 3
-            },
-            700: {
-                items: 4
-            },
-            1000: {
-                items: 4
-            }
-        }
-    };
-
-
-
-    // const handleImageClick = (image) => {
-    //     setMainImage(image);
-    // };
-
     return (
         <>
             <Navbar />
-            <Breadcrumb title="Beautiful Modern House with Stunning Views" link={t("property")} />
+            <Breadcrumb title="Best Cupboard for hanging purpose" link={t("construction")} />
 
             <section className="details-section">
                 <div className="custom-container">
@@ -96,7 +57,7 @@ export default function ViewProperty() {
 
                             <div className="side images mb-2">
                                 <div className="d-flex align-items-center justify-content-between mb-3">
-                                    <Link to='../properties'>
+                                    <Link to='../construction'>
                                         <p className="color-secondary">&lt; Back to list</p>
                                     </Link>
                                     <ShareProduct />
@@ -109,25 +70,29 @@ export default function ViewProperty() {
                                         <FaAngleRight className='arrow-icon' />
                                     </div>
                                     <img src={propertyImages[mainImageIndex]} alt="" />
+
                                 </div>
+
                                 <div className="more-images">
+                                    {/* <OwlCarousel id="" className="owl-carousel owl-theme" {...options}> */}
                                     {propertyImages.map((image, i) => (
                                         <div key={i} className={`image ${mainImageIndex === i ? 'active' : ''}`} onClick={() => handleImageClick(i)}>
                                             <img src={image} alt="" />
                                         </div>
                                     ))}
+
+
+                                    {/* </OwlCarousel> */}
                                 </div>
                             </div>
 
                             <div className="side basic-information mb-2">
                                 <div className="d-flex align-items-center justify-content-between mb-2">
                                     <h5 className="color-primary fw-bolder">MAD 23,000</h5>
-                                    <div className="custom-badge">Rent</div>
                                 </div>
 
-                                <h4 className="fw-bolder mb-2">Beautiful Modern House with Stunning Views</h4>
-                                <p className='paragraph mb-0 '>Appartment, (200 sq ft)</p>
-                                <p className='paragraph color-secondary my-2 '>5232 North Carolina Ave. 21BC</p>
+                                <h4 className="fw-bolder mb-2">Best cupboard for hanging purpose</h4>
+                                <p className='paragraph mb-1 '>{t("category")} Cupboards</p>
 
                                 <div className="d-flex align-items-center justify-content-between mb-2">
                                     <p className=''>Caroline, USA</p>
@@ -136,32 +101,27 @@ export default function ViewProperty() {
                                     }
                                 </div>
 
+                                <div className="info-icons mt-2">
+                                    <small className='color-secondary '>Date Posted: 12 March 2024</small>
+                                </div>
                                 <hr />
 
                                 <div className="info-icons mt-2">
                                     <div className="d-flex align-items-center gap-2">
-                                        <TbBed className='color-secondary' />
-                                        <small className="color-secondary">2 {t("bedrooms")}</small>
+                                        <small className="color-secondary">{t("year")}:</small>
+                                        <small className="color-secondary">2021</small>
                                     </div>
                                     <div className="d-flex align-items-center gap-2">
-                                        <LuBath className='color-secondary' />
-                                        <small className="color-secondary">2 {t("baths")}</small>
+                                        <FaRegCheckSquare className='color-secondary' />
+                                        <small className="color-secondary">2 Years</small>
                                     </div>
                                     <div className="d-flex align-items-center gap-2">
-                                        <BsBuildings className='color-secondary' />
-                                        <small className="color-secondary">2 sq ft</small>
+                                        <GrStatusInfo className='color-secondary' />
+                                        <small className="color-secondary">New</small>
                                     </div>
                                     <div className="d-flex align-items-center gap-2">
-                                        <PiFlowerTulip className='color-secondary' />
-                                        <small className="color-secondary">2 {t("garden")}</small>
-                                    </div>
-                                    <div className="d-flex align-items-center gap-2">
-                                        <TbCar className='color-secondary' />
-                                        <small className="color-secondary">2 {t("garage")}</small>
-                                    </div>
-                                    <div className="d-flex align-items-center gap-2">
-                                        <MdOutlinePool className='color-secondary' />
-                                        <small className="color-secondary">2 {t("pool")}</small>
+                                        <IoIosColorPalette className='color-secondary' />
+                                        <small className="color-secondary">Brown</small>
                                     </div>
                                 </div>
                             </div>
@@ -180,57 +140,87 @@ export default function ViewProperty() {
                                 <div className="features-grid">
                                     <div className="feature">
                                         <div className="label">
+                                            <p className="color-secondary">{t("application")}</p>
+                                        </div>
+                                        <p className="paragraph">Application</p>
+                                    </div>
+                                    <div className="feature">
+                                        <div className="label">
                                             <p className="color-secondary">{t("category")}</p>
                                         </div>
-                                        <p className="paragraph">Apartment</p>
+                                        <p className="paragraph">Cubboards</p>
                                     </div>
                                     <div className="feature">
                                         <div className="label">
-                                            <p className="color-secondary">{t("sizeArea")}</p>
+                                            <p className="color-secondary">{t("brand")}</p>
                                         </div>
-                                        <p className="paragraph">200 sq ft</p>
+                                        <p className="paragraph">Brand</p>
                                     </div>
                                     <div className="feature">
                                         <div className="label">
-                                            <p className="color-secondary">{t("bedrooms")}</p>
+                                            <p className="color-secondary">{t("modal")}</p>
                                         </div>
-                                        <p className="paragraph">4</p>
+                                        <p className="paragraph">Modal</p>
                                     </div>
                                     <div className="feature">
                                         <div className="label">
-                                            <p className="color-secondary">{t("baths")}</p>
+                                            <p className="color-secondary">Furniture Type</p>
                                         </div>
-                                        <p className="paragraph">2</p>
-                                    </div>
-                                    <div className="feature">
-                                        <div className="label">
-                                            <p className="color-secondary">{t("garden")}</p>
-                                        </div>
-                                        <p className="paragraph">1</p>
-                                    </div>
-                                    <div className="feature">
-                                        <div className="label">
-                                            <p className="color-secondary">{t("pool")}</p>
-                                        </div>
-                                        <p className="paragraph">1</p>
-                                    </div>
-                                    <div className="feature">
-                                        <div className="label">
-                                            <p className="color-secondary">{t("garage")}</p>
-                                        </div>
-                                        <p className="paragraph">2</p>
-                                    </div>
-                                    <div className="feature">
-                                        <div className="label">
-                                            <p className="color-secondary">{t("transaction")}</p>
-                                        </div>
-                                        <p className="paragraph">Sale</p>
+                                        <p className="paragraph">Electric</p>
                                     </div>
                                     <div className="feature">
                                         <div className="label">
                                             <p className="color-secondary">{t("year")}</p>
                                         </div>
-                                        <p className="paragraph">2022</p>
+                                        <p className="paragraph">1 to 3 years</p>
+                                    </div>
+                                    <div className="feature">
+                                        <div className="label">
+                                            <p className="color-secondary">{t("unit")}</p>
+                                        </div>
+                                        <p className="paragraph">Per Item</p>
+                                    </div>
+                                    <div className="feature">
+                                        <div className="label">
+                                            <p className="color-secondary">{t("dimension")}</p>
+                                        </div>
+                                        <p className="paragraph">12 x 23</p>
+                                    </div>
+                                    <div className="feature">
+                                        <div className="label">
+                                            <p className="color-secondary">{t("color")}</p>
+                                        </div>
+                                        <p className="paragraph">Brown</p>
+                                    </div>
+                                    <div className="feature">
+                                        <div className="label">
+                                            <p className="color-secondary">{t("available")}</p>
+                                        </div>
+                                        <p className="paragraph">Yes</p>
+                                    </div>
+                                    <div className="feature">
+                                        <div className="label">
+                                            <p className="color-secondary">{t("garantee")}</p>
+                                        </div>
+                                        <p className="paragraph">2 Years</p>
+                                    </div>
+                                    <div className="feature">
+                                        <div className="label">
+                                            <p className="color-secondary">{t("transaction")}</p>
+                                        </div>
+                                        <p className="paragraph">Rent</p>
+                                    </div>
+                                    <div className="feature">
+                                        <div className="label">
+                                            <p className="color-secondary">{t("condition")}</p>
+                                        </div>
+                                        <p className="paragraph">New</p>
+                                    </div>
+                                    <div className="feature">
+                                        <div className="label">
+                                            <p className="color-secondary">{t("weight")}</p>
+                                        </div>
+                                        <p className="paragraph">20 kg</p>
                                     </div>
                                 </div>
                             </div>
@@ -242,7 +232,6 @@ export default function ViewProperty() {
                                 <p className="color-secondary my-2">5232 North Carolina Ave. 21BC</p>
                                 <p className="color-secondary my-2">Reference ID: 23828830</p>
                             </div>
-
 
                         </div>
 
@@ -273,7 +262,7 @@ export default function ViewProperty() {
 
             <SimilarProperties />
             <BlogSection />
-            <ContactUs supportTitle={t("propertySupportTitle")} supportDescription={t("propertySupportDescription")} />
+            <ContactUs supportTitle={t("constructionSupportTitle")} supportDescription={t("constructionSupportDesc")} />
             <Footer />
         </>
     )

@@ -9,7 +9,6 @@ import AllProperties from '../components/sections/AllProperties'
 import AllMachinery from '../components/sections/AllMachinery'
 import MachineryCategories from '../components/categories/MachineryCategories'
 import MachineryFilter from '../components/filters/MachineryFilter'
-import MachineFilter2 from '../components/filters/MachineFilter2'
 import TestNestedDropdown from '../components/filters/TestNestedDropdown'
 import FilterTagsBackup from '../components/filters/FilterTagsBackup'
 import Applications from '../components/categories/Applications'
@@ -108,7 +107,31 @@ export default function MarketPlace() {
     return (
         <>
             <Navbar />
-            <Breadcrumb title={t("exploreMachinery")} link={t("machinery")} />
+
+            {(() => {
+                if (activeCatId === 1) {
+                    return (
+                        <>
+                            <Breadcrumb title={t("machineryTools")} link={t("machineryTools")} />
+                        </>
+                    )
+                }
+                else if (activeCatId === 2) {
+                    return (
+                        <>
+                            <Breadcrumb title={t("buildingMaterial")} link={t("buildingMaterial")} />
+                        </>
+                    )
+                }
+                else if (activeCatId === 3) {
+                    return (
+                        <>
+                            <Breadcrumb title={t("furnitureAppliances")} link={t("furnitureAppliances")} />
+                        </>
+                    )
+                }
+            })()}
+
             {/* <MachineryCategories /> */}
             <div className="categories">
                 <div className="container">
@@ -165,7 +188,7 @@ export default function MarketPlace() {
                 if (activeCatId === 1) {
                     return (
                         <>
-                            <MachineFilter2 />
+                            <MachineryFilter />
                             <AllMachinery />
                         </>
                     )

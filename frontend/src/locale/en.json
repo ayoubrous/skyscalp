@@ -25,7 +25,7 @@
     "areaUnit": "Sq ft",
     "machinerySectionTitle": "Build your property",
     "machinerySectionSubTitle": "Explore all machinery items for sale and rent",
-    "modal": "Modal",
+    "modal": "Model",
     "condition": "Condition",
     "category": "Category",
     "datePosted": "Date Posted",
@@ -125,5 +125,6 @@
     "marketplace": "Marketplace",
     "buildingMaterial": "Building Materials",
     "furnitureAppliances": "Furniture, Appliances",
-    "machineryTools": "Machinery & Tools"
+    "machineryTools": "Machinery & Tools",
+    "transaction": "Transaction"
 }

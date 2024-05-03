@@ -16,7 +16,7 @@ export default function AllConstruction() {
         <div className="allConstruction allItems">
             <div className="custom-container">
                 <div className="d-flex justify-content-between align-items-center mb-4">
-                    <h2 className="fw-bolder color-primary text-uppercase">{t("allConstruction")}</h2>
+                    <h2 className="fw-bolder color-primary text-uppercase">{t("buildingMaterial")}</h2>
 
                     <Sortby sortBy={sortby} setSortBy={setSortBy} sortOrder={sortOrder} setSortOrder={setSortOrder} />
 

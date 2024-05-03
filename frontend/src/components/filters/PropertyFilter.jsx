@@ -756,7 +756,7 @@ export default function PropertyFilter() {
                             {/* Build  */}
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowYearDrp(!showYearDrp)}>
-                                    <p className='text-white'>{t("build")}</p>
+                                    <p className='text-white'>{t("year")}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
 

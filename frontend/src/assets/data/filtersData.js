@@ -58,6 +58,49 @@ const featuresDataObj = [
 ];
 const featuresData = ['Balcony', 'Garden', 'Pool', 'Elevator', 'Air conditioning', 'Heating']
 
+const furnitureBrands = [
+    "IKEA",
+    "H&M Home",
+    "BoConcept",
+    "Muji",
+    "Habitat",
+    "John Lewis & Partners",
+    "JYSK",
+    "Conforama",
+    "Maisons du Monde",
+    "Natuzzi",
+    "DFS",
+    "Vitra",
+    "B&B Italia",
+    "Ligne Roset",
+    "Roche Bobois",
+    "Cassina",
+    "Arper",
+    "Flos",
+    "Kartell",
+    "Minotti"
+];
+
+const furnitureTypes = ["Sofa",
+    "Bed",
+    "Dining Table",
+    "Chair",
+    "Wardrobe",
+    "Desk",
+    "Coffee Table",
+    "Bookcase",
+    "Cabinet",
+    "Sideboard",
+    "Dresser",
+    "Couch",
+    "Armchair",
+    "Ottoman",
+    "Bench",
+    "Console Table",
+    "Nightstand",
+    "TV Stand",
+    "Shelf",
+    "Filing Cabinet"]
 
 export {
     machineryType,
@@ -71,4 +114,6 @@ export {
     proximityData,
     featuresData,
     featuresDataObj,
+    furnitureBrands,
+    furnitureTypes
 }
