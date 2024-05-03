@@ -237,5 +237,127 @@ const constructionCategories = [
         subcategories: []
     }
 ];
+const furnitureCategories = [
+    {
+        id: 1,
+        categoryName: 'Seating',
+        image: wood,
+        subcategories: [
+            'Sofas',
+            'Chairs',
+            'Recliners',
+            'Benches',
+            'Stools'
+        ]
+    },
+    {
+        id: 2,
+        categoryName: 'Tables',
+        image: wood,
+        subcategories: [
+            'Dining tables',
+            'Coffee tables',
+            'Side tables',
+            'Console tables',
+            'Desk tables'
+        ]
+    },
+    {
+        id: 3,
+        categoryName: 'Storage',
+        image: wood,
+        subcategories: [
+            'Cabinets',
+            'Shelves',
+            'Wardrobes',
+            'Drawers',
+            'Bookcases'
+        ]
+    },
+    {
+        id: 4,
+        categoryName: 'Beds',
+        image: wood,
+        subcategories: [
+            'Single beds',
+            'Double beds',
+            'Queen beds',
+            'King beds',
+            'Bunk beds'
+        ]
+    },
+    {
+        id: 5,
+        categoryName: 'Desks',
+        image: wood,
+        subcategories: [
+            'Writing desks',
+            'Computer desks',
+            'Executive desks',
+            'Standing desks',
+            'Corner desks'
+        ]
+    },
+    {
+        id: 6,
+        categoryName: 'Outdoor Furniture',
+        image: wood,
+        subcategories: [
+            'Patio sets',
+            'Garden benches',
+            'Outdoor tables',
+            'Deck chairs',
+            'Hammocks'
+        ]
+    },
+    {
+        id: 7,
+        categoryName: 'Accent Furniture',
+        image: wood,
+        subcategories: [
+            'Accent chairs',
+            'Sideboards',
+            'End tables',
+            'Ottomans',
+            'Console cabinets'
+        ]
+    },
+    {
+        id: 8,
+        categoryName: 'Kids Furniture',
+        image: wood,
+        subcategories: [
+            'Kids beds',
+            'Kids tables',
+            'Kids chairs',
+            'Toy storage',
+            'Kids desks'
+        ]
+    },
+    {
+        id: 9,
+        image: others,
+        categoryName: "Others",
+        subcategories: []
+    }
+];
 
-export { machineryCategories, propertyCategories, constructionCategories }
+const marketplaceCategories = [
+    {
+        id: 1,
+        name: "Machinery & Tools",
+        image: excavation
+    },
+    {
+        id: 2,
+        name: "Building Materials",
+        image: concrete
+    },
+    {
+        id: 3,
+        name: "Furniture, Appliances",
+        image: wood
+    },
+]
+
+export { machineryCategories, propertyCategories, constructionCategories,furnitureCategories, marketplaceCategories }

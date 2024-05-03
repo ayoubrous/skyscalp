@@ -8,7 +8,7 @@ import { TbCarCrane } from 'react-icons/tb'
 import logo from '../assets/images/profile/user-1.jpg'
 
 export default function Dashboard() {
-
+  // mongodb+srv://ayoub_skyscalp:sky.scalp.2024@main-skyscalp.aedvf4p.mongodb.net/?retryWrites=true&w=majority&appName=main-skyscalp
   return (
     <>
       <div className="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"

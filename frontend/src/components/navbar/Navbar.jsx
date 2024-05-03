@@ -69,10 +69,11 @@ export default function Navbar() {
                     <div className="commercial-links links">
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/properties?type=buy" >{t("buy")}</NavLink>
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/properties?type=rent" >{t("rent")}</NavLink>
-                        <Link className="link" onClick={() => setshowDrp(true)} >{t("build")}
+                        <Link className="link" onClick={() => setshowDrp(true)} >{t("marketplace")}
                             <div className={`link-dropdown ${showDrp ? 'show' : ''}`} ref={navDrpRef}>
-                                <Link to="/machinery" className='link-dropdown-item' onClick={() => setshowDrp(false)}>{t("machinery")}</Link>
-                                <Link to="/construction" className='link-dropdown-item' onClick={() => setshowDrp(false)}>{t("construction")}</Link>
+                                <Link to="/marketplace?market=1" className='link-dropdown-item' onClick={() => setshowDrp(false)}>{t("machinery")}</Link>
+                                <Link to="/marketplace?market=2" className='link-dropdown-item' onClick={() => setshowDrp(false)}>{t("construction")}</Link>
+                                <Link to="/marketplace?market=3" className='link-dropdown-item' onClick={() => setshowDrp(false)}>{t("furniture")}</Link>
                             </div>
                         </Link>
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/estimate" >{t("estimate")}</NavLink>

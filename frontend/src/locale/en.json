@@ -119,5 +119,11 @@
     "bathrooms": "Bathrooms",
     "proximit": "Proximity",
     "features": "Features",
-    "year": "Year"
+    "year": "Year",
+    "allFurniture": "All Furniture",
+    "furniture": "Furniture",
+    "marketplace": "Marketplace",
+    "buildingMaterial": "Building Materials",
+    "furnitureAppliances": "Furniture, Appliances",
+    "machineryTools": "Machinery & Tools"
 }

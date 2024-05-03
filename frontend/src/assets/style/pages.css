@@ -95,7 +95,7 @@
 .categories .category-card {
     border: 1px solid var(--semi-dark-color-2);
     border-radius: 6px;
-    padding: 5px 0;
+    padding: 10px 0;
     overflow: hidden;
     cursor: pointer;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.032);
@@ -238,8 +238,16 @@
     background-color: #cbdbe0;
     border-radius: 33px;
     font-size: 13px;
+    cursor: pointer;
+    
 }
-
+.subcat-tab.active{
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+}
 
 
 /* ======= About ========  */

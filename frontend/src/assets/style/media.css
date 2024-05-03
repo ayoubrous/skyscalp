@@ -340,78 +340,82 @@
 }
 
 @media screen and (max-width: 595px) {
-
-    .cards-grid {
-        grid-template-columns: repeat(1, 100%);
+    .custom-modal {
+        top: 20%;
+        width: 400px;
     }
 
-    .property-card {
-        height: 460px;
-    }
+        .cards-grid {
+            grid-template-columns: repeat(1, 100%);
+        }
 
-    .custom-card .image img {
-        width: 100% !important;
-    }
+        .property-card {
+            height: 460px;
+        }
 
-    .blog-card {
-        height: 360px;
-    }
+        .custom-card .image img {
+            width: 100% !important;
+        }
 
-    .faq-section {
-        padding: 2rem 0;
-    }
+        .blog-card {
+            height: 360px;
+        }
 
-    .faq-section .faq .faq-row {
-        padding: 15px;
-    }
+        .faq-section {
+            padding: 2rem 0;
+        }
 
-
-    .view-blog {
-        padding: 2rem 0;
-    }
-
-    .details-section .images .main-image {
-        height: 270px;
-    }
-
-    .details-section .main-image .arrow {
-        top: 42%;
-        width: 30px;
-        height: 30px;
-    }
-
-    .testimonials .customers {
-        width: 80%;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .testimonials .customers .customer {
-        width: 100%;
-    }
-}
+        .faq-section .faq .faq-row {
+            padding: 15px;
+        }
 
 
-@media screen and (max-width: 450px) {
-    .property-card {
-        height: 482px;
-    }
+        .view-blog {
+            padding: 2rem 0;
+        }
 
-    .blog-card {
-        height: 360px;
+        .details-section .images .main-image {
+            height: 270px;
+        }
+
+        .details-section .main-image .arrow {
+            top: 42%;
+            width: 30px;
+            height: 30px;
+        }
+
+        .testimonials .customers {
+            width: 80%;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .testimonials .customers .customer {
+            width: 100%;
+        }
     }
 
 
+    @media screen and (max-width: 450px) {
+        .property-card {
+            height: 482px;
+        }
 
-    .details-section .images .main-image {
-        height: 210px;
+        .blog-card {
+            height: 360px;
+        }
+
+
+
+        .details-section .images .main-image {
+            height: 210px;
+        }
+
     }
 
-}
 
-
-@media screen and (max-width: 450px) {
-    .property-card {
-        height: 510px;
+    @media screen and (max-width: 450px) {
+        .property-card {
+            height: 510px;
+        }
     }
-}

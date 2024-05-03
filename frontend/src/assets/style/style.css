@@ -142,6 +142,29 @@
 }
 
 /* ======== Feature Cards ==========  */
+.custom-modal{
+    position: fixed;
+    top: 30%;
+    left: 0;
+    right: 0;
+    width: 550px;
+    display: block;
+    margin: 0 auto;
+    padding: 29px 22px;
+    border-radius: 8px;
+    box-shadow: 0 0 22px rgba(0, 0, 0, 0.11);
+    background-color: #fff;
+    z-index: 10;
+    transform: scale(0);
+    transform-origin: center center;
+    transition: all .2s;
+}
+.custom-modal button{
+    font-size: 12px;
+}
+.custom-modal.show{
+    transform: scale(1);
+}
 .feature-cards {
     position: relative;
     display: flex;
