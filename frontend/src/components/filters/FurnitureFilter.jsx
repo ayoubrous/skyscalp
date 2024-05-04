@@ -545,13 +545,13 @@ export default function FurnitureFilter() {
 
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowMachineryType(!showMachineryType)}>
-                                    <p className='text-white'>Furniture Type</p>
+                                    <p className='text-white'>Type</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
                                 <div className={`custom-dropdown ${showMachineryType ? 'show' : ''}`} ref={machineryTypeRef}>
                                     {
-                                        furnitureTypes.map((data, i) => {
+                                        machineryType.map((data, i) => {
                                             return (
                                                 <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleMachineryType(data)}>
                                                     <p htmlFor={data} id={`label-${data}`}>{data}</p>

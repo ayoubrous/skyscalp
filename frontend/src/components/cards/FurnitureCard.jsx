@@ -71,8 +71,8 @@ const FurnitureCard = ({ id, imgUrl, title, quantity, price, available, category
 
                     <p className='paragraph'>{city}</p>
                     <p className=''>{category} (per Unit)</p>
-                    <p className='color-secondary'>Finishing, Foundations</p>
-                    <p className='color-secondary'>12 KG - 9x4 ft</p>
+                    <p className='color-secondary'>Cupboards</p>
+                    <p className='color-secondary'>12 kg - 9x4 m</p>
 
                     {description && <p className='mb-1 mt-1 color-secondary'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
 

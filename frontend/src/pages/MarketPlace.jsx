@@ -133,7 +133,7 @@ export default function MarketPlace() {
             })()}
 
             {/* <MachineryCategories /> */}
-            <div className="categories">
+            <div className="categories top-section-categories">
                 <div className="container">
                     <div className="cards-grid">
                         {
