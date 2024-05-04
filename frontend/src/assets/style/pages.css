@@ -91,10 +91,6 @@
 .categories {
     width: 100%;
 }
-.top-section-categories .cards-grid{
-    width: 86%;
-    margin: 0 auto;
-}
 
 .categories .category-card {
     border: 1px solid var(--semi-dark-color-2);

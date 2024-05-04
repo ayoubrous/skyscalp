@@ -158,6 +158,9 @@ export default function HomeFilter() {
                     <div className={`module-tab ${activeTab === 'machinery' ? 'active' : ''}`} onClick={() => handleActiveTab('machinery')}>
                         <p>{t("machineryTools")}</p>
                     </div>
+                    <div className={`module-tab ${activeTab === 'furniture' ? 'active' : ''}`} onClick={() => handleActiveTab('furniture')}>
+                        <p>{t("furnitureAppliances")}</p>
+                    </div>
                 </div>
                 <div className="filter hero-filter">
                     <div className="split">
