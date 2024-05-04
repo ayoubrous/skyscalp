@@ -42,6 +42,7 @@
     overflow: hidden;
     display: none;
     z-index: 10;
+    width: 185px;
 }
 .navbar .link .link-dropdown.show{
     display: flex;
