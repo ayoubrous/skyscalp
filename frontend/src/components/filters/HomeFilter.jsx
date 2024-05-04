@@ -11,7 +11,7 @@ import {
 } from 'react-places-autocomplete';
 import NestedDropdown from './NestedDropdown';
 
-import { propertyCategories, machineryCategories, constructionCategories } from '../../assets/data/categories';
+import { propertyCategories, machineryCategories, constructionCategories, furnitureCategories } from '../../assets/data/categories';
 import CustomLocationsDropdown from './CustomLocationsDropdown';
 
 export default function HomeFilter() {
@@ -50,6 +50,9 @@ export default function HomeFilter() {
         else if (activeTab === 'construction') {
             setActiveCategories(constructionCategories)
         }
+        else if (activeTab === 'furniture') {
+            setActiveCategories(furnitureCategories)
+        }
     }, [activeTab])
 
     const handleClickOutside = (e) => {
@@ -81,6 +84,18 @@ export default function HomeFilter() {
 
     const handleActiveTab = (val) => {
         setActiveTab(val)
+        if (activeTab === 'property') {
+            setActiveCategories(propertyCategories)
+        }
+        else if (activeTab === 'machinery') {
+            setActiveCategories(machineryCategories)
+        }
+        else if (activeTab === 'construction') {
+            setActiveCategories(constructionCategories)
+        }
+        else if (activeTab === 'furniture') {
+            setActiveCategories(furnitureCategories)
+        }
         setCheckedSubcategories([])
     }
 
@@ -230,7 +245,7 @@ export default function HomeFilter() {
                                 <div className="selected-filter" style={{ cursor: "pointer" }} onClick={clearAllFilters}>Clear Filters</div>
                             )
                         }
-                        </div>
+                    </div>
                 </div>
 
             </div>
