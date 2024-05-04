@@ -140,13 +140,7 @@ export default function ViewFurniture() {
                                 <div className="features-grid">
                                     <div className="feature">
                                         <div className="label">
-                                            <p className="color-secondary">{t("application")}</p>
-                                        </div>
-                                        <p className="paragraph">Application</p>
-                                    </div>
-                                    <div className="feature">
-                                        <div className="label">
-                                            <p className="color-secondary">{t("category")}</p>
+                                            <p className="color-secondary">{t("subcategory")}</p>
                                         </div>
                                         <p className="paragraph">Cubboards</p>
                                     </div>
@@ -164,7 +158,7 @@ export default function ViewFurniture() {
                                     </div>
                                     <div className="feature">
                                         <div className="label">
-                                            <p className="color-secondary">Furniture Type</p>
+                                            <p className="color-secondary">{t("type")}</p>
                                         </div>
                                         <p className="paragraph">Electric</p>
                                     </div>
@@ -184,7 +178,7 @@ export default function ViewFurniture() {
                                         <div className="label">
                                             <p className="color-secondary">{t("dimension")}</p>
                                         </div>
-                                        <p className="paragraph">12 x 23</p>
+                                        <p className="paragraph">12 x 23 m</p>
                                     </div>
                                     <div className="feature">
                                         <div className="label">
@@ -194,21 +188,21 @@ export default function ViewFurniture() {
                                     </div>
                                     <div className="feature">
                                         <div className="label">
+                                            <p className="color-secondary">{t("weight")}</p>
+                                        </div>
+                                        <p className="paragraph">20 kg</p>
+                                    </div>
+                                    <div className="feature">
+                                        <div className="label">
                                             <p className="color-secondary">{t("available")}</p>
                                         </div>
                                         <p className="paragraph">Yes</p>
                                     </div>
                                     <div className="feature">
                                         <div className="label">
-                                            <p className="color-secondary">{t("garantee")}</p>
+                                            <p className="color-secondary">{t("guarantee")}</p>
                                         </div>
                                         <p className="paragraph">2 Years</p>
-                                    </div>
-                                    <div className="feature">
-                                        <div className="label">
-                                            <p className="color-secondary">{t("transaction")}</p>
-                                        </div>
-                                        <p className="paragraph">Rent</p>
                                     </div>
                                     <div className="feature">
                                         <div className="label">
@@ -216,12 +210,7 @@ export default function ViewFurniture() {
                                         </div>
                                         <p className="paragraph">New</p>
                                     </div>
-                                    <div className="feature">
-                                        <div className="label">
-                                            <p className="color-secondary">{t("weight")}</p>
-                                        </div>
-                                        <p className="paragraph">20 kg</p>
-                                    </div>
+                                   
                                 </div>
                             </div>
 

@@ -126,5 +126,6 @@
     "buildingMaterial": "Building Materials",
     "furnitureAppliances": "Furniture, Appliances",
     "machineryTools": "Machinery & Tools",
-    "transaction": "Transaction"
+    "transaction": "Transaction",
+    "subcategory": "Sub Category"
 }
