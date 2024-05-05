@@ -574,6 +574,10 @@
     .filter-area .selected-filters .tags {
         width: 68%;
     }
+
+    .custom-dropdown.squeeze-left{
+        left: -44px;
+    }
 }
 
 @media screen and (max-width: 450px) {

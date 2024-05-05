@@ -10,12 +10,15 @@ export default function Navbar() {
     const langDrpRef = useRef()
     const [t, i18n] = useTranslation();
 
+    const mobileNavDropdown = useRef()
+
     const [selectedLanguage, setSelectedLanguage] = useState('EN')
 
     const [showNavInPhone, setShowNavInPhone] = useState(false)
     const [showGoToTopArrow, setShowGoToTopArrow] = useState(false)
     const [showDrp, setshowDrp] = useState(false)
     const [showLangDrp, setShowLangDrp] = useState(false)
+
     const handleLanguageChange = (newLanguage) => {
         setSelectedLanguage(newLanguage);
         i18n.changeLanguage(newLanguage.toString().toLowerCase());
@@ -47,6 +50,9 @@ export default function Navbar() {
         if (langDrpRef.current && !langDrpRef.current.contains(e.target)) {
             setShowLangDrp(false);
         }
+        if (mobileNavDropdown.current && !mobileNavDropdown.current.contains(e.target)) {
+            setShowNavInPhone(false)
+        }
     };
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
@@ -65,7 +71,7 @@ export default function Navbar() {
                 <Link to='/' className="logo">
                     <img src={logo} alt="web-logo" />
                 </Link>
-                <div className={`links-section ${showNavInPhone ? 'show' : ''}`}>
+                <div className={`links-section ${showNavInPhone ? 'show' : ''}`} ref={mobileNavDropdown}>
                     <div className="commercial-links links">
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/properties?type=buy" >{t("buy")}</NavLink>
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/properties?type=rent" >{t("rent")}</NavLink>
@@ -90,12 +96,12 @@ export default function Navbar() {
                     <Link>
                         <button className='custom-btn'>{t("signup")}</button>
                     </Link>
-                    <div className="link" style={{position: "relative"}}>
-                        <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={()=>setShowLangDrp(!showLangDrp)}>
+                    <div className="link" style={{ position: "relative" }}>
+                        <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowLangDrp(!showLangDrp)}>
                             <p>{selectedLanguage}</p>
                             <FaAngleDown />
                         </div>
-                        <div className={`custom-dropdown ${showLangDrp ? 'show': ''}`} style={{minWidth: "60px"}} ref={langDrpRef}>
+                        <div className={`custom-dropdown ${showLangDrp ? 'show' : ''}`} style={{ minWidth: "60px" }} ref={langDrpRef}>
                             <div className="custom-dropdown-item" onClick={() => handleLanguageChange('EN')}>EN</div>
                             <div className="custom-dropdown-item" onClick={() => handleLanguageChange('FR')}>FR</div>
                         </div>

@@ -813,7 +813,7 @@ export default function PropertyFilter() {
                                     <FaAngleDown className='text-white' />
                                 </div>
 
-                                <div className={`custom-dropdown ${showFeatureDrp ? 'show' : ''}`} ref={featureRef}>
+                                <div className={`custom-dropdown squeeze-left ${showFeatureDrp ? 'show' : ''}`} ref={featureRef}>
                                     {
                                         featuresData.map((data, i) => {
                                             return (

@@ -519,7 +519,7 @@ export default function MachineryFilter() {
                                     <FaAngleDown className='text-white' />
                                 </div>
 
-                                <div className={`custom-dropdown ${showYearDrp ? 'show' : ''}`} ref={yearBuildRef}>
+                                <div className={`custom-dropdown squeeze-left ${showYearDrp ? 'show' : ''}`} ref={yearBuildRef}>
                                     {
                                         yearBuildData.map((data, i) => {
                                             return (
@@ -542,7 +542,7 @@ export default function MachineryFilter() {
 
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowMachineryType(!showMachineryType)}>
-                                    <p className='text-white'>Machinery Type</p>
+                                    <p className='text-white'>Type</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
 

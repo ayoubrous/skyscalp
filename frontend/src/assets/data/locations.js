@@ -172,3 +172,71 @@ const locations = [
 ];
 
 export default locations
+
+
+
+// {
+//     "regions": [
+//       {
+//         "name": "Tanger-Tétouan-Al Hoceïma",
+//         "latitude": "35.7483",
+//         "longitude": "-5.8441"
+//       },
+//       {
+//         "name": "Oriental",
+//         "latitude": "34.6856",
+//         "longitude": "-2.4164"
+//       },
+//       {
+//         "name": "Fès-Meknès",
+//         "latitude": "33.9925",
+//         "longitude": "-4.9783"
+//       },
+//       {
+//         "name": "Rabat-Salé-Kénitra",
+//         "latitude": "34.0209",
+//         "longitude": "-6.8415"
+//       },
+//       {
+//         "name": "Béni Mellal-Khénifra",
+//         "latitude": "32.4939",
+//         "longitude": "-6.3631"
+//       },
+//       {
+//         "name": "Casablanca-Settat",
+//         "latitude": "33.5731",
+//         "longitude": "-7.5898"
+//       },
+//       {
+//         "name": "Marrakech-Safi",
+//         "latitude": "31.6258",
+//         "longitude": "-7.9891"
+//       },
+//       {
+//         "name": "Drâa-Tafilalet",
+//         "latitude": "30.7138",
+//         "longitude": "-5.9699"
+//       },
+//       {
+//         "name": "Souss-Massa",
+//         "latitude": "30.4422",
+//         "longitude": "-9.2797"
+//       },
+//       {
+//         "name": "Guelmim-Oued Noun",
+//         "latitude": "28.9734",
+//         "longitude": "-10.0612"
+//       },
+//       {
+//         "name": "Laâyoune-Sakia El Hamra",
+//         "latitude": "27.1493",
+//         "longitude": "-13.199"
+//       },
+//       {
+//         "name": "Dakhla-Oued Ed-Dahab",
+//         "latitude": "23.7186",
+//         "longitude": "-15.9633"
+//       }
+//     ]
+//   }
+  

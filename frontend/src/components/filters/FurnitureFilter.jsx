@@ -328,23 +328,10 @@ export default function FurnitureFilter() {
         <div className="filter-area my-4">
             <div className="custom-container">
                 <p className="color-primary mb-2">Cranes, paints or helmets: find what you need at the right price.</p>
-                <div className="filter machinery-filter three-col-filter">
+                <div className="filter machinery-filter construction-filter">
                     <div className="split">
 
                         <div className="user-input">
-                            <div className="type-select">
-                                <Select
-                                    className="custom-input bordor-0 type-select-dropdown"
-                                    classNamePrefix="select"
-                                    placeholder='Buy/Rent'
-                                    name="color"
-                                    options={sellType}
-                                    defaultValue={[sellType[1]]}
-                                    onChange={handleType}
-                                    value={type}
-                                    isClearable={true}
-                                />
-                            </div>
                             <div className="category-list" onClick={() => setShowLocationDropdown(!showLocationDropdown)}>
                                 <CustomLocationsDropdown selectedLocations={selectedAllLocations} handleLocationSelect={handleLocationSelect} />
                                 {/* <PlacesAutocomplete
@@ -549,7 +536,7 @@ export default function FurnitureFilter() {
                                     <FaAngleDown className='text-white' />
                                 </div>
 
-                                <div className={`custom-dropdown ${showMachineryType ? 'show' : ''}`} ref={machineryTypeRef}>
+                                <div className={`custom-dropdown squeeze-left ${showMachineryType ? 'show' : ''}`} ref={machineryTypeRef}>
                                     {
                                         machineryType.map((data, i) => {
                                             return (
