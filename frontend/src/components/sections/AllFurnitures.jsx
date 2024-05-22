@@ -24,31 +24,123 @@ export default function AllFurniture() {
                 </div>
 
                 <div className="cards-grid">
-                    <FurnitureCard id=""
-                        imgUrl={["https://homefactree.com/wp-content/uploads/2021/07/CADIZ-WARDROBE-HF.jpg", "https://images.woodenstreet.de/image/cache/data%2Fwardrobes-mdf%2Fzyra-4-door-wardrobe-without-mirror-gothic-grey-classic-oak-finish%2F1-750x650.jpg"]}
-                        title="Cupboard for hanging purpose" price="300"
-                         available="Yes" category="Cabinets"
-                        datePosted="17 March 2024" sellerName="Hendrich Klasen"
+                    <FurnitureCard
+                        id="1"
+                        imgUrl={["https://source.unsplash.com/500x300/?cupboard"]}
+                        title="Cupboard for hanging purpose"
+                        price="300"
+                        available="Yes"
+                        category="Cabinets"
+                        datePosted="17 March 2024"
+                        sellerName="Hendrich Klasen"
                         city="Carolina, USA"
-                        description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
+                        description="Spacious cupboard perfect for hanging clothes and organizing your wardrobe."
                     />
-                    <FurnitureCard id=""
-                        imgUrl={["https://homefactree.com/wp-content/uploads/2021/07/CADIZ-WARDROBE-HF.jpg", "https://images.woodenstreet.de/image/cache/data%2Fwardrobes-mdf%2Fzyra-4-door-wardrobe-without-mirror-gothic-grey-classic-oak-finish%2F1-750x650.jpg"]}
-                        title="Cupboard for hanging purpose" price="300"
-                         available="Yes" category="Cabinets"
-                        datePosted="17 March 2024" sellerName="Hendrich Klasen"
-                        city="Carolina, USA"
-                        description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
+
+                    <FurnitureCard
+                        id="2"
+                        imgUrl={["https://source.unsplash.com/500x300/?sofa"]}
+                        title="Comfortable Sofa Set"
+                        price="1200"
+                        available="Yes"
+                        category="Sofas"
+                        datePosted="22 April 2024"
+                        sellerName="Maria Gonzales"
+                        city="Houston, USA"
+                        description="Luxurious and comfortable sofa set for your living room. Available in various colors."
                     />
-                    <FurnitureCard id=""
-                        imgUrl={["https://homefactree.com/wp-content/uploads/2021/07/CADIZ-WARDROBE-HF.jpg", "https://images.woodenstreet.de/image/cache/data%2Fwardrobes-mdf%2Fzyra-4-door-wardrobe-without-mirror-gothic-grey-classic-oak-finish%2F1-750x650.jpg"]}
-                        title="Cupboard for hanging purpose" price="300"
-                         available="Yes" category="Cabinets"
-                        datePosted="17 March 2024" sellerName="Hendrich Klasen"
-                        city="Carolina, USA"
-                        description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
+
+                    <FurnitureCard
+                        id="3"
+                        imgUrl={["https://source.unsplash.com/500x300/?table"]}
+                        title="Elegant Dining Table"
+                        price="800"
+                        available="Yes"
+                        category="Dining Tables"
+                        datePosted="5 May 2024"
+                        sellerName="John Smith"
+                        city="Dallas, USA"
+                        description="Elegant dining table with seating for six. Perfect for family dinners and gatherings."
                     />
-                    
+
+                    <FurnitureCard
+                        id="4"
+                        imgUrl={["https://source.unsplash.com/500x300/?bed"]}
+                        title="King Size Bed"
+                        price="1000"
+                        available="Yes"
+                        category="Beds"
+                        datePosted="12 March 2024"
+                        sellerName="Linda Johnson"
+                        city="Miami, USA"
+                        description="Comfortable king size bed with modern design. Includes mattress and headboard."
+                    />
+
+                    <FurnitureCard
+                        id="5"
+                        imgUrl={["https://source.unsplash.com/500x300/?bookshelf"]}
+                        title="Stylish Bookshelf"
+                        price="200"
+                        available="Yes"
+                        category="Bookshelves"
+                        datePosted="22 February 2024"
+                        sellerName="Robert Brown"
+                        city="Atlanta, USA"
+                        description="Stylish bookshelf to keep your books organized. Made from high-quality wood."
+                    />
+
+                    <FurnitureCard
+                        id="6"
+                        imgUrl={["https://source.unsplash.com/500x300/?armchair"]}
+                        title="Cozy Armchair"
+                        price="350"
+                        available="Yes"
+                        category="Armchairs"
+                        datePosted="8 January 2024"
+                        sellerName="Michael Davis"
+                        city="Chicago, USA"
+                        description="Cozy armchair for relaxing and reading. Available in multiple colors and fabrics."
+                    />
+
+                    <FurnitureCard
+                        id="7"
+                        imgUrl={["https://source.unsplash.com/500x300/?wardrobe"]}
+                        title="Spacious Wardrobe"
+                        price="600"
+                        available="Yes"
+                        category="Wardrobes"
+                        datePosted="15 February 2024"
+                        sellerName="William Garcia"
+                        city="Los Angeles, USA"
+                        description="Spacious wardrobe with multiple compartments. Ideal for organizing clothes and accessories."
+                    />
+
+                    <FurnitureCard
+                        id="8"
+                        imgUrl={["https://source.unsplash.com/500x300/?table"]}
+                        title="Modern Coffee Table"
+                        price="150"
+                        available="Yes"
+                        category="Coffee Tables"
+                        datePosted="27 April 2024"
+                        sellerName="James Martinez"
+                        city="Phoenix, USA"
+                        description="Modern coffee table with sleek design. Perfect for your living room or office."
+                    />
+
+                    <FurnitureCard
+                        id="9"
+                        imgUrl={["https://source.unsplash.com/500x300/?office"]}
+                        title="Ergonomic Office Chair"
+                        price="250"
+                        available="Yes"
+                        category="Office Chairs"
+                        datePosted="2 May 2024"
+                        sellerName="David Robinson"
+                        city="New York, USA"
+                        description="Ergonomic office chair designed for comfort. Adjustable height and lumbar support."
+                    />
+
 
                 </div>
 

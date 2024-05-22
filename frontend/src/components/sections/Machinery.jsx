@@ -18,21 +18,60 @@ export default function Machinery() {
                 </div>
 
                 <div className="cards-grid">
-                    <MachineryCard id="" imgUrl={["https://t3.ftcdn.net/jpg/00/22/43/58/360_F_22435844_WOsydnWjBjCfdAaGId0CxXk0ahEOWeqs.jpg", "https://filesblog.technavio.org/wp-content/uploads/2019/10/Construction-machinery-manufacturers.jpg"]} title="Classic Home"
-                        description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher" type={t("rent")} price="1200"
-                        modal="2022 R" condition="New" category="Cranes" datePosted="17 March 2024" sellerName="Hendrich Klasen"
-                        city="Carolina, USA" application="Land work"
-                    />
-                    <MachineryCard id="" imgUrl={["https://t3.ftcdn.net/jpg/00/22/43/58/360_F_22435844_WOsydnWjBjCfdAaGId0CxXk0ahEOWeqs.jpg", "https://filesblog.technavio.org/wp-content/uploads/2019/10/Construction-machinery-manufacturers.jpg"]} title="Classic Home"
-                        description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher" type={t("rent")} price="1200"
-                        modal="2022 R" condition="New" category="Cranes" datePosted="17 March 2024" sellerName="Hendrich Klasen"
-                        city="Carolina, USA" application="Land work"
-                    />
-                    <MachineryCard id="" imgUrl={["https://t3.ftcdn.net/jpg/00/22/43/58/360_F_22435844_WOsydnWjBjCfdAaGId0CxXk0ahEOWeqs.jpg", "https://filesblog.technavio.org/wp-content/uploads/2019/10/Construction-machinery-manufacturers.jpg"]} title="Classic Home"
-                        description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher" type={t("rent")} price="1200"
-                        modal="2022 R" condition="New" category="Cranes" datePosted="17 March 2024" sellerName="Hendrich Klasen"
-                        city="Carolina, USA" application="Land work"
-                    />
+                <MachineryCard 
+    id="4"
+    imgUrl={[
+        "https://source.unsplash.com/500x300/?crane",
+        "https://source.unsplash.com/500x300/?excavator"
+    ]}
+    title="Backhoe Loader for Sale"
+    description="Versatile backhoe loader for construction and landscaping."
+    type={t("sale")}
+    price="42000"
+    modal="2020 BL"
+    condition="Used"
+    category="Loaders"
+    datePosted="15 July 2024"
+    sellerName="Emily Davis"
+    city="Houston, USA"
+/>
+
+<MachineryCard 
+    id="5"
+    imgUrl={[
+        "https://source.unsplash.com/500x300/?Bulldozers",
+        "https://source.unsplash.com/500x300/?crane"
+    ]}
+    title="Heavy Duty Dump Truck"
+    description="Reliable dump truck for transporting heavy materials."
+    type={t("rent")}
+    price="2500"
+    modal="2023 DT"
+    condition="New"
+    category="Trucks"
+    datePosted="20 August 2024"
+    sellerName="Michael Wilson"
+    city="Phoenix, USA"
+/>
+
+
+<MachineryCard 
+    id="7"
+    imgUrl={[
+        "https://source.unsplash.com/500x300/?Graders",
+        "https://source.unsplash.com/500x300/?crane"
+    ]}
+    title="Skid Steer Loader"
+    description="Compact and powerful skid steer loader for versatile use."
+    type={t("rent")}
+    price="2000"
+    modal="2022 SL"
+    condition="New"
+    category="Loaders"
+    datePosted="15 October 2024"
+    sellerName="David Clark"
+    city="San Francisco, USA"
+/>
                 </div>
                 <Link to="./machinery">
                     <button className="outline-btn d-block mx-auto my-4">{t("viewAllMachinery")}</button>

@@ -18,29 +18,46 @@ export default function Construction() {
                 </div>
 
                 <div className="cards-grid">
-                    <ConstructionCard id=""
-                        imgUrl={["https://5.imimg.com/data5/GY/OT/DS/SELLER-54664232/ultratech-cement-500x500.jpg", "https://media.istockphoto.com/id/987409372/photo/cement-in-bags-3d-rendering-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=qPFDhwtjy9VAfmKPK4lfbuA0sTS8dOMSbeoX6ngclC0="]}
-                        title="Best quality Cement for home construction" price="1200"
-                        quantity="20 KG" available="Yes" category="Cement"
-                        datePosted="17 March 2024" sellerName="Hendrich Klasen"
-                        city="Carolina, USA"
-                        description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
+                <ConstructionCard
+                        id="6"
+                        imgUrl={["https://source.unsplash.com/500x300/?drilling"]}
+                        title="High Power Drill Machine"
+                        price="500"
+                        quantity="1 Unit"
+                        available="Yes"
+                        category="Drill"
+                        datePosted="8 January 2024"
+                        sellerName="Michael Davis"
+                        city="Chicago, USA"
+                        description="High power drill machine for all your drilling needs. Compact and easy to handle."
                     />
-                    <ConstructionCard id=""
-                        imgUrl={["https://5.imimg.com/data5/GY/OT/DS/SELLER-54664232/ultratech-cement-500x500.jpg", "https://media.istockphoto.com/id/987409372/photo/cement-in-bags-3d-rendering-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=qPFDhwtjy9VAfmKPK4lfbuA0sTS8dOMSbeoX6ngclC0="]}
-                        title="Best quality Cement for home construction" price="1200"
-                        quantity="20 KG" available="Yes" category="Cement"
-                        datePosted="17 March 2024" sellerName="Hendrich Klasen"
-                        city="Carolina, USA"
-                        description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
+
+                    <ConstructionCard
+                        id="7"
+                        imgUrl={["https://source.unsplash.com/500x300/?saw"]}
+                        title="Durable Electric Saw"
+                        price="250"
+                        quantity="1 Unit"
+                        available="Yes"
+                        category="Saw"
+                        datePosted="15 February 2024"
+                        sellerName="William Garcia"
+                        city="Los Angeles, USA"
+                        description="Electric saw with precision cutting ability. Durable and safe to use."
                     />
-                    <ConstructionCard id=""
-                        imgUrl={["https://5.imimg.com/data5/GY/OT/DS/SELLER-54664232/ultratech-cement-500x500.jpg", "https://media.istockphoto.com/id/987409372/photo/cement-in-bags-3d-rendering-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=qPFDhwtjy9VAfmKPK4lfbuA0sTS8dOMSbeoX6ngclC0="]}
-                        title="Best quality Cement for home construction" price="1200"
-                        quantity="20 KG" available="Yes" category="Cement"
-                        datePosted="17 March 2024" sellerName="Hendrich Klasen"
-                        city="Carolina, USA"
-                        description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
+
+                    <ConstructionCard
+                        id="8"
+                        imgUrl={["https://source.unsplash.com/500x300/?welding"]}
+                        title="Advanced Welding Machine"
+                        price="1500"
+                        quantity="1 Unit"
+                        available="Yes"
+                        category="Welding Machine"
+                        datePosted="27 April 2024"
+                        sellerName="James Martinez"
+                        city="Phoenix, USA"
+                        description="Advanced welding machine for professional welding jobs. Reliable and efficient."
                     />
                 </div>
                 <Link to="./construction">

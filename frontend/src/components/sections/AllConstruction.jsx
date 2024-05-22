@@ -23,54 +23,132 @@ export default function AllConstruction() {
                 </div>
 
                 <div className="cards-grid">
-                    <ConstructionCard id=""
-                        imgUrl={["https://5.imimg.com/data5/GY/OT/DS/SELLER-54664232/ultratech-cement-500x500.jpg", "https://media.istockphoto.com/id/987409372/photo/cement-in-bags-3d-rendering-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=qPFDhwtjy9VAfmKPK4lfbuA0sTS8dOMSbeoX6ngclC0="]}
-                        title="Best quality Cement for home construction" price="1200"
-                        quantity="20 KG" available="Yes" category="Cement"
-                        datePosted="17 March 2024" sellerName="Hendrich Klasen"
+                    <ConstructionCard
+                        id="1"
+                        imgUrl={["https://source.unsplash.com/500x300/?cement"]}
+                        title="Best quality Cement for home construction"
+                        price="1200"
+                        quantity="20 KG"
+                        available="Yes"
+                        category="Cement"
+                        datePosted="17 March 2024"
+                        sellerName="Hendrich Klasen"
                         city="Carolina, USA"
-                        description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
+                        description="Find out the high quality cement for your home construction needs. Durable and reliable."
                     />
-                    <ConstructionCard id=""
-                        imgUrl={["https://5.imimg.com/data5/GY/OT/DS/SELLER-54664232/ultratech-cement-500x500.jpg", "https://media.istockphoto.com/id/987409372/photo/cement-in-bags-3d-rendering-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=qPFDhwtjy9VAfmKPK4lfbuA0sTS8dOMSbeoX6ngclC0="]}
-                        title="Best quality Cement for home construction" price="1200"
-                        quantity="20 KG" available="Yes" category="Cement"
-                        datePosted="17 March 2024" sellerName="Hendrich Klasen"
-                        city="Carolina, USA"
-                        description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
+
+                    <ConstructionCard
+                        id="2"
+                        imgUrl={["https://source.unsplash.com/500x300/?bulldozer"]}
+                        title="Powerful Bulldozer for heavy construction"
+                        price="50000"
+                        quantity="1 Unit"
+                        available="Yes"
+                        category="Bulldozer"
+                        datePosted="20 April 2024"
+                        sellerName="Maria Gonzales"
+                        city="Houston, USA"
+                        description="Get the best bulldozer for heavy construction tasks. Efficient and robust."
                     />
-                    <ConstructionCard id=""
-                        imgUrl={["https://5.imimg.com/data5/GY/OT/DS/SELLER-54664232/ultratech-cement-500x500.jpg", "https://media.istockphoto.com/id/987409372/photo/cement-in-bags-3d-rendering-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=qPFDhwtjy9VAfmKPK4lfbuA0sTS8dOMSbeoX6ngclC0="]}
-                        title="Best quality Cement for home construction" price="1200"
-                        quantity="20 KG" available="Yes" category="Cement"
-                        datePosted="17 March 2024" sellerName="Hendrich Klasen"
-                        city="Carolina, USA"
-                        description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
+
+                    <ConstructionCard
+                        id="3"
+                        imgUrl={["https://source.unsplash.com/500x300/?excavator"]}
+                        title="High performance Excavator"
+                        price="75000"
+                        quantity="1 Unit"
+                        available="Yes"
+                        category="Excavator"
+                        datePosted="5 May 2024"
+                        sellerName="John Smith"
+                        city="Dallas, USA"
+                        description="Excavator with superior digging capabilities. Perfect for any construction site."
                     />
-                    <ConstructionCard id=""
-                        imgUrl={["https://5.imimg.com/data5/GY/OT/DS/SELLER-54664232/ultratech-cement-500x500.jpg", "https://media.istockphoto.com/id/987409372/photo/cement-in-bags-3d-rendering-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=qPFDhwtjy9VAfmKPK4lfbuA0sTS8dOMSbeoX6ngclC0="]}
-                        title="Best quality Cement for home construction" price="1200"
-                        quantity="20 KG" available="Yes" category="Cement"
-                        datePosted="17 March 2024" sellerName="Hendrich Klasen"
-                        city="Carolina, USA"
-                        description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
+
+                    <ConstructionCard
+                        id="4"
+                        imgUrl={["https://source.unsplash.com/500x300/?concrete mixer"]}
+                        title="Efficient Concrete Mixer"
+                        price="3000"
+                        quantity="1 Unit"
+                        available="Yes"
+                        category="Concrete Mixer"
+                        datePosted="12 March 2024"
+                        sellerName="Linda Johnson"
+                        city="Miami, USA"
+                        description="Concrete mixer that ensures perfect mixing. Easy to operate and maintain."
                     />
-                    <ConstructionCard id=""
-                        imgUrl={["https://5.imimg.com/data5/GY/OT/DS/SELLER-54664232/ultratech-cement-500x500.jpg", "https://media.istockphoto.com/id/987409372/photo/cement-in-bags-3d-rendering-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=qPFDhwtjy9VAfmKPK4lfbuA0sTS8dOMSbeoX6ngclC0="]}
-                        title="Best quality Cement for home construction" price="1200"
-                        quantity="20 KG" available="Yes" category="Cement"
-                        datePosted="17 March 2024" sellerName="Hendrich Klasen"
-                        city="Carolina, USA"
-                        description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
+
+                    <ConstructionCard
+                        id="5"
+                        imgUrl={["https://source.unsplash.com/500x300/?crane"]}
+                        title="Heavy Duty Crane"
+                        price="100000"
+                        quantity="1 Unit"
+                        available="Yes"
+                        category="Crane"
+                        datePosted="22 February 2024"
+                        sellerName="Robert Brown"
+                        city="Atlanta, USA"
+                        description="Heavy duty crane for lifting and moving large objects on construction sites."
                     />
-                    <ConstructionCard id=""
-                        imgUrl={["https://5.imimg.com/data5/GY/OT/DS/SELLER-54664232/ultratech-cement-500x500.jpg", "https://media.istockphoto.com/id/987409372/photo/cement-in-bags-3d-rendering-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=qPFDhwtjy9VAfmKPK4lfbuA0sTS8dOMSbeoX6ngclC0="]}
-                        title="Best quality Cement for home construction" price="1200"
-                        quantity="20 KG" available="Yes" category="Cement"
-                        datePosted="17 March 2024" sellerName="Hendrich Klasen"
-                        city="Carolina, USA"
-                        description="Find out the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher the hight quality stone crusher"
+
+                    <ConstructionCard
+                        id="6"
+                        imgUrl={["https://source.unsplash.com/500x300/?drill"]}
+                        title="High Power Drill Machine"
+                        price="500"
+                        quantity="1 Unit"
+                        available="Yes"
+                        category="Drill"
+                        datePosted="8 January 2024"
+                        sellerName="Michael Davis"
+                        city="Chicago, USA"
+                        description="High power drill machine for all your drilling needs. Compact and easy to handle."
                     />
+
+                    <ConstructionCard
+                        id="7"
+                        imgUrl={["https://source.unsplash.com/500x300/?saw"]}
+                        title="Durable Electric Saw"
+                        price="250"
+                        quantity="1 Unit"
+                        available="Yes"
+                        category="Saw"
+                        datePosted="15 February 2024"
+                        sellerName="William Garcia"
+                        city="Los Angeles, USA"
+                        description="Electric saw with precision cutting ability. Durable and safe to use."
+                    />
+
+                    <ConstructionCard
+                        id="8"
+                        imgUrl={["https://source.unsplash.com/500x300/?welding machine"]}
+                        title="Advanced Welding Machine"
+                        price="1500"
+                        quantity="1 Unit"
+                        available="Yes"
+                        category="Welding Machine"
+                        datePosted="27 April 2024"
+                        sellerName="James Martinez"
+                        city="Phoenix, USA"
+                        description="Advanced welding machine for professional welding jobs. Reliable and efficient."
+                    />
+
+                    <ConstructionCard
+                        id="9"
+                        imgUrl={["https://source.unsplash.com/500x300/?scaffolding"]}
+                        title="Secure Scaffolding Equipment"
+                        price="3000"
+                        quantity="1 Set"
+                        available="Yes"
+                        category="Scaffolding"
+                        datePosted="2 May 2024"
+                        sellerName="David Robinson"
+                        city="New York, USA"
+                        description="Scaffolding equipment to ensure safety and stability at construction sites."
+                    />
+
 
                 </div>
 

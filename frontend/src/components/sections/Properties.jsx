@@ -8,30 +8,82 @@ import PropertyCard from '../cards/PropertyCard';
 export default function Properties() {
     const [t] = useTranslation()
 
-    const propertyData = {
-        id: 1,
-        imgUrl: [
-            "https://www.loans.com.au/dA/9de8aa8d-512d-40f5-91a6-e7f94f2b0b79/webp/75",
-            "https://i2.au.reastatic.net/800x600/dd06cc98ee145227183c99fdfc9361d63d3c76c95f0fe29184620f39088e0b33/image.jpg",
-            "https://cdn.pixabay.com/photo/2021/02/02/18/46/city-5974876_640.jpg"
-        ],
-        category: "Apartment",
-        title: "Classic Home and Beautiful Scenery",
-        description: "In literary theory, a text is any object that can be read, whether this object is a work of literature, a street sign, an arrangement of buildings on a city block, or styles of clothing.",
-        type: "Rent",
-        price: "12000",
-        streetAddress: "5232 North Carolina Ave. 21BC",
-        city: "Carolina, USA",
-        rooms: "3",
-        baths: "2",
-        area: "120",
-        sellerImg: "", // Fill with seller image URL
-        sellerName: "Hendrich Klasen",
-        datePosted: "02 March 2024",
-        pool: 1,
-        garage: 2,
-        garden: 2
-    };
+    const propertyDataArray = [
+        {
+            id: 1,
+            imgUrl: [
+                "https://source.unsplash.com/500x300/?property",
+                "https://source.unsplash.com/500x300/?villa",
+            ],
+            category: "Apartment",
+            title: "Classic Home and Beautiful Scenery",
+            description: "In literary theory, a text is any object that can be read, whether this object is a work of literature, a street sign, an arrangement of buildings on a city block, or styles of clothing. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum eveniet voluptatem, repudiandae, ipsa quaerat quia facilis aliquam minus est eius unde placeat delectus nesciunt maxime beatae suscipit. Quam, aspernatur hic.",
+            type: "Rent",
+            price: 12000,
+            streetAddress: "5232 North Carolina Ave. 21BC",
+            city: "Carolina, USA",
+            bedrooms: "3",
+            rooms: "2",
+            baths: "2",
+            pool: "1",
+            garage: "2",
+            garden: "1",
+            area: "120",
+            sellerImg: "", // Fill with seller image URL
+            sellerName: "Hendrich Klasen",
+            datePosted: "02 March 2024"
+        },
+        {
+            id: 2,
+            imgUrl: [
+                "https://source.unsplash.com/500x300/?building",
+                "https://source.unsplash.com/500x300/?villa",
+            ],
+            category: "House",
+            title: "Modern House with Stunning Views",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et ligula eget dolor consequat malesuada.",
+            type: "Sale",
+            price: 350000,
+            streetAddress: "1234 Main Street",
+            city: "Springfield, USA",
+            bedrooms: "4",
+            baths: "3",
+            pool: "1",
+            garage: "2",
+            rooms: "2",
+
+            garden: "1",
+            area: "250",
+            sellerImg: "", // Fill with seller image URL
+            sellerName: "Jessica Smith",
+            datePosted: "10 April 2024"
+        },
+        {
+            id: 3,
+            imgUrl: [
+                "https://source.unsplash.com/500x300/?villa",
+                "https://source.unsplash.com/500x300/?villa",
+            ],
+            category: "Villa",
+            title: "Luxurious Villa with Private Pool",
+            description: "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum eveniet voluptatem, repudiandae, ipsa quaerat quia facilis aliquam minus est eius unde placeat delectus nesciunt maxime beatae suscipit. Quam, aspernatur hic.",
+            type: "Rent",
+            price: 80000,
+            streetAddress: "5678 Oak Street",
+            city: "Beverly Hills, USA",
+            bedrooms: "5",
+            baths: "4",
+            rooms: "2",
+
+            pool: "1",
+            garage: "2",
+            garden: "1",
+            area: "400",
+            sellerImg: "", // Fill with seller image URL
+            sellerName: "Michael Johnson",
+            datePosted: "15 May 2024"
+        },
+    ]
 
 
     return (
@@ -45,9 +97,13 @@ export default function Properties() {
 
                 <div className="cards-grid">
                     {/* Only show 4 cards, 3 will be visible in laptop and 4 on mobile through css */}
-                    <PropertyCard propertyData={propertyData} />
-                    <PropertyCard propertyData={propertyData} />
-                    <PropertyCard propertyData={propertyData} />
+                    {
+                        propertyDataArray.map((propertyData, i) => {
+                            return (
+                                <PropertyCard key={i} propertyData={propertyData} />
+                            )
+                        })
+                    }
                 </div>
                 <Link to="./properties">
                     <button className="outline-btn d-block mx-auto my-4">{t("viewAllProperty")}</button>
