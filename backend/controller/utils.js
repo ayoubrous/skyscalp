@@ -1,6 +1,5 @@
 
 const PropertyModal = require('../modal/Property')
-const ConstructionModal = require('../modal/Construction')
 const AnalyticsModal = require('../modal/Analytics')
 const sendResponse = require("../utils/sendResponse");
 const MaterialsModal = require('../modal/Materials');

@@ -174,84 +174,19 @@ export default function Properties() {
 
 
 
-  // const loadDataWithQueries = (pageNumber, sort, sortOrder) => {
-  //   setLoading(true)
-  //   const myHeaders = new Headers();
-  //   myHeaders.append("Content-Type", "application/json");
-
-  //   const appliedFilters = {
-  //     type: type,
-  //     checkedSubcategories: checkedSubcategories,
-  //     minPrice: minPrice === '' ? 0 : parseInt(minPrice),
-  //     maxPrice: maxPrice === '' ? 0 : parseInt(maxPrice),
-  //     minBeds: minBeds === '' ? 0 : parseInt(minBeds),
-  //     maxBeds: maxBeds === '' ? 0 : parseInt(maxBeds),
-  //     minSize: minSize === '' ? 0 : parseInt(minSize),
-  //     maxSize: maxSize === '' ? 0 : parseInt(maxSize),
-  //     minBath: minBath === '' ? 0 : parseInt(minBath),
-  //     maxBath: maxBath === '' ? 0 : parseInt(maxBath),
-  //     selectedConditions: selectedCondtions,
-  //     yearBuild: yearBuild,
-  //     proximities: proximities,
-  //     features: features,
-  //     selectedCountries: selectedCountries,
-  //     selectedStates: selectedStates,
-  //     selectedCities: selectedCities,
-  //     selectedStreets: selectedStreets
-  //   }
-  //   const raw = JSON.stringify(appliedFilters);
-
-  //   const requestOptions = {
-  //     method: "POST",
-  //     headers: myHeaders,
-  //     body: raw,
-  //     redirect: "follow"
-  //   };
-
-  //   fetch(`${process.env.REACT_APP_SERVER_URL}/api/getPropertiesByFilters?page=${pageNumber}&sortby=${sort}&order=${sortOrder}`, requestOptions)
-  //     .then((response) => response.json())
-  //     .then((result) => {
-  //       setLoading(false)
-  //       if (result.status) {
-  //         setProperties(result.data.documents)
-  //         setPaginationData({
-  //           currentPage: result.data.currentPage,
-  //           totalPages: result.data.totalPages,
-  //           hasNextPage: result.data.hasNextPage,
-  //           hasPrevPage: result.data.hasPrevPage,
-  //           totalItems: result.data.totalProperties,
-  //         })
-  //       }
-  //       else {
-  //         setProperties([])
-  //         console.log(result.message)
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       setLoading(false);
-  //       console.error(error);
-  //     });
-
-  // }
-
   const handlePageChange = (pageNumber) => {
     setPaginationData(prevState => ({
       ...prevState,
       currentPage: pageNumber
     }));
-    // loadDataWithQueries(pageNumber, sortby, order)
-    // loadData()
   };
 
   const handleSortby = (sortby) => {
     setSortby(sortby)
-    // loadDataWithQueries(paginationData.currentPage, sortby, order)
-
   }
 
   const handleSortOrder = (newOrder) => {
     setOrder(newOrder)
-    // loadDataWithQueries(paginationData.currentPage, sortby, newOrder)
   }
 
   const applyFilters = () => {
@@ -279,7 +214,6 @@ export default function Properties() {
 
     sessionStorage.setItem('appliedFilters', JSON.stringify(searchFilters))
     setFiltersObj(searchFilters)
-    // loadDataWithQueries(paginationData.currentPage, sortby, order)
     loadData()
   }
 

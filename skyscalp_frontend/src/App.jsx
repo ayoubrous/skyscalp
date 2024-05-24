@@ -11,8 +11,6 @@ import './assets/style/media.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Properties from './pages/Properties';
-import Machinery from './pages/Machinery';
-import Construction from './pages/Construction';
 import ScrollToTop from './components/utils/ScrollToTop';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -29,7 +27,6 @@ import DashboardConstruction from './admin/pages/Construction';
 import DashboardFurniture from './admin/pages/Furniture';
 import DashboardMessages from './admin/pages/Messages';
 import DashboardFavourites from './admin/pages/Favourites';
-import Categories from './pages/Categories';
 import AddProperty from './admin/pages/AddProperty';
 import Login from './admin/pages/Login';
 import Register from './admin/pages/Register';
@@ -84,9 +81,6 @@ const App = () => {
             <Route path='/article/:id' exact element={<ViewBlog />} />
             {/* ----- Listing pages -----  */}
             <Route path='/properties' exact element={<Properties />} />
-            <Route path='/machinery' exact element={<Machinery />} />
-            <Route path='/construction' exact element={<Construction />} />
-            <Route path='/categories/:id' exact element={<Categories />} />
             <Route path='/marketplace' exact element={<MarketPlace />} />
             {/* ------ Detailed Pages -------  */}
             <Route path='/property/:id' exact element={<ViewProperty />} />

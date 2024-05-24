@@ -3,9 +3,7 @@ const sendResponse = require('../utils/sendResponse')
 const { register, login, addNewUser, verfiyAccount, getUserById, getUserByIdAndRole, getAllUsers, updateUserInfo, updateUserStaus, forgotPassword, verfiyAccountForPassword, updatePassword } = require('../controller/user')
 const verifyToken = require('../middlewares/verifyToken')
 const { addProperty, updateProperty, getProperties, getSingleProperty, deleteProperty, getPropertiesByUserid, updatePropertyFeature, updatePropertyFavourites, getFilteredProperties } = require('../controller/property')
-const { addMachinery, updateMachinery, getSingleMachinery, deleteMachinery, getMachinery } = require('../controller/machinery')
 const { getAnalytics, addAnalytics } = require('../controller/analytics')
-const { addConstruction, updateConstruction, getConstruction, getSingleConstruction, deleteConstruction } = require('../controller/construction')
 const locationRoutes = require('./locationRoutes')
 const { addToFavourites, removeFromFavourites, checkInFavourites, getFavourites } = require('../controller/favourites')
 const { sendMessage, getUserMessages, getMessagesToAdmin } = require('../controller/messages')
@@ -62,19 +60,6 @@ router.get('/api/getMachinery', getMachineryProducts)
 router.get('/api/getConstruction', getConstructionProducts)
 router.get('/api/getFurniture', getFurnitureProducts)
 
-// APIs for Machinery 
-// router.post('/api/addMachinery', addMachinery)
-// router.put('/api/updateMachinery/:id', updateMachinery)
-// router.get('/api/getMachinery', getMachinery)
-// router.get('/api/getMachineryById/:id', getSingleMachinery)
-// router.delete('/api/deleteMachinery/:id', deleteMachinery)
-
-// APIs for Construction 
-// router.post('/api/addConstruction', addConstruction)
-// router.put('/api/updateConstruction/:id', updateConstruction)
-// router.get('/api/getConstruction', getConstruction)
-// router.get('/api/getConstructionById/:id', getSingleConstruction)
-// router.delete('/api/deleteConstruction/:id', deleteConstruction)
 
 // APIs for Location
 router.use('/api/location', locationRoutes)
