@@ -496,6 +496,11 @@ export default function ViewProperty() {
                 <div className="custom-container">
                     <h3 className='my-3 fw-bolder'>{t("similar")}</h3>
                     <div className="cards-grid">
+                    {
+                            similarProperties && similarProperties.length === 0 && (
+                                <h5 className='my-4'>No Similar Properties Found</h5>
+                            )
+                        }
                         {
                             similarProperties && similarProperties.slice(0, 3).map((item) => {
                                 return (

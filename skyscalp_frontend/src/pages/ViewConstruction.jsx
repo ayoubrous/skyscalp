@@ -19,6 +19,7 @@ import toast from 'react-hot-toast'
 import { formatPrice } from '../utils/formatPrice'
 import { checkInFavourites } from '../APIs/favourites'
 import handleProductFavourite from '../components/utils/manangeFavourite'
+import ConstructionCard from '../components/cards/ConstructionCard'
 
 
 export default function ViewConstruction() {
@@ -56,6 +57,7 @@ export default function ViewConstruction() {
 
     const [isLoading, setIsLoading] = useState(false)
 
+    const [similarProducts, setSimilarProducts] = useState([])
     let params = useParams()
 
 
@@ -127,9 +129,61 @@ export default function ViewConstruction() {
                 console.error(error);
             });
     }
+
+    const loadSimilarProducts = () => {
+        setIsLoading(true);
+
+
+        const searchFilters = {
+            checkedSubcategories: [],
+            selectedMachineryType: [],
+            selectedMaterialType: [],
+            selectedBrands: [],
+            selectedConditions: [],
+            yearBuild: [],
+            selectedCountries: [country],
+            checkedSubcategories: [category],
+            selectedStates: [],
+            selectedCities: [],
+            selectedStreets: []
+        };
+
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify(searchFilters);
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow"
+        };
+
+        fetch(`${process.env.REACT_APP_SERVER_URL}/api/getProductsByFilters?materialGroup=${'construction'}`, requestOptions)
+            .then((response) => response.json())
+            .then((result) => {
+                setIsLoading(false);
+                if (result.status) {
+                    setSimilarProducts(result.data.documents)
+                } else {
+                    console.log(result.message);
+                    setSimilarProducts([])
+                }
+            })
+            .catch((error) => {
+                setIsLoading(false);
+                console.error(error);
+            });
+    };
+
+
     useEffect(() => {
         loadData()
-    }, [])
+    }, [params])
+
+    useEffect(() => {
+        loadSimilarProducts()
+    }, [ country, category])
 
     const [favourite, setFavourite] = useState(false)
     const [mainImage, setMainImage] = useState(uploadedImages[0]);
@@ -379,22 +433,25 @@ export default function ViewConstruction() {
             </section>
 
 
-            {/* <section className="similar">
+            <section className="similar">
                 <div className="custom-container">
                     <h3 className='my-3 fw-bolder'>{t("similar")}</h3>
                     <div className="cards-grid">
+                    {
+                            similarProducts && similarProducts.length === 0 && (
+                                <h5 className='my-4'>No Similar Products Found</h5>
+                            )
+                        }
                         {
-                            similarProperties && similarProperties.slice(0, 3).map((item) => {
+                            similarProducts && similarProducts.slice(0, 3).map((item) => {
                                 return (
-                                    <PropertyCard key={item._id} propertyData={item} />
+                                    <ConstructionCard key={item._id} data={item} />
                                 )
                             })
                         }
                     </div>
                 </div>
-            </section> */}
-
-            {/* <SimilarProperties /> */}
+            </section>
             <BlogSection />
             <ContactUs supportTitle={t("constructionSupportTitle")} supportDescription={t("constructionSupportDesc")} />
             <Footer />

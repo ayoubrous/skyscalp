@@ -11,7 +11,7 @@ import Select from 'react-select';
 import locations from '../../assets/data/locations'
 import loader from '../../assets/images/skyscalp-loader.json'
 
-import { machineryType as machineryTypesDropdown, propertyBudget, constructionBudget, machineryBudget, yearBuildData, propertyYearBuildData, conditionData, constructionBrands, proximityData, featuresData, featuresDataObj } from '../../assets/data/filtersData'
+import { machineryType as machineryTypesDropdown, propertyBudget, constructionBudget, machineryBudget, yearBuildData, propertyYearBuildData, conditionData, constructionBrands } from '../../assets/data/filtersData'
 import { constructionCategories, machineryCategories, propertyCategories } from '../../assets/data/categories'
 import GetLocationMap from '../../components/map/GetLocationMap'
 import toast, { Toaster } from 'react-hot-toast';

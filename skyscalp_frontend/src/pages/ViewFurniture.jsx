@@ -20,6 +20,7 @@ import toast from 'react-hot-toast'
 import { checkInFavourites } from '../APIs/favourites'
 import handleProductFavourite from '../components/utils/manangeFavourite'
 import { formatPrice } from '../utils/formatPrice'
+import FurnitureCard from '../components/cards/FurnitureCard'
 
 
 export default function ViewFurniture() {
@@ -56,9 +57,11 @@ export default function ViewFurniture() {
     const [createdAt, setCreatedAt] = useState('')
     const [userInfo, setUserInfo] = useState('')
 
+    const [similarProducts, setSimilarProducts] = useState([])
 
     let params = useParams()
-    useEffect(() => {
+
+    const loadData = () => {
         setIsLoading(true)
         const requestOptions = {
             method: "GET",
@@ -119,15 +122,69 @@ export default function ViewFurniture() {
 
                 }
                 else {
-                    toast.error(result.message)
+                    console.log(result.message)
                 }
             })
             .catch((error) => {
                 setIsLoading(false);
                 console.error(error);
             });
+    }
 
-    }, [])
+    const loadSimilarProducts = () => {
+        setIsLoading(true);
+
+
+        const searchFilters = {
+            checkedSubcategories: [],
+            selectedMachineryType: [],
+            selectedMaterialType: [],
+            selectedBrands: [],
+            selectedConditions: [],
+            yearBuild: [],
+            selectedCountries: [country],
+            checkedSubcategories: [category],
+            selectedStates: [],
+            selectedCities: [],
+            selectedStreets: []
+        };
+
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify(searchFilters);
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow"
+        };
+
+        fetch(`${process.env.REACT_APP_SERVER_URL}/api/getProductsByFilters?materialGroup=${'machinery'}`, requestOptions)
+            .then((response) => response.json())
+            .then((result) => {
+                setIsLoading(false);
+                if (result.status) {
+                    setSimilarProducts(result.data.documents)
+                } else {
+                    console.log(result.message);
+                    setSimilarProducts([])
+                }
+            })
+            .catch((error) => {
+                setIsLoading(false);
+                console.error(error);
+            });
+    };
+
+
+    useEffect(() => {
+        loadData()
+    }, [params])
+
+    useEffect(() => {
+        loadSimilarProducts()
+    }, [country, category])
 
     const [t] = useTranslation()
     const [favourite, setFavourite] = useState(false)
@@ -412,7 +469,26 @@ export default function ViewFurniture() {
             </section>
 
 
-            <SimilarProperties />
+            <section className="similar">
+                <div className="custom-container">
+                    <h3 className='my-3 fw-bolder'>{t("similar")}</h3>
+                    <div className="cards-grid">
+                        {
+                            similarProducts && similarProducts.length === 0 && (
+                                <h5 className='my-4'>No Similar Products Found</h5>
+                            )
+                        }
+                        {
+                            similarProducts && similarProducts.slice(0, 3).map((item) => {
+                                return (
+                                    <FurnitureCard key={item._id} data={item} />
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+            </section>
+
             <BlogSection />
             <ContactUs supportTitle={t("constructionSupportTitle")} supportDescription={t("constructionSupportDesc")} />
             <Footer />

@@ -17,7 +17,7 @@ const MaterialsSchema = new mongoose.Schema({
         type: String
     },
     budget: {
-        type: String
+        type: Number
     },
     unit: { // per item, per kg 
         type: String

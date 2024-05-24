@@ -15,12 +15,42 @@ import TestNestedDropdown from './TestNestedDropdown';
 import NestedDropdown from './NestedDropdown';
 import CustomLocationsDropdown from './CustomLocationsDropdown';
 import { furnitureCategories, machineryCategories } from '../../assets/data/categories';
-import { furnitureBrands, furnitureTypes, machineryType } from '../../assets/data/filtersData';
+import { furnitureBrands, furnitureTypes, machineryType, materialsBudget, yearBuildData } from '../../assets/data/filtersData';
 import formatNumber from '../../utils/formatNumber';
+import { getLocationsInRadius } from './getLocationsInRadius';
 
 
 
-export default function FurnitureFilter() {
+export default function FurnitureFilter({
+    minPrice,
+    setMinPrice,
+    maxPrice,
+    setMaxPrice,
+    guarantee,
+    setGuarantee,
+    selectedBrands,
+    setSelectedBrands,
+    selectedCountries,
+    setSelectedCountries,
+    selectedStates,
+    setSelectedStates,
+    selectedCities,
+    setSelectedCities,
+    selectedStreets,
+    setSelectedStreets,
+    selectedConditions,
+    setSelectedConditions,
+    checkedSubcategories,
+    setCheckedSubcategories,
+    yearBuild,
+    setYearBuild,
+    selectedFilters,
+    setSelectedFilters,
+    selectedMaterialType,
+    setSelectedMaterialType,
+    applyFilters,
+    clearAllFilters
+}) {
     const [t] = useTranslation();
 
     const categoryDropdownRef = useRef();
@@ -37,74 +67,16 @@ export default function FurnitureFilter() {
     const [showBrandDrp, setShowBrandDrp] = useState(false);
     const [showConditionDrp, setShowConditionDrp] = useState(false);
     const [showYearDrp, setShowYearDrp] = useState(false)
-    const [showMachineryType, setShowMachineryType] = useState(false)
+    const [showMaterialType, setShowMaterialType] = useState(false)
 
-    const [type, setType] = useState('buy')
-    const [minPrice, setMinPrice] = useState('')
-    const [maxPrice, setMaxPrice] = useState('')
-    const [available, setAvailable] = useState('')
-    const [condition, setCondtion] = useState('')
 
-    // all selected filters which will show as tags 
-    const [selectedFilters, setSelectedFilters] = useState([])
 
-    const [guarantee, setGuarantee] = useState(false)
-    const [yearBuild, setYearBuild] = useState([])
-
-    const [selectedBrands, setSelectedBrands] = useState([])
-    const [selectedCondtions, setSelectedConditions] = useState([])
-    const [selectedMachineryType, setSelectedMachineryType] = useState([])
-
-    // filters for customLocationDropdown component 
-    const [selectedCountries, setSelectedCountries] = useState([])
-    const [selectedStates, setSelectedStates] = useState([])
-    const [selectedCities, setSelectedCities] = useState([])
-    const [selectedStreets, setSelectedStreets] = useState([])
     const [selectedAllLocations, setSelectedAllLocations] = useState([])
 
-
-    // for nested dropdown 
-    const [checkedSubcategories, setCheckedSubcategories] = useState([]);
     const [checkAll, setCheckAll] = useState(false)
+    const [radius, setRadius] = useState(null)
 
 
-    const sellType = [
-        { value: "buy", label: "Buy" },
-        { value: "rent", label: "Rent" },
-    ]
-
-    const budget = [
-        '0', '1000', '5000', '10 000', '25 000', '50 000'
-    ]
-
-    const brands = [
-        "Caterpillar",
-        "Komatsu",
-        "Volvo",
-        "John-Deere",
-        "Hitachi",
-        "Liebherr",
-        "Liebherr",
-        "Liebherr",
-        "Liebherr",
-        "Liebherr",
-        "Bobcat",
-        "JCB",
-        "Doosan",
-        "Kubota"
-    ];
-
-    const conditionData = [
-        'Excellent', 'Good', 'Fair', 'Poor'
-    ]
-    const yearBuildData = [
-        "Less than 1 year",
-        "1 to 3 years",
-        "3 to 5 years",
-        "5 to 10 years",
-        "10 to 15 years",
-        "More than 15 years"
-    ];
     const handleClickOutside = (e) => {
         if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(e.target)) {
             setShowLocationDropdown(false);
@@ -125,7 +97,7 @@ export default function FurnitureFilter() {
             setShowCategoriesDrp(false);
         }
         if (machineryTypeRef.current && !machineryTypeRef.current.contains(e.target)) {
-            setShowMachineryType(false);
+            setShowMaterialType(false);
         }
     };
 
@@ -139,23 +111,28 @@ export default function FurnitureFilter() {
     }, []);
 
 
-    const handleType = (value) => {
-        setType(value)
-    }
     const handleMinPrice = (e) => {
         // setShowMinPriceDrp(false)
-        setMinPrice(e)
-        // if (!selectedFilters.includes(e)) {
-        //     setSelectedFilters([...selectedFilters, (`Min Price: ${e}`)]);
-        // }
+        if (typeof e === 'string') {
+            setMinPrice(e.replace(/\s+/g, ''));
+        }
+        else {
+            setMinPrice(e)
+
+        }
     }
     const handleMaxPrice = (e) => {
         setShowPriceDrp(false)
-        setMaxPrice(e)
-        // if (!selectedFilters.includes(e)) {
-        //     setSelectedFilters([...selectedFilters, (`Max Price: ${e}`)]);
-        // }
+        if (typeof e === 'string') {
+            setMaxPrice(e.replace(/\s+/g, ''));
+        }
+        else {
+            setMaxPrice(e)
+        }
+
     }
+
+
     const handleBrand = brand => {
         setShowBrandDrp(false)
         if (!selectedFilters.includes(brand)) {
@@ -174,13 +151,13 @@ export default function FurnitureFilter() {
         setShowConditionDrp(false)
         if (!selectedFilters.includes(val)) {
             setSelectedFilters([...selectedFilters, val]);
-            setSelectedConditions([...selectedCondtions, val])
+            setSelectedConditions([...selectedConditions, val])
         }
         else {
             const updatedFilters = selectedFilters.filter(filter => filter !== val);
             setSelectedFilters(updatedFilters);
 
-            const updatedData = selectedCondtions.filter(type => type !== val);
+            const updatedData = selectedConditions.filter(type => type !== val);
             setSelectedConditions(updatedData);
         }
     }
@@ -200,30 +177,25 @@ export default function FurnitureFilter() {
             setYearBuild(updatedYearBuild);
         }
     }
-    const handleMachineryType = (val) => {
-        setShowMachineryType(false)
+    const handleMaterialType = (val) => {
+        setShowMaterialType(false)
         const isAlreadySelected = selectedFilters.includes(val);
 
         if (isAlreadySelected) {
             const updatedFilters = selectedFilters.filter(filter => filter !== val);
             setSelectedFilters(updatedFilters);
 
-            const updatedMachineryTypes = selectedMachineryType.filter(type => type !== val);
-            setSelectedMachineryType(updatedMachineryTypes);
+            const updatedMachineryTypes = selectedMaterialType.filter(type => type !== val);
+            setSelectedMaterialType(updatedMachineryTypes);
         } else {
             setSelectedFilters([...selectedFilters, val]);
-            setSelectedMachineryType([...selectedMachineryType, val]);
+            setSelectedMaterialType([...selectedMaterialType, val]);
         }
     };
 
 
     // for locations 
     const handleLocationSelect = (location, type) => {
-        console.log(location)
-        console.log(type)
-
-
-
         if (!selectedFilters.includes(location)) {
             setSelectedFilters([...selectedFilters, location]);
             if (type === "Country") {
@@ -247,18 +219,46 @@ export default function FurnitureFilter() {
         }
     }
 
+    const handleRadiusChange = (rad) => {
+        setRadius(rad)
+        getLocationsInRadius(selectedAllLocations[0], rad)
+            .then(res => {
+                if (res.status) {
+                    res.data.forEach(data => {
+                        if (data.label === 'Country') {
+                            if (!selectedCountries.includes(data.name)) {
+                                setSelectedCountries([...selectedCountries, data.name])
+                            }
+                        }
+                        if (data.label === 'State') {
+                            if (!selectedStates.includes(data.name)) {
+                                setSelectedStates([...selectedStates, data.name])
+                            }
+                        }
+                        if (data.label === 'City') {
+                            if (!selectedCities.includes(data.name)) {
+                                setSelectedCities([...selectedCities, data.name])
+                            }
+                        }
+                        if (data.label === 'Street') {
+                            if (!selectedStreets.includes(data.name)) {
+                                setSelectedStreets([...selectedStreets, data.name])
+                            }
+                        }
+                    })
+                }
+                else {
+                    console.log(res.data)
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
 
     const handleFilter = () => {
-        console.log(checkedSubcategories)
-        console.log(selectedFilters)
-
-        const minPriceInt = parseInt(minPrice.replace(/\s/g, ''), 10);
-        const maxPriceInt = parseInt(maxPrice.replace(/\s/g, ''), 10);
-        // console.log(location)
-
-        // console.log(selectedBrands)
-        // console.log(selectedCondtions)
-        // console.log(selectedAllLocations)
+        applyFilters()
     }
 
     const removeTypeFilter = (index, name) => {
@@ -269,11 +269,11 @@ export default function FurnitureFilter() {
         if (selectedBrands.includes(name)) {
             setSelectedBrands(prevBrands => prevBrands.filter(item => item !== name));
         }
-        if (selectedCondtions.includes(name)) {
+        if (selectedConditions.includes(name)) {
             setSelectedConditions(item => item.filter(item => item !== name));
         }
-        if (selectedMachineryType.includes(name)) {
-            setSelectedMachineryType(item => item.filter(item => item !== name));
+        if (selectedMaterialType.includes(name)) {
+            setSelectedMaterialType(item => item.filter(item => item !== name));
         }
         if (selectedCountries.includes(name)) {
             setSelectedCountries(item => item.filter(item => item !== name));
@@ -290,40 +290,22 @@ export default function FurnitureFilter() {
         if (selectedAllLocations.includes(name)) {
             setSelectedAllLocations(item => item.filter(item => item !== name));
         }
-        if (selectedAllLocations.includes(name)) {
+        if (yearBuild.includes(name)) {
             setYearBuild(item => item.filter(item => item !== name));
         }
 
 
-
-
+        setRadius(null)
     };
 
 
-    const clearAllFilters = () => {
-        setType('buy');
-        setMinPrice('');
-        setMaxPrice('');
-        setAvailable('');
-        setCondtion('');
+    const handleClearFilters = () => {
         setSelectedFilters([]);
-        setGuarantee(false);
-        setYearBuild([]);
-        setSelectedBrands([]);
-        setSelectedConditions([]);
-        setCheckedSubcategories([]);
-        setSelectedMachineryType([]);
+        setSelectedAllLocations([])
+        setRadius(null)
+        clearAllFilters()
     }
 
-    // only for cities 
-    // const searchOptions = {
-    //     types: ['(cities)'] // Restrict to city type
-    // };
-
-    // for countries and cities 
-    const searchOptions = {
-        types: ['(regions)'] // Restrict to regions (which can include countries)
-    };
     return (
         <div className="filter-area my-4">
             <div className="custom-container">
@@ -333,39 +315,10 @@ export default function FurnitureFilter() {
 
                         <div className="user-input">
                             <div className="category-list" onClick={() => setShowLocationDropdown(!showLocationDropdown)}>
-                                <CustomLocationsDropdown selectedLocations={selectedAllLocations} handleLocationSelect={handleLocationSelect} />
-                                {/* <PlacesAutocomplete
-                                    searchOptions={searchOptions}
-                                    value={location}
-                                    onChange={setLocation}
-                                    onSelect={handleLocationSelect}
-                                >
-                                    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                                        <>
-
-                                            <input className="custom-input location-input" {...getInputProps({ placeholder: "Type city" })} />
-
-                                            <div className='category-dropdown show'>
-
-                                                {suggestions.map((suggestion, i) => {
-
-                                                    return (
-                                                        <>
-                                                            <div key={i} className='dropdown-item' {...getSuggestionItemProps(suggestion, {})}>
-                                                                {suggestion.description}
-                                                            </div>
-                                                        </>
-                                                    );
-                                                })}
-                                            </div>
-                                        </>
-                                    )}
-                                </PlacesAutocomplete> */}
+                                {/* <CustomLocationsDropdown selectedLocations={selectedAllLocations} handleLocationSelect={handleLocationSelect} /> */}
+                                <CustomLocationsDropdown selectedLocations={selectedAllLocations} handleLocationSelect={handleLocationSelect} radius={radius} handleRadiusChange={handleRadiusChange} />
                             </div>
                             <div className="search-input" onClick={() => setShowCategoriesDrp(true)}>
-
-
-
                                 <NestedDropdown
                                     show={showCategoriesDrp}
                                     categoriesRef={categoriesRef}
@@ -423,7 +376,7 @@ export default function FurnitureFilter() {
                                                 <input className='custom-input py-1' type="number" placeholder='Min' value={minPrice} onChange={(e) => setMinPrice(e.target.value)} />
                                             </div>
                                             {
-                                                budget.map((n, i) => {
+                                                materialsBudget.map((n, i) => {
                                                     return (
                                                         <p className="custom-dropdown-item" onClick={() => handleMinPrice(n)} key={i}>MAD {n}</p>
                                                     )
@@ -437,7 +390,7 @@ export default function FurnitureFilter() {
                                                 <input className='custom-input py-1' type="number" placeholder='Max' value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} />
                                             </div>
                                             {
-                                                budget.map((n, i) => {
+                                                materialsBudget.map((n, i) => {
                                                     return (
                                                         <p className="custom-dropdown-item" onClick={() => handleMaxPrice(n)} key={i}>MAD {n}</p>
                                                     )
@@ -531,23 +484,23 @@ export default function FurnitureFilter() {
                             </div>
 
                             <div className="other-filter">
-                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowMachineryType(!showMachineryType)}>
+                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowMaterialType(!showMaterialType)}>
                                     <p className='text-white'>Type</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
-                                <div className={`custom-dropdown squeeze-left ${showMachineryType ? 'show' : ''}`} ref={machineryTypeRef}>
+                                <div className={`custom-dropdown squeeze-left ${showMaterialType ? 'show' : ''}`} ref={machineryTypeRef}>
                                     {
                                         machineryType.map((data, i) => {
                                             return (
-                                                <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleMachineryType(data)}>
+                                                <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleMaterialType(data)}>
                                                     <p htmlFor={data} id={`label-${data}`}>{data}</p>
                                                     <input
                                                         type="checkbox"
                                                         name={data}
                                                         id={`checkbox-${data}`}
                                                         checked={selectedFilters.includes(data)}
-                                                        onChange={() => handleMachineryType(data)}
+                                                        onChange={() => handleMaterialType(data)}
                                                     />
                                                 </div>
                                             )
@@ -584,7 +537,7 @@ export default function FurnitureFilter() {
                         </div>
                         {
                             selectedFilters.length > 0 && (
-                                <div className="selected-filter" style={{ cursor: "pointer" }} onClick={clearAllFilters}>Clear Filters</div>
+                                <div className="selected-filter" style={{ cursor: "pointer" }} onClick={handleClearFilters}>Clear Filters</div>
                             )
                         }
                     </div>

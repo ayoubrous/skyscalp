@@ -52,7 +52,7 @@ export default function Sortby({ handleSortOrder, handleSortby }) {
                     {sortBy === '' ? 'Sort By' : (() => {
                         switch (sortBy) {
                             case 'budget':
-                                return 'Budget';
+                                return 'Price';
                             case 'Relevance':
                                 return 'Relevance';
                             case 'createdAt':

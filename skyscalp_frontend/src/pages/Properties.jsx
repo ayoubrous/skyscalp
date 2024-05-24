@@ -91,10 +91,15 @@ export default function Properties() {
     if (savedFilters) {
       const parsedFilters = JSON.parse(savedFilters);
       updatedFiltersObj = parsedFilters
+      if (queryType) {
+        updatedFiltersObj = { ...updatedFiltersObj, type: queryType };
+      }
+      else {
+        updatedFiltersObj = parsedFilters
+      }
       setFiltersObj(parsedFilters);
-
-
       // Set individual state variables from the saved filters
+
       setType(parsedFilters.type);
       setMinPrice(parsedFilters.minPrice === 0 ? '' : parsedFilters.minPrice);
       setMaxPrice(parsedFilters.maxPrice === 0 ? '' : parsedFilters.maxPrice);
@@ -123,7 +128,6 @@ export default function Properties() {
         ...parsedFilters.selectedStates,
         ...parsedFilters.selectedCities,
         ...parsedFilters.selectedStreets,
-        ...parsedFilters.checkedSubcategories
       ];
 
       setSelectedFilters(combinedFilters);

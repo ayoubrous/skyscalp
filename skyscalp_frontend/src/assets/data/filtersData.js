@@ -12,8 +12,11 @@ const constructionBudget = [
 const machineryBudget = [
     '0', '1000', '5000', '10 000', '25 000', '50 000'
 ]
+const materialsBudget = [
+    '0', '1000', '5000', '10 000', '25 000', '50 000'
+]
 
-const constructionBrands = [
+const machineryBrands = [
     "Caterpillar",
     "Komatsu",
     "Volvo",
@@ -25,6 +28,30 @@ const constructionBrands = [
     "Doosan",
     "Kubota",
     "Other"
+];
+
+const constructionBrands = [
+    'LafargeHolcim',
+    'Cemex',
+    'HeidelbergCement',
+    'CRH plc',
+    'Boral',
+    'Saint-Gobain',
+    'Nippon Steel Corporation',
+    'ArcelorMittal',
+    'BlueScope Steel',
+    'USG Corporation',
+    'Georgia-Pacific',
+    'James Hardie Industries',
+    'Owens Corning',
+    'Johns Manville',
+    'Knauf',
+    'Dow Building Solutions',
+    'Sherwin-Williams',
+    'Behr',
+    'Valspar',
+    'PPG Industries',
+    'Other'
 ];
 
 const conditionData = [
@@ -108,13 +135,15 @@ export {
     propertyBudget,
     constructionBudget,
     machineryBudget,
+    materialsBudget,
     yearBuildData,
     propertyYearBuildData,
     conditionData,
-    constructionBrands,
+    machineryBrands,
     proximityData,
     featuresData,
     featuresDataObj,
     furnitureBrands,
-    furnitureTypes
+    furnitureTypes,
+    constructionBrands
 }

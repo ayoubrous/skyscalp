@@ -185,9 +185,9 @@ export default function Messages() {
                                                         <td>{data.details.title ? data.details.title : data.details}</td>
                                                         <td>{new Date(data.createdAt).toDateString()}</td>
                                                         <td>
-                                                            <a href={`mailto:${data.email}`}>
+                                                            {/* <a href={`mailto:${data.email}`}>
                                                                 <button className="custom-btn px-2 py-1" style={{ fontSize: "12px" }}>Reply</button>
-                                                            </a>
+                                                            </a> */}
                                                             <button className="custom-btn px-2 py-1 ms-1" style={{ fontSize: "12px" }} onClick={() => handleViewMessage(data._id)}>View</button>
                                                         </td>
                                                     </tr>

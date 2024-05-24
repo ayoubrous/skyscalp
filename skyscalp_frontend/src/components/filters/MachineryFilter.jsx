@@ -17,7 +17,44 @@ import CustomLocationsDropdown from './CustomLocationsDropdown';
 import { machineryCategories } from '../../assets/data/categories';
 import { machineryType } from '../../assets/data/filtersData';
 import formatNumber from '../../utils/formatNumber';
-export default function MachineryFilter() {
+import { getLocationsInRadius } from './getLocationsInRadius';
+
+
+
+export default function MachineryFilter(
+    {
+        type,
+        setType,
+        minPrice,
+        setMinPrice,
+        maxPrice,
+        setMaxPrice,
+        guarantee,
+        setGuarantee,
+        selectedBrands,
+        setSelectedBrands,
+        selectedMachineryType,
+        setSelectedMachineryType,
+        yearBuild,
+        setYearBuild,
+        selectedCountries,
+        setSelectedCountries,
+        selectedStates,
+        setSelectedStates,
+        selectedCities,
+        setSelectedCities,
+        selectedStreets,
+        setSelectedStreets,
+        selectedConditions,
+        setSelectedConditions,
+        checkedSubcategories,
+        setCheckedSubcategories,
+        selectedFilters,
+        setSelectedFilters,
+        applyFilters,
+        clearAllFilters,
+    }
+) {
     const [t] = useTranslation();
 
     const categoryDropdownRef = useRef();
@@ -36,33 +73,11 @@ export default function MachineryFilter() {
     const [showYearDrp, setShowYearDrp] = useState(false)
     const [showMachineryType, setShowMachineryType] = useState(false)
 
-    const [type, setType] = useState('buy')
-    const [minPrice, setMinPrice] = useState('')
-    const [maxPrice, setMaxPrice] = useState('')
-    const [available, setAvailable] = useState('')
-    const [condition, setCondtion] = useState('')
-
-    // all selected filters which will show as tags 
-    const [selectedFilters, setSelectedFilters] = useState([])
-
-    const [guarantee, setGuarantee] = useState(false)
-    const [yearBuild, setYearBuild] = useState([])
-
-    const [selectedBrands, setSelectedBrands] = useState([])
-    const [selectedCondtions, setSelectedConditions] = useState([])
-    const [selectedMachineryType, setSelectedMachineryType] = useState([])
-
-    // filters for customLocationDropdown component 
-    const [selectedCountries, setSelectedCountries] = useState([])
-    const [selectedStates, setSelectedStates] = useState([])
-    const [selectedCities, setSelectedCities] = useState([])
-    const [selectedStreets, setSelectedStreets] = useState([])
     const [selectedAllLocations, setSelectedAllLocations] = useState([])
 
-
-    // for nested dropdown 
-    const [checkedSubcategories, setCheckedSubcategories] = useState([]);
     const [checkAll, setCheckAll] = useState(false)
+
+    const [radius, setRadius] = useState(null)
 
 
     const sellType = [
@@ -136,22 +151,29 @@ export default function MachineryFilter() {
     }, []);
 
 
-    const handleType = (value) => {
-        setType(value)
+    const handleType = (selectedOption) => {
+        const newType = selectedOption ? selectedOption.value : ''; // Handle clearing selection
+        setType(newType);
     }
     const handleMinPrice = (e) => {
         // setShowMinPriceDrp(false)
-        setMinPrice(e)
-        // if (!selectedFilters.includes(e)) {
-        //     setSelectedFilters([...selectedFilters, (`Min Price: ${e}`)]);
-        // }
+        if (typeof e === 'string') {
+            setMinPrice(e.replace(/\s+/g, ''));
+        }
+        else {
+            setMinPrice(e)
+
+        }
     }
     const handleMaxPrice = (e) => {
         setShowPriceDrp(false)
-        setMaxPrice(e)
-        // if (!selectedFilters.includes(e)) {
-        //     setSelectedFilters([...selectedFilters, (`Max Price: ${e}`)]);
-        // }
+        if (typeof e === 'string') {
+            setMaxPrice(e.replace(/\s+/g, ''));
+        }
+        else {
+            setMaxPrice(e)
+        }
+
     }
     const handleBrand = brand => {
         setShowBrandDrp(false)
@@ -171,13 +193,13 @@ export default function MachineryFilter() {
         setShowConditionDrp(false)
         if (!selectedFilters.includes(val)) {
             setSelectedFilters([...selectedFilters, val]);
-            setSelectedConditions([...selectedCondtions, val])
+            setSelectedConditions([...selectedConditions, val])
         }
         else {
             const updatedFilters = selectedFilters.filter(filter => filter !== val);
             setSelectedFilters(updatedFilters);
 
-            const updatedData = selectedCondtions.filter(type => type !== val);
+            const updatedData = selectedConditions.filter(type => type !== val);
             setSelectedConditions(updatedData);
         }
     }
@@ -216,10 +238,6 @@ export default function MachineryFilter() {
 
     // for locations 
     const handleLocationSelect = (location, type) => {
-        console.log(location)
-        console.log(type)
-
-
 
         if (!selectedFilters.includes(location)) {
             setSelectedFilters([...selectedFilters, location]);
@@ -244,18 +262,46 @@ export default function MachineryFilter() {
         }
     }
 
+    const handleRadiusChange = (rad) => {
+        setRadius(rad)
+        getLocationsInRadius(selectedAllLocations[0], rad)
+            .then(res => {
+                if (res.status) {
+                    res.data.forEach(data => {
+                        if (data.label === 'Country') {
+                            if (!selectedCountries.includes(data.name)) {
+                                setSelectedCountries([...selectedCountries, data.name])
+                            }
+                        }
+                        if (data.label === 'State') {
+                            if (!selectedStates.includes(data.name)) {
+                                setSelectedStates([...selectedStates, data.name])
+                            }
+                        }
+                        if (data.label === 'City') {
+                            if (!selectedCities.includes(data.name)) {
+                                setSelectedCities([...selectedCities, data.name])
+                            }
+                        }
+                        if (data.label === 'Street') {
+                            if (!selectedStreets.includes(data.name)) {
+                                setSelectedStreets([...selectedStreets, data.name])
+                            }
+                        }
+                    })
+                }
+                else {
+                    console.log(res.data)
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
 
     const handleFilter = () => {
-        console.log(checkedSubcategories)
-        console.log(selectedFilters)
-
-        const minPriceInt = parseInt(minPrice.replace(/\s/g, ''), 10);
-        const maxPriceInt = parseInt(maxPrice.replace(/\s/g, ''), 10);
-        // console.log(location)
-
-        // console.log(selectedBrands)
-        // console.log(selectedCondtions)
-        // console.log(selectedAllLocations)
+        applyFilters()
     }
 
     const removeTypeFilter = (index, name) => {
@@ -266,7 +312,7 @@ export default function MachineryFilter() {
         if (selectedBrands.includes(name)) {
             setSelectedBrands(prevBrands => prevBrands.filter(item => item !== name));
         }
-        if (selectedCondtions.includes(name)) {
+        if (selectedConditions.includes(name)) {
             setSelectedConditions(item => item.filter(item => item !== name));
         }
         if (selectedMachineryType.includes(name)) {
@@ -287,40 +333,21 @@ export default function MachineryFilter() {
         if (selectedAllLocations.includes(name)) {
             setSelectedAllLocations(item => item.filter(item => item !== name));
         }
-        if (selectedAllLocations.includes(name)) {
+        if (yearBuild.includes(name)) {
             setYearBuild(item => item.filter(item => item !== name));
         }
-
-
-
+        setRadius(null)
 
     };
 
-
-    const clearAllFilters = () => {
-        setType('buy');
-        setMinPrice('');
-        setMaxPrice('');
-        setAvailable('');
-        setCondtion('');
+    const handleClearFilters = () => {
         setSelectedFilters([]);
-        setGuarantee(false);
-        setYearBuild([]);
-        setSelectedBrands([]);
-        setSelectedConditions([]);
-        setCheckedSubcategories([]);
-        setSelectedMachineryType([]);
+        setSelectedAllLocations([])
+        setRadius(null)
+        clearAllFilters()
     }
 
-    // only for cities 
-    // const searchOptions = {
-    //     types: ['(cities)'] // Restrict to city type
-    // };
 
-    // for countries and cities 
-    const searchOptions = {
-        types: ['(regions)'] // Restrict to regions (which can include countries)
-    };
     return (
         <div className="filter-area my-4">
             <div className="custom-container">
@@ -331,19 +358,19 @@ export default function MachineryFilter() {
                         <div className="user-input">
                             <div className="type-select">
                                 <Select
-                                    className="custom-input bordor-0 type-select-dropdown"
+                                    className="custom-input bordor-0  type-select-dropdown"
                                     classNamePrefix="select"
                                     placeholder='Buy/Rent'
                                     name="color"
                                     options={sellType}
-                                    defaultValue={[sellType[1]]}
                                     onChange={handleType}
-                                    value={type}
-                                    isClearable={true}
+                                    value={type === 'buy' ? sellType[0] : sellType[1]}
                                 />
                             </div>
                             <div className="category-list" onClick={() => setShowLocationDropdown(!showLocationDropdown)}>
-                                <CustomLocationsDropdown selectedLocations={selectedAllLocations} handleLocationSelect={handleLocationSelect} />
+                                {/* <CustomLocationsDropdown selectedLocations={selectedAllLocations} handleLocationSelect={handleLocationSelect} /> */}
+                                <CustomLocationsDropdown selectedLocations={selectedAllLocations} handleLocationSelect={handleLocationSelect} radius={radius} handleRadiusChange={handleRadiusChange} />
+
                                 {/* <PlacesAutocomplete
                                     searchOptions={searchOptions}
                                     value={location}
@@ -489,7 +516,7 @@ export default function MachineryFilter() {
 
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowConditionDrp(!showConditionDrp)}>
-                                    <p className='text-white'>{condition === '' ? 'Condition' : `Condition: ${condition}`}</p>
+                                    <p className='text-white'>{'Condition'}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
@@ -594,7 +621,7 @@ export default function MachineryFilter() {
                         </div>
                         {
                             selectedFilters.length > 0 && (
-                                <div className="selected-filter" style={{ cursor: "pointer" }} onClick={clearAllFilters}>Clear Filters</div>
+                                <div className="selected-filter" style={{ cursor: "pointer" }} onClick={handleClearFilters}>Clear Filters</div>
                             )
                         }
                     </div>

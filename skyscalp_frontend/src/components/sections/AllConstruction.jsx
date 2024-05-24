@@ -27,6 +27,11 @@ export default function AllConstruction({ data, hasPrevPage, hasNextPage, totalI
 
                 <div className="cards-grid">
                     {
+                        data.length === 0 && (
+                            <h5 className='my-4'>No Products Found</h5>
+                        )
+                    }
+                    {
                         data && data.map(item => {
                             return (
                                 <ConstructionCard key={item._id} data={item} />

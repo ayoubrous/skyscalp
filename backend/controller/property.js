@@ -1,3 +1,4 @@
+const MaterialsModal = require('../modal/Materials');
 const PropertyModal = require('../modal/Property')
 const sendResponse = require("../utils/sendResponse")
 
@@ -242,10 +243,10 @@ const deleteProperty = async (req, res) => {
 
 const updateArea = async (req, res) => {
     try {
-        const getResponse = await PropertyModal.find()
+        const getResponse = await MaterialsModal.find()
 
         getResponse.forEach(async (property) => {
-            const updateArea = await PropertyModal.findByIdAndUpdate(property._id, { budget: parseInt(property.budget) })
+            const updateArea = await MaterialsModal.findByIdAndUpdate(property._id, { budget: parseInt(property.budget) })
         })
 
 

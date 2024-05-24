@@ -242,6 +242,7 @@
     border-radius: 33px;
     font-size: 13px;
     cursor: pointer;
+    position: relative;
     
 }
 .subcat-tab.active{
@@ -253,7 +254,12 @@
     align-items: center;
 }
 
-
+.subcat-tab .closeTab{
+    position: absolute;
+    right: 10px;
+    display: block;
+    margin: auto 0;
+}
 /* ======= About ========  */
 .journey .achievements {
     display: flex;

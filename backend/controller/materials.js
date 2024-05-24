@@ -101,6 +101,106 @@ const getProducts = async (req, res) => {
     }
 };
 
+const getProductsByFilters = async (req, res) => {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 9;
+    const sortby = req.query.sortby || 'createdAt'; // Default to 'relevance' if not provided
+    const sortOrder = req.query.order || 'desc'; // Default to 'desc' if not provided
+    const skipIndex = (page - 1) * limit;
+
+    const materialGroup = req.query.materialGroup || ''
+
+
+    // Construct filter object based on provided filters
+    const filters = {
+        status: true
+    };
+
+    const {
+        type,
+        minPrice,
+        maxPrice,
+        guarantee,
+        selectedBrands,
+        selectedMachineryType,
+        selectedMaterialType,
+        yearBuild,
+        selectedConditions,
+        checkedSubcategories,
+        selectedCountries,
+        selectedStates,
+        selectedCities,
+        selectedStreets,
+    } = req.body;
+
+    if (type) filters.type = type;
+    if (minPrice) filters.budget = { $gte: parseInt(minPrice) };
+    if (maxPrice) filters.budget = { ...filters.budget, $lte: parseInt(maxPrice) };
+    if (guarantee) filters.guarantee = { ...filters.guarantee, $eq: guarantee };
+
+    // for arrays 
+    if (selectedBrands.length > 0) filters.brand = { $in: selectedBrands };
+    if (selectedMachineryType.length > 0) filters.machineryType = { $in: selectedMachineryType };
+    if (selectedMaterialType.length > 0) filters.materialType = { $in: selectedMaterialType };
+    if (yearBuild.length > 0) filters.build = { $in: yearBuild };
+    if (selectedConditions.length > 0) filters.condition = { $in: selectedConditions };
+    if (checkedSubcategories.length > 0) filters.category = { $in: checkedSubcategories };
+
+    // for locations 
+    if (selectedCountries.length > 0) filters.country = { $in: selectedCountries };
+    if (selectedStates.length > 0) filters.state = { $in: selectedStates };
+    if (selectedCities.length > 0) filters.city = { $in: selectedCities };
+    if (selectedStreets.length > 0) filters.street = { $in: selectedStreets };
+
+
+
+    try {
+        // add material group into filters is well 
+        filters.materialGroup = materialGroup
+        console.log(filters)
+
+        const totalItems = await MaterialsModal.countDocuments(filters);
+        const totalPages = Math.ceil(totalItems / limit);
+
+        const mongooseSortOrder = sortOrder === 'desc' ? -1 : 1;
+
+        let response = await MaterialsModal.find(filters)
+            .skip(skipIndex)
+            .limit(limit)
+            .sort({ [sortby]: mongooseSortOrder }) // Sort properties data by the specified field and order
+            .populate('userID');
+
+        if (response.length > 0) {
+            response = response.map(product => ({
+                ...product.toObject(),
+                user: {
+                    username: product.userID.username,
+                    email: product.userID.email,
+                    profileImage: product.userID.profileImage,
+                    phone: product.userID.phone
+                },
+                userID: product.userID._id
+            }));
+
+            const data = {
+                documents: response,
+                currentPage: page,
+                totalPages: totalPages,
+                totalProducts: totalItems,
+                hasNextPage: page < totalPages,
+                hasPrevPage: page > 1
+            };
+
+            sendResponse(req, res, true, "Products found successfully", data);
+        } else {
+            sendResponse(req, res, false, "No Products found", null);
+        }
+    } catch (err) {
+        console.log(err);
+        sendResponse(req, res, false, "Error proceeding your request, try again", null);
+    }
+};
+
 
 const getMachineryProducts = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
@@ -339,7 +439,7 @@ const updateProductFeature = async (req, res) => {
         }
 
         // let property = new PropertyModal(req.body)
-        let response = await MaterialsModal.findOneAndUpdate({ _id: id }, {featured: featured})
+        let response = await MaterialsModal.findOneAndUpdate({ _id: id }, { featured: featured })
         if (response) {
             sendResponse(req, res, true, "Feature updated successfully", null)
         }
@@ -403,5 +503,6 @@ module.exports = {
     getConstructionProducts,
     getFurnitureProducts,
     updateProductFeature,
-    updateProductFavourites
+    updateProductFavourites,
+    getProductsByFilters
 }

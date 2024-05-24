@@ -11,7 +11,7 @@ import Select from 'react-select';
 import locations from '../../assets/data/locations'
 import loader from '../../assets/images/skyscalp-loader.json'
 
-import { machineryType as machineryTypesDropdown, propertyBudget, constructionBudget, machineryBudget, yearBuildData, propertyYearBuildData, conditionData, constructionBrands, proximityData, featuresData, featuresDataObj } from '../../assets/data/filtersData'
+import { machineryType as machineryTypesDropdown, propertyBudget, constructionBudget, machineryBudget, yearBuildData, propertyYearBuildData, conditionData, machineryBrands, proximityData, featuresData, featuresDataObj } from '../../assets/data/filtersData'
 import { machineryCategories, propertyCategories } from '../../assets/data/categories'
 import GetLocationMap from '../../components/map/GetLocationMap'
 import toast, { Toaster } from 'react-hot-toast';
@@ -714,7 +714,7 @@ export default function AddMachinery() {
                                         <select name="" id="" className="custom-input" onChange={e => setBrand(e.target.value)} value={brand}>
                                             <option value="">Select brand</option>
                                             {
-                                                constructionBrands.map((data, i) => {
+                                                machineryBrands.map((data, i) => {
                                                     return (
                                                         <option value={data} key={i}>{data}</option>
                                                     )
