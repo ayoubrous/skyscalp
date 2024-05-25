@@ -531,7 +531,7 @@ export default function AddConstruction() {
                                 ) :
                                 (
                                     <>
-                                        <h2 className='fw-bolder'>Publish New Construction Product</h2>
+                                        <h2 className='fw-bolder'>Publish New Building Materials Product</h2>
                                         <small className='mb-3'>Fill out all the required fields</small>
                                     </>
                                 )

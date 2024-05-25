@@ -22,7 +22,6 @@ export default function Machinery({ data }) {
                         data &&
                         data
                             .filter(item => item.materialGroup === "machinery")
-                            .filter(item => item.featured)
                             .map(item => {
                                 return (
                                     <MachineryCard key={item._id} data={item} />

@@ -8,6 +8,7 @@ import MachineryCard from '../cards/MachineryCard';
 import ConstructionCard from '../cards/ConstructionCard';
 
 export default function Construction({ data }) {
+    
     const [t] = useTranslation()
     return (
         <section className="construction-section">
@@ -22,7 +23,6 @@ export default function Construction({ data }) {
                         data &&
                         data
                             .filter(item => item.materialGroup === "construction")
-                            .filter(item => item.featured)
                             .map(item => {
                                 return (
                                     <ConstructionCard key={item._id} data={item} />

@@ -163,7 +163,33 @@ const getProperties = async (req, res) => {
     }
 };
 
+const getFeaturedProperties = async (req, res) => {
 
+    try {
+        let response = await PropertyModal.find({ featured: true })
+            .populate('userID');
+
+        if (response.length > 0) {
+            response = response.map(property => ({
+                ...property.toObject(),
+                user: {
+                    username: property.userID.username,
+                    email: property.userID.email,
+                    profileImage: property.userID.profileImage,
+                    phone: property.userID.phone
+                },
+                userID: property.userID._id
+            }));
+
+            sendResponse(req, res, true, "Products found successfully", response);
+        } else {
+            sendResponse(req, res, false, "No Products found", null);
+        }
+    } catch (err) {
+        console.log(err);
+        sendResponse(req, res, false, "Error proceeding your request, try again", null);
+    }
+};
 
 const getSingleProperty = async (req, res) => {
     try {
@@ -367,6 +393,7 @@ module.exports = {
     getSingleProperty,
     getPropertiesByUserid,
     deleteProperty,
-    getFilteredProperties
+    getFilteredProperties,
+    getFeaturedProperties
 }
 

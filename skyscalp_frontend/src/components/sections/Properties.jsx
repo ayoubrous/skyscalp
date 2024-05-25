@@ -23,7 +23,6 @@ export default function Properties({ properties }) {
                     {
                         properties &&
                         properties
-                            .filter(item => item.featured)
                             .map(item => {
                                 return (
                                     <PropertyCard key={item._id} propertyData={item} />

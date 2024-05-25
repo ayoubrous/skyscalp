@@ -14,7 +14,9 @@ export default function Navbar() {
     const mobileNavDropdown = useRef()
     const profileDrpRef = useRef()
 
-    const [selectedLanguage, setSelectedLanguage] = useState('EN')
+    // const [selectedLanguage, setSelectedLanguage] = useState('EN')
+    const [selectedLanguage, setSelectedLanguage] = useState(i18n.language.toUpperCase());
+
 
     const authData = useAuth()
     const [showNavInPhone, setShowNavInPhone] = useState(false)

@@ -22,54 +22,66 @@ export default function Home() {
   const [properties, setProperties] = useState([])
   const [materials, setMaterials] = useState([])
   const [loading, setLoading] = useState(false)
-  const loadData = () => {
-    setLoading(true)
+  const loadProperties = async () => {
+    setLoading(true);
     const requestOptions = {
-      method: "GET",
-      redirect: "follow"
+      method: 'GET',
+      redirect: 'follow',
     };
 
-    fetch(`${process.env.REACT_APP_SERVER_URL}/api/getProperties`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        setLoading(false)
-        // console.log(result)
-        if (result.status) {
-          setProperties(result.data.documents)
-        }
-        else {
-          //   toast.error(result.message)
-          // console.log(result.message)
-        }
-      })
-      .catch((error) => {
-        setLoading(false);
-        toast.error('Something goes wrong, Try again later')
-        console.error(error);
-      });
+    try {
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/getFeaturedProperties`, requestOptions);
+      const result = await response.json();
+      if (result.status) {
+        setProperties(result.data);
+      } else {
+        console.log(result.message || 'Failed to load properties');
+      }
+    } catch (error) {
+      toast.error('Something went wrong, try again later');
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    //getting construction 
-    fetch(`${process.env.REACT_APP_SERVER_URL}/api/getProducts`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        setLoading(false)
-        // console.log(result)
-        if (result.status) {
-          setMaterials(result.data.documents)
-        }
-        else {
-          //   toast.error(result.message)
-          console.log(result.message)
-        }
-      })
-      .catch((error) => {
-        setLoading(false);
-        console.error(error);
-      });
-  }
+  const loadMaterials = async () => {
+    setLoading(true);
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow',
+    };
+
+    try {
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/getFeaturedProducts`, requestOptions);
+      const result = await response.json();
+      if (result.status) {
+        setMaterials(result.data);
+      } else {
+        toast.error(result.message || 'Failed to load materials');
+      }
+    } catch (error) {
+      toast.error('Something went wrong, try again later');
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+  let executed = false
   useEffect(() => {
-    loadData()
-  }, [])
+    const loadData = () => {
+      loadProperties();
+      loadMaterials();
+      executed = true
+    }
+    if (!executed) {
+      loadData()
+    }
+  }, []);
+
+
   return (
     <>
       <Toaster />

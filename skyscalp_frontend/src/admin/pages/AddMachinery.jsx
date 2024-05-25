@@ -524,7 +524,7 @@ export default function AddMachinery() {
                                 ) :
                                 (
                                     <>
-                                        <h2 className='fw-bolder'>Publish New Machinery Product</h2>
+                                        <h2 className='fw-bolder'>Publish New Machinery & Tools Product</h2>
                                         <small className='mb-3'>Fill out all the required fields</small>
                                     </>
                                 )

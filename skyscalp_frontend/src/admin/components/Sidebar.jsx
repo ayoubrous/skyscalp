@@ -44,7 +44,7 @@ export default function Sidebar() {
                                 <span>
                                     <TbCarCrane className='me-1' />
                                 </span>
-                                <span className="hide-menu">Machinery</span>
+                                <span className="hide-menu">Machinery & Tools</span>
                             </NavLink>
                         </li>
                         <li className="sidebar-item mt-1">
@@ -52,7 +52,7 @@ export default function Sidebar() {
                                 <span>
                                     <FaTools className='me-1' />
                                 </span>
-                                <span className="hide-menu">Construction</span>
+                                <span className="hide-menu">Building Materials</span>
                             </NavLink>
                         </li>
                         <li className="sidebar-item mt-1">
@@ -60,7 +60,7 @@ export default function Sidebar() {
                                 <span>
                                     <FaChair className='me-1' />
                                 </span>
-                                <span className="hide-menu">Furniture</span>
+                                <span className="hide-menu">Furniture, Appliances</span>
                             </NavLink>
                         </li>
                         <li className="sidebar-item mt-1">

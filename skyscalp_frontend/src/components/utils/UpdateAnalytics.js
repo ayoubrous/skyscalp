@@ -10,7 +10,13 @@ export default function UpdateAnalytics() {
             const country_name = xmlDoc.querySelector('country_name').textContent;
             const country = xmlDoc.querySelector('country').textContent;
             const browser = navigator.userAgent
-            const user = JSON.parse(localStorage.getItem("user"))
+
+
+            const user = localStorage.getItem("user")
+            let userID = ""
+            if(user){
+                userID = JSON.parse(user).userID
+            }
 
             try {
                 let analyticsData = {
@@ -20,7 +26,7 @@ export default function UpdateAnalytics() {
                     country: country_name,
                     countryCode: country,
                     useragent: browser,
-                    userID: user.userID
+                    userID: userID
                 }
 
                 const myHeaders = new Headers();

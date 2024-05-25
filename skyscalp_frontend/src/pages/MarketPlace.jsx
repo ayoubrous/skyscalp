@@ -270,7 +270,7 @@ const MarketPlace = () => {
             selectedCities: selectedCities,
             selectedStreets: selectedStreets
         };
-        console.log(searchFilters)
+        // console.log(searchFilters)
         sessionStorage.setItem('appliedFilters', JSON.stringify(searchFilters))
         setFiltersObj(searchFilters)
         loadData()
@@ -295,6 +295,7 @@ const MarketPlace = () => {
         setSelectedStreets([])
         setSelectedFilters([])
 
+        setActiveSubcats([])
 
         setFiltersObj({
             type: '',
