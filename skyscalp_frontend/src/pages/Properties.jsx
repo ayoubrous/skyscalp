@@ -70,7 +70,6 @@ export default function Properties() {
   })
   const location = useLocation();
 
-
   const loadData = () => {
     setLoading(true)
 
@@ -88,7 +87,7 @@ export default function Properties() {
     }
 
     const savedFilters = sessionStorage.getItem('appliedFilters');
-    if (savedFilters) {
+    if (savedFilters && JSON.parse(savedFilters).isProperties) {
       const parsedFilters = JSON.parse(savedFilters);
       updatedFiltersObj = parsedFilters
       if (queryType) {
@@ -213,11 +212,15 @@ export default function Properties() {
       selectedCountries: selectedCountries,
       selectedStates: selectedStates,
       selectedCities: selectedCities,
-      selectedStreets: selectedStreets
+      selectedStreets: selectedStreets,
+      isProperties: true
     };
+
+
 
     sessionStorage.setItem('appliedFilters', JSON.stringify(searchFilters))
     setFiltersObj(searchFilters)
+    
     loadData()
   }
 

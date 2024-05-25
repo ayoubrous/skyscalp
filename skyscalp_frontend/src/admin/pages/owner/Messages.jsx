@@ -114,8 +114,8 @@ export default function Messages() {
                                                         <td>{data.email}</td>
                                                         <td>
                                                             {data.message && data.message.length > 0 ?
-                                                                (data.message.length > 30 ?
-                                                                    data.message.substring(0, 30) + '...' :
+                                                                (data.message.length > 40 ?
+                                                                    data.message.substring(0, 40) + '...' :
                                                                     data.message)
                                                                 : ""}
                                                         </td>

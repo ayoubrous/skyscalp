@@ -13,6 +13,8 @@ import NestedDropdown from './NestedDropdown';
 
 import { propertyCategories, machineryCategories, constructionCategories, furnitureCategories } from '../../assets/data/categories';
 import CustomLocationsDropdown from './CustomLocationsDropdown';
+import { useNavigate } from 'react-router-dom';
+import { getLocationsInRadius } from './getLocationsInRadius';
 
 export default function HomeFilter() {
     const [t] = useTranslation();
@@ -29,6 +31,8 @@ export default function HomeFilter() {
     const [checkAll, setCheckAll] = useState(false)
     const [selectedFilters, setSelectedFilters] = useState([])
 
+    const [radius, setRadius] = useState(null)
+
 
 
     // filters for customLocationDropdown component 
@@ -39,6 +43,8 @@ export default function HomeFilter() {
     const [selectedAllLocations, setSelectedAllLocations] = useState([])
 
     const categoriesRef = useRef()
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (activeTab === 'property') {
@@ -78,8 +84,51 @@ export default function HomeFilter() {
 
 
     const handleFilter = () => {
-        console.log(selectedCategory)
-        console.log(location)
+        const searchFilters = {
+            type: "",
+            minPrice: '',
+            maxPrice: '',
+            minBeds: '',
+            maxBeds: '',
+            minSize: '',
+            maxSize: '',
+            minBath: '',
+            maxBath: '',
+            guarantee: false,
+            checkedSubcategories: checkedSubcategories,
+            selectedMachineryType: [],
+            selectedMaterialType: [],
+            selectedBrands: [],
+            selectedConditions: [],
+            yearBuild: [],
+            proximities: [],
+            features: [],
+            selectedCountries: selectedCountries,
+            selectedStates: selectedStates,
+            selectedCities: selectedCities,
+            selectedStreets: selectedStreets,
+            isProperties: false
+        };
+        if (activeTab === "property") {
+            searchFilters.isProperties = true;
+        }
+        else {
+            searchFilters.isProperties = false;
+        }
+        sessionStorage.setItem('appliedFilters', JSON.stringify(searchFilters))
+
+        if (activeTab === "property") {
+            navigate('../properties')
+        }
+        else if (activeTab === "machinery") {
+            navigate('../marketplace?market=1')
+        }
+        else if (activeTab === "construction") {
+            navigate('../marketplace?market=2')
+        }
+        else if (activeTab === "furniture") {
+            navigate('../marketplace?market=3')
+        }
     }
 
     const handleActiveTab = (val) => {
@@ -120,17 +169,11 @@ export default function HomeFilter() {
             setSelectedAllLocations(item => item.filter(item => item !== name));
         }
 
-
-
+        setRadius(null)
 
     };
 
     const handleLocationSelect = (location, type) => {
-        console.log(location)
-        console.log(type)
-
-
-
         if (!selectedFilters.includes(location)) {
             setSelectedFilters([...selectedFilters, location]);
             if (type === "Country") {
@@ -149,14 +192,58 @@ export default function HomeFilter() {
 
             }
             setSelectedAllLocations([...selectedAllLocations, location]);
-
-
         }
     }
+
+    const handleRadiusChange = (rad) => {
+        setRadius(rad)
+        getLocationsInRadius(selectedAllLocations[0], rad)
+            .then(res => {
+                if (res.status) {
+                    res.data.forEach(data => {
+                        if (data.label === 'Country') {
+                            if (!selectedCountries.includes(data.name)) {
+                                setSelectedCountries([...selectedCountries, data.name])
+                            }
+                        }
+                        if (data.label === 'State') {
+                            if (!selectedStates.includes(data.name)) {
+                                setSelectedStates([...selectedStates, data.name])
+                            }
+                        }
+                        if (data.label === 'City') {
+                            if (!selectedCities.includes(data.name)) {
+                                setSelectedCities([...selectedCities, data.name])
+                            }
+                        }
+                        if (data.label === 'Street') {
+                            if (!selectedStreets.includes(data.name)) {
+                                setSelectedStreets([...selectedStreets, data.name])
+                            }
+                        }
+                    })
+                }
+                else {
+                    console.log(res.data)
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
 
     const clearAllFilters = () => {
         setSelectedFilters([]);
         setCheckedSubcategories([]);
+        setSelectedAllLocations([])
+        setSelectedCountries([])
+        setSelectedStates([])
+        setSelectedCities([])
+        setSelectedStreets([])
+
+        setRadius(null)
+        sessionStorage.clear()
     }
 
     return (
@@ -194,7 +281,9 @@ export default function HomeFilter() {
                             </div>
 
                             <div className="category-list" onClick={() => setShowLocationDropdown(!showLocationDropdown)}>
-                                <CustomLocationsDropdown selectedLocations={selectedAllLocations} handleLocationSelect={handleLocationSelect} />
+                                {/* <CustomLocationsDropdown selectedLocations={selectedAllLocations} handleLocationSelect={handleLocationSelect} /> */}
+                                <CustomLocationsDropdown selectedLocations={selectedAllLocations} handleLocationSelect={handleLocationSelect} radius={radius} handleRadiusChange={handleRadiusChange} />
+
 
                                 {/* <PlacesAutocomplete
                                     value={location}

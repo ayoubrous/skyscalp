@@ -12,7 +12,7 @@ export default function Contact() {
     return (
         <>
             <Navbar />
-            <Breadcrumb title={t("estimatePropertyOrProduct")} link={t("contact")} />
+            <Breadcrumb title={t("estimatePropertyOrProduct")} link={t("estimate")} />
             <Estimate />
             <ContactUs supportTitle={t("contactSupportTitle")} supportDescription={t("contactSupportDescription")} />
             <Footer />

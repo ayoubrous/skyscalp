@@ -124,7 +124,9 @@ const MarketPlace = () => {
         }
 
         const savedFilters = sessionStorage.getItem('appliedFilters');
-        if (savedFilters) {
+
+        if (savedFilters && !JSON.parse(savedFilters).isProperties) {
+            console.log("IN FIL")
             const parsedFilters = JSON.parse(savedFilters);
             updatedFiltersObj = parsedFilters
             if (queryType) {
@@ -171,17 +173,17 @@ const MarketPlace = () => {
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        if(activeCatId === 2 || activeCatId === 3){
+        if (activeCatId === 2 || activeCatId === 3) {
             updatedFiltersObj.type = ''
         }
-        else{
+        else {
             updatedFiltersObj.type = type
         }
 
-        if(activeSubcats.length > 0){
+        if (activeSubcats.length > 0) {
             updatedFiltersObj.checkedSubcategories = activeSubcats
         }
-        else{
+        else {
             updatedFiltersObj.checkedSubcategories = checkedSubcategories
         }
 
