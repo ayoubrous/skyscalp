@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import clientImg from '../../assets/images/client.png'
+import clientImg2 from '../../assets/images/client2.jpg'
+import clientImg3 from '../../assets/images/client3.jpg'
 import { FaQuoteLeft } from "react-icons/fa6";
 
 export default function Testimonials() {
@@ -10,18 +12,21 @@ export default function Testimonials() {
             "id": 1,
             "name": "John Doe",
             "role": "Marketing Manager",
+            "image": clientImg2,
             "review": "Our experience working with this company has been exceptional. They deliver high-quality results promptly and are very responsive to our needs. I highly recommend their services."
         },
         {
             "id": 2,
             "name": "Jane Smith",
             "role": "CEO",
+            "image": clientImg,
             "review": "I'm thoroughly impressed with the professionalism and expertise of this company. They helped us streamline our operations and achieve significant cost savings. Looking forward to continuing our partnership."
         },
         {
             "id": 3,
             "name": "David Johnson",
             "role": "IT Director",
+            "image": clientImg3,
             "review": "Working with this company has been a game-changer for our IT department. They implemented robust solutions that greatly improved our efficiency and security. I'm grateful for their dedication and highly recommend them."
         }
     ]
@@ -59,7 +64,7 @@ export default function Testimonials() {
                             return (
                                 <div key={review.id} className={`customer ${activeReview === review.id ? 'active' : ''}`} onClick={() => setActiveReview(review.id)}>
                                     <div className="image">
-                                        <img src={clientImg} alt="" />
+                                        <img src={review.image} alt="" />
                                     </div>
                                     <div className="info">
                                         <p className='fw-bolder'>{review.name}</p>

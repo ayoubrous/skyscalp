@@ -27,7 +27,7 @@ const register = (req, res) => {
                             username: req.body.username,
                             email: req.body.email,
                             password: hashPassword,
-                            phone: req.body.email,
+                            phone: req.body.phone,
                             profileImage: req.body.profileImage,
                             status: req.body.status,
                             role: req.body.role,

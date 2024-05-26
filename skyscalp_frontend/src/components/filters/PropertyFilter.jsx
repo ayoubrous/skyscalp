@@ -77,7 +77,6 @@ export default function PropertyFilter({
     const proximityRef = useRef()
     const featureRef = useRef()
 
-    const [showLocationDropdown, setShowLocationDropdown] = useState(false);
     const [showCategoriesDrp, setShowCategoriesDrp] = useState(false)
     const [showPriceDrp, setShowPriceDrp] = useState(false);
     const [showSizeDrp, setShowSizeDrp] = useState(false);
@@ -122,7 +121,7 @@ export default function PropertyFilter({
 
     const handleClickOutside = (e) => {
         if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(e.target)) {
-            setShowLocationDropdown(false);
+            setShowCategoriesDrp(false);
         }
         if (minPriceRef.current && !minPriceRef.current.contains(e.target)) {
             setShowPriceDrp(false);
@@ -405,7 +404,14 @@ export default function PropertyFilter({
         clearAllFilters()
     }
 
-
+    const handleDivClick = (e) => {
+        e.stopPropagation();
+        setShowCategoriesDrp(!showCategoriesDrp);
+      };
+      
+      const handleHideDrp = () => {
+        setShowCategoriesDrp(false);
+      };
     return (
         <div className="filter-area my-4">
             <div className="custom-container">
@@ -426,11 +432,13 @@ export default function PropertyFilter({
                                 />
 
                             </div>
-                            <div className="category-list" onClick={() => setShowLocationDropdown(!showLocationDropdown)}>
+                            <div className="category-list" >
                                 <CustomLocationsDropdown selectedLocations={selectedAllLocations} handleLocationSelect={handleLocationSelect} radius={radius} handleRadiusChange={handleRadiusChange} />
                             </div>
-                            <div className="search-input" onClick={() => setShowCategoriesDrp(true)}>
-
+                            <div
+                                className="search-input"
+                                onClick={handleDivClick}
+                            >
                                 <NestedDropdown
                                     show={showCategoriesDrp}
                                     categoriesRef={categoriesRef}

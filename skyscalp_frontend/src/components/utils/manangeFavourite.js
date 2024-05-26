@@ -34,7 +34,7 @@ const handleProductFavourite = (favourite, setFavourite, _id, isMaterial) => {
 
         }
         else {
-            Swal.fire("Login first to add to favourites")
+            Swal.fire(`<h3>Login first to add to favourites</h3>`)
             setFavourite(false)
         }
 

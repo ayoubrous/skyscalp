@@ -15,8 +15,8 @@ import { BsBuildings } from "react-icons/bs";
 import { TbBed, TbCar } from 'react-icons/tb'
 import { PiFlowerTulip } from "react-icons/pi";
 import { MdOutlinePool } from "react-icons/md";
-import { MdOutlineGarage } from "react-icons/md";
 import loader from '../assets/images/skyscalp-loader.json'
+import Lottie from 'lottie-react'
 
 
 import OwlCarousel from 'react-owl-carousel';
@@ -30,7 +30,6 @@ import Swal from 'sweetalert2'
 import ShareProduct from '../components/utils/ShareProduct'
 import toast, { Toaster } from 'react-hot-toast'
 import { formatPrice } from '../utils/formatPrice'
-import Lottie from 'lottie-react'
 import { checkInFavourites } from '../APIs/favourites'
 import handleProductFavourite from '../components/utils/manangeFavourite'
 import PropertyCard from '../components/cards/PropertyCard'

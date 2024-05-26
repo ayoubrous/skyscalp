@@ -13,18 +13,18 @@ export default function AboutInfo() {
     const [faqs, setFaqs] = useState([
         {
             id: 1,
-            question: 'How to remove the background of a picture for free?',
-            answer: 'To remove the background of a picture, go to remove-background, and upload your image. The tool will remove the background for you, and you will be able to download your HD image for free.',
+            question: 'How can I list my property on your platform?',
+            answer: "To list your property, simply create an account on our website, go to the 'List Property' section, and fill out the required details about your property. You can upload photos and provide a detailed description to attract potential buyers or renters",
         },
         {
             id: 2,
-            question: 'How to remove an object from a picture?',
-            answer: 'To remove an object from a picture, go to Cleanup, upload your image, select the object, and download the result!',
+            question: 'What are the fees associated with listing a property?',
+            answer: "Listing a property on our platform is free. However, there may be additional fees for premium listing options, which can help increase your property's visibility. You can find detailed pricing information in the 'Pricing' section of our website.",
         },
         {
             id: 3,
-            question: 'How to remove a person from a picture?',
-            answer: 'To remove the background of a picture, go to remove-background, and upload your image. This tool will remove the background for you, and you will be able to download your HD image for free.',
+            question: 'What types of building materials are available on your platform?',
+            answer: 'Our platform offers a wide range of building materials, including bricks, cement, steel, timber, and more. You can browse through various categories and find materials from trusted suppliers.',
         },
     ])
     const [showFAQ, setShowFAQ] = useState({});

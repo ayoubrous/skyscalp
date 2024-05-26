@@ -130,5 +130,7 @@
     "machineryTools": "Machinery & Tools",
     "transaction": "Transaction",
     "subcategory": "Sub Category",
-    "gotoDashboard": "Go to Dashboard"
+    "gotoDashboard": "Go to Dashboard",
+    "experience": "Experience",
+    "happyCustomers": "Happy Customers"
 }

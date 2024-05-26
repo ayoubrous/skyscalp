@@ -426,6 +426,13 @@
 
 @media screen and (max-width: 450px) {
     .property-card {
-        height: 510px;
+        height: 477px;
+    }
+}
+
+
+@media screen and (max-width: 400px) {
+    .property-card {
+        height: 505px;
     }
 }

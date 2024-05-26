@@ -100,17 +100,24 @@ export default function Properties() {
                                 <thead >
                                     <tr>
                                         <th className='col-1'>S. No</th>
-                                        <th className='col-2'>Title</th>
-                                        <th className='col-2'>Address</th>
+                                        <th className='col-3'>Title</th>
                                         <th className='col-2'>Budget</th>
                                         <th className='col-1'>Type</th>
                                         <th className='col-1'>Favourites</th>
                                         <th className='col-2'>Published</th>
-                                        <th className='col-1'>Status</th>
-                                        <th className='col-1'>Action</th>
+                                        {/* <th className='col-1'>Status</th> */}
+                                        <th className='col-2'>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {
+                                        properties && 
+                                        properties.length === 0 && (
+                                            <tr>
+                                                <td colSpan={7} className='text-center'>No properties found</td>
+                                            </tr>
+                                        )
+                                    }
                                     {
                                         properties &&
                                         properties.map((data, i) => {
@@ -118,7 +125,6 @@ export default function Properties() {
                                                 <tr key={data._id}>
                                                     <td>{i + 1}</td>
                                                     <td>{data.title}</td>
-                                                    <td>{data.city} - {data.country}</td>
                                                     <td>MAD {formatPrice(data.budget)}</td>
                                                     <td>{(data.type && data.type.charAt(0).toUpperCase() + data.type.slice(1))}</td>
                                                     <td>{data.toFavourites && data.toFavourites.length}</td>
@@ -127,7 +133,7 @@ export default function Properties() {
                                                         month: 'short',
                                                         year: 'numeric'
                                                     })}</td>
-                                                    <td>
+                                                    {/* <td>
                                                         {
                                                             data.status ?
                                                                 (
@@ -137,7 +143,7 @@ export default function Properties() {
                                                                     <span class="badge text-bg-danger" style={{ fontSize: "12px" }}>Inactive</span>
                                                                 )
                                                         }
-                                                    </td>
+                                                    </td> */}
                                                     <td>
                                                         <Link className='mx-1' to={`../property/${data._id}`}>
                                                             <FaEye className='color-secondary' />

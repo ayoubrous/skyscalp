@@ -14,7 +14,7 @@ export default function Machinery({ data }) {
                 <h1 className="color-primary fw-bolder text-uppercase">{t("machinerySectionTitle")}</h1>
                 <div className="d-flex justify-content-between align-items-center">
                     <h3 className='my-3 fw-bolder w-75'>{t("machinerySectionSubTitle")}</h3>
-                    <Link to="../machinery" className='underlineLink'>{t("seeMore")}</Link>
+                    <Link to="../marketplace?market=1" className='underlineLink'>{t("seeMore")}</Link>
                 </div>
 
                 <div className="cards-grid">

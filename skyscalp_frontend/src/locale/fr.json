@@ -114,5 +114,17 @@
     "area": "Superficie",
     "bathrooms": "Salles de bains",
     "proximit": "Proximité",
-    "features": "Caractéristiques"
+    "features": "Caractéristiques",
+    "year": "Année",
+    "allFurniture": "Tous les meubles",
+    "furniture": "Meubles",
+    "marketplace": "Marché",
+    "buildingMaterial": "Matériaux de construction",
+    "furnitureAppliances": "Meubles, appareils",
+    "machineryTools": "Machines et outils",
+    "transaction": "Transaction",
+    "subcategory": "Sous-catégorie",
+    "gotoDashboard": "Aller au tableau de bord",
+    "experience": "Expérience",
+    "happyCustomers": "Clients satisfaits"
 }

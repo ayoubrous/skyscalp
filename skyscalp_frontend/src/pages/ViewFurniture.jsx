@@ -8,20 +8,19 @@ import BlogSection from '../components/sections/BlogSection'
 import sellerImage from '../assets/images/sellerImage.png'
 import { FaBath, FaBed, FaBuilding, FaEnvelope, FaHeart, FaPhone, FaRegHeart, FaRoadSpikes } from 'react-icons/fa6'
 import MessageOwner from '../components/utils/MessageOwner'
-import SimilarProperties from '../components/sections/SimilarProperties'
 import { Link, useParams } from 'react-router-dom'
 import ShareProduct from '../components/utils/ShareProduct'
 import Map from '../components/map/Map'
 import { FaAngleLeft, FaAngleRight, FaRegCheckSquare } from 'react-icons/fa'
-import { TbCar } from 'react-icons/tb'
 import { GrStatusInfo } from 'react-icons/gr'
 import { IoIosColorPalette } from 'react-icons/io'
-import toast from 'react-hot-toast'
 import { checkInFavourites } from '../APIs/favourites'
 import handleProductFavourite from '../components/utils/manangeFavourite'
 import { formatPrice } from '../utils/formatPrice'
 import FurnitureCard from '../components/cards/FurnitureCard'
 
+import loader from '../assets/images/skyscalp-loader.json'
+import Lottie from 'lottie-react'
 
 export default function ViewFurniture() {
     const [isLoading, setIsLoading] = useState(false)
@@ -212,9 +211,11 @@ export default function ViewFurniture() {
     }
     return (
         <>
+            <div className={`lottie-wrapper ${isLoading ? 'show' : ''}`}>
+                <Lottie className='loader' animationData={loader} loop={true} />
+            </div>
             <Navbar />
             <Breadcrumb title={title} link={t("construction")} />
-
             <section className="details-section">
                 <div className="custom-container">
                     <div className="split">

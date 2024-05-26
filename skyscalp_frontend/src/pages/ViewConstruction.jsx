@@ -22,6 +22,9 @@ import handleProductFavourite from '../components/utils/manangeFavourite'
 import ConstructionCard from '../components/cards/ConstructionCard'
 
 
+import loader from '../assets/images/skyscalp-loader.json'
+import Lottie from 'lottie-react'
+
 export default function ViewConstruction() {
 
     const [t] = useTranslation()
@@ -209,9 +212,12 @@ export default function ViewConstruction() {
     }
     return (
         <>
+        <div className={`lottie-wrapper ${isLoading ? 'show' : ''}`}>
+                <Lottie className='loader' animationData={loader} loop={true} />
+            </div>
             <Navbar />
             <Breadcrumb title={title} link={t("construction")} />
-
+            
             <section className="details-section">
                 <div className="custom-container">
                     <div className="split">

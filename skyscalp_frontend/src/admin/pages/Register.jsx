@@ -33,6 +33,7 @@ export default function Register() {
                     status: true
                 }
 
+
                 setIsLoading(true)
                 const myHeaders = new Headers();
                 myHeaders.append("Content-Type", "application/json");

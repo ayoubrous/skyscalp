@@ -107,11 +107,18 @@ export default function Machinery() {
                                         <th className='col-1'>Budget</th>
                                         <th className='col-1'>Favourites</th>
                                         <th className='col-1'>Published</th>
-                                        <th className='col-1'>Status</th>
                                         <th className='col-1'>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {
+                                        products &&
+                                        products.length === 0 && (
+                                            <tr>
+                                                <td colSpan={7} className='text-center'>No products found</td>
+                                            </tr>
+                                        )
+                                    }
                                     {
                                         products &&
                                         products.map((data, i) => {

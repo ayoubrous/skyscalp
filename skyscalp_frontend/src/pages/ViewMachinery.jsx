@@ -27,6 +27,8 @@ import handleProductFavourite from '../components/utils/manangeFavourite'
 import { checkInFavourites } from '../APIs/favourites'
 import MachineryCard from '../components/cards/MachineryCard'
 
+import loader from '../assets/images/skyscalp-loader.json'
+import Lottie from 'lottie-react'
 export default function ViewMachinery() {
 
     const [userID, setUserID] = useState('')
@@ -225,9 +227,11 @@ export default function ViewMachinery() {
         <>
             <Toaster />
 
+            <div className={`lottie-wrapper ${isLoading ? 'show' : ''}`}>
+                <Lottie className='loader' animationData={loader} loop={true} />
+            </div>
             <Navbar />
             <Breadcrumb title="Beautiful Modern House with Stunning Views" link={t("machineryTools")} />
-
             <section className="details-section">
                 <div className="custom-container">
                     <div className="split">

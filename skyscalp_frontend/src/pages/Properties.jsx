@@ -70,6 +70,10 @@ export default function Properties() {
   })
   const location = useLocation();
 
+
+  const [ignoreQuery, setIgnoreQuery] = useState(false)
+  
+
   const loadData = () => {
     setLoading(true)
 
@@ -90,13 +94,15 @@ export default function Properties() {
     if (savedFilters && JSON.parse(savedFilters).isProperties) {
       const parsedFilters = JSON.parse(savedFilters);
       updatedFiltersObj = parsedFilters
-      if (queryType) {
+
+      if (queryType && !ignoreQuery) {
+        console.log("WUERY run")
         updatedFiltersObj = { ...updatedFiltersObj, type: queryType };
       }
       else {
         updatedFiltersObj = parsedFilters
       }
-      setFiltersObj(parsedFilters);
+      setFiltersObj(updatedFiltersObj);
       // Set individual state variables from the saved filters
 
       setType(parsedFilters.type);
@@ -131,6 +137,7 @@ export default function Properties() {
 
       setSelectedFilters(combinedFilters);
     }
+
 
 
     const myHeaders = new Headers();
@@ -173,7 +180,7 @@ export default function Properties() {
 
   useEffect(() => {
     loadData()
-  }, [location, paginationData.currentPage, sortby, order])
+  }, [location, paginationData.currentPage, sortby, order, ignoreQuery])
 
 
 
@@ -220,7 +227,7 @@ export default function Properties() {
 
     sessionStorage.setItem('appliedFilters', JSON.stringify(searchFilters))
     setFiltersObj(searchFilters)
-    
+    setIgnoreQuery(true)
     loadData()
   }
 

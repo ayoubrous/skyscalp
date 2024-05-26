@@ -107,11 +107,19 @@ export default function Furniture() {
                                         <th className='col-1'>Budget</th>
                                         <th className='col-1'>Favourites</th>
                                         <th className='col-1'>Published</th>
-                                        <th className='col-1'>Status</th>
+                                        {/* <th className='col-1'>Status</th> */}
                                         <th className='col-1'>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {
+                                        products &&
+                                        products.length === 0 && (
+                                            <tr>
+                                                <td colSpan={7} className='text-center'>No products found</td>
+                                            </tr>
+                                        )
+                                    }
                                     {
                                         products &&
                                             products.length >= 0 ?
@@ -129,7 +137,7 @@ export default function Furniture() {
                                                                 month: 'short',
                                                                 year: 'numeric'
                                                             })}</td>
-                                                            <td>
+                                                            {/* <td>
                                                                 {
                                                                     data.status ?
                                                                         (
@@ -139,7 +147,7 @@ export default function Furniture() {
                                                                             <span class="badge text-bg-danger" style={{ fontSize: "12px" }}>Inactive</span>
                                                                         )
                                                                 }
-                                                            </td>
+                                                            </td> */}
                                                             <td>
                                                                 <Link className='mx-1' to={`../furniture/${data._id}`}>
                                                                     <FaEye className='color-secondary' />

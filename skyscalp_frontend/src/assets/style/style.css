@@ -519,6 +519,7 @@
 .testimonials .customers .customer .image {
     width: 20%;
     border-radius: 50%;
+    overflow: hidden;
 }
 
 .testimonials .customers .customer .image img {

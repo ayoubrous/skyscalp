@@ -117,7 +117,6 @@ const getFeaturedProducts = async (req, res) => {
                 },
                 userID: product.userID._id
             }));
-
             sendResponse(req, res, true, "Products found successfully", response);
         } else {
             sendResponse(req, res, false, "No Products found", null);

@@ -80,6 +80,7 @@
 
 import React, { useState } from 'react';
 import { FaAngleDown } from 'react-icons/fa';
+import { FaAngleUp } from 'react-icons/fa6';
 
 export default function NestedDropdown({ show, categoriesRef, categories, setCheckedSubcategories, checkedSubcategories, checkAll, setCheckAll }) {
 	const [extendedCat, setExtendedCat] = useState(null)
@@ -185,7 +186,13 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
 					)
 			}
 
-			<FaAngleDown />
+			{
+				show ? (
+					<FaAngleUp />
+				): (
+					<FaAngleDown />
+				)
+			}
 			<ul className={`categories-select-dropdown ${show ? 'show' : ''}`} ref={categoriesRef}>
 				<li className='dropdown-item extended p-0' >
 					<div className="d-flex gap-2" style={{ backgroundColor: "#f7f7f7", padding: "5px" }}>

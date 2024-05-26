@@ -63,7 +63,7 @@ export default function Machinery() {
                         });
                 } else {
                     setIsLoading(false);
-                    toast.error(result.message);
+                    console.error(result.message);
                 }
             })
             .catch((error) => {

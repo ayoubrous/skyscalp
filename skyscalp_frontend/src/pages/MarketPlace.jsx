@@ -126,7 +126,6 @@ const MarketPlace = () => {
         const savedFilters = sessionStorage.getItem('appliedFilters');
 
         if (savedFilters && !JSON.parse(savedFilters).isProperties) {
-            console.log("IN FIL")
             const parsedFilters = JSON.parse(savedFilters);
             updatedFiltersObj = parsedFilters
             if (queryType) {
@@ -210,7 +209,7 @@ const MarketPlace = () => {
                         totalItems: result.data.totalProperties,
                     });
                 } else {
-                    console.log(result.message);
+                    // console.log(result.message);
                     setProducts([])
                 }
             })
@@ -232,6 +231,8 @@ const MarketPlace = () => {
 
     const handleActiveCategory = (id) => {
         setActiveCatId(id);
+        resetAllFilters()
+
         const queryParams = new URLSearchParams(location.search);
         queryParams.set('market', id);
         window.history.replaceState({}, '', `${location.pathname}?${queryParams}`);
