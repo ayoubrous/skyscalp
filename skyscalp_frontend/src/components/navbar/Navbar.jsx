@@ -98,6 +98,7 @@ export default function Navbar() {
                                 <Link to="/marketplace?market=3" className='link-dropdown-item' onClick={() => setshowDrp(false)}>{t("furnitureAppliances")}</Link>
                             </div>
                         </Link>
+                        <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/agents" >{t("agents")}</NavLink>
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/estimate" >{t("estimate")}</NavLink>
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/app/dashboard" >{t("publish")}</NavLink>
                     </div>

@@ -16,6 +16,12 @@ import masonry from '../images/categories/masonry.jpg'
 import wood from '../images/categories/wood.jpg'
 import others from '../images/categories/others.jpeg'
 
+import services from '../images/categories/services.jpg'
+import legal from '../images/categories/legal.jpg'
+import realEstate from '../images/categories/realEstate.jpg'
+import finance from '../images/categories/finance.jpg'
+import construction from '../images/categories/construction.png'
+
 
 const machineryCategories = [
     {
@@ -399,4 +405,210 @@ const marketplaceCategories = [
     },
 ]
 
-export { machineryCategories, propertyCategories, constructionCategories, furnitureCategories, marketplaceCategories }
+const agentsCategories = [
+    {
+        id: 1,
+        categoryName: "Services",
+        image: services,
+        subcategories: [
+            {
+                subCatName: "Moving companies",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+            {
+                subCatName: "Cleaning agencies",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+            {
+                subCatName: "Security companies",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+            {
+                subCatName: "Energy consultants",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+            {
+                subCatName: "Urban planners",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+            {
+                subCatName: "Surveyors",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+        ]
+    },
+    {
+        id: 2,
+        categoryName: "Legal",
+        image: legal,
+        subcategories: [
+            {
+                subCatName: "Notary",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+            {
+                subCatName: "Lawyer",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+            {
+                subCatName: "Union",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+            {
+                subCatName: "Legal advisor",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+        ]
+    },
+    {
+        id: 3,
+        categoryName: "Real Estate",
+        image: realEstate,
+        subcategories: [
+            {
+                subCatName: "Real estate agencies",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+            {
+                subCatName: "Real estate advisor",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+            {
+                subCatName: "Property managers",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+            {
+                subCatName: "Property management companies",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+        ]
+    },
+    {
+        id: 4,
+        categoryName: "Finance and insurance",
+        image: finance,
+        subcategories: [
+            {
+                subCatName: "Credit institutions",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+            {
+                subCatName: "Brokers",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+            {
+                subCatName: "Insurance companies",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+            {
+                subCatName: "Crowdfunding",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+        ]
+    },
+    {
+        id: 5,
+        categoryName: "Construction",
+        image: construction,
+        subcategories: [
+            {
+                subCatName: "Architects",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+            {
+                subCatName: "Engineering firms",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+            {
+                subCatName: "Real estates developers",
+                specialization: [
+                    'Specialization 1',
+                    'Specialization 2',
+                    'Specialization 3',
+                ]
+            },
+        ]
+    },
+]
+
+export { machineryCategories, propertyCategories, constructionCategories, furnitureCategories, marketplaceCategories, agentsCategories }

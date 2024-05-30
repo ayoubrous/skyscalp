@@ -132,5 +132,7 @@
     "subcategory": "Sub Category",
     "gotoDashboard": "Go to Dashboard",
     "experience": "Experience",
-    "happyCustomers": "Happy Customers"
+    "happyCustomers": "Happy Customers",
+    "agents": "Agents",
+    "skyscalpAgents": "Skyscalp Agents"
 }

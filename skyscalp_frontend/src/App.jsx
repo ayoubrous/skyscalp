@@ -55,6 +55,8 @@ import AddArticle from './admin/pages/owner/AddArticle';
 import UpdateAnalytics from './components/utils/UpdateAnalytics';
 import AdminPrivate from './routes/AdminPrivate';
 import { getLocations } from './assets/data/locations';
+import AgentsMarket from './pages/AgentsMarket';
+import ViewAgent from './pages/ViewAgent';
 
 const App = () => {
 
@@ -82,11 +84,14 @@ const App = () => {
             {/* ----- Listing pages -----  */}
             <Route path='/properties' exact element={<Properties />} />
             <Route path='/marketplace' exact element={<MarketPlace />} />
+            <Route path='/agents' exact element={<AgentsMarket />} />
+
             {/* ------ Detailed Pages -------  */}
             <Route path='/property/:id' exact element={<ViewProperty />} />
             <Route path='/construction/:id' exact element={<ViewConstruction />} />
             <Route path='/machinery/:id' exact element={<ViewMachinery />} />
             <Route path='/furniture/:id' exact element={<ViewFurniture />} />
+            <Route path='/agent/:id' exact element={<ViewAgent />} />
 
 
             <Route path='/app/register' exact element={<Register />} />
