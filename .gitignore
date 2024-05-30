@@ -14,9 +14,9 @@
 /skyscalp_frontend/.DS_Store
 
 # Ignore .env files in the root and subdirectories
-.env
-/backend/.env
-/skyscalp_frontend/.env
+# .env
+# /backend/.env
+# /skyscalp_frontend/.env
 
 # Ignore dist directories in the root and subdirectories
 dist/
