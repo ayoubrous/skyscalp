@@ -5,7 +5,6 @@
  * Copyright 2011-2022 The Bootstrap Authors
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-@import "../libs/simplebar/dist/simplebar.css";
 @import "../css/icons/tabler-icons/tabler-icons.css";
 
 :root,
@@ -19670,9 +19669,6 @@ fieldset:disabled .btn {
     border-radius: 7px
 }
 
-.left-sidebar .scroll-sidebar .simplebar-track.simplebar-horizontal {
-    visibility: hidden !important
-}
 
 .brand-logo {
     min-height: 70px;
@@ -20005,9 +20001,6 @@ fieldset:disabled .btn {
     }
 }
 
-.simplebar-scrollbar:before {
-    background: rgba(0, 0, 0, 0.5) !important
-}
 
 #main-wrapper[data-layout=vertical][data-sidebar-position=fixed] .left-sidebar {
     position: fixed;
