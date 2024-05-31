@@ -1,10 +1,12 @@
+import { t } from 'i18next'
 import React, { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FaAngleDown, FaArrowDown, FaArrowUp } from 'react-icons/fa6'
 
 export default function Sortby({ handleSortOrder, handleSortby }) {
     const sortbyRef = useRef()
     const [showSortDropdown, setShowSortDropdown] = useState(false)
-
+    const [t] = useTranslation()
 
     const [sortBy, setSortBy] = useState('')
     const [sortOrder, setSortOrder] = useState('asc')
@@ -49,7 +51,7 @@ export default function Sortby({ handleSortOrder, handleSortby }) {
             </div>
             <div className="d-flex gap-2 align-items-center sorting" onClick={() => setShowSortDropdown(!showSortDropdown)}>
                 <p>
-                    {sortBy === '' ? 'Sort By' : (() => {
+                    {sortBy === '' ? `${t("sortby")}` : (() => {
                         switch (sortBy) {
                             case 'budget':
                                 return 'Price';

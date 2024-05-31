@@ -226,7 +226,8 @@ export default function ViewConstruction() {
                             <div className="side images mb-2">
                                 <div className="d-flex align-items-center justify-content-between mb-3">
                                     <Link to='../marketplace?market=2'>
-                                        <p className="color-secondary">&lt; Back to list</p>
+                                        <p className="color-secondary">&lt; {t("backToList")}</p>
+
                                     </Link>
                                     <ShareProduct />
                                 </div>

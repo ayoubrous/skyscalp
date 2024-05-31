@@ -3,7 +3,7 @@ import { FaEnvelope, FaFacebook, FaFacebookF, FaInstagram, FaLocationArrow, FaPh
 import { FaXTwitter } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
-
+import logoHalf from '../../assets/images/logo.png'
 export default function Footer() {
     const [t] = useTranslation()
 
@@ -12,7 +12,8 @@ export default function Footer() {
             <div className="custom-container">
                 <div className="row justify-content-between">
                     <div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 mb-3">
-                        <h4 className='text-white'>LOGO</h4>
+                        {/* <h4 className='text-white'>LOGO</h4> */}
+                        <img src={logoHalf} alt="" width={130}/>
                     </div>
                     <div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 mb-3">
                         <h4 className='mb-5 text-white'>{t("supportInfo")}</h4>
@@ -43,27 +44,27 @@ export default function Footer() {
 
                         <div className="d-flex gap-3 mb-3">
                             <div>
-                                <Link to='../' className="text-white">Home</Link>
+                                <Link to='../' className="text-white">{t("home")}</Link>
                             </div>
                         </div>
                         <div className="d-flex gap-3 mb-3">
                             <div>
-                                <Link to='../properties?type=buy' className="text-white">Buy</Link>
+                                <Link to='../properties?type=buy' className="text-white">{t("buy")}</Link>
                             </div>
                         </div>
                         <div className="d-flex gap-3 mb-3">
                             <div>
-                                <Link to='../marketplace?market=1' className="text-white">Machinery</Link>
+                                <Link to='../marketplace?market=1' className="text-white">{t("machineryTools")}</Link>
                             </div>
                         </div>
                         <div className="d-flex gap-3 mb-3">
                             <div>
-                                <Link to='../marketplace?market=2' className="text-white">Construction</Link>
+                                <Link to='../marketplace?market=2' className="text-white">{t("buildingMaterials")}</Link>
                             </div>
                         </div>
                         <div className="d-flex gap-3 mb-3">
                             <div>
-                                <Link to='../app/dashboard' className="text-white">Publish</Link>
+                                <Link to='../app/dashboard' className="text-white">{t("publish")}</Link>
                             </div>
                         </div>
                     </div>

@@ -262,7 +262,7 @@ export default function ConstructionFilter({
     return (
         <div className="filter-area my-4">
             <div className="custom-container">
-                <p className="color-primary mb-2">Cement, paints or steel: find what you need at the right price.?</p>
+                <p className="color-primary mb-2">{t("constructionFilterTitle")}</p>
                 <div className="filter machinery-filter construction-filter">
                     <div className="split">
 
@@ -308,7 +308,7 @@ export default function ConstructionFilter({
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowPriceDrp(!showPriceDrp)}>
                                     <div className='text-white'>
                                         {minPrice === '' && maxPrice === '' ? (
-                                            <p className='filter-values'>Budget</p>
+                                            <p className='filter-values'>{t("budget")}</p>
                                         ) : (
                                             <>
                                                 {minPrice === '' ? (
@@ -376,7 +376,7 @@ export default function ConstructionFilter({
 
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowBrandDrp(!showBrandDrp)}>
-                                    <p className='text-white'>Brand</p>
+                                    <p className='text-white'>{t("brand")}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
@@ -401,7 +401,7 @@ export default function ConstructionFilter({
 
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowConditionDrp(!showConditionDrp)}>
-                                    <p className='text-white'>{'Condition'}</p>
+                                    <p className='text-white'>{t("condition")}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
@@ -446,7 +446,7 @@ export default function ConstructionFilter({
 
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }}>
-                                    <label htmlFor="guarantee" className='text-white' style={{ fontSize: "12px" }}>Guarantee</label>
+                                    <label htmlFor="guarantee" className='text-white' style={{ fontSize: "12px" }}>{t("guarantee")}</label>
                                     <input type="checkbox" name="" id="guarantee" checked={guarantee} onChange={() => setGuarantee(!guarantee)} />
                                 </div>
                             </div>

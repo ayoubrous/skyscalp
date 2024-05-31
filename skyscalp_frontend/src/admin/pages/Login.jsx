@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import bg1 from '../assets/images/building-1.jpg'
+// import bg1 from '../assets/images/building-1.jpg'
+import bg1 from '../../admin/assets/images/building-1.jpg'
 import logo from '../../assets/images/logo.png'
 import toast, { Toaster } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';

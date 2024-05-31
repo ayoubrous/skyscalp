@@ -102,7 +102,7 @@
     "construction": "Construction",
     "rooms": "Chambres",
     "constructionSupportDesc": "Obtenez un soutien détaillé et des conseils sur les questions et les éléments liés à la construction. Notre équipe est là pour vous aider avec toutes les préoccupations ou demandes liées à la construction.",
-    "type": "Type",
+    "type": "Taper",
     "sizeOfMachine": "Taille/Dimension",
     "machineType": "Type de machine",
     "brand": "Marque",
@@ -126,5 +126,14 @@
     "subcategory": "Sous-catégorie",
     "gotoDashboard": "Aller au tableau de bord",
     "experience": "Expérience",
-    "happyCustomers": "Clients satisfaits"
+    "happyCustomers": "Clients satisfaits",
+    "sortby": "Trier par",
+    "machineryFilterTitle": "Grues, peintures ou casques : trouvez ce dont vous avez besoin au bon prix.",
+    "constructionFilterTitle": "Ciment, peintures ou acier : trouvez ce dont vous avez besoin au bon prix.",
+    "furnitureFilterTitle": "Canapés, lits ou tables : trouvez ce dont vous avez besoin au bon prix.",
+
+    "sendMessage": "Envoyer le Message",
+    "backToList": "Retour à la liste"
+
+
 }

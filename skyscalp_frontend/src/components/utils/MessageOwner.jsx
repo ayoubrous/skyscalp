@@ -55,7 +55,7 @@ export default function MessageOwner({ userID }) {
                     <textarea name="" id="" cols="30" rows="3" placeholder={t("message")} className="custom-textarea" value={message} onChange={e => setMessage(e.target.value)}></textarea>
                 </div>
                 <div className="form-group mb-2">
-                    <button className="custom-btn w-100">Send Message</button>
+                    <button className="custom-btn w-100">{t("sendMessage")}</button>
                 </div>
             </form>
         </>

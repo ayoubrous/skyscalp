@@ -132,5 +132,13 @@
     "subcategory": "Sub Category",
     "gotoDashboard": "Go to Dashboard",
     "experience": "Experience",
-    "happyCustomers": "Happy Customers"
+    "happyCustomers": "Happy Customers",
+    "sortby": "Sort By",
+
+    "machineryFilterTitle": "Cranes, paints or helmets: find what you need at the right price.",
+    "constructionFilterTitle": "Cement, paints or steel: find what you need at the right price.",
+    "furnitureFilterTitle": "Sofa, Beds or tables: find what you need at the right price.",
+    
+    "sendMessage": "Send Message",
+    "backToList": "Back to List"
 }
