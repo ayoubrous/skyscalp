@@ -22,7 +22,7 @@ const sendVerificationEmail = (email, link) => {
         if (error) {
             console.log(error);
         } else {
-            // console.log("Email sent Successfully ");
+            console.log("Email sent Successfully ");
         }
     });
 }
