@@ -24,7 +24,6 @@ export default function Login() {
     const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate()
 
-    const notify = () => toast.error('Here is your toast.');
     const handleLogin = (e) => {
         e.preventDefault()
         if (email.length === 0 || password.length === 0) {
@@ -114,7 +113,7 @@ export default function Login() {
                     color: '#713200',
                 },
             }} />
-            <div className="bg order-1 order-md-2" style={{ backgroundImage: `url(${bg1})` }}></div>
+            <div className="bg order-1 order-md-2" style={{ backgroundImage: `url(${window.location.origin}/static/media/building-1.9e4d3fc0e7638a34f5ef.jpg)` }}></div>
             <div className="contents order-2 order-md-1">
                 <div className="container">
                     <div className="row align-items-center justify-content-center">

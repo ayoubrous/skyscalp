@@ -77,7 +77,9 @@ export default function Register() {
                     color: '#713200',
                 },
             }} />
-            <div className="bg order-1 order-md-2" style={{ backgroundImage: `url(${bg1})` }}></div>
+            {/* <div className="bg order-1 order-md-2" style={{ backgroundImage: `url(${bg1})` }}></div> */}
+            <div className="bg order-1 order-md-2" style={{ backgroundImage: `url(${window.location.origin}/static/media/building-1.9e4d3fc0e7638a34f5ef.jpg)` }}></div>
+            
             <div className="contents order-2 order-md-1">
                 <div className="container">
                     <div className="row align-items-center justify-content-center">
