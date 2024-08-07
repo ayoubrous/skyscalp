@@ -23,10 +23,6 @@ dist/
 /backend/dist/
 /skyscalp_frontend/dist/
 
-# Ignore build directories in the root and subdirectories
-build/
-/backend/build/
-/skyscalp_frontend/build/
 
 # Ignore coverage directories in the root and subdirectories
 coverage/
