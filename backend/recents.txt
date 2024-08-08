@@ -1,7 +1,8 @@
 PORT=5500
 MONGOURL=mongodb://ayoub_skyscalp:sky.scalp.2024@ac-9ud82ua-shard-00-00.vlof8ly.mongodb.net:27017,ac-9ud82ua-shard-00-01.vlof8ly.mongodb.net:27017,ac-9ud82ua-shard-00-02.vlof8ly.mongodb.net:27017/skyscalp?ssl=true&replicaSet=atlas-i23f7e-shard-0&authSource=admin&retryWrites=true&w=majority
-EMAIL=no-reply@skyscalp.com
-EMAIL_PASSWORD=Skyscalp#2024
+EMAIL=muhammadatifkust@gmail.com
+EMAIL_PASSWORD=quli rhob vxzj glcv
 FRONTEND_URL=https://skyscalp.com
 
 
+Rhousniayoub@1234

@@ -161,7 +161,7 @@ const verfiyAccountForPassword = async (req, res) => {
 
         // sendResponse(req, res, true, "Email verified successfully", null)
         let frontendUrl = process.env.FRONTEND_URL;
-        res.send(`<h1>Verification Successfull!</h1><h5>Your acount verification is successfull, <a href="${frontendUrl}/app/update-password?uid=${user}">Click here</a> to update Password</h5>`)
+        res.send(`<h1>Verification Successfull!</h1><h5>Your acount verification is successfull, <a href="${frontendUrl}/#/app/update-password?uid=${user}">Click here</a> to update Password</h5>`)
 
     } catch (error) {
         console.error(error);
