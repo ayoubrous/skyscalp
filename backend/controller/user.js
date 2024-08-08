@@ -44,7 +44,7 @@ const register = (req, res) => {
 
                                 token.save()
                                     .then(savedToken => {
-                                        const link = `http://${process.env.FRONTEND_URL}/api/verify?token=${savedToken.token}&user=${user._id}`;
+                                        const link = `${process.env.FRONTEND_URL}/#/api/verify?token=${savedToken.token}&user=${user._id}`;
                                         sendVerificationEmail(req.body.email, link);
                                         sendResponse(req, res, true, "A verification email is sent to your account, please verify from Gmail", user);
                                     })
@@ -79,7 +79,7 @@ const forgotPassword = (req, res) => {
 
                     token.save()
                         .then(savedToken => {
-                            const link = `http://${req.get('host')}/api/verifyForPassword?token=${savedToken.token}&user=${user._id}`;
+                            const link = `${process.env.FRONTEND_URL}/#/api/verifyForPassword?token=${savedToken.token}&user=${user._id}`;
                             // sendVerificationEmail(req.body.email, link);
                             sendForgotPasswordVerificationLink(req.body.email, link)
                             sendResponse(req, res, true, "A verification email is sent to your account, please verify from Gmail", user);
