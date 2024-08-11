@@ -14,8 +14,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 var bodyParser = require('body-parser');
-app.use(bodyParser.json({limit: "100mb"}));
-app.use(bodyParser.urlencoded({limit: "100mb", extended: true, parameterLimit:100000}));
+app.use(bodyParser.json({ limit: "100mb" }));
+app.use(bodyParser.urlencoded({ limit: "100mb", extended: true, parameterLimit: 100000 }));
 
 
 app.use(session({

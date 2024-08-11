@@ -340,7 +340,7 @@ const getFilteredProperties = async (req, res) => {
     if (selectedStreets.length > 0) filters.street = { $in: selectedStreets };
 
 
-    console.log(filters)
+    // console.log(filters)
     try {
         const totalItems = await PropertyModal.countDocuments(filters);
         const totalPages = Math.ceil(totalItems / limit);

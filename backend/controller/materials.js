@@ -183,7 +183,7 @@ const getProductsByFilters = async (req, res) => {
     try {
         // add material group into filters is well 
         filters.materialGroup = materialGroup
-        console.log(filters)
+        // console.log(filters)
 
         const totalItems = await MaterialsModal.countDocuments(filters);
         const totalPages = Math.ceil(totalItems / limit);
