@@ -89,10 +89,10 @@ const App = () => {
             <Route path='/furniture/:id' exact element={<ViewFurniture />} />
 
 
-            <Route path='/app/register' exact element={<Register />} />
-            <Route path='/app/login' exact element={<Login />} />
-            <Route path='/app/forgot-password' exact element={<ForgotPasswordEmail />} />
-            <Route path='/app/update-password' exact element={<UpdatePassword />} />
+            <Route path='/register' exact element={<Register />} />
+            <Route path='/login' exact element={<Login />} />
+            <Route path='/forgot-password' exact element={<ForgotPasswordEmail />} />
+            <Route path='/update-password' exact element={<UpdatePassword />} />
 
             <Route element={<Private />}>
               {/* ------ OWNER ---------  */}
