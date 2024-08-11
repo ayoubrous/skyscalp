@@ -130,7 +130,7 @@ export default function Login() {
                                     <input type="password" className="form-control" placeholder="Your Password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
                                 </div>
                                 <div className="d-flex mb-4 align-items-center justify-content-end">
-                                    <small className="ml-auto"><Link to="../app/forgot-password" className="forgot-pass">Forgot Password</Link></small>
+                                    <small className="ml-auto"><Link to="../forgot-password" className="forgot-pass">Forgot Password</Link></small>
                                 </div>
                                 <button className="custom-btn d-block w-100" type='submit'>
                                     <div className='d-flex align-items-center justify-content-center'>
@@ -148,7 +148,7 @@ export default function Login() {
                                     </div>
                                 </button>
                                 <div className="d-flex mt-2 align-items-center justify-content-center">
-                                    <small className="ml-auto"><Link to="../app/register" className="forgot-pass">Create New Account</Link></small>
+                                    <small className="ml-auto"><Link to="../register" className="forgot-pass">Create New Account</Link></small>
                                 </div>
                             </form>
                         </div>

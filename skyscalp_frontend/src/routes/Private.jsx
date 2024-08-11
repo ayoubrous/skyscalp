@@ -10,6 +10,6 @@ export default function Private() {
         isLoggedIn = user.isLoggedIn 
     }
     return (
-        isLoggedIn && isLoggedIn ? <Outlet /> : <Navigate to="../app/login" />
+        isLoggedIn && isLoggedIn ? <Outlet /> : <Navigate to="../login" />
     )
 }

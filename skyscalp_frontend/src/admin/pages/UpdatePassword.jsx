@@ -56,7 +56,7 @@ export default function UpdatePassword() {
                     else {
                         toast.success(result.message)
                         setTimeout(() => {
-                            navigate('../app/login')
+                            navigate('../login')
                         }, 800);
                     }
 
@@ -105,7 +105,7 @@ export default function UpdatePassword() {
                                     </div>
                                 </button>
                                 <div className="d-flex mt-2 align-items-center justify-content-center">
-                                    <small className="ml-auto"><Link to="../app/login" className="forgot-pass">Login</Link></small>
+                                    <small className="ml-auto"><Link to="../login" className="forgot-pass">Login</Link></small>
                                 </div>
                             </form>
                         </div>

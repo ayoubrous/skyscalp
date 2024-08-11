@@ -120,7 +120,7 @@ export default function Register() {
                                 </button>
                                 <div className="d-flex mt-2 align-items-center justify-content-center">
                                     <span className="ml-auto">
-                                        <Link to="../app/login" className="forgot-pass">Login Instead</Link>
+                                        <Link to="../login" className="forgot-pass">Login Instead</Link>
                                     </span>
                                 </div>
                             </form>

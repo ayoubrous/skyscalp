@@ -127,8 +127,8 @@ export default function Navbar() {
                         )
                             : (
                                 <>
-                                    <Link className='link' to="../app/login" >{t("login")}</Link>
-                                    <Link to='../app/register'>
+                                    <Link className='link' to="../login" >{t("login")}</Link>
+                                    <Link to='../register'>
                                         <button className='custom-btn'>{t("signup")}</button>
                                     </Link>
                                 </>

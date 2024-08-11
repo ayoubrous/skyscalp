@@ -93,7 +93,7 @@ export default function ForgotPasswordEmail() {
                                     </div>
                                 </button>
                                 <div className="d-flex mt-2 align-items-center justify-content-center">
-                                    <small className="ml-auto"><Link to="../app/login" className="forgot-pass">Login</Link></small>
+                                    <small className="ml-auto"><Link to="../login" className="forgot-pass">Login</Link></small>
                                 </div>
                             </form>
                         </div>
