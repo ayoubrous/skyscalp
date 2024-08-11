@@ -84,7 +84,7 @@ const SimilarProperty = ({ propertyData }) => {
 
                     <div className="d-flex justify-content-between align-items-center property-features">
                         <div className='d-flex align-items-center'>
-                            <p className="feature-text">{t("datePosted")}: {datePosted}</p>
+                            <p className="feature-text">{t("datePosted")}: {datePosted && new new Intl.DateTimeFormat('en-GB').format(new Date(datePosted))}</p>
                         </div>
                     </div>
                     <hr className="line-break my-2" />

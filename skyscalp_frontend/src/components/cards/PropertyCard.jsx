@@ -147,7 +147,7 @@ const PropertyCard = React.memo(({ propertyData }) => {
                             )}
                         </div>
                         <div className="d-flex justify-content-between align-items-center property-features">
-                            <p className="feature-text ms-0">{t("datePosted")}: {createdAt && new Date(createdAt).toDateString()}</p>
+                            <p className="feature-text ms-0">{t("datePosted")}: {createdAt && new Intl.DateTimeFormat('en-GB').format(new Date(createdAt))}</p>
                         </div>
                         <hr className="line-break my-2" />
                         <div className="seller-info">

@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { FaEnvelope, FaLocationArrow, FaLocationDot, FaPhone } from 'react-icons/fa6'
 import { sendMessage } from '../../APIs/messages'
 
-const ContactUs = ({ supportTitle, supportDescription }) => {
+const ContactUs = ({ supportTitle, supportDescription, contactEmail, contactPhone }) => {
     const [t] = useTranslation()
 
     const [firstName, setFirstName] = useState('')
@@ -58,15 +58,15 @@ const ContactUs = ({ supportTitle, supportDescription }) => {
                             <div className="information">
                                 <div className="info-group d-flex align-items-center gap-2 mb-4">
                                     <FaPhone className='text-white' />
-                                    <p className="paragraph text-white">+33 99 99 883</p>
+                                    <p className="paragraph text-white">{contactPhone}</p>
                                 </div>
                                 <div className="info-group d-flex align-items-center gap-2 mb-4">
                                     <FaEnvelope className='text-white' />
-                                    <p className="paragraph text-white">demo@gmail.com</p>
+                                    <p className="paragraph text-white">{contactEmail}</p>
                                 </div>
                                 <div className="info-group d-flex align-items-start gap-2 mb-4">
                                     <FaLocationDot className='text-white mt-1' />
-                                    <p className="paragraph text-white pe-4">132 Dartmouth Street Boston, Massachusetts 02156 United States</p>
+                                    <p className="paragraph text-white pe-4">132 Dartmouth Street Boston, Massachusetts 02156 United States [Test Address]</p>
                                 </div>
                             </div>
 
@@ -76,26 +76,26 @@ const ContactUs = ({ supportTitle, supportDescription }) => {
                                 <div className="split">
                                     <div className="form-group">
                                         <label >First Name</label>
-                                        <input type="text" maxLength={50} className="custom-input" placeholder='John' value={firstName} onChange={e => setFirstName(e.target.value)} />
+                                        <input type="text" maxLength={50} className="custom-input" placeholder='First Name' value={firstName} onChange={e => setFirstName(e.target.value)} />
                                     </div>
                                     <div className="form-group">
                                         <label >Last Name</label>
-                                        <input type="text" maxLength={50} className="custom-input" placeholder='Stewart' value={lastName} onChange={e => setLastName(e.target.value)} />
+                                        <input type="text" maxLength={50} className="custom-input" placeholder='Last Name' value={lastName} onChange={e => setLastName(e.target.value)} />
                                     </div>
                                 </div>
                                 <div className="split">
                                     <div className="form-group ">
                                         <label >Email*</label>
-                                        <input type="email" className="custom-input" required placeholder='youremail@account.com' value={email} onChange={e => setEmail(e.target.value)} />
+                                        <input type="email" className="custom-input" required placeholder='Email Account' value={email} onChange={e => setEmail(e.target.value)} />
                                     </div>
                                     <div className="form-group ">
                                         <label >Phone*</label>
-                                        <input type="text" maxLength={15} className="custom-input" required placeholder='+33 99 334 449' value={phone} onChange={e => setPhone(e.target.value)} />
+                                        <input type="text" maxLength={15} className="custom-input" required placeholder='Phone Number' value={phone} onChange={e => setPhone(e.target.value)} />
                                     </div>
                                 </div>
                                 <div className="form-group">
                                     <label>Message</label>
-                                    <textarea id="" cols="30" rows="5" className='custom-textarea' placeholder='Your message' value={message} onChange={e => setMessage(e.target.value)} ></textarea>
+                                    <textarea id="" cols="30" rows="5" className='custom-textarea' placeholder='Hi, I am interested' value={message} onChange={e => setMessage(e.target.value)} ></textarea>
                                 </div>
                                 <div className="form-group">
                                     <button className='custom-btn float-end'>Send Message</button>

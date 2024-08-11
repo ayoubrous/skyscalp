@@ -14,7 +14,8 @@ export default function Contact() {
             <Navbar />
             <Breadcrumb title={t("estimatePropertyOrProduct")} link={t("estimate")} />
             <Estimate />
-            <ContactUs supportTitle={t("contactSupportTitle")} supportDescription={t("contactSupportDescription")} />
+            <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} contactEmail={"help@skyscalp.com"} contactPhone={"+33771759956"} />
+
             <Footer />
         </>
     )

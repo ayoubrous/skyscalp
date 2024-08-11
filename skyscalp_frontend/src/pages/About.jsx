@@ -31,14 +31,15 @@ export default function About() {
     }, []);
     return (
         <>
-            <div id="google_translate_element"></div>
+            {/* <div id="google_translate_element"></div> */}
 
             <Navbar />
             <Breadcrumb title={t("aboutSkyScalp")} link={t("about")} />
             <AboutInfo />
             <BlogSection />
             <Testimonials />
-            <ContactUs supportTitle={t("aboutSupportTitle")} supportDescription={t("aboutSupportDescription")} />
+            <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} contactEmail={"help@skyscalp.com"} contactPhone={"+33771759956"} />
+
             <Footer />
         </>
     )

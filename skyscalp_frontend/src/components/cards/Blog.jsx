@@ -32,7 +32,7 @@ export default function Blog({ imgUrl, id, title, description, datePosted }) {
                     <p className="color-secondary my-3" dangerouslySetInnerHTML={{ __html: description.substring(0, 133)+ (description.length > 133 ? "..." : "") }}></p>
                 </Link>
                 <div className="d-flex align-items-center justify-content-between my-2">
-                    <small className="color-secondary">{t("datePosted")}: {datePosted && new Date(datePosted).toDateString()}</small>
+                    <small className="color-secondary">{t("datePosted")}: {datePosted && new Intl.DateTimeFormat('en-GB').format(new Date(datePosted))}</small>
                     <FiShare2 className='color-secondary' style={{ cursor: "pointer" }} onClick={() => shareBlog(id)} />
                 </div>
             </div>

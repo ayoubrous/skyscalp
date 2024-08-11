@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react'
 // import bg1 from '../assets/images/building-1.jpg'
-import bg1 from '../../admin/assets/images/building-1.jpg'
-import logo from '../../assets/images/logo.png'
-import toast, { Toaster } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import ClipLoader from "react-spinners/ClipLoader";
 import { useAuth } from '../../context/AuthContext';
 import faviconLogo from '../../assets/images/logo-half.png'
+import Navbar from '../../components/navbar/Navbar';
+import Footer from '../../components/sections/Footer';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
 
     const { login } = useAuth()
 
     useEffect(() => {
-        document.title = "Skyscalp - Admin"
+        document.title = "Skyscalp - Login"
         const favicon = document.querySelector('link[rel="icon"]');
         favicon.href = faviconLogo;
     }, [])
@@ -105,56 +106,54 @@ export default function Login() {
         }
     }
     return (
-        <div className="d-lg-flex half">
-            <Toaster toastOptions={{
-                style: {
-                    border: '1px solid #713200',
-                    padding: '10px',
-                    color: '#713200',
-                },
-            }} />
-            <div className="bg order-1 order-md-2" style={{ backgroundImage: `url(${window.location.origin}/static/media/building-1.9e4d3fc0e7638a34f5ef.jpg)` }}></div>
-            <div className="contents order-2 order-md-1">
-                <div className="container">
-                    <div className="row align-items-center justify-content-center">
-                        <div className="col-md-7">
-                            <h3 className='color-primary'>Login to <strong>SKYSCALP</strong></h3>
-                            {/* <small className="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</small> */}
-                            <form action="" method="post" onSubmit={handleLogin} className='mt-4'>
-                                <div className="form-group first mb-3">
-                                    <label htmlFor="email" className='color-secondary'>Email*</label>
-                                    <input type="email" className="form-control" placeholder="your-email@gmail.com" id="email" value={email} onChange={e => setEmail(e.target.value)} />
-                                </div>
-                                <div className="form-group last mb-1">
-                                    <label htmlFor="password" className='color-secondary'>Password*</label>
-                                    <input type="password" className="form-control" placeholder="Your Password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
-                                </div>
-                                <div className="d-flex mb-4 align-items-center justify-content-end">
-                                    <small className="ml-auto"><Link to="../forgot-password" className="forgot-pass">Forgot Password</Link></small>
-                                </div>
-                                <button className="custom-btn d-block w-100" type='submit'>
-                                    <div className='d-flex align-items-center justify-content-center'>
-                                        <ClipLoader
-                                            color="#fff"
-                                            loading={isLoading}
-                                            size={20}
-                                            aria-label="Loading Spinner"
-                                            data-testid="loader"
-                                        />
-                                        {
-                                            !isLoading && ("Login")
-                                        }
-
+        <>
+            <Navbar />
+            <div className="d-lg-flex half">
+                <ToastContainer />
+                <div className="bg order-1 order-md-2" style={{ backgroundImage: `url(${window.location.origin}/static/media/building-1.9e4d3fc0e7638a34f5ef.jpg)` }}></div>
+                <div className="contents order-2 order-md-1">
+                    <div className="container">
+                        <div className="row align-items-center justify-content-center">
+                            <div className="col-md-7">
+                                <h3 className='color-primary'>Login to <strong>SKYSCALP</strong></h3>
+                                {/* <small className="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</small> */}
+                                <form action="" method="post" onSubmit={handleLogin} className='mt-4'>
+                                    <div className="form-group first mb-3">
+                                        <label htmlFor="email" className='color-secondary'>Email*</label>
+                                        <input type="email" className="form-control" placeholder="your-email@gmail.com" id="email" value={email} onChange={e => setEmail(e.target.value)} />
                                     </div>
-                                </button>
-                                <div className="d-flex mt-2 align-items-center justify-content-center">
-                                    <small className="ml-auto"><Link to="../register" className="forgot-pass">Create New Account</Link></small>
-                                </div>
-                            </form>
+                                    <div className="form-group last mb-1">
+                                        <label htmlFor="password" className='color-secondary'>Password*</label>
+                                        <input type="password" className="form-control" placeholder="Your Password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
+                                    </div>
+                                    <div className="d-flex mb-4 align-items-center justify-content-end">
+                                        <small className="ml-auto"><Link to="../forgot-password" className="forgot-pass">Forgot Password</Link></small>
+                                    </div>
+                                    <button className="custom-btn d-block w-100" type='submit'>
+                                        <div className='d-flex align-items-center justify-content-center'>
+                                            <ClipLoader
+                                                color="#fff"
+                                                loading={isLoading}
+                                                size={20}
+                                                aria-label="Loading Spinner"
+                                                data-testid="loader"
+                                            />
+                                            {
+                                                !isLoading && ("Login")
+                                            }
+
+                                        </div>
+                                    </button>
+                                    <div className="d-flex mt-2 align-items-center justify-content-center">
+                                        <small className="ml-auto"><Link to="../register" className="forgot-pass">Create New Account</Link></small>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <Footer />
+        </>
     )
 }

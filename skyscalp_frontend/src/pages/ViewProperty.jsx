@@ -8,7 +8,6 @@ import BlogSection from '../components/sections/BlogSection'
 import sellerImage from '../assets/images/sellerImage.png'
 import { FaAngleLeft, FaAngleRight, FaBath, FaBed, FaBuilding, FaEnvelope, FaHeart, FaPhone, FaRegHeart, FaRoadSpikes, FaShare, FaShareNodes } from 'react-icons/fa6'
 import MessageOwner from '../components/utils/MessageOwner'
-import { FaRegArrowAltCircleRight, FaSwimmingPool } from 'react-icons/fa'
 
 import { LuBath } from "react-icons/lu";
 import { BsBuildings } from "react-icons/bs";
@@ -19,14 +18,10 @@ import loader from '../assets/images/skyscalp-loader.json'
 import Lottie from 'lottie-react'
 
 
-import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import Map from '../components/map/Map'
-import Properties from '../components/sections/Properties'
-import SimilarProperties from '../components/sections/SimilarProperties'
 import { Link, useParams } from 'react-router-dom'
-import Swal from 'sweetalert2'
 import ShareProduct from '../components/utils/ShareProduct'
 import toast, { Toaster } from 'react-hot-toast'
 import { formatPrice } from '../utils/formatPrice'
@@ -476,12 +471,16 @@ export default function ViewProperty() {
                                     <div className="content">
                                         <h5 className="fw-bolder">{userInfo && userInfo.username}</h5>
                                         {/* <p className="color-secondary">{userInfo && userInfo.email.slice(0, 20)}{userInfo.email.length > 20 ? '...': ''}</p> */}
-                                        <p className="color-secondary" style={{ fontSize: "11px" }}>{userInfo && userInfo.email}</p>
+                                        {/* <p className="color-secondary" style={{ fontSize: "11px" }}>{userInfo && userInfo.email}</p> */}
+                                        <p className="color-secondary" style={{ fontSize: "11px" }}>Test.owner@skyscalp.com</p>
                                     </div>
                                 </div>
-                                <button className="outline-btn mb-2 w-100" style={{ fontSize: "13px" }}><FaPhone className='me-1' />{userInfo && userInfo.phone}</button>
+                                {/* <button className="outline-btn mb-2 w-100" style={{ fontSize: "13px" }}><FaPhone className='me-1' />{userInfo && userInfo.phone}</button> */}
+                                <button className="outline-btn mb-2 w-100" style={{ fontSize: "13px" }}><FaPhone className='me-1' />+212625818117</button>
                                 <button className="outline-btn mb-2 w-100 d-flex justify-content-center align-items-center" style={{ fontSize: "13px" }}>
-                                    <FaEnvelope className='me-1' />{userInfo && userInfo.email}</button>
+                                    {/* <FaEnvelope className='me-1' />{userInfo && userInfo.email}</button> */}
+                                    <FaEnvelope className='me-1' />Test.owner@skyscalp.com</button>
+
                             </div>
                             <MessageOwner userID={userID} />
                         </div>
@@ -495,7 +494,7 @@ export default function ViewProperty() {
                 <div className="custom-container">
                     <h3 className='my-3 fw-bolder'>{t("similar")}</h3>
                     <div className="cards-grid">
-                    {
+                        {
                             similarProperties && similarProperties.length === 0 && (
                                 <h5 className='my-4'>No Similar Properties Found</h5>
                             )
@@ -513,7 +512,8 @@ export default function ViewProperty() {
 
 
             <BlogSection />
-            <ContactUs supportTitle={t("propertySupportTitle")} supportDescription={t("propertySupportDescription")} />
+            <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} contactEmail={"information.properties@skyscalp.com"} contactPhone={"+33771759956"} />
+
             <Footer />
         </>
     )

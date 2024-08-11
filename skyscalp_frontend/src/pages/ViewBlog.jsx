@@ -68,7 +68,7 @@ export default function ViewBlog() {
             <section className="view-blog">
                 <div className="custom-container">
                     <img src={uploadedImage} alt="" style={{ width: "100%" }} />
-                    <small className=" color-secondary text-end float-end">Posted On {createdAt && new Date(createdAt).toDateString()}</small>
+                    <small className=" color-secondary text-end float-end">Posted On {createdAt && new Intl.DateTimeFormat('en-GB').format(new Date(createdAt))}</small>
 
                     <h3 className='fw-bolder mt-5 mb-3'>{title}</h3>
                     <div className="color-secondary mb-2" dangerouslySetInnerHTML={{ __html: description }}></div>

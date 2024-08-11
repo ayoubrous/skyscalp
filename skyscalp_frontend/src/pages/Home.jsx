@@ -99,7 +99,7 @@ export default function Home() {
       <Publish />
       <BlogSection />
       <Testimonials />
-      <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} />
+      <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} contactEmail={"help@skyscalp.com"} contactPhone={"+33771759956"} />
       <Footer />
     </>
   )

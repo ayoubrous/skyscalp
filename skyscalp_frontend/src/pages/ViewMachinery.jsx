@@ -241,7 +241,7 @@ export default function ViewMachinery() {
                                 <div className="d-flex align-items-center justify-content-between mb-3">
                                     <Link to='../marketplace?market=1'>
                                         <p className="color-secondary">&lt; {t("backToList")}</p>
-                                        
+
                                     </Link>
                                     <ShareProduct />
                                 </div>
@@ -289,7 +289,7 @@ export default function ViewMachinery() {
                                 </div>
 
                                 <div className="info-icons mt-2">
-                                    <small className='color-secondary '>Date Posted: {createdAt && new Date(createdAt).toDateString()}</small>
+                                    <small className='color-secondary '>Date Posted: {createdAt && new Intl.DateTimeFormat('en-GB').format(new Date(createdAt))}</small>
                                 </div>
                                 <hr />
 
@@ -471,12 +471,16 @@ export default function ViewMachinery() {
                                     <div className="content">
                                         <h5 className="fw-bolder">{userInfo && userInfo.username}</h5>
                                         {/* <p className="color-secondary">{userInfo && userInfo.email.slice(0, 20)}{userInfo.email.length > 20 ? '...': ''}</p> */}
-                                        <p className="color-secondary" style={{ fontSize: "11px" }}>{userInfo && userInfo.email}</p>
+                                        {/* <p className="color-secondary" style={{ fontSize: "11px" }}>{userInfo && userInfo.email}</p> */}
+                                        <p className="color-secondary" style={{ fontSize: "11px" }}>Test.owner@skyscalp.com</p>
                                     </div>
                                 </div>
-                                <button className="outline-btn mb-2 w-100" style={{ fontSize: "13px" }}><FaPhone className='me-1' />{userInfo && userInfo.phone}</button>
+                                {/* <button className="outline-btn mb-2 w-100" style={{ fontSize: "13px" }}><FaPhone className='me-1' />{userInfo && userInfo.phone}</button> */}
+                                <button className="outline-btn mb-2 w-100" style={{ fontSize: "13px" }}><FaPhone className='me-1' />+212625818117</button>
                                 <button className="outline-btn mb-2 w-100 d-flex justify-content-center align-items-center" style={{ fontSize: "13px" }}>
-                                    <FaEnvelope className='me-1' />{userInfo && userInfo.email}</button>
+                                    {/* <FaEnvelope className='me-1' />{userInfo && userInfo.email}</button> */}
+                                    <FaEnvelope className='me-1' />Test.owner@skyscalp.com</button>
+
                             </div>
 
                             <MessageOwner userID={userID} />
@@ -492,7 +496,7 @@ export default function ViewMachinery() {
                 <div className="custom-container">
                     <h3 className='my-3 fw-bolder'>{t("similar")}</h3>
                     <div className="cards-grid">
-                    {
+                        {
                             similarProducts && similarProducts.length === 0 && (
                                 <h5 className='my-4'>No Similar Products Found</h5>
                             )
@@ -508,7 +512,7 @@ export default function ViewMachinery() {
                 </div>
             </section>
             <BlogSection />
-            <ContactUs supportTitle={t("machinerySupportTitle")} supportDescription={t("machinerySupportDescription")} />
+            <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} contactEmail={"information.marketplace@skyscalp.com"} contactPhone={"+33771759956"} />
             <Footer />
         </>
     )

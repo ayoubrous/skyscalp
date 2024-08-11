@@ -340,7 +340,8 @@ export default function Properties() {
         handleSortOrder={handleSortOrder}
       />
       <BlogSection />
-      <ContactUs supportTitle={t("propertySupportTitle")} supportDescription={t("propertySupportDescription")} />
+      <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} contactEmail={"information.properties@skyscalp.com"} contactPhone={"+33771759956"} />
+      
       <Footer />
 
     </>
