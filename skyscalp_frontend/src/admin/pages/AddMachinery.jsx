@@ -539,20 +539,21 @@ export default function AddMachinery() {
                         </div>
 
                         <div className="card px-3 py-4 my-4 publish-form">
-                            <form action="" className="form" onSubmit={updatePage ? handleUpdate : handleSubmit}>
+                            <form action="" className="publishForm" onSubmit={updatePage ? handleUpdate : handleSubmit}>
+                                
                                 <div className="row mb-3">
-                                    <div className="form-group col-6">
+                                    <div className="form-group form-group-sm col-6">
                                         <label htmlFor="" className='mb-1'>Title*</label>
                                         <input type="text" className="custom-input" onChange={e => setTitle(e.target.value)} value={title} />
                                     </div>
-                                    <div className="form-group col-6">
+                                    <div className="form-group form-group-sm col-6">
                                         <label htmlFor="" className='mb-1'>Budget (MAD)*</label>
                                         <input type="number" min={0} className="custom-input" onChange={e => setBudget(e.target.value)} value={budget} />
                                     </div>
                                 </div>
 
                                 <div className="row mb-3">
-                                    <div className="form-group col-4">
+                                    <div className="form-group form-group-sm col-4">
                                         <label htmlFor="" className='mb-1'>Country*</label>
                                         <Select
                                             className="custom-input react-select"
@@ -568,7 +569,7 @@ export default function AddMachinery() {
                                             }
                                         />
                                     </div>
-                                    <div className="form-group col-4">
+                                    <div className="form-group form-group-sm col-4">
                                         <label htmlFor="" className='mb-1'>State*</label>
                                         <Select
                                             className="custom-input react-select"
@@ -584,7 +585,7 @@ export default function AddMachinery() {
                                             }
                                         />
                                     </div>
-                                    <div className="form-group col-4">
+                                    <div className="form-group form-group-sm col-4">
                                         <label htmlFor="" className='mb-1'>City*</label>
                                         <Select
                                             className="custom-input react-select"
@@ -603,7 +604,7 @@ export default function AddMachinery() {
                                 </div>
 
                                 <div className="row mb-3">
-                                    <div className="form-group col-4">
+                                    <div className="form-group form-group-sm col-4">
                                         <label htmlFor="" className='mb-1'>Street Address (optional)</label>
                                         <Select
                                             className="custom-input react-select"
@@ -619,11 +620,11 @@ export default function AddMachinery() {
                                             }
                                         />
                                     </div>
-                                    <div className="form-group col-4">
+                                    <div className="form-group form-group-sm col-4">
                                         <label htmlFor="" className='mb-1'>Sell Unit <small>(per Item, per Day, per Month)</small>*</label>
                                         <input type="text" className="custom-input" onChange={e => setUnit(e.target.value)} value={unit} />
                                     </div>
-                                    <div className="form-group col-4">
+                                    <div className="form-group form-group-sm col-4">
                                         <label htmlFor="" className='mb-1'>Year Build</label>
                                         <select name="" id="" className="custom-input" onChange={e => setBuild(e.target.value)} value={build}>
                                             <option value="">Select Year Build</option>
@@ -639,7 +640,7 @@ export default function AddMachinery() {
                                 </div>
 
                                 <div className="row mb-3">
-                                    <div className="form-group col-4">
+                                    <div className="form-group form-group-sm col-4">
                                         <label htmlFor="" className='mb-1'>Application*</label>
                                         <select name="" id="" className="custom-input" onChange={e => setApplication(e.target.value)} value={application}>
                                             <option value="">Select Applicaion</option>
@@ -652,7 +653,7 @@ export default function AddMachinery() {
                                             }
                                         </select>
                                     </div>
-                                    <div className="form-group col-4">
+                                    <div className="form-group form-group-sm col-4">
                                         <label htmlFor="" className='mb-1'>Category*</label>
                                         <select name="" id="" className="custom-input" onChange={e => setCategory(e.target.value)} value={category}>
                                             <option value="">Select Category</option>
@@ -665,7 +666,7 @@ export default function AddMachinery() {
                                             }
                                         </select>
                                     </div>
-                                    <div className="form-group col-4">
+                                    <div className="form-group form-group-sm col-4">
                                         <label htmlFor="" className='mb-1'>Type*</label>
                                         <select name="" id="" className="custom-input" onChange={e => setType(e.target.value)} value={type}>
                                             <option value="">Select Type</option>
@@ -676,19 +677,19 @@ export default function AddMachinery() {
                                 </div>
 
                                 <div className="row mb-3">
-                                    <div className="form-group col-3">
+                                    <div className="form-group form-group-sm col-3">
                                         <label htmlFor="" className='mb-1'>Modal</label>
                                         <input type="text" placeholder="eg 2022" className="custom-input" onChange={e => setModel(e.target.value)} value={model} />
                                     </div>
-                                    <div className="form-group col-3">
+                                    <div className="form-group form-group-sm col-3">
                                         <label htmlFor="" className='mb-1'>Weight <small>(In kg)</small></label>
                                         <input type="number" placeholder="eg 2000" className="custom-input" onChange={e => setWeight(e.target.value)} value={weight} />
                                     </div>
-                                    <div className="form-group col-3">
+                                    <div className="form-group form-group-sm col-3">
                                         <label htmlFor="" className='mb-1'>Power <small>(In hp)</small></label>
                                         <input type="number" placeholder="524" className="custom-input" onChange={e => setPower(e.target.value)} value={power} />
                                     </div>
-                                    <div className="form-group col-3">
+                                    <div className="form-group form-group-sm col-3">
                                         <label htmlFor="" className='mb-1'>Color</label>
                                         <input type="text" placeholder="eg Brown" className="custom-input" onChange={e => setColor(e.target.value)} value={color} />
                                     </div>
@@ -696,7 +697,7 @@ export default function AddMachinery() {
                                 <div className="row mb-3">
 
 
-                                    <div className="form-group col-4">
+                                    <div className="form-group form-group-sm col-4">
                                         <label htmlFor="" className='mb-1'>Condition*</label>
                                         <select name="" id="" className="custom-input" onChange={e => setCondition(e.target.value)} value={condition}>
                                             <option value="">Select Condition</option>
@@ -709,7 +710,7 @@ export default function AddMachinery() {
                                             }
                                         </select>
                                     </div>
-                                    <div className="form-group col-4">
+                                    <div className="form-group form-group-sm col-4">
                                         <label htmlFor="" className='mb-1'>Brand*</label>
                                         <select name="" id="" className="custom-input" onChange={e => setBrand(e.target.value)} value={brand}>
                                             <option value="">Select brand</option>
@@ -722,7 +723,7 @@ export default function AddMachinery() {
                                             }
                                         </select>
                                     </div>
-                                    <div className="form-group col-4">
+                                    <div className="form-group form-group-sm col-4">
                                         <label htmlFor="" className='mb-1'>Type of Machinery</label>
                                         <select name="" id="" className="custom-input" onChange={e => setMachineryType(e.target.value)} value={machineryType}>
                                             <option value="">Select brand</option>
@@ -738,12 +739,12 @@ export default function AddMachinery() {
                                 </div>
 
                                 <div className="row mb-3">
-                                    <div className="form-group col-6">
+                                    <div className="form-group form-group-sm col-6">
                                         <label htmlFor="" className='mb-1'>Size <small>(In m)</small></label>
                                         <input type="number" placeholder="eg 12x8 m" className="custom-input" onChange={e => setSize(e.target.value)} value={size} />
 
                                     </div>
-                                    <div className="form-group col-6">
+                                    <div className="form-group form-group-sm col-6">
                                         <label htmlFor="" className='mb-1'>Certification</label>
                                         <input type="text" placeholder="" className="custom-input" onChange={e => setCertification(e.target.value)} value={certification} />
                                     </div>
@@ -751,13 +752,13 @@ export default function AddMachinery() {
                                 </div>
 
                                 <div className="row mb-3">
-                                    <div className="form-group col-3">
+                                    <div className="form-group form-group-sm col-3">
                                         <div className="d-flex align-items-center mt-4">
                                             <label htmlFor="" className='mb-1'>Available</label>
                                             <input type="checkbox" className="custom-input" onChange={e => setAvailable(!available)} checked={available} />
                                         </div>
                                     </div>
-                                    <div className="form-group col-3">
+                                    <div className="form-group form-group-sm col-3">
                                         <div className="d-flex align-items-center mt-4">
                                             <label htmlFor="" className='mb-1'>Guarantee</label>
                                             <input type="checkbox" className="custom-input" onChange={e => setGuarantee(!guarantee)} checked={guarantee} />
@@ -766,7 +767,7 @@ export default function AddMachinery() {
 
                                     {
                                         guarantee && (
-                                            <div className="form-group col-4">
+                                            <div className="form-group form-group-sm col-4">
                                                 <label htmlFor="" className='mb-1'>Guranatee Period <small>(1 Month, 1 Year etc)</small></label>
                                                 <input type="text" placeholder="" className="custom-input" onChange={e => setGuaranteePeriod(e.target.value)} value={guaranteePeriod} />
                                             </div>
@@ -776,7 +777,7 @@ export default function AddMachinery() {
                                 </div>
 
                                 <div className="row mb-3">
-                                    <div className="form-group col-12">
+                                    <div className="form-group form-group-sm col-12">
                                         <label htmlFor="" className='mb-1'>Description* <small>(max 1000 chars)</small></label>
                                         <Editor description={description} setDescription={setDescription}/>
                                     </div>
@@ -837,7 +838,7 @@ export default function AddMachinery() {
                                 </div>
 
                                 <div className="row mb-2">
-                                    <div className="form-group d-flex align-items-center justify-content-end gap-2">
+                                    <div className="form-group form-group-sm d-flex align-items-center justify-content-end gap-2">
                                         <div className="outline-btn py-2" onClick={resetAllFields}>Reset</div>
                                         {/* <button className="custom-btn" type='submit'>Publish</button> */}
                                         <button className="custom-btn" type='submit'>

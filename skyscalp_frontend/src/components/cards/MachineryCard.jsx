@@ -56,7 +56,7 @@ const MachineryCard = ({ data }) => {
             <div className="image">
                 <CarouselImages images={images} />
 
-                <div className="custom-badge">{type && type.charAt(0).toUpperCase() + type.slice(1)}</div>
+                <div className="custom-badge">{type && type === "buy" ? t("buy") : t("rent")}</div>
                 <div className="icon-area">
                     {favourite ? (
                         <FaHeart className="icon favourite-icon filled" onClick={handleFavourite} />

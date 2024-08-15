@@ -44,7 +44,7 @@ export default function Sidebar() {
                                 <span>
                                     <TbCarCrane className='me-1' />
                                 </span>
-                                <span className="hide-menu">Machinery & Tools</span>
+                                <span className="hide-menu">Machinery</span>
                             </NavLink>
                         </li>
                         <li className="sidebar-item mt-1">

@@ -107,6 +107,7 @@ export default function Machinery() {
                                         <th className='col-1'>Budget</th>
                                         <th className='col-1'>Favourites</th>
                                         <th className='col-1'>Published</th>
+                                        <th className='col-1'>Status</th>
                                         <th className='col-1'>Action</th>
                                     </tr>
                                 </thead>
