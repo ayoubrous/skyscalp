@@ -5,6 +5,9 @@ import { useTranslation } from 'react-i18next'
 import { FaEnvelope, FaLocationArrow, FaLocationDot, FaPhone } from 'react-icons/fa6'
 import { sendMessage } from '../../APIs/messages'
 
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
+
 const ContactUs = ({ supportTitle, supportDescription, contactEmail, contactPhone }) => {
     const [t] = useTranslation()
 
@@ -86,11 +89,17 @@ const ContactUs = ({ supportTitle, supportDescription, contactEmail, contactPhon
                                 <div className="split">
                                     <div className="form-group ">
                                         <label >Email*</label>
-                                        <input type="email" className="custom-input" required placeholder='Email Account' value={email} onChange={e => setEmail(e.target.value)} />
+                                        <input type="email" className="custom-input" required placeholder='youremail@gmail.com' value={email} onChange={e => setEmail(e.target.value)} />
                                     </div>
                                     <div className="form-group ">
                                         <label >Phone*</label>
-                                        <input type="text" maxLength={15} className="custom-input" required placeholder='Phone Number' value={phone} onChange={e => setPhone(e.target.value)} />
+                                        {/* <input type="text" maxLength={15} className="custom-input" required placeholder='Phone Number' value={phone} onChange={e => setPhone(e.target.value)} /> */}
+                                        <PhoneInput
+                                            className="contactPhone"
+                                            country={'fr'}
+                                            value={phone}
+                                            onChange={setPhone}
+                                        />
                                     </div>
                                 </div>
                                 <div className="form-group">

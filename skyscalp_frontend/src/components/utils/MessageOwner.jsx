@@ -4,6 +4,9 @@ import { sendMessage } from '../../APIs/messages'
 import toast, { Toaster } from 'react-hot-toast'
 import { useLocation, useParams } from 'react-router-dom'
 
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
+
 export default function MessageOwner({ userID }) {
     const [t] = useTranslation()
 
@@ -46,7 +49,13 @@ export default function MessageOwner({ userID }) {
                 <h5 className="fw-bold mb-3">{t("messageOwner")}</h5>
 
                 <div className="form-group mb-2">
-                    <input type="text" className="custom-input" placeholder={t("phone")} value={phone} onChange={e => setPhone(e.target.value)} />
+                    {/* <input type="text" className="custom-input" placeholder={t("phone")} value={phone} onChange={e => setPhone(e.target.value)} /> */}
+                    <PhoneInput
+                    className="contactPhone"
+                        country={'fr'}
+                        value={phone}
+                        onChange={setPhone}
+                    />
                 </div>
                 <div className="form-group mb-2">
                     <input type="email" className="custom-input" placeholder={t("email")} value={email} onChange={e => setEmail(e.target.value)} />

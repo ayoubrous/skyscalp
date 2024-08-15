@@ -104,8 +104,8 @@ const PropertyCard = React.memo(({ propertyData }) => {
                         )}
                     </div>
                 </div>
-                <Link to={`../property/${_id}`}>
-                    <div className="content">
+                <div className="content">
+                    <Link to={`../property/${_id}`}>
                         <div className="d-flex justify-content-between align-items-center">
                             <h1 className="card-title">{title && (title.slice(0, 18)) + (title.length > 18 ? "..." : "")}</h1>
                             <h5 className="color-primary">MAD {formatPrice(budget)}</h5>
@@ -156,8 +156,8 @@ const PropertyCard = React.memo(({ propertyData }) => {
                             </div>
                             <p>{user && user.username}</p>
                         </div>
-                    </div>
-                </Link>
+                    </Link>
+                </div>
             </div>
         </>
 

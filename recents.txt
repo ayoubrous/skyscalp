@@ -4,6 +4,8 @@ EMAIL=muhammadatifkust@gmail.com
 EMAIL_PASSWORD=quli rhob vxzj glcv
 FRONTEND_URL=https://skyscalp.com
 FRONTEND_URL=http://localhost:3000
+REACT_APP_SERVER_URL=hhttps://skyscalp.com
+REACT_APP_SERVER_URL=http://localhost:5500
 
 
 Rhousniayoub@1234

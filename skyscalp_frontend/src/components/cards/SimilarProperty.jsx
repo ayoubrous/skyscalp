@@ -38,13 +38,13 @@ const SimilarProperty = ({ propertyData }) => {
         <div className="custom-card property-card">
             <div className="image">
                 {/* <OwlCarousel id="" className="owl-carousel owl-theme" {...options}> */}
-                    {
-                        imgUrl.map(image => {
-                            return (
-                                <img src={image} alt="" />
-                            )
-                        })
-                    }
+                {
+                    imgUrl.map(image => {
+                        return (
+                            <img src={image} alt="" />
+                        )
+                    })
+                }
                 {/* </OwlCarousel> */}
                 <div className="custom-badge">{type}</div>
                 <div className="icon-area">
@@ -55,8 +55,8 @@ const SimilarProperty = ({ propertyData }) => {
                 </div>
             </div>
 
-            <Link to='../property/123'>
-                <div className="content">
+            <div className="content">
+                <Link to='../property/123'>
                     <div className="d-flex justify-content-between align-items-center">
                         <h1 className="card-title">{title && (title.slice(0, 18)) + (title.length > 18 ? "..." : "")}</h1>
                         <h5 className='color-primary'>MAD {price}</h5>
@@ -94,8 +94,8 @@ const SimilarProperty = ({ propertyData }) => {
                         </div>
                         <p>{sellerName}</p>
                     </div>
-                </div>
-            </Link>
+                </Link>
+            </div>
         </div>
     )
 }

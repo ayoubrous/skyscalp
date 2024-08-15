@@ -15,7 +15,8 @@ import Footer from '../components/sections/Footer'
 import HomeFilter from '../components/filters/HomeFilter'
 import loader from '../assets/images/skyscalp-loader.json'
 import Lottie from 'lottie-react'
-import toast, { Toaster } from 'react-hot-toast'
+import { ToastContainer, toast } from 'react-toastify';
+
 import { getLocations } from '../assets/data/locations'
 
 export default function Home() {
@@ -84,7 +85,7 @@ export default function Home() {
 
   return (
     <>
-      <Toaster />
+      <ToastContainer />
       <div className={`lottie-wrapper ${loading ? 'show' : ''}`}>
         <Lottie className='loader' animationData={loader} loop={true} />
       </div>

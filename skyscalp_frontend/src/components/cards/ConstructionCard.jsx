@@ -71,9 +71,9 @@ const ConstructionCard = ({ data }) => {
                 </div>
 
             </div>
-            <Link to={`../construction/${_id}`}>
 
-                <div className="content">
+            <div className="content">
+                <Link to={`../construction/${_id}`}>
                     <div className="d-flex justify-content-between align-items-center">
                         <h3 className="card-title">{title && (title.slice(0, 17)) + (title.length > 17 ? "..." : "")}</h3>
                         <h5 className='color-primary'>MAD {formatPrice(budget)}</h5>
@@ -117,8 +117,8 @@ const ConstructionCard = ({ data }) => {
                         </div>
                         <p>{user && user.username}</p>
                     </div>
-                </div>
-            </Link >
+                </Link >
+            </div>
         </div >
     )
 }

@@ -2,11 +2,14 @@ import React, { useState } from 'react'
 import bg1 from '../assets/images/building-1.jpg'
 import logo from '../../assets/images/logo.png'
 import profileImg from '../assets/images/profile/user-1.jpg'
-import toast, { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import ClipLoader from "react-spinners/ClipLoader";
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/sections/Footer';
+
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
+import { ToastContainer, toast } from 'react-toastify';
 
 
 export default function Register() {
@@ -16,6 +19,7 @@ export default function Register() {
     const [username, setUsername] = useState('')
     const [phone, setPhone] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+
 
     const handleRegister = (e) => {
         e.preventDefault()
@@ -38,7 +42,6 @@ export default function Register() {
                     profileImage: profileImg,
                     status: true
                 }
-
 
                 setIsLoading(true)
                 const myHeaders = new Headers();
@@ -76,15 +79,8 @@ export default function Register() {
     return (
         <>
             <Navbar />
-            <div className="d-lg-flex half" style={{minHeight: "636px"}}>
-                <Toaster toastOptions={{
-                    duration: 3000,
-                    style: {
-                        border: '1px solid #713200',
-                        padding: '10px',
-                        color: '#713200',
-                    },
-                }} />
+            <div className="d-lg-flex half" style={{ minHeight: "636px" }}>
+                <ToastContainer />
                 {/* <div className="bg order-1 order-md-2" style={{ backgroundImage: `url(${bg1})` }}></div> */}
                 <div className="bg order-1 order-md-2" style={{ backgroundImage: `url(${window.location.origin}/static/media/building-1.9e4d3fc0e7638a34f5ef.jpg)` }}></div>
 
@@ -101,8 +97,14 @@ export default function Register() {
                                     </div>
                                     <div className="form-group first mb-3">
                                         <label htmlFor="phone" className='color-secondary'>Phone</label>
-                                        <input type="text" className="form-control" placeholder="33-332-333" id="phone" onChange={e => setPhone(e.target.value)} value={phone} />
+                                        {/* <input type="text" className="form-control" placeholder="33-332-333" id="phone" onChange={e => setPhone(e.target.value)} value={phone} /> */}
+                                        <PhoneInput
+                                            country={'fr'}
+                                            value={phone}
+                                            onChange={setPhone}
+                                        />
                                     </div>
+
                                     <div className="form-group first mb-3">
                                         <label htmlFor="email" className='color-secondary'>Email*</label>
                                         <input type="email" className="form-control" placeholder="your-email@gmail.com" id="email" onChange={e => setEmail(e.target.value)} value={email} />

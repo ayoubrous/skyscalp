@@ -397,6 +397,11 @@ const marketplaceCategories = [
         name: "Furniture, Appliances",
         image: wood
     },
+    {
+        id: 4,
+        name: "Equipments, Appliances",
+        image: wood
+    },
 ]
 
 export { machineryCategories, propertyCategories, constructionCategories, furnitureCategories, marketplaceCategories }
