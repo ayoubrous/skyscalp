@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import bg1 from '../assets/images/building-1.jpg'
 import logo from '../../assets/images/logo.png'
 import profileImg from '../assets/images/profile/user-1.jpg'
@@ -10,15 +10,23 @@ import Footer from '../../components/sections/Footer';
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { ToastContainer, toast } from 'react-toastify';
+import { FaEye, FaEyeSlash } from 'react-icons/fa6';
 
 
 export default function Register() {
+
+    const pass = useRef()
+    const cPass = useRef()
+
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [cpassword, setCPassword] = useState('')
     const [username, setUsername] = useState('')
     const [phone, setPhone] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
 
     const handleRegister = (e) => {
@@ -76,6 +84,11 @@ export default function Register() {
 
 
     }
+
+    const togglePasswordVisibility = (inputRef, setShowState) => {
+        setShowState(prev => !prev);
+        inputRef.current.type = inputRef.current.type === 'password' ? 'text' : 'password';
+    };
     return (
         <>
             <Navbar />
@@ -90,7 +103,7 @@ export default function Register() {
                             <div className="col-md-7">
                                 <h3 className='color-primary mt-3'>Create new Account</h3>
                                 {/* <small className="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</small> */}
-                                <form action="" method="post" onSubmit={handleRegister} className='mt-4'>
+                                <form action="" method="post" onSubmit={handleRegister} className='mt-4 registerForm'>
                                     <div className="form-group first mb-3">
                                         <label htmlFor="username" className='color-secondary'>Username*</label>
                                         <input type="text" className="form-control" placeholder="John Doe" id="username" onChange={e => setUsername(e.target.value)} value={username} />
@@ -111,11 +124,20 @@ export default function Register() {
                                     </div>
                                     <div className="form-group last mb-3">
                                         <label htmlFor="password" className='color-secondary'>Password*</label>
-                                        <input type="password" className="form-control" placeholder="Your Password" id="password" onChange={e => setPassword(e.target.value)} value={password} />
+                                        <input type="password" className="form-control" placeholder="Your Password" ref={pass} id="password" onChange={e => setPassword(e.target.value)} value={password} />
+
+                                        {showPassword ?
+                                            <FaEyeSlash className='eye-icon' onClick={() => togglePasswordVisibility(pass, setShowPassword)} /> :
+                                            <FaEye className='eye-icon' onClick={() => togglePasswordVisibility(pass, setShowPassword)} />
+                                        }
                                     </div>
                                     <div className="form-group last mb-3">
                                         <label htmlFor="cpassword" className='color-secondary'>Confirm Password*</label>
-                                        <input type="password" className="form-control" placeholder="Type password again" id="cpassword" onChange={e => setCPassword(e.target.value)} value={cpassword} />
+                                        <input type="password" className="form-control" placeholder="Type password again" ref={cPass} id="cpassword" onChange={e => setCPassword(e.target.value)} value={cpassword} />
+                                        {showConfirmPassword ?
+                                            <FaEyeSlash className='eye-icon' onClick={() => togglePasswordVisibility(cPass, setShowConfirmPassword)} /> :
+                                            <FaEye className='eye-icon' onClick={() => togglePasswordVisibility(cPass, setShowConfirmPassword)} />
+                                        }
                                     </div>
                                     <button className="custom-btn d-block w-100" type='submit'>
                                         <div className='d-flex align-items-center justify-content-center'>

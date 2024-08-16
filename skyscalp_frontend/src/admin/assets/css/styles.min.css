@@ -20316,6 +20316,17 @@ ul {
 
 
 /* LOGIN PAGE STYLING FOR ADMIN  */
+
+.registerForm .form-group{
+    position: relative;
+}
+.registerForm .form-group .eye-icon{
+    position: absolute;
+    top: 40px;
+    right: 15px;
+    color: gray;
+    cursor: pointer;
+}
 .half,
 .half .container>.row {
     height: 90vh;
