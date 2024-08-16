@@ -88,7 +88,7 @@ export default function Construction() {
                 <div className="body-wrapper">
                     <Header />
                     <div className="container-fluid">
-                        <h2 className='fw-bolder mb-3'>Published Construction Items</h2>
+                        <h4 className='fw-bolder mb-3'>Published Construction Items</h4>
 
                         <div className="d-flex justify-content-end">
                             <a href=""></a>
@@ -140,10 +140,10 @@ export default function Construction() {
                                                             {
                                                                 data.status ?
                                                                     (
-                                                                        <span class="badge text-bg-success" style={{ fontSize: "12px" }}>Active</span>
+                                                                        <span className="badge text-bg-success" style={{ fontSize: "12px" }}>Active</span>
                                                                     ) :
                                                                     (
-                                                                        <span class="badge text-bg-danger" style={{ fontSize: "12px" }}>Inactive</span>
+                                                                        <span className="badge text-bg-danger" style={{ fontSize: "12px" }}>Inactive</span>
                                                                     )
                                                             }
                                                         </td> */}

@@ -249,7 +249,7 @@ export default function HomeFilter() {
     return (
         <div className="filter-area home-filter">
             <div className="custom-container">
-                <p className="color-primary mb-2">Looking for something?</p>
+                <p className="color-primary mb-2">{t("homeFilterTitle")}</p>
                 <div className="module-tabs ">
                     <div className={`module-tab ${activeTab === 'property' ? 'active' : ''}`} onClick={() => handleActiveTab('property')}>
                         <p>{t("property")}</p>
@@ -314,7 +314,7 @@ export default function HomeFilter() {
                             </div>
                         </div>
                         <div className="filter-btn">
-                            <button className="custom-btn" onClick={handleFilter}>Search</button>
+                            <button className="custom-btn" onClick={handleFilter}>{t("search")}</button>
                         </div>
                     </div>
                 </div>

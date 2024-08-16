@@ -88,7 +88,7 @@ export default function Furniture() {
                 <div className="body-wrapper">
                     <Header />
                     <div className="container-fluid">
-                        <h2 className='fw-bolder mb-3'>Published Furniture Items</h2>
+                        <h4 className='fw-bolder mb-3'>Published Furniture Items</h4>
 
                         <div className="d-flex justify-content-end">
                             <a href=""></a>

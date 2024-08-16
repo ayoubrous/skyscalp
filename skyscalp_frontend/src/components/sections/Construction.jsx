@@ -8,7 +8,7 @@ import MachineryCard from '../cards/MachineryCard';
 import ConstructionCard from '../cards/ConstructionCard';
 
 export default function Construction({ data }) {
-    
+
     const [t] = useTranslation()
     return (
         <section className="construction-section">
@@ -28,12 +28,14 @@ export default function Construction({ data }) {
                                     <ConstructionCard key={item._id} data={item} />
                                 )
                             })
-                            
+
                     }
                 </div>
-                <Link to="./marketplace?market=2">
-                    <button className="outline-btn d-block mx-auto my-4">{t("viewAllConstruction")}</button>
-                </Link>
+                <div className='text-center'>
+                    <Link to="./marketplace?market=2" style={{display: "inline-block"}}>
+                        <button className="outline-btn d-block mx-auto my-4">{t("viewAllConstruction")}</button>
+                    </Link>
+                </div>
             </div>
         </section>
     )

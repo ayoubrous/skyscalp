@@ -78,6 +78,7 @@
 
 
 
+import { t } from 'i18next';
 import React, { useState } from 'react';
 import { FaAngleDown } from 'react-icons/fa';
 import { FaAngleUp } from 'react-icons/fa6';
@@ -168,7 +169,7 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
 			{
 				checkedSubcategories.length < 1 ?
 					(
-						<p>Select Category</p>
+						<p>{t("selectCategory")}</p>
 					)
 					:
 					(

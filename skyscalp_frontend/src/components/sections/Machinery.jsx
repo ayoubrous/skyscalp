@@ -29,9 +29,12 @@ export default function Machinery({ data }) {
                             })
                     }
                 </div>
-                <Link to="./marketplace?market=1">
+                <div className='text-center'>
+
+                <Link to="./marketplace?market=1" style={{display: "inline-block"}}>
                     <button className="outline-btn d-block mx-auto my-4">{t("viewAllMachinery")}</button>
                 </Link>
+                </div>
             </div>
         </section>
     )

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import locations from '../../assets/data/locations'
 import { getLocationsInRadius } from './getLocationsInRadius';
+import { t } from 'i18next';
 
 export default function CustomLocationsDropdown({ handleLocationSelect, selectedLocations, radius, handleRadiusChange }) {
     const drpRef = useRef()
@@ -60,7 +61,7 @@ export default function CustomLocationsDropdown({ handleLocationSelect, selected
                 className='custom-input'
                 value={inputText}
                 onChange={handleInputChange}
-                placeholder="Type to search locations..."
+                placeholder={t("searchLocationPlaceholder")}
                 style={{ width: "100%" }}
             />
             {

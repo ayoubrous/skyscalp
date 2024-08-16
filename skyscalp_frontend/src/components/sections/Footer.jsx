@@ -28,13 +28,13 @@ export default function Footer() {
                         <div className="d-flex gap-3 mb-3">
                             <FaEnvelope />
                             <div>
-                                <p>gmailacc@gmail.com</p>
+                                <p>help@skyscalp.com</p>
                             </div>
                         </div>
                         <div className="d-flex gap-3 mb-3">
                             <FaPhone />
                             <div>
-                                <p>+33 443 332 22</p>
+                                <p>+33 771759956</p>
                             </div>
                         </div>
                     </div>

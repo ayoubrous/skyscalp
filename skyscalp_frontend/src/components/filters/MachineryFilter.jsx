@@ -15,7 +15,7 @@ import TestNestedDropdown from './TestNestedDropdown';
 import NestedDropdown from './NestedDropdown';
 import CustomLocationsDropdown from './CustomLocationsDropdown';
 import { machineryCategories } from '../../assets/data/categories';
-import { machineryType } from '../../assets/data/filtersData';
+import { conditionData, machineConditionData, machineryBrands, machineryType } from '../../assets/data/filtersData';
 import formatNumber from '../../utils/formatNumber';
 import { getLocationsInRadius } from './getLocationsInRadius';
 
@@ -86,29 +86,13 @@ export default function MachineryFilter(
     ]
 
     const budget = [
-        '0', '1000', '5000', '10 000', '25 000', '50 000'
+        '0', '5000', '20 000', '100 000', '200 000', '500 000', '10 00 000'
     ]
 
-    const brands = [
-        "Caterpillar",
-        "Komatsu",
-        "Volvo",
-        "John-Deere",
-        "Hitachi",
-        "Liebherr",
-        "Liebherr",
-        "Liebherr",
-        "Liebherr",
-        "Liebherr",
-        "Bobcat",
-        "JCB",
-        "Doosan",
-        "Kubota"
-    ];
 
-    const conditionData = [
-        'Excellent', 'Good', 'Fair', 'Poor'
-    ]
+    const allBrands = [...new Set(machineryBrands.flatMap(item => item.brands))].sort();
+
+
     const yearBuildData = [
         "Less than 1 year",
         "1 to 3 years",
@@ -499,7 +483,7 @@ export default function MachineryFilter(
 
                                 <div className={`custom-dropdown ${showBrandDrp ? 'show' : ''}`} ref={brandRef}>
                                     {
-                                        brands.map((data, i) => {
+                                        allBrands.map((data, i) => {
                                             return (
                                                 <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleBrand(data)}>
                                                     <p htmlFor={data} id={`label-${data}`}>{data}</p>
@@ -525,7 +509,7 @@ export default function MachineryFilter(
 
                                 <div className={`custom-dropdown ${showConditionDrp ? 'show' : ''}`} ref={condtionRef}>
                                     {
-                                        conditionData.map((data, i) => {
+                                        machineConditionData.map((data, i) => {
                                             return (
                                                 <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleCondtion(data)}>
                                                     <p htmlFor={data} id={`label-${data}`}>{data}</p>

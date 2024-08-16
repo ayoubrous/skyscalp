@@ -10,6 +10,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import { uploadImage } from '../utils/uploadImage'
 import Lottie from 'lottie-react'
 import loader from '../../assets/images/skyscalp-loader.json'
+import { Link } from 'react-router-dom'
 
 export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false)
@@ -192,7 +193,7 @@ export default function Dashboard() {
             <div className="row gap-2">
               <div className="col-4">
 
-                <div className="card overflow-hidden mb-2" style={{ borderRight: "2px solid blue" }}>
+                <Link to="../app/properties" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid blue" }}>
                   <div className="card-body p-3">
                     <h5 className="card-title mb-2 fw-semibold">Published Properties</h5>
                     <div className="row align-items-center">
@@ -204,8 +205,9 @@ export default function Dashboard() {
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="card overflow-hidden mb-2" style={{ borderRight: "2px solid green" }}>
+                </Link>
+
+                <Link to="../app/machinery" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid green" }}>
                   <div className="card-body p-3">
                     <h5 className="card-title mb-2 fw-semibold">Published Machinery</h5>
                     <div className="row align-items-center">
@@ -217,8 +219,8 @@ export default function Dashboard() {
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="card overflow-hidden mb-2" style={{ borderRight: "2px solid orange" }}>
+                </Link>
+                <Link to="../app/construction" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid orange" }}>
                   <div className="card-body p-3">
                     <h5 className="card-title mb-2 fw-semibold">Published Consturction</h5>
                     <div className="row align-items-center">
@@ -230,9 +232,9 @@ export default function Dashboard() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </Link>
 
-                <div className="card overflow-hidden mb-2" style={{ borderRight: "2px solid blue" }}>
+                <Link to="../app/furniture" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid blue" }}>
                   <div className="card-body p-3">
                     <h5 className="card-title mb-2 fw-semibold">Published Furnitures</h5>
                     <div className="row align-items-center">
@@ -244,7 +246,7 @@ export default function Dashboard() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </Link>
 
 
               </div>

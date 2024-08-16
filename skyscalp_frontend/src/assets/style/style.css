@@ -5,6 +5,11 @@
     justify-content: space-between;
     padding: 7px 2rem;
     box-shadow: 0 0 18px rgba(0, 0, 0, 0.11);
+    z-index: 100;
+    background-color: #fff;
+
+    position: sticky;
+    top: 0;
     /* background-color: #076c8f21; */
 }
 
@@ -255,7 +260,8 @@
 }
 
 .property-card {
-    height: 508px;
+    /* height: 508px; */
+    max-height: 508px;
 }
 
 .custom-card .owl-prev,

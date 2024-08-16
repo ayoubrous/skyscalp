@@ -1,5 +1,5 @@
 const machineryType = [
-    'Electric', 'Pneumatic', 'Gasoline-powered', 'Manual', 'others'
+    'Electric', 'Pneumatic', 'Gasoline', 'Manual', 'others'
 ]
 
 
@@ -17,18 +17,48 @@ const materialsBudget = [
 ]
 
 const machineryBrands = [
-    "Caterpillar",
-    "Komatsu",
-    "Volvo",
-    "John-Deere",
-    "Hitachi",
-    "Liebherr",
-    "Bobcat",
-    "JCB",
-    "Doosan",
-    "Kubota",
-    "Other"
+    {
+        id: 1,
+        application: "Earthmoving",
+        brands: [
+            'Caterpillar', 'Komatsu', 'Volvo', 'JCB', 'Hyundai', 'Doosan',
+            'Liebherr', 'New Holland', 'Kubota', 'Manitou', 'Other'
+        ]
+    },
+    {
+        id: 2,
+        application: "Lifting",
+        brands: [
+            'Terex', 'Genie', 'JLG', 'Manitou', 'Konecranes', 'Liebherr',
+            'Potain', 'Grove', 'Tadano', 'Palfinger', 'Other'
+        ]
+    },
+    {
+        id: 3,
+        application: "Compaction",
+        brands: [
+            'Caterpillar', 'Komatsu', 'Volvo', 'JCB', 'Hamm', 'Ammann',
+            'Dynapac', 'Bomag', 'Wirtgen', 'Sakai', 'Other'
+        ]
+    },
+    {
+        id: 4,
+        application: "Demolition",
+        brands: [
+            'Caterpillar', 'Komatsu', 'Hitachi', 'Volvo', 'JCB', 'Hyundai',
+            'Doosan', 'Liebherr', 'New Holland', 'Atlas Copco', 'Other'
+        ]
+    },
+    {
+        id: 5,
+        application: "Others",
+        brands: [
+            'Caterpillar', 'Cummins', 'Perkins', 'Atlas Copco', 'Ingersoll-Rand',
+            'Generac', 'Honda', 'Makita', 'Bosch', 'DeWalt', 'Other'
+        ]
+    }
 ];
+
 
 const constructionBrands = [
     'LafargeHolcim',
@@ -57,6 +87,10 @@ const constructionBrands = [
 const conditionData = [
     'Excellent', 'Good', 'Fair', 'Poor'
 ]
+const machineConditionData = [
+    'New', 'Used', 'To Repair'
+]
+
 const yearBuildData = [
     "Less than 1 year",
     "1 to 3 years",
@@ -130,6 +164,14 @@ const furnitureTypes = ["Sofa",
     "Shelf",
     "Filing Cabinet"]
 
+const machineryGuarantee = [
+    "Less than 1 month",
+    "1 to 6 months",
+    "6 to 12 months",
+    "1 to 3 years",
+    "More than 3 years"
+]
+
 export {
     machineryType,
     propertyBudget,
@@ -145,5 +187,7 @@ export {
     featuresDataObj,
     furnitureBrands,
     furnitureTypes,
-    constructionBrands
+    constructionBrands,
+    machineryGuarantee,
+    machineConditionData
 }

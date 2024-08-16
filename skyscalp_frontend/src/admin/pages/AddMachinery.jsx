@@ -1,23 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Sidebar from '../components/Sidebar'
 import Header from '../components/Header'
-import { FaBuilding, FaEye, FaRegTrashCan, FaTrash, FaUser, FaXmark } from 'react-icons/fa6'
-import { FaCloudUploadAlt, FaEdit, FaTools } from 'react-icons/fa'
-import { BsBuildingsFill } from 'react-icons/bs'
-import { TbCarCrane, TbListSearch } from 'react-icons/tb'
-import logo from '../assets/images/profile/user-1.jpg'
+import { FaXmark } from 'react-icons/fa6'
+import { FaCloudUploadAlt, } from 'react-icons/fa'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import Select from 'react-select';
-import locations from '../../assets/data/locations'
 import loader from '../../assets/images/skyscalp-loader.json'
 
-import { machineryType as machineryTypesDropdown, propertyBudget, constructionBudget, machineryBudget, yearBuildData, propertyYearBuildData, conditionData, machineryBrands, proximityData, featuresData, featuresDataObj } from '../../assets/data/filtersData'
-import { machineryCategories, propertyCategories } from '../../assets/data/categories'
+import { machineryType as machineryTypesDropdown, yearBuildData, machineryBrands, machineryGuarantee, machineConditionData } from '../../assets/data/filtersData'
+import { machineryCategories } from '../../assets/data/categories'
 import GetLocationMap from '../../components/map/GetLocationMap'
-import toast, { Toaster } from 'react-hot-toast';
+import { ToastContainer, toast } from 'react-toastify';
 import { uploadImage } from '../utils/uploadImage'
 import ClipLoader from "react-spinners/ClipLoader";
-import { Line } from 'rc-progress';
 import Lottie from 'lottie-react'
 import Editor from '../components/Editor'
 import Footer from '../components/Footer'
@@ -40,7 +35,7 @@ export default function AddMachinery() {
     const [build, setBuild] = useState('')
     const [application, setApplication] = useState('')
     const [category, setCategory] = useState('')
-    const [type, setType] = useState('')
+    const [type, setType] = useState('buy')
     const [description, setDescription] = useState('')
     const [condition, setCondition] = useState('')
     const [mapLocation, setMapLocation] = useState(null)
@@ -103,15 +98,8 @@ export default function AddMachinery() {
                         setGuarantee(result.data.guarantee);
                         setGuaranteePeriod(result.data.guaranteePeriod);
                         setUnit(result.data.unit);
-                        setModel(result.data.model);
-                        setWeight(result.data.weight);
-                        setPower(result.data.power);
-                        setAvailable(result.data.available);
-                        setSize(result.data.size);
                         setMachineryType(result.data.machineryType);
                         setBrand(result.data.brand);
-                        setColor(result.data.color);
-                        setCertification(result.data.certification);
                         setUploadedImages(result.data.images.map((img, i) => {
                             return ({
                                 id: i,
@@ -274,20 +262,39 @@ export default function AddMachinery() {
         imageUploadRef.current.click()
     }
 
+    const MAX_IMAGES = 10;
+
     const handleImageChange = async (e) => {
         const files = e.target.files;
         setShowUploadedImages(true);
         setUploadingImage(true);
 
         try {
+            // Get the current number of uploaded images
+            setUploadedImages(prevImages => {
+                // If adding all new files would exceed the max limit, limit the number of files to add
+                const totalImages = prevImages.length + files.length;
+                if (totalImages > MAX_IMAGES) {
+                    const availableSlots = MAX_IMAGES - prevImages.length;
+                    return [...prevImages]; // Do not add images here, just return the previous state
+                }
+                return [...prevImages]; // Do not add images here, just return the previous state
+            });
+
+            // Limit the files that will be uploaded
+            const limitedFiles = Array.from(files).slice(0, MAX_IMAGES - uploadedImages.length);
+
+            // Upload the allowed number of images
             const responses = await Promise.all(
-                Array.from(files).map(uploadImage)
+                limitedFiles.map(uploadImage)
             );
 
             const uploadedImageUrls = responses.filter(res => res.status).map(res => res.url);
+
+            // Update state with successfully uploaded images
             setUploadedImages(prevImages => [
                 ...prevImages,
-                ...uploadedImageUrls.map((url, index) => ({ url, id: index }))
+                ...uploadedImageUrls.map((url, index) => ({ url, id: prevImages.length + index }))
             ]);
 
         } catch (error) {
@@ -303,35 +310,38 @@ export default function AddMachinery() {
         );
     };
 
+
     const validateFields = () => {
-        console.log(mapLocation)
-        if (
-            country === "" ||
-            state === "" ||
-            city === "" ||
-            title === "" ||
-            budget === "" ||
-            unit === "" ||
-            application === "" ||
-            category === "" ||
-            type === "" ||
-            condition === "" ||
-            brand === "" ||
-            description === "" ||
-            mapLocation === null||
-            uploadedImages.length === 0
-        ) {
-            return false
+        const missingFields = [];
+
+        if (!uploadedImages.length) missingFields.push('Images');
+        if (!country) missingFields.push('Country');
+        if (!state) missingFields.push('State');
+        if (!city) missingFields.push('City');
+        if (!title) missingFields.push('Title');
+        if (!budget) missingFields.push('Budget');
+        if (application === "") missingFields.push('Application');
+        if (category === "") missingFields.push('Tool');
+
+        if (missingFields.length > 0) {
+            toast.error(`Please fill in the following fields: ${missingFields.join(', ')} to continue`);
+            return false;
         }
-        else {
-            return true
-        }
+
+        return true;
+    }
+
+    function htmlToPlainText(html) {
+        const temp = document.createElement('div');
+        temp.innerHTML = html;
+        return temp.textContent || temp.innerText || '';
     }
 
     const handleSubmit = e => {
         e.preventDefault()
         if (!validateFields()) {
-            toast.error("Fill out required fields to continue")
+            // toast.error("Fill out required fields to continue")
+            return
         }
         else {
             setIsLoading(true)
@@ -350,21 +360,14 @@ export default function AddMachinery() {
                 application: application,
                 category: category,
                 type: type,
-                description: description,
+                description: htmlToPlainText(description).slice(0, 1000),
                 condition: condition,
                 mapLocation: mapLocation,
                 guarantee: guarantee,
                 guaranteePeriod: guaranteePeriod,
                 unit: unit,
-                model: model,
-                weight: weight,
-                power: power,
-                available: available,
-                size: size,
                 machineryType: machineryType,
                 brand: brand,
-                color: color,
-                certification: certification,
                 status: true
             };
 
@@ -387,6 +390,7 @@ export default function AddMachinery() {
                     setIsLoading(false)
                     if (result.status) {
                         toast.success(result.message)
+                        resetAllFields()
                     }
                     else {
                         toast.error(result.message)
@@ -428,15 +432,8 @@ export default function AddMachinery() {
                 guarantee: guarantee,
                 guaranteePeriod: guaranteePeriod,
                 unit: unit,
-                model: model,
-                weight: weight,
-                power: power,
-                available: available,
-                size: size,
                 machineryType: machineryType,
                 brand: brand,
-                color: color,
-                certification: certification,
                 status: true
             };
 
@@ -500,9 +497,20 @@ export default function AddMachinery() {
         setColor('');
         setCertification('');
     }
+
+    const handleBudgetCheck = (e) => {
+        if (e.target.value < 0) {
+            toast.error("Price cannot be negative")
+            setBudget(0)
+            return
+        }
+        setBudget(e.target.value)
+    }
     return (
         <>
-            <Toaster />
+            <ToastContainer />
+
+
             <div className={`lottie-wrapper ${isLoading ? 'show' : ''}`}>
                 <Lottie className='loader' animationData={loader} loop={true} />
             </div>
@@ -517,14 +525,14 @@ export default function AddMachinery() {
                             updatePage ?
                                 (
                                     <>
-                                        <h2 className='fw-bolder'>Update Product</h2>
+                                        <h5 className='fw-bolder'>Update Product</h5>
                                         <small className='mb-3'>Update the desired fields and retain others</small>
                                     </>
 
                                 ) :
                                 (
                                     <>
-                                        <h2 className='fw-bolder'>Publish New Machinery & Tools Product</h2>
+                                        <h5 className='fw-bolder'>Publish New Machinery Item</h5>
                                         <small className='mb-3'>Fill out all the required fields</small>
                                     </>
                                 )
@@ -538,306 +546,294 @@ export default function AddMachinery() {
                             </Link>
                         </div>
 
-                        <div className="card px-3 py-4 my-4 publish-form">
+                        <div className="py-4 my-4 machinery-publish publish-form">
                             <form action="" className="publishForm" onSubmit={updatePage ? handleUpdate : handleSubmit}>
-                                
-                                <div className="row mb-3">
-                                    <div className="form-group form-group-sm col-6">
-                                        <label htmlFor="" className='mb-1'>Title*</label>
-                                        <input type="text" className="custom-input" onChange={e => setTitle(e.target.value)} value={title} />
-                                    </div>
-                                    <div className="form-group form-group-sm col-6">
-                                        <label htmlFor="" className='mb-1'>Budget (MAD)*</label>
-                                        <input type="number" min={0} className="custom-input" onChange={e => setBudget(e.target.value)} value={budget} />
-                                    </div>
-                                </div>
+                                <div className="split">
+                                    <div className="formSide side_1">
+                                        {/* <div className="form-group form-group-sm ">
+                                            <label htmlFor="" className='mb-1'>Type*</label>
+                                            <select name="" id="" className="custom-input" onChange={e => setType(e.target.value)} value={type}>
+                                                <option value="">Select Type</option>
+                                                <option value="rent">Rent</option>
+                                                <option value="buy">Sale</option>
+                                            </select>
+                                        </div> */}
+                                        <div className="info">Type</div>
 
-                                <div className="row mb-3">
-                                    <div className="form-group form-group-sm col-4">
-                                        <label htmlFor="" className='mb-1'>Country*</label>
-                                        <Select
-                                            className="custom-input react-select"
-                                            classNamePrefix="select"
-                                            placeholder='Select Country'
-                                            name="color"
-                                            options={countries}
-                                            onChange={handleCountryChange}
-                                            value={
-                                                countries.filter(option =>
-                                                    option.label === country
-                                                )
-                                            }
-                                        />
-                                    </div>
-                                    <div className="form-group form-group-sm col-4">
-                                        <label htmlFor="" className='mb-1'>State*</label>
-                                        <Select
-                                            className="custom-input react-select"
-                                            classNamePrefix="select"
-                                            placeholder='Select State'
-                                            name="color"
-                                            options={states && states}
-                                            onChange={handleStateChange}
-                                            value={
-                                                states.filter(option =>
-                                                    option.label === state
-                                                )
-                                            }
-                                        />
-                                    </div>
-                                    <div className="form-group form-group-sm col-4">
-                                        <label htmlFor="" className='mb-1'>City*</label>
-                                        <Select
-                                            className="custom-input react-select"
-                                            classNamePrefix="select"
-                                            placeholder='Select City'
-                                            name="color"
-                                            options={cities && cities}
-                                            onChange={handleCityChange}
-                                            value={
-                                                cities.filter(option =>
-                                                    option.label === city
-                                                )
-                                            }
-                                        />
-                                    </div>
-                                </div>
 
-                                <div className="row mb-3">
-                                    <div className="form-group form-group-sm col-4">
-                                        <label htmlFor="" className='mb-1'>Street Address (optional)</label>
-                                        <Select
-                                            className="custom-input react-select"
-                                            classNamePrefix="select"
-                                            placeholder='Select Street'
-                                            name="color"
-                                            options={streets && streets}
-                                            onChange={handleStreetChange}
-                                            value={
-                                                streets.filter(option =>
-                                                    option.label === street
-                                                )
-                                            }
-                                        />
+                                        <div className="typeTabs">
+                                            <div className={`tab ${type === "buy" ? 'active' : ''}`} onClick={() => setType("buy")}>Sale</div>
+                                            <div className={`tab ${type === "rent" ? 'active' : ''}`} onClick={() => setType("rent")}>Rent</div>
+                                        </div>
                                     </div>
-                                    <div className="form-group form-group-sm col-4">
-                                        <label htmlFor="" className='mb-1'>Sell Unit <small>(per Item, per Day, per Month)</small>*</label>
-                                        <input type="text" className="custom-input" onChange={e => setUnit(e.target.value)} value={unit} />
-                                    </div>
-                                    <div className="form-group form-group-sm col-4">
-                                        <label htmlFor="" className='mb-1'>Year Build</label>
-                                        <select name="" id="" className="custom-input" onChange={e => setBuild(e.target.value)} value={build}>
-                                            <option value="">Select Year Build</option>
-                                            {
-                                                yearBuildData.map((data, i) => {
-                                                    return (
-                                                        <option value={data} key={i}>{data}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
+                                    <div className="formSide side_2">
+                                        <div className="info">Category</div>
 
-                                <div className="row mb-3">
-                                    <div className="form-group form-group-sm col-4">
-                                        <label htmlFor="" className='mb-1'>Application*</label>
-                                        <select name="" id="" className="custom-input" onChange={e => setApplication(e.target.value)} value={application}>
-                                            <option value="">Select Applicaion</option>
-                                            {
-                                                machineryCategories.map((data, i) => {
-                                                    return (
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Application*</label>
+                                            <select name="" id="" className="custom-input" onChange={e => setApplication(e.target.value)} value={application}>
+                                                <option value="">Select Application</option>
+                                                {
+                                                    machineryCategories.map((data, i) => (
                                                         <option value={data.categoryName} key={i}>{data.categoryName}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                    <div className="form-group form-group-sm col-4">
-                                        <label htmlFor="" className='mb-1'>Category*</label>
-                                        <select name="" id="" className="custom-input" onChange={e => setCategory(e.target.value)} value={category}>
-                                            <option value="">Select Category</option>
-                                            {
-                                                machineryCategories.map((data) => (
-                                                    data.subcategories.map((subCat, i) => (
-                                                        <option value={subCat} key={i}>{subCat}</option>
                                                     ))
-                                                ))
-                                            }
-                                        </select>
-                                    </div>
-                                    <div className="form-group form-group-sm col-4">
-                                        <label htmlFor="" className='mb-1'>Type*</label>
-                                        <select name="" id="" className="custom-input" onChange={e => setType(e.target.value)} value={type}>
-                                            <option value="">Select Type</option>
-                                            <option value="rent">Rent</option>
-                                            <option value="buy">Sale</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div className="row mb-3">
-                                    <div className="form-group form-group-sm col-3">
-                                        <label htmlFor="" className='mb-1'>Modal</label>
-                                        <input type="text" placeholder="eg 2022" className="custom-input" onChange={e => setModel(e.target.value)} value={model} />
-                                    </div>
-                                    <div className="form-group form-group-sm col-3">
-                                        <label htmlFor="" className='mb-1'>Weight <small>(In kg)</small></label>
-                                        <input type="number" placeholder="eg 2000" className="custom-input" onChange={e => setWeight(e.target.value)} value={weight} />
-                                    </div>
-                                    <div className="form-group form-group-sm col-3">
-                                        <label htmlFor="" className='mb-1'>Power <small>(In hp)</small></label>
-                                        <input type="number" placeholder="524" className="custom-input" onChange={e => setPower(e.target.value)} value={power} />
-                                    </div>
-                                    <div className="form-group form-group-sm col-3">
-                                        <label htmlFor="" className='mb-1'>Color</label>
-                                        <input type="text" placeholder="eg Brown" className="custom-input" onChange={e => setColor(e.target.value)} value={color} />
-                                    </div>
-                                </div>
-                                <div className="row mb-3">
-
-
-                                    <div className="form-group form-group-sm col-4">
-                                        <label htmlFor="" className='mb-1'>Condition*</label>
-                                        <select name="" id="" className="custom-input" onChange={e => setCondition(e.target.value)} value={condition}>
-                                            <option value="">Select Condition</option>
-                                            {
-                                                conditionData.map((data, i) => {
-                                                    return (
-                                                        <option value={data} key={i}>{data}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                    <div className="form-group form-group-sm col-4">
-                                        <label htmlFor="" className='mb-1'>Brand*</label>
-                                        <select name="" id="" className="custom-input" onChange={e => setBrand(e.target.value)} value={brand}>
-                                            <option value="">Select brand</option>
-                                            {
-                                                machineryBrands.map((data, i) => {
-                                                    return (
-                                                        <option value={data} key={i}>{data}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                    <div className="form-group form-group-sm col-4">
-                                        <label htmlFor="" className='mb-1'>Type of Machinery</label>
-                                        <select name="" id="" className="custom-input" onChange={e => setMachineryType(e.target.value)} value={machineryType}>
-                                            <option value="">Select brand</option>
-                                            {
-                                                machineryTypesDropdown.map((data, i) => {
-                                                    return (
-                                                        <option value={data} key={i}>{data}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div className="row mb-3">
-                                    <div className="form-group form-group-sm col-6">
-                                        <label htmlFor="" className='mb-1'>Size <small>(In m)</small></label>
-                                        <input type="number" placeholder="eg 12x8 m" className="custom-input" onChange={e => setSize(e.target.value)} value={size} />
-
-                                    </div>
-                                    <div className="form-group form-group-sm col-6">
-                                        <label htmlFor="" className='mb-1'>Certification</label>
-                                        <input type="text" placeholder="" className="custom-input" onChange={e => setCertification(e.target.value)} value={certification} />
-                                    </div>
-
-                                </div>
-
-                                <div className="row mb-3">
-                                    <div className="form-group form-group-sm col-3">
-                                        <div className="d-flex align-items-center mt-4">
-                                            <label htmlFor="" className='mb-1'>Available</label>
-                                            <input type="checkbox" className="custom-input" onChange={e => setAvailable(!available)} checked={available} />
+                                                }
+                                            </select>
                                         </div>
-                                    </div>
-                                    <div className="form-group form-group-sm col-3">
-                                        <div className="d-flex align-items-center mt-4">
-                                            <label htmlFor="" className='mb-1'>Guarantee</label>
-                                            <input type="checkbox" className="custom-input" onChange={e => setGuarantee(!guarantee)} checked={guarantee} />
+
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Tool*</label>
+                                            <select name="" id="" className="custom-input" onChange={e => setCategory(e.target.value)} value={category}>
+                                                <option value="">Select Category</option>
+                                                {
+                                                    machineryCategories.map((data) => (
+                                                        data.categoryName === application ? (
+                                                            data.subcategories.map((subCat, i) => (
+                                                                <option value={subCat} key={i}>{subCat}</option>
+                                                            ))
+                                                        ) : null
+                                                    ))
+                                                }
+                                            </select>
+                                        </div>
+
+                                        <div className="form-group form-group-sm">
+                                            <label htmlFor="" className='mb-1'>Budget (MAD/unit)*</label>
+                                            <input type="number" min={0} className="custom-input" onChange={e => setBudget(e.target.value)} onBlur={handleBudgetCheck} value={budget} />
                                         </div>
                                     </div>
 
-                                    {
-                                        guarantee && (
-                                            <div className="form-group form-group-sm col-4">
-                                                <label htmlFor="" className='mb-1'>Guranatee Period <small>(1 Month, 1 Year etc)</small></label>
-                                                <input type="text" placeholder="" className="custom-input" onChange={e => setGuaranteePeriod(e.target.value)} value={guaranteePeriod} />
+
+                                    <div className="formSide side_3">
+                                        <div className="info">Product Information</div>
+
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Title* <small>(max 100 characters)</small></label>
+                                            <input type="text" maxLength={100} className="custom-input" onChange={e => setTitle(e.target.value)} value={title} />
+                                        </div>
+
+                                        <div className="form-group form-group-sm mb-3 ">
+                                            <label htmlFor="" className='mb-1'>Description* <small>(max 1000 characters)</small></label>
+                                            <Editor description={description} setDescription={setDescription} maximumLength={1000} />
+                                        </div>
+
+                                        <div className="col-12 images-section">
+                                            <div className="upload-image" onClick={hanldeUploadClick}>
+                                                <input type="file" accept='image/*' onChange={handleImageChange} multiple name="" id="" className='invisible' ref={imageUploadRef} />
+                                                <FaCloudUploadAlt />
+                                                <p style={{ fontSize: "10px" }}>Upload Images (Upload maximum of 10 images) </p>
                                             </div>
-                                        )
-                                    }
+                                            {
+                                                uploadingImage && (
+                                                    <>
+                                                        <ClipLoader
+                                                            color="#076C8F"
+                                                            loading={uploadingImage}
+                                                            size={20}
+                                                            aria-label="Loading Spinner"
+                                                            data-testid="loader"
+                                                            className='mt-1'
+                                                        />
+                                                        <p>Uploading Images </p>
+                                                    </>
 
-                                </div>
+                                                )
+                                            }
 
-                                <div className="row mb-3">
-                                    <div className="form-group form-group-sm col-12">
-                                        <label htmlFor="" className='mb-1'>Description* <small>(max 1000 chars)</small></label>
-                                        <Editor description={description} setDescription={setDescription}/>
+                                            <div className={`uploaded-images ${showUploadedImages ? 'show' : ''}`}>
+                                                {uploadedImages &&
+                                                    uploadedImages.map((image, i) => (
+                                                        <div className="image" key={i}>
+                                                            <FaXmark onClick={() => removeImage(image.id)} />
+                                                            <img src={image.url} alt="" />
+                                                        </div>
+                                                    ))}
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
 
-                                <div className="row mb-3">
-                                    <div className="col-12 images-section">
-                                        <div className="upload-image" onClick={hanldeUploadClick}>
-                                            <input type="file" accept='image/*' onChange={handleImageChange} multiple name="" id="" className='invisible' ref={imageUploadRef} />
-                                            <FaCloudUploadAlt />
-                                            <p>Upload Images</p>
+                                <div className="d-flex gap-3 mt-4">
+                                    <div className="w-25 formSide">
+                                        <div className="info">Properties</div>
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Brand</label>
+                                            <select name="" id="" className="custom-input" onChange={e => setBrand(e.target.value)} value={brand}>
+                                                <option value="">Select brand</option>
+                                                {
+                                                    machineryBrands.map((data) => (
+                                                        data.application === application ? (
+                                                            data.brands.map((brand, i) => (
+                                                                <option value={brand} key={i}>{brand}</option>
+                                                            ))
+                                                        ) : null
+                                                    ))
+                                                }
+                                            </select>
                                         </div>
-                                        {
-                                            uploadingImage && (
-                                                <>
-                                                    <ClipLoader
-                                                        color="#076C8F"
-                                                        loading={uploadingImage}
-                                                        size={20}
-                                                        aria-label="Loading Spinner"
-                                                        data-testid="loader"
-                                                        className='mt-1'
-                                                    />
-                                                    <p>Uploading Images </p>
-                                                </>
 
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Condition</label>
+                                            <select name="" id="" className="custom-input" onChange={e => setCondition(e.target.value)} value={condition}>
+                                                <option value="">Select Condition</option>
+                                                {
+                                                    machineConditionData.map((data, i) => {
+                                                        return (
+                                                            <option value={data} key={i}>{data}</option>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
+                                        </div>
+
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Year</label>
+                                            <select name="" id="" className="custom-input" onChange={e => setBuild(e.target.value)} value={build}>
+                                                <option value="">Select Year Build</option>
+                                                {
+                                                    yearBuildData.map((data, i) => {
+                                                        return (
+                                                            <option value={data} key={i}>{data}</option>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
+                                        </div>
+
+
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Type</label>
+                                            <select name="" id="" className="custom-input" onChange={e => setMachineryType(e.target.value)} value={machineryType}>
+                                                <option value="">Select Machine Type</option>
+                                                {
+                                                    machineryTypesDropdown.map((data, i) => {
+                                                        return (
+                                                            <option value={data} key={i}>{data}</option>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
+                                        </div>
+
+
+                                        <div className="form-group form-group-sm mb-1">
+                                            <div className="d-flex align-items-center justify-content-between">
+                                                <label htmlFor="guaranteeCheck" className='mb-1'>Guarantee</label>
+                                                <input type="checkbox" id='guaranteeCheck' className="" onChange={e => setGuarantee(!guarantee)} checked={guarantee} />
+                                            </div>
+                                        </div>
+
+                                        {
+                                            guarantee && (
+                                                <div className="form-group form-group-sm">
+                                                    <select name="" id="" className="custom-input" onChange={e => setGuaranteePeriod(e.target.value)} value={guaranteePeriod}>
+                                                        <option value="">Select Guarantee</option>
+                                                        {
+                                                            machineryGuarantee.map((data, i) => {
+                                                                return (
+                                                                    <option value={data} key={i}>{data}</option>
+                                                                )
+                                                            })
+                                                        }
+                                                    </select>
+                                                </div>
                                             )
                                         }
 
-                                        <div className={`uploaded-images ${showUploadedImages ? 'show' : ''}`}>
-                                            {uploadedImages &&
-                                                uploadedImages.map((image, i) => (
-                                                    <div className="image" key={i}>
-                                                        <FaXmark onClick={() => removeImage(image.id)} />
-                                                        <img src={image.url} alt="" />
-                                                    </div>
-                                                ))}
+                                    </div>
+                                    <div className="w-50 formSide">
+                                        <div className="info">Location</div>
+
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Country*</label>
+                                            <Select
+                                                className="custom-input react-select"
+                                                classNamePrefix="select"
+                                                placeholder='Select Country'
+                                                name="color"
+                                                options={countries}
+                                                onChange={handleCountryChange}
+                                                value={
+                                                    countries.filter(option =>
+                                                        option.label === country
+                                                    )
+                                                }
+                                            />
+                                        </div>
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Region*</label>
+                                            <Select
+                                                className="custom-input react-select"
+                                                classNamePrefix="select"
+                                                placeholder='Select Region'
+                                                name="color"
+                                                options={states && states}
+                                                onChange={handleStateChange}
+                                                value={
+                                                    states.filter(option =>
+                                                        option.label === state
+                                                    )
+                                                }
+                                            />
+                                        </div>
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>City*</label>
+                                            <Select
+                                                className="custom-input react-select"
+                                                classNamePrefix="select"
+                                                placeholder='Select City'
+                                                name="color"
+                                                options={cities && cities}
+                                                onChange={handleCityChange}
+                                                value={
+                                                    cities.filter(option =>
+                                                        option.label === city
+                                                    )
+                                                }
+                                            />
+                                        </div>
+
+                                        <div className="form-group form-group-sm">
+                                            <label htmlFor="" className='mb-1'>District</label>
+                                            <Select
+                                                className="custom-input react-select"
+                                                classNamePrefix="select"
+                                                placeholder='Select District'
+                                                name="color"
+                                                options={streets && streets}
+                                                onChange={handleStreetChange}
+                                                value={
+                                                    streets.filter(option =>
+                                                        option.label === street
+                                                    )
+                                                }
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="w-50 formSide">
+                                        <div className="info">Location by map</div>
+
+                                        <div className="col-12">
+                                            <p style={{ fontSize: "12px" }}>Add location by map*</p>
+                                            {
+                                                !isLoading && updatePage ? (
+                                                    <>
+                                                        <GetLocationMap centerPosition={mapLocation && mapLocation} clickedPosition={mapLocation} setClickedPosition={setMapLocation} />
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <GetLocationMap centerPosition={["34.020882", "-6.841650"]} clickedPosition={mapLocation} setClickedPosition={setMapLocation} />
+                                                    </>
+                                                )
+                                            }
+                                            <small>Click on the location address in map</small>
+
                                         </div>
                                     </div>
                                 </div>
-                                <div className="row mb-3 mt-5">
-                                    <div className="col-12">
-                                        <h5>Add location by map*</h5>
-                                        <small>Click on the location address in map</small>
 
-                                        {
-                                            !isLoading && updatePage ? (
-                                                <>
-                                                    <GetLocationMap centerPosition={mapLocation && mapLocation} clickedPosition={mapLocation} setClickedPosition={setMapLocation} />
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <GetLocationMap centerPosition={["34.020882", "-6.841650"]} clickedPosition={mapLocation} setClickedPosition={setMapLocation} />
-                                                </>
-                                            )
-                                        }
-                                    </div>
-                                </div>
-
-                                <div className="row mb-2">
+                                <div className="row mb-2 mt-3">
                                     <div className="form-group form-group-sm d-flex align-items-center justify-content-end gap-2">
                                         <div className="outline-btn py-2" onClick={resetAllFields}>Reset</div>
                                         {/* <button className="custom-btn" type='submit'>Publish</button> */}

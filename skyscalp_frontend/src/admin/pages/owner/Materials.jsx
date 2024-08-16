@@ -149,16 +149,16 @@ export default function Materials() {
                             <p>Building Materials</p>
                             <p>Furniture & Appliances</p>
                         </div> */}
-                        <ul class="nav nav-tabs" style={{cursor: "pointer"}}>
-                            <li class="nav-item">
-                                <p class={`nav-link text-dark ${activeTab === "machinery" ? 'active' : ''}`} aria-current="page" onClick={() => handleTabChange('machinery')}>Machinery & Tools</p>
+                        <ul className="nav nav-tabs" style={{cursor: "pointer"}}>
+                            <li className="nav-item">
+                                <p className={`nav-link text-dark ${activeTab === "machinery" ? 'active' : ''}`} aria-current="page" onClick={() => handleTabChange('machinery')}>Machinery & Tools</p>
                             </li>
-                            <li class="nav-item" style={{cursor: "pointer"}}>
-                                <p class={`nav-link text-dark ${activeTab === "materials" ? 'active' : ''}`} aria-current="page" onClick={() => handleTabChange('materials')}>Building Materials</p>
+                            <li className="nav-item" style={{cursor: "pointer"}}>
+                                <p className={`nav-link text-dark ${activeTab === "materials" ? 'active' : ''}`} aria-current="page" onClick={() => handleTabChange('materials')}>Building Materials</p>
 
                             </li>
-                            <li class="nav-item" style={{cursor: "pointer"}}>
-                                <p class={`nav-link text-dark ${activeTab === "furniture" ? 'active' : ''}`} aria-current="page" onClick={() => handleTabChange('furniture')}>Furniture & Appliances</p>
+                            <li className="nav-item" style={{cursor: "pointer"}}>
+                                <p className={`nav-link text-dark ${activeTab === "furniture" ? 'active' : ''}`} aria-current="page" onClick={() => handleTabChange('furniture')}>Furniture & Appliances</p>
 
                             </li>
                         </ul>

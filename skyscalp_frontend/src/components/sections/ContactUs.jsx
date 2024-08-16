@@ -55,8 +55,8 @@ const ContactUs = ({ supportTitle, supportDescription, contactEmail, contactPhon
                     <h1 className='mb-4 color-primary fw-bolder'>{t("contactUsTitle")}</h1>
                     <div className="wraper">
                         <div className="support">
-                            <h2 className='mb-2 text-white supportTitle'>{supportTitle}</h2>
-                            <p className="supportDescription ">{supportDescription}</p>
+                            <h2 className='mb-2 text-white supportTitle'>{t(supportTitle)}</h2>
+                            <p className="supportDescription ">{t(supportDescription)}</p>
 
                             <div className="information">
                                 <div className="info-group d-flex align-items-center gap-2 mb-4">
@@ -78,21 +78,21 @@ const ContactUs = ({ supportTitle, supportDescription, contactEmail, contactPhon
                             <form action="" onSubmit={handleMessageSend}>
                                 <div className="split">
                                     <div className="form-group">
-                                        <label >First Name</label>
-                                        <input type="text" maxLength={50} className="custom-input" placeholder='First Name' value={firstName} onChange={e => setFirstName(e.target.value)} />
+                                        <label >{t("firstName")}</label>
+                                        <input type="text" maxLength={50} className="custom-input" placeholder={t("firstName")} value={firstName} onChange={e => setFirstName(e.target.value)} />
                                     </div>
                                     <div className="form-group">
-                                        <label >Last Name</label>
-                                        <input type="text" maxLength={50} className="custom-input" placeholder='Last Name' value={lastName} onChange={e => setLastName(e.target.value)} />
+                                        <label >{t("lastName")}</label>
+                                        <input type="text" maxLength={50} className="custom-input" placeholder={t("lastName")} value={lastName} onChange={e => setLastName(e.target.value)} />
                                     </div>
                                 </div>
                                 <div className="split">
                                     <div className="form-group ">
-                                        <label >Email*</label>
-                                        <input type="email" className="custom-input" required placeholder='youremail@gmail.com' value={email} onChange={e => setEmail(e.target.value)} />
+                                        <label >{t("email")}*</label>
+                                        <input type="email" className="custom-input" required placeholder={t("yourEmail")} value={email} onChange={e => setEmail(e.target.value)} />
                                     </div>
                                     <div className="form-group ">
-                                        <label >Phone*</label>
+                                        <label >{t("phone")}*</label>
                                         {/* <input type="text" maxLength={15} className="custom-input" required placeholder='Phone Number' value={phone} onChange={e => setPhone(e.target.value)} /> */}
                                         <PhoneInput
                                             className="contactPhone"
@@ -103,11 +103,11 @@ const ContactUs = ({ supportTitle, supportDescription, contactEmail, contactPhon
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                    <label>Message</label>
-                                    <textarea id="" cols="30" rows="5" className='custom-textarea' placeholder='Hi, I am interested' value={message} onChange={e => setMessage(e.target.value)} ></textarea>
+                                    <label>{t("message")}</label>
+                                    <textarea id="" cols="30" rows="5" className='custom-textarea' placeholder={t("iAmIntereseted")} value={message} onChange={e => setMessage(e.target.value)} ></textarea>
                                 </div>
                                 <div className="form-group">
-                                    <button className='custom-btn float-end'>Send Message</button>
+                                    <button className='custom-btn float-end'>{t("sendMessage")}</button>
                                 </div>
                             </form>
                         </div>

@@ -277,7 +277,7 @@ export default function ViewMachinery() {
                                 </div>
 
                                 <h4 className="fw-bolder mb-2">{title}</h4>
-                                <p className='paragraph mb-1 '>{t("category")} {category}</p>
+                                <p className='paragraph mb-1 '>{t("Appliation")} {application}</p>
 
                                 <div className="d-flex align-items-center justify-content-between mb-2">
                                     <p className=''>{city}, {country}</p>
@@ -289,7 +289,7 @@ export default function ViewMachinery() {
                                 </div>
 
                                 <div className="info-icons mt-2">
-                                    <small className='color-secondary '>Date Posted: {createdAt && new Intl.DateTimeFormat('en-GB').format(new Date(createdAt))}</small>
+                                    <small className='color-secondary '>{t("Date")}: {createdAt && new Intl.DateTimeFormat('en-GB').format(new Date(createdAt))}</small>
                                 </div>
                                 <hr />
 
@@ -334,19 +334,6 @@ export default function ViewMachinery() {
 
                                 <div className="features-grid">
 
-
-                                    <div className="feature">
-                                        <div className="label">
-                                            <p className="color-secondary">{t("category")}</p>
-                                        </div>
-                                        <p className="paragraph">{(category.slice(0, 15)) + (category.length > 15 ? "..." : "")}</p>
-                                    </div>
-                                    <div className="feature">
-                                        <div className="label">
-                                            <p className="color-secondary">{t("modal")}</p>
-                                        </div>
-                                        <p className="paragraph">{model}</p>
-                                    </div>
                                     <div className="feature">
                                         <div className="label">
                                             <p className="color-secondary">{t("application")}</p>
@@ -354,58 +341,23 @@ export default function ViewMachinery() {
                                         <p className="paragraph">{(application.slice(0, 15)) + (application.length > 15 ? "..." : "")}</p>
 
                                     </div>
+
+                                    <div className="feature">
+                                        <div className="label">
+                                            <p className="color-secondary">{t("tool")}</p>
+                                        </div>
+                                        <p className="paragraph">{(category.slice(0, 15)) + (category.length > 15 ? "..." : "")}</p>
+                                    </div>
+
                                     <div className="feature">
                                         <div className="label">
                                             <p className="color-secondary">{t("condition")}</p>
                                         </div>
                                         <p className="paragraph">{condition}</p>
                                     </div>
-                                    {
-                                        weight !== "" && (
-                                            <div className="feature">
-                                                <div className="label">
-                                                    <p className="color-secondary">{t("weight")}</p>
-                                                </div>
-                                                <p className="paragraph">{parseInt(weight) > 1000 ? `${weight} Ton` : `${weight} Kg`}</p>
-                                            </div>
-                                        )
-                                    }
-                                    {
-                                        power !== "" && (
-                                            <div className="feature">
-                                                <div className="label">
-                                                    <p className="color-secondary">{t("power")}</p>
-                                                </div>
-                                                <p className="paragraph">{power} hp</p>
-                                            </div>
-                                        )
-                                    }
                                     <div className="feature">
                                         <div className="label">
-                                            <p className="color-secondary">{t("available")}</p>
-                                        </div>
-                                        <p className="paragraph">{available ? 'Yes' : 'No'}</p>
-                                    </div>
-                                    <div className="feature">
-                                        <div className="label">
-                                            <p className="color-secondary">{t("transaction")}</p>
-                                        </div>
-                                        <p className="paragraph">{type}</p>
-                                    </div>
-                                    {
-                                        size !== "" && (
-                                            <div className="feature">
-                                                <div className="label">
-                                                    <p className="color-secondary">{t("sizeOfMachine")}</p>
-                                                </div>
-                                                <p className="paragraph">{size} m</p>
-                                            </div>
-                                        )
-                                    }
-
-                                    <div className="feature">
-                                        <div className="label">
-                                            <p className="color-secondary">{t("machineType")}</p>
+                                            <p className="color-secondary">{t("type")}</p>
                                         </div>
                                         <p className="paragraph">{machineryType}</p>
                                     </div>
@@ -415,26 +367,6 @@ export default function ViewMachinery() {
                                         </div>
                                         <p className="paragraph">{brand}</p>
                                     </div>
-                                    {
-                                        color !== "" && (
-                                            <div className="feature">
-                                                <div className="label">
-                                                    <p className="color-secondary">{t("color")}</p>
-                                                </div>
-                                                <p className="paragraph">{color}</p>
-                                            </div>
-                                        )
-                                    }
-                                    {
-                                        certification !== "" && (
-                                            <div className="feature">
-                                                <div className="label">
-                                                    <p className="color-secondary">{t("certification")}</p>
-                                                </div>
-                                                <p className="paragraph">{certification}</p>
-                                            </div>
-                                        )
-                                    }
                                     {
                                         guaranteePeriod !== "" && (
                                             <div className="feature">

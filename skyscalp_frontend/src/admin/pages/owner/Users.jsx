@@ -117,10 +117,10 @@ export default function Users() {
                                                         {
                                                             data.status ?
                                                                 (
-                                                                    <span class="badge text-bg-success" style={{ fontSize: "12px" }}>Active</span>
+                                                                    <span className="badge text-bg-success" style={{ fontSize: "12px" }}>Active</span>
                                                                 ) :
                                                                 (
-                                                                    <span class="badge text-bg-danger" style={{ fontSize: "12px" }}>Inactive</span>
+                                                                    <span className="badge text-bg-danger" style={{ fontSize: "12px" }}>Inactive</span>
                                                                 )
                                                         }
                                                     </td>

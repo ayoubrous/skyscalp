@@ -30,9 +30,11 @@ export default function Properties({ properties }) {
                             })
                     }
                 </div>
-                <Link to="./properties">
-                    <button className="outline-btn d-block mx-auto my-4">{t("viewAllProperty")}</button>
-                </Link>
+                <div className='text-center'>
+                    <Link to="./properties" style={{display: "inline-block"}}>
+                        <button className="outline-btn d-block mx-auto my-4">{t("viewAllProperty")}</button>
+                    </Link>
+                </div>
             </div>
         </section>
     )

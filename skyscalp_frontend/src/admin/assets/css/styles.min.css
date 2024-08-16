@@ -19658,7 +19658,8 @@ fieldset:disabled .btn {
     z-index: 11;
     border-right: 1px solid rgb(229, 234, 239)
 }
-.left-sidebar.admin{
+
+.left-sidebar.admin {
     background-color: #3a9abb1a;
 }
 
@@ -20018,7 +20019,7 @@ fieldset:disabled .btn {
 #main-wrapper[data-layout=vertical][data-header-position=fixed] .body-wrapper>.container-sm,
 #main-wrapper[data-layout=vertical][data-header-position=fixed] .body-wrapper>.container-xl,
 #main-wrapper[data-layout=vertical][data-header-position=fixed] .body-wrapper>.container-xxl {
-    padding-top: calc(70px + 15px)
+    padding-top: calc(45px + 15px)
 }
 
 @media (min-width:1200px) {
@@ -20209,7 +20210,8 @@ ul {
     /* text-align: center; */
     color: #1a1d20;
 }
-.dashboard-table td:last-child{
+
+.dashboard-table td:last-child {
     padding: 8px 2px;
 }
 
@@ -20284,11 +20286,13 @@ ul {
     overflow: hidden;
     margin: 4px;
     position: relative;
+    border: 1px solid #ccc;
 }
 
 .publish-form .images-section .uploaded-images .image img {
     width: 100%;
     height: 100%;
+    object-fit: contain;
 }
 
 .publish-form .images-section .uploaded-images .image svg {
@@ -20476,3 +20480,65 @@ ul {
 
 
 /* Add machinery form redesign  */
+.publish-form .publishForm .split {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.publish-form .publishForm .typeTabs .tab{
+    width: 100%;
+    padding: 8px 0;
+    margin-bottom: 8px;
+    text-align: center;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f4f4f4;
+    cursor: pointer;
+
+}
+.publish-form .publishForm .typeTabs .tab.active{
+    background-color: #076C8F;
+    color: #fff;
+}
+.publish-form .publishForm .formSide{
+    padding: 13px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.085);
+    border: 1px solid #f9f9f9;
+}
+.publish-form .publishForm .formSide .info{
+    font-size: 10px;
+    color: #ccc;
+    margin-bottom: 15px;
+    position: relative;
+}
+.publish-form .publishForm .formSide .info::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: #f4f4f4;
+    bottom: -5px;
+}
+.publish-form .publishForm .split .formSide.side_1 {
+    width: 13%;
+}
+.publish-form .publishForm .split .formSide.side_2 {
+    width: 25%;
+}
+.publish-form .publishForm .split .formSide.side_3 {
+    width: 62%;
+}
+
+
+.publish-form .publishForm .split .formSide {
+    /* border: solid firebrick; */
+}
+
+.publish-form .publishForm .ck-content{
+    height: 100px !important;
+}

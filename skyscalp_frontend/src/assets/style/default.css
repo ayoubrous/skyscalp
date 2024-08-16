@@ -253,7 +253,9 @@ a:hover {
     color: var(--dark-color);
 }
 
-
+.form-group-sm label{
+    font-size: 12px;
+}
 .form-group-sm .custom-input {
     outline: none;
     border: 1.4px solid var(--border-color);

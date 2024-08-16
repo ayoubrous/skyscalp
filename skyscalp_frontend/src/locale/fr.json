@@ -21,6 +21,7 @@
     "bedrooms": "chambres",
     "baths": "Salles de bains",
     "areaUnit": "pi²",
+    "homeFilterTitle": "Recherchez quelque chose ?",
     "machinerySectionTitle": "Construisez votre propriété",
     "machinerySectionSubTitle": "Explorez tous les articles de machinerie à vendre et à louer",
     "modal": "Modale",
@@ -120,7 +121,7 @@
     "furniture": "Meubles",
     "marketplace": "Marché",
     "buildingMaterial": "Matériaux de construction",
-    "furnitureAppliances": "Meubles, appareils",
+    "furnitureAppliances": "Meubles",
     "machineryTools": "Machines",
     "transaction": "Transaction",
     "subcategory": "Sous-catégorie",
@@ -128,12 +129,21 @@
     "experience": "Expérience",
     "happyCustomers": "Clients satisfaits",
     "sortby": "Trier par",
-    "machineryFilterTitle": "Grues, peintures ou casques : trouvez ce dont vous avez besoin au bon prix.",
+    "machineryFilterTitle": "De la fondation à la finition : votre marché unique pour les équipements de construction.",
     "constructionFilterTitle": "Ciment, peintures ou acier : trouvez ce dont vous avez besoin au bon prix.",
     "furnitureFilterTitle": "Canapés, lits ou tables : trouvez ce dont vous avez besoin au bon prix.",
 
     "sendMessage": "Envoyer le Message",
-    "backToList": "Retour à la liste"
+    "backToList": "Retour à la liste",
 
-
+    "tool": "Outil",
+    "search": "Recherche", 
+    "contactOurExperts": "Contactez nos experts", 
+    "buildingMaterials": "Matériau de construction",
+    "selectCategory": "Sélectionner une catégorie",
+    "searchLocationPlaceholder": "Tapez pour rechercher un lieu",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "yourEmail": "votreemail@gmail.com",
+    "iAmIntereseted": "Bonjour, je suis intéressé"
 }

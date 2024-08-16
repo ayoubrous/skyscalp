@@ -19,6 +19,7 @@
     "proximity": "Proximity",
     "signup": "SIGN UP",
     "seeMore": "See More",
+    "homeFilterTitle": "Looking for something?",
     "propertySectionTitle": "Buy, Rent a property",
     "propertySectionSubTitle": "Explore all properties  for sale and rent",
     "viewAllProperty": "View All Property",
@@ -31,7 +32,7 @@
     "condition": "Condition",
     "category": "Category",
     "datePosted": "Date",
-    "viewAllMachinery": "View All Machinery",
+    "viewAllMachinery": "View All Machines",
     "viewAllConstruction": "View All Construction",
     "constructionSectionTitle": "Explore all construction materials for sale",
     "quantity": "Quantity",
@@ -125,8 +126,8 @@
     "allFurniture": "All Furniture",
     "furniture": "Furniture",
     "marketplace": "Marketplace",
-    "buildingMaterial": "Building Materials",
-    "furnitureAppliances": "Furniture, Appliances",
+    "buildingMaterial": "Construction Materials",
+    "furnitureAppliances": "Furnitures",
     "machineryTools": "Machinery",
     "transaction": "Transaction",
     "subcategory": "Sub Category",
@@ -134,11 +135,16 @@
     "experience": "Experience",
     "happyCustomers": "Happy Customers",
     "sortby": "Sort By",
-
-    "machineryFilterTitle": "Cranes, paints or helmets: find what you need at the right price.",
+    "machineryFilterTitle": "From foundation to finish: Your one-stop marketplace for construction equipment.",
     "constructionFilterTitle": "Cement, paints or steel: find what you need at the right price.",
     "furnitureFilterTitle": "Sofa, Beds or tables: find what you need at the right price.",
-    
     "sendMessage": "Send Message",
-    "backToList": "Back to List"
+    "backToList": "Back to List",
+    "tool": "Tool",
+    "selectCategory": "Select Category",
+    "searchLocationPlaceholder": "Type to search location",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "yourEmail": "youremail@gmail.com",
+    "iAmIntereseted": "Hi, I am interested" 
 }

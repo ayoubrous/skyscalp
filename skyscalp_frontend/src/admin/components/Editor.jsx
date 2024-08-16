@@ -4,19 +4,18 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
-export default function Editor({ description, setDescription }) {
+export default function Editor({ description, setDescription, maximumLength = null }) {
 
     const handleDescriptionChange = (event, editor) => {
         const data = editor.getData();
         setDescription(data);
-    };
+    }
 
     const toolbar = [
         'bold',
         'italic',
         '|',
         'numberedList',
-        'bulletedList',
         '|',
         'heading',
         'blockQuote',
@@ -29,8 +28,16 @@ export default function Editor({ description, setDescription }) {
                 editor={ClassicEditor}
                 data={description}
                 onChange={handleDescriptionChange}
-                config={{ toolbar }}
+                config={{
+                    toolbar
+                }}
             />
+            {
+                maximumLength !== null && (
+                    <p style={{fontSize: "10px"}}>Characters: {description.length}/{maximumLength}</p>
+                )
+            }
         </>
     )
-}
+
+};

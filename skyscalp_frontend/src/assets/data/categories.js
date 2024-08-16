@@ -21,64 +21,48 @@ const machineryCategories = [
     {
         id: 1,
         image: foundation,
-        categoryName: 'Foundation',
+        categoryName: 'Earthmoving',
         subcategories: [
-            'Excavator shovel',
-            'Dump truck',
-            'Cement mixer',
-            'Vibrator',
-            'Formwork'
+            'Bulldozer', 'Wheel loader', 'Backhoe loader', 'Excavator', 'Scraper', 'Grader', 'Compactor', 'Roller', 'Trencher', 'Skid-steer loader', 'Other'
         ]
     },
     {
         id: 2,
         image: wall,
-        categoryName: 'Construction of walls and posts',
+        categoryName: 'Lifting',
         subcategories: [
-            'Crane',
-            'Cherry picker',
-            'Concrete blocks or concrete blocks',
-            'Mortar',
-            'Coatings'
+            'Crane', 'Aerial work platform', 'Forklift', 'Telehandler', 'Cherry picker',
+            'Hoist', 'Winch', 'Boom lift', 'Scissor lift', 'Pallet jack', 'Other'
         ]
     },
     {
         id: 3,
         image: floor,
-        categoryName: 'Installation of slabs and floors',
+        categoryName: 'Compaction',
         subcategories: [
-            'Steel or concrete beams',
-            'Collaborative floors',
-            'Float'
+            'Compactor', 'Roller', 'Rammer', 'Plate compactor', 'Vibratory compactor',
+            'Pneumatic roller', 'Soil compactor', 'Asphalt compactor', 'Hand tamper',
+            'Reversible plate compactor', 'Other'
         ]
     },
     {
         id: 4,
         image: roofing,
-        categoryName: 'Frame and roofing',
+        categoryName: 'Demolition',
         subcategories: [
-            'Lumber',
-            'Tiles or slates',
-            'Scaffolding',
-            'Carpenter tools',
-            'Miter saw'
+            'Crusher', 'Shear', 'Demolition hammer', 'Excavator', 'Breaker',
+            'Wrecking ball', 'Demolition saw', 'Hydraulic breaker', 'Pneumatic hammer',
+            'Demolition excavator', 'Other'
         ]
     },
     {
         id: 5,
         image: excavation,
-        categoryName: 'Earthworks and excavation work',
-        subcategories: [
-            'Bulldozer',
-            'Compactor',
-            'Level'
-        ]
-    },
-    {
-        id: 6,
-        image: others,
         categoryName: 'Others',
-        subcategories: []
+        subcategories: [
+            'Generator', 'Pump', 'Welder', 'Compressor', 'Light tower',
+            'Saw', 'Drill', 'Grinder', 'Concrete mixer', 'Concrete pump', 'Other'
+        ]
     }
 ];
 const propertyCategories = [
@@ -389,12 +373,12 @@ const marketplaceCategories = [
     },
     {
         id: 2,
-        name: "Building Materials",
+        name: "Construction Materials",
         image: concrete
     },
     {
         id: 3,
-        name: "Furniture, Appliances",
+        name: "Furnitures",
         image: wood
     },
 ]
