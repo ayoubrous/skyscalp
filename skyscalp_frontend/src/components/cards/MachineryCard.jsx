@@ -78,7 +78,7 @@ const MachineryCard = ({ data }) => {
                     <p className='color-secondary'>{application}</p>
                     <p className='color-secondary'>{condition}</p>
 
-                    {description && <p className='mb-2 mt-1 color-secondary' dangerouslySetInnerHTML={{ __html: description.substring(0, 120) }}></p>}
+                    {description && <p className='mb-2 mt-1 color-secondary description' dangerouslySetInnerHTML={{ __html: description.substring(0, 120) }}></p>}
 
 
 

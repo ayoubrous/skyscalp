@@ -84,7 +84,7 @@ const ConstructionCard = ({ data }) => {
                     <p className='mb-1'>{category} ({unit})</p>
                     <p className='color-secondary'>{application}</p>
 
-                    {description && <p className='mb-2 mt-1 color-secondary' dangerouslySetInnerHTML={{ __html: description.substring(0, 120) }}></p>}
+                    {description && <p className='mb-2 mt-1 color-secondary description' dangerouslySetInnerHTML={{ __html: description.substring(0, 120) }}></p>}
 
                     <div className="d-flex justify-content-between align-items-center property-features mb-2">
 

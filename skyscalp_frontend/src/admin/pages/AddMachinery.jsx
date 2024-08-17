@@ -532,7 +532,7 @@ export default function AddMachinery() {
                                 ) :
                                 (
                                     <>
-                                        <h5 className='fw-bolder'>Publish New Machine Item</h5>
+                                        <h5 className='fw-bolder'>Publish New Machines</h5>
                                         <small className='mb-3'>Fill out all the required fields</small>
                                     </>
                                 )
@@ -582,7 +582,7 @@ export default function AddMachinery() {
                                         </div>
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Tool*</label>
+                                            <label htmlFor="" className='mb-1'>Select Tool*</label>
                                             <select name="" id="" className="custom-input" onChange={e => setCategory(e.target.value)} value={category}>
                                                 <option value="">Select Category</option>
                                                 {

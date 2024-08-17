@@ -64,7 +64,7 @@ const SimilarProperty = ({ propertyData }) => {
                     <p className='paragraph mb-0 '>{category}, ({area} m<sup>2</sup>)</p>
                     <p className=''>{city}</p>
 
-                    {description && <p className='mb-3 mt-1 color-secondary'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
+                    {description && <p className='mb-3 mt-1 color-secondary description'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
 
 
                     <div className="d-flex justify-content-between align-items-center property-features mb-2">

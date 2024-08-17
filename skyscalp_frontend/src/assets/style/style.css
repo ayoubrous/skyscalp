@@ -378,6 +378,9 @@
     font-size: 17px;
     font-weight: 400;
 }
+.custom-card .content .description {
+    min-height: 63px;
+}
 
 
 .custom-card .property-features .feature-text {

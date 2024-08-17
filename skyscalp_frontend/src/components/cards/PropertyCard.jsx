@@ -114,7 +114,7 @@ const PropertyCard = React.memo(({ propertyData }) => {
                         </div>
                         <p className="paragraph mb-0">{category}, ({area} m<sup>2</sup>)</p>
                         <p className="">{city}, {country}</p>
-                        {description && <div className='mb-2 mt-1 color-secondary' dangerouslySetInnerHTML={{ __html: description.substring(0, 120) }}></div>}
+                        {description && <div className='mb-2 mt-1 color-secondary description' dangerouslySetInnerHTML={{ __html: description.substring(0, 120) }}></div>}
 
                         <div className="d-flex justify-content-between align-items-center property-features mb-3">
                             {rooms > 0 && (
