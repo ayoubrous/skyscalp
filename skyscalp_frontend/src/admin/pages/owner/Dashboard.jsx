@@ -281,7 +281,7 @@ export default function Dashboard() {
                             </div>
                             <div className="card overflow-hidden col-4" style={{ borderRight: "2px solid green" }}>
                                 <div className="card-body p-4">
-                                    <h5 className="card-title mb-9 fw-semibold">PUBLISHED MACHINERY</h5>
+                                    <h5 className="card-title mb-9 fw-semibold">PUBLISHED MACHINES</h5>
                                     <div className="row align-items-center">
                                         <div className="d-flex align-items-center justify-content-between">
                                             <h1 className="fw-bolder color-primary" style={{ fontSize: "3rem" }}>

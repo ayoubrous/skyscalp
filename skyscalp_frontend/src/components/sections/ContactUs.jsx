@@ -1,5 +1,5 @@
 import { t } from 'i18next'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { FaEnvelope, FaLocationArrow, FaLocationDot, FaPhone } from 'react-icons/fa6'

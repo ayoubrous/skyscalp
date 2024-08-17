@@ -302,7 +302,7 @@ export default function ViewProperty() {
                                         (
                                             <div className="d-flex align-items-center gap-2">
                                                 <BsBuildings className='color-secondary' />
-                                                <small className="color-secondary">{area && area} sq ft</small>
+                                                <small className="color-secondary">{area && area} m<sup>2</sup></small>
                                             </div>
                                         )
                                     }

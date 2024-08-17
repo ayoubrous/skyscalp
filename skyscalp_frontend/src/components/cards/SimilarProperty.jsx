@@ -61,7 +61,7 @@ const SimilarProperty = ({ propertyData }) => {
                         <h1 className="card-title">{title && (title.slice(0, 18)) + (title.length > 18 ? "..." : "")}</h1>
                         <h5 className='color-primary'>MAD {price}</h5>
                     </div>
-                    <p className='paragraph mb-0 '>{category}, ({area} sq ft)</p>
+                    <p className='paragraph mb-0 '>{category}, ({area} m<sup>2</sup>)</p>
                     <p className=''>{city}</p>
 
                     {description && <p className='mb-3 mt-1 color-secondary'>{description.slice(0, 120) + (description.length > 120 ? "..." : "")}</p>}
@@ -78,7 +78,7 @@ const SimilarProperty = ({ propertyData }) => {
                         </div>
                         <div className='d-flex align-items-center'>
                             <BsBuildings className='feature-icon' />
-                            <p className="feature-text">{area} {t("areaUnit")}</p>
+                            <p className="feature-text">{area} m<sup>2</sup></p>
                         </div>
                     </div>
 

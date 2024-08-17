@@ -209,7 +209,7 @@ export default function Dashboard() {
 
                 <Link to="../app/machinery" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid green" }}>
                   <div className="card-body p-3">
-                    <h5 className="card-title mb-2 fw-semibold">Published Machinery</h5>
+                    <h5 className="card-title mb-2 fw-semibold">Published Machines</h5>
                     <div className="row align-items-center">
                       <div className="d-flex align-items-center justify-content-between">
                         <h1 className="fw-bolder color-primary" style={{ fontSize: "3rem" }}>

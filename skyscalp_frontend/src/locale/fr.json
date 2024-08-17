@@ -132,18 +132,22 @@
     "machineryFilterTitle": "De la fondation à la finition : votre marché unique pour les équipements de construction.",
     "constructionFilterTitle": "Ciment, peintures ou acier : trouvez ce dont vous avez besoin au bon prix.",
     "furnitureFilterTitle": "Canapés, lits ou tables : trouvez ce dont vous avez besoin au bon prix.",
-
     "sendMessage": "Envoyer le Message",
     "backToList": "Retour à la liste",
-
     "tool": "Outil",
-    "search": "Recherche", 
-    "contactOurExperts": "Contactez nos experts", 
+    "search": "Recherche",
+    "contactOurExperts": "Contactez nos experts",
     "buildingMaterials": "Matériau de construction",
     "selectCategory": "Sélectionner une catégorie",
     "searchLocationPlaceholder": "Tapez pour rechercher un lieu",
     "firstName": "Prénom",
     "lastName": "Nom",
     "yourEmail": "votreemail@gmail.com",
-    "iAmIntereseted": "Bonjour, je suis intéressé"
+    "iAmIntereseted": "Bonjour, je suis intéressé",
+    "marketManager": "Directeur Marketing",
+    "ceo": "PDG",
+    "itDirector": "Directeur Informatique",
+    "review1": "Notre expérience de travail avec cette entreprise a été exceptionnelle. Ils fournissent des résultats de haute qualité rapidement et sont très réactifs à nos besoins. Je recommande vivement leurs services.",
+    "review2": "Je suis profondément impressionné par le professionnalisme et l'expertise de cette entreprise. Ils nous ont aidés à rationaliser nos opérations et à réaliser des économies de coûts significatives. Nous sommes impatients de continuer notre partenariat.",
+    "review3": "Travailler avec cette entreprise a été une véritable révolution pour notre département informatique. Ils ont mis en place des solutions solides qui ont grandement amélioré notre efficacité et notre sécurité. Je suis reconnaissant pour leur dévouement et les recommande vivement."
 }

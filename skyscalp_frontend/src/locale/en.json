@@ -128,7 +128,7 @@
     "marketplace": "Marketplace",
     "buildingMaterial": "Construction Materials",
     "furnitureAppliances": "Furnitures",
-    "machineryTools": "Machinery",
+    "machineryTools": "Machines",
     "transaction": "Transaction",
     "subcategory": "Sub Category",
     "gotoDashboard": "Go to Dashboard",
@@ -146,5 +146,12 @@
     "firstName": "First Name",
     "lastName": "Last Name",
     "yourEmail": "youremail@gmail.com",
-    "iAmIntereseted": "Hi, I am interested" 
+    "iAmIntereseted": "Hi, I am interested",
+    "marketManager": "Marketing Manager",
+    "ceo": "CEO",
+    "itDirector": "IT Director",
+    "review1": "Our experience working with this company has been exceptional. They deliver high-quality results promptly and are very responsive to our needs. I highly recommend their services.",
+    "review2": "I'm thoroughly impressed with the professionalism and expertise of this company. They helped us streamline our operations and achieve significant cost savings. Looking forward to continuing our partnership.",
+    "review3": "Working with this company has been a game-changer for our IT department. They implemented robust solutions that greatly improved our efficiency and security. I'm grateful for their dedication and highly recommend them."
+            
 }

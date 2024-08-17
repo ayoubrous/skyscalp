@@ -96,7 +96,7 @@ const MachineryCard = ({ data }) => {
                             guaranteePeriod !== '' && (
                                 <div className='d-flex align-items-center'>
                                     <FaRegCheckSquare className='feature-icon' />
-                                    <p className="feature-text">{guaranteePeriod}</p>
+                                    <p className="feature-text">{t("guarantee")}</p>
                                 </div>
                             )
                         }

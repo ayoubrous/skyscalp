@@ -277,7 +277,8 @@ export default function ViewMachinery() {
                                 </div>
 
                                 <h4 className="fw-bolder mb-2">{title}</h4>
-                                <p className='paragraph mb-1 '>{t("Appliation")} {application}</p>
+                                <p className='paragraph mb-1 '>{t("Appliation")}: {application}</p>
+                                <p className='paragraph mb-1 '>{t("tool")}: {category}</p>
 
                                 <div className="d-flex align-items-center justify-content-between mb-2">
                                     <p className=''>{city}, {country}</p>
@@ -306,7 +307,7 @@ export default function ViewMachinery() {
                                         guaranteePeriod !== '' && (
                                             <div className="d-flex align-items-center gap-2">
                                                 <FaRegCheckSquare className='color-secondary' />
-                                                <small className="color-secondary">{guaranteePeriod}</small>
+                                                <small className="color-secondary">{t("guarantee")}</small>
                                             </div>
                                         )
                                     }

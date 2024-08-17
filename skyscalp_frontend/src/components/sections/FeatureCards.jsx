@@ -30,7 +30,7 @@ export default function FeatureCards() {
     return (
         <>
             <div className={`custom-modal ${showDropdown ? 'show' : ''}`} ref={dropdownRef}>
-                <h5 className='text-center'>We Provide Machinery, Materials and Furnitures, Choose what to see!</h5>
+                <h5 className='text-center'>We Provide Machines, Materials and Furnitures, Choose what to see!</h5>
                 <div className="buttons d-flex gap-2 align-items-center justify-content-center mt-4">
                     <Link to='/marketplace?market=1'>
                         <button className="custom-btn px-3 py-2">{t("machineryTools")}</button>

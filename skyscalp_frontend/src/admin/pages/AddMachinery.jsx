@@ -525,14 +525,14 @@ export default function AddMachinery() {
                             updatePage ?
                                 (
                                     <>
-                                        <h5 className='fw-bolder'>Update Product</h5>
+                                        <h5 className='fw-bolder'>Update Machine Information</h5>
                                         <small className='mb-3'>Update the desired fields and retain others</small>
                                     </>
 
                                 ) :
                                 (
                                     <>
-                                        <h5 className='fw-bolder'>Publish New Machinery Item</h5>
+                                        <h5 className='fw-bolder'>Publish New Machine Item</h5>
                                         <small className='mb-3'>Fill out all the required fields</small>
                                     </>
                                 )
@@ -558,7 +558,7 @@ export default function AddMachinery() {
                                                 <option value="buy">Sale</option>
                                             </select>
                                         </div> */}
-                                        <div className="info">Type</div>
+                                        <div className="info">Transaction</div>
 
 
                                         <div className="typeTabs">
@@ -658,7 +658,7 @@ export default function AddMachinery() {
                                     <div className="w-25 formSide">
                                         <div className="info">Properties</div>
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Brand</label>
+                                            <label htmlFor="" className='mb-1'>Select Brand</label>
                                             <select name="" id="" className="custom-input" onChange={e => setBrand(e.target.value)} value={brand}>
                                                 <option value="">Select brand</option>
                                                 {
@@ -688,7 +688,7 @@ export default function AddMachinery() {
                                         </div>
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Year</label>
+                                            <label htmlFor="" className='mb-1'>Select Year</label>
                                             <select name="" id="" className="custom-input" onChange={e => setBuild(e.target.value)} value={build}>
                                                 <option value="">Select Year Build</option>
                                                 {

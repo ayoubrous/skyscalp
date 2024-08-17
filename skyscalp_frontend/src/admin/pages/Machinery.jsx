@@ -88,7 +88,7 @@ export default function Machinery() {
                 <div className="body-wrapper">
                     <Header />
                     <div className="container-fluid">
-                        <h4 className='fw-bolder mb-1'>Published Machinery</h4>
+                        <h4 className='fw-bolder mb-1'>Published Machines</h4>
                         <small className='mb-3'>Here is the list of published machines products</small>
 
                         <div className="d-flex justify-content-end">
