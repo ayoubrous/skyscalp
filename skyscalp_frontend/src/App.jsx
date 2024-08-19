@@ -18,6 +18,7 @@ import ViewBlog from './pages/ViewBlog';
 import ViewProperty from './pages/ViewProperty';
 import ViewMachinery from './pages/ViewMachinery';
 import ViewConstruction from './pages/ViewConstruction';
+import Experts from './pages/Experts';
 
 
 import Dashboard from './admin/pages/Dashboard';
@@ -55,6 +56,7 @@ import AddArticle from './admin/pages/owner/AddArticle';
 import UpdateAnalytics from './components/utils/UpdateAnalytics';
 import AdminPrivate from './routes/AdminPrivate';
 import { getLocations } from './assets/data/locations';
+import { DataContextProvider } from './context/dataContext';
 
 const App = () => {
 
@@ -74,59 +76,60 @@ const App = () => {
     <Router>
       <ScrollToTop >
         <AuthContextProvider>
-          <Routes>
-            <Route path='/' exact index element={<Home />} />
-            <Route path='/about' exact element={<About />} />
-            <Route path='/estimate' exact element={<Contact />} />
+          <DataContextProvider>
+            <Routes>
+              <Route path='/' exact index element={<Home />} />
+              <Route path='/about' exact element={<About />} />
+              <Route path='/estimate' exact element={<Contact />} />
+              <Route path='/experts' exact element={<Experts />} />
             <Route path='/article/:id' exact element={<ViewBlog />} />
-            {/* ----- Listing pages -----  */}
-            <Route path='/properties' exact element={<Properties />} />
-            <Route path='/marketplace' exact element={<MarketPlace />} />
-            {/* ------ Detailed Pages -------  */}
-            <Route path='/property/:id' exact element={<ViewProperty />} />
-            <Route path='/construction/:id' exact element={<ViewConstruction />} />
-            <Route path='/machinery/:id' exact element={<ViewMachinery />} />
-            <Route path='/furniture/:id' exact element={<ViewFurniture />} />
+              {/* ----- Listing pages -----  */}
+              <Route path='/properties' exact element={<Properties />} />
+              <Route path='/marketplace' exact element={<MarketPlace />} />
+              {/* ------ Detailed Pages -------  */}
+              <Route path='/property/:id' exact element={<ViewProperty />} />
+              <Route path='/construction/:id' exact element={<ViewConstruction />} />
+              <Route path='/machinery/:id' exact element={<ViewMachinery />} />
+              <Route path='/furniture/:id' exact element={<ViewFurniture />} />
 
 
-            <Route path='/register' exact element={<Register />} />
-            <Route path='/login' exact element={<Login />} />
-            <Route path='/forgot-password' exact element={<ForgotPasswordEmail />} />
-            <Route path='/update-password' exact element={<UpdatePassword />} />
+              <Route path='/register' exact element={<Register />} />
+              <Route path='/login' exact element={<Login />} />
+              <Route path='/forgot-password' exact element={<ForgotPasswordEmail />} />
+              <Route path='/update-password' exact element={<UpdatePassword />} />
 
-            <Route element={<Private />}>
-              {/* ------ OWNER ---------  */}
-              <Route element={<AdminPrivate />}>
-                <Route path='/admin/dashboard' exact element={<AdminDashboard />} />
-                <Route path='/admin/locations' exact element={<AdminLocations />} />
-                <Route path='/admin/users' exact element={<Users />} />
-                <Route path='/admin/properties' exact element={<OwnerProperties />} />
-                <Route path='/admin/materials' exact element={<OwnerMaterials />} />
-                <Route path='/admin/articles' exact element={<Articles />} />
-                <Route path='/admin/add-article' exact element={<AddArticle />} />
-                <Route path='/admin/update-article/:id' exact element={<AddArticle />} />
-                <Route path='/admin/messages' exact element={<OwnerMessages />} />
+              <Route element={<Private />}>
+                {/* ------ OWNER ---------  */}
+                <Route element={<AdminPrivate />}>
+                  <Route path='/admin/dashboard' exact element={<AdminDashboard />} />
+                  <Route path='/admin/locations' exact element={<AdminLocations />} />
+                  <Route path='/admin/users' exact element={<Users />} />
+                  <Route path='/admin/properties' exact element={<OwnerProperties />} />
+                  <Route path='/admin/materials' exact element={<OwnerMaterials />} />
+                  <Route path='/admin/articles' exact element={<Articles />} />
+                  <Route path='/admin/add-article' exact element={<AddArticle />} />
+                  <Route path='/admin/update-article/:id' exact element={<AddArticle />} />
+                  <Route path='/admin/messages' exact element={<OwnerMessages />} />
+                </Route>
+
+                <Route path='/app/dashboard' exact element={<Dashboard />} />
+                <Route path='/app/properties' exact element={<DashboardProperties />} />
+                <Route path='/app/machinery' exact element={<DashboardMachinery />} />
+                <Route path='/app/construction' exact element={<DashboardConstruction />} />
+                <Route path='/app/furniture' exact element={<DashboardFurniture />} />
+                <Route path='/app/favourites' exact element={<DashboardFavourites />} />
+                <Route path='/app/messages' exact element={<DashboardMessages />} />
+                <Route path='/app/add-property' exact element={<AddProperty />} />
+                <Route path='/app/update-property/:id' exact element={<AddProperty />} />
+                <Route path='/app/add-machinery' exact element={<AddMachinery />} />
+                <Route path='/app/update-machinery/:id' exact element={<AddMachinery />} />
+                <Route path='/app/add-construction' exact element={<AddConstruction />} />
+                <Route path='/app/update-construction/:id' exact element={<AddConstruction />} />
+                <Route path='/app/add-furniture' exact element={<AddFurniture />} />
+                <Route path='/app/update-furniture/:id' exact element={<AddFurniture />} />
               </Route>
-
-              <Route path='/app/dashboard' exact element={<Dashboard />} />
-              <Route path='/app/properties' exact element={<DashboardProperties />} />
-              <Route path='/app/machinery' exact element={<DashboardMachinery />} />
-              <Route path='/app/construction' exact element={<DashboardConstruction />} />
-              <Route path='/app/furniture' exact element={<DashboardFurniture />} />
-              <Route path='/app/favourites' exact element={<DashboardFavourites />} />
-              <Route path='/app/messages' exact element={<DashboardMessages />} />
-              <Route path='/app/add-property' exact element={<AddProperty />} />
-              <Route path='/app/update-property/:id' exact element={<AddProperty />} />
-              <Route path='/app/add-machinery' exact element={<AddMachinery />} />
-              <Route path='/app/update-machinery/:id' exact element={<AddMachinery />} />
-              <Route path='/app/add-construction' exact element={<AddConstruction />} />
-              <Route path='/app/update-construction/:id' exact element={<AddConstruction />} />
-              <Route path='/app/add-furniture' exact element={<AddFurniture />} />
-              <Route path='/app/update-furniture/:id' exact element={<AddFurniture />} />
-            </Route>
-
-
-          </Routes>
+            </Routes>
+          </DataContextProvider>
         </AuthContextProvider>
       </ScrollToTop>
     </Router>

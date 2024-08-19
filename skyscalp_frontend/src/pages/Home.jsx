@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Navbar from '../components/navbar/Navbar'
 import Hero from '../components/sections/Hero'
 import FeatureCards from '../components/sections/FeatureCards'
@@ -16,13 +16,14 @@ import HomeFilter from '../components/filters/HomeFilter'
 import loader from '../assets/images/skyscalp-loader.json'
 import Lottie from 'lottie-react'
 import { ToastContainer, toast } from 'react-toastify';
-
-import { getLocations } from '../assets/data/locations'
+import { useData } from '../context/dataContext'
 
 export default function Home() {
   const [properties, setProperties] = useState([])
   const [materials, setMaterials] = useState([])
   const [loading, setLoading] = useState(false)
+  const { country } = useData();
+
   const loadProperties = async () => {
     setLoading(true);
     const requestOptions = {
@@ -82,6 +83,15 @@ export default function Home() {
     }
   }, []);
 
+  const transformData = useMemo(() => {
+    const propertiesData = country.length ? properties.filter((pr) => pr.country.toLowerCase().includes(country.toLowerCase())) : properties;
+    const materialsData = country.length ? materials.filter((pr) => pr.country.toLowerCase().includes(country.toLowerCase())) : materials;
+    return {
+      propertiesData,
+      materialsData
+    };
+  }, [country, materials, properties]);
+
 
   return (
     <>
@@ -93,14 +103,14 @@ export default function Home() {
       <Hero />
       <FeatureCards />
       <HomeFilter />
-      <Properties properties={properties} />
-      <Machinery data={materials} />
-      <Construction data={materials} />
+      <Properties properties={transformData.propertiesData} />
+      <Machinery data={transformData.materialsData} />
+      <Construction data={transformData.materialsData} />
       <Estimation />
       <Publish />
       <BlogSection />
       <Testimonials />
-      <ContactUs supportTitle="homeSupportTitle" supportDescription="homeSupportDescription" contactEmail={"help@skyscalp.com"} contactPhone={"+33771759956"} />
+      <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} contactEmail={"help@skyscalp.com"} contactPhone={"+33771759956"} />
       <Footer />
     </>
   )

@@ -20,11 +20,12 @@
 .navbar .links-section {
     display: flex;
     justify-content: space-between;
-    width: 60%;
+    width: 65%;
 }
 
 .navbar .links {
     display: flex;
+    align-items: center;
     gap: 25px;
 }
 
@@ -34,8 +35,10 @@
     color: var(--primary-color);
     font-weight: 700;
     position: relative;
+    white-space: nowrap;
 }
-.navbar .link .link-dropdown{
+
+.navbar .link .link-dropdown {
     position: absolute;
     top: 170%;
     left: 0;
@@ -49,16 +52,19 @@
     z-index: 10;
     width: 185px;
 }
-.navbar .link .link-dropdown.show{
+
+.navbar .link .link-dropdown.show {
     display: flex;
 }
-.navbar .link .link-dropdown .link-dropdown-item{
+
+.navbar .link .link-dropdown .link-dropdown-item {
     padding: 4px 14px;
     font-weight: 700;
     color: var(--primary-color);
 
 }
-.navbar .link .link-dropdown .link-dropdown-item:hover{
+
+.navbar .link .link-dropdown .link-dropdown-item:hover {
     background-color: var(--border-color);
 }
 
@@ -100,16 +106,19 @@
 .navbar .bars-icon {
     display: none;
 }
-.navbar .profile-nav{
+
+.navbar .profile-nav {
     position: relative;
 }
-.navbar .profile-nav .image{
+
+.navbar .profile-nav .image {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     cursor: pointer;
 }
-.navbar .profile-nav .image img{
+
+.navbar .profile-nav .image img {
     width: 100%;
 }
 
@@ -160,7 +169,7 @@
 }
 
 /* ======== Feature Cards ==========  */
-.custom-modal{
+.custom-modal {
     position: fixed;
     top: 30%;
     left: 0;
@@ -177,12 +186,15 @@
     transform-origin: center center;
     transition: all .2s;
 }
-.custom-modal button{
+
+.custom-modal button {
     font-size: 12px;
 }
-.custom-modal.show{
+
+.custom-modal.show {
     transform: scale(1);
 }
+
 .feature-cards {
     position: relative;
     display: flex;
@@ -224,13 +236,14 @@
 }
 
 /* ============ Cards ===============  */
-.category-cards-grid{
+.category-cards-grid {
     display: grid;
     grid-template-columns: repeat(3, 32%);
     justify-content: space-between;
     align-items: center;
     gap: 15px 0;
 }
+
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(4, 24.5%);
@@ -378,6 +391,7 @@
     font-size: 17px;
     font-weight: 400;
 }
+
 .custom-card .content .description {
     min-height: 63px;
 }
@@ -409,10 +423,12 @@
     overflow: hidden;
     background-color: var(--semi-dark-color-2);
 }
-.custom-card .seller-info .seller-img img{
+
+.custom-card .seller-info .seller-img img {
     width: 100%;
     height: 100%;
 }
+
 /* ========= Estimate Section =============  */
 .flexSection .split {
     display: flex;
@@ -637,3 +653,22 @@
 }
 
 
+.country-select {
+    border: none !important;
+    padding: 0 !important;
+    color: var(--primary-color) !important;
+}
+
+.experts-container .category-cards-grid {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scrollbar-color: var(--primary-color) #e0e0e0;
+    scrollbar-width: thin;
+}
+
+.experts-container .category-cards-grid .category-card {
+    min-width: 250px;
+    min-height: 150px;
+    margin-bottom: 5px;
+}

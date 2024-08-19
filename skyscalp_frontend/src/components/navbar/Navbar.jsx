@@ -4,7 +4,9 @@ import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
 import { FaAngleDown, FaArrowUp, FaBarsStaggered } from "react-icons/fa6";
 import { useAuth } from '../../context/AuthContext';
-
+import { useData } from '../../context/dataContext';
+import toast from 'react-hot-toast';
+import Select from 'react-select';
 
 export default function Navbar() {
     const navDrpRef = useRef()
@@ -19,11 +21,13 @@ export default function Navbar() {
 
 
     const authData = useAuth()
+    const { country, setCountry } = useData()
     const [showNavInPhone, setShowNavInPhone] = useState(false)
     const [showGoToTopArrow, setShowGoToTopArrow] = useState(false)
     const [showDrp, setshowDrp] = useState(false)
     const [showLangDrp, setShowLangDrp] = useState(false)
     const [showProfileDrp, setShowProfileDrp] = useState(false)
+    const [countries, setCountries] = useState([]);
 
     const navigate = useNavigate()
     const handleLanguageChange = (newLanguage) => {
@@ -31,6 +35,29 @@ export default function Navbar() {
         i18n.changeLanguage(newLanguage.toString().toLowerCase());
         setShowLangDrp(false)
     };
+
+    useEffect(() => {
+        const requestOptions = {
+            method: "GET",
+            redirect: "follow"
+        };
+
+        fetch(`${process.env.REACT_APP_SERVER_URL}/api/location/getCountries`, requestOptions)
+            .then((response) => response.json())
+            .then((result) => {
+                if (result.status) {
+                    const countriesArray = result.data.map(ctr => ({
+                        label: ctr.name,
+                        value: ctr.name
+                    }));
+                    setCountries(countriesArray)
+                }
+                else {
+                    toast.error("Error getting countries data")
+                }
+            })
+            .catch((error) => console.error(error));
+    }, [])
 
     useEffect(() => {
         const handleScroll = () => {
@@ -76,6 +103,10 @@ export default function Navbar() {
         window.scrollTo(0, 0)
     }
 
+    const handleCountryChange = (val) => {
+        setCountry(val.value);
+    }
+
     const logout = () => {
         localStorage.clear()
         authData.logout()
@@ -89,8 +120,7 @@ export default function Navbar() {
                 </Link>
                 <div className={`links-section ${showNavInPhone ? 'show' : ''}`} ref={mobileNavDropdown}>
                     <div className="commercial-links links">
-                        <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/properties?type=buy" >{t("buy")}</NavLink>
-                        <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/properties?type=rent" >{t("rent")}</NavLink>
+                        <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/properties?type=rent" >{t("Real Estate")}</NavLink>
                         <Link className="link" onClick={() => setshowDrp(true)} >{t("marketplace")}
                             <div className={`link-dropdown ${showDrp ? 'show' : ''}`} ref={navDrpRef}>
                                 <Link to="/marketplace?market=1" className='link-dropdown-item' onClick={() => setshowDrp(false)}>{t("machineryTools")}</Link>
@@ -104,7 +134,21 @@ export default function Navbar() {
                     <div className="about-company-links links">
                         <NavLink to='/' className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false">{t("home")}</NavLink>
                         <NavLink to='/about' className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false">{t("about")} </NavLink>
+                        <NavLink to='/experts' className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false">{t("Experts")}</NavLink>
 
+                        <Select
+                            className="country-select custom-input react-select"
+                            classNamePrefix="select"
+                            placeholder='Country'
+                            name="color"
+                            options={countries}
+                            onChange={handleCountryChange}
+                            value={
+                                countries.filter(option =>
+                                    option.label.toLowerCase() === country.toLowerCase()
+                                )
+                            }
+                        />
                     </div>
                 </div>
                 <div className="account">

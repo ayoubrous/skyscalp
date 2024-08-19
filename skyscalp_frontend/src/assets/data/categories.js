@@ -16,6 +16,16 @@ import masonry from '../images/categories/masonry.jpg'
 import wood from '../images/categories/wood.jpg'
 import others from '../images/categories/others.jpeg'
 
+// Experts images
+import Legal from '../images/legal.png';
+import Constructions from '../images/constructions.png';
+import Financing from '../images/financing.png';
+import Interior from '../images/interior.png';
+import RealEstate from '../images/realEstate.png';
+import Works from '../images/works.png';
+import Services from '../images/services.png';
+
+
 
 const machineryCategories = [
     {
@@ -383,4 +393,64 @@ const marketplaceCategories = [
     },
 ]
 
-export { machineryCategories, propertyCategories, constructionCategories, furnitureCategories, marketplaceCategories }
+const expertsCategories = [
+    {
+        id: 1,
+        image: Legal,
+        categoryName: 'Legal',
+        subcategories: [
+            'Notary', 'Lawyer', 'Tax Advisor'
+        ]
+    },
+    {
+        id: 2,
+        image: Constructions,
+        categoryName: 'Constructions',
+        subcategories: [
+            'Architect', 'Civil Engineer', 'Design Office', 'Real Estate Developer', 'Renovation Company'
+        ]
+    },
+    {
+        id: 3,
+        image: Financing,
+        categoryName: 'Financing',
+        subcategories: [
+            'Mortgage', 'Insurance'
+        ]
+    },
+    {
+        id: 4,
+        image: Interior,
+        categoryName: 'Interior Design',
+        subcategories: [
+            'Interiror Architect', 'Decorator', 'Design Company'
+        ]
+    },
+    {
+        id: 5,
+        image: Services,
+        categoryName: 'Services',
+        subcategories: [
+            'Moving', 'Cleaning', 'Security', 'Co-ownership sendicate', 'Concierge',
+            'Property Management'
+        ]
+    },
+    {
+        id: 6,
+        image: RealEstate,
+        categoryName: 'Real Estate',
+        subcategories: [
+            'Real Estate Agent', 'Real Estate Advisor'
+        ]
+    },
+    {
+        id: 7,
+        image: Works,
+        categoryName: 'Works',
+        subcategories: [
+            'Plumbing', 'Electricity', 'Heating/Air Conditioning', 'Tiler', 'Painter', "Carpenter", 'Glazier'
+        ]
+    }
+];
+
+export { expertsCategories, machineryCategories, propertyCategories, constructionCategories, furnitureCategories, marketplaceCategories }
