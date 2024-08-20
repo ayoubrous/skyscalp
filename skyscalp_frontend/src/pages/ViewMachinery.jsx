@@ -389,7 +389,7 @@ export default function ViewMachinery() {
                                 )}
 
                                 <p className="color-secondary my-2">{street}</p>
-                                <p className="color-secondary my-2">Reference ID: {machineryID}</p>
+                                <p className="color-secondary my-2">{t("ReferenceID")}: {machineryID}</p>
                             </div>
 
                         </div>
@@ -431,7 +431,7 @@ export default function ViewMachinery() {
                     <div className="cards-grid">
                         {
                             similarProducts && similarProducts.length === 0 && (
-                                <h5 className='my-4'>No Similar Products Found</h5>
+                                <h5 className='my-4'>{t("noItemsFound")}</h5>
                             )
                         }
                         {

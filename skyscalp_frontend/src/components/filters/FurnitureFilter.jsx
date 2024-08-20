@@ -15,7 +15,7 @@ import TestNestedDropdown from './TestNestedDropdown';
 import NestedDropdown from './NestedDropdown';
 import CustomLocationsDropdown from './CustomLocationsDropdown';
 import { furnitureCategories, machineryCategories } from '../../assets/data/categories';
-import { furnitureBrands, furnitureTypes, machineryType, materialsBudget, yearBuildData } from '../../assets/data/filtersData';
+import { furnitureBrands, furnitureConditionData, furnitureTypes, machineryType, materialsBudget, yearBuildData } from '../../assets/data/filtersData';
 import formatNumber from '../../utils/formatNumber';
 import { getLocationsInRadius } from './getLocationsInRadius';
 
@@ -68,6 +68,7 @@ export default function FurnitureFilter({
     const [showConditionDrp, setShowConditionDrp] = useState(false);
     const [showYearDrp, setShowYearDrp] = useState(false)
     const [showMaterialType, setShowMaterialType] = useState(false)
+    const [condition, setCondition] = useState('')
 
 
 
@@ -332,7 +333,7 @@ export default function FurnitureFilter({
                             </div>
                         </div>
                         <div className="filter-btn">
-                            <button className="custom-btn" onClick={handleFilter}>Search</button>
+                            <button className="custom-btn" onClick={handleFilter}>{t("search")}</button>
                         </div>
                     </div>
                     <div className="other-filters p-1 pt-3 pb-0" style={{ flexWrap: "wrap" }}>
@@ -431,15 +432,15 @@ export default function FurnitureFilter({
                                 </div>
                             </div>
 
-                            {/* <div className="other-filter">
+                            <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowConditionDrp(!showConditionDrp)}>
-                                    <p className='text-white'>{condition === '' ? 'Condition' : `Condition: ${condition}`}</p>
+                                    <p className='text-white'>{condition === '' ? `${t("condition")}` : `Condition: ${condition}`}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
                                 <div className={`custom-dropdown ${showConditionDrp ? 'show' : ''}`} ref={condtionRef}>
                                     {
-                                        conditionData.map((data, i) => {
+                                        furnitureConditionData.map((data, i) => {
                                             return (
                                                 <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleCondtion(data)}>
                                                     <p htmlFor={data} id={`label-${data}`}>{data}</p>
@@ -455,9 +456,9 @@ export default function FurnitureFilter({
                                         })
                                     }
                                 </div>
-                            </div> */}
+                            </div>
 
-                            <div className="other-filter">
+                            {/* <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowYearDrp(!showYearDrp)}>
                                     <p className='text-white'>{t("year")}</p>
                                     <FaAngleDown className='text-white' />
@@ -508,7 +509,7 @@ export default function FurnitureFilter({
                                         })
                                     }
                                 </div>
-                            </div>
+                            </div> */}
 
 
                             <div className="other-filter">

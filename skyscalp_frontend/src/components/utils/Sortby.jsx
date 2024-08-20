@@ -54,13 +54,13 @@ export default function Sortby({ handleSortOrder, handleSortby }) {
                     {sortBy === '' ? `${t("sortby")}` : (() => {
                         switch (sortBy) {
                             case 'budget':
-                                return 'Price';
+                                return `${t("budget")}`;
                             case 'Relevance':
-                                return 'Relevance';
+                                return `${t("relevance")}`;
                             case 'createdAt':
                                 return 'Date';
                             default:
-                                return 'Sort By';
+                                return `${t("sortBy")}`;
                         }
                     })()}
                 </p>
@@ -69,9 +69,9 @@ export default function Sortby({ handleSortOrder, handleSortby }) {
             </div>
 
             <div className={`sortby-dropdown ${showSortDropdown ? 'show' : ''}`} ref={sortbyRef}>
-                <p className="mb-2 dropdown-item" onClick={() => handleSortChange('Relevance')}>Relevance</p>
-                <p className="mb-2 dropdown-item" onClick={() => handleSortChange('budget')}>Price</p>
-                <p className="mb-2 dropdown-item" onClick={() => handleSortChange('createdAt')}>Date</p>
+                <p className="mb-2 dropdown-item" onClick={() => handleSortChange('Relevance')}>{t("relevance")}</p>
+                <p className="mb-2 dropdown-item" onClick={() => handleSortChange('budget')}>{t("budget")}</p>
+                <p className="mb-2 dropdown-item" onClick={() => handleSortChange('createdAt')}>{t("date")}</p>
             </div>
         </div>
 

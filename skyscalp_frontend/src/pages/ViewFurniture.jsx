@@ -31,28 +31,26 @@ export default function ViewFurniture() {
     const [showUploadedImages, setShowUploadedImages] = useState(false)
     const [uploadedImages, setUploadedImages] = useState([])
     const [country, setCountry] = useState('')
-    const [state, setState] = useState('')
+    const [state, setState] = useState('') // calling it as region below
     const [city, setCity] = useState('')
-    const [street, setStreet] = useState('')
+    const [street, setStreet] = useState('') // calling it as district below
     const [title, setTitle] = useState('')
     const [budget, setBudget] = useState('')
-    const [build, setBuild] = useState('')
-    const [application, setApplication] = useState('')
-    const [category, setCategory] = useState('')
+    const [category, setCategory] = useState('') // calling it as article below
     const [description, setDescription] = useState('')
     const [condition, setCondition] = useState('')
     const [mapLocation, setMapLocation] = useState(null)
     const [guarantee, setGuarantee] = useState(false)
     const [guaranteePeriod, setGuaranteePeriod] = useState('')
-    const [unit, setUnit] = useState('')
-    const [model, setModel] = useState('')
-    const [weight, setWeight] = useState('')
-    const [available, setAvailable] = useState(true)
-    const [size, setSize] = useState('')
-    const [furnitureType, setFurnitureType] = useState('')
     const [brand, setBrand] = useState('')
     const [color, setColor] = useState('')
     const [dimensions, setDimensions] = useState('')
+    const [style, setStyle] = useState('')
+    const [feature, setFeature] = useState('')
+    const [quantity, setQuantity] = useState('')
+    const [article, setArticle] = useState('')
+
+
     const [createdAt, setCreatedAt] = useState('')
     const [userInfo, setUserInfo] = useState('')
 
@@ -80,23 +78,19 @@ export default function ViewFurniture() {
                     setStreet(result.data.street);
                     setTitle(result.data.title);
                     setBudget(result.data.budget);
-                    setBuild(result.data.build);
-                    setApplication(result.data.application);
+                    setQuantity(result.data.quantity);
+                    setArticle(result.data.article);
                     setCategory(result.data.category);
                     setDescription(result.data.description);
                     setCondition(result.data.condition);
                     setMapLocation(result.data.mapLocation);
                     setGuarantee(result.data.guarantee);
                     setGuaranteePeriod(result.data.guaranteePeriod);
-                    setUnit(result.data.unit);
-                    setModel(result.data.model);
-                    setWeight(result.data.weight);
-                    setAvailable(result.data.available);
-                    setSize(result.data.size);
-                    setFurnitureType(result.data.materialType);
                     setBrand(result.data.brand);
                     setColor(result.data.color);
                     setDimensions(result.data.dimensions);
+                    setStyle(result.data.style);
+                    setFeature(result.data.feature);
                     setUploadedImages(result.data.images)
                     setCreatedAt(result.data.createdAt)
                     setUserInfo(result.data.user)
@@ -215,7 +209,7 @@ export default function ViewFurniture() {
                 <Lottie className='loader' animationData={loader} loop={true} />
             </div>
             <Navbar />
-            <Breadcrumb title={title} link={t("construction")} />
+            <Breadcrumb title={title} link={t("furnitureAppliances")} />
             <section className="details-section">
                 <div className="custom-container">
                     <div className="split">
@@ -259,6 +253,7 @@ export default function ViewFurniture() {
                                 </div>
 
                                 <h4 className="fw-bolder mb-2">{title}</h4>
+                                <p className='paragraph mb-1 '>{t("quantity")}: {quantity}</p>
                                 <p className='paragraph mb-1 '>{t("category")} {category}</p>
 
                                 <div className="d-flex align-items-center justify-content-between mb-2">
@@ -271,7 +266,7 @@ export default function ViewFurniture() {
                                 </div>
 
                                 <div className="info-icons mt-2">
-                                    <small className='color-secondary '>Date Posted: {createdAt && new Intl.DateTimeFormat('en-GB').format(new Date(createdAt))}</small>
+                                    <small className='color-secondary '>Date: {createdAt && new Intl.DateTimeFormat('en-GB').format(new Date(createdAt))}</small>
                                 </div>
                                 <hr />
 
@@ -284,7 +279,7 @@ export default function ViewFurniture() {
                                         guaranteePeriod !== '' && (
                                             <div className="d-flex align-items-center gap-2">
                                                 <FaRegCheckSquare className='color-secondary' />
-                                                <small className="color-secondary">{guaranteePeriod}</small>
+                                                <small className="color-secondary">{t("guarantee")}</small>
                                             </div>
                                         )
                                     }
@@ -330,57 +325,60 @@ export default function ViewFurniture() {
                                         )
                                     }
                                     {
-                                        model !== "" && (
+                                        article !== "" && (
                                             <div className="feature">
                                                 <div className="label">
-                                                    <p className="color-secondary">{t("modal")}</p>
+                                                    <p className="color-secondary">{t("article")}</p>
                                                 </div>
-                                                <p className="paragraph">{model}</p>
+                                                <p className="paragraph">{article}</p>
                                             </div>
                                         )
                                     }
 
                                     {
-                                        furnitureType !== "" && (
+                                        brand !== "" && (
                                             <div className="feature">
                                                 <div className="label">
-                                                    <p className="color-secondary">{t("type")}</p>
+                                                    <p className="color-secondary">{t("brand")}</p>
                                                 </div>
-                                                <p className="paragraph">{furnitureType}</p>
+                                                <p className="paragraph">{brand}</p>
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        feature !== "" && (
+                                            <div className="feature">
+                                                <div className="label">
+                                                    <p className="color-secondary">{t("feature")}</p>
+                                                </div>
+                                                <p className="paragraph">{feature}</p>
                                             </div>
                                         )
                                     }
 
                                     {
-                                        build !== "" && (
+                                        style !== "" && (
                                             <div className="feature">
                                                 <div className="label">
-                                                    <p className="color-secondary">{t("year")}</p>
+                                                    <p className="color-secondary">{t("Style")}</p>
                                                 </div>
-                                                <p className="paragraph">{build}</p>
+                                                <p className="paragraph">{style}</p>
                                             </div>
                                         )
                                     }
-                                    {
-                                        unit !== "" && (
-                                            <div className="feature">
-                                                <div className="label">
-                                                    <p className="color-secondary">{t("unit")}</p>
-                                                </div>
-                                                <p className="paragraph">{unit}</p>
-                                            </div>
-                                        )
-                                    }
+
+
                                     {
                                         dimensions !== "" && (
                                             <div className="feature">
                                                 <div className="label">
                                                     <p className="color-secondary">{t("dimension")}</p>
                                                 </div>
-                                                <p className="paragraph">{dimensions} m</p>
+                                                <p className="paragraph">{dimensions}</p>
                                             </div>
                                         )
                                     }
+                                    
                                     {
                                         color !== "" && (
                                             <div className="feature">
@@ -391,23 +389,6 @@ export default function ViewFurniture() {
                                             </div>
                                         )
                                     }
-                                    {
-                                        weight !== "" && (
-                                            <div className="feature">
-                                                <div className="label">
-                                                    <p className="color-secondary">{t("weight")}</p>
-                                                </div>
-                                                <p className="paragraph">{parseInt(weight) > 1000 ? `${weight} ton` : `${weight} kg`}</p>
-
-                                            </div>
-                                        )
-                                    }
-                                    <div className="feature">
-                                        <div className="label">
-                                            <p className="color-secondary">{t("available")}</p>
-                                        </div>
-                                        <p className="paragraph">{available ? 'Yes' : 'No'}</p>
-                                    </div>
                                     {
                                         guaranteePeriod !== '' && (
                                             <div className="feature">
@@ -439,14 +420,14 @@ export default function ViewFurniture() {
 
 
                                 <p className="color-secondary my-2">{street}</p>
-                                <p className="color-secondary my-2">Reference ID: {furnitureID}</p>
+                                <p className="color-secondary my-2">{t("ReferenceID")}: {furnitureID}</p>
                             </div>
 
                         </div>
 
 
                         <div className="seller-details side-sm">
-                        <div className="side mb-2">
+                            <div className="side mb-2">
                                 <div className="seller-info mb-3">
                                     <div className="image">
                                         <img src={userInfo && userInfo.profileImage} alt="" />
@@ -481,7 +462,7 @@ export default function ViewFurniture() {
                     <div className="cards-grid">
                         {
                             similarProducts && similarProducts.length === 0 && (
-                                <h5 className='my-4'>No Similar Products Found</h5>
+                                <h5 className='my-4'>{t("noItemsFound")}</h5>
                             )
                         }
                         {

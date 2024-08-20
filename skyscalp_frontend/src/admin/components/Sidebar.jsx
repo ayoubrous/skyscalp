@@ -43,7 +43,7 @@ export default function Sidebar() {
                                 </NavLink>
                             </li>
                             <li className="sidebar-item mt-1">
-                                <NavLink to='../app/machinery' className={(navData) => (navData.isActive ? "active sidebar-link" : 'none sidebar-link')} aria-expanded="false">
+                                <NavLink to='../app/machines' className={(navData) => (navData.isActive ? "active sidebar-link" : 'none sidebar-link')} aria-expanded="false">
                                     <span>
                                         <TbCarCrane className='me-1' />
                                     </span>

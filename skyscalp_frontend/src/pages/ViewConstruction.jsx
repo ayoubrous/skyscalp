@@ -408,7 +408,7 @@ export default function ViewConstruction() {
                                 )}
 
                                 <p className="color-secondary my-2">{street}</p>
-                                <p className="color-secondary my-2">Reference ID: {constructionID}</p>
+                                <p className="color-secondary my-2">{t("ReferenceID")}: {constructionID}</p>
                             </div>
 
                         </div>
@@ -450,7 +450,7 @@ export default function ViewConstruction() {
                     <div className="cards-grid">
                     {
                             similarProducts && similarProducts.length === 0 && (
-                                <h5 className='my-4'>No Similar Products Found</h5>
+                                <h5 className='my-4'>{t("noItemsFound")}</h5>
                             )
                         }
                         {

@@ -127,7 +127,7 @@
     "furniture": "Furniture",
     "marketplace": "Marketplace",
     "buildingMaterial": "Construction Materials",
-    "furnitureAppliances": "Furnitures",
+    "furnitureAppliances": "Furnitures & Appliances",
     "machineryTools": "Machines",
     "transaction": "Transaction",
     "subcategory": "Sub Category",
@@ -152,6 +152,11 @@
     "itDirector": "IT Director",
     "review1": "Our experience working with this company has been exceptional. They deliver high-quality results promptly and are very responsive to our needs. I highly recommend their services.",
     "review2": "I'm thoroughly impressed with the professionalism and expertise of this company. They helped us streamline our operations and achieve significant cost savings. Looking forward to continuing our partnership.",
-    "review3": "Working with this company has been a game-changer for our IT department. They implemented robust solutions that greatly improved our efficiency and security. I'm grateful for their dedication and highly recommend them."
-            
+    "review3": "Working with this company has been a game-changer for our IT department. They implemented robust solutions that greatly improved our efficiency and security. I'm grateful for their dedication and highly recommend them.",
+    "relevance": "Relevance",
+    "date": "Date",
+    "feature": "Feature",
+    "ReferenceID": "Reference ID",
+    "noItemsFound": "No Similar Products Found"
+    
 }

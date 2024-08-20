@@ -13,7 +13,7 @@ const machineryBudget = [
     '0', '1000', '5000', '10 000', '25 000', '50 000'
 ]
 const materialsBudget = [
-    '0', '1000', '5000', '10 000', '25 000', '50 000'
+    '0', '1000', '3000', '8000', '15 000', '30 000'
 ]
 
 const machineryBrands = [
@@ -90,6 +90,9 @@ const conditionData = [
 const machineConditionData = [
     'New', 'Used', 'To Repair'
 ]
+const furnitureConditionData = [
+    'New', 'Used'
+]
 
 const yearBuildData = [
     "Less than 1 year",
@@ -122,25 +125,20 @@ const featuresData = ['Balcony', 'Garden', 'Pool', 'Elevator', 'Air conditioning
 
 const furnitureBrands = [
     "IKEA",
-    "H&M Home",
-    "BoConcept",
-    "Muji",
-    "Habitat",
-    "John Lewis & Partners",
-    "JYSK",
+    "Local",
+    "IKEA",
     "Conforama",
     "Maisons du Monde",
-    "Natuzzi",
-    "DFS",
-    "Vitra",
-    "B&B Italia",
-    "Ligne Roset",
     "Roche Bobois",
-    "Cassina",
-    "Arper",
-    "Flos",
-    "Kartell",
-    "Minotti"
+    "Leroy Merlin",
+    "Habitat",
+    "But",
+    "Darty",
+    "Boulanger",
+    "Alinéa",
+    "La Redoute Intérieurs",
+    "Fly",
+    "Others"
 ];
 
 const furnitureTypes = ["Sofa",
@@ -174,6 +172,7 @@ const machineryGuarantee = [
 
 export {
     machineryType,
+    furnitureConditionData,
     propertyBudget,
     constructionBudget,
     machineryBudget,

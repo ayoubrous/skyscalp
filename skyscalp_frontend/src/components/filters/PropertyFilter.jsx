@@ -96,7 +96,7 @@ export default function PropertyFilter({
     const [checkAll, setCheckAll] = useState(false)
 
     const sellType = [
-        { value: "buy", label: "Buy" },
+        { value: "buy", label: "Sale" },
         { value: "rent", label: "Rent" },
         // { value: "", label: "Any" },
     ]
@@ -424,7 +424,7 @@ export default function PropertyFilter({
                                 <Select
                                     className="custom-input bordor-0  type-select-dropdown"
                                     classNamePrefix="select"
-                                    placeholder='Buy/Rent'
+                                    placeholder='Sale/Rent'
                                     name="color"
                                     options={sellType}
                                     onChange={handleType}

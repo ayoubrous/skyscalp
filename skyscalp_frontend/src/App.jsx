@@ -55,6 +55,7 @@ import AddArticle from './admin/pages/owner/AddArticle';
 import UpdateAnalytics from './components/utils/UpdateAnalytics';
 import AdminPrivate from './routes/AdminPrivate';
 import { getLocations } from './assets/data/locations';
+import Test from './Test';
 
 const App = () => {
 
@@ -75,6 +76,7 @@ const App = () => {
       <ScrollToTop >
         <AuthContextProvider>
           <Routes>
+            {/* <Route path='/' exact index element={<Test />} /> */}
             <Route path='/' exact index element={<Home />} />
             <Route path='/about' exact element={<About />} />
             <Route path='/estimate' exact element={<Contact />} />
@@ -85,7 +87,7 @@ const App = () => {
             {/* ------ Detailed Pages -------  */}
             <Route path='/property/:id' exact element={<ViewProperty />} />
             <Route path='/construction/:id' exact element={<ViewConstruction />} />
-            <Route path='/machinery/:id' exact element={<ViewMachinery />} />
+            <Route path='/machines/:id' exact element={<ViewMachinery />} />
             <Route path='/furniture/:id' exact element={<ViewFurniture />} />
 
 
@@ -110,14 +112,14 @@ const App = () => {
 
               <Route path='/app/dashboard' exact element={<Dashboard />} />
               <Route path='/app/properties' exact element={<DashboardProperties />} />
-              <Route path='/app/machinery' exact element={<DashboardMachinery />} />
+              <Route path='/app/machines' exact element={<DashboardMachinery />} />
               <Route path='/app/construction' exact element={<DashboardConstruction />} />
               <Route path='/app/furniture' exact element={<DashboardFurniture />} />
               <Route path='/app/favourites' exact element={<DashboardFavourites />} />
               <Route path='/app/messages' exact element={<DashboardMessages />} />
               <Route path='/app/add-property' exact element={<AddProperty />} />
               <Route path='/app/update-property/:id' exact element={<AddProperty />} />
-              <Route path='/app/add-machinery' exact element={<AddMachinery />} />
+              <Route path='/app/add-machines' exact element={<AddMachinery />} />
               <Route path='/app/update-machinery/:id' exact element={<AddMachinery />} />
               <Route path='/app/add-construction' exact element={<AddConstruction />} />
               <Route path='/app/update-construction/:id' exact element={<AddConstruction />} />

@@ -488,7 +488,7 @@ const MarketPlace = () => {
                                 <div className='image'>
                                     <img src={category.image} alt={category.name} />
                                 </div>
-                                <h5 className='mt-3 text-center mx-auto fw-bolder'>{category.name}</h5>
+                                <h5 className='mt-3 text-center mx-auto fw-bolder'>{t(category.name)}</h5>
                             </div>
                         ))}
                     </div>

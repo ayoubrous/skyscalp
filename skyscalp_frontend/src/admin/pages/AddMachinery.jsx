@@ -67,7 +67,7 @@ export default function AddMachinery() {
     let params = useParams()
     useEffect(() => {
         const { pathname } = location;
-        if (pathname !== '/app/add-machinery') {
+        if (pathname !== '/app/add-machines') {
             setIsLoading(true)
             setUpdatePage(true)
             const requestOptions = {
@@ -316,7 +316,7 @@ export default function AddMachinery() {
 
         if (!uploadedImages.length) missingFields.push('Images');
         if (!country) missingFields.push('Country');
-        if (!state) missingFields.push('State');
+        if (!state) missingFields.push('Region');
         if (!city) missingFields.push('City');
         if (!title) missingFields.push('Title');
         if (!budget) missingFields.push('Budget');
@@ -508,7 +508,7 @@ export default function AddMachinery() {
     }
     return (
         <>
-            <ToastContainer />
+            <ToastContainer className="toastcontainer"/>
 
 
             <div className={`lottie-wrapper ${isLoading ? 'show' : ''}`}>
@@ -690,7 +690,7 @@ export default function AddMachinery() {
                                         <div className="form-group form-group-sm mb-3">
                                             <label htmlFor="" className='mb-1'>Select Year</label>
                                             <select name="" id="" className="custom-input" onChange={e => setBuild(e.target.value)} value={build}>
-                                                <option value="">Select Year Build</option>
+                                                <option value="">Select Year</option>
                                                 {
                                                     yearBuildData.map((data, i) => {
                                                         return (

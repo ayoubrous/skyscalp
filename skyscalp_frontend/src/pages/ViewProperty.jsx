@@ -455,7 +455,7 @@ export default function ViewProperty() {
                                 )}
 
                                 <p className="color-secondary my-2">{street && street}, {city && city}, {country && country}</p>
-                                <p className="color-secondary my-2">Reference ID: {propertyID}</p>
+                                <p className="color-secondary my-2">{t("ReferenceID")}: {propertyID}</p>
                             </div>
 
 

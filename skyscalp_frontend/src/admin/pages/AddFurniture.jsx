@@ -11,10 +11,11 @@ import Select from 'react-select';
 import locations from '../../assets/data/locations'
 import loader from '../../assets/images/skyscalp-loader.json'
 
-import { machineryType as machineryTypesDropdown, propertyBudget, constructionBudget, machineryBudget, yearBuildData, propertyYearBuildData, conditionData, constructionBrands, proximityData, featuresData, featuresDataObj, furnitureBrands } from '../../assets/data/filtersData'
-import { furnitureCategories, machineryCategories, propertyCategories } from '../../assets/data/categories'
+import { machineryType as machineryTypesDropdown, propertyBudget, constructionBudget, machineryBudget, yearBuildData, propertyYearBuildData, conditionData, constructionBrands, proximityData, featuresData, featuresDataObj, furnitureBrands, furnitureConditionData, machineryGuarantee } from '../../assets/data/filtersData'
+import { furnitureCategories } from '../../assets/data/furnitureCategories'
 import GetLocationMap from '../../components/map/GetLocationMap'
-import toast, { Toaster } from 'react-hot-toast';
+import { ToastContainer, toast } from 'react-toastify';
+
 import { uploadImage } from '../utils/uploadImage'
 import ClipLoader from "react-spinners/ClipLoader";
 import { Line } from 'rc-progress';
@@ -31,29 +32,26 @@ export default function AddFurniture() {
     const [furnitureID, setFurnitureID] = useState('')
     const [showUploadedImages, setShowUploadedImages] = useState(false)
     const [uploadedImages, setUploadedImages] = useState([])
+    
     const [country, setCountry] = useState('')
-    const [state, setState] = useState('')
+    const [state, setState] = useState('') // calling it as region below
     const [city, setCity] = useState('')
-    const [street, setStreet] = useState('')
+    const [street, setStreet] = useState('') // calling it as district below
     const [title, setTitle] = useState('')
     const [budget, setBudget] = useState('')
-    const [build, setBuild] = useState('')
-    const [application, setApplication] = useState('')
-    const [category, setCategory] = useState('')
+    const [category, setCategory] = useState('') // calling it as article below
     const [description, setDescription] = useState('')
     const [condition, setCondition] = useState('')
     const [mapLocation, setMapLocation] = useState(null)
     const [guarantee, setGuarantee] = useState(false)
     const [guaranteePeriod, setGuaranteePeriod] = useState('')
-    const [unit, setUnit] = useState('')
-    const [model, setModel] = useState('')
-    const [weight, setWeight] = useState('')
-    const [available, setAvailable] = useState(true)
-    const [size, setSize] = useState('')
-    const [furnitureType, setFurnitureType] = useState('')
     const [brand, setBrand] = useState('')
     const [color, setColor] = useState('')
     const [dimensions, setDimensions] = useState('')
+    const [style, setStyle] = useState('')
+    const [feature, setFeature] = useState('')
+    const [quantity, setQuantity] = useState('')
+    const [article, setArticle] = useState('')
 
 
     const [countries, setCountries] = useState([])
@@ -84,29 +82,29 @@ export default function AddFurniture() {
                     setIsLoading(false)
                     if (result.status) {
                         setFurnitureID(result.data._id);
+
                         setCountry(result.data.country);
                         setState(result.data.state);
                         setCity(result.data.city);
                         setStreet(result.data.street);
+                        setMapLocation(result.data.mapLocation);
+
                         setTitle(result.data.title);
                         setBudget(result.data.budget);
-                        setBuild(result.data.build);
-                        setApplication(result.data.application);
-                        setCategory(result.data.category);
+                        setQuantity(result.data.quantity);
                         setDescription(result.data.description);
+
+                        setArticle(result.data.article);
+                        setCategory(result.data.category);
                         setCondition(result.data.condition);
-                        setMapLocation(result.data.mapLocation);
                         setGuarantee(result.data.guarantee);
                         setGuaranteePeriod(result.data.guaranteePeriod);
-                        setUnit(result.data.unit);
-                        setModel(result.data.model);
-                        setWeight(result.data.weight);
-                        setAvailable(result.data.available);
-                        setSize(result.data.size);
-                        setFurnitureType(result.data.materialType);
                         setBrand(result.data.brand);
                         setColor(result.data.color);
                         setDimensions(result.data.dimensions);
+                        setFeature(result.data.feature);
+                        setStyle(result.data.style);
+
                         setUploadedImages(result.data.images.map((img, i) => {
                             return ({
                                 id: i,
@@ -269,20 +267,39 @@ export default function AddFurniture() {
         imageUploadRef.current.click()
     }
 
+    const MAX_IMAGES = 10;
+
     const handleImageChange = async (e) => {
         const files = e.target.files;
         setShowUploadedImages(true);
         setUploadingImage(true);
 
         try {
+            // Get the current number of uploaded images
+            setUploadedImages(prevImages => {
+                // If adding all new files would exceed the max limit, limit the number of files to add
+                const totalImages = prevImages.length + files.length;
+                if (totalImages > MAX_IMAGES) {
+                    const availableSlots = MAX_IMAGES - prevImages.length;
+                    return [...prevImages]; // Do not add images here, just return the previous state
+                }
+                return [...prevImages]; // Do not add images here, just return the previous state
+            });
+
+            // Limit the files that will be uploaded
+            const limitedFiles = Array.from(files).slice(0, MAX_IMAGES - uploadedImages.length);
+
+            // Upload the allowed number of images
             const responses = await Promise.all(
-                Array.from(files).map(uploadImage)
+                limitedFiles.map(uploadImage)
             );
 
             const uploadedImageUrls = responses.filter(res => res.status).map(res => res.url);
+
+            // Update state with successfully uploaded images
             setUploadedImages(prevImages => [
                 ...prevImages,
-                ...uploadedImageUrls.map((url, index) => ({ url, id: index }))
+                ...uploadedImageUrls.map((url, index) => ({ url, id: prevImages.length + index }))
             ]);
 
         } catch (error) {
@@ -299,32 +316,32 @@ export default function AddFurniture() {
     };
 
     const validateFields = () => {
-        if (
-            country === "" ||
-            state === "" ||
-            city === "" ||
-            title === "" ||
-            budget === "" ||
-            unit === "" ||
-            application === "" ||
-            category === "" ||
-            condition === "" ||
-            brand === "" ||
-            description === "" ||
-            mapLocation === null ||
-            uploadedImages.length === 0
-        ) {
-            return false
+        const missingFields = [];
+
+        if (!uploadedImages.length) missingFields.push('Images');
+        if (!country) missingFields.push('Country');
+        if (!state) missingFields.push('Region');
+        if (!city) missingFields.push('City');
+        if (!title) missingFields.push('Title');
+        if (!budget) missingFields.push('Budget');
+        if (quantity === "" || quantity === 0) missingFields.push('Quantity');
+        if (category === "") missingFields.push('Category');
+        if (article === "") missingFields.push('Article');
+        // if (category === "") missingFields.push('Tool');
+
+        if (missingFields.length > 0) {
+            toast.error(`Please fill in the following fields: ${missingFields.join(', ')} to continue`);
+            return false;
         }
-        else {
-            return true
-        }
+
+        return true;
     }
 
     const handleSubmit = e => {
         e.preventDefault()
         if (!validateFields()) {
-            toast.error("Fill out required fields to continue")
+            // toast.error("Fill out required fields to continue")
+            return
         }
         else {
             setIsLoading(true)
@@ -339,23 +356,19 @@ export default function AddFurniture() {
                 street: street,
                 title: title,
                 budget: budget,
-                build: build,
-                application: application,
+                quantity: quantity,
                 category: category,
+                article: article,
                 description: description,
                 condition: condition,
                 mapLocation: mapLocation,
                 guarantee: guarantee,
                 guaranteePeriod: guaranteePeriod,
-                unit: unit,
-                model: model,
-                weight: weight,
-                available: available,
-                size: size,
-                materialType: furnitureType,
                 brand: brand,
                 color: color,
+                feature: feature,
                 dimensions: dimensions,
+                style: style,
                 status: true
             };
 
@@ -393,7 +406,8 @@ export default function AddFurniture() {
     const handleUpdate = e => {
         e.preventDefault()
         if (!validateFields()) {
-            toast.error("Fill out required fields to continue")
+            // toast.error("Fill out required fields to continue")
+            return
         }
         else {
             setIsLoading(true)
@@ -408,23 +422,19 @@ export default function AddFurniture() {
                 street: street,
                 title: title,
                 budget: budget,
-                build: build,
-                application: application,
+                quantity: quantity,
                 category: category,
+                article: article,
                 description: description,
                 condition: condition,
                 mapLocation: mapLocation,
                 guarantee: guarantee,
                 guaranteePeriod: guaranteePeriod,
-                unit: unit,
-                model: model,
-                weight: weight,
-                available: available,
-                size: size,
-                materialType: furnitureType,
                 brand: brand,
                 color: color,
+                feature: feature,
                 dimensions: dimensions,
+                style: style,
                 status: true
             };
 
@@ -464,32 +474,45 @@ export default function AddFurniture() {
         setShowUploadedImages(false);
         setUploadedImages([]);
         setCountry('');
-        setState('');
+        setState(''); // or setRegion('');
         setCity('');
-        setStreet('');
+        setStreet(''); // or setDistrict('');
         setTitle('');
         setBudget('');
-        setBuild('');
-        setApplication('');
-        setCategory('');
+        setCategory(''); // or setArticle('');
         setDescription('');
         setCondition('');
         setMapLocation(null);
         setGuarantee(false);
         setGuaranteePeriod('');
-        setUnit('');
-        setModel('');
-        setWeight('');
-        setAvailable(false);
-        setSize('');
-        setFurnitureType('');
         setBrand('');
         setColor('');
         setDimensions('');
+        setStyle('');
+        setFeature('');
+        setQuantity('');
+        setArticle('');
+    }
+
+    const handleBudgetCheck = (e) => {
+        if (e.target.value < 0) {
+            toast.error("Price cannot be negative")
+            setBudget(0)
+            return
+        }
+        setBudget(e.target.value)
+    }
+    const handleQuantityCheck = (e) => {
+        if (e.target.value < 0) {
+            toast.error("Quantity cannot be negative")
+            setQuantity(0)
+            return
+        }
+        setQuantity(e.target.value)
     }
     return (
         <>
-            <Toaster />
+            <ToastContainer />
             <div className={`lottie-wrapper ${isLoading ? 'show' : ''}`}>
                 <Lottie className='loader' animationData={loader} loop={true} />
             </div>
@@ -504,14 +527,14 @@ export default function AddFurniture() {
                             updatePage ?
                                 (
                                     <>
-                                        <h2 className='fw-bolder'>Update Product</h2>
+                                        <h5 className='fw-bolder'>Update Product</h5>
                                         <small className='mb-3'>Update the desired fields and retain others</small>
                                     </>
 
                                 ) :
                                 (
                                     <>
-                                        <h2 className='fw-bolder'>Publish New Furniture, Appliances Product</h2>
+                                        <h5 className='fw-bolder'>Publish New Furniture, Appliances Product</h5>
                                         <small className='mb-3'>Fill out all the required fields</small>
                                     </>
                                 )
@@ -525,316 +548,355 @@ export default function AddFurniture() {
                             </Link>
                         </div>
 
-                        <div className="card px-3 py-4 my-4 publish-form">
-                            <form action="" className="form" onSubmit={updatePage ? handleUpdate : handleSubmit}>
-                                <div className="row mb-3">
-                                    <div className="form-group col-6">
-                                        <label htmlFor="" className='mb-1'>Title*</label>
-                                        <input type="text" className="custom-input" onChange={e => setTitle(e.target.value)} value={title} />
-                                    </div>
-                                    <div className="form-group col-6">
-                                        <label htmlFor="" className='mb-1'>Budget (MAD)*</label>
-                                        <input type="number" min={0} className="custom-input" onChange={e => setBudget(e.target.value)} value={budget} />
-                                    </div>
-                                </div>
+                        <div className="my-4 publish-form">
+                            <form action="" className="form furnitureForm publishForm" onSubmit={updatePage ? handleUpdate : handleSubmit}>
 
-                                <div className="row mb-3">
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>Country*</label>
-                                        <Select
-                                            className="custom-input react-select"
-                                            classNamePrefix="select"
-                                            placeholder='Select Country'
-                                            name="color"
-                                            options={countries}
-                                            onChange={handleCountryChange}
-                                            value={
-                                                countries.filter(option =>
-                                                    option.label === country
-                                                )
-                                            }
-                                        />
-                                    </div>
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>State*</label>
-                                        <Select
-                                            className="custom-input react-select"
-                                            classNamePrefix="select"
-                                            placeholder='Select State'
-                                            name="color"
-                                            options={states && states}
-                                            onChange={handleStateChange}
-                                            value={
-                                                states.filter(option =>
-                                                    option.label === state
-                                                )
-                                            }
-                                        />
-                                    </div>
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>City*</label>
-                                        <Select
-                                            className="custom-input react-select"
-                                            classNamePrefix="select"
-                                            placeholder='Select City'
-                                            name="color"
-                                            options={cities && cities}
-                                            onChange={handleCityChange}
-                                            value={
-                                                cities.filter(option =>
-                                                    option.label === city
-                                                )
-                                            }
-                                        />
-                                    </div>
-                                </div>
+                                <div className="split">
 
-                                <div className="row mb-3">
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>Street Address (optional)</label>
-                                        <Select
-                                            className="custom-input react-select"
-                                            classNamePrefix="select"
-                                            placeholder='Select Street'
-                                            name="color"
-                                            options={streets && streets}
-                                            onChange={handleStreetChange}
-                                            value={
-                                                streets.filter(option =>
-                                                    option.label === street
-                                                )
-                                            }
-                                        />
-                                    </div>
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>Sell Unit <small>(per Item, per Day, per Month)</small>*</label>
-                                        <input type="text" className="custom-input" onChange={e => setUnit(e.target.value)} value={unit} />
-                                    </div>
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>Year Build</label>
-                                        <select name="" id="" className="custom-input" onChange={e => setBuild(e.target.value)} value={build}>
-                                            <option value="">Select Year Build</option>
-                                            {
-                                                yearBuildData.map((data, i) => {
-                                                    return (
-                                                        <option value={data} key={i}>{data}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
+                                    <div className="formSide side_2">
+                                        <div className="form-group form-group-sm mb-3">
+                                            <div className="info">Category and pricing</div>
 
-                                <div className="row mb-3">
-                                    <div className="form-group col-6">
-                                        <label htmlFor="" className='mb-1'>Application*</label>
-                                        <select name="" id="" className="custom-input" onChange={e => setApplication(e.target.value)} value={application}>
-                                            <option value="">Select Applicaion</option>
-                                            {
-                                                furnitureCategories.map((data, i) => {
-                                                    return (
-                                                        <option value={data.categoryName} key={i}>{data.categoryName}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                    <div className="form-group col-6">
-                                        <label htmlFor="" className='mb-1'>Category*</label>
-                                        <select name="" id="" className="custom-input" onChange={e => setCategory(e.target.value)} value={category}>
-                                            <option value="">Select Category</option>
-                                            {
-                                                furnitureCategories.map((data) => (
-                                                    data.subcategories.map((subCat, i) => (
-                                                        <option value={subCat} key={i}>{subCat}</option>
+                                            <label htmlFor="" className='mb-1'>Category*</label>
+                                            <select name="" id="" className="custom-input" onChange={e => setCategory(e.target.value)} value={category}>
+                                                <option value="">Select Category</option>
+                                                {
+                                                    furnitureCategories.map((data, i) => {
+                                                        return (
+                                                            <option value={data.article} key={i}>{data.article}</option>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
+                                        </div>
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Article*</label>
+                                            <select name="" id="" className="custom-input" onChange={e => setArticle(e.target.value)} value={article}>
+                                                <option value="">Select Article</option>
+                                                {
+                                                    furnitureCategories.map((data) => (
+                                                        category === data.article ? (
+                                                            data.materials.map((subCat, i) => (
+                                                                <option value={subCat} key={i}>{subCat}</option>
+                                                            ))
+                                                        ) : (
+                                                            null
+                                                        )
+
                                                     ))
-                                                ))
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div className="row mb-3">
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>Modal</label>
-                                        <input type="text" placeholder="eg 2022" className="custom-input" onChange={e => setModel(e.target.value)} value={model} />
-                                    </div>
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>Weight <small>(In kg)</small></label>
-                                        <input type="number" placeholder="eg 2000" className="custom-input" onChange={e => setWeight(e.target.value)} value={weight} />
-                                    </div>
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>Color</label>
-                                        <input type="text" placeholder="eg Brown" className="custom-input" onChange={e => setColor(e.target.value)} value={color} />
-                                    </div>
-                                </div>
-                                <div className="row mb-3">
-
-
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>Condition*</label>
-                                        <select name="" id="" className="custom-input" onChange={e => setCondition(e.target.value)} value={condition}>
-                                            <option value="">Select Condition</option>
-                                            {
-                                                conditionData.map((data, i) => {
-                                                    return (
-                                                        <option value={data} key={i}>{data}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>Brand*</label>
-                                        <select name="" id="" className="custom-input" onChange={e => setBrand(e.target.value)} value={brand}>
-                                            <option value="">Select brand</option>
-                                            {
-                                                furnitureBrands.map((data, i) => {
-                                                    return (
-                                                        <option value={data} key={i}>{data}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>Type of Furniture</label>
-                                        <select name="" id="" className="custom-input" onChange={e => setFurnitureType(e.target.value)} value={furnitureType}>
-                                            <option value="">Select Type</option>
-                                            {
-                                                machineryTypesDropdown.map((data, i) => {
-                                                    return (
-                                                        <option value={data} key={i}>{data}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div className="row mb-3">
-                                    <div className="form-group col-6">
-                                        <label htmlFor="" className='mb-1'>Size <small>(In m)</small></label>
-                                        <input type="number" placeholder="eg 12" className="custom-input" onChange={e => setSize(e.target.value)} value={size} />
-
-                                    </div>
-                                    <div className="form-group col-6">
-                                        <label htmlFor="" className='mb-1'>Dimensions <small>(In m)</small></label>
-                                        <input type="text" placeholder="eg 12x8 m" className="custom-input" onChange={e => setDimensions(e.target.value)} value={dimensions} />
-
-                                    </div>
-                                    {/* <div className="form-group col-6">
-                                        <label htmlFor="" className='mb-1'>Certification</label>
-                                        <input type="text" placeholder="" className="custom-input" onChange={e => setCertification(e.target.value)} value={certification} />
-                                    </div> */}
-
-                                </div>
-
-                                <div className="row mb-3">
-                                    <div className="form-group col-3">
-                                        <div className="d-flex align-items-center mt-4">
-                                            <label htmlFor="" className='mb-1'>Available</label>
-                                            <input type="checkbox" className="custom-input" onChange={e => setAvailable(!available)} checked={available} />
+                                                }
+                                            </select>
                                         </div>
-                                    </div>
-                                    <div className="form-group col-3">
-                                        <div className="d-flex align-items-center mt-4">
-                                            <label htmlFor="" className='mb-1'>Guarantee</label>
-                                            <input type="checkbox" className="custom-input" onChange={e => setGuarantee(!guarantee)} checked={guarantee} />
+
+
+                                        <div className="form-group form-group-sm mb-4">
+                                            <label htmlFor="" className='mb-1'>Budget (MAD)*</label>
+                                            <input type="number" min={0} className="custom-input" onChange={e => setBudget(e.target.value)} onBlur={handleBudgetCheck} value={budget} />
+                                            <small style={{ fontSize: "10px" }}>Specify Budget MAD per item</small>
+                                        </div>
+
+                                        <div className="form-group form-group-sm mb-4">
+                                            <label htmlFor="" className='mb-1'>Quantity*</label>
+                                            <input type="number" className="custom-input" min={1} onChange={e => setQuantity(e.target.value)} onBlur={handleQuantityCheck} value={quantity} />
                                         </div>
                                     </div>
 
-                                    {
-                                        guarantee && (
-                                            <div className="form-group col-4">
-                                                <label htmlFor="" className='mb-1'>Guranatee Period <small>(1 Month, 1 Year etc)</small></label>
-                                                <input type="text" placeholder="" className="custom-input" onChange={e => setGuaranteePeriod(e.target.value)} value={guaranteePeriod} />
+                                    <div className="formSide side_3">
+                                        <div className="info">Product Information</div>
+
+                                        <div className="form-group form-group-sm  mb-3">
+                                            <label htmlFor="" className='mb-1'>Title* <small>(max 100 characters)</small></label>
+                                            <input type="text" maxLength={100} className="custom-input" onChange={e => setTitle(e.target.value)} value={title} />
+                                        </div>
+
+                                        <div className="form-group form-group-sm  mb-3 ">
+                                            <label htmlFor="" className='mb-1'>Description* <small>(max 1000 characters)</small></label>
+                                            <Editor description={description} setDescription={setDescription} maximumLength={1000} />
+                                        </div>
+
+                                        <div className="col-12 images-section">
+                                            <div className="upload-image" onClick={hanldeUploadClick}>
+                                                <input type="file" accept='image/*' onChange={handleImageChange} multiple name="" id="" className='invisible' ref={imageUploadRef} />
+                                                <FaCloudUploadAlt />
+                                                <p style={{ fontSize: "10px" }}>Upload Images (Upload maximum of 10 images) </p>
                                             </div>
-                                        )
-                                    }
+                                            {
+                                                uploadingImage && (
+                                                    <>
+                                                        <ClipLoader
+                                                            color="#076C8F"
+                                                            loading={uploadingImage}
+                                                            size={20}
+                                                            aria-label="Loading Spinner"
+                                                            data-testid="loader"
+                                                            className='mt-1'
+                                                        />
+                                                        <p>Uploading Images </p>
+                                                    </>
+
+                                                )
+                                            }
+
+                                            <div className={`uploaded-images ${showUploadedImages ? 'show' : ''}`}>
+                                                {uploadedImages &&
+                                                    uploadedImages.map((image, i) => (
+                                                        <div className="image" key={i}>
+                                                            <FaXmark onClick={() => removeImage(image.id)} />
+                                                            <img src={image.url} alt="" />
+                                                        </div>
+                                                    ))}
+                                            </div>
+                                        </div>
+
+                                    </div>
 
                                 </div>
+                                <div className="d-flex gap-3 mt-4">
+                                    <div className="w-25 formSide">
+                                        <div className="info">Characteristics</div>
 
-                                <div className="row mb-3">
-                                    <div className="form-group col-12">
-                                        <label htmlFor="" className='mb-1'>Description* <small>(max 1000 chars)</small></label>
-                                        <Editor description={description} setDescription={setDescription} />
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Select Color</label>
+                                            <select name="" id="" className="custom-input" onChange={e => setColor(e.target.value)} value={color}>
+                                                <option value="">Select Color</option>
+                                                {
+                                                    furnitureCategories.some(data => data.article === category) ?
+                                                        furnitureCategories
+                                                            .filter(data => data.article === category)
+                                                            .flatMap(data => data.colors)
+                                                            .map((subCat, i) => (
+                                                                <option value={subCat} key={i}>{subCat}</option>
+                                                            ))
+                                                        :
+                                                        <option value="">Select Category to view more options</option>
+                                                }
+                                            </select>
+
+                                        </div>
+
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Select Dimensions</label>
+                                            <select name="" id="" className="custom-input" onChange={e => setDimensions(e.target.value)} value={dimensions}>
+                                                <option value="">Select Dimension</option>
+                                                {
+                                                    furnitureCategories.some(data => data.article === category) ?
+                                                        furnitureCategories
+                                                            .filter(data => data.article === category)
+                                                            .flatMap(data => data.dimensions)
+                                                            .map((subCat, i) => (
+                                                                <option value={subCat} key={i}>{subCat}</option>
+                                                            ))
+                                                        :
+                                                        <option value="">Select Category to view more options</option>
+                                                }
+                                            </select>
+                                        </div>
+
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Select Styles</label>
+                                            <select name="" id="" className="custom-input" onChange={e => setStyle(e.target.value)} value={style}>
+                                                <option value="">Select Style</option>
+                                                {
+                                                    furnitureCategories.some(data => data.article === category) ?
+                                                        furnitureCategories
+                                                            .filter(data => data.article === category)
+                                                            .flatMap(data => data.styles)
+                                                            .map((subCat, i) => (
+                                                                <option value={subCat} key={i}>{subCat}</option>
+                                                            ))
+                                                        :
+                                                        <option value="">Select Category to view more options</option>
+                                                }
+                                            </select>
+                                        </div>
+
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Select Feature</label>
+                                            <select name="" id="" className="custom-input" onChange={e => setFeature(e.target.value)} value={feature}>
+                                                <option value="">Select Feature</option>
+                                                {
+                                                    furnitureCategories.some(data => data.article === category) ?
+                                                        furnitureCategories
+                                                            .filter(data => data.article === category)
+                                                            .flatMap(data => data.features)
+                                                            .map((subCat, i) => (
+                                                                <option value={subCat} key={i}>{subCat}</option>
+                                                            ))
+                                                        :
+                                                        <option value="">Select Category to view more options</option>
+                                                }
+                                            </select>
+                                        </div>
+
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Select Brand</label>
+                                            <select name="" id="" className="custom-input" onChange={e => setBrand(e.target.value)} value={brand}>
+                                                <option value="">Select Brand</option>
+                                                {
+                                                    furnitureCategories.some(data => data.article === category) ?
+                                                        furnitureCategories
+                                                            .filter(data => data.article === category)
+                                                            .flatMap(data => data.brands)
+                                                            .map((subCat, i) => (
+                                                                <option value={subCat} key={i}>{subCat}</option>
+                                                            ))
+                                                        :
+                                                        <option value="">Select Category to view more options</option>
+                                                }
+                                            </select>
+                                        </div>
+
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Select Condition</label>
+                                            <select name="" id="" className="custom-input" onChange={e => setCondition(e.target.value)} value={condition}>
+                                                <option value="">Select Condition</option>
+                                                {
+                                                    furnitureConditionData
+                                                        .map((data, i) => (
+                                                            <option value={data} key={i}>{data}</option>
+                                                        ))
+                                                }
+                                            </select>
+
+                                        </div>
+
+                                        <div className="form-group form-group-sm mb-1">
+                                            <div className="d-flex align-items-center justify-content-between">
+                                                <label htmlFor="guaranteeCheck" className='mb-1'>Guarantee</label>
+                                                <input type="checkbox" id='guaranteeCheck' className="" onChange={e => setGuarantee(!guarantee)} checked={guarantee} />
+                                            </div>
+                                        </div>
+
+                                        {
+                                            guarantee && (
+                                                <div className="form-group form-group-sm">
+                                                    <select name="" id="" className="custom-input" onChange={e => setGuaranteePeriod(e.target.value)} value={guaranteePeriod}>
+                                                        <option value="">Select Guarantee</option>
+                                                        {
+                                                            machineryGuarantee.map((data, i) => {
+                                                                return (
+                                                                    <option value={data} key={i}>{data}</option>
+                                                                )
+                                                            })
+                                                        }
+                                                    </select>
+                                                </div>
+                                            )
+                                        }
+                                    </div>
+                                    <div className="w-50 formSide">
+                                        <div className="info">Location</div>
+
+                                        <div className="form-group form-group-sm form-group form-group-sm-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Country*</label>
+                                            <Select
+                                                className="custom-input react-select"
+                                                classNamePrefix="select"
+                                                placeholder='Select Country'
+                                                name="color"
+                                                options={countries}
+                                                onChange={handleCountryChange}
+                                                value={
+                                                    countries.filter(option =>
+                                                        option.label === country
+                                                    )
+                                                }
+                                            />
+                                        </div>
+                                        <div className="form-group form-group-sm form-group form-group-sm-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Region*</label>
+                                            <Select
+                                                className="custom-input react-select"
+                                                classNamePrefix="select"
+                                                placeholder='Select Region'
+                                                name="color"
+                                                options={states && states}
+                                                onChange={handleStateChange}
+                                                value={
+                                                    states.filter(option =>
+                                                        option.label === state
+                                                    )
+                                                }
+                                            />
+                                        </div>
+                                        <div className="form-group form-group-sm form-group form-group-sm-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>City*</label>
+                                            <Select
+                                                className="custom-input react-select"
+                                                classNamePrefix="select"
+                                                placeholder='Select City'
+                                                name="color"
+                                                options={cities && cities}
+                                                onChange={handleCityChange}
+                                                value={
+                                                    cities.filter(option =>
+                                                        option.label === city
+                                                    )
+                                                }
+                                            />
+                                        </div>
+
+                                        <div className="form-group form-group-sm form-group form-group-sm-sm">
+                                            <label htmlFor="" className='mb-1'>District</label>
+                                            <Select
+                                                className="custom-input react-select"
+                                                classNamePrefix="select"
+                                                placeholder='Select District'
+                                                name="color"
+                                                options={streets && streets}
+                                                onChange={handleStreetChange}
+                                                value={
+                                                    streets.filter(option =>
+                                                        option.label === street
+                                                    )
+                                                }
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="w-50 formSide">
+                                        <div className="info">Location by map</div>
+
+                                        <div className="col-12">
+                                            <p style={{ fontSize: "12px" }}>Add location by map*</p>
+                                            {
+                                                !isLoading && updatePage ? (
+                                                    <>
+                                                        <GetLocationMap centerPosition={mapLocation && mapLocation} clickedPosition={mapLocation} setClickedPosition={setMapLocation} />
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <GetLocationMap centerPosition={["34.020882", "-6.841650"]} clickedPosition={mapLocation} setClickedPosition={setMapLocation} />
+                                                    </>
+                                                )
+                                            }
+                                            <small>Click on the location address in map</small>
+
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div className="row mb-3">
-                                    <div className="col-12 images-section">
-                                        <div className="upload-image" onClick={hanldeUploadClick}>
-                                            <input type="file" accept='image/*' onChange={handleImageChange} multiple name="" id="" className='invisible' ref={imageUploadRef} />
-                                            <FaCloudUploadAlt />
-                                            <p>Upload Images</p>
-                                        </div>
-                                        {
-                                            uploadingImage && (
-                                                <>
+                                <div>
+
+                                    <div className="row mb-2">
+                                        <div className="form-group form-group-sm d-flex align-items-center justify-content-end gap-2">
+                                            <div className="outline-btn py-2" onClick={resetAllFields}>Reset</div>
+                                            {/* <button className="custom-btn" type='submit'>Publish</button> */}
+                                            <button className="custom-btn" type='submit'>
+                                                <div className='d-flex align-items-center justify-content-center'>
                                                     <ClipLoader
-                                                        color="#076C8F"
-                                                        loading={uploadingImage}
+                                                        color="#fff"
+                                                        loading={isLoading}
                                                         size={20}
                                                         aria-label="Loading Spinner"
                                                         data-testid="loader"
-                                                        className='mt-1'
                                                     />
-                                                    <p>Uploading Images </p>
-                                                </>
+                                                    {
+                                                        !isLoading && ("Publish")
+                                                    }
 
-                                            )
-                                        }
-
-                                        <div className={`uploaded-images ${showUploadedImages ? 'show' : ''}`}>
-                                            {uploadedImages &&
-                                                uploadedImages.map((image, i) => (
-                                                    <div className="image" key={i}>
-                                                        <FaXmark onClick={() => removeImage(image.id)} />
-                                                        <img src={image.url} alt="" />
-                                                    </div>
-                                                ))}
+                                                </div>
+                                            </button>
                                         </div>
-                                    </div>
-                                </div>
-                                <div className="row mb-3 mt-5">
-                                    <div className="col-12">
-                                        <h5>Add location by map*</h5>
-                                        <small>Click on the location address in map</small>
-
-                                        {
-                                            !isLoading && updatePage ? (
-                                                <>
-                                                    <GetLocationMap centerPosition={mapLocation && mapLocation} clickedPosition={mapLocation} setClickedPosition={setMapLocation} />
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <GetLocationMap centerPosition={["34.020882", "-6.841650"]} clickedPosition={mapLocation} setClickedPosition={setMapLocation} />
-                                                </>
-                                            )
-                                        }
-                                    </div>
-                                </div>
-
-                                <div className="row mb-2">
-                                    <div className="form-group d-flex align-items-center justify-content-end gap-2">
-                                        <div className="outline-btn py-2" onClick={resetAllFields}>Reset</div>
-                                        {/* <button className="custom-btn" type='submit'>Publish</button> */}
-                                        <button className="custom-btn" type='submit'>
-                                            <div className='d-flex align-items-center justify-content-center'>
-                                                <ClipLoader
-                                                    color="#fff"
-                                                    loading={isLoading}
-                                                    size={20}
-                                                    aria-label="Loading Spinner"
-                                                    data-testid="loader"
-                                                />
-                                                {
-                                                    !isLoading && ("Publish")
-                                                }
-
-                                            </div>
-                                        </button>
                                     </div>
                                 </div>
                             </form>

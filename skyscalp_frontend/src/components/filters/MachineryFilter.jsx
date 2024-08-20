@@ -81,8 +81,8 @@ export default function MachineryFilter(
 
 
     const sellType = [
-        { value: "buy", label: "Buy" },
-        { value: "rent", label: "Rent" },
+        { value: "buy", label: t("buy") },
+        { value: "rent", label: t("rent") },
     ]
 
     const budget = [
@@ -345,7 +345,7 @@ export default function MachineryFilter(
                                 <Select
                                     className="custom-input bordor-0  type-select-dropdown"
                                     classNamePrefix="select"
-                                    placeholder='Buy/Rent'
+                                    placeholder='Sale/Rent'
                                     name="color"
                                     options={sellType}
                                     onChange={handleType}

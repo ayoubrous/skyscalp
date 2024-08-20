@@ -27,7 +27,7 @@ import { formatPrice } from '../../utils/formatPrice';
 
 
 const FurnitureCard = ({ data }) => {
-    const { _id, images, title, description, category, budget, color, street, city, country, unit, application, condition, guaranteePeriod, user, createdAt } = data;
+    const { _id, images, title, description, category, quantity, article, budget, color, street, city, country, unit, application, condition, guaranteePeriod, user, createdAt } = data;
 
     const [t] = useTranslation();
     const [favourite, setFavourite] = useState(false)
@@ -76,9 +76,9 @@ const FurnitureCard = ({ data }) => {
                     </div>
 
                     <p className="paragraph">{city}, {country}</p>
-                    <p className='mb-1'>{category} ({unit})</p>
-                    <p className='color-secondary'>{application}</p>
-                    <p className='color-secondary'>12 kg - 9x4 m</p>
+                    <p className=''>{t("quantity")}: {quantity}</p>
+                    <p className='mb-1'>{category}</p>
+                    <p className='color-secondary'>{article}</p>
 
                     {description && <p className='mb-2 mt-1 color-secondary description' dangerouslySetInnerHTML={{ __html: description.substring(0, 120) }}></p>}
 

@@ -93,7 +93,7 @@ export default function Machinery() {
 
                         <div className="d-flex justify-content-end">
                             <a href=""></a>
-                            <Link to='../app/add-machinery'>
+                            <Link to='../app/add-machines'>
                                 <button className="outline-btn py-1 px-2">+ Add New</button>
                             </Link>
                         </div>
@@ -149,7 +149,7 @@ export default function Machinery() {
                                                             }
                                                         </td>
                                                         <td>
-                                                            <Link className='mx-1' to={`../machinery/${data._id}`}>
+                                                            <Link className='mx-1' to={`../machines/${data._id}`}>
                                                                 <FaEye className='color-secondary' />
                                                             </Link>
                                                             <Link className='mx-1' to={`../app/update-machinery/${data._id}`}>

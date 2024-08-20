@@ -115,11 +115,18 @@ const MaterialsSchema = new mongoose.Schema({
     dimensions: {
         type: String,
     },
-    
+
     // for furniture
-    materialType: {
-        type: String
-    }
+    style: {
+        type: String,
+    },
+    feature: {
+        type: String,
+    },
+    article: {
+        type: String,
+    },
+
 
 }, { timestamps: true })
 
