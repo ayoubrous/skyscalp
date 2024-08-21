@@ -12,6 +12,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import Lottie from 'lottie-react'
 import loader from '../../assets/images/skyscalp-loader.json'
 import Footer from '../components/Footer'
+import { t } from 'i18next'
 
 
 export default function Furniture() {
@@ -103,7 +104,7 @@ export default function Furniture() {
                                     <tr>
                                         <th className='col-1'>S. No</th>
                                         <th className='col-2'>Title</th>
-                                        <th className='col-2'>Application</th>
+                                        <th className='col-2'>Category</th>
                                         <th className='col-1'>Budget</th>
                                         <th className='col-1'>Favourites</th>
                                         <th className='col-1'>Published</th>
@@ -116,7 +117,7 @@ export default function Furniture() {
                                         products &&
                                         products.length === 0 && (
                                             <tr>
-                                                <td colSpan={7} className='text-center'>No products found</td>
+                                                <td colSpan={7} className='text-center'>{t("notProductsFound")}</td>
                                             </tr>
                                         )
                                     }
@@ -129,7 +130,7 @@ export default function Furniture() {
                                                         <tr key={data._id}>
                                                             <td>{i}</td>
                                                             <td>{data.title}</td>
-                                                            <td>{data.application}</td>
+                                                            <td>{data.category}</td>
                                                             <td>MAD {formatPrice(data.budget)}</td>
                                                             <td>{data.toFavourites && data.toFavourites.length}</td>
                                                             <td>{new Date(data.createdAt).toLocaleString('en-GB', {

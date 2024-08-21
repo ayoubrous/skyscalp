@@ -96,9 +96,8 @@ export default function PropertyFilter({
     const [checkAll, setCheckAll] = useState(false)
 
     const sellType = [
-        { value: "buy", label: "Sale" },
-        { value: "rent", label: "Rent" },
-        // { value: "", label: "Any" },
+        { value: "buy", label: t("buy") },
+        { value: "rent", label: t("rent") },
     ]
 
     const size = [
@@ -407,11 +406,11 @@ export default function PropertyFilter({
     const handleDivClick = (e) => {
         e.stopPropagation();
         setShowCategoriesDrp(!showCategoriesDrp);
-      };
-      
-      const handleHideDrp = () => {
+    };
+
+    const handleHideDrp = () => {
         setShowCategoriesDrp(false);
-      };
+    };
     return (
         <div className="filter-area my-4">
             <div className="custom-container">

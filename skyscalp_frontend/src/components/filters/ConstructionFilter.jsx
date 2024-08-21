@@ -17,7 +17,8 @@ import CustomLocationsDropdown from './CustomLocationsDropdown';
 import { constructionCategories } from '../../assets/data/categories';
 import formatNumber from '../../utils/formatNumber';
 import { getLocationsInRadius } from './getLocationsInRadius';
-import { conditionData, constructionBrands, constructionBudget } from '../../assets/data/filtersData';
+import { conditionData, constructionBrands, constructionBudget, materialsBudget } from '../../assets/data/filtersData';
+import { materialCategories } from '../../assets/data/materialsCategory';
 
 export default function ConstructionFilter({
     minPrice,
@@ -259,6 +260,18 @@ export default function ConstructionFilter({
         clearAllFilters()
     }
 
+
+    // formatting categories for nested dropdown required format 
+    let formattedCategories = materialCategories.map((cat, i) => {
+        return {
+            id: i,
+            categoryName: cat.application,
+            subcategories: cat.categories.map(subCat => {
+               return subCat.materialName
+            })
+        }
+    })
+
     return (
         <div className="filter-area my-4">
             <div className="custom-container">
@@ -290,7 +303,7 @@ export default function ConstructionFilter({
                                 <NestedDropdown
                                     show={showCategoriesDrp}
                                     categoriesRef={categoriesRef}
-                                    categories={constructionCategories}
+                                    categories={formattedCategories}
                                     setCheckedSubcategories={setCheckedSubcategories}
                                     checkedSubcategories={checkedSubcategories}
                                     checkAll={checkAll}
@@ -346,7 +359,7 @@ export default function ConstructionFilter({
                                                 <input className='custom-input py-1' type="number" placeholder='Min' value={minPrice} onChange={(e) => setMinPrice(e.target.value)} />
                                             </div>
                                             {
-                                                constructionBudget.map((n, i) => {
+                                                materialsBudget.map((n, i) => {
                                                     return (
                                                         <p className="custom-dropdown-item" onClick={() => handleMinPrice(n)} key={i}>MAD {n}</p>
                                                     )
@@ -374,7 +387,7 @@ export default function ConstructionFilter({
                                 </div>
                             </div>
 
-                            <div className="other-filter">
+                            {/* <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowBrandDrp(!showBrandDrp)}>
                                     <p className='text-white'>{t("brand")}</p>
                                     <FaAngleDown className='text-white' />
@@ -423,7 +436,7 @@ export default function ConstructionFilter({
                                         })
                                     }
                                 </div>
-                            </div>
+                            </div> */}
 
                             {/* <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowYearDrp(!showYearDrp)}>

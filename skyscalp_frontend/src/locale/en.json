@@ -157,6 +157,20 @@
     "date": "Date",
     "feature": "Feature",
     "ReferenceID": "Reference ID",
-    "noItemsFound": "No Similar Products Found"
-    
+    "noItemsFound": "No Similar Products Found",
+    "thickness": "Thickness",
+    "base": "Base",
+    "finish": "Finish",
+    "voltage": "Voltage",
+    "material": "Material",
+    "notProductsFound": "No Products Found",
+    "all": "All",
+    "categories": "Categories",
+    "selections": "Selections",
+    "faqQ1": "How can I list my property on your platform?",
+    "faqQ2": "What are the fees associated with listing a property?",
+    "faqQ3": "What types of building materials are available on your platform?",
+    "faqA1": "To list your property, simply create an account on our website, go to the 'List Property' section, and fill out the required details about your property. You can upload photos and provide a detailed description to attract potential buyers or renters",
+    "faqA2": "Listing a property on our platform is free. However, there may be additional fees for premium listing options, which can help increase your property's visibility. You can find detailed pricing information in the 'Pricing' section of our website.",
+    "faqA3": "Our platform offers a wide range of building materials, including bricks, cement, steel, timber, and more. You can browse through various categories and find materials from trusted suppliers."
 }

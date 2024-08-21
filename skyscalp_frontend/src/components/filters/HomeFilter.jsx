@@ -11,10 +11,12 @@ import {
 } from 'react-places-autocomplete';
 import NestedDropdown from './NestedDropdown';
 
-import { propertyCategories, machineryCategories, constructionCategories, furnitureCategories } from '../../assets/data/categories';
+import { propertyCategories, machineryCategories } from '../../assets/data/categories';
+import { furnitureCategories } from '../../assets/data/furnitureCategories';
 import CustomLocationsDropdown from './CustomLocationsDropdown';
 import { useNavigate } from 'react-router-dom';
 import { getLocationsInRadius } from './getLocationsInRadius';
+import { materialCategories } from '../../assets/data/materialsCategory';
 
 export default function HomeFilter() {
     const [t] = useTranslation();
@@ -54,10 +56,10 @@ export default function HomeFilter() {
             setActiveCategories(machineryCategories)
         }
         else if (activeTab === 'construction') {
-            setActiveCategories(constructionCategories)
+            setActiveCategories(formattedMaterialCategories)
         }
         else if (activeTab === 'furniture') {
-            setActiveCategories(furnitureCategories)
+            setActiveCategories(formattedFurnitureCategories)
         }
     }, [activeTab])
 
@@ -131,23 +133,39 @@ export default function HomeFilter() {
         }
     }
 
-    const handleActiveTab = (val) => {
-        setActiveTab(val)
-        if (activeTab === 'property') {
-            setActiveCategories(propertyCategories)
+    let formattedMaterialCategories = materialCategories.map((cat, i) => {
+        return {
+            id: i,
+            categoryName: cat.application,
+            subcategories: cat.categories.map(subCat => {
+                return subCat.materialName
+            })
         }
-        else if (activeTab === 'machinery') {
-            setActiveCategories(machineryCategories)
-        }
-        else if (activeTab === 'construction') {
-            setActiveCategories(constructionCategories)
-        }
-        else if (activeTab === 'furniture') {
-            setActiveCategories(furnitureCategories)
-        }
-        setCheckedSubcategories([])
-    }
+    })
 
+    let formattedFurnitureCategories = furnitureCategories.map((cats, i) => {
+        return {
+            id: i,
+            categoryName: cats.article,
+            subcategories: cats.materials
+        }
+    })
+
+    const handleActiveTab = (val) => {
+        setActiveTab(val);
+
+        if (val === 'property') {
+            setActiveCategories(propertyCategories);
+        } else if (val === 'machinery') {
+            setActiveCategories(machineryCategories);
+        } else if (val === 'construction') {
+            setActiveCategories(formattedMaterialCategories);
+        } else if (val === 'furniture') {
+            setActiveCategories(formattedFurnitureCategories);
+        }
+
+        setCheckedSubcategories([]);
+    };
     const removeTypeFilter = (index, name) => {
         // filtering out the item at the specified index
         const updatedTypes = selectedFilters.filter((_, i) => i !== index);
@@ -245,6 +263,8 @@ export default function HomeFilter() {
         setRadius(null)
         sessionStorage.clear()
     }
+
+
 
     return (
         <div className="filter-area home-filter">

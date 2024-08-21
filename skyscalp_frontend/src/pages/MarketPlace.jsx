@@ -7,7 +7,8 @@ import BlogSection from '../components/sections/BlogSection'
 import Footer from '../components/sections/Footer'
 import AllMachinery from '../components/sections/AllMachinery'
 import MachineryFilter from '../components/filters/MachineryFilter'
-import { constructionCategories, furnitureCategories, machineryCategories, marketplaceCategories } from '../assets/data/categories'
+import { constructionCategories, machineryCategories, marketplaceCategories } from '../assets/data/categories'
+import {furnitureCategories} from '../assets/data/furnitureCategories'
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -20,6 +21,7 @@ import AllFurniture from '../components/sections/AllFurnitures'
 import toast, { Toaster } from 'react-hot-toast'
 import loader from '../assets/images/skyscalp-loader.json'
 import Lottie from 'lottie-react'
+import { materialCategories } from '../assets/data/materialsCategory'
 
 
 const MarketPlace = () => {
@@ -464,6 +466,27 @@ const MarketPlace = () => {
         }
     };
 
+
+    let formattedMaterialCategories = materialCategories.map((cat, i) => {
+        return {
+            id: i,
+            categoryName: cat.application,
+            subcategories: cat.categories.map(subCat => {
+                return subCat.materialName
+            })
+        }
+    })
+
+    let formattedFurnitureCategories = furnitureCategories.map((cats, i) => {
+        return {
+            id: i,
+            categoryName: cats.article,
+            subcategories: cats.materials
+        }
+    })
+
+
+
     return (
         <>
             <div className={`lottie-wrapper ${loading ? 'show' : ''}`}>
@@ -496,8 +519,8 @@ const MarketPlace = () => {
                     <div className='subcategories mt-3'>
                         <Slider {...settings}>
                             {(activeCatId === 1 ? machineryCategories :
-                                activeCatId === 2 ? constructionCategories :
-                                    activeCatId === 3 ? furnitureCategories : []
+                                activeCatId === 2 ? formattedMaterialCategories :
+                                    activeCatId === 3 ? formattedFurnitureCategories : []
                             ).map((category) =>
                                 category.subcategories.map((sub, i) => (
                                     <div
@@ -519,7 +542,7 @@ const MarketPlace = () => {
 
             <BlogSection />
             <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} contactEmail={"information.marketplace@skyscalp.com"} contactPhone={"+33771759956"} />
-            
+
 
             <Footer />
         </>

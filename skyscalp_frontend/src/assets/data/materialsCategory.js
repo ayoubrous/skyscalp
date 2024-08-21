@@ -1,365 +1,1419 @@
-const constructionMaterials = {
-    structuralWork: {
-        concrete: {
-            unit: 'm³',
-            type: ['Ready-Mix', 'Precast', 'On-Site', 'Other'],
-            grade: ['C25', 'C30', 'C40', 'Other'],
-            color: ['Grey', 'White', 'Beige', 'Other'],
-            strength: ['High', 'Medium', 'Low', 'Other'],
-            settingTime: ['Fast', 'Slow', 'Medium', 'Other']
-        },
-        cement: {
-            unit: 'kg',
-            type: ['Portland', 'Blended', 'Slag', 'Other'],
-            grade: ['42.5', '52.5', '32.5', 'Other'],
-            color: ['Grey', 'White', 'Beige', 'Other'],
-            strength: ['High', 'Medium', 'Low', 'Other'],
-            settingTime: ['Fast', 'Slow', 'Medium', 'Other']
-        },
-        sand: {
-            unit: 'm³',
-            type: ['River', 'Beach', 'Quarry', 'Other'],
-            grade: ['Fine', 'Coarse', 'Medium', 'Other'],
-            particleSize: ['Small', 'Large', 'Medium', 'Other'],
-            color: ['Beige', 'Brown', 'White', 'Other'],
-            moistureContent: ['Low', 'High', 'Medium', 'Other']
-        },
-        gravel: {
-            unit: 'm³',
-            type: ['Crushed', 'Natural', 'Recycled', 'Other'],
-            size: ['5mm', '10mm', '20mm', 'Other'],
-            color: ['Grey', 'Brown', 'Black', 'Other'],
-            shape: ['Round', 'Angular', 'Mixed', 'Other'],
-            hardness: ['Soft', 'Hard', 'Medium', 'Other']
-        },
-        stone: {
-            unit: 'm²',
-            type: ['Granite', 'Marble', 'Limestone', 'Other'],
-            finish: ['Polished', 'Rough', 'Honed', 'Other'],
-            color: ['Black', 'White', 'Grey', 'Other'],
-            thickness: ['1cm', '2cm', '3cm', 'Other'],
-            texture: ['Smooth', 'Rough', 'Other']
-        },
-        brick: {
-            unit: 'piece',
-            type: ['Clay', 'Concrete', 'Other'],
-            size: ['Standard', 'Jumbo', 'Other'],
-            color: ['Red', 'Grey', 'Brown', 'Other'],
-            strength: ['High', 'Medium', 'Low', 'Other'],
-            texture: ['Smooth', 'Rough', 'Other']
-        },
-        concreteBlock: {
-            unit: 'piece',
-            type: ['Hollow', 'Solid', 'Other'],
-            size: ['8"', '10"', '12"', 'Other'],
-            color: ['Grey', 'White', 'Other'],
-            strength: ['High', 'Medium', 'Low', 'Other'],
-            texture: ['Smooth', 'Rough', 'Other']
-        }
-    },
-    secondaryWork: {
-        timberForFraming: {
-            unit: 'm³',
-            type: ['Softwood', 'Hardwood', 'Other'],
-            grade: ['A', 'B', 'C', 'Other'],
-            finish: ['Natural', 'Stained', 'Painted', 'Other'],
-            size: ['2x4', '2x6', 'Other'],
-            moistureContent: ['Low', 'High', 'Medium', 'Other']
-        },
-        woodForJoinery: {
-            unit: 'm²',
-            type: ['Oak', 'Pine', 'Other'],
-            grade: ['A', 'B', 'C', 'Other'],
-            finish: ['Natural', 'Stained', 'Painted', 'Other'],
-            size: ['1x2', '1x4', 'Other'],
-            moistureContent: ['Low', 'High', 'Medium', 'Other']
-        },
-        metalForFraming: {
-            unit: 'kg',
-            type: ['Steel', 'Aluminum', 'Other'],
-            grade: ['A36', '6061', 'Other'],
-            finish: ['Polished', 'Brushed', 'Painted', 'Other'],
-            size: ['1"', '2"', 'Other'],
-            thickness: ['1mm', '2mm', 'Other']
-        },
-        metalForJoinery: {
-            unit: 'kg',
-            type: ['Brass', 'Copper', 'Other'],
-            grade: ['A', 'B', 'C', 'Other'],
-            finish: ['Polished', 'Brushed', 'Painted', 'Other'],
-            size: ['1"', '2"', 'Other'],
-            thickness: ['1mm', '2mm', 'Other']
-        },
-        glass: {
-            unit: 'm²',
-            type: ['Tempered', 'Laminated', 'Other'],
-            thickness: ['5mm', '10mm', 'Other'],
-            color: ['Clear', 'Tinted', 'Other'],
-            transparency: ['High', 'Medium', 'Low', 'Other'],
-            strength: ['High', 'Medium', 'Low', 'Other']
-        },
-        aluminum: {
-            unit: 'kg',
-            type: ['Extruded', 'Cast', 'Other'],
-            grade: ['6061', '7075', 'Other'],
-            finish: ['Polished', 'Brushed', 'Painted', 'Other'],
-            size: ['1"', '2"', 'Other'],
-            thickness: ['1mm', '2mm', 'Other']
-        },
-        pvc: {
-            unit: 'm²',
-            type: ['Rigid', 'Flexible', 'Other'],
-            thickness: ['2mm', '5mm', 'Other'],
-            color: ['White', 'Grey', 'Other'],
-            flexibility: ['High', 'Medium', 'Low', 'Other'],
-            texture: ['Smooth', 'Rough', 'Other']
-        }
-    },
-    finishing: {
-        paint: {
-            unit: 'L',
-            type: ['Acrylic', 'Oil-Based', 'Other'],
-            finish: ['Matte', 'Gloss', 'Satin', 'Other'],
-            color: ['White', 'Black', 'Other'],
-            base: ['Water', 'Oil', 'Other'],
-            dryingTime: ['Fast', 'Slow', 'Medium', 'Other']
-        },
-        varnish: {
-            unit: 'L',
-            type: ['Polyurethane', 'Shellac', 'Other'],
-            finish: ['Matte', 'Gloss', 'Satin', 'Other'],
-            color: ['Clear', 'Tinted', 'Other'],
-            base: ['Water', 'Oil', 'Other'],
-            dryingTime: ['Fast', 'Slow', 'Medium', 'Other']
-        },
-        lacquer: {
-            unit: 'L',
-            type: ['Nitrocellulose', 'Polyurethane', 'Other'],
-            finish: ['Matte', 'Gloss', 'Satin', 'Other'],
-            color: ['Clear', 'Tinted', 'Other'],
-            base: ['Water', 'Oil', 'Other'],
-            dryingTime: ['Fast', 'Slow', 'Medium', 'Other']
-        },
-        wallpaper: {
-            unit: 'm²',
-            type: ['Vinyl', 'Paper', 'Other'],
-            pattern: ['Floral', 'Geometric', 'Plain', 'Other'],
-            color: ['White', 'Black', 'Other'],
-            texture: ['Smooth', 'Rough', 'Other'],
-            width: ['50cm', '100cm', 'Other']
-        },
-        tile: {
-            unit: 'm²',
-            type: ['Ceramic', 'Porcelain', 'Other'],
-            size: ['30x30', '60x60', 'Other'],
-            color: ['White', 'Grey', 'Other'],
-            finish: ['Gloss', 'Matte', 'Other'],
-            thickness: ['5mm', '10mm', 'Other']
-        },
-        parquet: {
-            unit: 'm²',
-            type: ['Oak', 'Maple', 'Other'],
-            finish: ['Natural', 'Stained', 'Painted', 'Other'],
-            color: ['Brown', 'Black', 'Other'],
-            size: ['10x10', '20x20', 'Other'],
-            thickness: ['1cm', '2cm', 'Other']
-        },
-        carpet: {
-            unit: 'm²',
-            type: ['Wool', 'Synthetic', 'Other'],
-            pattern: ['Plain', 'Patterned', 'Other'],
-            color: ['Beige', 'Brown', 'Other'],
-            thickness: ['1cm', '2cm', 'Other'],
-            material: ['Wool', 'Nylon', 'Other']
-        }
-    },
-    insulation: {
-        glassWool: {
-            unit: 'm²',
-            type: ['Blown', 'Batt', 'Other'],
-            thickness: ['5cm', '10cm', 'Other'],
-            density: ['Low', 'Medium', 'High', 'Other'],
-            rValue: ['R10', 'R20', 'Other'],
-            fireResistance: ['Yes', 'No', 'Other']
-        },
-        rockWool: {
-            unit: 'm²',
-            type: ['Blown', 'Batt', 'Other'],
-            thickness: ['5cm', '10cm', 'Other'],
-            density: ['Low', 'Medium', 'High', 'Other'],
-            rValue: ['R10', 'R20', 'Other'],
-            fireResistance: ['Yes', 'No', 'Other']
-        },
-        polyurethaneFoam: {
-            unit: 'm²',
-            type: ['Spray', 'Panel', 'Other'],
-            thickness: ['5cm', '10cm', 'Other'],
-            density: ['Low', 'Medium', 'High', 'Other'],
-            rValue: ['R10', 'R20', 'Other'],
-            fireResistance: ['Yes', 'No', 'Other']
-        },
-        polystyreneFoam: {
-            unit: 'm²',
-            type: ['Extruded', 'Expanded', 'Other'],
-            thickness: ['5cm', '10cm', 'Other'],
-            density: ['Low', 'Medium', 'High', 'Other'],
-            rValue: ['R10', 'R20', 'Other'],
-            fireResistance: ['Yes', 'No', 'Other']
-        },
-        fiberglass: {
-            unit: 'm²',
-            type: ['Batt', 'Blown', 'Other'],
-            thickness: ['5cm', '10cm', 'Other'],
-            density: ['Low', 'Medium', 'High', 'Other'],
-            rValue: ['R10', 'R20', 'Other'],
-            fireResistance: ['Yes', 'No', 'Other']
-        },
-        cellulose: {
-            unit: 'm²',
-            type: ['Blown', 'Loose-fill', 'Other'],
-            thickness: ['5cm', '10cm', 'Other'],
-            density: ['Low', 'Medium', 'High', 'Other'],
-            rValue: ['R10', 'R20', 'Other'],
-            fireResistance: ['Yes', 'No', 'Other']
-        },
-        foamBoard: {
-            unit: 'm²',
-            type: ['Polystyrene', 'Polyisocyanurate', 'Other'],
-            thickness: ['5cm', '10cm', 'Other'],
-            density: ['Low', 'Medium', 'High', 'Other'],
-            rValue: ['R10', 'R20', 'Other'],
-            fireResistance: ['Yes', 'No', 'Other']
-        }
-    }
-};
+// let OLDmaterialCategories = [
+//     {
+//         id: 1,
+//         application: "Structural Work",
+//         ignoreProperties: ['voltage', 'material', 'style', 'base'],
+//         categories: [
+//             {
+//                 materialName: 'Concrete',
+//                 unit: "m³",
+//                 types: ['Ready-Mix', 'Precast', 'On-Site', 'Other']
+//             },
+//             {
+//                 materialName: 'Cement',
+//                 unit: "kg",
+//                 types: ['Portland', 'Blended', 'Slag', 'Other']
+//             },
+//             {
+//                 materialName: 'Sand',
+//                 unit: "m³",
+//                 types: ['River', 'Beach', 'Quarry', 'Other']
+//             },
+//             {
+//                 materialName: 'Gravel',
+//                 unit: "m³",
+//                 types: ['Crushed', 'Natural', 'Recycled', 'Other']
+//             },
+//             {
+//                 materialName: 'Stone',
+//                 unit: "m²",
+//                 types: ['Granite', 'Marble', 'Limestone', 'Other']
+//             },
+//             {
+//                 materialName: 'Brick',
+//                 unit: "piece",
+//                 types: ['Clay', 'Concrete', 'Other']
+//             },
+//             {
+//                 materialName: 'Concrete Block',
+//                 unit: "piece",
+//                 types: ['Hollow', 'Solid', 'Other']
+//             }
+//         ]
+//     },
+//     {
+//         id: 2,
+//         application: "Secondary Work",
+//         ignoreProperties: ['voltage', 'style', 'material', 'base'],
+//         categories: [
+//             {
+//                 materialName: 'Timber for Framing',
+//                 unit: "m³",
+//                 types: ['Softwood', 'Hardwood', 'Other']
+//             },
+//             {
+//                 materialName: 'Wood for Joinery',
+//                 unit: "m²",
+//                 types: ['Oak', 'Pine', 'Other']
+//             },
+//             {
+//                 materialName: 'Metal for Framing',
+//                 unit: "kg",
+//                 types: ['Steel', 'Aluminum', 'Other']
+//             },
+//             {
+//                 materialName: 'Metal for Joinery',
+//                 unit: "kg",
+//                 types: ['Brass', 'Copper', 'Other']
+//             },
+//             {
+//                 materialName: 'Glass',
+//                 unit: "m²",
+//                 types: ['Tempered', 'Laminated', 'Other']
+//             },
+//             {
+//                 materialName: 'Aluminum',
+//                 unit: "kg",
+//                 types: ['Extruded', 'Cast', 'Other']
+//             },
+//             {
+//                 materialName: 'PVC',
+//                 unit: "m²",
+//                 types: []
+//             }
+//         ]
+//     },
+//     {
+//         id: 3,
+//         application: "Finishing",
+//         ignoreProperties: ['voltage', 'style', 'base'],
+//         categories: [
+//             {
+//                 materialName: 'Paint',
+//                 unit: "L",
+//                 types: ['Acrylic', 'Oil-Based', 'Other']
+//             },
+//             {
+//                 materialName: 'Varnish',
+//                 unit: "L",
+//                 types: ['Polyurethane', 'Shellac', 'Other']
+//             },
+//             {
+//                 materialName: 'Lacquer',
+//                 unit: "L",
+//                 types: ['Nitrocellulose', 'Polyurethane', 'Other']
+//             },
+//             {
+//                 materialName: 'Wallpaper',
+//                 unit: "m²",
+//                 types: ['Vinyl', 'Paper', 'Other']
+//             },
+//             {
+//                 materialName: 'Tile',
+//                 unit: "m²",
+//                 types: ['Ceramic', 'Porcelain', 'Other']
+//             },
+//             {
+//                 materialName: 'Parquet',
+//                 unit: "m²",
+//                 types: ['Oak', 'Maple', 'Other']
+//             },
+//             {
+//                 materialName: 'Carpet',
+//                 unit: "m²",
+//                 types: ['Wool', 'Synthetic', 'Other']
+//             }
+//         ]
+//     },
+//     {
+//         id: 4,
+//         application: "Insulation",
+//         ignoreProperties: ['voltage', 'size', 'color', 'style', 'material', 'finish', 'base'],
+//         categories: [
+//             {
+//                 materialName: 'Glass Wool',
+//                 unit: "m²",
+//                 types: ['Blown', 'Batt', 'Other']
+//             },
+//             {
+//                 materialName: 'Rock Wool',
+//                 unit: "m²",
+//                 types: ['Blown', 'Batt', 'Other']
+//             },
+//             {
+//                 materialName: 'Polyurethane Foam',
+//                 unit: "m²",
+//                 types: ['Spray', 'Board', 'Other']
+//             },
+//             {
+//                 materialName: 'Polyisocyanurate Foam',
+//                 unit: "m²",
+//                 types: ['Board', 'Other']
+//             },
+//             {
+//                 materialName: 'Wood Fiber',
+//                 unit: "m²",
+//                 types: ['Board', 'Other']
+//             },
+//             {
+//                 materialName: 'Bamboo Fiber',
+//                 unit: "m²",
+//                 types: ['Board', 'Other']
+//             },
+//             {
+//                 materialName: 'Hemp Fiber',
+//                 unit: "m²",
+//                 types: ['Board', 'Other']
+//             }
+//         ]
+//     },
+//     {
+//         id: 5,
+//         application: "Electricity",
+//         ignoreProperties: ['thickness', 'material', 'base', 'finish'],
+//         categories: [
+//             {
+//                 materialName: 'Electrical Cable',
+//                 unit: "m",
+//                 types: ['Copper', 'Aluminum', 'Other']
+//             },
+//             {
+//                 materialName: 'Power Outlet',
+//                 unit: "piece",
+//                 types: ['Standard', 'GFCI', 'Other']
+//             },
+//             {
+//                 materialName: 'Light Switch',
+//                 unit: "piece",
+//                 types: ['Toggle', 'Dimmer', 'Other']
+//             },
+//             {
+//                 materialName: 'Electrical Plug',
+//                 unit: "piece",
+//                 types: ['2-Prong', '3-Prong', 'Other']
+//             },
+//             {
+//                 materialName: 'Lamp',
+//                 unit: "piece",
+//                 types: ['Incandescent', 'LED', 'Other']
+//             },
+//             {
+//                 materialName: 'Light Bulb',
+//                 unit: "piece",
+//                 types: ['Incandescent', 'LED', 'Other']
+//             },
+//             {
+//                 materialName: 'LED Lighting',
+//                 unit: "piece",
+//                 types: ['Strip', 'Bulb', 'Other']
+//             }
+//         ]
+//     },
+//     {
+//         id: 6,
+//         application: "Plumbing",
+//         ignoreProperties: ['voltage', 'material', 'voltage'],
+//         categories: [
+//             {
+//                 materialName: 'Copper Pipe',
+//                 unit: "m",
+//                 types: ['Type L', 'Type K', 'Other']
+//             },
+//             {
+//                 materialName: 'PVC Pipe',
+//                 unit: "m",
+//                 types: ['Schedule 40', 'Schedule 80', 'Other']
+//             },
+//             {
+//                 materialName: 'PE Pipe',
+//                 unit: "m",
+//                 types: ['HDPE', 'LDPE', 'Other']
+//             },
+//             {
+//                 materialName: 'Faucet',
+//                 unit: "piece",
+//                 types: ['Single Handle', 'Double Handle', 'Other']
+//             },
+//             {
+//                 materialName: 'Sink',
+//                 unit: "piece",
+//                 types: ['Single Bowl', 'Double Bowl', 'Other']
+//             },
+//             {
+//                 materialName: 'Bathtub',
+//                 unit: "piece",
+//                 types: ['Freestanding', 'Built-in', 'Other']
+//             },
+//             {
+//                 materialName: 'Shower',
+//                 unit: "piece",
+//                 types: ['Wall-Mounted', 'Ceiling-Mounted', 'Other']
+//             }
+//         ]
+//     },
+//     {
+//         id: 7,
+//         application: "Heating",
+//         ignoreProperties: ['voltage'],
+//         categories: [
+//             {
+//                 materialName: 'Gas Boiler',
+//                 unit: "piece",
+//                 types: ['Condensing', 'Non-Condensing', 'Other']
+//             },
+//             {
+//                 materialName: 'Oil Boiler',
+//                 unit: "piece",
+//                 types: ['Condensing', 'Non-Condensing', 'Other']
+//             },
+//             {
+//                 materialName: 'Wood Boiler',
+//                 unit: "piece",
+//                 types: ['Condensing', 'Non-Condensing', 'Other']
+//             },
+//             {
+//                 materialName: 'Coal Boiler',
+//                 unit: "piece",
+//                 types: ['Condensing', 'Non-Condensing', 'Other']
+//             },
+//             {
+//                 materialName: 'Cast Iron Radiator',
+//                 unit: "piece",
+//                 types: ['Wall-Mounted', 'Floor-Mounted', 'Other']
+//             },
+//             {
+//                 materialName: 'Steel Radiator',
+//                 unit: "piece",
+//                 types: ['Wall-Mounted', 'Floor-Mounted', 'Other']
+//             },
+//             {
+//                 materialName: 'Aluminum Radiator',
+//                 unit: "piece",
+//                 types: ['Wall-Mounted', 'Floor-Mounted', 'Other']
+//             }
+//         ]
+//     },
+//     {
+//         id: 8,
+//         application: "Decoration",
+//         ignoreProperties: ['voltage'],
+//         categories: [
+//             {
+//                 materialName: 'Wooden Furniture',
+//                 unit: "piece",
+//                 types: ['Chair', 'Table', 'Other']
+//             },
+//             {
+//                 materialName: 'Metal Furniture',
+//                 unit: "piece",
+//                 types: ['Chair', 'Table', 'Other']
+//             },
+//             {
+//                 materialName: 'Glass Furniture',
+//                 unit: "piece",
+//                 types: ['Table', 'Shelf', 'Other']
+//             },
+//             {
+//                 materialName: 'Wall Covering',
+//                 unit: "m²",
+//                 types: ['Wallpaper', 'Paint', 'Other']
+//             },
+//             {
+//                 materialName: 'Wallpaper',
+//                 unit: "m²",
+//                 types: ['Vinyl', 'Paper', 'Other']
+//             },
+//             {
+//                 materialName: 'Paint',
+//                 unit: "L",
+//                 types: ['Acrylic', 'Oil-Based', 'Other']
+//             },
+//             {
+//                 materialName: 'Varnish',
+//                 unit: "L",
+//                 types: ['Polyurethane', 'Shellac', 'Other']
+//             }
+//         ]
+//     },
+//     {
+//         id: 9,
+//         application: "Lighting",
+//         ignoreProperties: ['voltage'],
+//         categories: [
+//             {
+//                 materialName: 'Pendant Light',
+//                 unit: "piece",
+//                 types: ['Single', 'Cluster', 'Other']
+//             },
+//             {
+//                 materialName: 'Ceiling Light',
+//                 unit: "piece",
+//                 types: ['Flush', 'Semi-Flush', 'Other']
+//             },
+//             {
+//                 materialName: 'Wall Light',
+//                 unit: "piece",
+//                 types: ['Sconce', 'Swing Arm', 'Other']
+//             },
+//             {
+//                 materialName: 'Floor Lamp',
+//                 unit: "piece",
+//                 types: ['Standard', 'Arc', 'Other']
+//             },
+//             {
+//                 materialName: 'Table Lamp',
+//                 unit: "piece",
+//                 types: ['Desk', 'Bedside', 'Other']
+//             },
+//             {
+//                 materialName: 'Chandelier',
+//                 unit: "piece",
+//                 types: ['Crystal', 'Drum', 'Other']
+//             },
+//             {
+//                 materialName: 'LED Lighting',
+//                 unit: "piece",
+//                 types: ['Strip', 'Bulb', 'Other']
+//             }
+//         ]
+//     }
+// ];
 
-
-let cats = [
+let materialCategories = [
     {
         id: 1,
-        category: 'Structural Work',
-        materials: [
+        application: "Structural Work",
+        ignoreProperties: [
+            "voltage",
+            "material",
+            "base"
+        ],
+        categories: [
             {
-                name: "Concrete",
-                type: ['Ready-Mix', 'Precast', 'On-Site', 'Other'],
-                characteristic1: ['C25', 'C30', 'C40', 'Other'],
-                characteristic2: ['Grey', 'White', 'Beige', 'Other'],
-                characteristic3: ['High', 'Medium', 'Low', 'Other'],
-                characteristic4: ['Fast', 'Slow', 'Medium', 'Other']
+                materialName: "Concrete",
+                unit: "m³",
+                types: [
+                    "Ready-Mix",
+                    "Precast",
+                    "On-Site",
+                    "Other"
+                ]
             },
             {
-                name: "Cement",
-                type: ['Portland', 'Blended', 'Slag', 'Other'],
-                characteristic1: ['42.5', '52.5', '32.5', 'Other'],
-                characteristic2: ['Grey', 'White', 'Beige', 'Other'],
-                characteristic3: ['High', 'Medium', 'Low', 'Other'],
-                characteristic4: ['Fast', 'Slow', 'Medium', 'Other']
+                materialName: "Cement",
+                unit: "kg",
+                types: [
+                    "Portland",
+                    "Blended",
+                    "Slag",
+                    "Other"
+                ]
             },
             {
-                name: "Sand",
-                type: ['River', 'Beach', 'Quarry', 'Other'],
-                characteristic1: ['Fine', 'Coarse', 'Medium', 'Other'],
-                characteristic2: ['Small', 'Large', 'Medium', 'Other'],
-                characteristic3: ['Beige', 'Brown', 'White', 'Other'],
-                characteristic4: ['Low', 'High', 'Medium', 'Other']
+                materialName: "Sand",
+                unit: "m³",
+                types: [
+                    "River",
+                    "Beach",
+                    "Quarry",
+                    "Other"
+                ]
             },
             {
-                name: "Gravel",
-                type: ['Crushed', 'Natural', 'Recycled', 'Other'],
-                characteristic1: ['5mm', '10mm', '20mm', 'Other'],
-                characteristic2: ['Grey', 'Brown', 'Black', 'Other'],
-                characteristic3: ['Round', 'Angular', 'Mixed', 'Other'],
-                characteristic4: ['Soft', 'Hard', 'Medium', 'Other']
+                materialName: "Gravel",
+                unit: "m³",
+                types: [
+                    "Crushed",
+                    "Natural",
+                    "Recycled",
+                    "Other"
+                ]
             },
             {
-                name: "Stone",
-                type: ['Granite', 'Marble', 'Limestone', 'Other'],
-                characteristic1: ['Polished', 'Rough', 'Honed', 'Other'],
-                characteristic2: ['Black', 'White', 'Grey', 'Other'],
-                characteristic3: ['1cm', '2cm', '3cm', 'Other'],
-                characteristic4: ['Smooth', 'Rough', 'Other']
+                materialName: "Stone",
+                unit: "m²",
+                types: [
+                    "Granite",
+                    "Marble",
+                    "Limestone",
+                    "Other"
+                ]
             },
             {
-                name: "Brick",
-                type: ['Clay', 'Concrete', 'Other'],
-                characteristic1: ['Standard', 'Jumbo', 'Other'],
-                characteristic2: ['Red', 'Grey', 'Brown', 'Other'],
-                characteristic3: ['High', 'Medium', 'Low', 'Other'],
-                characteristic4: ['Smooth', 'Rough', 'Other']
+                materialName: "Brick",
+                unit: "piece",
+                types: [
+                    "Clay",
+                    "Concrete",
+                    "Other"
+                ]
             },
             {
-                name: "Concrete Block",
-                type: ['Hollow', 'Solid', 'Other'],
-                characteristic1: ['8"', '10"', '12"', 'Other'],
-                characteristic2: ['Grey', 'White', 'Other'],
-                characteristic3: ['High', 'Medium', 'Low', 'Other'],
-                characteristic4: ['Smooth', 'Rough', 'Other']
+                materialName: "Concrete Block",
+                unit: "piece",
+                types: [
+                    "Hollow",
+                    "Solid",
+                    "Other"
+                ]
             }
         ]
     },
     {
         id: 2,
-        category: 'Secondary Work',
-        materials: [
+        application: "Secondary Work",
+        ignoreProperties: [
+            "voltage",
+            "material",
+            "base"
+        ],
+        categories: [
             {
-                name: "Timber for Framing",
-                type: ['Softwood', 'Hardwood', 'Other'],
-                characteristic1: ['A', 'B', 'C', 'Other'],
-                characteristic2: ['Natural', 'Stained', 'Painted', 'Other'],
-                characteristic3: ['2x4', '2x6', 'Other'],
-                characteristic4: ['Low', 'High', 'Medium', 'Other']
+                materialName: "Timber for Framing",
+                unit: "m³",
+                types: [
+                    "Softwood",
+                    "Hardwood",
+                    "Other"
+                ]
             },
             {
-                name: "Wood for Joinery",
-                type: ['Oak', 'Pine', 'Other'],
-                characteristic1: ['A', 'B', 'C', 'Other'],
-                characteristic2: ['Natural', 'Stained', 'Painted', 'Other'],
-                characteristic3: ['1x2', '1x4', 'Other'],
-                characteristic4: ['Low', 'High', 'Medium', 'Other']
+                materialName: "Wood for Joinery",
+                unit: "m²",
+                types: [
+                    "Oak",
+                    "Pine",
+                    "Other"
+                ]
             },
             {
-                name: "Metal for Framing",
-                type: ['Steel', 'Aluminum', 'Other'],
-                characteristic1: ['A36', '6061', 'Other'],
-                characteristic2: ['Polished', 'Brushed', 'Painted', 'Other'],
-                characteristic3: ['1"', '2"', 'Other'],
-                characteristic4: ['1mm', '2mm', 'Other']
+                materialName: "Metal for Framing",
+                unit: "kg",
+                types: [
+                    "Steel",
+                    "Aluminum",
+                    "Other"
+                ]
             },
             {
-                name: "Metal for Joinery",
-                type: ['Brass', 'Copper', 'Other'],
-                characteristic1: ['A', 'B', 'C', 'Other'],
-                characteristic2: ['Polished', 'Brushed', 'Painted', 'Other'],
-                characteristic3: ['1"', '2"', 'Other'],
-                characteristic4: ['1mm', '2mm', 'Other']
+                materialName: "Metal for Joinery",
+                unit: "kg",
+                types: [
+                    "Brass",
+                    "Copper",
+                    "Other"
+                ]
             },
             {
-                name: "Glass",
-                type: ['Tempered', 'Laminated', 'Other'],
-                characteristic1: ['5mm', '10mm', 'Other'],
-                characteristic2: ['Clear', 'Tinted', 'Other'],
-                characteristic3: ['High', 'Medium', 'Low', 'Other'],
-                characteristic4: ['High', 'Medium', 'Low', 'Other']
+                materialName: "Glass",
+                unit: "m²",
+                types: [
+                    "Tempered",
+                    "Laminated",
+                    "Other"
+                ]
             },
             {
-                name: "Aluminum",
-                type: ['Extruded', 'Cast', 'Other'],
-                characteristic1: ['6061', '7075', 'Other'],
-                characteristic2: ['Polished', 'Brushed', 'Painted', 'Other'],
-                characteristic3: ['1"', '2"', 'Other'],
-                characteristic4: ['1mm', '2mm', 'Other']
+                materialName: "Aluminum",
+                unit: "kg",
+                types: [
+                    "Extruded",
+                    "Cast",
+                    "Other"
+                ]
             },
             {
-                name: "PVC",
-                type: [''],
-                characteristic1: ['2mm', '5mm', 'Other'],
-                characteristic2: ['White', 'Grey', 'Other'],
-                characteristic3: ['High', 'Medium', 'Low', 'Other'],
-                characteristic4: ['Smooth', 'Rough', 'Other']
+                materialName: "PVC",
+                unit: "m²",
+                types: []
+            }
+        ]
+    },
+    {
+        id: 3,
+        application: "Finishing",
+        ignoreProperties: [
+            "voltage"
+        ],
+        categories: [
+            {
+                materialName: "Paint",
+                unit: "L",
+                types: [
+                    "Acrylic",
+                    "Oil-Based",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Varnish",
+                unit: "L",
+                types: [
+                    "Polyurethane",
+                    "Shellac",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Lacquer",
+                unit: "L",
+                types: [
+                    "Nitrocellulose",
+                    "Polyurethane",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Wallpaper",
+                unit: "m²",
+                types: [
+                    "Vinyl",
+                    "Paper",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Tile",
+                unit: "m²",
+                types: [
+                    "Ceramic",
+                    "Porcelain",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Parquet",
+                unit: "m²",
+                types: [
+                    "Oak",
+                    "Maple",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Carpet",
+                unit: "m²",
+                types: [
+                    "Wool",
+                    "Synthetic",
+                    "Other"
+                ]
+            }
+        ]
+    },
+    {
+        id: 4,
+        application: "Insulation",
+        ignoreProperties: [
+            "voltage",
+            "size",
+            "color",
+            "style",
+            "material",
+            "finish",
+            "base"
+        ],
+        categories: [
+            {
+                materialName: "Glass Wool",
+                unit: "m²",
+                types: [
+                    "Blown",
+                    "Batt",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Rock Wool",
+                unit: "m²",
+                types: [
+                    "Blown",
+                    "Batt",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Polyurethane Foam",
+                unit: "m²",
+                types: [
+                    "Spray",
+                    "Board",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Polyisocyanurate Foam",
+                unit: "m²",
+                types: [
+                    "Board",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Wood Fiber",
+                unit: "m²",
+                types: [
+                    "Board",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Bamboo Fiber",
+                unit: "m²",
+                types: [
+                    "Board",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Hemp Fiber",
+                unit: "m²",
+                types: [
+                    "Board",
+                    "Other"
+                ]
+            }
+        ]
+    },
+    {
+        id: 5,
+        application: "Electricity",
+        ignoreProperties: [
+            "thickness",
+            "material",
+            "base",
+            "finish"
+        ],
+        categories: [
+            {
+                materialName: "Electrical Cable",
+                unit: "m",
+                types: [
+                    "Copper",
+                    "Aluminum",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Power Outlet",
+                unit: "piece",
+                types: [
+                    "Standard",
+                    "GFCI",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Light Switch",
+                unit: "piece",
+                types: [
+                    "Toggle",
+                    "Dimmer",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Electrical Plug",
+                unit: "piece",
+                types: [
+                    "2-Prong",
+                    "3-Prong",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Lamp",
+                unit: "piece",
+                types: [
+                    "Incandescent",
+                    "LED",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Light Bulb",
+                unit: "piece",
+                types: [
+                    "Incandescent",
+                    "LED",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "LED Lighting",
+                unit: "piece",
+                types: [
+                    "Strip",
+                    "Bulb",
+                    "Other"
+                ]
+            }
+        ]
+    },
+    {
+        id: 6,
+        application: "Plumbing",
+        ignoreProperties: [
+            "voltage",
+            "material"
+        ],
+        categories: [
+            {
+                materialName: "Copper Pipe",
+                unit: "m",
+                types: [
+                    "Type L",
+                    "Type K",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "PVC Pipe",
+                unit: "m",
+                types: [
+                    "Schedule 40",
+                    "Schedule 80",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "PE Pipe",
+                unit: "m",
+                types: [
+                    "HDPE",
+                    "LDPE",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Faucet",
+                unit: "piece",
+                types: [
+                    "Single Handle",
+                    "Double Handle",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Sink",
+                unit: "piece",
+                types: [
+                    "Single Bowl",
+                    "Double Bowl",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Bathtub",
+                unit: "piece",
+                types: [
+                    "Freestanding",
+                    "Built-in",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Shower",
+                unit: "piece",
+                types: [
+                    "Wall-Mounted",
+                    "Ceiling-Mounted",
+                    "Other"
+                ]
+            }
+        ]
+    },
+    {
+        id: 7,
+        application: "Heating",
+        ignoreProperties: ['thickness', 'base', 'voltage','finish'],
+        categories: [
+            {
+                materialName: "Gas Boiler",
+                unit: "piece",
+                types: [
+                    "Condensing",
+                    "Non-Condensing",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Oil Boiler",
+                unit: "piece",
+                types: [
+                    "Condensing",
+                    "Non-Condensing",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Wood Boiler",
+                unit: "piece",
+                types: [
+                    "Condensing",
+                    "Non-Condensing",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Coal Boiler",
+                unit: "piece",
+                types: [
+                    "Condensing",
+                    "Non-Condensing",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Cast Iron Radiator",
+                unit: "piece",
+                types: [
+                    "Wall-Mounted",
+                    "Floor-Mounted",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Steel Radiator",
+                unit: "piece",
+                types: [
+                    "Wall-Mounted",
+                    "Floor-Mounted",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Aluminum Radiator",
+                unit: "piece",
+                types: [
+                    "Wall-Mounted",
+                    "Floor-Mounted",
+                    "Other"
+                ]
+            }
+        ]
+    },
+    {
+        id: 8,
+        application: "Decoration",
+        ignoreProperties: ['thickness', 'voltage'],
+
+        categories: [
+            {
+                materialName: "Wooden Furniture",
+                unit: "piece",
+                types: [
+                    "Chair",
+                    "Table",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Metal Furniture",
+                unit: "piece",
+                types: [
+                    "Chair",
+                    "Table",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Glass Furniture",
+                unit: "piece",
+                types: [
+                    "Table",
+                    "Shelf",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Wall Covering",
+                unit: "m²",
+                types: [
+                    "Wallpaper",
+                    "Paint",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Wallpaper",
+                unit: "m²",
+                types: [
+                    "Vinyl",
+                    "Paper",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Paint",
+                unit: "L",
+                types: [
+                    "Acrylic",
+                    "Oil-Based",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Varnish",
+                unit: "L",
+                types: [
+                    "Polyurethane",
+                    "Shellac",
+                    "Other"
+                ]
+            }
+        ]
+    },
+    {
+        id: 9,
+        application: "Lighting",
+        ignoreProperties: ['thickness', 'base', 'voltage', 'finish'],
+
+        categories: [
+            {
+                materialName: "Pendant Light",
+                unit: "piece",
+                types: [
+                    "Single",
+                    "Cluster",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Ceiling Light",
+                unit: "piece",
+                types: [
+                    "Flush",
+                    "Semi-Flush",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Wall Light",
+                unit: "piece",
+                types: [
+                    "Sconce",
+                    "Swing Arm",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Floor Lamp",
+                unit: "piece",
+                types: [
+                    "Standard",
+                    "Arc",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Table Lamp",
+                unit: "piece",
+                types: [
+                    "Desk",
+                    "Bedside",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "Chandelier",
+                unit: "piece",
+                types: [
+                    "Crystal",
+                    "Drum",
+                    "Other"
+                ]
+            },
+            {
+                materialName: "LED Lighting",
+                unit: "piece",
+                types: [
+                    "Strip",
+                    "Bulb",
+                    "Other"
+                ]
+            }
+        ]
+    },
+    {
+        id: 10,
+        application: "Air Conditioning",
+        ignoreProperties: ['thickness', 'base', 'voltage', 'finish'],
+        categories: [
+            {
+                materialName: 'Wall-Mounted Air Conditioner',
+                unit: "piece",
+                types: ['Split', 'Window', 'Other']
+            },
+            {
+                materialName: 'Split Air Conditioner',
+                unit: "piece",
+                types: ['Ductless', 'Ducted', 'Other']
+            },
+            {
+                materialName: 'Ceiling Fan',
+                unit: "piece",
+                types: ['With Light', 'Without Light', 'Other']
+            },
+            {
+                materialName: 'Standing Fan',
+                unit: "piece",
+                types: ['Oscillating', 'Non-Oscillating', 'Other']
+            },
+            {
+                materialName: 'Table Fan',
+                unit: "piece",
+                types: ['Oscillating', 'Non-Oscillating', 'Other']
+            }
+        ]
+    },
+    {
+        id: 11,
+        application: "Security",
+        ignoreProperties: ['thickness', 'base', 'voltage', 'finish'],
+        categories: [
+            {
+                materialName: 'Fire Alarm',
+                unit: "piece",
+                types: ['Smoke', 'Heat', 'Other']
+            },
+            {
+                materialName: 'Smoke Detector',
+                unit: "piece",
+                types: ['Ionization', 'Photoelectric', 'Other']
+            },
+            {
+                materialName: 'Carbon Monoxide Detector',
+                unit: "piece",
+                types: ['Battery-Operated', 'Hardwired', 'Other']
+            },
+            {
+                materialName: 'Surveillance Camera',
+                unit: "piece",
+                types: ['Dome', 'Bullet', 'Other']
+            },
+            {
+                materialName: 'Alarm System',
+                unit: "piece",
+                types: ['Wired', 'Wireless', 'Other']
+            },
+            {
+                materialName: 'Electronic Lock',
+                unit: "piece",
+                types: ['Keypad', 'Biometric', 'Other']
+            }
+        ]
+    },
+    {
+        id: 12,
+        application: "Home Automation",
+        ignoreProperties: ['thickness', 'base', 'voltage', 'finish'],
+        categories: [
+            {
+                materialName: 'Smart Thermostat',
+                unit: "piece",
+                types: ['Wi-Fi', 'Z-Wave', 'Other']
+            },
+            {
+                materialName: 'Smart Switch',
+                unit: "piece",
+                types: ['Wi-Fi', 'Z-Wave', 'Other']
+            },
+            {
+                materialName: 'Smart Plug',
+                unit: "piece",
+                types: ['Wi-Fi', 'Z-Wave', 'Other']
+            },
+            {
+                materialName: 'Smart Lighting',
+                unit: "piece",
+                types: ['Wi-Fi', 'Z-Wave', 'Other']
+            },
+            {
+                materialName: 'Motorized Roller Blind',
+                unit: "piece",
+                types: ['Wi-Fi', 'Z-Wave', 'Other']
+            },
+            {
+                materialName: 'Voice Assistant',
+                unit: "piece",
+                types: ['Wi-Fi', 'Bluetooth', 'Other']
+            }
+        ]
+    },
+    {
+        id: 13,
+        application: "Gardening",
+        ignoreProperties: ['voltage', 'base', 'finish'],
+        categories: [
+            {
+                materialName: 'Artificial Grass',
+                unit: "m²",
+                types: ['Short', 'Long', 'Other']
+            },
+            {
+                materialName: 'Paving Stone',
+                unit: "m²",
+                types: ['Concrete', 'Natural', 'Other']
+            },
+            {
+                materialName: 'Decorative Gravel',
+                unit: "m³",
+                types: ['Natural', 'Synthetic', 'Other']
+            },
+            {
+                materialName: 'Potting Soil',
+                unit: "m³",
+                types: ['Organic', 'Inorganic', 'Other']
+            },
+            {
+                materialName: 'Fertilizer',
+                unit: "kg",
+                types: ['Organic', 'Synthetic', 'Other']
+            },
+            {
+                materialName: 'Potted Plant',
+                unit: "piece",
+                types: ['Indoor', 'Outdoor', 'Other']
+            },
+            {
+                materialName: 'Shrub',
+                unit: "piece",
+                types: ['Evergreen', 'Deciduous', 'Other']
+            }
+        ]
+    },
+    {
+        id: 14,
+        application: "Outdoor Furnishing",
+        ignoreProperties: ['voltage', 'base', 'finish', 'thickness'],
+        categories: [
+            {
+                materialName: 'Wooden Deck',
+                unit: "m²",
+                types: ['Natural', 'Composite', 'Other']
+            },
+            {
+                materialName: 'Composite Deck',
+                unit: "m²",
+                types: ['Natural', 'Composite', 'Other']
+            },
+            {
+                materialName: 'Pergola',
+                unit: "piece",
+                types: ['Wooden', 'Metal', 'Other']
+            },
+            {
+                materialName: 'Wooden Fence',
+                unit: "m",
+                types: ['Picket', 'Privacy', 'Other']
+            },
+            {
+                materialName: 'Metal Fence',
+                unit: "m",
+                types: ['Chain-Link', 'Wrought Iron', 'Other']
+            },
+            {
+                materialName: 'PVC Fence',
+                unit: "m",
+                types: ['Picket', 'Privacy', 'Other']
+            },
+            {
+                materialName: 'Gate',
+                unit: "piece",
+                types: ['Wooden', 'Metal', 'Other']
+            }
+        ]
+    },
+    {
+        id: 15,
+        application: "Kitchen",
+        ignoreProperties: ['voltage', 'base', 'finish', 'thickness'],
+        categories: [
+            {
+                materialName: 'Stainless Steel Sink',
+                unit: "piece",
+                types: ['Single Bowl', 'Double Bowl', 'Other']
+            },
+            {
+                materialName: 'Ceramic Sink',
+                unit: "piece",
+                types: ['Single Bowl', 'Double Bowl', 'Other']
+            },
+            {
+                materialName: 'Cooktop',
+                unit: "piece",
+                types: ['Gas', 'Electric', 'Other']
+            },
+            {
+                materialName: 'Range Hood',
+                unit: "piece",
+                types: ['Ducted', 'Ductless', 'Other']
+            }
+        ]
+    },
+    {
+        id: 16,
+        application: "Bathroom",
+        ignoreProperties: ['voltage', 'base', 'finish', 'thickness'],
+        categories: [
+            {
+                materialName: 'Washbasin',
+                unit: "piece",
+                types: ['Pedestal', 'Wall-Mounted', 'Other']
+            },
+            {
+                materialName: 'Bidet',
+                unit: "piece",
+                types: ['Floor-Mounted', 'Wall-Mounted', 'Other']
+            },
+            {
+                materialName: 'Wall-Mounted Toilet',
+                unit: "piece",
+                types: ['Standard', 'Dual Flush', 'Other']
+            },
+            {
+                materialName: 'Floor-Mounted Toilet',
+                unit: "piece",
+                types: ['Standard', 'Dual Flush', 'Other']
+            },
+            {
+                materialName: 'Towel Rail',
+                unit: "piece",
+                types: ['Wall-Mounted', 'Floor-Mounted', 'Other']
+            }
+        ]
+    },
+    {
+        id: 17,
+        application: "Floor Coverings",
+        ignoreProperties: ['voltage', 'material', 'size', 'base'],
+        categories: [
+            {
+                materialName: 'Floating Parquet',
+                unit: "m²",
+                types: ['Oak', 'Maple', 'Other']
+            },
+            {
+                materialName: 'Solid Parquet',
+                unit: "m²",
+                types: ['Oak', 'Maple', 'Other']
+            },
+            {
+                materialName: 'Laminate Parquet',
+                unit: "m²",
+                types: ['Oak', 'Maple', 'Other']
+            },
+            {
+                materialName: 'Vinyl',
+                unit: "m²",
+                types: ['Sheet', 'Tile', 'Other']
+            },
+            {
+                materialName: 'Linoleum',
+                unit: "m²",
+                types: ['Sheet', 'Tile', 'Other']
+            },
+            {
+                materialName: 'PVC Tile',
+                unit: "m²",
+                types: ['Sheet', 'Tile', 'Other']
+            }
+        ]
+    },
+    {
+        id: 18,
+        application: "Wall Coverings",
+        ignoreProperties: ['voltage', 'material', 'size', 'base'],
+        categories: [
+            {
+                materialName: 'Wainscoting',
+                unit: "m²",
+                types: ['Wood', 'Plastic', 'Other']
+            },
+            {
+                materialName: 'Wood Panel',
+                unit: "m²",
+                types: ['Oak', 'Maple', 'Other']
+            },
+            {
+                materialName: 'Metal Panel',
+                unit: "m²",
+                types: ['Steel', 'Aluminum', 'Other']
+            },
+            {
+                materialName: 'Glass Panel',
+                unit: "m²",
+                types: ['Tempered', 'Laminated', 'Other']
+            },
+            {
+                materialName: 'Plaster Panel',
+                unit: "m²",
+                types: ['Gypsum', 'Fiber', 'Other']
+            }
+        ]
+    },
+    {
+        id: 19,
+        application: "Accessories",
+        ignoreProperties: ['voltage', 'base', 'finish', 'thickness'],
+        categories: [
+            {
+                materialName: 'Blind',
+                unit: "piece",
+                types: ['Roller', 'Venetian', 'Other']
+            },
+            {
+                materialName: 'Shutter',
+                unit: "piece",
+                types: ['Wooden', 'Metal', 'Other']
+            },
+            {
+                materialName: 'Photo Frame',
+                unit: "piece",
+                types: ['Wooden', 'Metal', 'Other']
             }
         ]
     }
 ];
 
 
-export {cats}
+let materialColors = [
+    "Grey", "White", "Beige", "Brown", "Black", "Red",
+    "Clear", "Tinted", "Copper", "Silver", "Yellow", "Other"
+];
+
+let materialSizes = [
+    "Small", "Large", "Medium", "Standard", "Jumbo",
+    "8\"", "10\"", "12\"", "2x4", "2x6", "1\"", "2\"",
+    "30x30", "60x60", "10x10", "20x20", "1mm", "2mm",
+    "5mm", "10mm", "20mm", "5cm", "10cm", "50cm", "100cm", "Other"
+];
+
+let materials = [
+    "Wool", "Nylon", "Stainless Steel", "Ceramic",
+    "Acrylic", "Cast Iron", "Steel", "Aluminum",
+    "Glass", "Metal", "Plastic", "Wood", "Oak", "Pine", "Other"
+];
+
+let materialBases = [
+    "Water", "Oil", "Other"
+];
+
+let materialThickness = [
+    "1cm", "2cm", "3cm", "5mm", "10mm", "20mm",
+    "1mm", "2mm", "5cm", "10cm", "Other"
+];
+
+let materialFinish = [
+    "Polished", "Rough", "Honed", "Natural", "Stained",
+    "Painted", "Brushed", "Matte", "Gloss", "Satin", "Chrome", "Other"
+];
+
+let materialVoltage = [
+    "110V", "220V", "Other"
+];
+
+
+
+export { materialCategories, materialColors, materialSizes, materialBases, materialThickness, materialFinish, materialVoltage, materials }

@@ -73,7 +73,7 @@ const ConstructionCard = ({ data }) => {
             </div>
 
             <div className="content">
-                <Link to={`../construction/${_id}`}>
+                <Link to={`../materials/${_id}`}>
                     <div className="d-flex justify-content-between align-items-center">
                         <h3 className="card-title">{title && (title.slice(0, 17)) + (title.length > 17 ? "..." : "")}</h3>
                         <h5 className='color-primary'>MAD {formatPrice(budget)}</h5>
@@ -81,8 +81,8 @@ const ConstructionCard = ({ data }) => {
                     </div>
 
                     <p className="paragraph">{city}, {country}</p>
-                    <p className='mb-1'>{category} ({unit})</p>
-                    <p className='color-secondary'>{application}</p>
+                    <p className='mb-1'>{application} ({unit})</p>
+                    <p className='color-secondary'>{category}</p>
 
                     {description && <p className='mb-2 mt-1 color-secondary description' dangerouslySetInnerHTML={{ __html: description.substring(0, 120) }}></p>}
 
@@ -96,14 +96,14 @@ const ConstructionCard = ({ data }) => {
                                 </div>
                             )
                         }
-                        {
+                        {/* {
                             condition !== '' && (
                                 <div className='d-flex align-items-center'>
                                     <GrStatusInfo className='feature-icon' />
                                     <p className="feature-text">{condition}</p>
                                 </div>
                             )
-                        }
+                        } */}
                     </div>
 
                     <div className="d-flex justify-content-between align-items-center property-features">

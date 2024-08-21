@@ -32,7 +32,7 @@ export default function AddFurniture() {
     const [furnitureID, setFurnitureID] = useState('')
     const [showUploadedImages, setShowUploadedImages] = useState(false)
     const [uploadedImages, setUploadedImages] = useState([])
-    
+
     const [country, setCountry] = useState('')
     const [state, setState] = useState('') // calling it as region below
     const [city, setCity] = useState('')
@@ -54,6 +54,15 @@ export default function AddFurniture() {
     const [article, setArticle] = useState('')
 
 
+    const [otherFeature, setOtherFeature] = useState('')
+    const [otherBrand, setOtherBrand] = useState('')
+    const [otherColor, setOtherColor] = useState('')
+
+    const [showOtherFeature, setShowOtherFeature] = useState(false)
+    const [showOtherBrand, setShowOtherBrand] = useState(false)
+    const [showOtherColor, setShowOtherColor] = useState(false)
+
+
     const [countries, setCountries] = useState([])
     const [states, setStates] = useState([])
     const [cities, setCities] = useState([])
@@ -64,6 +73,12 @@ export default function AddFurniture() {
     const [updatePage, setUpdatePage] = useState(false)
     const location = useLocation()
 
+
+    const updateOtherFields = (data) => {
+        setShowOtherColor(data.otherColor === "Other");
+        setShowOtherBrand(data.otherBrand === "Other");
+        setShowOtherFeature(data.otherFeature === "Other");
+    };
 
     let params = useParams()
     useEffect(() => {
@@ -104,6 +119,17 @@ export default function AddFurniture() {
                         setDimensions(result.data.dimensions);
                         setFeature(result.data.feature);
                         setStyle(result.data.style);
+
+
+                        setOtherColor(result.data.otherColor)
+                        setOtherBrand(result.data.otherBrand)
+                        setOtherFeature(result.data.otherFeature)
+                        updateOtherFields({
+                            otherColor: result.data.color,
+                            otherFeature: result.data.feature,
+                            otherBrand: result.data.brand
+                        })
+
 
                         setUploadedImages(result.data.images.map((img, i) => {
                             return ({
@@ -369,6 +395,9 @@ export default function AddFurniture() {
                 feature: feature,
                 dimensions: dimensions,
                 style: style,
+                otherBrand,
+                otherFeature,
+                otherColor,
                 status: true
             };
 
@@ -390,6 +419,7 @@ export default function AddFurniture() {
                     setIsLoading(false)
                     if (result.status) {
                         toast.success(result.message)
+                        resetAllFields()
                     }
                     else {
                         toast.error(result.message)
@@ -435,6 +465,9 @@ export default function AddFurniture() {
                 feature: feature,
                 dimensions: dimensions,
                 style: style,
+                otherBrand,
+                otherFeature,
+                otherColor,
                 status: true
             };
 
@@ -492,6 +525,13 @@ export default function AddFurniture() {
         setFeature('');
         setQuantity('');
         setArticle('');
+        setOtherBrand('')
+        setOtherColor('')
+        setOtherFeature('')
+
+        setShowOtherBrand(false)
+        setShowOtherFeature(false)
+        setShowOtherColor(false)
     }
 
     const handleBudgetCheck = (e) => {
@@ -554,8 +594,8 @@ export default function AddFurniture() {
                                 <div className="split">
 
                                     <div className="formSide side_2">
+                                        <div className="info">Category and pricing</div>
                                         <div className="form-group form-group-sm mb-3">
-                                            <div className="info">Category and pricing</div>
 
                                             <label htmlFor="" className='mb-1'>Category*</label>
                                             <select name="" id="" className="custom-input" onChange={e => setCategory(e.target.value)} value={category}>
@@ -657,7 +697,12 @@ export default function AddFurniture() {
 
                                         <div className="form-group form-group-sm mb-3">
                                             <label htmlFor="" className='mb-1'>Select Color</label>
-                                            <select name="" id="" className="custom-input" onChange={e => setColor(e.target.value)} value={color}>
+                                            <select name="" id="" className="custom-input" onChange={e => {
+                                                setColor(e.target.value)
+                                                e.target.value === "Other" ?
+                                                    setShowOtherColor(true) :
+                                                    setShowOtherColor(false)
+                                            }} value={color}>
                                                 <option value="">Select Color</option>
                                                 {
                                                     furnitureCategories.some(data => data.article === category) ?
@@ -673,6 +718,15 @@ export default function AddFurniture() {
                                             </select>
 
                                         </div>
+
+                                        {
+                                            showOtherColor && (
+                                                <div className="form-group form-group-sm mb-3">
+                                                    <label htmlFor="" className='mb-1'>Please specify</label>
+                                                    <input type="text" className="custom-input" onChange={e => setOtherColor(e.target.value)} value={otherColor} />
+                                                </div>
+                                            )
+                                        }
 
                                         <div className="form-group form-group-sm mb-3">
                                             <label htmlFor="" className='mb-1'>Select Dimensions</label>
@@ -712,7 +766,12 @@ export default function AddFurniture() {
 
                                         <div className="form-group form-group-sm mb-3">
                                             <label htmlFor="" className='mb-1'>Select Feature</label>
-                                            <select name="" id="" className="custom-input" onChange={e => setFeature(e.target.value)} value={feature}>
+                                            <select name="" id="" className="custom-input" onChange={e => {
+                                                setFeature(e.target.value)
+                                                e.target.value === "Other" ?
+                                                    setShowOtherFeature(true) :
+                                                    setShowOtherFeature(false)
+                                            }} value={feature}>
                                                 <option value="">Select Feature</option>
                                                 {
                                                     furnitureCategories.some(data => data.article === category) ?
@@ -728,9 +787,23 @@ export default function AddFurniture() {
                                             </select>
                                         </div>
 
+                                        {
+                                            showOtherFeature && (
+                                                <div className="form-group form-group-sm mb-3">
+                                                    <label htmlFor="" className='mb-1'>Please specify</label>
+                                                    <input type="text" className="custom-input" onChange={e => setOtherFeature(e.target.value)} value={otherFeature} />
+                                                </div>
+                                            )
+                                        }
+
                                         <div className="form-group form-group-sm mb-3">
                                             <label htmlFor="" className='mb-1'>Select Brand</label>
-                                            <select name="" id="" className="custom-input" onChange={e => setBrand(e.target.value)} value={brand}>
+                                            <select name="" id="" className="custom-input" onChange={e => {
+                                                setBrand(e.target.value)
+                                                e.target.value === "Other" ?
+                                                    setShowOtherBrand(true) :
+                                                    setShowOtherBrand(false)
+                                            }} value={brand}>
                                                 <option value="">Select Brand</option>
                                                 {
                                                     furnitureCategories.some(data => data.article === category) ?
@@ -745,6 +818,15 @@ export default function AddFurniture() {
                                                 }
                                             </select>
                                         </div>
+
+                                        {
+                                            showOtherBrand && (
+                                                <div className="form-group form-group-sm mb-3">
+                                                    <label htmlFor="" className='mb-1'>Please specify</label>
+                                                    <input type="text" className="custom-input" onChange={e => setOtherBrand(e.target.value)} value={otherBrand} />
+                                                </div>
+                                            )
+                                        }
 
                                         <div className="form-group form-group-sm mb-3">
                                             <label htmlFor="" className='mb-1'>Select Condition</label>
@@ -877,7 +959,7 @@ export default function AddFurniture() {
 
                                 <div>
 
-                                    <div className="row mb-2">
+                                    <div className="row mb-2 mt-4">
                                         <div className="form-group form-group-sm d-flex align-items-center justify-content-end gap-2">
                                             <div className="outline-btn py-2" onClick={resetAllFields}>Reset</div>
                                             {/* <button className="custom-btn" type='submit'>Publish</button> */}

@@ -368,7 +368,7 @@ const furnitureCategories = [
 const marketplaceCategories = [
     {
         id: 1,
-        name: "machinery",
+        name: "machineryTools",
         image: excavation
     },
     {

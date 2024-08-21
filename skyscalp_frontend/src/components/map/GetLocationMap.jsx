@@ -27,7 +27,7 @@ export default function GetLocationMap({ clickedPosition, setClickedPosition, ce
         <>
 
             {/* <p>{position}</p> */}
-            <MapContainer center={position} zoom={15} style={{ height: '400px', width: '100%' }}>
+            <MapContainer center={position} zoom={4} style={{ height: '400px', width: '100%' }}>
                 <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
                 <ClickHandler handleClick={handleClick} />
                 {clickedPosition && (

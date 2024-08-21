@@ -154,5 +154,21 @@
     "date": "Date",
     "feature": "Fonctionnalité",
     "ReferenceID": "Numéro de référence",
-    "noItemsFound": "Aucun produit similaire trouvé"
+    "noItemsFound": "Aucun produit similaire trouvé",
+    "thickness": "Épaisseur",
+    "base": "Base",
+    "finish": "Finition",
+    "voltage": "Tension",
+    "material": "Matériel",
+    "notProductsFound": "Aucun produit trouvé",
+    "all": "Tous",
+    "categories": "Catégories",
+    "selections": "Sélections",
+    "viewAllProperty": "Voir toutes les propriétés",
+    "faqQ1": "Comment puis-je répertorier ma propriété sur votre plateforme ?",
+    "faqQ2": "Quels sont les frais associés à la répertoriation d'une propriété ?",
+    "faqQ3": "Quels types de matériaux de construction sont disponibles sur votre plateforme ?",
+    "faqA1": "Pour répertorier votre propriété, il vous suffit de créer un compte sur notre site web, d'aller à la section 'Répertorier une propriété' et de remplir les détails requis concernant votre propriété. Vous pouvez télécharger des photos et fournir une description détaillée pour attirer des acheteurs ou des locataires potentiels.",
+    "faqA2": "La répertoriation d'une propriété sur notre plateforme est gratuite. Cependant, il peut y avoir des frais supplémentaires pour les options de répertoriation premium, qui peuvent aider à augmenter la visibilité de votre propriété. Vous pouvez trouver des informations détaillées sur les prix dans la section 'Tarification' de notre site web.",
+    "faqA3": "Notre plateforme propose une large gamme de matériaux de construction, y compris des briques, du ciment, de l'acier, du bois et plus encore. Vous pouvez parcourir différentes catégories et trouver des matériaux provenant de fournisseurs de confiance."
 }

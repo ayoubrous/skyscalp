@@ -12,6 +12,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import Lottie from 'lottie-react'
 import loader from '../../assets/images/skyscalp-loader.json'
 import Footer from '../components/Footer'
+import { t } from 'i18next'
 
 
 export default function Construction() {
@@ -92,7 +93,7 @@ export default function Construction() {
 
                         <div className="d-flex justify-content-end">
                             <a href=""></a>
-                            <Link to='../app/add-construction'>
+                            <Link to='../app/add-material'>
                                 <button className="outline-btn py-1 px-2">+ Add New</button>
                             </Link>
                         </div>
@@ -116,7 +117,7 @@ export default function Construction() {
                                         products &&
                                         products.length === 0 && (
                                             <tr>
-                                                <td colSpan={7} className='text-center'>No products found</td>
+                                                <td colSpan={7} className='text-center'>{t("notProductsFound")}</td>
                                             </tr>
                                         )
                                     }
@@ -148,10 +149,10 @@ export default function Construction() {
                                                             }
                                                         </td> */}
                                                         <td>
-                                                            <Link className='mx-1' to={`../construction/${data._id}`}>
+                                                            <Link className='mx-1' to={`../materials/${data._id}`}>
                                                                 <FaEye className='color-secondary' />
                                                             </Link>
-                                                            <Link className='mx-1' to={`../app/update-construction/${data._id}`}>
+                                                            <Link className='mx-1' to={`../app/update-material/${data._id}`}>
                                                                 <FaEdit className='text-warning' />
                                                             </Link>
                                                             <Link className='mx-1' onClick={() => handleDelete(data._id)}>

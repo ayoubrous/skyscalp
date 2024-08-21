@@ -14,7 +14,7 @@ import MapSearch from './MapSearch';
 import TestNestedDropdown from './TestNestedDropdown';
 import NestedDropdown from './NestedDropdown';
 import CustomLocationsDropdown from './CustomLocationsDropdown';
-import { furnitureCategories, machineryCategories } from '../../assets/data/categories';
+import { furnitureCategories } from '../../assets/data/furnitureCategories';
 import { furnitureBrands, furnitureConditionData, furnitureTypes, machineryType, materialsBudget, yearBuildData } from '../../assets/data/filtersData';
 import formatNumber from '../../utils/formatNumber';
 import { getLocationsInRadius } from './getLocationsInRadius';
@@ -307,6 +307,15 @@ export default function FurnitureFilter({
         clearAllFilters()
     }
 
+
+    let formattedCategories = furnitureCategories.map((cats, i) => {
+        return {
+            id: i,
+            categoryName: cats.article,
+            subcategories: cats.materials
+        }
+    })
+
     return (
         <div className="filter-area my-4">
             <div className="custom-container">
@@ -324,7 +333,7 @@ export default function FurnitureFilter({
                                 <NestedDropdown
                                     show={showCategoriesDrp}
                                     categoriesRef={categoriesRef}
-                                    categories={furnitureCategories}
+                                    categories={formattedCategories}
                                     setCheckedSubcategories={setCheckedSubcategories}
                                     checkedSubcategories={checkedSubcategories}
                                     checkAll={checkAll}

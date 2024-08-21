@@ -58,15 +58,6 @@ const MaterialsSchema = new mongoose.Schema({
     machineryType: {
         type: String,
     },
-    weight: {
-        type: String,
-    },
-    power: {
-        type: String,
-    },
-    available: {
-        type: Boolean,
-    },
     guarantee: {
         type: Boolean,
     },
@@ -77,9 +68,6 @@ const MaterialsSchema = new mongoose.Schema({
         type: String,
     },
     brand: {
-        type: String,
-    },
-    certification: {
         type: String,
     },
     condition: {
@@ -106,15 +94,36 @@ const MaterialsSchema = new mongoose.Schema({
         value: Date.now()
     },
     // for construction 
-    quality: {
-        type: String,
-    },
     quantity: {
         type: String,
     },
     dimensions: {
         type: String,
     },
+    base: {
+        type: String,
+    },
+    thickness: {
+        type: String,
+    },
+    finish: {
+        type: String,
+    },
+    voltage: {
+        type: String,
+    },
+    material: {
+        type: String,
+    },
+    otherBase: { type: String },
+    otherColor: { type: String },
+    otherFinish: { type: String },
+    otherMaterial: { type: String },
+    otherSize: { type: String },
+    otherThickness: { type: String },
+    otherType: { type: String },
+    otherVoltage: { type: String },
+
 
     // for furniture
     style: {
@@ -126,6 +135,8 @@ const MaterialsSchema = new mongoose.Schema({
     article: {
         type: String,
     },
+    otherFeature: {type: String},
+    otherBrand: {type: String},
 
 
 }, { timestamps: true })

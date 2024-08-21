@@ -13,18 +13,18 @@ export default function AboutInfo() {
     const [faqs, setFaqs] = useState([
         {
             id: 1,
-            question: 'How can I list my property on your platform?',
-            answer: "To list your property, simply create an account on our website, go to the 'List Property' section, and fill out the required details about your property. You can upload photos and provide a detailed description to attract potential buyers or renters",
+            question: 'faqQ1',
+            answer: "faqA1",
         },
         {
             id: 2,
-            question: 'What are the fees associated with listing a property?',
-            answer: "Listing a property on our platform is free. However, there may be additional fees for premium listing options, which can help increase your property's visibility. You can find detailed pricing information in the 'Pricing' section of our website.",
+            question: 'faqQ2',
+            answer: "faqA2",
         },
         {
             id: 3,
-            question: 'What types of building materials are available on your platform?',
-            answer: 'Our platform offers a wide range of building materials, including bricks, cement, steel, timber, and more. You can browse through various categories and find materials from trusted suppliers.',
+            question: 'faqQ3',
+            answer: 'faqA3',
         },
     ])
     const [showFAQ, setShowFAQ] = useState({});
@@ -142,9 +142,9 @@ export default function AboutInfo() {
                             <div className={`faq ${showFAQ[faq.id] ? 'show' : ''}`} key={faq.id}>
                                 <div className="question faq-row" onClick={() => handleToggle(faq.id)}>
                                     <FaAngleRight className='arrow-icon' />
-                                    <p className='paragraph text-dark fw-bold'>{faq.question}</p>
+                                    <p className='paragraph text-dark fw-bold'>{t(faq.question)}</p>
                                 </div>
-                                <p className="answer faq-row paragraph bg-light">{faq.answer}</p>
+                                <p className="answer faq-row paragraph bg-light">{t(faq.answer)}</p>
                             </div>
                         ))}
 

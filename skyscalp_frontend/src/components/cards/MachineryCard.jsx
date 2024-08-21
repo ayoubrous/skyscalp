@@ -74,7 +74,7 @@ const MachineryCard = ({ data }) => {
                     </div>
 
                     <p className="">{city}, {country}</p>
-                    <p className='mb-1'>{category} (per Unit)</p>
+                    <p className='mb-1'>{category}</p>
                     <p className='color-secondary'>{application}</p>
                     <p className='color-secondary'>{condition}</p>
 

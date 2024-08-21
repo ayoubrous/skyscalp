@@ -164,26 +164,31 @@ const getProductsByFilters = async (req, res) => {
     if (maxPrice) filters.budget = { ...filters.budget, $lte: parseInt(maxPrice) };
     if (guarantee) filters.guarantee = { ...filters.guarantee, $eq: guarantee };
 
-    // for arrays 
+    // for arrays
     if (selectedBrands.length > 0) filters.brand = { $in: selectedBrands };
     if (selectedMachineryType.length > 0) filters.machineryType = { $in: selectedMachineryType };
     if (selectedMaterialType.length > 0) filters.materialType = { $in: selectedMaterialType };
     if (yearBuild.length > 0) filters.build = { $in: yearBuild };
     if (selectedConditions.length > 0) filters.condition = { $in: selectedConditions };
-    if (checkedSubcategories.length > 0) filters.category = { $in: checkedSubcategories };
 
-    // for locations 
+    // new inclusion
+    if (checkedSubcategories.length > 0) {
+        filters.$or = [
+            { article: { $in: checkedSubcategories } },
+            { category: { $in: checkedSubcategories } },
+            { application: { $in: checkedSubcategories } }
+        ];
+    }
+
+    // for locations
     if (selectedCountries.length > 0) filters.country = { $in: selectedCountries };
     if (selectedStates.length > 0) filters.state = { $in: selectedStates };
     if (selectedCities.length > 0) filters.city = { $in: selectedCities };
     if (selectedStreets.length > 0) filters.street = { $in: selectedStreets };
 
-
-
     try {
-        // add material group into filters is well 
-        filters.materialGroup = materialGroup
-        // console.log(filters)
+        // add material group into filters as well
+        filters.materialGroup = materialGroup;
 
         const totalItems = await MaterialsModal.countDocuments(filters);
         const totalPages = Math.ceil(totalItems / limit);

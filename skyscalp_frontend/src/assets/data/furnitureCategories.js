@@ -3,10 +3,10 @@ let furnitureCategories = [
         id: 1,
         article: "Sofa",
         materials: ["Wood", "Fabric", "Leather"],
-        colors: ["Black", "White", "Brown", "Grey", "Blue", "Red", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Blue", "Red", "Other"],
         dimensions: ["Small (2 seats)", "Medium (3 seats)", "Large (4 seats or more)"],
         styles: ["Modern", "Classic", "Scandinavian", "Industrial", "Vintage", "Traditional"],
-        features: ["Convertible", "Corner Sofa", "With Chaise", "Fixed", "Others"],
+        features: ["Convertible", "Corner Sofa", "With Chaise", "Fixed", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -22,17 +22,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 2,
         article: "Coffee Table",
         materials: ["Wood", "Glass", "Metal", "Marble"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Scandinavian", "Industrial", "Vintage", "Traditional"],
-        features: ["With Drawers", "With Shelves", "Extendable", "Others"],
+        features: ["With Drawers", "With Shelves", "Extendable", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -48,17 +48,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 3,
         article: "Armchair",
         materials: ["Wood", "Fabric", "Leather"],
-        colors: ["Black", "White", "Brown", "Grey", "Blue", "Red", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Blue", "Red", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Scandinavian", "Industrial", "Vintage", "Traditional"],
-        features: ["Recliner", "With Footstool", "Swivel", "Others"],
+        features: ["Recliner", "With Footstool", "Swivel", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -74,17 +74,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 4,
         article: "Bookcase",
         materials: ["Wood", "Metal", "Plastic"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Scandinavian", "Industrial", "Vintage", "Traditional"],
-        features: ["With Doors", "With Drawers", "Modular", "Others"],
+        features: ["With Doors", "With Drawers", "Modular", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -100,17 +100,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 5,
         article: "TV Stand",
         materials: ["Wood", "Metal", "Plastic"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Scandinavian", "Industrial", "Vintage", "Traditional"],
-        features: ["With Drawers", "With Shelves", "With Doors", "Others"],
+        features: ["With Drawers", "With Shelves", "With Doors", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -126,17 +126,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 6,
         article: "Pouf",
         materials: ["Fabric", "Leather", "Plastic"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Scandinavian", "Industrial", "Vintage", "Traditional"],
-        features: ["With Storage", "With Footrest", "Others"],
+        features: ["With Storage", "With Footrest", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -152,17 +152,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 7,
         article: "Bed",
         materials: ["Wood", "Metal", "Fabric"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Single", "Double", "King Size", "Queen Size"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Drawers", "With Headboard", "With Slats", "Others"],
+        features: ["With Drawers", "With Headboard", "With Slats", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -178,17 +178,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 8,
         article: "Wardrobe",
         materials: ["Wood", "Metal", "Plastic"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Mirror", "With Closet", "With Shelves", "Others"],
+        features: ["With Mirror", "With Closet", "With Shelves", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -204,17 +204,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 9,
         article: "Dresser",
         materials: ["Wood", "Metal", "Plastic"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Drawers", "With Shelves", "With Mirror", "Others"],
+        features: ["With Drawers", "With Shelves", "With Mirror", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -230,17 +230,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 10,
         article: "Nightstand",
         materials: ["Wood", "Metal", "Plastic"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Drawers", "With Shelves", "With Integrated Light", "Others"],
+        features: ["With Drawers", "With Shelves", "With Integrated Light", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -256,17 +256,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 11,
         article: "Bunk Bed",
         materials: ["Wood", "Metal"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Ladder", "With Drawers", "With Built-in Desk", "Others"],
+        features: ["With Ladder", "With Drawers", "With Built-in Desk", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -282,17 +282,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 12,
         article: "Dressing Table",
         materials: ["Wood", "Metal", "Plastic"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Mirror", "With Drawers", "With Shelves", "Others"],
+        features: ["With Mirror", "With Drawers", "With Shelves", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -308,17 +308,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 13,
         article: "Kitchen Table",
         materials: ["Wood", "Glass", "Metal", "Marble"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Rustic", "Industrial", "Vintage", "Traditional"],
-        features: ["Extendable", "With Extensions", "With Drawers", "Others"],
+        features: ["Extendable", "With Extensions", "With Drawers", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -334,17 +334,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 14,
         article: "Kitchen Chair",
         materials: ["Wood", "Metal", "Plastic", "Fabric"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Rustic", "Industrial", "Vintage", "Traditional"],
-        features: ["Stackable", "With Armrests", "With Cushions", "Others"],
+        features: ["Stackable", "With Armrests", "With Cushions", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -360,17 +360,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 15,
         article: "Kitchen Island",
         materials: ["Wood", "Glass", "Metal", "Marble"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Rustic", "Industrial", "Vintage", "Traditional"],
-        features: ["With Sink", "With Cooktop", "With Shelves", "Others"],
+        features: ["With Sink", "With Cooktop", "With Shelves", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -386,17 +386,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 16,
         article: "Buffet",
         materials: ["Wood", "Metal", "Plastic"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Rustic", "Industrial", "Vintage", "Traditional"],
-        features: ["With Doors", "With Drawers", "With Shelves", "Others"],
+        features: ["With Doors", "With Drawers", "With Shelves", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -412,17 +412,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 17,
         article: "Bar Table",
         materials: ["Wood", "Glass", "Metal", "Marble"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Rustic", "Industrial", "Vintage", "Traditional"],
-        features: ["With Stools", "With Shelves", "With Drawers", "Others"],
+        features: ["With Stools", "With Shelves", "With Drawers", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -438,17 +438,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 18,
         article: "Bar Stool",
         materials: ["Wood", "Metal", "Plastic", "Fabric"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Rustic", "Industrial", "Vintage", "Traditional"],
-        features: ["Stackable", "With Armrests", "With Cushions", "Others"],
+        features: ["Stackable", "With Armrests", "With Cushions", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -464,17 +464,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 19,
         article: "Bathroom Cabinet",
         materials: ["Wood", "Metal", "Plastic"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Mirror", "With Closet", "With Shelves", "Others"],
+        features: ["With Mirror", "With Closet", "With Shelves", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -490,17 +490,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 20,
         article: "Bathroom Mirror",
         materials: ["Glass", "Metal", "Plastic"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Lighting", "With Built-in Cabinet", "With Shelves", "Others"],
+        features: ["With Lighting", "With Built-in Cabinet", "With Shelves", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -516,17 +516,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 21,
         article: "Sink",
         materials: ["Ceramic", "Metal", "Plastic"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Cabinet", "With Shelves", "With Drawers", "Others"],
+        features: ["With Cabinet", "With Shelves", "With Drawers", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -542,17 +542,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 22,
         article: "Towel Rack",
         materials: ["Metal", "Wood", "Plastic"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Heating", "With Shelves", "With Hooks", "Others"],
+        features: ["With Heating", "With Shelves", "With Hooks", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -568,17 +568,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 23,
         article: "Bathroom Shelf",
         materials: ["Wood", "Metal", "Plastic"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Doors", "With Drawers", "With Mirror", "Others"],
+        features: ["With Doors", "With Drawers", "With Mirror", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -594,17 +594,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 24,
         article: "Desk",
         materials: ["Wood", "Metal", "Glass"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Drawers", "With Shelves", "With Integrated Light", "Others"],
+        features: ["With Drawers", "With Shelves", "With Integrated Light", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -620,17 +620,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 25,
         article: "Office Chair",
         materials: ["Wood", "Metal", "Fabric"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["Ergonomic", "With Armrests", "With Wheels", "Others"],
+        features: ["Ergonomic", "With Armrests", "With Wheels", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -646,17 +646,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 26,
         article: "Office Bookcase",
         materials: ["Wood", "Metal", "Plastic"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Doors", "With Drawers", "Modular", "Others"],
+        features: ["With Doors", "With Drawers", "Modular", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -672,17 +672,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 27,
         article: "Filing Cabinet",
         materials: ["Wood", "Metal", "Plastic"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Drawers", "With Shelves", "With Lock", "Others"],
+        features: ["With Drawers", "With Shelves", "With Lock", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -698,17 +698,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 28,
         article: "Conference Table",
         materials: ["Wood", "Glass", "Metal"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["Extendable", "With Drawers", "With Shelves", "Others"],
+        features: ["Extendable", "With Drawers", "With Shelves", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -724,137 +724,137 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 29,
         article: "Refrigerator",
         materials: ["Stainless Steel", "Plastic"],
-        colors: ["Black", "White", "Silver", "Others"],
+        colors: ["Black", "White", "Silver", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Freezer", "With Water Dispenser", "With Ice Dispenser", "Others"],
-        brands: ["Samsung", "LG", "Local", "Others"]
+        features: ["With Freezer", "With Water Dispenser", "With Ice Dispenser", "Other"],
+        brands: ["Samsung", "LG", "Local", "Other"]
     },
     {
         id: 30,
         article: "Dishwasher",
         materials: ["Stainless Steel", "Plastic"],
-        colors: ["Black", "White", "Silver", "Others"],
+        colors: ["Black", "White", "Silver", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Dryer", "With Eco Programs", "With Cutlery Basket", "Others"],
-        brands: ["Samsung", "LG", "Local", "Others"]
+        features: ["With Dryer", "With Eco Programs", "With Cutlery Basket", "Other"],
+        brands: ["Samsung", "LG", "Local", "Other"]
     },
     {
         id: 31,
         article: "Oven",
         materials: ["Stainless Steel", "Plastic"],
-        colors: ["Black", "White", "Silver", "Others"],
+        colors: ["Black", "White", "Silver", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Grill", "With Convection", "With Cooking Programs", "Others"],
-        brands: ["Samsung", "LG", "Local", "Others"]
+        features: ["With Grill", "With Convection", "With Cooking Programs", "Other"],
+        brands: ["Samsung", "LG", "Local", "Other"]
     },
     {
         id: 32,
         article: "Microwave",
         materials: ["Stainless Steel", "Plastic"],
-        colors: ["Black", "White", "Silver", "Others"],
+        colors: ["Black", "White", "Silver", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Grill", "With Defrost", "With Cooking Programs", "Others"],
-        brands: ["Samsung", "LG", "Local", "Others"]
+        features: ["With Grill", "With Defrost", "With Cooking Programs", "Other"],
+        brands: ["Samsung", "LG", "Local", "Other"]
     },
     {
         id: 33,
         article: "Television",
         materials: ["Plastic", "Metal"],
-        colors: ["Black", "White", "Silver", "Others"],
+        colors: ["Black", "White", "Silver", "Other"],
         dimensions: ["Small (32\")", "Medium (43\")", "Large (55\" and above)"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["Smart TV", "4K", "HDR", "With Wi-Fi", "Others"],
-        brands: ["Samsung", "LG", "Local", "Others"]
+        features: ["Smart TV", "4K", "HDR", "With Wi-Fi", "Other"],
+        brands: ["Samsung", "LG", "Local", "Other"]
     },
     {
         id: 34,
         article: "Washing Machine",
         materials: ["Stainless Steel", "Plastic"],
-        colors: ["Black", "White", "Silver", "Others"],
+        colors: ["Black", "White", "Silver", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Dryer", "With Eco Programs", "With Large Load Capacity", "Others"],
-        brands: ["Samsung", "LG", "Local", "Others"]
+        features: ["With Dryer", "With Eco Programs", "With Large Load Capacity", "Other"],
+        brands: ["Samsung", "LG", "Local", "Other"]
     },
     {
         id: 35,
         article: "Dryer",
         materials: ["Stainless Steel", "Plastic"],
-        colors: ["Black", "White", "Silver", "Others"],
+        colors: ["Black", "White", "Silver", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Eco Programs", "With Large Load Capacity", "With Fast Drying", "Others"],
-        brands: ["Samsung", "LG", "Local", "Others"]
+        features: ["With Eco Programs", "With Large Load Capacity", "With Fast Drying", "Other"],
+        brands: ["Samsung", "LG", "Local", "Other"]
     },
     {
         id: 36,
         article: "Freezer",
         materials: ["Stainless Steel", "Plastic"],
-        colors: ["Black", "White", "Silver", "Others"],
+        colors: ["Black", "White", "Silver", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Compartments", "With Drawers", "With Fast Freezing", "Others"],
-        brands: ["Samsung", "LG", "Local", "Others"]
+        features: ["With Compartments", "With Drawers", "With Fast Freezing", "Other"],
+        brands: ["Samsung", "LG", "Local", "Other"]
     },
     {
         id: 37,
         article: "Vacuum Cleaner",
         materials: ["Plastic", "Metal"],
-        colors: ["Black", "White", "Silver", "Others"],
+        colors: ["Black", "White", "Silver", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["Cordless", "With Bag", "With HEPA Filter", "Others"],
-        brands: ["Samsung", "LG", "Local", "Others"]
+        features: ["Cordless", "With Bag", "With HEPA Filter", "Other"],
+        brands: ["Samsung", "LG", "Local", "Other"]
     },
     {
         id: 38,
         article: "Food Processor",
         materials: ["Plastic", "Metal"],
-        colors: ["Black", "White", "Silver", "Others"],
+        colors: ["Black", "White", "Silver", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Blender", "With Chopper", "With Steamer", "Others"],
-        brands: ["Samsung", "LG", "Local", "Others"]
+        features: ["With Blender", "With Chopper", "With Steamer", "Other"],
+        brands: ["Samsung", "LG", "Local", "Other"]
     },
     {
         id: 39,
         article: "Coffee Maker",
         materials: ["Plastic", "Metal"],
-        colors: ["Black", "White", "Silver", "Others"],
+        colors: ["Black", "White", "Silver", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Grinder", "With Capsules", "With Milk Frother", "Others"],
-        brands: ["Samsung", "LG", "Local", "Others"]
+        features: ["With Grinder", "With Capsules", "With Milk Frother", "Other"],
+        brands: ["Samsung", "LG", "Local", "Other"]
     },
     {
         id: 40,
         article: "Air Conditioner",
         materials: ["Plastic", "Metal"],
-        colors: ["Black", "White", "Silver", "Others"],
+        colors: ["Black", "White", "Silver", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Dehumidifier", "With Air Purifier", "With Timer", "Others"],
-        brands: ["Samsung", "LG", "Local", "Others"]
+        features: ["With Dehumidifier", "With Air Purifier", "With Timer", "Other"],
+        brands: ["Samsung", "LG", "Local", "Other"]
     },
     {
         id: 41,
         article: "Garden Furniture",
         materials: ["Wood", "Plastic", "Metal"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Cushions", "With Built-in Table", "With Umbrella", "Others"],
+        features: ["With Cushions", "With Built-in Table", "With Umbrella", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -870,17 +870,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 42,
         article: "Storage Unit",
         materials: ["Wood", "Metal", "Plastic"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Drawers", "With Shelves", "With Doors", "Others"],
+        features: ["With Drawers", "With Shelves", "With Doors", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -896,17 +896,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 43,
         article: "Game Room Furniture",
         materials: ["Wood", "Metal", "Plastic"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Shelves", "With Drawers", "With Built-in Bench", "Others"],
+        features: ["With Shelves", "With Drawers", "With Built-in Bench", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -922,17 +922,17 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     },
     {
         id: 44,
         article: "Library Furniture",
         materials: ["Wood", "Metal", "Plastic"],
-        colors: ["Black", "White", "Brown", "Grey", "Others"],
+        colors: ["Black", "White", "Brown", "Grey", "Other"],
         dimensions: ["Small", "Medium", "Large"],
         styles: ["Modern", "Classic", "Contemporary", "Industrial", "Vintage", "Traditional"],
-        features: ["With Doors", "With Drawers", "Modular", "Others"],
+        features: ["With Doors", "With Drawers", "Modular", "Other"],
         brands: [
             "IKEA",
             "Local",
@@ -948,7 +948,7 @@ let furnitureCategories = [
             "Alinéa",
             "La Redoute Intérieurs",
             "Fly",
-            "Others"
+            "Other"
         ]
     }
 ]

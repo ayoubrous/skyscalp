@@ -11,6 +11,7 @@ import { uploadImage } from '../utils/uploadImage'
 import Lottie from 'lottie-react'
 import loader from '../../assets/images/skyscalp-loader.json'
 import { Link } from 'react-router-dom'
+import Footer from '../components/Footer'
 
 export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false)
@@ -24,6 +25,10 @@ export default function Dashboard() {
   const [totalConstruction, setTotalConstruction] = useState(0)
   const [totalMachinery, setTotalMachinery] = useState(0)
   const [totalFurniture, setTotalFurniture] = useState(0)
+
+  useEffect(() => {
+    document.title = "Skyscalp - Publish"
+  }, [])
 
   const getUserInfo = () => {
     setIsLoading(true)
@@ -94,13 +99,13 @@ export default function Dashboard() {
           let construction = 0
           let furniture = 0
           result.data.forEach(data => {
-            if(data.materialGroup === "machinery"){
+            if (data.materialGroup === "machinery") {
               machinery = machinery + 1
             }
-            else if(data.materialGroup === "construction"){
+            else if (data.materialGroup === "construction") {
               construction = construction + 1
             }
-            else if(data.materialGroup === "furniture"){
+            else if (data.materialGroup === "furniture") {
               furniture = furniture + 1
             }
           })
@@ -220,7 +225,7 @@ export default function Dashboard() {
                     </div>
                   </div>
                 </Link>
-                <Link to="../app/construction" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid orange" }}>
+                <Link to="../app/materials" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid orange" }}>
                   <div className="card-body p-3">
                     <h5 className="card-title mb-2 fw-semibold">Published Consturction</h5>
                     <div className="row align-items-center">
@@ -288,9 +293,7 @@ export default function Dashboard() {
               </div>
             </div>
 
-            <div className="py-0 px-6 ">
-              <small className="mb-0 color-secondary">Developed by <a href="" className="pe-1 text-primary text-decoration-underline">MA-Tech</a></small>
-            </div>
+            <Footer />
           </div>
         </div>
       </div>

@@ -176,10 +176,10 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
 						<>
 							{
 								checkAll ? (
-									<p> Categories (All Selections)</p>
+									<p> {t("categories")} ({t("all")} {t("selections")})</p>
 								)
 									: (
-										<p> Categories ({checkedSubcategories.length} Selections)</p>
+										<p> {t("categories")} ({checkedSubcategories.length} {t("selections")})</p>
 
 									)
 							}
@@ -204,11 +204,11 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
 							onChange={handleCheckAll}
 							value={checkAll}
 						/>
-						<label htmlFor="all">All</label>
+						<label htmlFor="all">{t("all")}</label>
 					</div>
 				</li>
 				{categories.map((category, i) => (
-					<li key={category.categoryName} className='dropdown-item extended p-0' >
+					<li key={i} className='dropdown-item extended p-0' >
 						<div className="d-flex justify-content-between" style={{ backgroundColor: "#f7f7f7", padding: "5px" }}>
 							<div className="d-flex gap-2" >
 								<input
@@ -228,8 +228,8 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
 
 						{extendedCat === i && (
 							<ul className='nested-dropdown'>
-								{category.subcategories.map((subcategory) => (
-									<li key={subcategory} className='dropdown-item nested-dropdown-item'>
+								{category.subcategories.map((subcategory, i) => (
+									<li key={i} className='dropdown-item nested-dropdown-item'>
 										<div className="d-flex gap-2">
 											<input
 												type="checkbox"

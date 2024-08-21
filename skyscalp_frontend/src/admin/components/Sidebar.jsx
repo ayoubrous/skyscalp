@@ -51,11 +51,11 @@ export default function Sidebar() {
                                 </NavLink>
                             </li>
                             <li className="sidebar-item mt-1">
-                                <NavLink to='../app/construction' className={(navData) => (navData.isActive ? "active sidebar-link" : 'none sidebar-link')} aria-expanded="false">
+                                <NavLink to='../app/materials' className={(navData) => (navData.isActive ? "active sidebar-link" : 'none sidebar-link')} aria-expanded="false">
                                     <span>
                                         <FaTools className='me-1' />
                                     </span>
-                                    <span className="hide-menu">Construction</span>
+                                    <span className="hide-menu">Materials</span>
                                 </NavLink>
                             </li>
                             <li className="sidebar-item mt-1">

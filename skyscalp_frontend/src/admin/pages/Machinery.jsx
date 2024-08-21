@@ -12,6 +12,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import Lottie from 'lottie-react'
 import loader from '../../assets/images/skyscalp-loader.json'
 import Footer from '../components/Footer'
+import { t } from 'i18next'
 
 export default function Machinery() {
 
@@ -117,7 +118,7 @@ export default function Machinery() {
                                         products &&
                                         products.length === 0 && (
                                             <tr>
-                                                <td colSpan={7} className='text-center'>No products found</td>
+                                                <td colSpan={7} className='text-center'>{t("notProductsFound")}</td>
                                             </tr>
                                         )
                                     }
@@ -152,7 +153,7 @@ export default function Machinery() {
                                                             <Link className='mx-1' to={`../machines/${data._id}`}>
                                                                 <FaEye className='color-secondary' />
                                                             </Link>
-                                                            <Link className='mx-1' to={`../app/update-machinery/${data._id}`}>
+                                                            <Link className='mx-1' to={`../app/update-machine/${data._id}`}>
                                                                 <FaEdit className='text-warning' />
                                                             </Link>
                                                             <Link className='mx-1' onClick={() => handleDelete(data._id)}>

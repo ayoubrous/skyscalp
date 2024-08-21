@@ -24,6 +24,7 @@ import ConstructionCard from '../components/cards/ConstructionCard'
 
 import loader from '../assets/images/skyscalp-loader.json'
 import Lottie from 'lottie-react'
+import { IoIosColorPalette } from 'react-icons/io'
 
 export default function ViewConstruction() {
 
@@ -57,7 +58,21 @@ export default function ViewConstruction() {
     const [userInfo, setUserInfo] = useState('')
     const [userID, setUserID] = useState('')
 
+    const [otherMaterial, setOtherMaterial] = useState('');
+    const [otherSize, setOtherSize] = useState('');
+    const [otherBase, setOtherBase] = useState('');
+    const [otherThickness, setOtherThickness] = useState('');
+    const [otherFinish, setOtherFinish] = useState('');
+    const [otherVoltage, setOtherVoltage] = useState('');
+    const [otherType, setOtherType] = useState('');
+    const [otherColor, setOtherColor] = useState('');
 
+    const [material, setMaterial] = useState('')
+    const [base, setBase] = useState('')
+    const [thickness, setThickness] = useState('')
+    const [finish, setFinish] = useState('')
+    const [voltage, setVoltage] = useState('')
+    const [type, setType] = useState('')
     const [isLoading, setIsLoading] = useState(false)
 
     const [similarProducts, setSimilarProducts] = useState([])
@@ -103,6 +118,23 @@ export default function ViewConstruction() {
                     setUploadedImages(result.data.images)
                     setCreatedAt(result.data.createdAt)
                     setUserInfo(result.data.user)
+
+                    setType(result.data.type)
+                    setMaterial(result.data.material)
+                    setBase(result.data.base)
+                    setThickness(result.data.thickness)
+                    setFinish(result.data.finish)
+                    setVoltage(result.data.voltage)
+
+                    setOtherBase(result.data.otherBase)
+                    setOtherColor(result.data.otherColor)
+                    setOtherFinish(result.data.otherFinish)
+                    setOtherMaterial(result.data.otherMaterial)
+                    setOtherSize(result.data.otherSize)
+                    setOtherThickness(result.data.otherThickness)
+                    setOtherType(result.data.otherType)
+                    setOtherVoltage(result.data.otherVoltage)
+
 
                     // check if the product is in favourites 
                     const user = JSON.parse(localStorage.getItem("user"))
@@ -186,7 +218,7 @@ export default function ViewConstruction() {
 
     useEffect(() => {
         loadSimilarProducts()
-    }, [ country, category])
+    }, [country, category])
 
     const [favourite, setFavourite] = useState(false)
     const [mainImage, setMainImage] = useState(uploadedImages[0]);
@@ -212,12 +244,12 @@ export default function ViewConstruction() {
     }
     return (
         <>
-        <div className={`lottie-wrapper ${isLoading ? 'show' : ''}`}>
+            <div className={`lottie-wrapper ${isLoading ? 'show' : ''}`}>
                 <Lottie className='loader' animationData={loader} loop={true} />
             </div>
             <Navbar />
-            <Breadcrumb title={title} link={t("construction")} />
-            
+            <Breadcrumb title={title} link={t("material")} />
+
             <section className="details-section">
                 <div className="custom-container">
                     <div className="split">
@@ -257,10 +289,12 @@ export default function ViewConstruction() {
 
                             <div className="side basic-information mb-2">
                                 <div className="d-flex align-items-center justify-content-between mb-2">
-                                    <h5 className="color-primary fw-bolder">MAD {formatPrice(budget)}</h5>
+                                    <h5 className="color-primary fw-bolder">MAD {formatPrice(budget)} / {unit}</h5>
                                 </div>
 
                                 <h4 className="fw-bolder mb-2">{title}</h4>
+                                <p className='paragraph mb-1 '>{t("quantity")}: {quantity}</p>
+                                <p className='paragraph mb-1 '>{t("application")} {application}</p>
                                 <p className='paragraph mb-1 '>{t("category")} {category}</p>
 
                                 <div className="d-flex align-items-center justify-content-between mb-2">
@@ -273,7 +307,7 @@ export default function ViewConstruction() {
                                 </div>
 
                                 <div className="info-icons mt-2">
-                                    <small className='color-secondary '>Date Posted: {createdAt && new Intl.DateTimeFormat('en-GB').format(new Date(createdAt))}</small>
+                                    <small className='color-secondary '>Date: {createdAt && new Intl.DateTimeFormat('en-GB').format(new Date(createdAt))}</small>
                                 </div>
                                 <hr />
 
@@ -282,15 +316,15 @@ export default function ViewConstruction() {
                                         guaranteePeriod !== '' && (
                                             <div className="d-flex align-items-center gap-2">
                                                 <FaRegCheckSquare className='color-secondary' />
-                                                <small className="color-secondary">{guaranteePeriod}</small>
+                                                <small className="color-secondary">{t("guarantee")}</small>
                                             </div>
                                         )
                                     }
                                     {
-                                        condition !== '' && (
+                                        color !== '' && (
                                             <div className="d-flex align-items-center gap-2">
-                                                <GrStatusInfo className='color-secondary' />
-                                                <small className="color-secondary">{condition}</small>
+                                                <IoIosColorPalette className='color-secondary' />
+                                                <small className="color-secondary">{color}</small>
                                             </div>
                                         )
                                     }
@@ -307,6 +341,16 @@ export default function ViewConstruction() {
 
                                 <div className="features-grid">
                                     {
+                                        application !== "" && (
+                                            <div className="feature">
+                                                <div className="label">
+                                                    <p className="color-secondary">{t("application")}</p>
+                                                </div>
+                                                <p className="paragraph">{application}</p>
+                                            </div>
+                                        )
+                                    }
+                                    {
                                         category !== "" && (
                                             <div className="feature">
                                                 <div className="label">
@@ -317,12 +361,12 @@ export default function ViewConstruction() {
                                         )
                                     }
                                     {
-                                        quality !== "" && (
+                                        type !== "" && (
                                             <div className="feature">
                                                 <div className="label">
-                                                    <p className="color-secondary">{t("quality")}</p>
+                                                    <p className="color-secondary">{t("type")}</p>
                                                 </div>
-                                                <p className="paragraph">{quality}</p>
+                                                <p className="paragraph">{type}</p>
                                             </div>
                                         )
                                     }
@@ -332,20 +376,11 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("quantity")}</p>
                                                 </div>
-                                                <p className="paragraph">{quantity} kg</p>
+                                                <p className="paragraph">{quantity} per {unit}</p>
                                             </div>
                                         )
                                     }
-                                    {
-                                        unit !== "" && (
-                                            <div className="feature">
-                                                <div className="label">
-                                                    <p className="color-secondary">{t("unit")}</p>
-                                                </div>
-                                                <p className="paragraph">{unit}</p>
-                                            </div>
-                                        )
-                                    }
+
 
                                     {
                                         size !== "" && (
@@ -353,22 +388,71 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("size")}</p>
                                                 </div>
-                                                <p className="paragraph">{size} m</p>
+                                                <p className="paragraph">{size}</p>
                                             </div>
                                         )
                                     }
 
                                     {
-                                        dimenstions !== "" && (
+                                        material !== "" && (
                                             <div className="feature">
                                                 <div className="label">
-                                                    <p className="color-secondary">{t("dimension")}</p>
+                                                    <p className="color-secondary">{t("material")}</p>
                                                 </div>
-                                                <p className="paragraph">{dimenstions}</p>
+                                                <p className="paragraph">{material}</p>
                                             </div>
                                         )
                                     }
-
+                                    {
+                                        base !== "" && (
+                                            <div className="feature">
+                                                <div className="label">
+                                                    <p className="color-secondary">{t("base")}</p>
+                                                </div>
+                                                <p className="paragraph">{base}</p>
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        thickness !== "" && (
+                                            <div className="feature">
+                                                <div className="label">
+                                                    <p className="color-secondary">{t("thickness")}</p>
+                                                </div>
+                                                <p className="paragraph">{thickness}</p>
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        finish !== "" && (
+                                            <div className="feature">
+                                                <div className="label">
+                                                    <p className="color-secondary">{t("finish")}</p>
+                                                </div>
+                                                <p className="paragraph">{finish}</p>
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        material !== "" && (
+                                            <div className="feature">
+                                                <div className="label">
+                                                    <p className="color-secondary">{t("material")}</p>
+                                                </div>
+                                                <p className="paragraph">{material}</p>
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        voltage !== "" && (
+                                            <div className="feature">
+                                                <div className="label">
+                                                    <p className="color-secondary">{t("voltage")}</p>
+                                                </div>
+                                                <p className="paragraph">{voltage}</p>
+                                            </div>
+                                        )
+                                    }
 
                                     {
                                         color !== "" && (
@@ -381,23 +465,6 @@ export default function ViewConstruction() {
                                         )
                                     }
 
-                                    {
-                                        weight !== "" && (
-                                            <div className="feature">
-                                                <div className="label">
-                                                    <p className="color-secondary">{t("weight")}</p>
-                                                </div>
-                                                <p className="paragraph">{parseInt(weight) > 1000 ? `${weight} ton` : `${weight} kg`}</p>
-
-                                            </div>
-                                        )
-                                    }
-                                    <div className="feature">
-                                        <div className="label">
-                                            <p className="color-secondary">{t("available")}</p>
-                                        </div>
-                                        <p className="paragraph">{available ? 'Yes' : 'No'}</p>
-                                    </div>
                                 </div>
                             </div>
 
@@ -415,7 +482,7 @@ export default function ViewConstruction() {
 
 
                         <div className="seller-details side-sm">
-                        <div className="side mb-2">
+                            <div className="side mb-2">
                                 <div className="seller-info mb-3">
                                     <div className="image">
                                         <img src={userInfo && userInfo.profileImage} alt="" />
@@ -432,7 +499,7 @@ export default function ViewConstruction() {
                                 <button className="outline-btn mb-2 w-100 d-flex justify-content-center align-items-center" style={{ fontSize: "13px" }}>
                                     {/* <FaEnvelope className='me-1' />{userInfo && userInfo.email}</button> */}
                                     <FaEnvelope className='me-1' />Test.owner@skyscalp.com</button>
-                                    
+
                             </div>
 
                             <MessageOwner userID={userID} />
@@ -448,7 +515,7 @@ export default function ViewConstruction() {
                 <div className="custom-container">
                     <h3 className='my-3 fw-bolder'>{t("similar")}</h3>
                     <div className="cards-grid">
-                    {
+                        {
                             similarProducts && similarProducts.length === 0 && (
                                 <h5 className='my-4'>{t("noItemsFound")}</h5>
                             )

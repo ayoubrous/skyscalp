@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Sidebar from '../components/Sidebar'
 import Header from '../components/Header'
-import { FaBuilding, FaEye, FaRegTrashCan, FaTrash, FaUser, FaXmark } from 'react-icons/fa6'
+import { FaBuilding, FaEye, FaInvision, FaRegTrashCan, FaTrash, FaUser, FaXmark } from 'react-icons/fa6'
 import { FaCloudUploadAlt, FaEdit, FaTools } from 'react-icons/fa'
 import { BsBuildingsFill } from 'react-icons/bs'
 import { TbCarCrane, TbListSearch } from 'react-icons/tb'
@@ -11,18 +11,17 @@ import Select from 'react-select';
 import locations from '../../assets/data/locations'
 import loader from '../../assets/images/skyscalp-loader.json'
 
-import { machineryType as machineryTypesDropdown, propertyBudget, constructionBudget, machineryBudget, yearBuildData, propertyYearBuildData, conditionData, constructionBrands } from '../../assets/data/filtersData'
+import { machineryType as machineryTypesDropdown, propertyBudget, constructionBudget, machineryBudget, yearBuildData, propertyYearBuildData, conditionData, constructionBrands, machineryGuarantee } from '../../assets/data/filtersData'
 import { constructionCategories, machineryCategories, propertyCategories } from '../../assets/data/categories'
 import GetLocationMap from '../../components/map/GetLocationMap'
-import toast, { Toaster } from 'react-hot-toast';
+import { ToastContainer, toast } from 'react-toastify';
+
 import { uploadImage } from '../utils/uploadImage'
 import ClipLoader from "react-spinners/ClipLoader";
-import { Line } from 'rc-progress';
 import Lottie from 'lottie-react'
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Editor from '../components/Editor'
 import Footer from '../components/Footer'
+import { materialBases, materialCategories, materialColors, materialFinish, materials, materialSizes, materialThickness, materialVoltage } from '../../assets/data/materialsCategory'
 
 
 export default function AddConstruction() {
@@ -31,6 +30,7 @@ export default function AddConstruction() {
     const imageUploadRef = useRef()
 
     const [constructionID, setConstructionID] = useState('')
+
     const [showUploadedImages, setShowUploadedImages] = useState(false)
     const [uploadedImages, setUploadedImages] = useState([])
     const [country, setCountry] = useState('')
@@ -39,22 +39,47 @@ export default function AddConstruction() {
     const [street, setStreet] = useState('')
     const [title, setTitle] = useState('')
     const [budget, setBudget] = useState('')
-    const [application, setApplication] = useState('')
-    const [category, setCategory] = useState('')
     const [description, setDescription] = useState('')
     const [mapLocation, setMapLocation] = useState(null)
     const [guarantee, setGuarantee] = useState(false)
     const [guaranteePeriod, setGuaranteePeriod] = useState('')
+
+
+    const [application, setApplication] = useState('')
+    const [category, setCategory] = useState('')
     const [unit, setUnit] = useState('')
-    const [weight, setWeight] = useState('')
-    const [available, setAvailable] = useState(true)
+
     const [size, setSize] = useState('')
     const [dimensions, setDimensions] = useState('')
-    const [brand, setBrand] = useState('')
     const [condition, setCondition] = useState('')
     const [color, setColor] = useState('')
-    const [quality, setQuality] = useState('')
     const [quantity, setQuantity] = useState('')
+
+    const [material, setMaterial] = useState('')
+    const [base, setBase] = useState('')
+    const [thickness, setThickness] = useState('')
+    const [finish, setFinish] = useState('')
+    const [voltage, setVoltage] = useState('')
+    const [type, setType] = useState('')
+
+    const [otherMaterial, setOtherMaterial] = useState('');
+    const [otherSize, setOtherSize] = useState('');
+    const [otherBase, setOtherBase] = useState('');
+    const [otherThickness, setOtherThickness] = useState('');
+    const [otherFinish, setOtherFinish] = useState('');
+    const [otherVoltage, setOtherVoltage] = useState('');
+    const [otherType, setOtherType] = useState('');
+    const [otherColor, setOtherColor] = useState('');
+
+    const [showOtherMaterial, setShowOtherMaterial] = useState(false);
+    const [showOtherSize, setShowOtherSize] = useState(false);
+    const [showOtherBase, setShowOtherBase] = useState(false);
+    const [showOtherThickness, setShowOtherThickness] = useState(false);
+    const [showOtherFinish, setShowOtherFinish] = useState(false);
+    const [showOtherVoltage, setShowOtherVoltage] = useState(false);
+    const [showOtherType, setShowOtherType] = useState(false);
+    const [showOtherColor, setShowOtherColor] = useState(false);
+
 
 
     const [countries, setCountries] = useState([])
@@ -68,10 +93,22 @@ export default function AddConstruction() {
     const location = useLocation()
 
 
+    const updateOtherFields = (data) => {
+        setShowOtherBase(data.otherBase === "Other");
+        setShowOtherColor(data.otherColor === "Other");
+        setShowOtherFinish(data.otherFinish === "Other");
+        setShowOtherMaterial(data.otherMaterial === "Other");
+        setShowOtherSize(data.otherSize === "Other");
+        setShowOtherThickness(data.otherThickness === "Other");
+        setShowOtherType(data.otherType === "Other");
+        setShowOtherVoltage(data.otherVoltage === "Other");
+    };
+
+
     let params = useParams()
     useEffect(() => {
         const { pathname } = location;
-        if (pathname !== '/app/add-construction') {
+        if (pathname !== '/app/add-material') {
             setIsLoading(true)
             setUpdatePage(true)
             const requestOptions = {
@@ -84,7 +121,6 @@ export default function AddConstruction() {
                 .then((result) => {
                     setIsLoading(false)
                     if (result.status) {
-                        console.log(result)
                         setConstructionID(result.data._id);
                         setCountry(result.data.country);
                         setState(result.data.state);
@@ -92,22 +128,42 @@ export default function AddConstruction() {
                         setStreet(result.data.street);
                         setTitle(result.data.title);
                         setBudget(result.data.budget);
-                        setApplication(result.data.application);
-                        setCategory(result.data.category);
                         setDescription(result.data.description);
-                        setCondition(result.data.condition);
                         setMapLocation(result.data.mapLocation);
                         setGuarantee(result.data.guarantee);
                         setGuaranteePeriod(result.data.guaranteePeriod);
+
+                        setApplication(result.data.application);
+                        setCategory(result.data.category);
                         setUnit(result.data.unit);
-                        setWeight(result.data.weight);
-                        setAvailable(result.data.available);
                         setSize(result.data.size);
-                        setBrand(result.data.brand);
                         setColor(result.data.color);
-                        setDimensions(result.data.dimensions);
-                        setQuality(result.data.quality);
                         setQuantity(result.data.quantity);
+                        setType(result.data.type)
+                        setMaterial(result.data.material)
+                        setBase(result.data.base)
+                        setThickness(result.data.thickness)
+                        setFinish(result.data.finish)
+                        setVoltage(result.data.voltage)
+
+                        setOtherBase(result.data.otherBase)
+                        setOtherColor(result.data.otherColor)
+                        setOtherFinish(result.data.otherFinish)
+                        setOtherMaterial(result.data.otherMaterial)
+                        setOtherSize(result.data.otherSize)
+                        setOtherThickness(result.data.otherThickness)
+                        setOtherType(result.data.otherType)
+                        setOtherVoltage(result.data.otherVoltage)
+                        updateOtherFields({
+                            otherBase: result.data.base,
+                            otherColor: result.data.color,
+                            otherFinish: result.data.finish,
+                            otherMaterial: result.data.material,
+                            otherSize: result.data.size,
+                            otherThickness: result.data.thickness,
+                            otherType: result.data.type,
+                            otherVoltage: result.data.voltage
+                        })
                         setUploadedImages(result.data.images.map((img, i) => {
                             return ({
                                 id: i,
@@ -118,8 +174,6 @@ export default function AddConstruction() {
                         loadStates(result.data.country)
                         loadCities(result.data.state)
                         loadStreets(result.data.city)
-
-
                     }
                     else {
                         toast.error(result.message)
@@ -130,7 +184,6 @@ export default function AddConstruction() {
                     console.error(error);
                 });
         }
-
     }, [])
 
     useEffect(() => {
@@ -245,30 +298,13 @@ export default function AddConstruction() {
         setStreet(val.value);
     }
 
-    const handleFeaturesChange = (value) => {
-        const selectedValues = value.map(feature => feature.value);
-
-        // setFeatures(prevFeatures => {
-        //     // Remove values not present in the new selection
-        //     const updatedFeatures = prevFeatures.filter(feature => selectedValues.includes(feature));
-
-        //     // Add new values that are not already in the state
-        //     value.forEach(feature => {
-        //         if (!updatedFeatures.includes(feature.value)) {
-        //             updatedFeatures.push(feature.value);
-        //         }
-        //     });
-
-        //     // console.log(updatedFeatures); 
-        //     return updatedFeatures;
-        // });
-    };
-
 
 
     const hanldeUploadClick = () => {
         imageUploadRef.current.click()
     }
+
+    const MAX_IMAGES = 10;
 
     const handleImageChange = async (e) => {
         const files = e.target.files;
@@ -276,14 +312,31 @@ export default function AddConstruction() {
         setUploadingImage(true);
 
         try {
+            // Get the current number of uploaded images
+            setUploadedImages(prevImages => {
+                // If adding all new files would exceed the max limit, limit the number of files to add
+                const totalImages = prevImages.length + files.length;
+                if (totalImages > MAX_IMAGES) {
+                    const availableSlots = MAX_IMAGES - prevImages.length;
+                    return [...prevImages]; // Do not add images here, just return the previous state
+                }
+                return [...prevImages]; // Do not add images here, just return the previous state
+            });
+
+            // Limit the files that will be uploaded
+            const limitedFiles = Array.from(files).slice(0, MAX_IMAGES - uploadedImages.length);
+
+            // Upload the allowed number of images
             const responses = await Promise.all(
-                Array.from(files).map(uploadImage)
+                limitedFiles.map(uploadImage)
             );
 
             const uploadedImageUrls = responses.filter(res => res.status).map(res => res.url);
+
+            // Update state with successfully uploaded images
             setUploadedImages(prevImages => [
                 ...prevImages,
-                ...uploadedImageUrls.map((url, index) => ({ url, id: index }))
+                ...uploadedImageUrls.map((url, index) => ({ url, id: prevImages.length + index }))
             ]);
 
         } catch (error) {
@@ -300,31 +353,32 @@ export default function AddConstruction() {
     };
 
     const validateFields = () => {
-        console.log(mapLocation)
-        if (
-            country === "" ||
-            state === "" ||
-            city === "" ||
-            title === "" ||
-            budget === "" ||
-            unit === "" ||
-            application === "" ||
-            category === "" ||
-            description === "" ||
-            mapLocation === null ||
-            uploadedImages.length === 0
-        ) {
-            return false
+        const missingFields = [];
+
+        if (!uploadedImages.length) missingFields.push('Images');
+        if (!title) missingFields.push('Title');
+        if (!budget) missingFields.push('Budget');
+        if (!country) missingFields.push('Country');
+        if (!state) missingFields.push('Region');
+        if (!city) missingFields.push('City');
+        if (quantity === "" || quantity === 0) missingFields.push('Quantity');
+        if (category === "") missingFields.push('Category');
+        if (application === "") missingFields.push('Application');
+        if (type === "") missingFields.push('Type');
+
+        if (missingFields.length > 0) {
+            toast.error(`Please fill in the following fields: ${missingFields.join(', ')} to continue`);
+            return false;
         }
-        else {
-            return true
-        }
+
+        return true;
     }
 
     const handleSubmit = e => {
         e.preventDefault()
         if (!validateFields()) {
-            toast.error("Fill out required fields to continue")
+            // toast.error("Fill out required fields to continue")
+            return
         }
         else {
             setIsLoading(true)
@@ -339,22 +393,31 @@ export default function AddConstruction() {
                 street: street,
                 title: title,
                 budget: budget,
+                description: description,
+                mapLocation: mapLocation,
+                guaranteePeriod: guaranteePeriod,
+                guarantee: guarantee,
+
                 application: application,
                 category: category,
-                description: description,
-                condition: condition,
-                mapLocation: mapLocation,
-                guarantee: guarantee,
-                guaranteePeriod: guaranteePeriod,
                 unit: unit,
-                weight: weight,
-                available: available,
                 size: size,
-                brand: brand,
                 color: color,
-                dimensions: dimensions,
-                quality: quality,
                 quantity: quantity,
+                type: type,
+                material: material,
+                base: base,
+                thickness: thickness,
+                finish: finish,
+                voltage: voltage,
+                otherBase,
+                otherColor,
+                otherFinish,
+                otherMaterial,
+                otherSize,
+                otherThickness,
+                otherType,
+                otherVoltage,
                 status: true
             };
 
@@ -394,7 +457,8 @@ export default function AddConstruction() {
         e.preventDefault()
 
         if (!validateFields()) {
-            toast.error("Fill out required fields to continue")
+            // toast.error("Fill out required fields to continue")
+            return
         }
         else {
             setIsLoading(true)
@@ -409,22 +473,33 @@ export default function AddConstruction() {
                 street: street,
                 title: title,
                 budget: budget,
+                description: description,
+                mapLocation: mapLocation,
+                guaranteePeriod: guaranteePeriod,
+                guarantee: guarantee,
+
                 application: application,
                 category: category,
-                description: description,
-                condition: condition,
-                mapLocation: mapLocation,
-                guarantee: guarantee,
-                guaranteePeriod: guaranteePeriod,
                 unit: unit,
-                weight: weight,
-                available: available,
+
                 size: size,
-                brand: brand,
                 color: color,
-                dimensions: dimensions,
-                quality: quality,
                 quantity: quantity,
+                type: type,
+                material: material,
+                base: base,
+                thickness: thickness,
+                finish: finish,
+                voltage: voltage,
+
+                otherBase,
+                otherColor,
+                otherFinish,
+                otherMaterial,
+                otherSize,
+                otherThickness,
+                otherType,
+                otherVoltage,
                 status: true
             };
 
@@ -432,7 +507,6 @@ export default function AddConstruction() {
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
 
-            console.log(data)
             const raw = JSON.stringify(data);
 
             const requestOptions = {
@@ -470,46 +544,84 @@ export default function AddConstruction() {
         setStreet('');
         setTitle('');
         setBudget('');
-        setApplication('');
-        setCategory('');
         setDescription('');
-        setCondition('');
         setMapLocation(null);
         setGuarantee(false);
         setGuaranteePeriod('');
+
+        setApplication('');
+        setCategory('');
         setUnit('');
-        setWeight('');
-        setAvailable(false);
+
         setSize('');
-        setBrand('');
+        setDimensions('');
+        setCondition('');
         setColor('');
-        setDimensions('')
-        setQuality('')
-        setQuantity('')
+        setQuantity('');
+
+        setMaterial('');
+        setBase('');
+        setThickness('');
+        setFinish('');
+        setVoltage('');
+        setType('');
+
+        setOtherMaterial('');
+        setOtherSize('');
+        setOtherBase('');
+        setOtherThickness('');
+        setOtherFinish('');
+        setOtherVoltage('');
+        setOtherType('');
+        setOtherColor('');
+
+        setShowOtherMaterial(false);
+        setShowOtherSize(false);
+        setShowOtherBase(false);
+        setShowOtherThickness(false);
+        setShowOtherFinish(false);
+        setShowOtherVoltage(false);
+        setShowOtherType(false);
+        setShowOtherColor(false);
+    }
+
+    const handleBudgetCheck = (e) => {
+        if (e.target.value < 0) {
+            toast.error("Price cannot be negative")
+            setBudget(0)
+            return
+        }
+        setBudget(e.target.value)
+    }
+    const handleQuantityCheck = (e) => {
+        if (e.target.value < 0) {
+            toast.error("Quantity cannot be negative")
+            setQuantity(0)
+            return
+        }
+        setQuantity(e.target.value)
     }
 
 
-    const handleDescriptionChange = (event, editor) => {
-        const data = editor.getData();
-        // setDescription(data);
-        console.log(data)
-    };
+    const [disabledFields, setDisabledFields] = useState([])
 
-    const toolbar = [
-        'bold',
-        'italic',
-        '|',
-        'numberedList',
-        'bulletedList',
-        '|',
-        'heading',
-        'blockQuote',
-        '|',
-    ];
+    useEffect(() => {
+        if (application) {
+            const selectedCategory = materialCategories.find(cat => cat.application === application);
+            if (selectedCategory) {
+                setDisabledFields(selectedCategory.ignoreProperties)
+            } else {
+                // console.log("No matching category found.");
+                setDisabledFields([])
+            }
+        }
+    }, [application]);
+
 
     return (
         <>
-            <Toaster />
+            <ToastContainer />
+
             <div className={`lottie-wrapper ${isLoading ? 'show' : ''}`}>
                 <Lottie className='loader' animationData={loader} loop={true} />
             </div>
@@ -524,14 +636,14 @@ export default function AddConstruction() {
                             updatePage ?
                                 (
                                     <>
-                                        <h2 className='fw-bolder'>Update Product</h2>
+                                        <h5 className='fw-bolder'>Update Product</h5>
                                         <small className='mb-3'>Update the desired fields and retain others</small>
                                     </>
 
                                 ) :
                                 (
                                     <>
-                                        <h2 className='fw-bolder'>Publish New Building Materials Product</h2>
+                                        <h5 className='fw-bolder'>Publish New Construction Material</h5>
                                         <small className='mb-3'>Fill out all the required fields</small>
                                     </>
                                 )
@@ -545,268 +657,513 @@ export default function AddConstruction() {
                             </Link>
                         </div>
 
-                        <div className="card px-3 py-4 my-4 publish-form">
-                            <form action="" className="form" onSubmit={updatePage ? handleUpdate : handleSubmit}>
-                                <div className="row mb-3">
-                                    <div className="form-group col-6">
-                                        <label htmlFor="" className='mb-1'>Title*</label>
-                                        <input type="text" className="custom-input" onChange={e => setTitle(e.target.value)} value={title} />
-                                    </div>
-                                    <div className="form-group col-6">
-                                        <label htmlFor="" className='mb-1'>Budget (MAD)*</label>
-                                        <input type="number" min={0} className="custom-input" onChange={e => setBudget(e.target.value)} value={budget} />
-                                    </div>
-                                </div>
+                        <div className="py-4 my-4 publish-form">
+                            <form action="" className="form furnitureForm publishForm" onSubmit={updatePage ? handleUpdate : handleSubmit}>
 
-                                <div className="row mb-3">
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>Country*</label>
-                                        <Select
-                                            className="custom-input react-select"
-                                            classNamePrefix="select"
-                                            placeholder='Select Country'
-                                            name="color"
-                                            options={countries}
-                                            onChange={handleCountryChange}
-                                            value={
-                                                countries.filter(option =>
-                                                    option.label === country
-                                                )
-                                            }
-                                        />
-                                    </div>
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>State*</label>
-                                        <Select
-                                            className="custom-input react-select"
-                                            classNamePrefix="select"
-                                            placeholder='Select State'
-                                            name="color"
-                                            options={states && states}
-                                            onChange={handleStateChange}
-                                            value={
-                                                states.filter(option =>
-                                                    option.label === state
-                                                )
-                                            }
-                                        />
-                                    </div>
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>City*</label>
-                                        <Select
-                                            className="custom-input react-select"
-                                            classNamePrefix="select"
-                                            placeholder='Select City'
-                                            name="color"
-                                            options={cities && cities}
-                                            onChange={handleCityChange}
-                                            value={
-                                                cities.filter(option =>
-                                                    option.label === city
-                                                )
-                                            }
-                                        />
-                                    </div>
-                                </div>
 
-                                <div className="row mb-3">
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>Street Address (optional)</label>
-                                        <Select
-                                            className="custom-input react-select"
-                                            classNamePrefix="select"
-                                            placeholder='Select Street'
-                                            name="color"
-                                            options={streets && streets}
-                                            onChange={handleStreetChange}
-                                            value={
-                                                streets.filter(option =>
-                                                    option.label === street
-                                                )
-                                            }
-                                        />
-                                    </div>
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>Sell Unit <small>(per Item, per Day, per Month)</small>*</label>
-                                        <input type="text" className="custom-input" onChange={e => setUnit(e.target.value)} value={unit} />
-                                    </div>
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>Brand*</label>
-                                        <select name="" id="" className="custom-input" onChange={e => setBrand(e.target.value)} value={brand}>
-                                            <option value="">Select brand</option>
-                                            {
-                                                constructionBrands.map((data, i) => {
-                                                    return (
-                                                        <option value={data} key={i}>{data}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
+                                <div className="split">
 
-                                <div className="row mb-3">
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>Application*</label>
-                                        <select name="" id="" className="custom-input" onChange={e => setApplication(e.target.value)} value={application}>
-                                            <option value="">Select Applicaion</option>
-                                            {
-                                                constructionCategories.map((data, i) => {
-                                                    return (
-                                                        <option value={data.categoryName} key={i}>{data.categoryName}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>Category*</label>
-                                        <select name="" id="" className="custom-input" onChange={e => setCategory(e.target.value)} value={category}>
-                                            <option value="">Select Category</option>
-                                            {
-                                                constructionCategories.map((data) => (
-                                                    data.subcategories.map((subCat, i) => (
-                                                        <option value={subCat} key={i}>{subCat}</option>
-                                                    ))
-                                                ))
-                                            }
-                                        </select>
-                                    </div>
-                                    <div className="form-group col-4">
-                                        <label htmlFor="" className='mb-1'>Condition*</label>
-                                        <select name="" id="" className="custom-input" onChange={e => setCondition(e.target.value)} value={condition}>
-                                            <option value="">Select Condition</option>
-                                            {
-                                                conditionData.map((data, i) => {
-                                                    return (
-                                                        <option value={data} key={i}>{data}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div className="row mb-3">
-                                    <div className="form-group col-3">
-                                        <label htmlFor="" className='mb-1'>Weight <small>(In kg)</small></label>
-                                        <input type="number" placeholder="eg 2000" className="custom-input" onChange={e => setWeight(e.target.value)} value={weight} />
-                                    </div>
-                                    <div className="form-group col-3">
-                                        <label htmlFor="" className='mb-1'>Color</label>
-                                        <input type="text" placeholder="eg Brown" className="custom-input" onChange={e => setColor(e.target.value)} value={color} />
-                                    </div>
-                                    <div className="form-group col-3">
-                                        <label htmlFor="" className='mb-1'>Quality</label>
-                                        <input type="text" placeholder="eg Supreme" className="custom-input" onChange={e => setQuality(e.target.value)} value={quality} />
-                                    </div>
-                                    <div className="form-group col-3">
-                                        <label htmlFor="" className='mb-1'>Quantity</label>
-                                        <input type="text" placeholder="eg 20kg" className="custom-input" onChange={e => setQuantity(e.target.value)} value={quantity} />
-                                    </div>
-                                </div>
-
-                                <div className="row mb-3">
-                                    <div className="form-group col-6">
-                                        <label htmlFor="" className='mb-1'>Size <small>(In m)</small></label>
-                                        <input type="number" placeholder="eg 12" className="custom-input" onChange={e => setSize(e.target.value)} value={size} />
-
-                                    </div>
-                                    <div className="form-group col-6">
-                                        <label htmlFor="" className='mb-1'>Dimensions <small>(In m)</small></label>
-                                        <input type="text" placeholder="12x18" className="custom-input" onChange={e => setDimensions(e.target.value)} value={dimensions} />
-                                    </div>
-
-                                </div>
-
-                                <div className="row mb-3">
-                                    <div className="form-group col-3">
-                                        <div className="d-flex align-items-center mt-4">
-                                            <label htmlFor="" className='mb-1'>Available</label>
-                                            <input type="checkbox" className="custom-input" onChange={e => setAvailable(!available)} checked={available} />
+                                    <div className="formSide side_2">
+                                        <div className="info">Category and pricing</div>
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Application*</label>
+                                            <select name="" id="" className="custom-input" onChange={e => setApplication(e.target.value)} value={application}>
+                                                <option value="">Select Applicaion</option>
+                                                {
+                                                    materialCategories.map((data, i) => {
+                                                        return (
+                                                            <option value={data.application} key={i}>{data.application}</option>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
                                         </div>
-                                    </div>
-                                    <div className="form-group col-3">
-                                        <div className="d-flex align-items-center mt-4">
-                                            <label htmlFor="" className='mb-1'>Guarantee</label>
-                                            <input type="checkbox" className="custom-input" onChange={e => setGuarantee(!guarantee)} checked={guarantee} />
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Category*</label>
+                                            <select
+                                                name="category"
+                                                id="category"
+                                                className="custom-input"
+                                                onChange={e => {
+                                                    const selectedMaterial = e.target.value;
+                                                    setCategory(e.target.value);
+
+                                                    // Find the unit based on the selected material
+                                                    const foundMaterial = materialCategories
+                                                        .filter(data => data.application === application)
+                                                        .flatMap(data => data.categories)
+                                                        .find(material => material.materialName === selectedMaterial);
+
+                                                    setUnit(foundMaterial ? foundMaterial.unit : '');
+                                                }}
+                                                value={category}
+                                            >
+                                                <option value="">Select Category</option>
+                                                {
+                                                    materialCategories
+                                                        .filter(data => data.application === application)
+                                                        .flatMap(data => data.categories)
+                                                        .map((material, i) => (
+                                                            <option value={material.materialName} key={i}>
+                                                                {material.materialName}
+                                                            </option>
+                                                        ))
+                                                }
+                                            </select>
+                                        </div>
+
+                                        {/* <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Unit*</label>
+                                            <input type="text" className="custom-input" readOnly value={unit} />
+                                        </div> */}
+
+                                        <div className="form-group form-group-sm mb-4">
+                                            <label htmlFor="" className='mb-1'>Budget* (MAD){unit !== "" ? "/" : ""} {unit}</label>
+                                            <input type="number" min={0} className="custom-input" onChange={e => setBudget(e.target.value)} onBlur={handleBudgetCheck} value={budget} />
+                                            <small style={{ fontSize: "10px" }}>Specify Budget (MAD) per {unit}</small>
+                                        </div>
+
+                                        <div className="form-group form-group-sm mb-4">
+                                            <label htmlFor="" className='mb-1'>Quantity*</label>
+                                            <input type="number" className="custom-input" min={1} onChange={e => setQuantity(e.target.value)} onBlur={handleQuantityCheck} value={quantity} />
                                         </div>
                                     </div>
 
-                                    {
-                                        guarantee && (
-                                            <div className="form-group col-4">
-                                                <label htmlFor="" className='mb-1'>Guranatee Period <small>(1 Month, 1 Year etc)</small></label>
-                                                <input type="text" placeholder="" className="custom-input" onChange={e => setGuaranteePeriod(e.target.value)} value={guaranteePeriod} />
+
+                                    <div className="formSide side_3">
+                                        <div className="info">Product Information</div>
+
+                                        <div className="form-group form-group-sm  mb-3">
+                                            <label htmlFor="" className='mb-1'>Title* <small>(max 100 characters)</small></label>
+                                            <input type="text" maxLength={100} className="custom-input" onChange={e => setTitle(e.target.value)} value={title} />
+                                        </div>
+
+                                        <div className="form-group form-group-sm mb-3 ">
+                                            <label htmlFor="" className='mb-1'>Description* <small>(max 1000 characters)</small></label>
+                                            <Editor description={description} setDescription={setDescription} maximumLength={1000} />
+                                        </div>
+
+                                        <div className="col-12 images-section">
+                                            <div className="upload-image" onClick={hanldeUploadClick}>
+                                                <input type="file" accept='image/*' onChange={handleImageChange} multiple name="" id="" className='invisible' ref={imageUploadRef} />
+                                                <FaCloudUploadAlt />
+                                                <p style={{ fontSize: "10px" }}>Upload Images (Upload maximum of 10 images) </p>
                                             </div>
-                                        )
-                                    }
+                                            {
+                                                uploadingImage && (
+                                                    <>
+                                                        <ClipLoader
+                                                            color="#076C8F"
+                                                            loading={uploadingImage}
+                                                            size={20}
+                                                            aria-label="Loading Spinner"
+                                                            data-testid="loader"
+                                                            className='mt-1'
+                                                        />
+                                                        <p>Uploading Images </p>
+                                                    </>
 
-                                </div>
+                                                )
+                                            }
 
-                                <div className="row mb-3">
-                                    <div className="form-group col-12">
-                                        <label htmlFor="" className='mb-1'>Description*</label>
-                                        <Editor description={description} setDescription={setDescription} />
-                                    </div>
-                                </div>
-
-                                <div className="row mb-3">
-                                    <div className="col-12 images-section">
-                                        <div className="upload-image" onClick={hanldeUploadClick}>
-                                            <input type="file" accept='image/*' onChange={handleImageChange} multiple name="" id="" className='invisible' ref={imageUploadRef} />
-                                            <FaCloudUploadAlt />
-                                            <p>Upload Images</p>
+                                            <div className={`uploaded-images ${showUploadedImages ? 'show' : ''}`}>
+                                                {uploadedImages &&
+                                                    uploadedImages.map((image, i) => (
+                                                        <div className="image" key={i}>
+                                                            <FaXmark onClick={() => removeImage(image.id)} />
+                                                            <img src={image.url} alt="" />
+                                                        </div>
+                                                    ))}
+                                            </div>
                                         </div>
-                                        {
-                                            uploadingImage && (
-                                                <>
-                                                    <ClipLoader
-                                                        color="#076C8F"
-                                                        loading={uploadingImage}
-                                                        size={20}
-                                                        aria-label="Loading Spinner"
-                                                        data-testid="loader"
-                                                        className='mt-1'
-                                                    />
-                                                    <p>Uploading Images </p>
-                                                </>
 
+                                    </div>
+
+
+                                </div>
+
+                                <div className="d-flex gap-3 mt-4">
+                                    <div className="w-25 formSide">
+                                        <div className="info">Characteristics</div>
+
+
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Select Type*</label>
+                                            <select name="type" id="type" className="custom-input" value={type} onChange={e => {
+                                                setType(e.target.value)
+                                                e.target.value === "Other" ?
+                                                    setShowOtherType(true) :
+                                                    setShowOtherType(false)
+                                            }}>
+
+                                                <option value="">Select Type</option>
+                                                {
+                                                    materialCategories
+                                                        .filter(data => data.application === application)
+                                                        .flatMap(data => data.categories)
+                                                        .filter(material => material.materialName === category)
+                                                        .flatMap(material => material.types)
+                                                        .map((type, i) => (
+                                                            <option value={type} key={i}>
+                                                                {type}
+                                                            </option>
+                                                        ))
+                                                }
+                                            </select>
+                                        </div>
+
+                                        {
+                                            showOtherType && (
+                                                <div className="form-group form-group-sm mb-3">
+                                                    <label htmlFor="" className='mb-1'>Please specify</label>
+                                                    <input type="text" className="custom-input" onChange={e => setOtherType(e.target.value)} value={otherType} />
+                                                </div>
                                             )
                                         }
 
-                                        <div className={`uploaded-images ${showUploadedImages ? 'show' : ''}`}>
-                                            {uploadedImages &&
-                                                uploadedImages.map((image, i) => (
-                                                    <div className="image" key={i}>
-                                                        <FaXmark onClick={() => removeImage(image.id)} />
-                                                        <img src={image.url} alt="" />
+                                        {
+                                            !disabledFields.includes('size') && (
+                                                <>
+                                                    <div className="form-group form-group-sm mb-3">
+                                                        <label htmlFor="" className='mb-1'>Select Size</label>
+                                                        <select name="" id="" className="custom-input" onChange={e => {
+                                                            setSize(e.target.value)
+                                                            e.target.value === "Other" ?
+                                                                setShowOtherSize(true) :
+                                                                setShowOtherSize(false)
+                                                        }} value={size}>
+                                                            <option value="">Select Size</option>
+                                                            {
+                                                                materialSizes
+                                                                    .map((data, i) => (
+                                                                        <option value={data} key={i}>{data}</option>
+                                                                    ))
+                                                            }
+                                                        </select>
+                                                    </div> {
+                                                        showOtherSize && (
+                                                            <div className="form-group form-group-sm mb-3">
+                                                                <label htmlFor="" className='mb-1'>Please specify</label>
+                                                                <input type="text" className="custom-input" onChange={e => setOtherSize(e.target.value)} value={otherSize} />
+                                                            </div>
+                                                        )
+                                                    }
+                                                </>
+                                            )
+                                        }
+
+
+                                        {
+                                            !disabledFields.includes('size') && (
+                                                <>
+                                                    <div className="form-group form-group-sm mb-3">
+                                                        <label htmlFor="" className='mb-1'>Select Color</label>
+                                                        <select name="" id="" className="custom-input" onChange={e => {
+                                                            setColor(e.target.value)
+                                                            e.target.value === "Other" ?
+                                                                setShowOtherColor(true) :
+                                                                setShowOtherColor(false)
+                                                        }} value={color}>
+                                                            <option value="">Select Color</option>
+                                                            {
+                                                                materialColors
+                                                                    .map((data, i) => (
+                                                                        <option value={data} key={i}>{data}</option>
+                                                                    ))
+                                                            }
+                                                        </select>
+                                                    </div> {
+                                                        showOtherColor && (
+                                                            <div className="form-group form-group-sm mb-3">
+                                                                <label htmlFor="" className='mb-1'>Please specify</label>
+                                                                <input type="text" className="custom-input" onChange={e => setOtherColor(e.target.value)} value={otherColor} />
+                                                            </div>
+                                                        )
+                                                    }
+                                                </>
+                                            )
+                                        }
+
+                                        {
+                                            !disabledFields.includes('material') && (
+                                                <>
+
+                                                    <div className="form-group form-group-sm mb-3">
+                                                        <label htmlFor="" className='mb-1'>Select Material</label>
+                                                        <select name="" id="" className="custom-input" onChange={e => {
+                                                            setMaterial(e.target.value)
+                                                            e.target.value === "Other" ?
+                                                                setShowOtherMaterial(true) :
+                                                                setShowOtherMaterial(false)
+                                                        }} value={material}>
+                                                            <option value="">Select Material</option>
+                                                            {
+                                                                materials
+                                                                    .map((data, i) => (
+                                                                        <option value={data} key={i}>{data}</option>
+                                                                    ))
+                                                            }
+                                                        </select>
+                                                    </div> {
+                                                        showOtherMaterial && (
+                                                            <div className="form-group form-group-sm mb-3">
+                                                                <label htmlFor="" className='mb-1'>Please specify</label>
+                                                                <input type="text" className="custom-input" onChange={e => setOtherMaterial(e.target.value)} value={otherMaterial} />
+                                                            </div>
+                                                        )
+                                                    }
+                                                </>
+                                            )
+                                        }
+
+
+                                        {
+                                            !disabledFields.includes('base') && (
+                                                <>
+                                                    <div className="form-group form-group-sm mb-3">
+                                                        <label htmlFor="" className='mb-1'>Select Base</label>
+                                                        <select name="" id="" className="custom-input" onChange={e => {
+                                                            setBase(e.target.value)
+                                                            e.target.value === "Other" ?
+                                                                setShowOtherBase(true) :
+                                                                setShowOtherBase(false)
+                                                        }} value={base}>
+                                                            <option value="">Select Base</option>
+                                                            {
+                                                                materialBases
+                                                                    .map((data, i) => (
+                                                                        <option value={data} key={i}>{data}</option>
+                                                                    ))
+                                                            }
+                                                        </select>
+                                                    </div> {
+                                                        showOtherBase && (
+                                                            <div className="form-group form-group-sm mb-3">
+                                                                <label htmlFor="" className='mb-1'>Please specify</label>
+                                                                <input type="text" className="custom-input" onChange={e => setOtherBase(e.target.value)} value={otherBase} />
+                                                            </div>
+                                                        )
+                                                    }
+                                                </>
+                                            )
+                                        }
+
+
+                                        {
+                                            !disabledFields.includes('thickness') && (
+                                                <>
+                                                    <div className="form-group form-group-sm mb-3">
+                                                        <label htmlFor="" className='mb-1'>Select Thickness</label>
+                                                        <select name="" id="" className="custom-input" onChange={e => {
+                                                            setThickness(e.target.value)
+                                                            e.target.value === "Other" ?
+                                                                setShowOtherThickness(true) :
+                                                                setShowOtherThickness(false)
+                                                        }} value={thickness}>
+                                                            <option value="">Select Thickness</option>
+                                                            {
+                                                                materialThickness
+                                                                    .map((data, i) => (
+                                                                        <option value={data} key={i}>{data}</option>
+                                                                    ))
+                                                            }
+                                                        </select>
                                                     </div>
-                                                ))}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row mb-3 mt-5">
-                                    <div className="col-12">
-                                        <h5>Add location by map*</h5>
-                                        <small>Click on the location address in map</small>
-
-                                        {
-                                            !isLoading && updatePage ? (
-                                                <>
-                                                    <GetLocationMap centerPosition={mapLocation && mapLocation} clickedPosition={mapLocation} setClickedPosition={setMapLocation} />
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <GetLocationMap centerPosition={["34.020882", "-6.841650"]} clickedPosition={mapLocation} setClickedPosition={setMapLocation} />
+                                                    {
+                                                        showOtherThickness && (
+                                                            <div className="form-group form-group-sm mb-3">
+                                                                <label htmlFor="" className='mb-1'>Please specify</label>
+                                                                <input type="text" className="custom-input" onChange={e => setOtherThickness(e.target.value)} value={otherThickness} />
+                                                            </div>
+                                                        )
+                                                    }
                                                 </>
                                             )
                                         }
+
+
+                                        {
+                                            !disabledFields.includes('finish') && (
+                                                <>
+                                                    <div className="form-group form-group-sm mb-3">
+                                                        <label htmlFor="" className='mb-1'>Select Finish</label>
+                                                        <select name="" id="" className="custom-input" onChange={e => {
+                                                            setFinish(e.target.value)
+                                                            e.target.value === "Other" ?
+                                                                setShowOtherFinish(true) :
+                                                                setShowOtherFinish(false)
+                                                        }} value={finish}>
+                                                            <option value="">Select Finish</option>
+                                                            {
+                                                                materialFinish
+                                                                    .map((data, i) => (
+                                                                        <option value={data} key={i}>{data}</option>
+                                                                    ))
+                                                            }
+                                                        </select>
+                                                    </div> {
+                                                        showOtherFinish && (
+                                                            <div className="form-group form-group-sm mb-3">
+                                                                <label htmlFor="" className='mb-1'>Please specify</label>
+                                                                <input type="text" className="custom-input" onChange={e => setOtherFinish(e.target.value)} value={otherFinish} />
+                                                            </div>
+                                                        )
+                                                    }
+                                                </>
+                                            )
+                                        }
+
+
+                                        {
+                                            !disabledFields.includes('voltage') && (
+                                                <>
+                                                    <div className="form-group form-group-sm mb-3">
+                                                        <label htmlFor="" className='mb-1'>Select Voltage</label>
+                                                        <select
+                                                            className="custom-input"
+                                                            onChange={e => {
+                                                                setVoltage(e.target.value)
+                                                                setShowOtherVoltage(e.target.value === "Other")
+                                                            }}
+                                                            value={voltage}
+                                                        >
+                                                            <option value="">Select Voltage</option>
+                                                            {materialVoltage.map((data, i) => (
+                                                                <option value={data} key={i}>{data}</option>
+                                                            ))}
+                                                        </select>
+                                                    </div>
+
+                                                    {
+                                                        showOtherVoltage && (
+                                                            <div className="form-group form-group-sm mb-3">
+                                                                <label htmlFor="" className='mb-1'>Please specify</label>
+                                                                <input type="text" className="custom-input" onChange={e => setOtherVoltage(e.target.value)} value={otherVoltage} />
+                                                            </div>
+                                                        )
+                                                    }
+                                                </>
+                                            )
+                                        }
+
+                                        <div className="form-group form-group-sm mb-1">
+                                            <div className="d-flex align-items-center justify-content-between">
+                                                <label htmlFor="guaranteeCheck" className='mb-1'>Guarantee</label>
+                                                <input type="checkbox" id='guaranteeCheck' className="" onChange={e => setGuarantee(!guarantee)} checked={guarantee} />
+                                            </div>
+                                        </div>
+
+                                        {
+                                            guarantee && (
+                                                <div className="form-group form-group-sm">
+                                                    <select name="" id="" className="custom-input" onChange={e => setGuaranteePeriod(e.target.value)} value={guaranteePeriod}>
+                                                        <option value="">Select Guarantee</option>
+                                                        {
+                                                            machineryGuarantee.map((data, i) => {
+                                                                return (
+                                                                    <option value={data} key={i}>{data}</option>
+                                                                )
+                                                            })
+                                                        }
+                                                    </select>
+                                                </div>
+                                            )
+                                        }
+                                    </div>
+                                    <div className="w-50 formSide">
+                                        <div className="info">Location</div>
+
+                                        <div className="form-group form-group-sm form-group form-group-sm-sm form-group form-group-sm form-group form-group-sm-sm-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Country*</label>
+                                            <Select
+                                                className="custom-input react-select"
+                                                classNamePrefix="select"
+                                                placeholder='Select Country'
+                                                name="color"
+                                                options={countries}
+                                                onChange={handleCountryChange}
+                                                value={
+                                                    countries.filter(option =>
+                                                        option.label === country
+                                                    )
+                                                }
+                                            />
+                                        </div>
+                                        <div className="form-group form-group-sm form-group form-group-sm-sm form-group form-group-sm form-group form-group-sm-sm-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>Region*</label>
+                                            <Select
+                                                className="custom-input react-select"
+                                                classNamePrefix="select"
+                                                placeholder='Select Region'
+                                                name="color"
+                                                options={states && states}
+                                                onChange={handleStateChange}
+                                                value={
+                                                    states.filter(option =>
+                                                        option.label === state
+                                                    )
+                                                }
+                                            />
+                                        </div>
+                                        <div className="form-group form-group-sm form-group form-group-sm-sm form-group form-group-sm form-group form-group-sm-sm-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>City*</label>
+                                            <Select
+                                                className="custom-input react-select"
+                                                classNamePrefix="select"
+                                                placeholder='Select City'
+                                                name="color"
+                                                options={cities && cities}
+                                                onChange={handleCityChange}
+                                                value={
+                                                    cities.filter(option =>
+                                                        option.label === city
+                                                    )
+                                                }
+                                            />
+                                        </div>
+
+                                        <div className="form-group form-group-sm form-group form-group-sm-sm form-group form-group-sm form-group form-group-sm-sm-sm">
+                                            <label htmlFor="" className='mb-1'>District</label>
+                                            <Select
+                                                className="custom-input react-select"
+                                                classNamePrefix="select"
+                                                placeholder='Select District'
+                                                name="color"
+                                                options={streets && streets}
+                                                onChange={handleStreetChange}
+                                                value={
+                                                    streets.filter(option =>
+                                                        option.label === street
+                                                    )
+                                                }
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="w-50 formSide">
+                                        <div className="info">Location by map</div>
+
+                                        <div className="col-12">
+                                            <p style={{ fontSize: "12px" }}>Add location by map*</p>
+                                            {
+                                                !isLoading && updatePage ? (
+                                                    <>
+                                                        <GetLocationMap centerPosition={mapLocation && mapLocation} clickedPosition={mapLocation} setClickedPosition={setMapLocation} />
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <GetLocationMap centerPosition={["34.020882", "-6.841650"]} clickedPosition={mapLocation} setClickedPosition={setMapLocation} />
+                                                    </>
+                                                )
+                                            }
+                                            <small>Click on the location address in map</small>
+
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div className="row mb-2">
-                                    <div className="form-group d-flex align-items-center justify-content-end gap-2">
+
+                                <div className="row mb-2 mt-4">
+                                    <div className="form-group form-group-sm d-flex align-items-center justify-content-end gap-2">
                                         <div className="outline-btn py-2" onClick={resetAllFields}>Reset</div>
                                         {/* <button className="custom-btn" type='submit'>Publish</button> */}
                                         <button className="custom-btn" type='submit'>

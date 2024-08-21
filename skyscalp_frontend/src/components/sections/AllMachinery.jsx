@@ -23,7 +23,7 @@ export default function AllMachinery({ data, hasPrevPage, hasNextPage, totalItem
                 <div className="cards-grid">
                     {
                         data.length === 0 && (
-                            <h5 className='my-4'>No Products Found</h5>
+                            <h5 className='my-4'>{t("notProductsFound")}</h5>
                         )
                     }
                     {
