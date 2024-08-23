@@ -22,10 +22,12 @@ import { Line } from 'rc-progress';
 import Lottie from 'lottie-react'
 import Editor from '../components/Editor'
 import Footer from '../components/Footer'
+import { useTranslation } from 'react-i18next'
 
 
 export default function AddFurniture() {
 
+    const [t] = useTranslation()
 
     const imageUploadRef = useRef()
 
@@ -344,19 +346,19 @@ export default function AddFurniture() {
     const validateFields = () => {
         const missingFields = [];
 
-        if (!uploadedImages.length) missingFields.push('Images');
-        if (!country) missingFields.push('Country');
-        if (!state) missingFields.push('Region');
-        if (!city) missingFields.push('City');
-        if (!title) missingFields.push('Title');
-        if (!budget) missingFields.push('Budget');
-        if (quantity === "" || quantity === 0) missingFields.push('Quantity');
-        if (category === "") missingFields.push('Category');
-        if (article === "") missingFields.push('Article');
+        if (!uploadedImages.length) missingFields.push('cmages');
+        if (!country) missingFields.push('country');
+        if (!title) missingFields.push('title');
+        if (!budget) missingFields.push('budget');
+        if (category === "") missingFields.push('category');
+        if (description === "") missingFields.push('descripiton');
+        if (article === "") missingFields.push('article');
         // if (category === "") missingFields.push('Tool');
 
         if (missingFields.length > 0) {
-            toast.error(`Please fill in the following fields: ${missingFields.join(', ')} to continue`);
+            const translatedFields = missingFields.map(field => t(field)).join(', ');
+            toast.error(`${t("Fill in the following fields:")} ${translatedFields} ${t("to continue")}`);
+
             return false;
         }
 
@@ -550,6 +552,9 @@ export default function AddFurniture() {
         }
         setQuantity(e.target.value)
     }
+
+
+    const uniqueCategories = [...new Set(furnitureCategories.map(item => item.cateogry))];
     return (
         <>
             <ToastContainer />
@@ -567,15 +572,15 @@ export default function AddFurniture() {
                             updatePage ?
                                 (
                                     <>
-                                        <h5 className='fw-bolder'>Update Product</h5>
-                                        <small className='mb-3'>Update the desired fields and retain others</small>
+                                        <h5 className='fw-bolder'>{t("Update Product")}</h5>
+                                        <small className='mb-3'>{t("Update the desired fields and retain others")}</small>
                                     </>
 
                                 ) :
                                 (
                                     <>
-                                        <h5 className='fw-bolder'>Publish New Furniture, Appliances Product</h5>
-                                        <small className='mb-3'>Fill out all the required fields</small>
+                                        <h5 className='fw-bolder'>{t("Publish New Furniture, Appliances Product")}</h5>
+                                        <small className='mb-3'>{t("Fill out all the required fields")}</small>
                                     </>
                                 )
                         }
@@ -594,31 +599,29 @@ export default function AddFurniture() {
                                 <div className="split">
 
                                     <div className="formSide side_2">
-                                        <div className="info">Category and pricing</div>
+                                        <div className="info">{t("Category and pricing")}</div>
                                         <div className="form-group form-group-sm mb-3">
 
-                                            <label htmlFor="" className='mb-1'>Category*</label>
+                                            <label htmlFor="" className='mb-1'>{t("category")}*</label>
                                             <select name="" id="" className="custom-input" onChange={e => setCategory(e.target.value)} value={category}>
-                                                <option value="">Select Category</option>
+                                                <option value="">Select {t("category")}</option>
                                                 {
-                                                    furnitureCategories.map((data, i) => {
+                                                    uniqueCategories.map((data, i) => {
                                                         return (
-                                                            <option value={data.article} key={i}>{data.article}</option>
+                                                            <option value={data} key={i}>{data}</option>
                                                         )
                                                     })
                                                 }
                                             </select>
                                         </div>
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Article*</label>
+                                            <label htmlFor="" className='mb-1'>{t("article")}*</label>
                                             <select name="" id="" className="custom-input" onChange={e => setArticle(e.target.value)} value={article}>
-                                                <option value="">Select Article</option>
+                                                <option value="">{t("select")} {t("article")}</option>
                                                 {
-                                                    furnitureCategories.map((data) => (
-                                                        category === data.article ? (
-                                                            data.materials.map((subCat, i) => (
-                                                                <option value={subCat} key={i}>{subCat}</option>
-                                                            ))
+                                                    furnitureCategories.map((data, i) => (
+                                                        category === data.cateogry ? (
+                                                            <option value={data.article} key={i}>{data.article}</option>
                                                         ) : (
                                                             null
                                                         )
@@ -632,25 +635,25 @@ export default function AddFurniture() {
                                         <div className="form-group form-group-sm mb-4">
                                             <label htmlFor="" className='mb-1'>Budget (MAD)*</label>
                                             <input type="number" min={0} className="custom-input" onChange={e => setBudget(e.target.value)} onBlur={handleBudgetCheck} value={budget} />
-                                            <small style={{ fontSize: "10px" }}>Specify Budget MAD per item</small>
+                                            <small style={{ fontSize: "10px" }}>{t("Specify Budget (MAD) per")} {t("unit")}</small>
                                         </div>
 
                                         <div className="form-group form-group-sm mb-4">
-                                            <label htmlFor="" className='mb-1'>Quantity*</label>
+                                            <label htmlFor="" className='mb-1'>{t("quantity")}</label>
                                             <input type="number" className="custom-input" min={1} onChange={e => setQuantity(e.target.value)} onBlur={handleQuantityCheck} value={quantity} />
                                         </div>
                                     </div>
 
                                     <div className="formSide side_3">
-                                        <div className="info">Product Information</div>
+                                        <div className="info">{t("product")} {t("information")}</div>
 
-                                        <div className="form-group form-group-sm  mb-3">
-                                            <label htmlFor="" className='mb-1'>Title* <small>(max 100 characters)</small></label>
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>{t("title")}* <small>({t("max")} 100 {t("characters")})</small></label>
                                             <input type="text" maxLength={100} className="custom-input" onChange={e => setTitle(e.target.value)} value={title} />
                                         </div>
 
-                                        <div className="form-group form-group-sm  mb-3 ">
-                                            <label htmlFor="" className='mb-1'>Description* <small>(max 1000 characters)</small></label>
+                                        <div className="form-group form-group-sm mb-3 ">
+                                            <label htmlFor="" className='mb-1'>{t("description")}* <small>({t("max")} 1000 {t("characters")})</small></label>
                                             <Editor description={description} setDescription={setDescription} maximumLength={1000} />
                                         </div>
 
@@ -658,7 +661,7 @@ export default function AddFurniture() {
                                             <div className="upload-image" onClick={hanldeUploadClick}>
                                                 <input type="file" accept='image/*' onChange={handleImageChange} multiple name="" id="" className='invisible' ref={imageUploadRef} />
                                                 <FaCloudUploadAlt />
-                                                <p style={{ fontSize: "10px" }}>Upload Images (Upload maximum of 10 images) </p>
+                                                <p style={{ fontSize: "10px" }}>{t("imagesUpload")}* </p>
                                             </div>
                                             {
                                                 uploadingImage && (
@@ -671,7 +674,7 @@ export default function AddFurniture() {
                                                             data-testid="loader"
                                                             className='mt-1'
                                                         />
-                                                        <p>Uploading Images </p>
+                                                        <p>{t("uploading")} </p>
                                                     </>
 
                                                 )
@@ -688,22 +691,23 @@ export default function AddFurniture() {
                                             </div>
                                         </div>
 
+
                                     </div>
 
                                 </div>
                                 <div className="d-flex gap-3 mt-4">
                                     <div className="w-25 formSide">
-                                        <div className="info">Characteristics</div>
+                                        <div className="info">{t("Characteristics")}</div>
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Select Color</label>
+                                            <label htmlFor="" className='mb-1'>{t("select")} Color</label>
                                             <select name="" id="" className="custom-input" onChange={e => {
                                                 setColor(e.target.value)
                                                 e.target.value === "Other" ?
                                                     setShowOtherColor(true) :
                                                     setShowOtherColor(false)
                                             }} value={color}>
-                                                <option value="">Select Color</option>
+                                                <option value="">{t("select")} Color</option>
                                                 {
                                                     furnitureCategories.some(data => data.article === category) ?
                                                         furnitureCategories
@@ -713,7 +717,7 @@ export default function AddFurniture() {
                                                                 <option value={subCat} key={i}>{subCat}</option>
                                                             ))
                                                         :
-                                                        <option value="">Select Category to view more options</option>
+                                                        <option value="">{t("select")} {t("Category to view more options")}</option>
                                                 }
                                             </select>
 
@@ -722,16 +726,16 @@ export default function AddFurniture() {
                                         {
                                             showOtherColor && (
                                                 <div className="form-group form-group-sm mb-3">
-                                                    <label htmlFor="" className='mb-1'>Please specify</label>
+                                                    <label htmlFor="" className='mb-1'>{t("Please specify")}</label>
                                                     <input type="text" className="custom-input" onChange={e => setOtherColor(e.target.value)} value={otherColor} />
                                                 </div>
                                             )
                                         }
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Select Dimensions</label>
+                                            <label htmlFor="" className='mb-1'>{t("select")} {("dimensions")}</label>
                                             <select name="" id="" className="custom-input" onChange={e => setDimensions(e.target.value)} value={dimensions}>
-                                                <option value="">Select Dimension</option>
+                                                <option value="">{t("select")} {("dimension")}</option>
                                                 {
                                                     furnitureCategories.some(data => data.article === category) ?
                                                         furnitureCategories
@@ -741,15 +745,15 @@ export default function AddFurniture() {
                                                                 <option value={subCat} key={i}>{subCat}</option>
                                                             ))
                                                         :
-                                                        <option value="">Select Category to view more options</option>
+                                                        <option value="">{t("select")} {t("Category to view more options")}</option>
                                                 }
                                             </select>
                                         </div>
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Select Styles</label>
+                                            <label htmlFor="" className='mb-1'>{t("select")} {t("Styles")}</label>
                                             <select name="" id="" className="custom-input" onChange={e => setStyle(e.target.value)} value={style}>
-                                                <option value="">Select Style</option>
+                                                <option value="">{t("select")} {t("Style")}</option>
                                                 {
                                                     furnitureCategories.some(data => data.article === category) ?
                                                         furnitureCategories
@@ -759,20 +763,20 @@ export default function AddFurniture() {
                                                                 <option value={subCat} key={i}>{subCat}</option>
                                                             ))
                                                         :
-                                                        <option value="">Select Category to view more options</option>
+                                                        <option value="">{t("select")} {t("Category to view more options")}</option>
                                                 }
                                             </select>
                                         </div>
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Select Feature</label>
+                                            <label htmlFor="" className='mb-1'>{t("select")} {t("feature")}</label>
                                             <select name="" id="" className="custom-input" onChange={e => {
                                                 setFeature(e.target.value)
                                                 e.target.value === "Other" ?
                                                     setShowOtherFeature(true) :
                                                     setShowOtherFeature(false)
                                             }} value={feature}>
-                                                <option value="">Select Feature</option>
+                                                <option value="">{t("select")} {t("feature")}</option>
                                                 {
                                                     furnitureCategories.some(data => data.article === category) ?
                                                         furnitureCategories
@@ -782,7 +786,7 @@ export default function AddFurniture() {
                                                                 <option value={subCat} key={i}>{subCat}</option>
                                                             ))
                                                         :
-                                                        <option value="">Select Category to view more options</option>
+                                                        <option value="">{t("select")} {t("Category to view more options")}</option>
                                                 }
                                             </select>
                                         </div>
@@ -790,21 +794,21 @@ export default function AddFurniture() {
                                         {
                                             showOtherFeature && (
                                                 <div className="form-group form-group-sm mb-3">
-                                                    <label htmlFor="" className='mb-1'>Please specify</label>
+                                                    <label htmlFor="" className='mb-1'>{t("Please specify")}</label>
                                                     <input type="text" className="custom-input" onChange={e => setOtherFeature(e.target.value)} value={otherFeature} />
                                                 </div>
                                             )
                                         }
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Select Brand</label>
+                                            <label htmlFor="" className='mb-1'>{t("select")} {t("Brand")}</label>
                                             <select name="" id="" className="custom-input" onChange={e => {
                                                 setBrand(e.target.value)
                                                 e.target.value === "Other" ?
                                                     setShowOtherBrand(true) :
                                                     setShowOtherBrand(false)
                                             }} value={brand}>
-                                                <option value="">Select Brand</option>
+                                                <option value="">{t("select")} {t("Brand")}</option>
                                                 {
                                                     furnitureCategories.some(data => data.article === category) ?
                                                         furnitureCategories
@@ -814,7 +818,7 @@ export default function AddFurniture() {
                                                                 <option value={subCat} key={i}>{subCat}</option>
                                                             ))
                                                         :
-                                                        <option value="">Select Category to view more options</option>
+                                                        <option value="">{t("select")} {t("Category to view more options")}</option>
                                                 }
                                             </select>
                                         </div>
@@ -822,16 +826,16 @@ export default function AddFurniture() {
                                         {
                                             showOtherBrand && (
                                                 <div className="form-group form-group-sm mb-3">
-                                                    <label htmlFor="" className='mb-1'>Please specify</label>
+                                                    <label htmlFor="" className='mb-1'>{t("Please specify")}</label>
                                                     <input type="text" className="custom-input" onChange={e => setOtherBrand(e.target.value)} value={otherBrand} />
                                                 </div>
                                             )
                                         }
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Select Condition</label>
+                                            <label htmlFor="" className='mb-1'>{t("select")} {t("condition")}</label>
                                             <select name="" id="" className="custom-input" onChange={e => setCondition(e.target.value)} value={condition}>
-                                                <option value="">Select Condition</option>
+                                                <option value="">{t("select")} {t("condition")}</option>
                                                 {
                                                     furnitureConditionData
                                                         .map((data, i) => (
@@ -844,7 +848,7 @@ export default function AddFurniture() {
 
                                         <div className="form-group form-group-sm mb-1">
                                             <div className="d-flex align-items-center justify-content-between">
-                                                <label htmlFor="guaranteeCheck" className='mb-1'>Guarantee</label>
+                                                <label htmlFor="guaranteeCheck" className='mb-1' t>{t("guarantee")}</label>
                                                 <input type="checkbox" id='guaranteeCheck' className="" onChange={e => setGuarantee(!guarantee)} checked={guarantee} />
                                             </div>
                                         </div>
@@ -853,7 +857,7 @@ export default function AddFurniture() {
                                             guarantee && (
                                                 <div className="form-group form-group-sm">
                                                     <select name="" id="" className="custom-input" onChange={e => setGuaranteePeriod(e.target.value)} value={guaranteePeriod}>
-                                                        <option value="">Select Guarantee</option>
+                                                        <option value="">{t("select")} {t("guarantee")}</option>
                                                         {
                                                             machineryGuarantee.map((data, i) => {
                                                                 return (
@@ -867,14 +871,14 @@ export default function AddFurniture() {
                                         }
                                     </div>
                                     <div className="w-50 formSide">
-                                        <div className="info">Location</div>
+                                        <div className="info">{t("location")}</div>
 
-                                        <div className="form-group form-group-sm form-group form-group-sm-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Country*</label>
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>{t("country")}*</label>
                                             <Select
                                                 className="custom-input react-select"
                                                 classNamePrefix="select"
-                                                placeholder='Select Country'
+                                                placeholder={`${t("select")} ${t("country")}`}
                                                 name="color"
                                                 options={countries}
                                                 onChange={handleCountryChange}
@@ -885,12 +889,12 @@ export default function AddFurniture() {
                                                 }
                                             />
                                         </div>
-                                        <div className="form-group form-group-sm form-group form-group-sm-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Region*</label>
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>{t("region")}</label>
                                             <Select
                                                 className="custom-input react-select"
                                                 classNamePrefix="select"
-                                                placeholder='Select Region'
+                                                placeholder={`${t("select")} ${t("region")}`}
                                                 name="color"
                                                 options={states && states}
                                                 onChange={handleStateChange}
@@ -901,12 +905,12 @@ export default function AddFurniture() {
                                                 }
                                             />
                                         </div>
-                                        <div className="form-group form-group-sm form-group form-group-sm-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>City*</label>
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>{t("city")}</label>
                                             <Select
                                                 className="custom-input react-select"
                                                 classNamePrefix="select"
-                                                placeholder='Select City'
+                                                placeholder={`${t("select")} ${t("city")}`}
                                                 name="color"
                                                 options={cities && cities}
                                                 onChange={handleCityChange}
@@ -918,12 +922,12 @@ export default function AddFurniture() {
                                             />
                                         </div>
 
-                                        <div className="form-group form-group-sm form-group form-group-sm-sm">
-                                            <label htmlFor="" className='mb-1'>District</label>
+                                        <div className="form-group form-group-sm">
+                                            <label htmlFor="" className='mb-1'>{t("district")}</label>
                                             <Select
                                                 className="custom-input react-select"
                                                 classNamePrefix="select"
-                                                placeholder='Select District'
+                                                placeholder={`${t("select")} ${t("district")}`}
                                                 name="color"
                                                 options={streets && streets}
                                                 onChange={handleStreetChange}
@@ -936,10 +940,10 @@ export default function AddFurniture() {
                                         </div>
                                     </div>
                                     <div className="w-50 formSide">
-                                        <div className="info">Location by map</div>
+                                        <div className="info">{t("locationByMap")}</div>
 
                                         <div className="col-12">
-                                            <p style={{ fontSize: "12px" }}>Add location by map*</p>
+                                            <p style={{ fontSize: "12px" }}>{t("add")} {t("locationByMap")}*</p>
                                             {
                                                 !isLoading && updatePage ? (
                                                     <>
@@ -951,7 +955,7 @@ export default function AddFurniture() {
                                                     </>
                                                 )
                                             }
-                                            <small>Click on the location address in map</small>
+                                            <small>{t("clickOnTheLocationAddressInMap")}</small>
 
                                         </div>
                                     </div>
@@ -961,7 +965,7 @@ export default function AddFurniture() {
 
                                     <div className="row mb-2 mt-4">
                                         <div className="form-group form-group-sm d-flex align-items-center justify-content-end gap-2">
-                                            <div className="outline-btn py-2" onClick={resetAllFields}>Reset</div>
+                                            <div className="outline-btn py-2" onClick={resetAllFields}>{t("reset")}</div>
                                             {/* <button className="custom-btn" type='submit'>Publish</button> */}
                                             <button className="custom-btn" type='submit'>
                                                 <div className='d-flex align-items-center justify-content-center'>
@@ -973,7 +977,7 @@ export default function AddFurniture() {
                                                         data-testid="loader"
                                                     />
                                                     {
-                                                        !isLoading && ("Publish")
+                                                        !isLoading && t("publish")
                                                     }
 
                                                 </div>

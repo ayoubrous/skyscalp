@@ -5,9 +5,11 @@ import toast, { Toaster } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ClipLoader from "react-spinners/ClipLoader";
 import { useAuth } from '../../context/AuthContext';
+import { useTranslation } from 'react-i18next';
 
 
 export default function UpdatePassword() {
+    const [t] = useTranslation()
 
     const { login } = useAuth()
 
@@ -82,11 +84,11 @@ export default function UpdatePassword() {
                 <div className="container">
                     <div className="row align-items-center justify-content-center">
                         <div className="col-md-7">
-                            <h3 className='color-primary'>Update Password - <strong>SKYSCALP</strong></h3>
+                            <h3 className='color-primary'>{t("update")} {t("Password")} - <strong>SKYSCALP</strong></h3>
                             {/* <small className="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</small> */}
                             <form action="" method="post" onSubmit={handleLogin} className='mt-4'>
                                 <div className="form-group first mb-3">
-                                    <label htmlFor="password" className='color-secondary'>New Password*</label>
+                                    <label htmlFor="password" className='color-secondary'>{t("new")} {t("Password")}*</label>
                                     <input type="password" className="form-control" placeholder="" id="password" value={password} onChange={e => setPassword(e.target.value)} />
                                 </div>
                                 <button className="custom-btn d-block w-100" type='submit'>
@@ -99,13 +101,13 @@ export default function UpdatePassword() {
                                             data-testid="loader"
                                         />
                                         {
-                                            !isLoading && ("Update")
+                                            !isLoading && t("Update")
                                         }
 
                                     </div>
                                 </button>
                                 <div className="d-flex mt-2 align-items-center justify-content-center">
-                                    <small className="ml-auto"><Link to="../login" className="forgot-pass">Login</Link></small>
+                                    <small className="ml-auto"><Link to="../login" className="forgot-pass">{t("Login")}</Link></small>
                                 </div>
                             </form>
                         </div>

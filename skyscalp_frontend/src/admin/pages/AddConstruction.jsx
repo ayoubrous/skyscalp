@@ -22,10 +22,11 @@ import Lottie from 'lottie-react'
 import Editor from '../components/Editor'
 import Footer from '../components/Footer'
 import { materialBases, materialCategories, materialColors, materialFinish, materials, materialSizes, materialThickness, materialVoltage } from '../../assets/data/materialsCategory'
+import { useTranslation } from 'react-i18next'
 
 
 export default function AddConstruction() {
-
+    const [t] = useTranslation()
 
     const imageUploadRef = useRef()
 
@@ -355,19 +356,18 @@ export default function AddConstruction() {
     const validateFields = () => {
         const missingFields = [];
 
-        if (!uploadedImages.length) missingFields.push('Images');
-        if (!title) missingFields.push('Title');
-        if (!budget) missingFields.push('Budget');
-        if (!country) missingFields.push('Country');
-        if (!state) missingFields.push('Region');
-        if (!city) missingFields.push('City');
-        if (quantity === "" || quantity === 0) missingFields.push('Quantity');
-        if (category === "") missingFields.push('Category');
-        if (application === "") missingFields.push('Application');
-        if (type === "") missingFields.push('Type');
+        if (!uploadedImages.length) missingFields.push('images');
+        if (!title) missingFields.push('title');
+        if (!budget) missingFields.push('budget');
+        if (!country) missingFields.push('country');
+        if (description === "") missingFields.push('description');
+        if (category === "") missingFields.push('category');
+        if (application === "") missingFields.push('application');
 
         if (missingFields.length > 0) {
-            toast.error(`Please fill in the following fields: ${missingFields.join(', ')} to continue`);
+            const translatedFields = missingFields.map(field => t(field)).join(', ');
+            toast.error(`${t("Fill in the following fields:")} ${translatedFields} ${t("to continue")}`);
+
             return false;
         }
 
@@ -636,15 +636,15 @@ export default function AddConstruction() {
                             updatePage ?
                                 (
                                     <>
-                                        <h5 className='fw-bolder'>Update Product</h5>
-                                        <small className='mb-3'>Update the desired fields and retain others</small>
+                                        <h5 className='fw-bolder'>{t("Update Product")}</h5>
+                                        <small className='mb-3'>{t("Update the desired fields and retain others")}</small>
                                     </>
 
                                 ) :
                                 (
                                     <>
-                                        <h5 className='fw-bolder'>Publish New Construction Material</h5>
-                                        <small className='mb-3'>Fill out all the required fields</small>
+                                        <h5 className='fw-bolder'>{t("Publish New Construction Material")}</h5>
+                                        <small className='mb-3'>{t("Fill out all the required fields")}</small>
                                     </>
                                 )
                         }
@@ -664,11 +664,11 @@ export default function AddConstruction() {
                                 <div className="split">
 
                                     <div className="formSide side_2">
-                                        <div className="info">Category and pricing</div>
+                                        <div className="info">{t("Category and pricing")}</div>
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Application*</label>
+                                            <label htmlFor="" className='mb-1'>{t("application")}*</label>
                                             <select name="" id="" className="custom-input" onChange={e => setApplication(e.target.value)} value={application}>
-                                                <option value="">Select Applicaion</option>
+                                                <option value="">{t("select")} {t("application")}</option>
                                                 {
                                                     materialCategories.map((data, i) => {
                                                         return (
@@ -679,7 +679,7 @@ export default function AddConstruction() {
                                             </select>
                                         </div>
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Category*</label>
+                                            <label htmlFor="" className='mb-1'>{t("category")}*</label>
                                             <select
                                                 name="category"
                                                 id="category"
@@ -698,7 +698,7 @@ export default function AddConstruction() {
                                                 }}
                                                 value={category}
                                             >
-                                                <option value="">Select Category</option>
+                                                <option value="">{t("select")} {t("category")}</option>
                                                 {
                                                     materialCategories
                                                         .filter(data => data.application === application)
@@ -720,26 +720,26 @@ export default function AddConstruction() {
                                         <div className="form-group form-group-sm mb-4">
                                             <label htmlFor="" className='mb-1'>Budget* (MAD){unit !== "" ? "/" : ""} {unit}</label>
                                             <input type="number" min={0} className="custom-input" onChange={e => setBudget(e.target.value)} onBlur={handleBudgetCheck} value={budget} />
-                                            <small style={{ fontSize: "10px" }}>Specify Budget (MAD) per {unit}</small>
+                                            <small style={{ fontSize: "10px" }}>{t("Specify Budget (MAD) per")} {unit}</small>
                                         </div>
 
                                         <div className="form-group form-group-sm mb-4">
-                                            <label htmlFor="" className='mb-1'>Quantity*</label>
+                                            <label htmlFor="" className='mb-1'>{t("quantity")} {unit !== "" ? "/" : ""} {unit}</label>
                                             <input type="number" className="custom-input" min={1} onChange={e => setQuantity(e.target.value)} onBlur={handleQuantityCheck} value={quantity} />
                                         </div>
                                     </div>
 
 
                                     <div className="formSide side_3">
-                                        <div className="info">Product Information</div>
+                                        <div className="info">{t("product")} {t("information")}</div>
 
-                                        <div className="form-group form-group-sm  mb-3">
-                                            <label htmlFor="" className='mb-1'>Title* <small>(max 100 characters)</small></label>
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>{t("title")}* <small>({t("max")} 100 {t("characters")})</small></label>
                                             <input type="text" maxLength={100} className="custom-input" onChange={e => setTitle(e.target.value)} value={title} />
                                         </div>
 
                                         <div className="form-group form-group-sm mb-3 ">
-                                            <label htmlFor="" className='mb-1'>Description* <small>(max 1000 characters)</small></label>
+                                            <label htmlFor="" className='mb-1'>{t("description")}* <small>({t("max")} 1000 {t("characters")})</small></label>
                                             <Editor description={description} setDescription={setDescription} maximumLength={1000} />
                                         </div>
 
@@ -747,7 +747,7 @@ export default function AddConstruction() {
                                             <div className="upload-image" onClick={hanldeUploadClick}>
                                                 <input type="file" accept='image/*' onChange={handleImageChange} multiple name="" id="" className='invisible' ref={imageUploadRef} />
                                                 <FaCloudUploadAlt />
-                                                <p style={{ fontSize: "10px" }}>Upload Images (Upload maximum of 10 images) </p>
+                                                <p style={{ fontSize: "10px" }}>{t("imagesUpload")}* </p>
                                             </div>
                                             {
                                                 uploadingImage && (
@@ -760,7 +760,7 @@ export default function AddConstruction() {
                                                             data-testid="loader"
                                                             className='mt-1'
                                                         />
-                                                        <p>Uploading Images </p>
+                                                        <p>{t("uploading")} </p>
                                                     </>
 
                                                 )
@@ -777,6 +777,7 @@ export default function AddConstruction() {
                                             </div>
                                         </div>
 
+
                                     </div>
 
 
@@ -784,11 +785,11 @@ export default function AddConstruction() {
 
                                 <div className="d-flex gap-3 mt-4">
                                     <div className="w-25 formSide">
-                                        <div className="info">Characteristics</div>
+                                        <div className="info">{t("Characteristics")}</div>
 
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Select Type*</label>
+                                            <label htmlFor="" className='mb-1'>{t("select")} {t("type")}</label>
                                             <select name="type" id="type" className="custom-input" value={type} onChange={e => {
                                                 setType(e.target.value)
                                                 e.target.value === "Other" ?
@@ -796,7 +797,7 @@ export default function AddConstruction() {
                                                     setShowOtherType(false)
                                             }}>
 
-                                                <option value="">Select Type</option>
+                                                <option value="">{t("select")} {t("type")}</option>
                                                 {
                                                     materialCategories
                                                         .filter(data => data.application === application)
@@ -815,7 +816,7 @@ export default function AddConstruction() {
                                         {
                                             showOtherType && (
                                                 <div className="form-group form-group-sm mb-3">
-                                                    <label htmlFor="" className='mb-1'>Please specify</label>
+                                                    <label htmlFor="" className='mb-1'>{t("Please specify")}</label>
                                                     <input type="text" className="custom-input" onChange={e => setOtherType(e.target.value)} value={otherType} />
                                                 </div>
                                             )
@@ -825,14 +826,14 @@ export default function AddConstruction() {
                                             !disabledFields.includes('size') && (
                                                 <>
                                                     <div className="form-group form-group-sm mb-3">
-                                                        <label htmlFor="" className='mb-1'>Select Size</label>
+                                                        <label htmlFor="" className='mb-1'>{t("select")} {t("Size")}</label>
                                                         <select name="" id="" className="custom-input" onChange={e => {
                                                             setSize(e.target.value)
                                                             e.target.value === "Other" ?
                                                                 setShowOtherSize(true) :
                                                                 setShowOtherSize(false)
                                                         }} value={size}>
-                                                            <option value="">Select Size</option>
+                                                            <option value="">{t("select")} {t("Size")}</option>
                                                             {
                                                                 materialSizes
                                                                     .map((data, i) => (
@@ -843,7 +844,7 @@ export default function AddConstruction() {
                                                     </div> {
                                                         showOtherSize && (
                                                             <div className="form-group form-group-sm mb-3">
-                                                                <label htmlFor="" className='mb-1'>Please specify</label>
+                                                                <label htmlFor="" className='mb-1'>{t("Please specify")}</label>
                                                                 <input type="text" className="custom-input" onChange={e => setOtherSize(e.target.value)} value={otherSize} />
                                                             </div>
                                                         )
@@ -857,14 +858,14 @@ export default function AddConstruction() {
                                             !disabledFields.includes('size') && (
                                                 <>
                                                     <div className="form-group form-group-sm mb-3">
-                                                        <label htmlFor="" className='mb-1'>Select Color</label>
+                                                        <label htmlFor="" className='mb-1'>{t("select")} {t("Color")}</label>
                                                         <select name="" id="" className="custom-input" onChange={e => {
                                                             setColor(e.target.value)
                                                             e.target.value === "Other" ?
                                                                 setShowOtherColor(true) :
                                                                 setShowOtherColor(false)
                                                         }} value={color}>
-                                                            <option value="">Select Color</option>
+                                                            <option value="">{t("select")} {t("Color")}</option>
                                                             {
                                                                 materialColors
                                                                     .map((data, i) => (
@@ -875,7 +876,7 @@ export default function AddConstruction() {
                                                     </div> {
                                                         showOtherColor && (
                                                             <div className="form-group form-group-sm mb-3">
-                                                                <label htmlFor="" className='mb-1'>Please specify</label>
+                                                                <label htmlFor="" className='mb-1'>{t("Please specify")}</label>
                                                                 <input type="text" className="custom-input" onChange={e => setOtherColor(e.target.value)} value={otherColor} />
                                                             </div>
                                                         )
@@ -889,14 +890,14 @@ export default function AddConstruction() {
                                                 <>
 
                                                     <div className="form-group form-group-sm mb-3">
-                                                        <label htmlFor="" className='mb-1'>Select Material</label>
+                                                        <label htmlFor="" className='mb-1'>{t("select")} {t("material")}</label>
                                                         <select name="" id="" className="custom-input" onChange={e => {
                                                             setMaterial(e.target.value)
                                                             e.target.value === "Other" ?
                                                                 setShowOtherMaterial(true) :
                                                                 setShowOtherMaterial(false)
                                                         }} value={material}>
-                                                            <option value="">Select Material</option>
+                                                            <option value="">{t("select")} {t("material")}</option>
                                                             {
                                                                 materials
                                                                     .map((data, i) => (
@@ -907,7 +908,7 @@ export default function AddConstruction() {
                                                     </div> {
                                                         showOtherMaterial && (
                                                             <div className="form-group form-group-sm mb-3">
-                                                                <label htmlFor="" className='mb-1'>Please specify</label>
+                                                                <label htmlFor="" className='mb-1'>{t("Please specify")}</label>
                                                                 <input type="text" className="custom-input" onChange={e => setOtherMaterial(e.target.value)} value={otherMaterial} />
                                                             </div>
                                                         )
@@ -921,14 +922,14 @@ export default function AddConstruction() {
                                             !disabledFields.includes('base') && (
                                                 <>
                                                     <div className="form-group form-group-sm mb-3">
-                                                        <label htmlFor="" className='mb-1'>Select Base</label>
+                                                        <label htmlFor="" className='mb-1'>{t("select")} {t("base")}</label>
                                                         <select name="" id="" className="custom-input" onChange={e => {
                                                             setBase(e.target.value)
                                                             e.target.value === "Other" ?
                                                                 setShowOtherBase(true) :
                                                                 setShowOtherBase(false)
                                                         }} value={base}>
-                                                            <option value="">Select Base</option>
+                                                            <option value="">{t("select")} {t("base")}</option>
                                                             {
                                                                 materialBases
                                                                     .map((data, i) => (
@@ -939,7 +940,7 @@ export default function AddConstruction() {
                                                     </div> {
                                                         showOtherBase && (
                                                             <div className="form-group form-group-sm mb-3">
-                                                                <label htmlFor="" className='mb-1'>Please specify</label>
+                                                                <label htmlFor="" className='mb-1'>{t("Please specify")}</label>
                                                                 <input type="text" className="custom-input" onChange={e => setOtherBase(e.target.value)} value={otherBase} />
                                                             </div>
                                                         )
@@ -953,14 +954,14 @@ export default function AddConstruction() {
                                             !disabledFields.includes('thickness') && (
                                                 <>
                                                     <div className="form-group form-group-sm mb-3">
-                                                        <label htmlFor="" className='mb-1'>Select Thickness</label>
+                                                        <label htmlFor="" className='mb-1'>{t("select")} {("Thickness")}</label>
                                                         <select name="" id="" className="custom-input" onChange={e => {
                                                             setThickness(e.target.value)
                                                             e.target.value === "Other" ?
                                                                 setShowOtherThickness(true) :
                                                                 setShowOtherThickness(false)
                                                         }} value={thickness}>
-                                                            <option value="">Select Thickness</option>
+                                                            <option value="">{t("select")} {("Thickness")}</option>
                                                             {
                                                                 materialThickness
                                                                     .map((data, i) => (
@@ -972,7 +973,7 @@ export default function AddConstruction() {
                                                     {
                                                         showOtherThickness && (
                                                             <div className="form-group form-group-sm mb-3">
-                                                                <label htmlFor="" className='mb-1'>Please specify</label>
+                                                                <label htmlFor="" className='mb-1'>{t("Please specify")}</label>
                                                                 <input type="text" className="custom-input" onChange={e => setOtherThickness(e.target.value)} value={otherThickness} />
                                                             </div>
                                                         )
@@ -986,14 +987,14 @@ export default function AddConstruction() {
                                             !disabledFields.includes('finish') && (
                                                 <>
                                                     <div className="form-group form-group-sm mb-3">
-                                                        <label htmlFor="" className='mb-1'>Select Finish</label>
+                                                        <label htmlFor="" className='mb-1'>{t("select")} {t("Finish")}</label>
                                                         <select name="" id="" className="custom-input" onChange={e => {
                                                             setFinish(e.target.value)
                                                             e.target.value === "Other" ?
                                                                 setShowOtherFinish(true) :
                                                                 setShowOtherFinish(false)
                                                         }} value={finish}>
-                                                            <option value="">Select Finish</option>
+                                                            <option value="">{t("select")} {t("Finish")}</option>
                                                             {
                                                                 materialFinish
                                                                     .map((data, i) => (
@@ -1004,7 +1005,7 @@ export default function AddConstruction() {
                                                     </div> {
                                                         showOtherFinish && (
                                                             <div className="form-group form-group-sm mb-3">
-                                                                <label htmlFor="" className='mb-1'>Please specify</label>
+                                                                <label htmlFor="" className='mb-1'>{t("Please specify")}</label>
                                                                 <input type="text" className="custom-input" onChange={e => setOtherFinish(e.target.value)} value={otherFinish} />
                                                             </div>
                                                         )
@@ -1018,7 +1019,7 @@ export default function AddConstruction() {
                                             !disabledFields.includes('voltage') && (
                                                 <>
                                                     <div className="form-group form-group-sm mb-3">
-                                                        <label htmlFor="" className='mb-1'>Select Voltage</label>
+                                                        <label htmlFor="" className='mb-1'>{t("select")} {t("Voltage")}</label>
                                                         <select
                                                             className="custom-input"
                                                             onChange={e => {
@@ -1027,7 +1028,7 @@ export default function AddConstruction() {
                                                             }}
                                                             value={voltage}
                                                         >
-                                                            <option value="">Select Voltage</option>
+                                                            <option value="">{t("select")} {t("Voltage")}</option>
                                                             {materialVoltage.map((data, i) => (
                                                                 <option value={data} key={i}>{data}</option>
                                                             ))}
@@ -1037,7 +1038,7 @@ export default function AddConstruction() {
                                                     {
                                                         showOtherVoltage && (
                                                             <div className="form-group form-group-sm mb-3">
-                                                                <label htmlFor="" className='mb-1'>Please specify</label>
+                                                                <label htmlFor="" className='mb-1'>{t("Please specify")}</label>
                                                                 <input type="text" className="custom-input" onChange={e => setOtherVoltage(e.target.value)} value={otherVoltage} />
                                                             </div>
                                                         )
@@ -1048,7 +1049,7 @@ export default function AddConstruction() {
 
                                         <div className="form-group form-group-sm mb-1">
                                             <div className="d-flex align-items-center justify-content-between">
-                                                <label htmlFor="guaranteeCheck" className='mb-1'>Guarantee</label>
+                                                <label htmlFor="guaranteeCheck" className='mb-1'>{t("guarantee")}</label>
                                                 <input type="checkbox" id='guaranteeCheck' className="" onChange={e => setGuarantee(!guarantee)} checked={guarantee} />
                                             </div>
                                         </div>
@@ -1057,7 +1058,7 @@ export default function AddConstruction() {
                                             guarantee && (
                                                 <div className="form-group form-group-sm">
                                                     <select name="" id="" className="custom-input" onChange={e => setGuaranteePeriod(e.target.value)} value={guaranteePeriod}>
-                                                        <option value="">Select Guarantee</option>
+                                                        <option value="">{t("select")} {t("guarantee")}</option>
                                                         {
                                                             machineryGuarantee.map((data, i) => {
                                                                 return (
@@ -1071,14 +1072,14 @@ export default function AddConstruction() {
                                         }
                                     </div>
                                     <div className="w-50 formSide">
-                                        <div className="info">Location</div>
+                                        <div className="info">{t("location")}</div>
 
-                                        <div className="form-group form-group-sm form-group form-group-sm-sm form-group form-group-sm form-group form-group-sm-sm-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Country*</label>
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>{t("country")}*</label>
                                             <Select
                                                 className="custom-input react-select"
                                                 classNamePrefix="select"
-                                                placeholder='Select Country'
+                                                placeholder={`${t("select")} ${t("country")}`}
                                                 name="color"
                                                 options={countries}
                                                 onChange={handleCountryChange}
@@ -1089,12 +1090,12 @@ export default function AddConstruction() {
                                                 }
                                             />
                                         </div>
-                                        <div className="form-group form-group-sm form-group form-group-sm-sm form-group form-group-sm form-group form-group-sm-sm-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Region*</label>
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>{t("region")}</label>
                                             <Select
                                                 className="custom-input react-select"
                                                 classNamePrefix="select"
-                                                placeholder='Select Region'
+                                                placeholder={`${t("select")} ${t("region")}`}
                                                 name="color"
                                                 options={states && states}
                                                 onChange={handleStateChange}
@@ -1105,12 +1106,12 @@ export default function AddConstruction() {
                                                 }
                                             />
                                         </div>
-                                        <div className="form-group form-group-sm form-group form-group-sm-sm form-group form-group-sm form-group form-group-sm-sm-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>City*</label>
+                                        <div className="form-group form-group-sm mb-3">
+                                            <label htmlFor="" className='mb-1'>{t("city")}</label>
                                             <Select
                                                 className="custom-input react-select"
                                                 classNamePrefix="select"
-                                                placeholder='Select City'
+                                                placeholder={`${t("select")} ${t("city")}`}
                                                 name="color"
                                                 options={cities && cities}
                                                 onChange={handleCityChange}
@@ -1122,12 +1123,12 @@ export default function AddConstruction() {
                                             />
                                         </div>
 
-                                        <div className="form-group form-group-sm form-group form-group-sm-sm form-group form-group-sm form-group form-group-sm-sm-sm">
-                                            <label htmlFor="" className='mb-1'>District</label>
+                                        <div className="form-group form-group-sm">
+                                            <label htmlFor="" className='mb-1'>{t("district")}</label>
                                             <Select
                                                 className="custom-input react-select"
                                                 classNamePrefix="select"
-                                                placeholder='Select District'
+                                                placeholder={`${t("select")} ${t("district")}`}
                                                 name="color"
                                                 options={streets && streets}
                                                 onChange={handleStreetChange}
@@ -1140,10 +1141,10 @@ export default function AddConstruction() {
                                         </div>
                                     </div>
                                     <div className="w-50 formSide">
-                                        <div className="info">Location by map</div>
+                                        <div className="info">{t("locationByMap")}</div>
 
                                         <div className="col-12">
-                                            <p style={{ fontSize: "12px" }}>Add location by map*</p>
+                                            <p style={{ fontSize: "12px" }}>{t("add")} {t("locationByMap")}*</p>
                                             {
                                                 !isLoading && updatePage ? (
                                                     <>
@@ -1155,7 +1156,7 @@ export default function AddConstruction() {
                                                     </>
                                                 )
                                             }
-                                            <small>Click on the location address in map</small>
+                                            <small>{t("clickOnTheLocationAddressInMap")}</small>
 
                                         </div>
                                     </div>
@@ -1164,7 +1165,7 @@ export default function AddConstruction() {
 
                                 <div className="row mb-2 mt-4">
                                     <div className="form-group form-group-sm d-flex align-items-center justify-content-end gap-2">
-                                        <div className="outline-btn py-2" onClick={resetAllFields}>Reset</div>
+                                        <div className="outline-btn py-2" onClick={resetAllFields}>{t("reset")}</div>
                                         {/* <button className="custom-btn" type='submit'>Publish</button> */}
                                         <button className="custom-btn" type='submit'>
                                             <div className='d-flex align-items-center justify-content-center'>
@@ -1176,7 +1177,7 @@ export default function AddConstruction() {
                                                     data-testid="loader"
                                                 />
                                                 {
-                                                    !isLoading && ("Publish")
+                                                    !isLoading && t("publish")
                                                 }
 
                                             </div>

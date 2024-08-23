@@ -10,8 +10,11 @@ import Footer from '../../components/sections/Footer';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa6';
+import { useTranslation } from 'react-i18next';
 
 export default function Login() {
+
+    const [t] = useTranslation()
 
     const { login } = useAuth()
     const pass = useRef()
@@ -31,7 +34,7 @@ export default function Login() {
     const handleLogin = (e) => {
         e.preventDefault()
         if (email.length === 0 || password.length === 0) {
-            toast.error('Email and Password could not be empty')
+            toast.error(t("Email and Password could not be empty"))
         }
         else {
             let data = {
@@ -77,7 +80,7 @@ export default function Login() {
                                 }, 500);
                             }
                             else {
-                                toast.success(result.message)
+                                toast.success(t("Login successfull"))
                                 login(result.data, false)
                                 // localStorage.setItem("user", JSON.stringify(result.data))
                                 localStorage.setItem("user", JSON.stringify({
@@ -96,7 +99,7 @@ export default function Login() {
 
                         }
                         else {
-                            toast.error("Your account is blocked! Contact skyscalp support")
+                            toast.error(t("Your account is blocked! Contact skyscalp support"))
                         }
 
                     }
@@ -123,23 +126,23 @@ export default function Login() {
                     <div className="container">
                         <div className="row align-items-center justify-content-center">
                             <div className="col-md-7">
-                                <h3 className='color-primary'>Login to <strong>SKYSCALP</strong></h3>
+                                <h3 className='color-primary'>{t("Login to")} <strong>SKYSCALP</strong></h3>
                                 {/* <small className="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</small> */}
                                 <form action="" method="post" onSubmit={handleLogin} className='mt-4 registerForm'>
                                     <div className="form-group first mb-3">
-                                        <label htmlFor="email" className='color-secondary'>Email*</label>
+                                        <label htmlFor="email" className='color-secondary'>{t("email")}*</label>
                                         <input type="email" className="form-control" placeholder="your-email@gmail.com" id="email" value={email} onChange={e => setEmail(e.target.value)} />
                                     </div>
                                     <div className="form-group last mb-1">
-                                        <label htmlFor="password" className='color-secondary'>Password*</label>
-                                        <input type="password" className="form-control" placeholder="Your Password" id="password" ref={pass} value={password} onChange={e => setPassword(e.target.value)} />
+                                        <label htmlFor="password" className='color-secondary'>{t("Password")}*</label>
+                                        <input type="password" className="form-control" placeholder={t("Password")} id="password" ref={pass} value={password} onChange={e => setPassword(e.target.value)} />
                                         {showPassword ?
                                             <FaEyeSlash className='eye-icon' onClick={() => togglePasswordVisibility(pass, setShowPassword)} /> :
                                             <FaEye className='eye-icon' onClick={() => togglePasswordVisibility(pass, setShowPassword)} />
                                         }
                                     </div>
                                     <div className="d-flex mb-4 align-items-center justify-content-end">
-                                        <small className="ml-auto"><Link to="../forgot-password" className="forgot-pass">Forgot Password</Link></small>
+                                        <small className="ml-auto"><Link to="../forgot-password" className="forgot-pass">{t("Forgot Password")}</Link></small>
                                     </div>
                                     <button className="custom-btn d-block w-100" type='submit'>
                                         <div className='d-flex align-items-center justify-content-center'>
@@ -151,13 +154,13 @@ export default function Login() {
                                                 data-testid="loader"
                                             />
                                             {
-                                                !isLoading && ("Login")
+                                                !isLoading && t("Login")
                                             }
 
                                         </div>
                                     </button>
                                     <div className="d-flex mt-2 align-items-center justify-content-center">
-                                        <small className="ml-auto"><Link to="../register" className="forgot-pass">Create New Account</Link></small>
+                                        <small className="ml-auto"><Link to="../register" className="forgot-pass">{t("Create New Account")}</Link></small>
                                     </div>
                                 </form>
                             </div>

@@ -16,10 +16,12 @@ import ClipLoader from "react-spinners/ClipLoader";
 import Lottie from 'lottie-react'
 import Editor from '../components/Editor'
 import Footer from '../components/Footer'
+import { useTranslation } from 'react-i18next'
 
 
 export default function AddMachinery() {
 
+    const [t] = useTranslation()
 
     const imageUploadRef = useRef()
 
@@ -314,17 +316,18 @@ export default function AddMachinery() {
     const validateFields = () => {
         const missingFields = [];
 
-        if (!uploadedImages.length) missingFields.push('Images');
-        if (!country) missingFields.push('Country');
-        if (!state) missingFields.push('Region');
-        if (!city) missingFields.push('City');
-        if (!title) missingFields.push('Title');
-        if (!budget) missingFields.push('Budget');
-        if (application === "") missingFields.push('Application');
-        if (category === "") missingFields.push('Tool');
+        if (!uploadedImages.length) missingFields.push('images');
+        if (!country) missingFields.push('country');
+        if (!title) missingFields.push('title');
+        if (!budget) missingFields.push('budget');
+        if (description === "") missingFields.push('description');
+        if (application === "") missingFields.push('application');
+        if (category === "") missingFields.push('tool');
 
         if (missingFields.length > 0) {
-            toast.error(`Please fill in the following fields: ${missingFields.join(', ')} to continue`);
+            const translatedFields = missingFields.map(field => t(field)).join(', ');
+            toast.error(`${t("Fill in the following fields:")} ${translatedFields} ${t("to continue")}`);
+
             return false;
         }
 
@@ -508,7 +511,7 @@ export default function AddMachinery() {
     }
     return (
         <>
-            <ToastContainer className="toastcontainer"/>
+            <ToastContainer className="toastcontainer" />
 
 
             <div className={`lottie-wrapper ${isLoading ? 'show' : ''}`}>
@@ -525,15 +528,15 @@ export default function AddMachinery() {
                             updatePage ?
                                 (
                                     <>
-                                        <h5 className='fw-bolder'>Update Machine Information</h5>
-                                        <small className='mb-3'>Update the desired fields and retain others</small>
+                                        <h5 className='fw-bolder'>{t("Update Machine Information")}</h5>
+                                        <small className='mb-3'>{t("Update the desired fields and retain others")}</small>
                                     </>
 
                                 ) :
                                 (
                                     <>
-                                        <h5 className='fw-bolder'>Publish New Machines</h5>
-                                        <small className='mb-3'>Fill out all the required fields</small>
+                                        <h5 className='fw-bolder'>{t("Publish New Machines")}</h5>
+                                        <small className='mb-3'>{t("Fill out all the required fields")}</small>
                                     </>
                                 )
                         }
@@ -558,21 +561,21 @@ export default function AddMachinery() {
                                                 <option value="buy">Sale</option>
                                             </select>
                                         </div> */}
-                                        <div className="info">Transaction</div>
+                                        <div className="info">{t("Transaction")}</div>
 
 
                                         <div className="typeTabs">
-                                            <div className={`tab ${type === "buy" ? 'active' : ''}`} onClick={() => setType("buy")}>Sale</div>
-                                            <div className={`tab ${type === "rent" ? 'active' : ''}`} onClick={() => setType("rent")}>Rent</div>
+                                            <div className={`tab ${type === "buy" ? 'active' : ''}`} onClick={() => setType("buy")}>{t("buy")}</div>
+                                            <div className={`tab ${type === "rent" ? 'active' : ''}`} onClick={() => setType("rent")}>{t("rent")}</div>
                                         </div>
                                     </div>
                                     <div className="formSide side_2">
-                                        <div className="info">Category</div>
+                                        <div className="info">{t("category")}</div>
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Application*</label>
+                                            <label htmlFor="" className='mb-1'>{t("Application")}*</label>
                                             <select name="" id="" className="custom-input" onChange={e => setApplication(e.target.value)} value={application}>
-                                                <option value="">Select Application</option>
+                                                <option value="">{t("select")} {t("Application")}</option>
                                                 {
                                                     machineryCategories.map((data, i) => (
                                                         <option value={data.categoryName} key={i}>{data.categoryName}</option>
@@ -582,9 +585,9 @@ export default function AddMachinery() {
                                         </div>
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Select Tool*</label>
+                                            <label htmlFor="" className='mb-1'>{t("select")} {t("tool")}*</label>
                                             <select name="" id="" className="custom-input" onChange={e => setCategory(e.target.value)} value={category}>
-                                                <option value="">Select Category</option>
+                                                <option value="">Select {t("category")}</option>
                                                 {
                                                     machineryCategories.map((data) => (
                                                         data.categoryName === application ? (
@@ -598,22 +601,22 @@ export default function AddMachinery() {
                                         </div>
 
                                         <div className="form-group form-group-sm">
-                                            <label htmlFor="" className='mb-1'>Budget (MAD/unit)*</label>
+                                            <label htmlFor="" className='mb-1'>{t("budget")} (MAD/{t("unit")})*</label>
                                             <input type="number" min={0} className="custom-input" onChange={e => setBudget(e.target.value)} onBlur={handleBudgetCheck} value={budget} />
                                         </div>
                                     </div>
 
 
                                     <div className="formSide side_3">
-                                        <div className="info">Product Information</div>
+                                        <div className="info">{t("product")} {t("information")}</div>
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Title* <small>(max 100 characters)</small></label>
+                                            <label htmlFor="" className='mb-1'>{t("title")}* <small>({t("max")} 100 {t("characters")})</small></label>
                                             <input type="text" maxLength={100} className="custom-input" onChange={e => setTitle(e.target.value)} value={title} />
                                         </div>
 
                                         <div className="form-group form-group-sm mb-3 ">
-                                            <label htmlFor="" className='mb-1'>Description* <small>(max 1000 characters)</small></label>
+                                            <label htmlFor="" className='mb-1'>{t("description")}* <small>({t("max")} 1000 {t("characters")})</small></label>
                                             <Editor description={description} setDescription={setDescription} maximumLength={1000} />
                                         </div>
 
@@ -621,7 +624,7 @@ export default function AddMachinery() {
                                             <div className="upload-image" onClick={hanldeUploadClick}>
                                                 <input type="file" accept='image/*' onChange={handleImageChange} multiple name="" id="" className='invisible' ref={imageUploadRef} />
                                                 <FaCloudUploadAlt />
-                                                <p style={{ fontSize: "10px" }}>Upload Images (Upload maximum of 10 images) </p>
+                                                <p style={{ fontSize: "10px" }}>{t("imagesUpload")} </p>
                                             </div>
                                             {
                                                 uploadingImage && (
@@ -634,7 +637,7 @@ export default function AddMachinery() {
                                                             data-testid="loader"
                                                             className='mt-1'
                                                         />
-                                                        <p>Uploading Images </p>
+                                                        <p>{t("uploading")}* </p>
                                                     </>
 
                                                 )
@@ -656,11 +659,11 @@ export default function AddMachinery() {
 
                                 <div className="d-flex gap-3 mt-4">
                                     <div className="w-25 formSide">
-                                        <div className="info">Properties</div>
+                                        <div className="info">{t("properties")}</div>
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Select Brand</label>
+                                            <label htmlFor="" className='mb-1'>{t("select")} {t("brand")}</label>
                                             <select name="" id="" className="custom-input" onChange={e => setBrand(e.target.value)} value={brand}>
-                                                <option value="">Select brand</option>
+                                                <option value="">{t("select")} {t("brand")}</option>
                                                 {
                                                     machineryBrands.map((data) => (
                                                         data.application === application ? (
@@ -674,9 +677,9 @@ export default function AddMachinery() {
                                         </div>
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Condition</label>
+                                            <label htmlFor="" className='mb-1'>{t("condition")}</label>
                                             <select name="" id="" className="custom-input" onChange={e => setCondition(e.target.value)} value={condition}>
-                                                <option value="">Select Condition</option>
+                                                <option value="">{t("select")} {t("condition")}</option>
                                                 {
                                                     machineConditionData.map((data, i) => {
                                                         return (
@@ -688,9 +691,9 @@ export default function AddMachinery() {
                                         </div>
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Select Year</label>
+                                            <label htmlFor="" className='mb-1'>{t("select")} {t("select")}</label>
                                             <select name="" id="" className="custom-input" onChange={e => setBuild(e.target.value)} value={build}>
-                                                <option value="">Select Year</option>
+                                                <option value="">{t("select")} {t("year")}</option>
                                                 {
                                                     yearBuildData.map((data, i) => {
                                                         return (
@@ -703,9 +706,9 @@ export default function AddMachinery() {
 
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Type</label>
+                                            <label htmlFor="" className='mb-1'>{t("type")}</label>
                                             <select name="" id="" className="custom-input" onChange={e => setMachineryType(e.target.value)} value={machineryType}>
-                                                <option value="">Select Machine Type</option>
+                                                <option value="">{t("select")} {t("machine")} {t("type")}</option>
                                                 {
                                                     machineryTypesDropdown.map((data, i) => {
                                                         return (
@@ -719,7 +722,7 @@ export default function AddMachinery() {
 
                                         <div className="form-group form-group-sm mb-1">
                                             <div className="d-flex align-items-center justify-content-between">
-                                                <label htmlFor="guaranteeCheck" className='mb-1'>Guarantee</label>
+                                                <label htmlFor="guaranteeCheck" className='mb-1'>{t("guarantee")}</label>
                                                 <input type="checkbox" id='guaranteeCheck' className="" onChange={e => setGuarantee(!guarantee)} checked={guarantee} />
                                             </div>
                                         </div>
@@ -728,7 +731,7 @@ export default function AddMachinery() {
                                             guarantee && (
                                                 <div className="form-group form-group-sm">
                                                     <select name="" id="" className="custom-input" onChange={e => setGuaranteePeriod(e.target.value)} value={guaranteePeriod}>
-                                                        <option value="">Select Guarantee</option>
+                                                        <option value="">{t("select")} {t("guarantee")}</option>
                                                         {
                                                             machineryGuarantee.map((data, i) => {
                                                                 return (
@@ -743,14 +746,14 @@ export default function AddMachinery() {
 
                                     </div>
                                     <div className="w-50 formSide">
-                                        <div className="info">Location</div>
+                                        <div className="info">{t("location")}</div>
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Country*</label>
+                                            <label htmlFor="" className='mb-1'>{t("country")}*</label>
                                             <Select
                                                 className="custom-input react-select"
                                                 classNamePrefix="select"
-                                                placeholder='Select Country'
+                                                placeholder={`${t("select")} ${t("country")}`}
                                                 name="color"
                                                 options={countries}
                                                 onChange={handleCountryChange}
@@ -762,11 +765,11 @@ export default function AddMachinery() {
                                             />
                                         </div>
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>Region*</label>
+                                            <label htmlFor="" className='mb-1'>{t("region")}</label>
                                             <Select
                                                 className="custom-input react-select"
                                                 classNamePrefix="select"
-                                                placeholder='Select Region'
+                                                placeholder={`${t("select")} ${t("region")}`}
                                                 name="color"
                                                 options={states && states}
                                                 onChange={handleStateChange}
@@ -778,11 +781,11 @@ export default function AddMachinery() {
                                             />
                                         </div>
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>City*</label>
+                                            <label htmlFor="" className='mb-1'>{t("city")}</label>
                                             <Select
                                                 className="custom-input react-select"
                                                 classNamePrefix="select"
-                                                placeholder='Select City'
+                                                placeholder={`${t("select")} ${t("city")}`}
                                                 name="color"
                                                 options={cities && cities}
                                                 onChange={handleCityChange}
@@ -795,11 +798,11 @@ export default function AddMachinery() {
                                         </div>
 
                                         <div className="form-group form-group-sm">
-                                            <label htmlFor="" className='mb-1'>District</label>
+                                            <label htmlFor="" className='mb-1'>{t("district")}</label>
                                             <Select
                                                 className="custom-input react-select"
                                                 classNamePrefix="select"
-                                                placeholder='Select District'
+                                                placeholder={`${t("select")} ${t("district")}`}
                                                 name="color"
                                                 options={streets && streets}
                                                 onChange={handleStreetChange}
@@ -812,10 +815,10 @@ export default function AddMachinery() {
                                         </div>
                                     </div>
                                     <div className="w-50 formSide">
-                                        <div className="info">Location by map</div>
+                                        <div className="info">{t("locationByMap")}</div>
 
                                         <div className="col-12">
-                                            <p style={{ fontSize: "12px" }}>Add location by map*</p>
+                                            <p style={{ fontSize: "12px" }}>{t("add")} {t("locationByMap")}*</p>
                                             {
                                                 !isLoading && updatePage ? (
                                                     <>
@@ -827,7 +830,7 @@ export default function AddMachinery() {
                                                     </>
                                                 )
                                             }
-                                            <small>Click on the location address in map</small>
+                                            <small>{t("clickOnTheLocationAddressInMap")}</small>
 
                                         </div>
                                     </div>
@@ -835,7 +838,7 @@ export default function AddMachinery() {
 
                                 <div className="row mb-2 mt-3">
                                     <div className="form-group form-group-sm d-flex align-items-center justify-content-end gap-2">
-                                        <div className="outline-btn py-2" onClick={resetAllFields}>Reset</div>
+                                        <div className="outline-btn py-2" onClick={resetAllFields}>{t("reset")}</div>
                                         {/* <button className="custom-btn" type='submit'>Publish</button> */}
                                         <button className="custom-btn" type='submit'>
                                             <div className='d-flex align-items-center justify-content-center'>
@@ -847,7 +850,7 @@ export default function AddMachinery() {
                                                     data-testid="loader"
                                                 />
                                                 {
-                                                    !isLoading && ("Publish")
+                                                    !isLoading && (t("Publish"))
                                                 }
 
                                             </div>

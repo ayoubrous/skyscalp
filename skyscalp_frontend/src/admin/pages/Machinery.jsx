@@ -13,8 +13,11 @@ import Lottie from 'lottie-react'
 import loader from '../../assets/images/skyscalp-loader.json'
 import Footer from '../components/Footer'
 import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 
 export default function Machinery() {
+    const [t] = useTranslation()
+
 
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(false)
@@ -89,28 +92,27 @@ export default function Machinery() {
                 <div className="body-wrapper">
                     <Header />
                     <div className="container-fluid">
-                        <h4 className='fw-bolder mb-1'>Published Machines</h4>
-                        <small className='mb-3'>Here is the list of published machines products</small>
+                        <h4 className='fw-bolder mb-1'>{t("published")} {t("machineryTools")}</h4>
 
                         <div className="d-flex justify-content-end">
                             <a href=""></a>
                             <Link to='../app/add-machines'>
-                                <button className="outline-btn py-1 px-2">+ Add New</button>
+                                <button className="outline-btn py-1 px-2">+ {t("publish")} {t("new")}</button>
                             </Link>
                         </div>
 
                         <div className="table-container mt-2">
-                            <table className="table table-striped dashboard-table">
+                            <table className="table table-bordered table-hover dashboard-table">
                                 <thead>
                                     <tr>
                                         <th className='col-1'>S. No</th>
-                                        <th className='col-2'>Title</th>
-                                        <th className='col-2'>Application</th>
-                                        <th className='col-1'>Budget</th>
-                                        <th className='col-1'>Favourites</th>
-                                        <th className='col-1'>Published</th>
-                                        <th className='col-1'>Status</th>
-                                        <th className='col-1'>Action</th>
+                                        <th className='col-2'>{t("title")}</th>
+                                        <th className='col-2'>{t("application")}</th>
+                                        <th className='col-1'>{t("budget")}</th>
+                                        <th className='col-1'>{t("favourites")}</th>
+                                        <th className='col-1'>{t("published")}</th>
+                                        <th className='col-1'>{t("status")}</th>
+                                        <th className='col-1'>{t("action")}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -142,10 +144,10 @@ export default function Machinery() {
                                                             {
                                                                 data.status ?
                                                                     (
-                                                                        <span className="badge text-bg-success" style={{ fontSize: "12px" }}>Active</span>
+                                                                        <span className="badge text-bg-success" style={{ fontSize: "12px" }}>{t("active")}</span>
                                                                     ) :
                                                                     (
-                                                                        <span className="badge text-bg-danger" style={{ fontSize: "12px" }}>Inactive</span>
+                                                                        <span className="badge text-bg-danger" style={{ fontSize: "12px" }}>{t("inactive")}</span>
                                                                     )
                                                             }
                                                         </td>

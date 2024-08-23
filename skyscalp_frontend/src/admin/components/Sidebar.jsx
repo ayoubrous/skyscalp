@@ -6,8 +6,10 @@ import { FaTools } from 'react-icons/fa'
 import { TbCarCrane } from 'react-icons/tb'
 import { BsBuildingsFill } from 'react-icons/bs'
 import Navbar from '../../components/navbar/Navbar'
+import { useTranslation } from 'react-i18next'
 
 export default function Sidebar() {
+    const [t] = useTranslation()
     const hideSidebar = () => {
         document.querySelector(".left-sidebar").style.left = "-270px"
     }
@@ -31,7 +33,7 @@ export default function Sidebar() {
                                     <span>
                                         <i className="ti ti-layout-dashboard"></i>
                                     </span>
-                                    <span className="hide-menu">Dashboard</span>
+                                    <span className="hide-menu">{t("dashboard")}</span>
                                 </NavLink>
                             </li>
                             <li className="sidebar-item mt-1">
@@ -39,7 +41,7 @@ export default function Sidebar() {
                                     <span>
                                         <BsBuildingsFill className='me-1' />
                                     </span>
-                                    <span className="hide-menu">Properties</span>
+                                    <span className="hide-menu">{t("properties")}</span>
                                 </NavLink>
                             </li>
                             <li className="sidebar-item mt-1">
@@ -47,7 +49,7 @@ export default function Sidebar() {
                                     <span>
                                         <TbCarCrane className='me-1' />
                                     </span>
-                                    <span className="hide-menu">Machines</span>
+                                    <span className="hide-menu">{t("machineryTools")}</span>
                                 </NavLink>
                             </li>
                             <li className="sidebar-item mt-1">
@@ -55,7 +57,7 @@ export default function Sidebar() {
                                     <span>
                                         <FaTools className='me-1' />
                                     </span>
-                                    <span className="hide-menu">Materials</span>
+                                    <span className="hide-menu">{t("materials")}</span>
                                 </NavLink>
                             </li>
                             <li className="sidebar-item mt-1">
@@ -63,7 +65,7 @@ export default function Sidebar() {
                                     <span>
                                         <FaChair className='me-1' />
                                     </span>
-                                    <span className="hide-menu">Furnitures</span>
+                                    <span className="hide-menu">{t("furniture")}</span>
                                 </NavLink>
                             </li>
                             <li className="sidebar-item mt-1">
@@ -71,7 +73,7 @@ export default function Sidebar() {
                                     <span>
                                         <FaRegHeart className='me-1' />
                                     </span>
-                                    <span className="hide-menu">Favourites</span>
+                                    <span className="hide-menu">{t("favourites")}</span>
                                 </NavLink>
                             </li>
                             <li className="sidebar-item mt-1">
@@ -79,7 +81,7 @@ export default function Sidebar() {
                                     <span>
                                         <FaRegMessage className='me-1' />
                                     </span>
-                                    <span className="hide-menu">Messages</span>
+                                    <span className="hide-menu">{t("messages")}</span>
                                 </NavLink>
                             </li>
 

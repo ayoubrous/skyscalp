@@ -15,8 +15,11 @@ import { formatPrice } from '../../utils/formatPrice'
 import { removeFromFavourites } from '../../APIs/favourites'
 import { getProductByID } from '../../APIs/products'
 import Footer from '../components/Footer'
+import { useTranslation } from 'react-i18next'
 
 export default function Machinery() {
+    const [t] = useTranslation()
+
     const [activeTab, setActiveTab] = useState('property')
     const [favouriteItems, setFavouriteItems] = useState([])
     const [isLoading, setIsLoading] = useState(false)
@@ -132,7 +135,7 @@ export default function Machinery() {
                                 <p>Construction</p>
                             </div>
                         </div> */}
-                        <h2 className='fw-bolder mb-3'>Favourite Items</h2>
+                        <h4 className='fw-bolder mb-3'>{t("favourites")} {t("items")}</h4>
 
                         <div className="d-flex justify-content-end">
                             <a href=""></a>
@@ -158,11 +161,11 @@ export default function Machinery() {
                                 <thead>
                                     <tr>
                                         <th className='col-1'>S. No</th>
-                                        <th className='col-2'>Title</th>
-                                        <th className='col-2'>Address</th>
-                                        <th className='col-1'>Budget</th>
-                                        <th className='col-1'>Published</th>
-                                        <th className='col-1'>Action</th>
+                                        <th className='col-2'>{t("title")}</th>
+                                        <th className='col-2'>{t("address")}</th>
+                                        <th className='col-1'>{t("budget")}</th>
+                                        <th className='col-1'>{t("published")}</th>
+                                        <th className='col-1'>{t("action")}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -194,7 +197,7 @@ export default function Machinery() {
                                             })
                                             : (
                                                 <tr className='border'>
-                                                    <td colSpan="7" className="text-center">No Items Found</td>
+                                                    <td colSpan="7" className="text-center">{t("noProductsFound")}</td>
                                                 </tr>
                                             )
                                     }

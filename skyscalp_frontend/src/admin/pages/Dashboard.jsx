@@ -12,8 +12,11 @@ import Lottie from 'lottie-react'
 import loader from '../../assets/images/skyscalp-loader.json'
 import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
+import { useTranslation } from 'react-i18next'
 
 export default function Dashboard() {
+  const [t] = useTranslation()
+
   const [isLoading, setIsLoading] = useState(false)
 
   const [userInfo, setUserInfo] = useState({})
@@ -200,7 +203,7 @@ export default function Dashboard() {
 
                 <Link to="../app/properties" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid blue" }}>
                   <div className="card-body p-3">
-                    <h5 className="card-title mb-2 fw-semibold">Published Properties</h5>
+                    <h5 className="card-title mb-2 fw-semibold">{t("published")} {t("properties")}</h5>
                     <div className="row align-items-center">
                       <div className="d-flex align-items-center justify-content-between">
                         <h1 className="fw-bolder color-primary" style={{ fontSize: "3rem" }}>
@@ -214,7 +217,7 @@ export default function Dashboard() {
 
                 <Link to="../app/machines" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid green" }}>
                   <div className="card-body p-3">
-                    <h5 className="card-title mb-2 fw-semibold">Published Machines</h5>
+                    <h5 className="card-title mb-2 fw-semibold">{t("published")} {t("machineryTools")}</h5>
                     <div className="row align-items-center">
                       <div className="d-flex align-items-center justify-content-between">
                         <h1 className="fw-bolder color-primary" style={{ fontSize: "3rem" }}>
@@ -227,7 +230,7 @@ export default function Dashboard() {
                 </Link>
                 <Link to="../app/materials" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid orange" }}>
                   <div className="card-body p-3">
-                    <h5 className="card-title mb-2 fw-semibold">Published Consturction</h5>
+                    <h5 className="card-title mb-2 fw-semibold">{t("published")} {t("materials")}</h5>
                     <div className="row align-items-center">
                       <div className="d-flex align-items-center justify-content-between">
                         <h1 className="fw-bolder color-primary" style={{ fontSize: "3rem" }}>
@@ -241,7 +244,7 @@ export default function Dashboard() {
 
                 <Link to="../app/furniture" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid blue" }}>
                   <div className="card-body p-3">
-                    <h5 className="card-title mb-2 fw-semibold">Published Furnitures</h5>
+                    <h5 className="card-title mb-2 fw-semibold">{t("published")} {t("furniture")}</h5>
                     <div className="row align-items-center">
                       <div className="d-flex align-items-center justify-content-between">
                         <h1 className="fw-bolder color-primary" style={{ fontSize: "3rem" }}>
@@ -257,7 +260,7 @@ export default function Dashboard() {
               </div>
               <div className="col-7">
                 <div className="card p-4">
-                  <h5>Personal Information</h5>
+                  <h5>{t("personalInfo")}</h5>
 
                   <div className="info-wrapper ">
                     <div className="basic-info d-flex align-items-center gap-4 my-3 border p-2">
@@ -273,19 +276,19 @@ export default function Dashboard() {
 
                     <form action="" onSubmit={handleUpdate}>
                       <div className="form-group mb-2">
-                        <label htmlFor="">Update Profile Image</label>
+                        <label htmlFor="">{t("updateProfileImage")}</label>
                         <input type="file" onChange={handleImageChange} className='custom-input my-1' id="" accept='image/*' />
                       </div>
                       <div className="form-group mb-2">
-                        <label htmlFor="">Phone</label>
+                        <label htmlFor="">{t("phone")}</label>
                         <input type="text" className='custom-input my-1' value={phone} onChange={e => setPhone(e.target.value)} />
                       </div>
                       <div className="form-group mb-2">
-                        <label htmlFor="">Username</label>
+                        <label htmlFor="">{t("username")}</label>
                         <input type="text" className='custom-input my-1' value={username} onChange={e => setUsername(e.target.value)} />
                       </div>
                       <div className="form-group mb-2">
-                        <button className="custom-btn">Update</button>
+                        <button className="custom-btn">{t("update")}</button>
                       </div>
                     </form>
                   </div>

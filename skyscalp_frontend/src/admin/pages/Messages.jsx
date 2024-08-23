@@ -12,8 +12,11 @@ import Lottie from 'lottie-react'
 import loader from '../../assets/images/skyscalp-loader.json'
 import Swal from 'sweetalert2'
 import Footer from '../components/Footer'
+import { useTranslation } from 'react-i18next'
 
 export default function Messages() {
+    const [t] = useTranslation()
+
     const [messages, setMessages] = useState([])
     const [loading, setLoading] = useState(false)
 
@@ -106,12 +109,12 @@ export default function Messages() {
         if (message) {
             // If message is found, display it in SweetAlert2
             Swal.fire({
-                title: 'Message Details',
+                title: t('Message Details'),
                 html: `
                 <div>
-                    <p className="mb-1" style={{fontSize: "12px"}}><b>Email:</b> ${message.email}</p>
-                    <p className="mb-1" style={{fontSize: "12px"}}><b>Phone:</b> ${message.phone}</p>
-                    <p className="mb-1" style={{fontSize: "12px"}}><b>Message:</b></p>
+                    <p className="mb-1" style={{fontSize: "12px"}}><b>${t("email")}:</b> ${message.email}</p>
+                    <p className="mb-1" style={{fontSize: "12px"}}><b>${t("phone")}:</b> ${message.phone}</p>
+                    <p className="mb-1" style={{fontSize: "12px"}}><b>${t("message")}:</b></p>
                     <p className="mb-1" style={{fontSize: "12px"}}>${message.message}</p>
                     
                 </div>
@@ -119,7 +122,7 @@ export default function Messages() {
                 showCloseButton: true,
                 showCancelButton: false,
                 focusConfirm: false,
-                confirmButtonText: 'Close',
+                confirmButtonText: t('Close'),
             });
         } else {
             // If message is not found, show error message
@@ -145,7 +148,7 @@ export default function Messages() {
                 <div className="body-wrapper">
                     <Header />
                     <div className="container-fluid">
-                        <h4 className='fw-bolder mb-3'>Messages Received</h4>
+                        <h4 className='fw-bolder mb-3'>{t("messages")} {t("received")}</h4>
 
                         <div className="d-flex justify-content-end">
                             <a href=""></a>
@@ -159,11 +162,11 @@ export default function Messages() {
                                 <thead>
                                     <tr>
                                         <th className='col-1'>S. No</th>
-                                        <th className='col-2'>User email</th>
-                                        <th className='col-3'>Mesasge</th>
-                                        <th className='col-2'>Received On</th>
-                                        <th className='col-2'>Time</th>
-                                        <th className='col-2'>Action</th>
+                                        <th className='col-2'>{t("user")} {t("email")}</th>
+                                        <th className='col-3'>{t("message")}</th>
+                                        <th className='col-2'>{t("received")} {t("on")}</th>
+                                        <th className='col-2'>{t("time")}</th>
+                                        <th className='col-2'>{t("action")}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -188,14 +191,14 @@ export default function Messages() {
                                                             {/* <a href={`mailto:${data.email}`}>
                                                                 <button className="custom-btn px-2 py-1" style={{ fontSize: "12px" }}>Reply</button>
                                                             </a> */}
-                                                            <button className="custom-btn px-2 py-1 ms-1" style={{ fontSize: "12px" }} onClick={() => handleViewMessage(data._id)}>View</button>
+                                                            <button className="custom-btn px-2 py-1 ms-1" style={{ fontSize: "12px" }} onClick={() => handleViewMessage(data._id)}>{t("view")}</button>
                                                         </td>
                                                     </tr>
                                                 )
                                             })
                                             : (
                                                 <tr className='border'>
-                                                    <td colSpan="7" className="text-center">No Items Found</td>
+                                                    <td colSpan="7" className="text-center">{t("noProductsFound")}</td>
                                                 </tr>
                                             )
                                     }

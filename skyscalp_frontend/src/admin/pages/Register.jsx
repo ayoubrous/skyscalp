@@ -11,10 +11,11 @@ import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { ToastContainer, toast } from 'react-toastify';
 import { FaEye, FaEyeSlash } from 'react-icons/fa6';
+import { useTranslation } from 'react-i18next';
 
 
 export default function Register() {
-
+const [t] = useTranslation()
     const pass = useRef()
     const cPass = useRef()
 
@@ -32,14 +33,14 @@ export default function Register() {
     const handleRegister = (e) => {
         e.preventDefault()
         if (email.length === 0 || password.length === 0 || username.length === 0) {
-            toast.error('Email and Password could not be empty')
+            toast.error(t('Email and Password could not be empty'))
         }
         else {
             if (password.length < 6) {
-                toast.error("Password should be 6 characters long.")
+                toast.error(t("Password should be 6 characters long"))
             }
             else if (password !== cpassword) {
-                toast.error("Password and Confirm Password should be same.")
+                toast.error(t("Password and Confirm Password should be same"))
             }
             else {
                 let data = {
@@ -71,7 +72,7 @@ export default function Register() {
                             toast.error(result.message)
                         }
                         else {
-                            toast.success(result.message)
+                            toast.success(t("A verification email is sent to your account, please verify from mail account"))
                         }
 
                     })
@@ -101,15 +102,15 @@ export default function Register() {
                     <div className="container">
                         <div className="row align-items-center justify-content-center">
                             <div className="col-md-7">
-                                <h3 className='color-primary mt-3'>Create new Account</h3>
+                                <h3 className='color-primary mt-3'>{t("Create New Account")}</h3>
                                 {/* <small className="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</small> */}
                                 <form action="" method="post" onSubmit={handleRegister} className='mt-4 registerForm'>
                                     <div className="form-group first mb-3">
-                                        <label htmlFor="username" className='color-secondary'>Username*</label>
+                                        <label htmlFor="username" className='color-secondary'>{t("username")}*</label>
                                         <input type="text" className="form-control" placeholder="John Doe" id="username" onChange={e => setUsername(e.target.value)} value={username} />
                                     </div>
                                     <div className="form-group first mb-3">
-                                        <label htmlFor="phone" className='color-secondary'>Phone</label>
+                                        <label htmlFor="phone" className='color-secondary'>{t("phone")}</label>
                                         {/* <input type="text" className="form-control" placeholder="33-332-333" id="phone" onChange={e => setPhone(e.target.value)} value={phone} /> */}
                                         <PhoneInput
                                             country={'fr'}
@@ -119,12 +120,12 @@ export default function Register() {
                                     </div>
 
                                     <div className="form-group first mb-3">
-                                        <label htmlFor="email" className='color-secondary'>Email*</label>
+                                        <label htmlFor="email" className='color-secondary'>{t("Email")}*</label>
                                         <input type="email" className="form-control" placeholder="your-email@gmail.com" id="email" onChange={e => setEmail(e.target.value)} value={email} />
                                     </div>
                                     <div className="form-group last mb-3">
-                                        <label htmlFor="password" className='color-secondary'>Password*</label>
-                                        <input type="password" className="form-control" placeholder="Your Password" ref={pass} id="password" onChange={e => setPassword(e.target.value)} value={password} />
+                                        <label htmlFor="password" className='color-secondary'>{t("Password")}*</label>
+                                        <input type="password" className="form-control" placeholder={t("Password")} ref={pass} id="password" onChange={e => setPassword(e.target.value)} value={password} />
 
                                         {showPassword ?
                                             <FaEyeSlash className='eye-icon' onClick={() => togglePasswordVisibility(pass, setShowPassword)} /> :
@@ -132,8 +133,8 @@ export default function Register() {
                                         }
                                     </div>
                                     <div className="form-group last mb-3">
-                                        <label htmlFor="cpassword" className='color-secondary'>Confirm Password*</label>
-                                        <input type="password" className="form-control" placeholder="Type password again" ref={cPass} id="cpassword" onChange={e => setCPassword(e.target.value)} value={cpassword} />
+                                        <label htmlFor="cpassword" className='color-secondary'>{t("Confirm Password")}*</label>
+                                        <input type="password" className="form-control" placeholder={t("Retype password")} ref={cPass} id="cpassword" onChange={e => setCPassword(e.target.value)} value={cpassword} />
                                         {showConfirmPassword ?
                                             <FaEyeSlash className='eye-icon' onClick={() => togglePasswordVisibility(cPass, setShowConfirmPassword)} /> :
                                             <FaEye className='eye-icon' onClick={() => togglePasswordVisibility(cPass, setShowConfirmPassword)} />
@@ -149,14 +150,14 @@ export default function Register() {
                                                 data-testid="loader"
                                             />
                                             {
-                                                !isLoading && ("Register")
+                                                !isLoading && t("Register")
                                             }
 
                                         </div>
                                     </button>
                                     <div className="d-flex mt-2 align-items-center justify-content-center">
                                         <span className="ml-auto">
-                                            <Link to="../login" className="forgot-pass">Login Instead</Link>
+                                            <Link to="../login" className="forgot-pass">{t("Login Instead")}</Link>
                                         </span>
                                     </div>
                                 </form>

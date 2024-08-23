@@ -2,10 +2,11 @@ import React from 'react'
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { useTranslation } from 'react-i18next';
 
 
 export default function Editor({ description, setDescription, maximumLength = null }) {
-
+const [t] = useTranslation()
     const handleDescriptionChange = (event, editor) => {
         const data = editor.getData();
         setDescription(data);
@@ -34,7 +35,7 @@ export default function Editor({ description, setDescription, maximumLength = nu
             />
             {
                 maximumLength !== null && (
-                    <p style={{fontSize: "10px"}}>Characters: {description.length}/{maximumLength}</p>
+                    <p style={{fontSize: "10px"}}>{t("characters")}: {description.length}/{maximumLength}</p>
                 )
             }
         </>
