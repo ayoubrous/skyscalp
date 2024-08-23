@@ -253,7 +253,7 @@ export default function ViewFurniture() {
                                 </div>
 
                                 <h4 className="fw-bolder mb-2">{title}</h4>
-                                <p className='paragraph mb-1 '>{t("quantity")}: {quantity}</p>
+                                <p className='paragraph mb-1 '>{t("quantity")}: {quantity} items</p>
                                 <p className='paragraph mb-1 '>{t("category")} {category}</p>
 
                                 <div className="d-flex align-items-center justify-content-between mb-2">

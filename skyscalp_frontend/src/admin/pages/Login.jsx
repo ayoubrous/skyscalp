@@ -20,7 +20,7 @@ export default function Login() {
     const pass = useRef()
 
     useEffect(() => {
-        document.title = "Skyscalp - Login"
+        document.title = "Skyscalp"
         const favicon = document.querySelector('link[rel="icon"]');
         favicon.href = faviconLogo;
     }, [])

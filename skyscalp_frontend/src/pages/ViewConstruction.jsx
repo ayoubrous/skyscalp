@@ -293,9 +293,9 @@ export default function ViewConstruction() {
                                 </div>
 
                                 <h4 className="fw-bolder mb-2">{title}</h4>
-                                <p className='paragraph mb-1 '>{t("quantity")}: {quantity}</p>
+                                <p className='paragraph mb-1 '>{t("quantity")}: {quantity} / {unit}</p>
                                 <p className='paragraph mb-1 '>{t("application")} {application}</p>
-                                <p className='paragraph mb-1 '>{t("category")} {category}</p>
+                                <p className='paragraph mb-1 '>{t("material")} {category}</p>
 
                                 <div className="d-flex align-items-center justify-content-between mb-2">
                                     <p className=''>{city}, {country}</p>
@@ -376,7 +376,7 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("quantity")}</p>
                                                 </div>
-                                                <p className="paragraph">{quantity} per {unit}</p>
+                                                <p className="paragraph">{quantity} {unit}</p>
                                             </div>
                                         )
                                     }

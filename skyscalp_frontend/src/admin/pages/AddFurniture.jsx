@@ -633,9 +633,9 @@ export default function AddFurniture() {
 
 
                                         <div className="form-group form-group-sm mb-4">
-                                            <label htmlFor="" className='mb-1'>Budget (MAD)*</label>
+                                            <label htmlFor="" className='mb-1'>Budget (MAD)/item*</label>
                                             <input type="number" min={0} className="custom-input" onChange={e => setBudget(e.target.value)} onBlur={handleBudgetCheck} value={budget} />
-                                            <small style={{ fontSize: "10px" }}>{t("Specify Budget (MAD) per")} {t("unit")}</small>
+                                            <small style={{ fontSize: "10px" }}>{t("Specify Budget (MAD) per")} {t("item")}</small>
                                         </div>
 
                                         <div className="form-group form-group-sm mb-4">

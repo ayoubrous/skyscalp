@@ -30,7 +30,7 @@ export default function Dashboard() {
   const [totalFurniture, setTotalFurniture] = useState(0)
 
   useEffect(() => {
-    document.title = "Skyscalp - Publish"
+    document.title = "Skyscalp "
   }, [])
 
   const getUserInfo = () => {

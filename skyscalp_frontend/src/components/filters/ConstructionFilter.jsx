@@ -312,7 +312,7 @@ export default function ConstructionFilter({
                             </div>
                         </div>
                         <div className="filter-btn">
-                            <button className="custom-btn" onClick={handleFilter}>Search</button>
+                            <button className="custom-btn" onClick={handleFilter}>{t("search")}</button>
                         </div>
                     </div>
                     <div className="other-filters p-1 pt-3 pb-0">
@@ -483,9 +483,9 @@ export default function ConstructionFilter({
                             }
                         </div>
                         {
-                            selectedFilters.length > 0 && (
-                                <div className="selected-filter" style={{ cursor: "pointer" }} onClick={handleClearFilters}>Clear Filters</div>
-                            )
+                            // selectedFilters.length > 0 && (
+                                <div className="selected-filter" style={{ cursor: "pointer" }} onClick={handleClearFilters}>{t("reset")} {t("all")}</div>
+                            // )
                         }
                     </div>
                 </div>

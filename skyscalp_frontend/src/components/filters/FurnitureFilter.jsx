@@ -308,13 +308,24 @@ export default function FurnitureFilter({
     }
 
 
-    let formattedCategories = furnitureCategories.map((cats, i) => {
-        return {
-            id: i,
-            categoryName: cats.article,
-            subcategories: cats.materials
+    let formattedCategories = furnitureCategories.reduce((acc, curr) => {
+        let category = acc.find(item => item.categoryName === curr.cateogry);
+
+        if (category) {
+            category.subcategories.push(curr.article);
+        } else {
+            acc.push({
+                id: curr.id,
+                categoryName: curr.cateogry,
+                subcategories: [curr.article]
+            });
         }
-    })
+
+        return acc;
+    }, []);
+
+
+
 
     return (
         <div className="filter-area my-4">

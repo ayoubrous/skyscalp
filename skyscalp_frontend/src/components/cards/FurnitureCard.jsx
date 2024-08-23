@@ -76,7 +76,7 @@ const FurnitureCard = ({ data }) => {
                     </div>
 
                     <p className="paragraph">{city}, {country}</p>
-                    <p className=''>{t("quantity")}: {quantity}</p>
+                    <p className=''>{t("quantity")}: {quantity} {quantity > 1 ? 'items': "item"}</p>
                     <p className='mb-1'>{category}</p>
                     <p className='color-secondary'>{article}</p>
 
