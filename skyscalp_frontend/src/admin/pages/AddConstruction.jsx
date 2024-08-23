@@ -672,7 +672,7 @@ export default function AddConstruction() {
                                                 {
                                                     materialCategories.map((data, i) => {
                                                         return (
-                                                            <option value={data.application} key={i}>{data.application}</option>
+                                                            <option value={data.application} key={i}>{t(data.application)}</option>
                                                         )
                                                     })
                                                 }
@@ -705,7 +705,7 @@ export default function AddConstruction() {
                                                         .flatMap(data => data.categories)
                                                         .map((material, i) => (
                                                             <option value={material.materialName} key={i}>
-                                                                {material.materialName}
+                                                                {t(material.materialName)}
                                                             </option>
                                                         ))
                                                 }
@@ -806,7 +806,7 @@ export default function AddConstruction() {
                                                         .flatMap(material => material.types)
                                                         .map((type, i) => (
                                                             <option value={type} key={i}>
-                                                                {type}
+                                                                {t(type)}
                                                             </option>
                                                         ))
                                                 }
@@ -837,7 +837,7 @@ export default function AddConstruction() {
                                                             {
                                                                 materialSizes
                                                                     .map((data, i) => (
-                                                                        <option value={data} key={i}>{data}</option>
+                                                                        <option value={data} key={i}>{t(data)}</option>
                                                                     ))
                                                             }
                                                         </select>
@@ -869,7 +869,7 @@ export default function AddConstruction() {
                                                             {
                                                                 materialColors
                                                                     .map((data, i) => (
-                                                                        <option value={data} key={i}>{data}</option>
+                                                                        <option value={data} key={i}>{t(data)}</option>
                                                                     ))
                                                             }
                                                         </select>
@@ -901,7 +901,7 @@ export default function AddConstruction() {
                                                             {
                                                                 materials
                                                                     .map((data, i) => (
-                                                                        <option value={data} key={i}>{data}</option>
+                                                                        <option value={data} key={i}>{t(data)}</option>
                                                                     ))
                                                             }
                                                         </select>
@@ -933,7 +933,7 @@ export default function AddConstruction() {
                                                             {
                                                                 materialBases
                                                                     .map((data, i) => (
-                                                                        <option value={data} key={i}>{data}</option>
+                                                                        <option value={data} key={i}>{t(data)}</option>
                                                                     ))
                                                             }
                                                         </select>
@@ -965,7 +965,7 @@ export default function AddConstruction() {
                                                             {
                                                                 materialThickness
                                                                     .map((data, i) => (
-                                                                        <option value={data} key={i}>{data}</option>
+                                                                        <option value={data} key={i}>{t(data)}</option>
                                                                     ))
                                                             }
                                                         </select>
@@ -998,7 +998,7 @@ export default function AddConstruction() {
                                                             {
                                                                 materialFinish
                                                                     .map((data, i) => (
-                                                                        <option value={data} key={i}>{data}</option>
+                                                                        <option value={data} key={i}>{t(data)}</option>
                                                                     ))
                                                             }
                                                         </select>
@@ -1030,7 +1030,7 @@ export default function AddConstruction() {
                                                         >
                                                             <option value="">{t("select")} {t("Voltage")}</option>
                                                             {materialVoltage.map((data, i) => (
-                                                                <option value={data} key={i}>{data}</option>
+                                                                <option value={data} key={i}>{t(data)}</option>
                                                             ))}
                                                         </select>
                                                     </div>
@@ -1148,7 +1148,7 @@ export default function AddConstruction() {
                                             {
                                                 !isLoading && updatePage ? (
                                                     <>
-                                                        <GetLocationMap centerPosition={mapLocation && mapLocation} clickedPosition={mapLocation} setClickedPosition={setMapLocation} />
+                                                        <GetLocationMap centerPosition={mapLocation ? mapLocation : ["34.020882", "-6.841650"]} clickedPosition={mapLocation} setClickedPosition={setMapLocation} />
                                                     </>
                                                 ) : (
                                                     <>

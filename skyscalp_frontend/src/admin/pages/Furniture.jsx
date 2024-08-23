@@ -131,7 +131,7 @@ export default function Furniture() {
                                                         <tr key={data._id}>
                                                             <td>{i}</td>
                                                             <td>{data.title}</td>
-                                                            <td>{data.category}</td>
+                                                            <td>{t(data.category)}</td>
                                                             <td>MAD {formatPrice(data.budget)}</td>
                                                             <td>{data.toFavourites && data.toFavourites.length}</td>
                                                             <td>{new Date(data.createdAt).toLocaleString('en-GB', {

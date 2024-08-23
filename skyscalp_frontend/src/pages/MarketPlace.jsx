@@ -547,7 +547,7 @@ const MarketPlace = () => {
                                         className={`subcat-tab ${activeSubcats.includes(sub) ? 'active' : ''}`}
                                         onClick={() => handleActiveSubcategories(sub)}
                                     >
-                                        {sub.slice(0, 13) + (sub.length > 13 ? '...' : '')}
+                                        {t(sub).slice(0, 13) + (sub.length > 13 ? '...' : '')}
                                         {activeSubcats.includes(sub) && <FaXmark className='closeTab' />}
                                     </div>
                                 ))

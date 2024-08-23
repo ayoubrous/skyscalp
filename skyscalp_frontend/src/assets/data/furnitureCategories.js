@@ -11,7 +11,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -38,7 +37,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -65,7 +63,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -92,7 +89,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -119,7 +115,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -146,7 +141,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -173,7 +167,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -200,7 +193,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -227,7 +219,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -254,7 +245,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -281,7 +271,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -308,7 +297,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -335,7 +323,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -362,7 +349,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -389,7 +375,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -416,7 +401,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -443,7 +427,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -470,7 +453,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -497,7 +479,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -524,7 +505,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -551,7 +531,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -578,7 +557,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -605,7 +583,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -632,7 +609,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -659,7 +635,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -686,7 +661,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -713,7 +687,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -740,7 +713,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -900,7 +872,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -927,7 +898,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -954,7 +924,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",
@@ -981,7 +950,6 @@ let furnitureCategories = [
         brands: [
             "IKEA",
             "Local",
-            "IKEA",
             "Conforama",
             "Maisons du Monde",
             "Roche Bobois",

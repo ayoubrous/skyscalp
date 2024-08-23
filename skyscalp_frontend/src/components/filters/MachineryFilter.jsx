@@ -607,9 +607,9 @@ export default function MachineryFilter(
                             }
                         </div>
                         {
-                            selectedFilters.length > 0 && (
-                                <div className="selected-filter" style={{ cursor: "pointer" }} onClick={handleClearFilters}>Clear Filters</div>
-                            )
+                            // selectedFilters.length > 0 && (
+                                <div className="selected-filter" style={{ cursor: "pointer" }} onClick={handleClearFilters}>{t("reset")}</div>
+                            // )
                         }
                     </div>
                 </div>

@@ -1,89 +1,12 @@
-// import React, { useState } from 'react';
-// import { FaAngleDown } from 'react-icons/fa';
-
-// export default function NestedDropdown({ show, categoriesRef, categories, setCheckedSubcategories, checkedSubcategories }) {
-
-
-//     const toggleCategory = (categoryName) => {
-//         if (checkedSubcategories.includes(categoryName)) {
-//             setCheckedSubcategories(checkedSubcategories.filter((name) => name !== categoryName));
-//         } else {
-//             setCheckedSubcategories([...checkedSubcategories, categoryName]);
-//         }
-//     };
-
-//     const toggleSubcategory = (subcategoryName) => {
-//         if (checkedSubcategories.includes(subcategoryName)) {
-//             setCheckedSubcategories(checkedSubcategories.filter((name) => name !== subcategoryName));
-//         } else {
-//             setCheckedSubcategories([...checkedSubcategories, subcategoryName]);
-//         }
-//     };
-
-//     const handleCategoryClick = (categoryName) => {
-//         toggleCategory(categoryName);
-//     };
-
-//     const handleSubcategoryClick = (subcategoryName) => {
-//         toggleSubcategory(subcategoryName);
-//     };
-
-//     const handleFinish = () => {
-//         console.log(checkedSubcategories)
-//     }
-//     return (
-//         <>
-
-//             <ul className={`categories-select-dropdown ${show ? 'show' : ''}`} ref={categoriesRef}>
-//                 {categories.map((category) => (
-//                     <li key={category.categoryName} className='dropdown-item extended p-0' >
-//                         <div className="d-flex justify-content-between" style={{backgroundColor: "#f7f7f7", padding: "5px"}}>
-//                             <div className="d-flex gap-2" >
-//                                 <input
-//                                     type="checkbox"
-//                                     name={category.categoryName}
-//                                     id={category.categoryName}
-//                                     checked={checkedSubcategories.includes(category.categoryName)}
-//                                     onChange={() => toggleCategory(category.categoryName)}
-//                                 />
-//                                 <label htmlFor={category.categoryName}>{category.categoryName}</label>
-//                             </div>
-//                             <FaAngleDown onClick={() => handleCategoryClick(category.categoryName)} />
-//                         </div>
-
-//                         {checkedSubcategories.includes(category.categoryName) && (
-//                             <ul className='nested-dropdown'>
-//                                 {category.subcategories.map((subcategory) => (
-//                                     <li key={subcategory} className='dropdown-item nested-dropdown-item'>
-//                                         <div className="d-flex gap-2">
-//                                             <input
-//                                                 type="checkbox"
-//                                                 name={subcategory}
-//                                                 id={subcategory}
-//                                                 checked={checkedSubcategories.includes(subcategory)}
-//                                                 onChange={() => handleSubcategoryClick(subcategory)}
-//                                             />
-//                                             <label htmlFor={subcategory}>{subcategory}</label>
-//                                         </div>
-//                                     </li>
-//                                 ))}
-//                             </ul>
-//                         )}
-//                     </li>
-//                 ))}
-//             </ul>
-//         </>
-//     )
-// }
-
-
 
 import { t } from 'i18next';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FaAngleDown } from 'react-icons/fa';
 import { FaAngleUp } from 'react-icons/fa6';
 
 export default function NestedDropdown({ show, categoriesRef, categories, setCheckedSubcategories, checkedSubcategories, checkAll, setCheckAll }) {
+	const [t] = useTranslation()
 	const [extendedCat, setExtendedCat] = useState(null)
 	const [checkedCategory, setCheckedCategory] = useState([])
 
@@ -218,7 +141,7 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
 									checked={checkedCategory.includes(category.categoryName)}
 									onChange={() => toggleCategory(category.categoryName)}
 								/>
-								<label htmlFor={category.categoryName}>{category.categoryName}</label>
+								<label htmlFor={category.categoryName}>{t(category.categoryName)}</label>
 							</div>
 							{
 								category.categoryName !== "Others" &&
@@ -238,7 +161,7 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
 												checked={checkedSubcategories.includes(subcategory)}
 												onChange={() => handleSubcategoryClick(subcategory)}
 											/>
-											<label htmlFor={subcategory}>{subcategory}</label>
+											<label htmlFor={subcategory}>{t(subcategory)}</label>
 										</div>
 									</li>
 								))}

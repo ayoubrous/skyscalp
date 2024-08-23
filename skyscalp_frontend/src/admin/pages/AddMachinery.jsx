@@ -578,7 +578,7 @@ export default function AddMachinery() {
                                                 <option value="">{t("select")} {t("Application")}</option>
                                                 {
                                                     machineryCategories.map((data, i) => (
-                                                        <option value={data.categoryName} key={i}>{data.categoryName}</option>
+                                                        <option value={data.categoryName} key={i}>{t(data.categoryName)}</option>
                                                     ))
                                                 }
                                             </select>
@@ -592,7 +592,7 @@ export default function AddMachinery() {
                                                     machineryCategories.map((data) => (
                                                         data.categoryName === application ? (
                                                             data.subcategories.map((subCat, i) => (
-                                                                <option value={subCat} key={i}>{subCat}</option>
+                                                                <option value={subCat} key={i}>{t(subCat)}</option>
                                                             ))
                                                         ) : null
                                                     ))
@@ -668,7 +668,7 @@ export default function AddMachinery() {
                                                     machineryBrands.map((data) => (
                                                         data.application === application ? (
                                                             data.brands.map((brand, i) => (
-                                                                <option value={brand} key={i}>{brand}</option>
+                                                                <option value={brand} key={i}>{t(brand)}</option>
                                                             ))
                                                         ) : null
                                                     ))
@@ -683,7 +683,7 @@ export default function AddMachinery() {
                                                 {
                                                     machineConditionData.map((data, i) => {
                                                         return (
-                                                            <option value={data} key={i}>{data}</option>
+                                                            <option value={data} key={i}>{t(data)}</option>
                                                         )
                                                     })
                                                 }
@@ -697,7 +697,7 @@ export default function AddMachinery() {
                                                 {
                                                     yearBuildData.map((data, i) => {
                                                         return (
-                                                            <option value={data} key={i}>{data}</option>
+                                                            <option value={data} key={i}>{t(data)}</option>
                                                         )
                                                     })
                                                 }
@@ -712,7 +712,7 @@ export default function AddMachinery() {
                                                 {
                                                     machineryTypesDropdown.map((data, i) => {
                                                         return (
-                                                            <option value={data} key={i}>{data}</option>
+                                                            <option value={data} key={i}>{t(data)}</option>
                                                         )
                                                     })
                                                 }

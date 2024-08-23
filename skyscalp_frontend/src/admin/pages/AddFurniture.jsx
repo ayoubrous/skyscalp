@@ -608,7 +608,7 @@ export default function AddFurniture() {
                                                 {
                                                     uniqueCategories.map((data, i) => {
                                                         return (
-                                                            <option value={data} key={i}>{data}</option>
+                                                            <option value={data} key={i}>{t(data)}</option>
                                                         )
                                                     })
                                                 }
@@ -621,7 +621,7 @@ export default function AddFurniture() {
                                                 {
                                                     furnitureCategories.map((data, i) => (
                                                         category === data.cateogry ? (
-                                                            <option value={data.article} key={i}>{data.article}</option>
+                                                            <option value={data.article} key={i}>{t(data.article)}</option>
                                                         ) : (
                                                             null
                                                         )
@@ -698,7 +698,6 @@ export default function AddFurniture() {
                                 <div className="d-flex gap-3 mt-4">
                                     <div className="w-25 formSide">
                                         <div className="info">{t("Characteristics")}</div>
-
                                         <div className="form-group form-group-sm mb-3">
                                             <label htmlFor="" className='mb-1'>{t("select")} Color</label>
                                             <select name="" id="" className="custom-input" onChange={e => {
@@ -709,12 +708,12 @@ export default function AddFurniture() {
                                             }} value={color}>
                                                 <option value="">{t("select")} Color</option>
                                                 {
-                                                    furnitureCategories.some(data => data.article === category) ?
+                                                    furnitureCategories.some(data => data.article === article) ?
                                                         furnitureCategories
-                                                            .filter(data => data.article === category)
+                                                            .filter(data => data.article === article)
                                                             .flatMap(data => data.colors)
                                                             .map((subCat, i) => (
-                                                                <option value={subCat} key={i}>{subCat}</option>
+                                                                <option value={subCat} key={i}>{t(subCat)}</option>
                                                             ))
                                                         :
                                                         <option value="">{t("select")} {t("Category to view more options")}</option>
@@ -737,12 +736,12 @@ export default function AddFurniture() {
                                             <select name="" id="" className="custom-input" onChange={e => setDimensions(e.target.value)} value={dimensions}>
                                                 <option value="">{t("select")} {("dimension")}</option>
                                                 {
-                                                    furnitureCategories.some(data => data.article === category) ?
+                                                    furnitureCategories.some(data => data.article === article) ?
                                                         furnitureCategories
-                                                            .filter(data => data.article === category)
+                                                            .filter(data => data.article === article)
                                                             .flatMap(data => data.dimensions)
                                                             .map((subCat, i) => (
-                                                                <option value={subCat} key={i}>{subCat}</option>
+                                                                <option value={subCat} key={i}>{t(subCat)}</option>
                                                             ))
                                                         :
                                                         <option value="">{t("select")} {t("Category to view more options")}</option>
@@ -755,12 +754,12 @@ export default function AddFurniture() {
                                             <select name="" id="" className="custom-input" onChange={e => setStyle(e.target.value)} value={style}>
                                                 <option value="">{t("select")} {t("Style")}</option>
                                                 {
-                                                    furnitureCategories.some(data => data.article === category) ?
+                                                    furnitureCategories.some(data => data.article === article) ?
                                                         furnitureCategories
-                                                            .filter(data => data.article === category)
+                                                            .filter(data => data.article === article)
                                                             .flatMap(data => data.styles)
                                                             .map((subCat, i) => (
-                                                                <option value={subCat} key={i}>{subCat}</option>
+                                                                <option value={subCat} key={i}>{t(subCat)}</option>
                                                             ))
                                                         :
                                                         <option value="">{t("select")} {t("Category to view more options")}</option>
@@ -778,12 +777,12 @@ export default function AddFurniture() {
                                             }} value={feature}>
                                                 <option value="">{t("select")} {t("feature")}</option>
                                                 {
-                                                    furnitureCategories.some(data => data.article === category) ?
+                                                    furnitureCategories.some(data => data.article === article) ?
                                                         furnitureCategories
-                                                            .filter(data => data.article === category)
+                                                            .filter(data => data.article === article)
                                                             .flatMap(data => data.features)
                                                             .map((subCat, i) => (
-                                                                <option value={subCat} key={i}>{subCat}</option>
+                                                                <option value={subCat} key={i}>{t(subCat)}</option>
                                                             ))
                                                         :
                                                         <option value="">{t("select")} {t("Category to view more options")}</option>
@@ -810,12 +809,12 @@ export default function AddFurniture() {
                                             }} value={brand}>
                                                 <option value="">{t("select")} {t("Brand")}</option>
                                                 {
-                                                    furnitureCategories.some(data => data.article === category) ?
+                                                    furnitureCategories.some(data => data.article === article) ?
                                                         furnitureCategories
-                                                            .filter(data => data.article === category)
+                                                            .filter(data => data.article === article)
                                                             .flatMap(data => data.brands)
                                                             .map((subCat, i) => (
-                                                                <option value={subCat} key={i}>{subCat}</option>
+                                                                <option value={subCat} key={i}>{t(subCat)}</option>
                                                             ))
                                                         :
                                                         <option value="">{t("select")} {t("Category to view more options")}</option>
@@ -839,7 +838,7 @@ export default function AddFurniture() {
                                                 {
                                                     furnitureConditionData
                                                         .map((data, i) => (
-                                                            <option value={data} key={i}>{data}</option>
+                                                            <option value={data} key={i}>{t(data)}</option>
                                                         ))
                                                 }
                                             </select>

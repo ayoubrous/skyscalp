@@ -484,7 +484,7 @@ export default function ConstructionFilter({
                         </div>
                         {
                             // selectedFilters.length > 0 && (
-                                <div className="selected-filter" style={{ cursor: "pointer" }} onClick={handleClearFilters}>{t("reset")} {t("all")}</div>
+                                <div className="selected-filter" style={{ cursor: "pointer" }} onClick={handleClearFilters}>{t("reset")}</div>
                             // )
                         }
                     </div>

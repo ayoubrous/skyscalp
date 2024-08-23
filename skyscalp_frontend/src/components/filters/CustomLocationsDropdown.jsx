@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import locations from '../../assets/data/locations'
 import { getLocationsInRadius } from './getLocationsInRadius';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 export default function CustomLocationsDropdown({ handleLocationSelect, selectedLocations, radius, handleRadiusChange }) {
+    const [t] = useTranslation()
     const drpRef = useRef()
     const [showDrp, setShowDrp] = useState(false)
     const [inputText, setInputText] = useState('');
@@ -73,7 +74,7 @@ export default function CustomLocationsDropdown({ handleLocationSelect, selected
                 <div className={`custom-dropdown ${showDrp ? 'show' : ''}`} ref={drpRef} style={{ maxHeight: "250px" }}>
                     {Object.entries(groupedSuggestions).map(([label, groups]) => (
                         <div key={label}>
-                            <p className='fw-bold px-2 py-1 color-primary'>{label}</p>
+                            <p className='fw-bold px-2 py-1 color-primary'>{t(label.toLowerCase())}</p>
                             {Object.entries(groups).map(([group, locations]) => (
                                 <div key={group}>
                                     <ul>
@@ -89,7 +90,7 @@ export default function CustomLocationsDropdown({ handleLocationSelect, selected
                     ))}
 
                     <div className={`select-radius-strip ${selectedLocations.length === 1 ? '' : 'disabled'}`}>
-                        <p>Radius (Km)</p>
+                        <p>{t("Radius")} (Km)</p>
                         <div className="radius-options">
                             <span className={`rad-opt ${radius === 2 ? 'active' : ''}`} onClick={() => handleRadiusChange(2)}>2 Km</span>
                             <span className={`rad-opt ${radius === 5 ? 'active' : ''}`} onClick={() => handleRadiusChange(5)}>5 Km</span>

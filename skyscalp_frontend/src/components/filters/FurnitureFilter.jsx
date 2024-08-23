@@ -463,7 +463,7 @@ export default function FurnitureFilter({
                                         furnitureConditionData.map((data, i) => {
                                             return (
                                                 <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleCondtion(data)}>
-                                                    <p htmlFor={data} id={`label-${data}`}>{data}</p>
+                                                    <p htmlFor={data} id={`label-${data}`}>{t(data)}</p>
                                                     <input
                                                         type="checkbox"
                                                         name={data}
@@ -552,15 +552,15 @@ export default function FurnitureFilter({
                             {
                                 selectedFilters.map((filter, i) => {
                                     return (
-                                        <span key={i} className='selected-filter'>{filter} <FaXmark style={{ cursor: "pointer" }} onClick={() => removeTypeFilter(i, filter)} /></span>
+                                        <span key={i} className='selected-filter'>{t(filter)} <FaXmark style={{ cursor: "pointer" }} onClick={() => removeTypeFilter(i, filter)} /></span>
                                     )
                                 })
                             }
                         </div>
                         {
-                            selectedFilters.length > 0 && (
-                                <div className="selected-filter" style={{ cursor: "pointer" }} onClick={handleClearFilters}>Clear Filters</div>
-                            )
+                            // selectedFilters.length > 0 && (
+                                <div className="selected-filter" style={{ cursor: "pointer" }} onClick={handleClearFilters}>{t("reset")}</div>
+                            // )
                         }
                     </div>
                 </div>

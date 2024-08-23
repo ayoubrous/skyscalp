@@ -132,7 +132,7 @@ export default function Construction() {
                                                     <tr key={data._id}>
                                                         <td>{i}</td>
                                                         <td>{data.title}</td>
-                                                        <td>{data.application}</td>
+                                                        <td>{t(data.application)}</td>
                                                         <td>MAD {formatPrice(data.budget)}</td>
                                                         <td>{data.toFavourites && data.toFavourites.length}</td>
                                                         <td>{new Date(data.createdAt).toLocaleString('en-GB', {

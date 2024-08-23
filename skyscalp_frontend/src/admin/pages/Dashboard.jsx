@@ -13,6 +13,8 @@ import loader from '../../assets/images/skyscalp-loader.json'
 import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
 import { useTranslation } from 'react-i18next'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 export default function Dashboard() {
   const [t] = useTranslation()
@@ -281,7 +283,12 @@ export default function Dashboard() {
                       </div>
                       <div className="form-group mb-2">
                         <label htmlFor="">{t("phone")}</label>
-                        <input type="text" className='custom-input my-1' value={phone} onChange={e => setPhone(e.target.value)} />
+                        {/* <input type="text" className='custom-input my-1' value={phone} onChange={e => setPhone(e.target.value)} /> */}
+                        <PhoneInput
+                          country={'fr'}
+                          value={phone}
+                          onChange={setPhone}
+                        />
                       </div>
                       <div className="form-group mb-2">
                         <label htmlFor="">{t("username")}</label>
