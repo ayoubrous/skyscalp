@@ -277,8 +277,8 @@ export default function ViewMachinery() {
                                 </div>
 
                                 <h4 className="fw-bolder mb-2">{title}</h4>
-                                <p className='paragraph mb-1 '>{t("Appliation")}: {application}</p>
-                                <p className='paragraph mb-1 '>{t("tool")}: {category}</p>
+                                <p className='paragraph mb-1 '>{t("Appliation")}: {t(application)}</p>
+                                <p className='paragraph mb-1 '>{t("tool")}: {t(category)}</p>
 
                                 <div className="d-flex align-items-center justify-content-between mb-2">
                                     <p className=''>{city}, {country}</p>
@@ -315,7 +315,7 @@ export default function ViewMachinery() {
                                         condition !== '' && (
                                             <div className="d-flex align-items-center gap-2">
                                                 <GrStatusInfo className='color-secondary' />
-                                                <small className="color-secondary">{condition}</small>
+                                                <small className="color-secondary">{t(condition)}</small>
                                             </div>
                                         )
                                     }
@@ -339,7 +339,7 @@ export default function ViewMachinery() {
                                         <div className="label">
                                             <p className="color-secondary">{t("application")}</p>
                                         </div>
-                                        <p className="paragraph">{(application.slice(0, 15)) + (application.length > 15 ? "..." : "")}</p>
+                                        <p className="paragraph">{(t(application).slice(0, 15)) + (application.length > 15 ? "..." : "")}</p>
 
                                     </div>
 
@@ -347,20 +347,20 @@ export default function ViewMachinery() {
                                         <div className="label">
                                             <p className="color-secondary">{t("tool")}</p>
                                         </div>
-                                        <p className="paragraph">{(category.slice(0, 15)) + (category.length > 15 ? "..." : "")}</p>
+                                        <p className="paragraph">{(t(category).slice(0, 15)) + (category.length > 15 ? "..." : "")}</p>
                                     </div>
 
                                     <div className="feature">
                                         <div className="label">
                                             <p className="color-secondary">{t("condition")}</p>
                                         </div>
-                                        <p className="paragraph">{condition}</p>
+                                        <p className="paragraph">{t(condition)}</p>
                                     </div>
                                     <div className="feature">
                                         <div className="label">
                                             <p className="color-secondary">{t("type")}</p>
                                         </div>
-                                        <p className="paragraph">{machineryType}</p>
+                                        <p className="paragraph">{t(machineryType)}</p>
                                     </div>
                                     <div className="feature">
                                         <div className="label">

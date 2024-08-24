@@ -253,8 +253,8 @@ export default function ViewFurniture() {
                                 </div>
 
                                 <h4 className="fw-bolder mb-2">{title}</h4>
-                                <p className='paragraph mb-1 '>{t("quantity")}: {quantity} items</p>
-                                <p className='paragraph mb-1 '>{t("category")} {category}</p>
+                                <p className='paragraph mb-1 '>{t("quantity")}: {quantity} {t("items")}</p>
+                                <p className='paragraph mb-1 '>{t("category")} {t(category)}</p>
 
                                 <div className="d-flex align-items-center justify-content-between mb-2">
                                     <p className=''>{city}, {country}</p>
@@ -287,7 +287,7 @@ export default function ViewFurniture() {
                                         condition !== '' && (
                                             <div className="d-flex align-items-center gap-2">
                                                 <GrStatusInfo className='color-secondary' />
-                                                <small className="color-secondary">{condition}</small>
+                                                <small className="color-secondary">{t(condition)}</small>
                                             </div>
                                         )
                                     }
@@ -296,7 +296,7 @@ export default function ViewFurniture() {
                                         color !== '' && (
                                             <div className="d-flex align-items-center gap-2">
                                                 <IoIosColorPalette className='color-secondary' />
-                                                <small className="color-secondary">{color}</small>
+                                                <small className="color-secondary">{t(color)}</small>
                                             </div>
                                         )
                                     }
@@ -320,7 +320,7 @@ export default function ViewFurniture() {
                                                     <p className="color-secondary">{t("subcategory")}</p>
                                                 </div>
 
-                                                <p className="paragraph">{category}</p>
+                                                <p className="paragraph">{t(category)}</p>
                                             </div>
                                         )
                                     }
@@ -330,7 +330,7 @@ export default function ViewFurniture() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("article")}</p>
                                                 </div>
-                                                <p className="paragraph">{article}</p>
+                                                <p className="paragraph">{t(article)}</p>
                                             </div>
                                         )
                                     }
@@ -341,7 +341,7 @@ export default function ViewFurniture() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("brand")}</p>
                                                 </div>
-                                                <p className="paragraph">{brand}</p>
+                                                <p className="paragraph">{t(brand)}</p>
                                             </div>
                                         )
                                     }
@@ -351,7 +351,7 @@ export default function ViewFurniture() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("feature")}</p>
                                                 </div>
-                                                <p className="paragraph">{feature}</p>
+                                                <p className="paragraph">{t(feature)}</p>
                                             </div>
                                         )
                                     }
@@ -362,7 +362,7 @@ export default function ViewFurniture() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("Style")}</p>
                                                 </div>
-                                                <p className="paragraph">{style}</p>
+                                                <p className="paragraph">{t(style)}</p>
                                             </div>
                                         )
                                     }
@@ -374,7 +374,7 @@ export default function ViewFurniture() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("dimension")}</p>
                                                 </div>
-                                                <p className="paragraph">{dimensions}</p>
+                                                <p className="paragraph">{t(dimensions)}</p>
                                             </div>
                                         )
                                     }
@@ -385,7 +385,7 @@ export default function ViewFurniture() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("color")}</p>
                                                 </div>
-                                                <p className="paragraph">{color}</p>
+                                                <p className="paragraph">{t(color)}</p>
                                             </div>
                                         )
                                     }
@@ -405,7 +405,7 @@ export default function ViewFurniture() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("condition")}</p>
                                                 </div>
-                                                <p className="paragraph">{condition}</p>
+                                                <p className="paragraph">{t(condition)}</p>
                                             </div>
                                         )
                                     }

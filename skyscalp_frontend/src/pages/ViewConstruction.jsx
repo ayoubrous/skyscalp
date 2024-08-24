@@ -294,8 +294,8 @@ export default function ViewConstruction() {
 
                                 <h4 className="fw-bolder mb-2">{title}</h4>
                                 <p className='paragraph mb-1 '>{t("quantity")}: {quantity} / {unit}</p>
-                                <p className='paragraph mb-1 '>{t("application")} {application}</p>
-                                <p className='paragraph mb-1 '>{t("material")} {category}</p>
+                                <p className='paragraph mb-1 '>{t("application")} {t(application)}</p>
+                                <p className='paragraph mb-1 '>{t("material")} {t(category)}</p>
 
                                 <div className="d-flex align-items-center justify-content-between mb-2">
                                     <p className=''>{city}, {country}</p>
@@ -324,7 +324,7 @@ export default function ViewConstruction() {
                                         color !== '' && (
                                             <div className="d-flex align-items-center gap-2">
                                                 <IoIosColorPalette className='color-secondary' />
-                                                <small className="color-secondary">{color}</small>
+                                                <small className="color-secondary">{t(color)}</small>
                                             </div>
                                         )
                                     }
@@ -346,7 +346,7 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("application")}</p>
                                                 </div>
-                                                <p className="paragraph">{application}</p>
+                                                <p className="paragraph">{t(application)}</p>
                                             </div>
                                         )
                                     }
@@ -356,7 +356,7 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("category")}</p>
                                                 </div>
-                                                <p className="paragraph">{category}</p>
+                                                <p className="paragraph">{t(category)}</p>
                                             </div>
                                         )
                                     }
@@ -366,7 +366,7 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("type")}</p>
                                                 </div>
-                                                <p className="paragraph">{type}</p>
+                                                <p className="paragraph">{t(type)}</p>
                                             </div>
                                         )
                                     }
@@ -399,7 +399,7 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("material")}</p>
                                                 </div>
-                                                <p className="paragraph">{material}</p>
+                                                <p className="paragraph">{t(material)}</p>
                                             </div>
                                         )
                                     }
@@ -409,7 +409,7 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("base")}</p>
                                                 </div>
-                                                <p className="paragraph">{base}</p>
+                                                <p className="paragraph">{t(base)}</p>
                                             </div>
                                         )
                                     }
@@ -419,7 +419,7 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("thickness")}</p>
                                                 </div>
-                                                <p className="paragraph">{thickness}</p>
+                                                <p className="paragraph">{t(thickness)}</p>
                                             </div>
                                         )
                                     }
@@ -429,7 +429,7 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("finish")}</p>
                                                 </div>
-                                                <p className="paragraph">{finish}</p>
+                                                <p className="paragraph">{t(finish)}</p>
                                             </div>
                                         )
                                     }
@@ -439,7 +439,7 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("material")}</p>
                                                 </div>
-                                                <p className="paragraph">{material}</p>
+                                                <p className="paragraph">{t(material)}</p>
                                             </div>
                                         )
                                     }
@@ -449,7 +449,7 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("voltage")}</p>
                                                 </div>
-                                                <p className="paragraph">{voltage}</p>
+                                                <p className="paragraph">{t(voltage)}</p>
                                             </div>
                                         )
                                     }
@@ -460,7 +460,7 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("color")}</p>
                                                 </div>
-                                                <p className="paragraph">{color}</p>
+                                                <p className="paragraph">{t(color)}</p>
                                             </div>
                                         )
                                     }
