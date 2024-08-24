@@ -378,7 +378,7 @@ export default function ViewFurniture() {
                                             </div>
                                         )
                                     }
-                                    
+
                                     {
                                         color !== "" && (
                                             <div className="feature">
@@ -413,9 +413,11 @@ export default function ViewFurniture() {
                             </div>
 
                             <div className="side map mb-2">
-                                <h3 className="fw-bolder mb-4">{t("viewOnMap")}</h3>
                                 {!isLoading && mapLocation && (
-                                    <Map location={mapLocation} />
+                                    <>
+                                        <h3 className="fw-bolder mb-4">{t("viewOnMap")}</h3>
+                                        <Map location={mapLocation} />
+                                    </>
                                 )}
 
 

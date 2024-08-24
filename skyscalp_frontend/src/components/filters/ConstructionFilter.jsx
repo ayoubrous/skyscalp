@@ -477,7 +477,7 @@ export default function ConstructionFilter({
                             {
                                 selectedFilters.map((filter, i) => {
                                     return (
-                                        <span key={i} className='selected-filter'>{filter} <FaXmark style={{ cursor: "pointer" }} onClick={() => removeTypeFilter(i, filter)} /></span>
+                                        <span key={i} className='selected-filter'>{t(filter)} <FaXmark style={{ cursor: "pointer" }} onClick={() => removeTypeFilter(i, filter)} /></span>
                                     )
                                 })
                             }

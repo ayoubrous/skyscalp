@@ -74,9 +74,9 @@ const MachineryCard = ({ data }) => {
                     </div>
 
                     <p className="">{city}, {country}</p>
-                    <p className='mb-1'>{category}</p>
-                    <p className='color-secondary'>{application}</p>
-                    <p className='color-secondary'>{condition}</p>
+                    <p className='mb-1'>{t(category)}</p>
+                    <p className='color-secondary'>{t(application)}</p>
+                    <p className='color-secondary'>{t(condition)}</p>
 
                     {description && <p className='mb-2 mt-1 color-secondary description' dangerouslySetInnerHTML={{ __html: description.substring(0, 120) }}></p>}
 

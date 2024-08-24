@@ -81,8 +81,8 @@ const ConstructionCard = ({ data }) => {
                     </div>
 
                     <p className="paragraph">{city}, {country}</p>
-                    <p className='mb-1'>{application} ({unit})</p>
-                    <p className='color-secondary'>{category}</p>
+                    <p className='mb-1'>{t(application)} ({unit})</p>
+                    <p className='color-secondary'>{t(category)}</p>
 
                     {description && <p className='mb-2 mt-1 color-secondary description' dangerouslySetInnerHTML={{ __html: description.substring(0, 120) }}></p>}
 
@@ -92,7 +92,7 @@ const ConstructionCard = ({ data }) => {
                             color !== '' && (
                                 <div className='d-flex align-items-center'>
                                     <IoIosColorPalette className='feature-icon' />
-                                    <p className="feature-text">Green</p>
+                                    <p className="feature-text">{t(color)}</p>
                                 </div>
                             )
                         }

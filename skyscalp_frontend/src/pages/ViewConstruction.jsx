@@ -469,9 +469,11 @@ export default function ViewConstruction() {
                             </div>
 
                             <div className="side map mb-2">
-                                <h3 className="fw-bolder mb-4">{t("viewOnMap")}</h3>
                                 {!isLoading && mapLocation && (
-                                    <Map location={mapLocation} />
+                                    <>
+                                        <h3 className="fw-bolder mb-4">{t("viewOnMap")}</h3>
+                                        <Map location={mapLocation} />
+                                    </>
                                 )}
 
                                 <p className="color-secondary my-2">{street}</p>

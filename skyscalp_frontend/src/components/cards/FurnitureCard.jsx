@@ -77,8 +77,8 @@ const FurnitureCard = ({ data }) => {
 
                     <p className="paragraph">{city}, {country}</p>
                     <p className=''>{t("quantity")}: {quantity} {quantity > 1 ? 'items': "item"}</p>
-                    <p className='mb-1'>{category}</p>
-                    <p className='color-secondary'>{article}</p>
+                    <p className='mb-1'>{t(category)}</p>
+                    <p className='color-secondary'>{t(article)}</p>
 
                     {description && <p className='mb-2 mt-1 color-secondary description' dangerouslySetInnerHTML={{ __html: description.substring(0, 120) }}></p>}
 
@@ -87,7 +87,7 @@ const FurnitureCard = ({ data }) => {
                             color !== '' && (
                                 <div className='d-flex align-items-center'>
                                     <IoIosColorPalette className='feature-icon' />
-                                    <p className="feature-text">Green</p>
+                                    <p className="feature-text">{t(color)}</p>
                                 </div>
                             )
                         }
@@ -95,7 +95,7 @@ const FurnitureCard = ({ data }) => {
                             guaranteePeriod !== '' && (
                                 <div className='d-flex align-items-center'>
                                     <FaRegCheckSquare className='feature-icon' />
-                                    <p className="feature-text">{guaranteePeriod}</p>
+                                    <p className="feature-text">{t("guarantee")}</p>
                                 </div>
                             )
                         }
