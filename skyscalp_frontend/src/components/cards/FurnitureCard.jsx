@@ -27,7 +27,9 @@ import { formatPrice } from '../../utils/formatPrice';
 
 
 const FurnitureCard = ({ data }) => {
-    const { _id, images, title, description, category, quantity, article, budget, color, street, city, country, unit, application, condition, guaranteePeriod, user, createdAt } = data;
+    const { _id, images, title, description, category, quantity, article, budget, color, street, 
+        city, country, unit, application, condition, guaranteePeriod, user, createdAt,
+    style, dimensions, brand, feature } = data;
 
     const [t] = useTranslation();
     const [favourite, setFavourite] = useState(false)
@@ -76,35 +78,52 @@ const FurnitureCard = ({ data }) => {
                     </div>
 
                     <p className="paragraph">{city}, {country}</p>
-                    <p className=''>{t("quantity")}: {quantity} {quantity > 1 ? 'items': "item"}</p>
+                    <p className=''>{t("quantity")}: {quantity} {quantity > 1 ? 'items' : "item"}</p>
                     <p className='mb-1'>{t(category)}</p>
                     <p className='color-secondary'>{t(article)}</p>
 
                     {description && <p className='mb-2 mt-1 color-secondary description' dangerouslySetInnerHTML={{ __html: description.substring(0, 120) }}></p>}
 
-                    <div className="d-flex justify-content-between align-items-center property-features mb-2">
+                    <div className="characteristics mb-2">
+                        {
+                            style !== '' && (
+                                <div className='d-flex align-items-center  characteristicsChips' >
+                                    <p className="feature-text">{t(style).slice(0,9)}</p>
+                                </div>
+                            )
+                        }
                         {
                             color !== '' && (
-                                <div className='d-flex align-items-center'>
-                                    <IoIosColorPalette className='feature-icon' />
-                                    <p className="feature-text">{t(color)}</p>
+                                <div className='d-flex align-items-center  characteristicsChips' >
+                                    <p className="feature-text">{t(color).slice(0,9)}</p>
                                 </div>
                             )
                         }
                         {
-                            guaranteePeriod !== '' && (
-                                <div className='d-flex align-items-center'>
-                                    <FaRegCheckSquare className='feature-icon' />
-                                    <p className="feature-text">{t("guarantee")}</p>
+                            brand !== '' && (
+                                <div className='d-flex align-items-center  characteristicsChips' >
+                                    <p className="feature-text">{t(brand).slice(0,9)}</p>
                                 </div>
                             )
                         }
-
                         {
                             condition !== '' && (
-                                <div className='d-flex align-items-center'>
-                                    <GrStatusInfo className='feature-icon' />
-                                    <p className="feature-text">{condition}</p>
+                                <div className='d-flex align-items-center characteristicsChips' >
+                                    <p className="feature-text">{t(condition).slice(0,9)}</p>
+                                </div>
+                            )
+                        }
+                        {
+                            feature !== '' && (
+                                <div className='d-flex align-items-center characteristicsChips' >
+                                    <p className="feature-text">{t(feature).slice(0,9)}</p>
+                                </div>
+                            )
+                        }
+                        {
+                            dimensions !== '' && (
+                                <div className='d-flex align-items-center characteristicsChips' >
+                                    <p className="feature-text">{t(dimensions).slice(0, 9)}</p>
                                 </div>
                             )
                         }

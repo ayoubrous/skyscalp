@@ -126,7 +126,6 @@ const featuresData = ['Balcony', 'Garden', 'Pool', 'Elevator', 'Air conditioning
 const furnitureBrands = [
     "IKEA",
     "Local",
-    "IKEA",
     "Conforama",
     "Maisons du Monde",
     "Roche Bobois",

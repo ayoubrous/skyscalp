@@ -157,6 +157,8 @@ const getProductsByFilters = async (req, res) => {
         selectedStates,
         selectedCities,
         selectedStreets,
+        selectedMaterials,
+        materialItemType
     } = req.body;
 
     if (type) filters.type = type;
@@ -165,11 +167,22 @@ const getProductsByFilters = async (req, res) => {
     if (guarantee) filters.guarantee = { ...filters.guarantee, $eq: guarantee };
 
     // for arrays
-    if (selectedBrands.length > 0) filters.brand = { $in: selectedBrands };
-    if (selectedMachineryType.length > 0) filters.machineryType = { $in: selectedMachineryType };
-    if (selectedMaterialType.length > 0) filters.materialType = { $in: selectedMaterialType };
-    if (yearBuild.length > 0) filters.build = { $in: yearBuild };
-    if (selectedConditions.length > 0) filters.condition = { $in: selectedConditions };
+    // if (selectedMaterials.length > 0) filters.material = { $in: selectedMaterials };
+    // if (materialItemType.length > 0) filters.type = { $in: materialItemType };
+    // if (selectedBrands.length > 0) filters.brand = { $in: selectedBrands };
+    // if (selectedMachineryType.length > 0) filters.machineryType = { $in: selectedMachineryType };
+    // if (selectedMaterialType.length > 0) filters.materialType = { $in: selectedMaterialType };
+    // if (yearBuild.length > 0) filters.build = { $in: yearBuild };
+    // if (selectedConditions.length > 0) filters.condition = { $in: selectedConditions };
+
+    // Check if the arrays exists 
+    if (selectedMaterials && selectedMaterials.length > 0) filters.material = { $in: selectedMaterials };
+    if (materialItemType && materialItemType.length > 0) filters.type = { $in: materialItemType };
+    if (selectedBrands && selectedBrands.length > 0) filters.brand = { $in: selectedBrands };
+    if (selectedMachineryType && selectedMachineryType.length > 0) filters.machineryType = { $in: selectedMachineryType };
+    if (selectedMaterialType && selectedMaterialType.length > 0) filters.materialType = { $in: selectedMaterialType };
+    if (yearBuild && yearBuild.length > 0) filters.build = { $in: yearBuild };
+    if (selectedConditions && selectedConditions.length > 0) filters.condition = { $in: selectedConditions };
 
     // new inclusion
     if (checkedSubcategories.length > 0) {

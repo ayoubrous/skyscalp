@@ -18,7 +18,7 @@ import { constructionCategories } from '../../assets/data/categories';
 import formatNumber from '../../utils/formatNumber';
 import { getLocationsInRadius } from './getLocationsInRadius';
 import { conditionData, constructionBrands, constructionBudget, materialsBudget } from '../../assets/data/filtersData';
-import { materialCategories } from '../../assets/data/materialsCategory';
+import { materialCategories, materials } from '../../assets/data/materialsCategory';
 
 export default function ConstructionFilter({
     minPrice,
@@ -27,8 +27,8 @@ export default function ConstructionFilter({
     setMaxPrice,
     guarantee,
     setGuarantee,
-    selectedBrands,
-    setSelectedBrands,
+    materialItemType,
+    setMaterialItemType,
     selectedCountries,
     setSelectedCountries,
     selectedStates,
@@ -37,8 +37,8 @@ export default function ConstructionFilter({
     setSelectedCities,
     selectedStreets,
     setSelectedStreets,
-    selectedConditions,
-    setSelectedConditions,
+    selectedMaterials,
+    setSelectedMaterials,
     checkedSubcategories,
     setCheckedSubcategories,
     selectedFilters,
@@ -124,32 +124,37 @@ export default function ConstructionFilter({
 
     }
 
-    const handleBrand = brand => {
+
+
+    // assume brands and related are materials
+    const handleMaterials = brand => {
         setShowBrandDrp(false)
         if (!selectedFilters.includes(brand)) {
             setSelectedFilters([...selectedFilters, brand]);
-            setSelectedBrands([...selectedBrands, brand])
+            setSelectedMaterials([...selectedMaterials, brand])
         }
         else {
             const updatedFilters = selectedFilters.filter(filter => filter !== brand);
             setSelectedFilters(updatedFilters);
 
-            const updatedData = selectedBrands.filter(type => type !== brand);
-            setSelectedBrands(updatedData);
+            const updatedData = selectedMaterials.filter(type => type !== brand);
+            setSelectedMaterials(updatedData);
         }
     }
-    const handleCondtion = val => {
+
+    // assume condition are types for all the page now
+    const handleTypes = val => {
         setShowConditionDrp(false)
         if (!selectedFilters.includes(val)) {
             setSelectedFilters([...selectedFilters, val]);
-            setSelectedConditions([...selectedConditions, val])
+            setMaterialItemType([...materialItemType, val])
         }
         else {
             const updatedFilters = selectedFilters.filter(filter => filter !== val);
             setSelectedFilters(updatedFilters);
 
-            const updatedData = selectedConditions.filter(type => type !== val);
-            setSelectedConditions(updatedData);
+            const updatedData = materialItemType.filter(type => type !== val);
+            setMaterialItemType(updatedData);
         }
     }
 
@@ -227,11 +232,11 @@ export default function ConstructionFilter({
         const updatedTypes = selectedFilters.filter((_, i) => i !== index);
         setSelectedFilters(updatedTypes);
 
-        if (selectedBrands.includes(name)) {
-            setSelectedBrands(prevBrands => prevBrands.filter(item => item !== name));
+        if (materialItemType.includes(name)) {
+            setMaterialItemType(prevBrands => prevBrands.filter(item => item !== name));
         }
-        if (selectedConditions.includes(name)) {
-            setSelectedConditions(item => item.filter(item => item !== name));
+        if (selectedMaterials.includes(name)) {
+            setSelectedMaterials(item => item.filter(item => item !== name));
         }
         if (selectedCountries.includes(name)) {
             setSelectedCountries(item => item.filter(item => item !== name));
@@ -267,11 +272,37 @@ export default function ConstructionFilter({
             id: i,
             categoryName: cat.application,
             subcategories: cat.categories.map(subCat => {
-               return subCat.materialName
+                return subCat.materialName
             })
         }
     })
 
+
+    // code for showing types on condition 
+    const [types, setTypes] = useState([]);
+    const [itemUnits, setItemUnits] = useState([]);
+
+    useEffect(() => {
+        const newTypesSet = new Set();
+        const newUnitsSet = new Set();
+
+        materialCategories.forEach(data => {
+            data.categories.forEach(category => {
+                checkedSubcategories.forEach(currentCat => {
+                    if (category.materialName === currentCat) {
+                        category.types.forEach(type => newTypesSet.add(type));
+                        newUnitsSet.add(category.unit);
+                    }
+                });
+            });
+        });
+
+        setTypes(Array.from(newTypesSet));
+        setItemUnits(Array.from(newUnitsSet)); // Add this line
+
+    }, [checkedSubcategories]);
+
+      
     return (
         <div className="filter-area my-4">
             <div className="custom-container">
@@ -321,7 +352,19 @@ export default function ConstructionFilter({
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowPriceDrp(!showPriceDrp)}>
                                     <div className='text-white'>
                                         {minPrice === '' && maxPrice === '' ? (
-                                            <p className='filter-values'>{t("budget")}</p>
+                                            <p className='filter-values'>
+                                                {t("budget")}
+                                                {itemUnits.length > 0 && (
+                                                    <>
+                                                        ({itemUnits.map((unit, i) => (
+                                                            <React.Fragment key={i}>
+                                                                {i > 0 && ", "}
+                                                                {unit}
+                                                            </React.Fragment>
+                                                        ))})
+                                                    </>
+                                                )}
+                                            </p>
                                         ) : (
                                             <>
                                                 {minPrice === '' ? (
@@ -387,24 +430,24 @@ export default function ConstructionFilter({
                                 </div>
                             </div>
 
-                            {/* <div className="other-filter">
+                            <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowBrandDrp(!showBrandDrp)}>
-                                    <p className='text-white'>{t("brand")}</p>
+                                    <p className='text-white'>{t("material")}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
                                 <div className={`custom-dropdown ${showBrandDrp ? 'show' : ''}`} ref={brandRef}>
                                     {
-                                        constructionBrands.map((data, i) => {
+                                        materials.map((data, i) => {
                                             return (
-                                                <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleBrand(data)}>
-                                                    <p htmlFor={data} id={`label-${data}`}>{data}</p>
+                                                <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleMaterials(data)}>
+                                                    <p htmlFor={data} id={`label-${data}`}>{t(data)}</p>
                                                     <input
                                                         type="checkbox"
                                                         name={data}
                                                         id={`checkbox-${data}`}
                                                         checked={selectedFilters.includes(data)}
-                                                        onChange={() => handleBrand(data)}
+                                                        onChange={() => handleMaterials(data)}
                                                     />
                                                 </div>)
                                         })
@@ -414,29 +457,29 @@ export default function ConstructionFilter({
 
                             <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowConditionDrp(!showConditionDrp)}>
-                                    <p className='text-white'>{t("condition")}</p>
+                                    <p className='text-white'>{t("type")}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
                                 <div className={`custom-dropdown ${showConditionDrp ? 'show' : ''}`} ref={condtionRef}>
                                     {
-                                        conditionData.map((data, i) => {
+                                        types.map((data, i) => {
                                             return (
-                                                <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleCondtion(data)}>
-                                                    <p htmlFor={data} id={`label-${data}`}>{data}</p>
+                                                <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleTypes(data)}>
+                                                    <p htmlFor={data} id={`label-${data}`}>{t(data)}</p>
                                                     <input
                                                         type="checkbox"
                                                         name={data}
                                                         id={`checkbox-${data}`}
                                                         checked={selectedFilters.includes(data)}
-                                                        onChange={() => handleCondtion(data)}
+                                                        onChange={() => handleTypes(data)}
                                                     />
                                                 </div>
                                             )
                                         })
                                     }
                                 </div>
-                            </div> */}
+                            </div>
 
                             {/* <div className="other-filter">
                                 <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowYearDrp(!showYearDrp)}>
@@ -484,7 +527,7 @@ export default function ConstructionFilter({
                         </div>
                         {
                             // selectedFilters.length > 0 && (
-                                <div className="selected-filter" style={{ cursor: "pointer" }} onClick={handleClearFilters}>{t("reset")}</div>
+                            <div className="selected-filter" style={{ cursor: "pointer" }} onClick={handleClearFilters}>{t("reset")}</div>
                             // )
                         }
                     </div>

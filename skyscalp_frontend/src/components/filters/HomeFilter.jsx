@@ -109,7 +109,12 @@ export default function HomeFilter() {
             selectedStates: selectedStates,
             selectedCities: selectedCities,
             selectedStreets: selectedStreets,
-            isProperties: false
+            materialItemType: [],
+            selectedMaterials: [],
+            isProperties: false,
+
+            materialItemType: [],
+            selectedMaterials: [],
         };
         if (activeTab === "property") {
             searchFilters.isProperties = true;

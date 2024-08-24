@@ -158,7 +158,9 @@ export default function ViewMachinery() {
             checkedSubcategories: [category],
             selectedStates: [],
             selectedCities: [],
-            selectedStreets: []
+            selectedStreets: [],
+            materialItemType: [],
+            selectedMaterials: [],
         };
 
         const myHeaders = new Headers();

@@ -66,7 +66,9 @@ export default function Properties() {
     selectedCountries: [],
     selectedStates: [],
     selectedCities: [],
-    selectedStreets: []
+    selectedStreets: [],
+    materialItemType: [],
+    selectedMaterials: [],
   })
   const location = useLocation();
 
@@ -273,7 +275,9 @@ export default function Properties() {
       selectedCountries: [],
       selectedStates: [],
       selectedCities: [],
-      selectedStreets: []
+      selectedStreets: [],
+      materialItemType: [],
+      selectedMaterials: [],
     })
     // loadData()
   }

@@ -28,7 +28,9 @@ import { checkInFavourites } from '../../APIs/favourites';
 
 
 const ConstructionCard = ({ data }) => {
-    const { _id, images, title, description, category, budget, color, street, city, country, unit, application, condition, user, createdAt } = data;
+    const { _id, images, title, description, category, budget, color, street, city, country,
+        unit, application, user, createdAt,
+        type, material, base, finish, voltage } = data;
 
 
     const [t] = useTranslation();
@@ -86,24 +88,49 @@ const ConstructionCard = ({ data }) => {
 
                     {description && <p className='mb-2 mt-1 color-secondary description' dangerouslySetInnerHTML={{ __html: description.substring(0, 120) }}></p>}
 
-                    <div className="d-flex justify-content-between align-items-center property-features mb-2">
-
+                    <div className="characteristics mb-2">
                         {
-                            color !== '' && (
-                                <div className='d-flex align-items-center'>
-                                    <IoIosColorPalette className='feature-icon' />
-                                    <p className="feature-text">{t(color)}</p>
+                            type !== '' && (
+                                <div className='d-flex align-items-center  characteristicsChips' >
+                                    <p className="feature-text">{t(type).slice(0,11)}</p>
                                 </div>
                             )
                         }
-                        {/* {
-                            condition !== '' && (
-                                <div className='d-flex align-items-center'>
-                                    <GrStatusInfo className='feature-icon' />
-                                    <p className="feature-text">{condition}</p>
+                        {
+                            color !== '' && (
+                                <div className='d-flex align-items-center  characteristicsChips' >
+                                    <p className="feature-text">{t(color).slice(0,11)}</p>
                                 </div>
                             )
-                        } */}
+                        }
+                        {
+                            material !== '' && (
+                                <div className='d-flex align-items-center  characteristicsChips' >
+                                    <p className="feature-text">{t(material).slice(0,11)}</p>
+                                </div>
+                            )
+                        }
+                        {
+                            finish !== '' && (
+                                <div className='d-flex align-items-center characteristicsChips' >
+                                    <p className="feature-text">{t(finish).slice(0,11)}</p>
+                                </div>
+                            )
+                        }
+                        {
+                            voltage !== '' && (
+                                <div className='d-flex align-items-center characteristicsChips' >
+                                    <p className="feature-text">{t(voltage).slice(0,11)}</p>
+                                </div>
+                            )
+                        }
+                        {
+                            base !== '' && (
+                                <div className='d-flex align-items-center characteristicsChips' >
+                                    <p className="feature-text">{t(base).slice(0,11)}</p>
+                                </div>
+                            )
+                        }
                     </div>
 
                     <div className="d-flex justify-content-between align-items-center property-features">

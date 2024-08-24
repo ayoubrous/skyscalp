@@ -8,7 +8,7 @@ import Footer from '../components/sections/Footer'
 import AllMachinery from '../components/sections/AllMachinery'
 import MachineryFilter from '../components/filters/MachineryFilter'
 import { constructionCategories, machineryCategories, marketplaceCategories } from '../assets/data/categories'
-import {furnitureCategories} from '../assets/data/furnitureCategories'
+import { furnitureCategories } from '../assets/data/furnitureCategories'
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -52,6 +52,9 @@ const MarketPlace = () => {
     const [selectedMachineryType, setSelectedMachineryType] = useState([])
     const [selectedMaterialType, setSelectedMaterialType] = useState([])
 
+    const [selectedMaterials, setSelectedMaterials] = useState([])
+    const [materialItemType, setMaterialItemType] = useState([])
+
     // filters for customLocationDropdown component 
     const [selectedCountries, setSelectedCountries] = useState([])
     const [selectedStates, setSelectedStates] = useState([])
@@ -59,6 +62,8 @@ const MarketPlace = () => {
     const [selectedStreets, setSelectedStreets] = useState([])
 
     const [checkedSubcategories, setCheckedSubcategories] = useState([]);
+
+
 
     const [filtersObj, setFiltersObj] = useState({
         type: '',
@@ -74,7 +79,9 @@ const MarketPlace = () => {
         selectedCountries: [],
         selectedStates: [],
         selectedCities: [],
-        selectedStreets: []
+        selectedStreets: [],
+        materialItemType: [],
+        selectedMaterials: [],
     })
 
     const settings = {
@@ -164,6 +171,9 @@ const MarketPlace = () => {
                 ...parsedFilters.selectedStates,
                 ...parsedFilters.selectedCities,
                 ...parsedFilters.selectedStreets,
+                ...parsedFilters.selectedStreets,
+                ...parsedFilters.selectedMaterials,
+                ...parsedFilters.materialItemType,
             ];
 
             setSelectedFilters(combinedFilters);
@@ -270,6 +280,8 @@ const MarketPlace = () => {
             maxPrice: maxPrice === '' ? 0 : parseInt(maxPrice),
             selectedMachineryType: selectedMachineryType,
             selectedMaterialType: selectedMaterialType,
+            materialItemType: materialItemType,
+            selectedMaterials: selectedMaterials,
             selectedBrands: selectedBrands,
             selectedConditions: selectedConditions,
             yearBuild: yearBuild,
@@ -278,7 +290,7 @@ const MarketPlace = () => {
             selectedCities: selectedCities,
             selectedStreets: selectedStreets
         };
-        // console.log(searchFilters)
+        // console.log("marketplace", searchFilters)
         sessionStorage.setItem('appliedFilters', JSON.stringify(searchFilters))
         setFiltersObj(searchFilters)
         loadData()
@@ -303,6 +315,9 @@ const MarketPlace = () => {
         setSelectedStreets([])
         setSelectedFilters([])
 
+        setMaterialItemType([])
+        setSelectedMaterials([])
+
         setActiveSubcats([])
 
         setFiltersObj({
@@ -319,7 +334,9 @@ const MarketPlace = () => {
             selectedCountries: [],
             selectedStates: [],
             selectedCities: [],
-            selectedStreets: []
+            selectedStreets: [],
+            materialItemType: [],
+            selectedMaterials: [],
         })
     }
 
@@ -383,25 +400,28 @@ const MarketPlace = () => {
                             setMaxPrice={setMaxPrice}
                             setGuarantee={setGuarantee}
                             setSelectedCountries={setSelectedCountries}
-                            setSelectedBrands={setSelectedBrands}
                             setSelectedStates={setSelectedStates}
                             setSelectedCities={setSelectedCities}
                             setSelectedStreets={setSelectedStreets}
-                            setSelectedConditions={setSelectedConditions}
                             setCheckedSubcategories={setCheckedSubcategories}
+
+                            setSelectedMaterials={setSelectedMaterials}
+                            setMaterialItemType={setMaterialItemType}
 
                             minPrice={minPrice}
                             maxPrice={maxPrice}
                             guarantee={guarantee}
-                            selectedBrands={selectedBrands}
+                            selectedMaterials={selectedMaterials}
+                            materialItemType={materialItemType}
+
                             selectedCountries={selectedCountries}
                             selectedStates={selectedStates}
                             selectedCities={selectedCities}
                             selectedStreets={selectedStreets}
-                            selectedConditions={selectedConditions}
                             checkedSubcategories={checkedSubcategories}
                             selectedFilters={selectedFilters}
                             setSelectedFilters={setSelectedFilters}
+
                             applyFilters={applyFilters}
                             clearAllFilters={resetAllFilters}
                         />

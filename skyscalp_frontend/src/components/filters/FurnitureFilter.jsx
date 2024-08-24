@@ -326,7 +326,6 @@ export default function FurnitureFilter({
 
 
 
-
     return (
         <div className="filter-area my-4">
             <div className="custom-container">
