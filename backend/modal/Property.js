@@ -20,12 +20,10 @@ const PropertySchema = new mongoose.Schema({
         required: true
     },
     state: {
-        type: String,
-        required: true
+        type: String
     },
     city: {
-        type: String,
-        required: true
+        type: String
     },
     street: {
         type: String
