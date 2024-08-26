@@ -55,7 +55,7 @@ export default function Furniture() {
 
 
     const handleDelete = (id) => {
-        let surity = window.confirm("Are you sure to delete this property?")
+        let surity = window.confirm(t("Are you sure to delete this product?"))
         if (surity) {
             const requestOptions = {
                 method: "DELETE",
@@ -134,11 +134,7 @@ export default function Furniture() {
                                                             <td>{t(data.category)}</td>
                                                             <td>MAD {formatPrice(data.budget)}</td>
                                                             <td>{data.toFavourites && data.toFavourites.length}</td>
-                                                            <td>{new Date(data.createdAt).toLocaleString('en-GB', {
-                                                                day: '2-digit',
-                                                                month: 'short',
-                                                                year: 'numeric'
-                                                            })}</td>
+                                                            <td>{data.createdAt && new Intl.DateTimeFormat('en-GB').format(new Date(data.createdAt))}</td>
                                                             <td>
                                                                 {
                                                                     data.status ?

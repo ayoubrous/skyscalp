@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { TbBed } from 'react-icons/tb'
-import { FaHeart, FaRegCheckSquare, FaRegHeart } from "react-icons/fa";
-import { LuBath } from "react-icons/lu";
+import { FaGripLines, FaHeart, FaRegCheckSquare, FaRegHeart } from "react-icons/fa";
+import { LuBath, LuBox } from "react-icons/lu";
 import { BsBuildings } from "react-icons/bs";
-import { useTranslation } from 'react-i18next';
-import { FiCalendar } from "react-icons/fi";
+import { useTranslation } from 'react-i18next';import { SiSymantec } from "react-icons/si";
+
+import { IoConstructOutline } from "react-icons/io5";
 
 // import { Swiper, SwiperSlide } from 'swiper/react';
 // import { Navigation } from 'swiper/modules';
@@ -25,6 +26,7 @@ import formatNumber from '../../utils/formatNumber';
 import { formatPrice } from '../../utils/formatPrice';
 import handleProductFavourite from '../utils/manangeFavourite';
 import { checkInFavourites } from '../../APIs/favourites';
+import { MdElectricBolt } from 'react-icons/md';
 
 
 const ConstructionCard = ({ data }) => {
@@ -89,49 +91,44 @@ const ConstructionCard = ({ data }) => {
                     {description && <p className='mb-2 mt-1 color-secondary description' dangerouslySetInnerHTML={{ __html: description.substring(0, 120) }}></p>}
 
                     <div className="characteristics mb-2">
-                        {
-                            type !== '' && (
-                                <div className='d-flex align-items-center  characteristicsChips' >
-                                    <p className="feature-text">{t(type).slice(0,11)}</p>
-                                </div>
-                            )
-                        }
-                        {
-                            color !== '' && (
-                                <div className='d-flex align-items-center  characteristicsChips' >
-                                    <p className="feature-text">{t(color).slice(0,11)}</p>
-                                </div>
-                            )
-                        }
-                        {
-                            material !== '' && (
-                                <div className='d-flex align-items-center  characteristicsChips' >
-                                    <p className="feature-text">{t(material).slice(0,11)}</p>
-                                </div>
-                            )
-                        }
-                        {
-                            finish !== '' && (
-                                <div className='d-flex align-items-center characteristicsChips' >
-                                    <p className="feature-text">{t(finish).slice(0,11)}</p>
-                                </div>
-                            )
-                        }
-                        {
-                            voltage !== '' && (
-                                <div className='d-flex align-items-center characteristicsChips' >
-                                    <p className="feature-text">{t(voltage).slice(0,11)}</p>
-                                </div>
-                            )
-                        }
-                        {
-                            base !== '' && (
-                                <div className='d-flex align-items-center characteristicsChips' >
-                                    <p className="feature-text">{t(base).slice(0,11)}</p>
-                                </div>
-                            )
-                        }
+                        {type !== '' && (
+                            <div className="d-flex align-items-center gap-1">
+                                <LuBox className="feature-icon" />
+                                <p className="feature-text">{t(type).slice(0, 9)}</p>
+                            </div>
+                        )}
+                        {color !== '' && (
+                            <div className="d-flex align-items-center gap-1">
+                                <IoIosColorPalette className="feature-icon" />
+                                <p className="feature-text">{t(color).slice(0, 11)}</p>
+                            </div>
+                        )}
+                        {material !== '' && (
+                            <div className="d-flex align-items-center gap-1">
+                                <IoConstructOutline className="feature-icon" />
+                                <p className="feature-text">{t(material).slice(0, 11)}</p>
+                            </div>
+                        )}
+                        {finish !== '' && (
+                            <div className="d-flex align-items-center gap-1">
+                                <SiSymantec className="feature-icon" />
+                                <p className="feature-text">{t(finish).slice(0, 11)}</p>
+                            </div>
+                        )}
+                        {voltage !== '' && (
+                            <div className="d-flex align-items-center gap-1">
+                                <MdElectricBolt className="feature-icon" />
+                                <p className="feature-text">{t(voltage).slice(0, 11)}</p>
+                            </div>
+                        )}
+                        {base !== '' && (
+                            <div className="d-flex align-items-center gap-1">
+                                <FaGripLines className="feature-icon" />
+                                <p className="feature-text">{t(base).slice(0, 11)}</p>
+                            </div>
+                        )}
                     </div>
+
 
                     <div className="d-flex justify-content-between align-items-center property-features">
                         <p className="feature-text ms-0">{t("datePosted")}: {createdAt && new Intl.DateTimeFormat('en-GB').format(new Date(createdAt))}</p>

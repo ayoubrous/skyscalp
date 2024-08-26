@@ -439,7 +439,9 @@ export default function AddConstruction() {
                 .then((result) => {
                     setIsLoading(false)
                     if (result.status) {
-                        toast.success(result.message)
+                        // toast.success(result.message)
+                        toast.success(t("Product Published Successfully"))
+
                     }
                     else {
                         toast.error(result.message)
@@ -521,7 +523,9 @@ export default function AddConstruction() {
                 .then((result) => {
                     setIsLoading(false)
                     if (result.status) {
-                        toast.success(result.message)
+                        // toast.success(result.message)
+                        toast.success(t("Product Published Successfully"))
+
                     }
                     else {
                         toast.error(result.message)
@@ -826,14 +830,14 @@ export default function AddConstruction() {
                                             !disabledFields.includes('size') && (
                                                 <>
                                                     <div className="form-group form-group-sm mb-3">
-                                                        <label htmlFor="" className='mb-1'>{t("select")} {t("Size")}</label>
+                                                        <label htmlFor="" className='mb-1'>{t("select")} {t("size")}</label>
                                                         <select name="" id="" className="custom-input" onChange={e => {
                                                             setSize(e.target.value)
                                                             e.target.value === "Other" ?
                                                                 setShowOtherSize(true) :
                                                                 setShowOtherSize(false)
                                                         }} value={size}>
-                                                            <option value="">{t("select")} {t("Size")}</option>
+                                                            <option value="">{t("select")} {t("size")}</option>
                                                             {
                                                                 materialSizes
                                                                     .map((data, i) => (
@@ -858,14 +862,14 @@ export default function AddConstruction() {
                                             !disabledFields.includes('size') && (
                                                 <>
                                                     <div className="form-group form-group-sm mb-3">
-                                                        <label htmlFor="" className='mb-1'>{t("select")} {t("Color")}</label>
+                                                        <label htmlFor="" className='mb-1'>{t("select")} {t("color")}</label>
                                                         <select name="" id="" className="custom-input" onChange={e => {
                                                             setColor(e.target.value)
                                                             e.target.value === "Other" ?
                                                                 setShowOtherColor(true) :
                                                                 setShowOtherColor(false)
                                                         }} value={color}>
-                                                            <option value="">{t("select")} {t("Color")}</option>
+                                                            <option value="">{t("select")} {t("color")}</option>
                                                             {
                                                                 materialColors
                                                                     .map((data, i) => (
@@ -954,14 +958,14 @@ export default function AddConstruction() {
                                             !disabledFields.includes('thickness') && (
                                                 <>
                                                     <div className="form-group form-group-sm mb-3">
-                                                        <label htmlFor="" className='mb-1'>{t("select")} {("Thickness")}</label>
+                                                        <label htmlFor="" className='mb-1'>{t("select")} {t("thickness")}</label>
                                                         <select name="" id="" className="custom-input" onChange={e => {
                                                             setThickness(e.target.value)
                                                             e.target.value === "Other" ?
                                                                 setShowOtherThickness(true) :
                                                                 setShowOtherThickness(false)
                                                         }} value={thickness}>
-                                                            <option value="">{t("select")} {("Thickness")}</option>
+                                                            <option value="">{t("select")} {t("thickness")}</option>
                                                             {
                                                                 materialThickness
                                                                     .map((data, i) => (
@@ -1062,7 +1066,7 @@ export default function AddConstruction() {
                                                         {
                                                             machineryGuarantee.map((data, i) => {
                                                                 return (
-                                                                    <option value={data} key={i}>{data}</option>
+                                                                    <option value={data} key={i}>{t(data)}</option>
                                                                 )
                                                             })
                                                         }
@@ -1144,7 +1148,7 @@ export default function AddConstruction() {
                                         <div className="info">{t("locationByMap")}</div>
 
                                         <div className="col-12">
-                                            <p style={{ fontSize: "12px" }}>{t("add")} {t("locationByMap")}*</p>
+                                            <p style={{ fontSize: "12px" }}>{t("add")} {t("locationByMap")}</p>
                                             {
                                                 !isLoading && updatePage ? (
                                                     <>

@@ -117,9 +117,9 @@ export default function Navbar() {
                                     </div>
                                     <div className={`custom-dropdown squeeze-left ${showProfileDrp ? 'show' : ''}`} ref={profileDrpRef}>
                                         <Link to='../app/dashboard'>
-                                            <div className='custom-dropdown-item'>Dashboard</div>
+                                            <div className='custom-dropdown-item'>{t("Dashboard")}</div>
                                         </Link>
-                                        <div className='custom-dropdown-item' onClick={logout}>Logout</div>
+                                        <div className='custom-dropdown-item' onClick={logout}>{t("Logout")}</div>
 
                                     </div>
                                 </div>

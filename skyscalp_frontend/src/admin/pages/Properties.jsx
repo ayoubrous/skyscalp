@@ -54,7 +54,7 @@ export default function Properties() {
 
 
     const handleDelete = (id) => {
-        let surity = window.confirm("Are you sure to delete this property?")
+        let surity = window.confirm(t("Are you sure to delete this product?"))
         if (surity) {
             const requestOptions = {
                 method: "DELETE",

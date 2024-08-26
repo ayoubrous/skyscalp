@@ -165,7 +165,7 @@ export default function Messages() {
                                         <th className='col-2'>{t("user")} {t("email")}</th>
                                         <th className='col-3'>{t("message")}</th>
                                         <th className='col-2'>{t("received")} {t("on")}</th>
-                                        <th className='col-2'>{t("time")}</th>
+                                        <th className='col-2'>{t("date")}</th>
                                         <th className='col-2'>{t("action")}</th>
                                     </tr>
                                 </thead>
@@ -186,7 +186,7 @@ export default function Messages() {
                                                                 : ""}
                                                         </td>
                                                         <td>{data.details.title ? data.details.title : data.details}</td>
-                                                        <td>{new Date(data.createdAt).toDateString()}</td>
+                                                        <td>{data.createdAt && new Intl.DateTimeFormat('en-GB').format(new Date(data.createdAt))}</td>
                                                         <td>
                                                             {/* <a href={`mailto:${data.email}`}>
                                                                 <button className="custom-btn px-2 py-1" style={{ fontSize: "12px" }}>Reply</button>

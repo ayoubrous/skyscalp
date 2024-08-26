@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import logo from '../../assets/images/logo.png'
 import { FaBuilding, FaCashRegister, FaChair, FaClock, FaGear, FaMessage, FaMoneyBill, FaRegHeart, FaRegMessage, FaUser } from 'react-icons/fa6'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { FaTools } from 'react-icons/fa'
 import { TbCarCrane } from 'react-icons/tb'
 import { BsBuildingsFill } from 'react-icons/bs'
@@ -10,9 +10,16 @@ import { useTranslation } from 'react-i18next'
 
 export default function Sidebar() {
     const [t] = useTranslation()
+    const location = useLocation();
+
     const hideSidebar = () => {
         document.querySelector(".left-sidebar").style.left = "-270px"
     }
+
+    const isRouteActive = (paths) => {
+        return paths.some(path => location.pathname.includes(path));
+    };
+
     return (
         <>
             <Navbar />
@@ -29,7 +36,11 @@ export default function Sidebar() {
                     <nav className="sidebar-nav scroll-sidebar mt-3" data-simplebar="">
                         <ul id="sidebarnav ">
                             <li className="sidebar-item mt-4">
-                                <NavLink to='../app/dashboard' className={(navData) => (navData.isActive ? "active sidebar-link" : 'none sidebar-link')} aria-expanded="false">
+                                <NavLink
+                                    to='../app/dashboard'
+                                    className={isRouteActive(['/dashboard']) ? "active sidebar-link" : 'none sidebar-link'}
+                                    aria-expanded="false"
+                                >
                                     <span>
                                         <i className="ti ti-layout-dashboard"></i>
                                     </span>
@@ -37,7 +48,11 @@ export default function Sidebar() {
                                 </NavLink>
                             </li>
                             <li className="sidebar-item mt-1">
-                                <NavLink to='../app/properties' className={(navData) => (navData.isActive ? "active sidebar-link" : 'none sidebar-link')} aria-expanded="false">
+                                <NavLink
+                                    to='../app/properties'
+                                    className={isRouteActive(['/properties', '/add-property', '/update-property']) ? "active sidebar-link" : 'none sidebar-link'}
+                                    aria-expanded="false"
+                                >
                                     <span>
                                         <BsBuildingsFill className='me-1' />
                                     </span>
@@ -45,7 +60,11 @@ export default function Sidebar() {
                                 </NavLink>
                             </li>
                             <li className="sidebar-item mt-1">
-                                <NavLink to='../app/machines' className={(navData) => (navData.isActive ? "active sidebar-link" : 'none sidebar-link')} aria-expanded="false">
+                                <NavLink
+                                    to='../app/machines'
+                                    className={isRouteActive(['/machines', '/add-machine', '/update-machine']) ? "active sidebar-link" : 'none sidebar-link'}
+                                    aria-expanded="false"
+                                >
                                     <span>
                                         <TbCarCrane className='me-1' />
                                     </span>
@@ -53,7 +72,11 @@ export default function Sidebar() {
                                 </NavLink>
                             </li>
                             <li className="sidebar-item mt-1">
-                                <NavLink to='../app/materials' className={(navData) => (navData.isActive ? "active sidebar-link" : 'none sidebar-link')} aria-expanded="false">
+                                <NavLink
+                                    to='../app/materials'
+                                    className={isRouteActive(['/materials', '/add-material', '/update-material']) ? "active sidebar-link" : 'none sidebar-link'}
+                                    aria-expanded="false"
+                                >
                                     <span>
                                         <FaTools className='me-1' />
                                     </span>
@@ -61,7 +84,11 @@ export default function Sidebar() {
                                 </NavLink>
                             </li>
                             <li className="sidebar-item mt-1">
-                                <NavLink to='../app/furniture' className={(navData) => (navData.isActive ? "active sidebar-link" : 'none sidebar-link')} aria-expanded="false">
+                                <NavLink
+                                    to='../app/furniture'
+                                    className={isRouteActive(['/furniture', '/add-furniture', '/update-furniture']) ? "active sidebar-link" : 'none sidebar-link'}
+                                    aria-expanded="false"
+                                >
                                     <span>
                                         <FaChair className='me-1' />
                                     </span>
@@ -69,7 +96,11 @@ export default function Sidebar() {
                                 </NavLink>
                             </li>
                             <li className="sidebar-item mt-1">
-                                <NavLink to='../app/favourites' className={(navData) => (navData.isActive ? "active sidebar-link" : 'none sidebar-link')} aria-expanded="false">
+                                <NavLink
+                                    to='../app/favourites'
+                                    className={isRouteActive(['/favourites']) ? "active sidebar-link" : 'none sidebar-link'}
+                                    aria-expanded="false"
+                                >
                                     <span>
                                         <FaRegHeart className='me-1' />
                                     </span>
@@ -77,15 +108,17 @@ export default function Sidebar() {
                                 </NavLink>
                             </li>
                             <li className="sidebar-item mt-1">
-                                <NavLink to='../app/messages' className={(navData) => (navData.isActive ? "active sidebar-link" : 'none sidebar-link')} aria-expanded="false">
+                                <NavLink
+                                    to='../app/messages'
+                                    className={isRouteActive(['/messages']) ? "active sidebar-link" : 'none sidebar-link'}
+                                    aria-expanded="false"
+                                >
                                     <span>
                                         <FaRegMessage className='me-1' />
                                     </span>
                                     <span className="hide-menu">{t("messages")}</span>
                                 </NavLink>
                             </li>
-
-
                         </ul>
                     </nav>
                 </div>

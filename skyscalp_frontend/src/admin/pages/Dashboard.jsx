@@ -205,7 +205,7 @@ export default function Dashboard() {
 
                 <Link to="../app/properties" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid blue" }}>
                   <div className="card-body p-3">
-                    <h5 className="card-title mb-2 fw-semibold">{t("published")} {t("properties")}</h5>
+                    <h5 className="card-title mb-2 fw-semibold">{t("Published Properties")}</h5>
                     <div className="row align-items-center">
                       <div className="d-flex align-items-center justify-content-between">
                         <h1 className="fw-bolder color-primary" style={{ fontSize: "3rem" }}>
@@ -219,7 +219,7 @@ export default function Dashboard() {
 
                 <Link to="../app/machines" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid green" }}>
                   <div className="card-body p-3">
-                    <h5 className="card-title mb-2 fw-semibold">{t("published")} {t("machineryTools")}</h5>
+                    <h5 className="card-title mb-2 fw-semibold">{t("Published Machines")}</h5>
                     <div className="row align-items-center">
                       <div className="d-flex align-items-center justify-content-between">
                         <h1 className="fw-bolder color-primary" style={{ fontSize: "3rem" }}>
@@ -232,7 +232,7 @@ export default function Dashboard() {
                 </Link>
                 <Link to="../app/materials" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid orange" }}>
                   <div className="card-body p-3">
-                    <h5 className="card-title mb-2 fw-semibold">{t("published")} {t("materials")}</h5>
+                    <h5 className="card-title mb-2 fw-semibold">{t("Published Materials")}</h5>
                     <div className="row align-items-center">
                       <div className="d-flex align-items-center justify-content-between">
                         <h1 className="fw-bolder color-primary" style={{ fontSize: "3rem" }}>
@@ -246,7 +246,7 @@ export default function Dashboard() {
 
                 <Link to="../app/furniture" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid blue" }}>
                   <div className="card-body p-3">
-                    <h5 className="card-title mb-2 fw-semibold">{t("published")} {t("furniture")}</h5>
+                    <h5 className="card-title mb-2 fw-semibold">{t("Published Furniture")}</h5>
                     <div className="row align-items-center">
                       <div className="d-flex align-items-center justify-content-between">
                         <h1 className="fw-bolder color-primary" style={{ fontSize: "3rem" }}>

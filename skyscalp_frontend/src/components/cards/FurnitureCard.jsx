@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { TbBed } from 'react-icons/tb'
-import { FaHeart, FaPaintBrush, FaRegCheckSquare, FaRegHeart } from "react-icons/fa";
-import { LuBath } from "react-icons/lu";
-import { BsBuildings } from "react-icons/bs";
+import { TbBed, TbBrandAbstract } from 'react-icons/tb'
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useTranslation } from 'react-i18next';
-import { FiCalendar } from "react-icons/fi";
+import { CgStyle } from "react-icons/cg";
+
 
 // import { Swiper, SwiperSlide } from 'swiper/react';
 // import { Navigation } from 'swiper/modules';
@@ -24,12 +23,14 @@ import { GrStatusInfo } from 'react-icons/gr';
 import handleProductFavourite from '../utils/manangeFavourite';
 import { checkInFavourites } from '../../APIs/favourites';
 import { formatPrice } from '../../utils/formatPrice';
+import { RxDimensions } from "react-icons/rx";
+import { GiStarShuriken } from "react-icons/gi";
 
 
 const FurnitureCard = ({ data }) => {
-    const { _id, images, title, description, category, quantity, article, budget, color, street, 
+    const { _id, images, title, description, category, quantity, article, budget, color, street,
         city, country, unit, application, condition, guaranteePeriod, user, createdAt,
-    style, dimensions, brand, feature } = data;
+        style, dimensions, brand, feature } = data;
 
     const [t] = useTranslation();
     const [favourite, setFavourite] = useState(false)
@@ -84,49 +85,43 @@ const FurnitureCard = ({ data }) => {
 
                     {description && <p className='mb-2 mt-1 color-secondary description' dangerouslySetInnerHTML={{ __html: description.substring(0, 120) }}></p>}
 
-                    <div className="characteristics mb-2">
-                        {
-                            style !== '' && (
-                                <div className='d-flex align-items-center  characteristicsChips' >
-                                    <p className="feature-text">{t(style).slice(0,9)}</p>
-                                </div>
-                            )
-                        }
-                        {
-                            color !== '' && (
-                                <div className='d-flex align-items-center  characteristicsChips' >
-                                    <p className="feature-text">{t(color).slice(0,9)}</p>
-                                </div>
-                            )
-                        }
-                        {
-                            brand !== '' && (
-                                <div className='d-flex align-items-center  characteristicsChips' >
-                                    <p className="feature-text">{t(brand).slice(0,9)}</p>
-                                </div>
-                            )
-                        }
-                        {
-                            condition !== '' && (
-                                <div className='d-flex align-items-center characteristicsChips' >
-                                    <p className="feature-text">{t(condition).slice(0,9)}</p>
-                                </div>
-                            )
-                        }
-                        {
-                            feature !== '' && (
-                                <div className='d-flex align-items-center characteristicsChips' >
-                                    <p className="feature-text">{t(feature).slice(0,9)}</p>
-                                </div>
-                            )
-                        }
-                        {
-                            dimensions !== '' && (
-                                <div className='d-flex align-items-center characteristicsChips' >
-                                    <p className="feature-text">{t(dimensions).slice(0, 9)}</p>
-                                </div>
-                            )
-                        }
+                    <div className="characteristics  mb-2">
+                        {style !== '' && (
+                            <div className="d-flex align-items-center gap-1">
+                                <CgStyle className="feature-icon" />
+                                <p className="feature-text">{t(style).slice(0, 9)}</p>
+                            </div>
+                        )}
+                        {color !== '' && (
+                            <div className="d-flex align-items-center gap-1">
+                                <IoIosColorPalette className="feature-icon" />
+                                <p className="feature-text">{t(color).slice(0, 9)}</p>
+                            </div>
+                        )}
+                        {brand !== '' && (
+                            <div className="d-flex align-items-center gap-1">
+                                <TbBrandAbstract className="feature-icon" /> 
+                                <p className="feature-text">{t(brand).slice(0, 9)}</p>
+                            </div>
+                        )}
+                        {condition !== '' && (
+                            <div className="d-flex align-items-center gap-1">
+                                <GrStatusInfo className="feature-icon" />
+                                <p className="feature">{t(condition).slice(0, 9)}</p>
+                            </div>
+                        )}
+                        {feature !== '' && (
+                            <div className="d-flex align-items-center gap-1">
+                                <GiStarShuriken className="feature-icon" /> 
+                                <p className="feature">{t(feature).slice(0, 9)}</p>
+                            </div>
+                        )}
+                        {dimensions !== '' && (
+                            <div className="d-flex align-items-center gap-1">
+                                <RxDimensions className="feature-icon" /> 
+                                <p className="feature-text">{t(dimensions).slice(0, 9)}</p>
+                            </div>
+                        )}
                     </div>
 
                     <div className="d-flex justify-content-between align-items-center property-features">

@@ -392,7 +392,7 @@ export default function AddMachinery() {
                 .then((result) => {
                     setIsLoading(false)
                     if (result.status) {
-                        toast.success(result.message)
+                        toast.success(t("Product Published Successfully"))
                         resetAllFields()
                     }
                     else {
@@ -457,7 +457,9 @@ export default function AddMachinery() {
                 .then((result) => {
                     setIsLoading(false)
                     if (result.status) {
-                        toast.success(result.message)
+                        // toast.success(result.message)
+                        toast.success(t("Product Published Successfully"))
+
                     }
                     else {
                         toast.error(result.message)
@@ -585,9 +587,9 @@ export default function AddMachinery() {
                                         </div>
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>{t("select")} {t("tool")}*</label>
+                                            <label htmlFor="" className='mb-1'>{t("select")} {t("Machine")}*</label>
                                             <select name="" id="" className="custom-input" onChange={e => setCategory(e.target.value)} value={category}>
-                                                <option value="">Select {t("category")}</option>
+                                                <option value="">{("Select")} {t("Machine")}</option>
                                                 {
                                                     machineryCategories.map((data) => (
                                                         data.categoryName === application ? (
@@ -677,7 +679,7 @@ export default function AddMachinery() {
                                         </div>
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>{t("condition")}</label>
+                                            <label htmlFor="" className='mb-1'>{t("select")} {t("condition")}</label>
                                             <select name="" id="" className="custom-input" onChange={e => setCondition(e.target.value)} value={condition}>
                                                 <option value="">{t("select")} {t("condition")}</option>
                                                 {
@@ -691,7 +693,7 @@ export default function AddMachinery() {
                                         </div>
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>{t("select")} {t("select")}</label>
+                                            <label htmlFor="" className='mb-1'>{t("select")} {t("year")}</label>
                                             <select name="" id="" className="custom-input" onChange={e => setBuild(e.target.value)} value={build}>
                                                 <option value="">{t("select")} {t("year")}</option>
                                                 {
@@ -708,7 +710,7 @@ export default function AddMachinery() {
                                         <div className="form-group form-group-sm mb-3">
                                             <label htmlFor="" className='mb-1'>{t("type")}</label>
                                             <select name="" id="" className="custom-input" onChange={e => setMachineryType(e.target.value)} value={machineryType}>
-                                                <option value="">{t("select")} {t("machine")} {t("type")}</option>
+                                                <option value="">{t("select")} {t("type")}</option>
                                                 {
                                                     machineryTypesDropdown.map((data, i) => {
                                                         return (
@@ -735,7 +737,7 @@ export default function AddMachinery() {
                                                         {
                                                             machineryGuarantee.map((data, i) => {
                                                                 return (
-                                                                    <option value={data} key={i}>{data}</option>
+                                                                    <option value={data} key={i}>{t(data)}</option>
                                                                 )
                                                             })
                                                         }
@@ -818,7 +820,7 @@ export default function AddMachinery() {
                                         <div className="info">{t("locationByMap")}</div>
 
                                         <div className="col-12">
-                                            <p style={{ fontSize: "12px" }}>{t("add")} {t("locationByMap")}*</p>
+                                            <p style={{ fontSize: "12px" }}>{t("add")} {t("locationByMap")}</p>
                                             {
                                                 !isLoading && updatePage ? (
                                                     <>
@@ -850,7 +852,7 @@ export default function AddMachinery() {
                                                     data-testid="loader"
                                                 />
                                                 {
-                                                    !isLoading && (t("Publish"))
+                                                    !isLoading && (t("publish"))
                                                 }
 
                                             </div>

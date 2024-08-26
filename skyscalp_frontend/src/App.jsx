@@ -57,7 +57,15 @@ import AdminPrivate from './routes/AdminPrivate';
 import { getLocations } from './assets/data/locations';
 import Test from './Test';
 
+import faviconLogo from './assets/images/logo-half.png'
+
+
 const App = () => {
+  useEffect(() => {
+    document.title = "Skyscalp"
+    const favicon = document.querySelector('link[rel="icon"]');
+    favicon.href = faviconLogo;
+  }, [])
 
   let isExecuted = false
   useEffect(() => {

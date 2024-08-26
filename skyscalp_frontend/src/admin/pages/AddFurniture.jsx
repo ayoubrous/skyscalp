@@ -346,14 +346,13 @@ export default function AddFurniture() {
     const validateFields = () => {
         const missingFields = [];
 
-        if (!uploadedImages.length) missingFields.push('cmages');
+        if (!uploadedImages.length) missingFields.push('images');
         if (!country) missingFields.push('country');
         if (!title) missingFields.push('title');
         if (!budget) missingFields.push('budget');
         if (category === "") missingFields.push('category');
         if (description === "") missingFields.push('descripiton');
         if (article === "") missingFields.push('article');
-        // if (category === "") missingFields.push('Tool');
 
         if (missingFields.length > 0) {
             const translatedFields = missingFields.map(field => t(field)).join(', ');
@@ -420,7 +419,9 @@ export default function AddFurniture() {
                 .then((result) => {
                     setIsLoading(false)
                     if (result.status) {
-                        toast.success(result.message)
+                        // toast.success(result.message)
+                        toast.success(t("Product Published Successfully"))
+
                         resetAllFields()
                     }
                     else {
@@ -491,7 +492,9 @@ export default function AddFurniture() {
                 .then((result) => {
                     setIsLoading(false)
                     if (result.status) {
-                        toast.success(result.message)
+                        // toast.success(result.message)
+                        toast.success(t("Product Published Successfully"))
+
                     }
                     else {
                         toast.error(result.message)
@@ -699,14 +702,14 @@ export default function AddFurniture() {
                                     <div className="w-25 formSide">
                                         <div className="info">{t("Characteristics")}</div>
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>{t("select")} Color</label>
+                                            <label htmlFor="" className='mb-1'>{t("select")} {t("color")}</label>
                                             <select name="" id="" className="custom-input" onChange={e => {
                                                 setColor(e.target.value)
                                                 e.target.value === "Other" ?
                                                     setShowOtherColor(true) :
                                                     setShowOtherColor(false)
                                             }} value={color}>
-                                                <option value="">{t("select")} Color</option>
+                                                <option value="">{t("select")} {t("color")}</option>
                                                 {
                                                     furnitureCategories.some(data => data.article === article) ?
                                                         furnitureCategories
@@ -750,7 +753,7 @@ export default function AddFurniture() {
                                         </div>
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>{t("select")} {t("Styles")}</label>
+                                            <label htmlFor="" className='mb-1'>{t("select")} {t("Style")}</label>
                                             <select name="" id="" className="custom-input" onChange={e => setStyle(e.target.value)} value={style}>
                                                 <option value="">{t("select")} {t("Style")}</option>
                                                 {
@@ -800,7 +803,7 @@ export default function AddFurniture() {
                                         }
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>{t("select")} {t("Brand")}</label>
+                                            <label htmlFor="" className='mb-1'>{t("select")} {t("brand")}</label>
                                             <select name="" id="" className="custom-input" onChange={e => {
                                                 setBrand(e.target.value)
                                                 e.target.value === "Other" ?
@@ -860,7 +863,7 @@ export default function AddFurniture() {
                                                         {
                                                             machineryGuarantee.map((data, i) => {
                                                                 return (
-                                                                    <option value={data} key={i}>{data}</option>
+                                                                    <option value={data} key={i}>{t(data)}</option>
                                                                 )
                                                             })
                                                         }
@@ -942,7 +945,7 @@ export default function AddFurniture() {
                                         <div className="info">{t("locationByMap")}</div>
 
                                         <div className="col-12">
-                                            <p style={{ fontSize: "12px" }}>{t("add")} {t("locationByMap")}*</p>
+                                            <p style={{ fontSize: "12px" }}>{t("add")} {t("locationByMap")}</p>
                                             {
                                                 !isLoading && updatePage ? (
                                                     <>

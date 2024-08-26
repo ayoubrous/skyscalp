@@ -747,6 +747,26 @@
   "Poor": "Poor",
   "New": "New",
   "Used": "Used",
-  "To Repair": "To Repair"
+  "To Repair": "To Repair",
+
+  "Published Properties": "Published Properties",
+  "Published Machines": "Published Machines",
+  "Published Materials": "Published Materials",
+  "Published Furniture": "Published Furnitures",
+
+  "Less than 1 month": "Less than 1 month",
+    "1 to 6 months": "1 to 6 months",
+    "6 to 12 months": "6 to 12 months",
+    "1 to 3 years": "1 to 3 years",
+    "More than 3 years": "More than 3 years",
+
+    "Pneumatic": "Pneumatic",
+    "Gasoline": "Gasoline",
+    "Manual": "Manual",
+    "others": "others",
+    "Logout": "Logout",
+
+    "Product Published Successfully": "Product Published Successfully",
+    "Are you sure to delete this product?": "Are you sure to delete this product?"
 
 }

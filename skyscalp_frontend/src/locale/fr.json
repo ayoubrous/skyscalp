@@ -174,7 +174,7 @@
     "published": "Publié",
     "materials": "Matériaux",
     "personalInfo": "Informations personnelles",
-    "updateProfileImage": "Mettre à jour l'image de profil",
+    "updateProfileImage": "Mettre à jour l'image du profil",
     "username": "Nom d'utilisateur",
     "update": "Mettre à jour",
     "title": "Titre",
@@ -249,7 +249,13 @@
     "Logout":"Se déconnecter",
     "featureCard1ii": "UNE PROPRIÉTÉ",
     "State": "Région",
+    "state": "Région",
     "Street": "Quartier",
+    "street": "Quartier",
+    "Published Properties": "Propriétés publiées",
+    "Published Machines": "Machines publiées",
+    "Published Materials": "Matériaux publiés",
+    "Published Furniture": "Meubles publiés",
 
 
 
@@ -742,5 +748,18 @@
     "Poor": "Mauvais",
     "New": "Neuf",
     "Used": "Occasion",
-    "To Repair": "À réparer"
+    "To Repair": "À réparer",
+    "Less than 1 month": "Moins de 1 mois",
+    "1 to 6 months": "1 à 6 mois",
+    "6 to 12 months": "6 à 12 mois",
+    "1 to 3 years": "1 à 3 ans",
+    "More than 3 years": "Plus de 3 ans",
+    "Pneumatic": "Pneumatique",
+    "Gasoline": "Essence",
+    "Manual": "Manuel",
+    "others": "autres",
+    "Product Published Successfully": "Produit publié avec succès",
+    "Are you sure to delete this product?": "Êtes-vous sûr de supprimer ce produit ?"
+
+    
 }

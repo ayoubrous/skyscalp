@@ -179,11 +179,7 @@ export default function Machinery() {
                                                         <td>{data.details.title}</td>
                                                         <td>{data.details.city} - {data.details.country}</td>
                                                         <td>MAD {formatPrice(data.details.budget)}</td>
-                                                        <td>{new Date(data.details.createdAt).toLocaleString('en-GB', {
-                                                            day: '2-digit',
-                                                            month: 'short',
-                                                            year: 'numeric'
-                                                        })}</td>
+                                                        <td>{data.createdAt && new Intl.DateTimeFormat('en-GB').format(new Date(data.createdAt))}</td>
                                                         <td>
                                                             <Link className='mx-1' to={`../${data.details.materialGroup ? data.details.materialGroup : 'property'}/${data.details._id}`}>
                                                                 <FaEye className='color-secondary' />

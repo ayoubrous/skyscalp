@@ -301,7 +301,7 @@ export default function ViewMachinery() {
                                         build !== '' && (
                                             <div className="d-flex align-items-center gap-2">
                                                 <small className="color-secondary">{t("year")}:</small>
-                                                <small className="color-secondary">{build}</small>
+                                                <small className="color-secondary">{t(build)}</small>
                                             </div>
                                         )
                                     }
@@ -376,7 +376,7 @@ export default function ViewMachinery() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("guarantee")}</p>
                                                 </div>
-                                                <p className="paragraph">{guaranteePeriod}</p>
+                                                <p className="paragraph">{t(guaranteePeriod)}</p>
                                             </div>
                                         )
                                     }
