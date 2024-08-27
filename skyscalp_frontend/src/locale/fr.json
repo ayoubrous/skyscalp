@@ -2,7 +2,7 @@
     "heroTitle": "Votre partenaire immobilier tout-en-un",
     "heroSlogan": "De la recherche à la réussite",
     "heroPara": "Simplifiez votre parcours immobilier : Achetez, Louez ou Construisez en toute confiance.",
-    "featureCard1": "ACHETER, LOUER UN BIEN",
+    "featureCard1": "Acheter, Louer un Bien",
     "featureCard2": "CONSTRUIRE VOTRE BIEN",
     "featureCard3": "ESTIMER",
     "featureCard4": "PUBLIER",
@@ -103,7 +103,7 @@
     "construction": "Construction",
     "rooms": "Chambres",
     "constructionSupportDesc": "Obtenez un soutien détaillé et des conseils sur les questions et les éléments liés à la construction. Notre équipe est là pour vous aider avec toutes les préoccupations ou demandes liées à la construction.",
-    "type": "Taper",
+    "type": "Type",
     "sizeOfMachine": "Taille/Dimension",
     "machineType": "Type de machine",
     "brand": "Marque",
@@ -246,7 +246,7 @@
     "Forgot Password": "Mot de passe oublié",
     "Send": "Envoyer",
     "Retype password": "Retaper le mot de passe",
-    "Logout":"Se déconnecter",
+    "Logout": "Se déconnecter",
     "featureCard1ii": "UNE PROPRIÉTÉ",
     "State": "Région",
     "state": "Région",
@@ -256,11 +256,6 @@
     "Published Machines": "Machines publiées",
     "Published Materials": "Matériaux publiés",
     "Published Furniture": "Meubles publiés",
-
-
-
-
-
     "Earthmoving": "Terrassement",
     "Bulldozer": "Bulldozer",
     "Wheel loader": "Chargeuse sur pneus",
@@ -314,9 +309,6 @@
     "Concrete mixer": "Bétonnière",
     "Concrete pump": "Pompe à béton",
     "Other": "Autre",
-
-
-
     "Living Room": "Salon",
     "Bedroom": "Chambre à coucher",
     "Sofa": "Canapé",
@@ -350,13 +342,13 @@
     "Large (4 seats or more)": "Grand (4 places ou plus)",
     "Single": "Simple",
     "Double": "Double",
-    "King Size": "King Size",
-    "Queen Size": "Queen Size",
+    "King Size": "Très Grand Lit",
+    "Queen Size": "Grand Lit",
     "Modern": "Moderne",
     "Classic": "Classique",
     "Scandinavian": "Scandinave",
     "Industrial": "Industriel",
-    "Vintage": "Vintage",
+    "Vintage": "Ancienne",
     "Traditional": "Traditionnel",
     "Contemporary": "Contemporain",
     "Convertible": "Convertible",
@@ -484,9 +476,6 @@
     "Small (32\")": "Petit (32\")",
     "Medium (43\")": "Moyen (43\")",
     "Large (55\" and above)": "Grand (55\" et plus)",
-
-
-
     "Structural Work": "Travaux de structure",
     "Concrete": "Béton",
     "Ready-Mix": "Béton prêt à l'emploi",
@@ -739,8 +728,6 @@
     "Venetian": "Vénitien",
     "Shutter": "Volet",
     "Photo Frame": "Cadre photo",
-
-
     "Radius": "Rayon",
     "Excellent": "Excellent",
     "Good": "Bon",
@@ -759,7 +746,31 @@
     "Manual": "Manuel",
     "others": "autres",
     "Product Published Successfully": "Produit publié avec succès",
-    "Are you sure to delete this product?": "Êtes-vous sûr de supprimer ce produit ?"
+    "Are you sure to delete this product?": "Êtes-vous sûr de supprimer ce produit ?",
+    "Construction Material": "Matériau de construction",
+    "Green": "Vert",
+    "Yellow": "Jaune",
+    "Orange": "Orange",
+    "Purple": "Violet",
+    "Pink": "Rose",
 
-    
+    "Polished": "Poli",
+    "Rough": "Rugueux",
+    "Honed": "Aiguisé",
+    "Stained": "Teinté",
+    "Painted": "Peint",
+    "Brushed": "Brossé",
+    "Matte": "Mat",
+    "Gloss": "Brillant",
+    "Satin": "Satiné",
+    "Chrome": "Chrome",
+    "Water": "Eau",
+    "Oil": "Huile",
+    "Less than 1 year": "Moins d'un an",
+    "3 to 5 years": "3 à 5 ans",
+    "5 to 10 years": "5 à 10 ans",
+    "10 to 15 years": "10 à 15 ans",
+    "More than 15 years": "Plus de 15 ans",
+    "resetFields": "Réinitialiser les champs"
+
 }

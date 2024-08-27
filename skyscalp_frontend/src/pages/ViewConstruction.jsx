@@ -300,7 +300,7 @@ export default function ViewConstruction() {
                                 <p className='paragraph mb-1 '>{t("material")} {t(category)}</p>
 
                                 <div className="d-flex align-items-center justify-content-between mb-2">
-                                    <p className=''>{city}, {country}</p>
+                                    <p className=''>{city}{city && ','} {country}</p>
                                     {favourite ? (
                                         <FaHeart className="icon favourite-icon filled" onClick={handleFavourite} />
                                     ) : (
@@ -356,7 +356,7 @@ export default function ViewConstruction() {
                                         category !== "" && (
                                             <div className="feature">
                                                 <div className="label">
-                                                    <p className="color-secondary">{t("category")}</p>
+                                                    <p className="color-secondary">{t("Construction Material")}</p>
                                                 </div>
                                                 <p className="paragraph">{t(category)}</p>
                                             </div>
@@ -378,7 +378,7 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("quantity")}</p>
                                                 </div>
-                                                <p className="paragraph">{quantity} {unit}</p>
+                                                <p className="paragraph">{quantity}/{unit}</p>
                                             </div>
                                         )
                                     }

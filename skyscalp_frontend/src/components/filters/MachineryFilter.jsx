@@ -512,7 +512,7 @@ export default function MachineryFilter(
                                         machineConditionData.map((data, i) => {
                                             return (
                                                 <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleCondtion(data)}>
-                                                    <p htmlFor={data} id={`label-${data}`}>{data}</p>
+                                                    <p htmlFor={data} id={`label-${data}`}>{t(data)}</p>
                                                     <input
                                                         type="checkbox"
                                                         name={data}
@@ -538,7 +538,7 @@ export default function MachineryFilter(
                                         yearBuildData.map((data, i) => {
                                             return (
                                                 <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleYearBuild(data)}>
-                                                    <p htmlFor={data} id={`label-${data}`}>{data}</p>
+                                                    <p htmlFor={data} id={`label-${data}`}>{t(data)}</p>
                                                     <input
                                                         type="checkbox"
                                                         name={data}
@@ -565,7 +565,7 @@ export default function MachineryFilter(
                                         machineryType.map((data, i) => {
                                             return (
                                                 <div key={i} className='custom-dropdown-item d-flex align-items-center justify-content-between' onClick={() => handleMachineryType(data)}>
-                                                    <p htmlFor={data} id={`label-${data}`}>{data}</p>
+                                                    <p htmlFor={data} id={`label-${data}`}>{t(data)}</p>
                                                     <input
                                                         type="checkbox"
                                                         name={data}

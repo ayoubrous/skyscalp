@@ -280,10 +280,10 @@ export default function ViewMachinery() {
 
                                 <h4 className="fw-bolder mb-2">{title}</h4>
                                 <p className='paragraph mb-1 '>{t("Appliation")}: {t(application)}</p>
-                                <p className='paragraph mb-1 '>{t("tool")}: {t(category)}</p>
+                                <p className='paragraph mb-1 '>{t("Machine")}: {t(category)}</p>
 
                                 <div className="d-flex align-items-center justify-content-between mb-2">
-                                    <p className=''>{city}, {country}</p>
+                                    <p className=''>{city}{city && ','} {country}</p>
                                     {favourite ? (
                                         <FaHeart className="icon favourite-icon filled" onClick={handleFavourite} />
                                     ) : (
@@ -347,7 +347,7 @@ export default function ViewMachinery() {
 
                                     <div className="feature">
                                         <div className="label">
-                                            <p className="color-secondary">{t("tool")}</p>
+                                            <p className="color-secondary">{t("Machine")}</p>
                                         </div>
                                         <p className="paragraph">{(t(category).slice(0, 15)) + (category.length > 15 ? "..." : "")}</p>
                                     </div>

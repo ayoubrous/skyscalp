@@ -73,7 +73,7 @@ const MachineryCard = ({ data }) => {
                         <h5 className='color-primary'>MAD {formatPrice(budget)}</h5>
                     </div>
 
-                    <p className="">{city}, {country}</p>
+                    <p className="">{city}{city && ','} {country}</p>
                     <p className='mb-1'>{t(category)}</p>
                     <p className='color-secondary'>{t(application)}</p>
                     <p className='color-secondary'>{t(condition)}</p>
@@ -87,7 +87,7 @@ const MachineryCard = ({ data }) => {
                             build !== '' && (
                                 <div className='d-flex align-items-center gap-1'>
                                     <p className="feature-text  ">Year:</p>
-                                    <p className="feature-text ">{build}</p>
+                                    <p className="feature-text ">{t(build)}</p>
                                 </div>
                             )
                         }
@@ -105,7 +105,7 @@ const MachineryCard = ({ data }) => {
                             condition !== '' && (
                                 <div className='d-flex align-items-center'>
                                     <GrStatusInfo className='feature-icon' />
-                                    <p className="feature-text">{condition}</p>
+                                    <p className="feature-text">{t(condition)}</p>
                                 </div>
                             )
                         }

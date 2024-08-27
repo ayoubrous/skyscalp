@@ -683,7 +683,7 @@ export default function AddConstruction() {
                                             </select>
                                         </div>
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>{t("category")}*</label>
+                                            <label htmlFor="" className='mb-1'>{t("Construction Material")}*</label>
                                             <select
                                                 name="category"
                                                 id="category"
@@ -702,7 +702,7 @@ export default function AddConstruction() {
                                                 }}
                                                 value={category}
                                             >
-                                                <option value="">{t("select")} {t("category")}</option>
+                                                <option value="">{t("select")} {t("Construction Material")}</option>
                                                 {
                                                     materialCategories
                                                         .filter(data => data.application === application)
@@ -1169,7 +1169,7 @@ export default function AddConstruction() {
 
                                 <div className="row mb-2 mt-4">
                                     <div className="form-group form-group-sm d-flex align-items-center justify-content-end gap-2">
-                                        <div className="outline-btn py-2" onClick={resetAllFields}>{t("reset")}</div>
+                                        <div className="outline-btn py-2" onClick={resetAllFields}>{t("resetFields")}</div>
                                         {/* <button className="custom-btn" type='submit'>Publish</button> */}
                                         <button className="custom-btn" type='submit'>
                                             <div className='d-flex align-items-center justify-content-center'>

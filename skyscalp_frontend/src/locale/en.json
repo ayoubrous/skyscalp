@@ -767,6 +767,27 @@
     "Logout": "Logout",
 
     "Product Published Successfully": "Product Published Successfully",
-    "Are you sure to delete this product?": "Are you sure to delete this product?"
+    "Are you sure to delete this product?": "Are you sure to delete this product?",
+
+    "Construction Material": "Construction Material",
+
+    "Polished": "Polished",
+    "Rough": "Rough",
+    "Honed": "Honed",
+    "Stained": "Stained",
+    "Painted": "Painted",
+    "Brushed": "Brushed",
+    "Matte": "Matte",
+    "Gloss": "Gloss",
+    "Satin": "Satin",
+    "Chrome": "Chrome",
+    "Water": "Water",
+    "Oil": "Oil",
+    "Less than 1 year": "Less than 1 year",
+    "3 to 5 years": "3 to 5 years",
+    "5 to 10 years": "5 to 10 years",
+    "10 to 15 years": "10 to 15 years",
+    "More than 15 years": "More than 15 years",
+    "resetFields": "Reset Fields"
 
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 
 export default function GetLocationMap({ clickedPosition, setClickedPosition, centerPosition }) {
+
     // const [clickedPosition, setClickedPosition] = useState(null);
     const [position, setPosition] = useState([centerPosition[0], centerPosition[1]])
 

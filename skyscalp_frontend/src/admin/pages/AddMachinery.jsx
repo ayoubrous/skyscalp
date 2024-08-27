@@ -589,7 +589,7 @@ export default function AddMachinery() {
                                         <div className="form-group form-group-sm mb-3">
                                             <label htmlFor="" className='mb-1'>{t("select")} {t("Machine")}*</label>
                                             <select name="" id="" className="custom-input" onChange={e => setCategory(e.target.value)} value={category}>
-                                                <option value="">{("Select")} {t("Machine")}</option>
+                                                <option value="">{t("select")} {t("Machine")}</option>
                                                 {
                                                     machineryCategories.map((data) => (
                                                         data.categoryName === application ? (
@@ -708,7 +708,7 @@ export default function AddMachinery() {
 
 
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>{t("type")}</label>
+                                            <label htmlFor="" className='mb-1'>{t("select")} {t("type")}</label>
                                             <select name="" id="" className="custom-input" onChange={e => setMachineryType(e.target.value)} value={machineryType}>
                                                 <option value="">{t("select")} {t("type")}</option>
                                                 {
@@ -824,7 +824,7 @@ export default function AddMachinery() {
                                             {
                                                 !isLoading && updatePage ? (
                                                     <>
-                                                        <GetLocationMap centerPosition={mapLocation && mapLocation} clickedPosition={mapLocation} setClickedPosition={setMapLocation} />
+                                                        <GetLocationMap centerPosition={mapLocation ? mapLocation : ["34.020882", "-6.841650"]} clickedPosition={mapLocation} setClickedPosition={setMapLocation} />
                                                     </>
                                                 ) : (
                                                     <>
@@ -840,7 +840,7 @@ export default function AddMachinery() {
 
                                 <div className="row mb-2 mt-3">
                                     <div className="form-group form-group-sm d-flex align-items-center justify-content-end gap-2">
-                                        <div className="outline-btn py-2" onClick={resetAllFields}>{t("reset")}</div>
+                                        <div className="outline-btn py-2" onClick={resetAllFields}>{t("resetFields")}</div>
                                         {/* <button className="custom-btn" type='submit'>Publish</button> */}
                                         <button className="custom-btn" type='submit'>
                                             <div className='d-flex align-items-center justify-content-center'>

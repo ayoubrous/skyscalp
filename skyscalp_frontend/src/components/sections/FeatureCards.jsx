@@ -46,8 +46,7 @@ export default function FeatureCards() {
             <div className='feature-cards'>
                 <Link to='../properties' className="feature-card">
                     <BsBuildingsFill className='icon' />
-                    <p>{t("featureCard1")}</p>
-                    <p>{t("featureCard1ii")}</p>
+                    <p className='text-uppercase'>{t("featureCard1")}</p>
                 </Link>
                 <Link className="feature-card" onClick={() => setShowDropdown(true)}>
                     <BsTools className='icon' />

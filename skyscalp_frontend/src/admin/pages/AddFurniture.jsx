@@ -607,7 +607,7 @@ export default function AddFurniture() {
 
                                             <label htmlFor="" className='mb-1'>{t("category")}*</label>
                                             <select name="" id="" className="custom-input" onChange={e => setCategory(e.target.value)} value={category}>
-                                                <option value="">Select {t("category")}</option>
+                                                <option value="">{t("select")} {t("category")}</option>
                                                 {
                                                     uniqueCategories.map((data, i) => {
                                                         return (
@@ -618,7 +618,7 @@ export default function AddFurniture() {
                                             </select>
                                         </div>
                                         <div className="form-group form-group-sm mb-3">
-                                            <label htmlFor="" className='mb-1'>{t("article")}*</label>
+                                            <label htmlFor="" className='mb-1'>{t("Article")}*</label>
                                             <select name="" id="" className="custom-input" onChange={e => setArticle(e.target.value)} value={article}>
                                                 <option value="">{t("select")} {t("article")}</option>
                                                 {
@@ -636,13 +636,13 @@ export default function AddFurniture() {
 
 
                                         <div className="form-group form-group-sm mb-4">
-                                            <label htmlFor="" className='mb-1'>Budget (MAD)/item*</label>
+                                            <label htmlFor="" className='mb-1'>Budget (MAD)/piece*</label>
                                             <input type="number" min={0} className="custom-input" onChange={e => setBudget(e.target.value)} onBlur={handleBudgetCheck} value={budget} />
-                                            <small style={{ fontSize: "10px" }}>{t("Specify Budget (MAD) per")} {t("item")}</small>
+                                            <small style={{ fontSize: "10px" }}>{t("Specify Budget (MAD) per")} {t("piece")}</small>
                                         </div>
 
                                         <div className="form-group form-group-sm mb-4">
-                                            <label htmlFor="" className='mb-1'>{t("quantity")}</label>
+                                            <label htmlFor="" className='mb-1'>{t("quantity")} / piece</label>
                                             <input type="number" className="custom-input" min={1} onChange={e => setQuantity(e.target.value)} onBlur={handleQuantityCheck} value={quantity} />
                                         </div>
                                     </div>
@@ -949,7 +949,7 @@ export default function AddFurniture() {
                                             {
                                                 !isLoading && updatePage ? (
                                                     <>
-                                                        <GetLocationMap centerPosition={mapLocation && mapLocation} clickedPosition={mapLocation} setClickedPosition={setMapLocation} />
+                                                        <GetLocationMap centerPosition={mapLocation ? mapLocation : ["34.020882", "-6.841650"]} clickedPosition={mapLocation} setClickedPosition={setMapLocation} />
                                                     </>
                                                 ) : (
                                                     <>
@@ -967,7 +967,7 @@ export default function AddFurniture() {
 
                                     <div className="row mb-2 mt-4">
                                         <div className="form-group form-group-sm d-flex align-items-center justify-content-end gap-2">
-                                            <div className="outline-btn py-2" onClick={resetAllFields}>{t("reset")}</div>
+                                            <div className="outline-btn py-2" onClick={resetAllFields}>{t("resetFields")}</div>
                                             {/* <button className="custom-btn" type='submit'>Publish</button> */}
                                             <button className="custom-btn" type='submit'>
                                                 <div className='d-flex align-items-center justify-content-center'>

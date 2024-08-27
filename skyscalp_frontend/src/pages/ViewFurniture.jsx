@@ -255,11 +255,11 @@ export default function ViewFurniture() {
                                 </div>
 
                                 <h4 className="fw-bolder mb-2">{title}</h4>
-                                <p className='paragraph mb-1 '>{t("quantity")}: {quantity} {t("items")}</p>
-                                <p className='paragraph mb-1 '>{t("category")} {t(category)}</p>
+                                <p className='paragraph mb-1 '>{t("quantity")}: {quantity}/{t("piece")}</p>
+                                <p className='paragraph mb-1 '>{t("Article")}: {t(category)}</p>
 
                                 <div className="d-flex align-items-center justify-content-between mb-2">
-                                    <p className=''>{city}, {country}</p>
+                                    <p className=''>{city}{city && ','} {country}</p>
                                     {favourite ? (
                                         <FaHeart className="icon favourite-icon filled" onClick={handleFavourite} />
                                     ) : (
@@ -319,7 +319,7 @@ export default function ViewFurniture() {
                                         category !== "" && (
                                             <div className="feature">
                                                 <div className="label">
-                                                    <p className="color-secondary">{t("subcategory")}</p>
+                                                    <p className="color-secondary">{t("category")}</p>
                                                 </div>
 
                                                 <p className="paragraph">{t(category)}</p>
@@ -330,7 +330,7 @@ export default function ViewFurniture() {
                                         article !== "" && (
                                             <div className="feature">
                                                 <div className="label">
-                                                    <p className="color-secondary">{t("article")}</p>
+                                                    <p className="color-secondary">{t("Article")}</p>
                                                 </div>
                                                 <p className="paragraph">{t(article)}</p>
                                             </div>
