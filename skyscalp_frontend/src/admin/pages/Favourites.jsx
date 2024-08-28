@@ -161,7 +161,7 @@ export default function Machinery() {
                                 <thead>
                                     <tr>
                                         <th className='col-1'>S. No</th>
-                                        <th className='col-2'>{t("title")}</th>
+                                        <th className='col-2'>{t("favourites")}</th>
                                         <th className='col-2'>{t("address")}</th>
                                         <th className='col-1'>{t("budget")}</th>
                                         <th className='col-1'>{t("published")}</th>

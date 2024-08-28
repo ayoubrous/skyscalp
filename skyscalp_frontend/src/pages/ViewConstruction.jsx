@@ -90,6 +90,7 @@ export default function ViewConstruction() {
             .then((response) => response.json())
             .then((result) => {
                 setIsLoading(false)
+                console.log(result)
                 if (result.status) {
                     setConstructionID(result.data._id);
                     setUserID(result.data.userID);
@@ -368,7 +369,14 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("type")}</p>
                                                 </div>
-                                                <p className="paragraph">{t(type)}</p>
+                                                <p className="paragraph">
+                                                    {
+                                                        (type.toLowerCase() === "other" || type.toLowerCase() === "others") && otherType
+                                                            ? t(otherType)
+                                                            : t(type)
+                                                    }
+                                                </p>
+
                                             </div>
                                         )
                                     }
@@ -390,7 +398,13 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("size")}</p>
                                                 </div>
-                                                <p className="paragraph">{size}</p>
+                                                <p className="paragraph">
+                                                    {
+                                                        (size.toLowerCase() === "other" || size.toLowerCase() === "others") && otherSize
+                                                            ? t(otherSize)
+                                                            : t(size)
+                                                    }
+                                                </p>
                                             </div>
                                         )
                                     }
@@ -401,7 +415,13 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("material")}</p>
                                                 </div>
-                                                <p className="paragraph">{t(material)}</p>
+                                                <p className="paragraph">
+                                                    {
+                                                        (material.toLowerCase() === "other" || material.toLowerCase() === "others") && otherMaterial
+                                                            ? t(otherMaterial)
+                                                            : t(material)
+                                                    }
+                                                </p>
                                             </div>
                                         )
                                     }
@@ -411,7 +431,13 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("base")}</p>
                                                 </div>
-                                                <p className="paragraph">{t(base)}</p>
+                                                <p className="paragraph">
+                                                    {
+                                                        (base.toLowerCase() === "other" || base.toLowerCase() === "others") && otherSize
+                                                            ? t(otherSize)
+                                                            : t(base)
+                                                    }
+                                                </p>
                                             </div>
                                         )
                                     }
@@ -421,7 +447,13 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("thickness")}</p>
                                                 </div>
-                                                <p className="paragraph">{t(thickness)}</p>
+                                                <p className="paragraph">
+                                                    {
+                                                        (thickness.toLowerCase() === "other" || thickness.toLowerCase() === "others") && otherThickness
+                                                            ? t(otherThickness)
+                                                            : t(thickness)
+                                                    }
+                                                </p>
                                             </div>
                                         )
                                     }
@@ -431,7 +463,13 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("finish")}</p>
                                                 </div>
-                                                <p className="paragraph">{t(finish)}</p>
+                                                <p className="paragraph">
+                                                    {
+                                                        (finish.toLowerCase() === "other" || finish.toLowerCase() === "others") && otherFinish
+                                                            ? t(otherFinish)
+                                                            : t(finish)
+                                                    }
+                                                </p>
                                             </div>
                                         )
                                     }
@@ -441,7 +479,13 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("material")}</p>
                                                 </div>
-                                                <p className="paragraph">{t(material)}</p>
+                                                <p className="paragraph">
+                                                    {
+                                                        (material.toLowerCase() === "other" || material.toLowerCase() === "others") && otherMaterial
+                                                            ? t(otherMaterial)
+                                                            : t(material)
+                                                    }
+                                                </p>
                                             </div>
                                         )
                                     }
@@ -451,7 +495,13 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("voltage")}</p>
                                                 </div>
-                                                <p className="paragraph">{t(voltage)}</p>
+                                                <p className="paragraph">
+                                                    {
+                                                        (voltage.toLowerCase() === "other" || voltage.toLowerCase() === "others") && otherVoltage
+                                                            ? t(otherVoltage)
+                                                            : t(voltage)
+                                                    }
+                                                </p>
                                             </div>
                                         )
                                     }
@@ -462,7 +512,13 @@ export default function ViewConstruction() {
                                                 <div className="label">
                                                     <p className="color-secondary">{t("color")}</p>
                                                 </div>
-                                                <p className="paragraph">{t(color)}</p>
+                                                <p className="paragraph">
+                                                    {
+                                                        (color.toLowerCase() === "other" || color.toLowerCase() === "others") && otherColor
+                                                            ? t(otherColor)
+                                                            : t(color)
+                                                    }
+                                                </p>
                                             </div>
                                         )
                                     }

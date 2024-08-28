@@ -162,7 +162,7 @@ export default function Messages() {
                                 <thead>
                                     <tr>
                                         <th className='col-1'>S. No</th>
-                                        <th className='col-2'>{t("user")} {t("email")}</th>
+                                        <th className='col-2'>{t("User email")}</th>
                                         <th className='col-3'>{t("message")}</th>
                                         <th className='col-2'>{t("received")} {t("on")}</th>
                                         <th className='col-2'>{t("date")}</th>

@@ -89,7 +89,7 @@ export default function Properties() {
                 <div className="body-wrapper">
                     <Header />
                     <div className="container-fluid">
-                        <h4 className='fw-bolder mb-3'>{t("published")} {t("properties")}</h4>
+                        <h4 className='fw-bolder mb-3'>{t("Published Properties")}</h4>
 
                         <div className="d-flex justify-content-end">
                             <a href=""></a>

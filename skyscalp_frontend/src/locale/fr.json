@@ -255,7 +255,7 @@
     "Published Properties": "Propriétés publiées",
     "Published Machines": "Machines publiées",
     "Published Materials": "Matériaux publiés",
-    "Published Furniture": "Meubles publiés",
+    "Published Furniture": "Meubles & Electroménagers Publiés",
     "Earthmoving": "Terrassement",
     "Bulldozer": "Bulldozer",
     "Wheel loader": "Chargeuse sur pneus",
@@ -308,7 +308,7 @@
     "Grinder": "Meuleuse",
     "Concrete mixer": "Bétonnière",
     "Concrete pump": "Pompe à béton",
-    "Other": "Autre",
+    "Other": "Autres",
     "Living Room": "Salon",
     "Bedroom": "Chambre à coucher",
     "Sofa": "Canapé",
@@ -771,6 +771,8 @@
     "5 to 10 years": "5 à 10 ans",
     "10 to 15 years": "10 à 15 ans",
     "More than 15 years": "Plus de 15 ans",
-    "resetFields": "Réinitialiser les champs"
+    "resetFields": "Réinitialiser les champs",
+    "User email": "Mail d'utilisateur",
+    "Frequently Asked Questions": "Foire aux questions"
 
 }

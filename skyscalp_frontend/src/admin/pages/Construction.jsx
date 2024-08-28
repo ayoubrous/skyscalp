@@ -92,7 +92,7 @@ export default function Construction() {
                 <div className="body-wrapper">
                     <Header />
                     <div className="container-fluid">
-                        <h4 className='fw-bolder mb-3'>{t("published")} {t("materials")}</h4>
+                        <h4 className='fw-bolder mb-3'>{t("Published Materials")}</h4>
 
                         <div className="d-flex justify-content-end">
                             <a href=""></a>

@@ -135,7 +135,7 @@ export default function AboutInfo() {
 
             <section className="faq-section">
                 <div className="custom-container">
-                    <h1 className="fw-bolder text-center mb-4 color-primary">Frequently Asked Questions</h1>
+                    <h1 className="fw-bolder text-center mb-4 color-primary">{t("Frequently Asked Questions")}</h1>
 
                     <div className="faq-container my-5">
                         {faqs.map((faq) => (

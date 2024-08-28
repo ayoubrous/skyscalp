@@ -8,6 +8,7 @@ import { RiContactsFill, RiAdvertisementFill } from "react-icons/ri";
 import { FaAngleDown } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2'
+import { GiConcreteBag } from 'react-icons/gi';
 
 export default function FeatureCards() {
     const [t] = useTranslation()
@@ -49,7 +50,7 @@ export default function FeatureCards() {
                     <p className='text-uppercase'>{t("featureCard1")}</p>
                 </Link>
                 <Link className="feature-card" onClick={() => setShowDropdown(true)}>
-                    <BsTools className='icon' />
+                    <GiConcreteBag className='icon' />
                     <p>{t("featureCard2")}</p>
                 </Link>
                 <Link to='../estimate' className="feature-card">

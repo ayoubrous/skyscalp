@@ -441,6 +441,7 @@ export default function AddConstruction() {
                     if (result.status) {
                         // toast.success(result.message)
                         toast.success(t("Product Published Successfully"))
+                        resetAllFields()
 
                     }
                     else {
@@ -504,6 +505,7 @@ export default function AddConstruction() {
                 otherVoltage,
                 status: true
             };
+
 
 
             const myHeaders = new Headers();
@@ -859,7 +861,7 @@ export default function AddConstruction() {
 
 
                                         {
-                                            !disabledFields.includes('size') && (
+                                            !disabledFields.includes('color') && (
                                                 <>
                                                     <div className="form-group form-group-sm mb-3">
                                                         <label htmlFor="" className='mb-1'>{t("select")} {t("color")}</label>

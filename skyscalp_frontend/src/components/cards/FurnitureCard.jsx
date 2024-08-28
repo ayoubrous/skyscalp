@@ -30,7 +30,7 @@ import { GiStarShuriken } from "react-icons/gi";
 const FurnitureCard = ({ data }) => {
     const { _id, images, title, description, category, quantity, article, budget, color, street,
         city, country, unit, application, condition, guaranteePeriod, user, createdAt,
-        style, dimensions, brand, feature } = data;
+        style, dimensions, brand, feature, otherColor, otherBrand, otherFeature } = data;
 
     const [t] = useTranslation();
     const [favourite, setFavourite] = useState(false)
@@ -95,13 +95,31 @@ const FurnitureCard = ({ data }) => {
                         {color !== '' && (
                             <div className="d-flex align-items-center gap-1">
                                 <IoIosColorPalette className="feature-icon" />
-                                <p className="feature-text">{t(color).slice(0, 9)}</p>
+                                {
+                                    color && (
+                                        (color.toLowerCase() === "other" || color.toLowerCase() === "others") && otherColor
+                                            ? (
+                                                <p className="feature-text">{t(otherColor).slice(0, 11)}</p>
+                                            ) : (
+                                                <p className="feature-text">{t(color).slice(0, 11)}</p>
+                                            )
+                                    )
+                                }
                             </div>
                         )}
                         {brand !== '' && (
                             <div className="d-flex align-items-center gap-1">
-                                <TbBrandAbstract className="feature-icon" /> 
-                                <p className="feature-text">{t(brand).slice(0, 9)}</p>
+                                <TbBrandAbstract className="feature-icon" />
+                                {
+                                    brand && (
+                                        (brand.toLowerCase() === "other" || brand.toLowerCase() === "others") && otherBrand
+                                            ? (
+                                                <p className="feature-text">{t(otherBrand).slice(0, 11)}</p>
+                                            ) : (
+                                                <p className="feature-text">{t(brand).slice(0, 11)}</p>
+                                            )
+                                    )
+                                }
                             </div>
                         )}
                         {condition !== '' && (
@@ -112,13 +130,22 @@ const FurnitureCard = ({ data }) => {
                         )}
                         {feature !== '' && (
                             <div className="d-flex align-items-center gap-1">
-                                <GiStarShuriken className="feature-icon" /> 
-                                <p className="feature">{t(feature).slice(0, 9)}</p>
+                                <GiStarShuriken className="feature-icon" />
+                                {
+                                    feature && (
+                                        (feature.toLowerCase() === "other" || feature.toLowerCase() === "others") && otherFeature
+                                            ? (
+                                                <p className="feature-text">{t(otherFeature).slice(0, 11)}</p>
+                                            ) : (
+                                                <p className="feature-text">{t(feature).slice(0, 11)}</p>
+                                            )
+                                    )
+                                }
                             </div>
                         )}
                         {dimensions !== '' && (
                             <div className="d-flex align-items-center gap-1">
-                                <RxDimensions className="feature-icon" /> 
+                                <RxDimensions className="feature-icon" />
                                 <p className="feature-text">{t(dimensions).slice(0, 9)}</p>
                             </div>
                         )}

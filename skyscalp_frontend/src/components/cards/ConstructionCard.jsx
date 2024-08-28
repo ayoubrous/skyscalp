@@ -3,7 +3,7 @@ import { TbBed } from 'react-icons/tb'
 import { FaGripLines, FaHeart, FaRegCheckSquare, FaRegHeart } from "react-icons/fa";
 import { LuBath, LuBox } from "react-icons/lu";
 import { BsBuildings } from "react-icons/bs";
-import { useTranslation } from 'react-i18next';import { SiSymantec } from "react-icons/si";
+import { useTranslation } from 'react-i18next'; import { SiSymantec } from "react-icons/si";
 
 import { IoConstructOutline } from "react-icons/io5";
 
@@ -26,13 +26,15 @@ import formatNumber from '../../utils/formatNumber';
 import { formatPrice } from '../../utils/formatPrice';
 import handleProductFavourite from '../utils/manangeFavourite';
 import { checkInFavourites } from '../../APIs/favourites';
-import { MdElectricBolt } from 'react-icons/md';
+import { MdCheckBoxOutlineBlank, MdElectricBolt } from 'react-icons/md';
+import { RxSize } from 'react-icons/rx';
 
 
 const ConstructionCard = ({ data }) => {
     const { _id, images, title, description, category, budget, color, street, city, country,
         unit, application, user, createdAt,
-        type, material, base, finish, voltage } = data;
+        type, material, base, finish, voltage, otherColor, otherType, otherMaterial, otherBase, otherFinish, otherVoltage,
+        size, otherSize, thickness, otherThickness } = data;
 
 
     const [t] = useTranslation();
@@ -94,37 +96,123 @@ const ConstructionCard = ({ data }) => {
                         {type !== '' && (
                             <div className="d-flex align-items-center gap-1">
                                 <LuBox className="feature-icon" />
-                                <p className="feature-text">{t(type).slice(0, 9)}</p>
+                                {
+                                    type && (
+                                        (type.toLowerCase() === "other" || type.toLowerCase() === "others") && otherType
+                                            ? (
+                                                <p className="feature-text">{t(otherType).slice(0, 11)}</p>
+                                            ) : (
+                                                <p className="feature-text">{t(type).slice(0, 11)}</p>
+                                            )
+                                    )
+                                }
                             </div>
                         )}
                         {color !== '' && (
                             <div className="d-flex align-items-center gap-1">
                                 <IoIosColorPalette className="feature-icon" />
-                                <p className="feature-text">{t(color).slice(0, 11)}</p>
+                                {
+                                    color && (
+                                        (color.toLowerCase() === "other" || color.toLowerCase() === "others") && otherColor
+                                            ? (
+                                                <p className="feature-text">{t(otherColor).slice(0, 11)}</p>
+                                            ) : (
+                                                <p className="feature-text">{t(color).slice(0, 11)}</p>
+                                            )
+                                    )
+                                }
                             </div>
                         )}
                         {material !== '' && (
                             <div className="d-flex align-items-center gap-1">
                                 <IoConstructOutline className="feature-icon" />
-                                <p className="feature-text">{t(material).slice(0, 11)}</p>
+                                {
+                                    material && (
+                                        (material.toLowerCase() === "other" || material.toLowerCase() === "others") && otherMaterial
+                                            ? (
+                                                <p className="feature-text">{t(otherMaterial).slice(0, 11)}</p>
+                                            ) : (
+                                                <p className="feature-text">{t(material).slice(0, 11)}</p>
+                                            )
+                                    )
+                                }
                             </div>
                         )}
                         {finish !== '' && (
                             <div className="d-flex align-items-center gap-1">
                                 <SiSymantec className="feature-icon" />
-                                <p className="feature-text">{t(finish).slice(0, 11)}</p>
+                                {
+                                    finish && (
+                                        (finish.toLowerCase() === "other" || finish.toLowerCase() === "others") && otherFinish
+                                            ? (
+                                                <p className="feature-text">{t(otherFinish).slice(0, 11)}</p>
+                                            ) : (
+                                                <p className="feature-text">{t(finish).slice(0, 11)}</p>
+                                            )
+                                    )
+                                }
                             </div>
                         )}
                         {voltage !== '' && (
                             <div className="d-flex align-items-center gap-1">
                                 <MdElectricBolt className="feature-icon" />
                                 <p className="feature-text">{t(voltage).slice(0, 11)}</p>
+                                {
+                                    voltage && (
+                                        (voltage.toLowerCase() === "other" || voltage.toLowerCase() === "others") && otherVoltage
+                                            ? (
+                                                <p className="feature-text">{t(otherVoltage).slice(0, 11)}</p>
+                                            ) : (
+                                                <p className="feature-text">{t(voltage).slice(0, 11)}</p>
+                                            )
+                                    )
+                                }
                             </div>
                         )}
                         {base !== '' && (
                             <div className="d-flex align-items-center gap-1">
                                 <FaGripLines className="feature-icon" />
                                 <p className="feature-text">{t(base).slice(0, 11)}</p>
+                                {
+                                    base && (
+                                        (base.toLowerCase() === "other" || base.toLowerCase() === "others") && otherBase
+                                            ? (
+                                                <p className="feature-text">{t(otherBase).slice(0, 11)}</p>
+                                            ) : (
+                                                <p className="feature-text">{t(base).slice(0, 11)}</p>
+                                            )
+                                    )
+                                }
+                            </div>
+                        )}
+                        {thickness !== '' && (
+                            <div className="d-flex align-items-center gap-1">
+                                <MdCheckBoxOutlineBlank className="feature-icon" />
+                                {
+                                    thickness && (
+                                        (thickness.toLowerCase() === "other" || thickness.toLowerCase() === "others") && otherThickness
+                                            ? (
+                                                <p className="feature-text">{t(otherThickness).slice(0, 11)}</p>
+                                            ) : (
+                                                <p className="feature-text">{t(thickness).slice(0, 11)}</p>
+                                            )
+                                    )
+                                }
+                            </div>
+                        )}
+                        {size !== '' && (
+                            <div className="d-flex align-items-center gap-1">
+                                <RxSize className="feature-icon" />
+                                {
+                                    size && (
+                                        (size.toLowerCase() === "other" || size.toLowerCase() === "others") && otherSize
+                                            ? (
+                                                <p className="feature-text">{t(otherSize).slice(0, 11)}</p>
+                                            ) : (
+                                                <p className="feature-text">{t(size).slice(0, 11)}</p>
+                                            )
+                                    )
+                                }
                             </div>
                         )}
                     </div>

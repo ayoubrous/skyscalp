@@ -90,7 +90,7 @@ export default function Furniture() {
                 <div className="body-wrapper">
                     <Header />
                     <div className="container-fluid">
-                        <h4 className='fw-bolder mb-3'>{t("published")} {t("furnitureAppliances")}</h4>
+                        <h4 className='fw-bolder mb-3'>{t("Published Furniture")}</h4>
 
                         <div className="d-flex justify-content-end">
                             <a href=""></a>

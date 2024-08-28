@@ -92,7 +92,7 @@ export default function Machinery() {
                 <div className="body-wrapper">
                     <Header />
                     <div className="container-fluid">
-                        <h4 className='fw-bolder mb-1'>{t("published")} {t("machineryTools")}</h4>
+                        <h4 className='fw-bolder mb-1'>{t("Published Machines")}</h4>
 
                         <div className="d-flex justify-content-end">
                             <a href=""></a>

@@ -50,6 +50,10 @@ export default function ViewFurniture() {
     const [quantity, setQuantity] = useState('')
     const [article, setArticle] = useState('')
 
+    const [otherColor, setOtherColor] = useState('')
+    const [otherBrand, setOtherBrand] = useState('')
+    const [otherFeature, setOtherFeature] = useState('')
+
 
     const [createdAt, setCreatedAt] = useState('')
     const [userInfo, setUserInfo] = useState('')
@@ -94,6 +98,9 @@ export default function ViewFurniture() {
                     setUploadedImages(result.data.images)
                     setCreatedAt(result.data.createdAt)
                     setUserInfo(result.data.user)
+                    setOtherColor(result.data.otherColor)
+                    setOtherBrand(result.data.otherBrand)
+                    setOtherFeature(result.data.otherFeature)
 
                     // check if the product is in favourites 
                     const user = JSON.parse(localStorage.getItem("user"))
@@ -337,23 +344,37 @@ export default function ViewFurniture() {
                                         )
                                     }
 
+
                                     {
-                                        brand !== "" && (
+                                        brand && brand !== "" && (
                                             <div className="feature">
                                                 <div className="label">
                                                     <p className="color-secondary">{t("brand")}</p>
                                                 </div>
-                                                <p className="paragraph">{t(brand)}</p>
+                                                <p className="paragraph">
+                                                    {
+                                                        (brand.toLowerCase() === "other" || brand.toLowerCase() === "others") && otherBrand
+                                                            ? t(otherBrand)
+                                                            : t(brand)
+                                                    }
+                                                </p>
                                             </div>
                                         )
                                     }
+
                                     {
-                                        feature !== "" && (
+                                        feature && feature !== "" && (
                                             <div className="feature">
                                                 <div className="label">
                                                     <p className="color-secondary">{t("feature")}</p>
                                                 </div>
-                                                <p className="paragraph">{t(feature)}</p>
+                                                <p className="paragraph">
+                                                    {
+                                                        (feature.toLowerCase() === "other" || feature.toLowerCase() === "others") && otherFeature
+                                                            ? t(otherFeature)
+                                                            : t(feature)
+                                                    }
+                                                </p>
                                             </div>
                                         )
                                     }
@@ -382,12 +403,18 @@ export default function ViewFurniture() {
                                     }
 
                                     {
-                                        color !== "" && (
+                                        color && color !== "" && (
                                             <div className="feature">
                                                 <div className="label">
                                                     <p className="color-secondary">{t("color")}</p>
                                                 </div>
-                                                <p className="paragraph">{t(color)}</p>
+                                                <p className="paragraph">
+                                                    {
+                                                        (color.toLowerCase() === "other" || color.toLowerCase() === "others") && otherColor
+                                                            ? t(otherColor)
+                                                            : t(color)
+                                                    }
+                                                </p>
                                             </div>
                                         )
                                     }

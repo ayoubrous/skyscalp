@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../components/Sidebar'
 import Header from '../components/Header'
-import { FaBuilding, FaUser } from 'react-icons/fa6'
+import { FaBuilding, FaChair, FaUser } from 'react-icons/fa6'
 import { FaTools } from 'react-icons/fa'
 import { BsBuildingsFill } from 'react-icons/bs'
 import { TbCarCrane } from 'react-icons/tb'
@@ -15,6 +15,10 @@ import Footer from '../components/Footer'
 import { useTranslation } from 'react-i18next'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import { GiConcreteBag } from "react-icons/gi";
+import { RiSofaLine } from "react-icons/ri";
+
+import { LuSofa } from "react-icons/lu";
 
 export default function Dashboard() {
   const [t] = useTranslation()
@@ -238,7 +242,7 @@ export default function Dashboard() {
                         <h1 className="fw-bolder color-primary" style={{ fontSize: "3rem" }}>
                           {totalConstruction}
                         </h1>
-                        <FaTools className='color-primary' style={{ fontSize: "3rem" }} />
+                        <GiConcreteBag className='color-primary' style={{ fontSize: "3rem" }} />
                       </div>
                     </div>
                   </div>
@@ -252,7 +256,7 @@ export default function Dashboard() {
                         <h1 className="fw-bolder color-primary" style={{ fontSize: "3rem" }}>
                           {totalFurniture}
                         </h1>
-                        <FaTools className='color-primary' style={{ fontSize: "3rem" }} />
+                        <LuSofa className='color-primary' style={{ fontSize: "3rem" }} />
                       </div>
                     </div>
                   </div>

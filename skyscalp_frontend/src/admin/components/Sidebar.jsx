@@ -7,6 +7,8 @@ import { TbCarCrane } from 'react-icons/tb'
 import { BsBuildingsFill } from 'react-icons/bs'
 import Navbar from '../../components/navbar/Navbar'
 import { useTranslation } from 'react-i18next'
+import { LuSofa } from 'react-icons/lu'
+import { GiConcreteBag } from 'react-icons/gi'
 
 export default function Sidebar() {
     const [t] = useTranslation()
@@ -78,7 +80,7 @@ export default function Sidebar() {
                                     aria-expanded="false"
                                 >
                                     <span>
-                                        <FaTools className='me-1' />
+                                        <GiConcreteBag className='me-1' />
                                     </span>
                                     <span className="hide-menu">{t("materials")}</span>
                                 </NavLink>
@@ -90,9 +92,9 @@ export default function Sidebar() {
                                     aria-expanded="false"
                                 >
                                     <span>
-                                        <FaChair className='me-1' />
+                                        <LuSofa className='me-1' />
                                     </span>
-                                    <span className="hide-menu">{t("furniture")}</span>
+                                    <span className="hide-menu">{t("furnitureAppliances")}</span>
                                 </NavLink>
                             </li>
                             <li className="sidebar-item mt-1">
