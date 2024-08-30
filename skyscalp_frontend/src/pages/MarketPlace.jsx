@@ -65,6 +65,8 @@ const MarketPlace = () => {
 
 
 
+
+
     const [filtersObj, setFiltersObj] = useState({
         type: '',
         checkedSubcategories: [],
@@ -117,6 +119,8 @@ const MarketPlace = () => {
     };
 
     const loadData = (pageNumber = paginationData.currentPage, sort = sortby, sortOrder = order) => {
+        // console.log("LOad data called")
+        // return
         setLoading(true);
 
         let updatedFiltersObj = { ...filtersObj };
@@ -237,9 +241,13 @@ const MarketPlace = () => {
         setActiveCatId(parseInt(type));
     }, [location]);
 
+    // useEffect(() => {
+    //     loadData();
+    // }, [activeCatId, paginationData.currentPage, sortby, order, activeSubcats]);
+
     useEffect(() => {
         loadData();
-    }, [activeCatId, paginationData.currentPage, sortby, order, activeSubcats]);
+    }, [activeCatId, paginationData.currentPage, sortby, order]);
 
     const handleActiveCategory = (id) => {
         setActiveCatId(id);
@@ -254,11 +262,36 @@ const MarketPlace = () => {
         setActiveSubcats((prev) =>
             prev.includes(subcat) ? prev.filter((item) => item !== subcat) : [...prev, subcat]
         );
+
+        setCheckedSubcategories((prev) =>
+            prev.includes(subcat) ? prev.filter((item) => item !== subcat) : [...prev, subcat]
+        );
+
+        // setSelectedFilters((prev) =>
+        //     prev.includes(subcat) ? prev.filter((item) => item !== subcat) : [...prev, subcat]
+        // );
         // setSelectedFilters(activeSubcats)
     };
 
     useEffect(() => {
-        setSelectedFilters(activeSubcats)
+        setActiveSubcats(checkedSubcategories);
+
+    }, [checkedSubcategories])
+
+    // useEffect(() => {
+    //     const updatedActiveSubcats = activeSubcats.filter(actSub => {
+    //         return selectedFilters.includes(actSub);
+    //     });
+    //     setActiveSubcats(updatedActiveSubcats);
+
+    // }, [selectedFilters])
+
+
+
+
+    useEffect(() => {
+        const combinedFilters = Array.from(new Set([...selectedFilters, ...activeSubcats]));
+        setSelectedFilters(combinedFilters);
     }, [activeSubcats])
 
     const handlePageChange = (pageNumber) => {
@@ -338,6 +371,10 @@ const MarketPlace = () => {
             materialItemType: [],
             selectedMaterials: [],
         })
+
+
+        loadData()
+
     }
 
 

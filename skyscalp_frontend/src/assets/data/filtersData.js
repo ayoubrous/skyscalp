@@ -1,5 +1,5 @@
 const machineryType = [
-    'Electric', 'Pneumatic', 'Gasoline', 'Manual', 'others'
+    'Electric', 'Pneumatic', 'Gasoline', 'Manual', 'Other'
 ]
 
 
@@ -51,7 +51,7 @@ const machineryBrands = [
     },
     {
         id: 5,
-        application: "Others",
+        application: "Other",
         brands: [
             'Caterpillar', 'Cummins', 'Perkins', 'Atlas Copco', 'Ingersoll-Rand',
             'Generac', 'Honda', 'Makita', 'Bosch', 'DeWalt', 'Other'

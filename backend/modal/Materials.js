@@ -121,6 +121,9 @@ const MaterialsSchema = new mongoose.Schema({
     otherThickness: { type: String },
     otherType: { type: String },
     otherVoltage: { type: String },
+    otherMachine: { type: String },
+    otherApplication: { type: String },
+    otherType: { type: String },
 
 
     // for furniture

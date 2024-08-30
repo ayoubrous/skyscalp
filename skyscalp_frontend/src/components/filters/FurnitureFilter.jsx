@@ -294,6 +294,9 @@ export default function FurnitureFilter({
         if (yearBuild.includes(name)) {
             setYearBuild(item => item.filter(item => item !== name));
         }
+        if (checkedSubcategories.includes(name)) {
+            setCheckedSubcategories(item => item.filter(item => item !== name));
+        }
 
 
         setRadius(null)
@@ -305,6 +308,7 @@ export default function FurnitureFilter({
         setSelectedAllLocations([])
         setRadius(null)
         clearAllFilters()
+        setCheckAll(false)
     }
 
 
@@ -546,7 +550,7 @@ export default function FurnitureFilter({
                 </div>
 
                 <div className="selected-filters w-100">
-                    <div className="d-flex justify-content-between gap-2 w-100">
+                    <div className="d-flex justify-content-between align-items-start gap-2 w-100">
                         <div className="tags">
                             {
                                 selectedFilters.map((filter, i) => {

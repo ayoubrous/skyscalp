@@ -148,7 +148,7 @@ export default function Messages() {
                 <div className="body-wrapper">
                     <Header />
                     <div className="container-fluid">
-                        <h4 className='fw-bolder mb-3'>{t("messages")} {t("received")}</h4>
+                        <h4 className='fw-bolder mb-3'>{t("messages")}</h4>
 
                         <div className="d-flex justify-content-end">
                             <a href=""></a>

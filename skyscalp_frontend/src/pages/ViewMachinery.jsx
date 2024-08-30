@@ -63,6 +63,12 @@ export default function ViewMachinery() {
     const [certification, setCertification] = useState('')
     const [createdAt, setCreatedAt] = useState('')
 
+
+    const [otherApplication, setOtherApplication] = useState('')
+    const [otherMachine, setOtherMachine] = useState('')
+    const [otherBrand, setOtherBrand] = useState('')
+    const [otherType, setOtherType] = useState('')
+
     const [isLoading, setIsLoading] = useState(false)
 
     const [similarProducts, setSimilarProducts] = useState([])
@@ -80,7 +86,7 @@ export default function ViewMachinery() {
             .then((result) => {
                 setIsLoading(false)
                 if (result.status) {
-                    // console.log(result)
+                    console.log(result)
                     setUserID(result.data.userID);
                     setMachineryID(result.data._id);
                     setCountry(result.data.country);
@@ -111,6 +117,12 @@ export default function ViewMachinery() {
                     setUploadedImages(result.data.images)
                     setCreatedAt(result.data.createdAt)
                     setUserInfo(result.data.user)
+
+                    setOtherApplication(result.data.otherApplication)
+                    setOtherMachine(result.data.otherMachine)
+                    setOtherBrand(result.data.otherBrand)
+                    setOtherType(result.data.otherType)
+
                     setShowUploadedImages(true)
 
                     // check if the product is in favourites 
@@ -181,7 +193,7 @@ export default function ViewMachinery() {
                 if (result.status) {
                     setSimilarProducts(result.data.documents)
                 } else {
-                    console.log(result.message);
+                    // console.log(result.message);
                     setSimilarProducts([])
                 }
             })
@@ -233,7 +245,7 @@ export default function ViewMachinery() {
                 <Lottie className='loader' animationData={loader} loop={true} />
             </div>
             <Navbar />
-            <Breadcrumb title="Beautiful Modern House with Stunning Views" link={t("machineryTools")} />
+            <Breadcrumb title={title} link={t("machineryTools")} />
             <section className="details-section">
                 <div className="custom-container">
                     <div className="split">
@@ -275,12 +287,12 @@ export default function ViewMachinery() {
                             <div className="side basic-information mb-2">
                                 <div className="d-flex align-items-center justify-content-between mb-2">
                                     <h5 className="color-primary fw-bolder">MAD {formatPrice(budget)}</h5>
-                                    <div className="custom-badge">{type && type.charAt(0).toUpperCase() + type.slice(1)}</div>
+                                    <div className="custom-badge">{type && t(type)}</div>
                                 </div>
 
                                 <h4 className="fw-bolder mb-2">{title}</h4>
-                                <p className='paragraph mb-1 '>{t("Appliation")}: {t(application)}</p>
-                                <p className='paragraph mb-1 '>{t("Machine")}: {t(category)}</p>
+                                <p className='paragraph mb-1 '>{t("Appliation")}: {application.toLowerCase() === "others" ? t(application) : t(otherApplication)}</p>
+                                <p className='paragraph mb-1 '>{t("Machine")}: {category.toLowerCase() === "others" ? t(category) : t(otherMachine)}</p>
 
                                 <div className="d-flex align-items-center justify-content-between mb-2">
                                     <p className=''>{city}{city && ','} {country}</p>
@@ -341,7 +353,13 @@ export default function ViewMachinery() {
                                         <div className="label">
                                             <p className="color-secondary">{t("application")}</p>
                                         </div>
-                                        <p className="paragraph">{(t(application).slice(0, 15)) + (application.length > 15 ? "..." : "")}</p>
+                                        <p className="paragraph">
+                                            {
+                                                (application.toLowerCase() === "other" || application.toLowerCase() === "others") && otherApplication
+                                                    ? t(otherApplication)
+                                                    : t(application)
+                                            }
+                                        </p>
 
                                     </div>
 
@@ -349,7 +367,12 @@ export default function ViewMachinery() {
                                         <div className="label">
                                             <p className="color-secondary">{t("Machine")}</p>
                                         </div>
-                                        <p className="paragraph">{(t(category).slice(0, 15)) + (category.length > 15 ? "..." : "")}</p>
+                                        <p className="paragraph">  {
+                                            (category.toLowerCase() === "other" || category.toLowerCase() === "others") && otherMachine
+                                                ? t(otherMachine)
+                                                : t(category)
+                                        }</p>
+
                                     </div>
 
                                     <div className="feature">
@@ -362,13 +385,25 @@ export default function ViewMachinery() {
                                         <div className="label">
                                             <p className="color-secondary">{t("type")}</p>
                                         </div>
-                                        <p className="paragraph">{t(machineryType)}</p>
+                                        <p className="paragraph">
+                                            {
+                                                (machineryType.toLowerCase() === "other" || machineryType.toLowerCase() === "others") && otherType
+                                                    ? t(otherType)
+                                                    : t(machineryType)
+                                            }
+                                        </p>
                                     </div>
                                     <div className="feature">
                                         <div className="label">
                                             <p className="color-secondary">{t("brand")}</p>
                                         </div>
-                                        <p className="paragraph">{brand}</p>
+                                        <p className="paragraph">
+                                            {
+                                                (brand.toLowerCase() === "other" || brand.toLowerCase() === "others") && otherBrand
+                                                    ? t(otherBrand)
+                                                    : t(brand)
+                                            }
+                                        </p>
                                     </div>
                                     {
                                         guaranteePeriod !== "" && (

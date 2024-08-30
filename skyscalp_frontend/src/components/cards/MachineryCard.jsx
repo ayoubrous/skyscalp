@@ -20,10 +20,15 @@ import { GrStatusInfo } from 'react-icons/gr';
 import { formatPrice } from '../../utils/formatPrice';
 import { checkInFavourites } from '../../APIs/favourites';
 import handleProductFavourite from '../utils/manangeFavourite';
+import { TbBrandAbstract } from 'react-icons/tb';
+import { GiStarShuriken } from 'react-icons/gi';
 
 
 const MachineryCard = ({ data }) => {
-    const { _id, images, title, description, category, type, budget, street, city, country, unit, model, application, condition, user, createdAt, build, guaranteePeriod } = data;
+    const { _id, images, title, description, category, type, budget,
+        street, city, country, unit, model, application,
+        condition, user, createdAt, build, guaranteePeriod,
+        otherApplication, otherMachine, brand, otherBrand, machineryType, otherType } = data;
 
 
     const [t] = useTranslation();
@@ -74,27 +79,59 @@ const MachineryCard = ({ data }) => {
                     </div>
 
                     <p className="">{city}{city && ','} {country}</p>
-                    <p className='mb-1'>{t(category)}</p>
-                    <p className='color-secondary'>{t(application)}</p>
+                    <p className='mb-1'>{category.toLowerCase() === "other" || category.toLowerCase() === "others" ? otherMachine.slice(0, 10) : t(category)}</p>
+                    <p className='color-secondary'>{application.toLowerCase() === "other" || application.toLowerCase() === "others" ? otherApplication.slice(0, 10) : t(application)}</p>
                     <p className='color-secondary'>{t(condition)}</p>
 
                     {description && <p className='mb-2 mt-1 color-secondary description' dangerouslySetInnerHTML={{ __html: description.substring(0, 120) }}></p>}
 
 
 
-                    <div className="d-flex justify-content-between align-items-center property-features mb-2">
-                        {
+                    <div className="characteristics  mb-2">
+                        {/* {
                             build !== '' && (
                                 <div className='d-flex align-items-center gap-1'>
                                     <p className="feature-text  ">Year:</p>
                                     <p className="feature-text ">{t(build)}</p>
                                 </div>
                             )
-                        }
+                        } */}
+
+                        {brand !== '' && (
+                            <div className="d-flex align-items-center gap-1">
+                                <TbBrandAbstract className="feature-icon" />
+                                {
+                                    brand && (
+                                        (brand.toLowerCase() === "other" || brand.toLowerCase() === "others") && otherBrand
+                                            ? (
+                                                <p className="feature-text">{t(otherBrand).slice(0, 11)}</p>
+                                            ) : (
+                                                <p className="feature-text">{t(brand).slice(0, 11)}</p>
+                                            )
+                                    )
+                                }
+                            </div>
+                        )}
+
+                        {machineryType !== '' && (
+                            <div className="d-flex align-items-center gap-1">
+                                <GiStarShuriken className="feature-icon" />
+                                {
+                                    machineryType && (
+                                        (machineryType.toLowerCase() === "other" || machineryType.toLowerCase() === "others") && otherType
+                                            ? (
+                                                <p className="feature-text">{t(otherType).slice(0, 11)}</p>
+                                            ) : (
+                                                <p className="feature-text">{t(machineryType).slice(0, 11)}</p>
+                                            )
+                                    )
+                                }
+                            </div>
+                        )}
 
                         {
                             guaranteePeriod !== '' && (
-                                <div className='d-flex align-items-center'>
+                                <div className='d-flex align-items-center gap-1'>
                                     <FaRegCheckSquare className='feature-icon' />
                                     <p className="feature-text">{t("guarantee")}</p>
                                 </div>
@@ -103,7 +140,7 @@ const MachineryCard = ({ data }) => {
 
                         {
                             condition !== '' && (
-                                <div className='d-flex align-items-center'>
+                                <div className='d-flex align-items-center gap-1'>
                                     <GrStatusInfo className='feature-icon' />
                                     <p className="feature-text">{t(condition)}</p>
                                 </div>

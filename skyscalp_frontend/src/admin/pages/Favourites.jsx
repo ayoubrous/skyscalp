@@ -135,7 +135,7 @@ export default function Machinery() {
                                 <p>Construction</p>
                             </div>
                         </div> */}
-                        <h4 className='fw-bolder mb-3'>{t("favourites")} {t("items")}</h4>
+                        <h4 className='fw-bolder mb-3'>{t("favourites")}</h4>
 
                         <div className="d-flex justify-content-end">
                             <a href=""></a>

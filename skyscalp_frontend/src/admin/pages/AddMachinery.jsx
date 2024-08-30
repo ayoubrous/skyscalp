@@ -55,6 +55,18 @@ export default function AddMachinery() {
     const [certification, setCertification] = useState('')
 
 
+    const [otherApplication, setOtherApplication] = useState('')
+    const [otherMachine, setOtherMachine] = useState('')
+    const [otherBrand, setOtherBrand] = useState('')
+    const [otherType, setOtherType] = useState('')
+
+
+    const [showOtherApp, setShowOtherApp] = useState(false)
+    const [showOtherMachine, setShowOtherMachine] = useState(false)
+    const [showOtherBrand, setShowOtherBrand] = useState(false)
+    const [showOtherType, setShowOtherType] = useState(false)
+
+
     const [countries, setCountries] = useState([])
     const [states, setStates] = useState([])
     const [cities, setCities] = useState([])
@@ -65,6 +77,12 @@ export default function AddMachinery() {
     const [updatePage, setUpdatePage] = useState(false)
     const location = useLocation()
 
+    const updateOtherFields = (data) => {
+        setShowOtherApp(data.otherApplication === "Other");
+        setShowOtherMachine(data.otherMachine === "Other");
+        setShowOtherBrand(data.otherBrand === "Other");
+        setShowOtherType(data.otherType === "Other");
+    };
 
     let params = useParams()
     useEffect(() => {
@@ -80,6 +98,7 @@ export default function AddMachinery() {
             fetch(`${process.env.REACT_APP_SERVER_URL}/api/getProductById/${params.id}`, requestOptions)
                 .then((response) => response.json())
                 .then((result) => {
+                    console.log(result)
                     setIsLoading(false)
                     if (result.status) {
                         console.log(result)
@@ -102,6 +121,20 @@ export default function AddMachinery() {
                         setUnit(result.data.unit);
                         setMachineryType(result.data.machineryType);
                         setBrand(result.data.brand);
+
+                        setOtherApplication(result.data.otherApplication);
+                        setOtherMachine(result.data.otherMachine);
+                        setOtherBrand(result.data.otherBrand);
+                        setOtherType(result.data.otherType);
+
+
+                        updateOtherFields({
+                            otherApplication: result.data.application,
+                            otherMachine: result.data.category,
+                            otherBrand: result.data.brand,
+                            otherType: result.data.machineryType
+                        })
+
                         setUploadedImages(result.data.images.map((img, i) => {
                             return ({
                                 id: i,
@@ -371,6 +404,12 @@ export default function AddMachinery() {
                 unit: unit,
                 machineryType: machineryType,
                 brand: brand,
+
+                otherApplication,
+                otherMachine,
+                otherBrand,
+                otherType,
+
                 status: true
             };
 
@@ -437,6 +476,13 @@ export default function AddMachinery() {
                 unit: unit,
                 machineryType: machineryType,
                 brand: brand,
+
+
+                otherApplication,
+                otherMachine,
+                otherBrand,
+                otherType,
+
                 status: true
             };
 
@@ -576,7 +622,12 @@ export default function AddMachinery() {
 
                                         <div className="form-group form-group-sm mb-3">
                                             <label htmlFor="" className='mb-1'>{t("Application")}*</label>
-                                            <select name="" id="" className="custom-input" onChange={e => setApplication(e.target.value)} value={application}>
+                                            <select name="" id="" className="custom-input" onChange={e => {
+                                                setApplication(e.target.value)
+                                                e.target.value === "Other" ?
+                                                    setShowOtherApp(true) :
+                                                    setShowOtherApp(false)
+                                            }} value={application}>
                                                 <option value="">{t("select")} {t("Application")}</option>
                                                 {
                                                     machineryCategories.map((data, i) => (
@@ -585,10 +636,23 @@ export default function AddMachinery() {
                                                 }
                                             </select>
                                         </div>
+                                        {
+                                            showOtherApp && (
+                                                <div className="form-group form-group-sm mb-3">
+                                                    <label htmlFor="" className='mb-1'>{t("Please specify")}</label>
+                                                    <input type="text" maxLength={30} className="custom-input" onChange={e => setOtherApplication(e.target.value)} value={otherApplication} />
+                                                </div>
+                                            )
+                                        }
 
                                         <div className="form-group form-group-sm mb-3">
                                             <label htmlFor="" className='mb-1'>{t("select")} {t("Machine")}*</label>
-                                            <select name="" id="" className="custom-input" onChange={e => setCategory(e.target.value)} value={category}>
+                                            <select name="" id="" className="custom-input" onChange={e => {
+                                                setCategory(e.target.value)
+                                                e.target.value === "Other" ?
+                                                    setShowOtherMachine(true) :
+                                                    setShowOtherMachine(false)
+                                            }} value={category}>
                                                 <option value="">{t("select")} {t("Machine")}</option>
                                                 {
                                                     machineryCategories.map((data) => (
@@ -601,6 +665,14 @@ export default function AddMachinery() {
                                                 }
                                             </select>
                                         </div>
+                                        {
+                                            showOtherMachine && (
+                                                <div className="form-group form-group-sm mb-3">
+                                                    <label htmlFor="" className='mb-1'>{t("Please specify")}</label>
+                                                    <input type="text" maxLength={30} className="custom-input" onChange={e => setOtherMachine(e.target.value)} value={otherMachine} />
+                                                </div>
+                                            )
+                                        }
 
                                         <div className="form-group form-group-sm">
                                             <label htmlFor="" className='mb-1'>{t("budget")} (MAD/{t("unit")})*</label>
@@ -664,7 +736,12 @@ export default function AddMachinery() {
                                         <div className="info">{t("properties")}</div>
                                         <div className="form-group form-group-sm mb-3">
                                             <label htmlFor="" className='mb-1'>{t("select")} {t("brand")}</label>
-                                            <select name="" id="" className="custom-input" onChange={e => setBrand(e.target.value)} value={brand}>
+                                            <select name="" id="" className="custom-input" onChange={e => {
+                                                setBrand(e.target.value)
+                                                e.target.value === "Other" ?
+                                                    setShowOtherBrand(true) :
+                                                    setShowOtherBrand(false)
+                                            }} value={brand}>
                                                 <option value="">{t("select")} {t("brand")}</option>
                                                 {
                                                     machineryBrands.map((data) => (
@@ -677,6 +754,14 @@ export default function AddMachinery() {
                                                 }
                                             </select>
                                         </div>
+                                        {
+                                            showOtherBrand && (
+                                                <div className="form-group form-group-sm mb-3">
+                                                    <label htmlFor="" className='mb-1'>{t("Please specify")}</label>
+                                                    <input type="text" maxLength={30} className="custom-input" onChange={e => setOtherBrand(e.target.value)} value={otherBrand} />
+                                                </div>
+                                            )
+                                        }
 
                                         <div className="form-group form-group-sm mb-3">
                                             <label htmlFor="" className='mb-1'>{t("select")} {t("condition")}</label>
@@ -709,7 +794,12 @@ export default function AddMachinery() {
 
                                         <div className="form-group form-group-sm mb-3">
                                             <label htmlFor="" className='mb-1'>{t("select")} {t("type")}</label>
-                                            <select name="" id="" className="custom-input" onChange={e => setMachineryType(e.target.value)} value={machineryType}>
+                                            <select name="" id="" className="custom-input" onChange={e => {
+                                                setMachineryType(e.target.value)
+                                                e.target.value === "Other" ?
+                                                    setShowOtherType(true) :
+                                                    setShowOtherType(false)
+                                            }} value={machineryType}>
                                                 <option value="">{t("select")} {t("type")}</option>
                                                 {
                                                     machineryTypesDropdown.map((data, i) => {
@@ -720,6 +810,14 @@ export default function AddMachinery() {
                                                 }
                                             </select>
                                         </div>
+                                        {
+                                            showOtherType && (
+                                                <div className="form-group form-group-sm mb-3">
+                                                    <label htmlFor="" className='mb-1'>{t("Please specify")}</label>
+                                                    <input type="text" maxLength={30} className="custom-input" onChange={e => setOtherType(e.target.value)} value={otherType} />
+                                                </div>
+                                            )
+                                        }
 
 
                                         <div className="form-group form-group-sm mb-1">

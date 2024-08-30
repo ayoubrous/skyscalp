@@ -58,7 +58,7 @@ const machineryCategories = [
     {
         id: 5,
         image: excavation,
-        categoryName: 'Others',
+        categoryName: 'Other',
         subcategories: [
             'Generator', 'Pump', 'Welder', 'Compressor', 'Light tower',
             'Saw', 'Drill', 'Grinder', 'Concrete mixer', 'Concrete pump', 'Other'
@@ -125,7 +125,7 @@ const propertyCategories = [
     {
         id: 6,
         image: others,
-        categoryName: "Others",
+        categoryName: "Other",
         subcategories: []
     }
 ];
@@ -216,7 +216,7 @@ const propertyCategories = [
 //     },
 //     {
 //         id: 8,
-//         image: others,
+//         image: Other,
 //         categoryName: "Others",
 //         subcategories: []
 //     }
@@ -254,8 +254,8 @@ const constructionCategories = [
     },
     {
         id: 6,
-        image: "others",
-        categoryName: "Others",
+        image: "Other",
+        categoryName: "Other",
         subcategories: []
     }
 ];
@@ -360,7 +360,7 @@ const furnitureCategories = [
     {
         id: 9,
         image: others,
-        categoryName: "Others",
+        categoryName: "Other",
         subcategories: []
     }
 ];

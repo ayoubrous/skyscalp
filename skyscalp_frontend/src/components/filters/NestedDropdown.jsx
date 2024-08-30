@@ -1,6 +1,6 @@
 
 import { t } from 'i18next';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaAngleDown } from 'react-icons/fa';
 import { FaAngleUp } from 'react-icons/fa6';
@@ -9,6 +9,12 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
 	const [t] = useTranslation()
 	const [extendedCat, setExtendedCat] = useState(null)
 	const [checkedCategory, setCheckedCategory] = useState([])
+
+	useEffect(() => {
+		if(!checkAll){
+			setCheckedCategory([])
+		}
+	}, [checkAll])
 
 	const handleCheckAll = () => {
 		if (checkAll) {
@@ -126,6 +132,7 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
 							id="all"
 							onChange={handleCheckAll}
 							value={checkAll}
+							checked={checkAll}
 						/>
 						<label htmlFor="all">{t("all")}</label>
 					</div>
