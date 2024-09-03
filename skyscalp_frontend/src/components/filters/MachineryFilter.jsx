@@ -609,6 +609,13 @@ export default function MachineryFilter(
                                     )
                                 })
                             }
+                            {
+                                checkedSubcategories.map((filter, i) => {
+                                    return (
+                                        <span key={i} className='selected-filter'>{t(filter)} <FaXmark style={{ cursor: "pointer" }} onClick={() => removeTypeFilter(i, filter)} /></span>
+                                    )
+                                })
+                            }
                         </div>
                         {
                             // selectedFilters.length > 0 && (
@@ -619,9 +626,6 @@ export default function MachineryFilter(
                 </div>
 
             </div>
-
-
-
         </div>
     );
 }

@@ -102,6 +102,15 @@ const MarketPlace = () => {
         ],
     };
 
+
+    // const [currentCountry, setCurrentCountry] = useState(null)
+
+    // useEffect(() => {
+    //     let getCountry = localStorage.getItem('country')
+    //     console.log(getCountry)
+    //     setCurrentCountry(getCountry)
+    // }, [])
+
     const getApiUrl = (id) => {
         switch (id) {
             case 1:
@@ -216,6 +225,11 @@ const MarketPlace = () => {
             .then((result) => {
                 setLoading(false);
                 if (result.status) {
+                    // console.log(currentCountry)
+                    // let locationBasedCountry = result.data.documents.filter(doc =>
+                    //     doc.country.toLowerCase() === currentCountry.toLowerCase()
+                    // );
+                    // console.log(locationBasedCountry)
                     setProducts(result.data.documents);
                     setPaginationData({
                         currentPage: result.data.currentPage,
@@ -289,10 +303,10 @@ const MarketPlace = () => {
 
 
 
-    useEffect(() => {
-        const combinedFilters = Array.from(new Set([...selectedFilters, ...activeSubcats]));
-        setSelectedFilters(combinedFilters);
-    }, [activeSubcats])
+    // useEffect(() => {
+    //     const combinedFilters = Array.from(new Set([...selectedFilters, ...activeSubcats]));
+    //     setSelectedFilters(combinedFilters);
+    // }, [activeSubcats])
 
     const handlePageChange = (pageNumber) => {
         setPaginationData((prev) => ({ ...prev, currentPage: pageNumber }));

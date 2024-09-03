@@ -305,7 +305,7 @@ export default function ConstructionFilter({
 
     }, [checkedSubcategories]);
 
-      
+
     return (
         <div className="filter-area my-4">
             <div className="custom-container">
@@ -522,6 +522,13 @@ export default function ConstructionFilter({
                         <div className="tags">
                             {
                                 selectedFilters.map((filter, i) => {
+                                    return (
+                                        <span key={i} className='selected-filter'>{t(filter)} <FaXmark style={{ cursor: "pointer" }} onClick={() => removeTypeFilter(i, filter)} /></span>
+                                    )
+                                })
+                            }
+                            {
+                                checkedSubcategories.map((filter, i) => {
                                     return (
                                         <span key={i} className='selected-filter'>{t(filter)} <FaXmark style={{ cursor: "pointer" }} onClick={() => removeTypeFilter(i, filter)} /></span>
                                     )

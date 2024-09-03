@@ -81,6 +81,14 @@ export default function Navbar() {
         authData.logout()
         navigate('../')
     }
+
+
+    const handleCountryChange = (e) => {
+        let country = e.target.value
+        localStorage.setItem('country', country)
+        window.location.reload()
+    }
+
     return (
         <>
             <nav className="navbar">
@@ -100,6 +108,11 @@ export default function Navbar() {
                         </div>
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/estimate" >{t("estimate")}</NavLink>
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/app/dashboard" >{t("publish")}</NavLink>
+
+                        {/* <select name="" id="" onChange={handleCountryChange}>
+                            <option value="france">France</option>
+                            <option value="morocco">Morocco</option>
+                        </select> */}
                     </div>
                     <div className="about-company-links links">
                         <NavLink to='/' className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false">{t("home")}</NavLink>
