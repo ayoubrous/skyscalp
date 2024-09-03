@@ -145,52 +145,52 @@ const MarketPlace = () => {
             setFiltersObj(updatedFiltersObj);
         }
 
-        const savedFilters = sessionStorage.getItem('appliedFilters');
+        // const savedFilters = sessionStorage.getItem('appliedFilters');
 
-        if (savedFilters && !JSON.parse(savedFilters).isProperties) {
-            const parsedFilters = JSON.parse(savedFilters);
-            updatedFiltersObj = parsedFilters
-            if (queryType) {
-                updatedFiltersObj = { ...updatedFiltersObj, type: queryType };
-            }
-            else {
-                updatedFiltersObj = parsedFilters
-            }
-            setFiltersObj(parsedFilters);
-            // Set individual state variables from the saved filters
+        // if (savedFilters && !JSON.parse(savedFilters).isProperties) {
+        //     const parsedFilters = JSON.parse(savedFilters);
+        //     updatedFiltersObj = parsedFilters
+        //     if (queryType) {
+        //         updatedFiltersObj = { ...updatedFiltersObj, type: queryType };
+        //     }
+        //     else {
+        //         updatedFiltersObj = parsedFilters
+        //     }
+        //     setFiltersObj(parsedFilters);
+        //     // Set individual state variables from the saved filters
 
-            setType(parsedFilters.type);
-            setMinPrice(parsedFilters.minPrice === 0 ? '' : parsedFilters.minPrice);
-            setMaxPrice(parsedFilters.maxPrice === 0 ? '' : parsedFilters.maxPrice);
-            setGuarantee(parsedFilters.guarantee);
-            setSelectedMachineryType(parsedFilters.selectedMachineryType);
-            setSelectedMaterialType(parsedFilters.selectedMaterialType);
-            setSelectedBrands(parsedFilters.selectedBrands);
-            setYearBuild(parsedFilters.yearBuild);
-            setSelectedConditions(parsedFilters.selectedConditions);
-            setSelectedCountries(parsedFilters.selectedCountries);
-            setSelectedStates(parsedFilters.selectedStates);
-            setSelectedCities(parsedFilters.selectedCities);
-            setSelectedStreets(parsedFilters.selectedStreets);
-            setCheckedSubcategories(parsedFilters.checkedSubcategories);
+        //     setType(parsedFilters.type);
+        //     setMinPrice(parsedFilters.minPrice === 0 ? '' : parsedFilters.minPrice);
+        //     setMaxPrice(parsedFilters.maxPrice === 0 ? '' : parsedFilters.maxPrice);
+        //     setGuarantee(parsedFilters.guarantee);
+        //     setSelectedMachineryType(parsedFilters.selectedMachineryType);
+        //     setSelectedMaterialType(parsedFilters.selectedMaterialType);
+        //     setSelectedBrands(parsedFilters.selectedBrands);
+        //     setYearBuild(parsedFilters.yearBuild);
+        //     setSelectedConditions(parsedFilters.selectedConditions);
+        //     setSelectedCountries(parsedFilters.selectedCountries);
+        //     setSelectedStates(parsedFilters.selectedStates);
+        //     setSelectedCities(parsedFilters.selectedCities);
+        //     setSelectedStreets(parsedFilters.selectedStreets);
+        //     setCheckedSubcategories(parsedFilters.checkedSubcategories);
 
-            const combinedFilters = [
-                ...parsedFilters.yearBuild,
-                ...parsedFilters.selectedBrands,
-                ...parsedFilters.selectedMachineryType,
-                ...parsedFilters.selectedMaterialType,
-                ...parsedFilters.selectedConditions,
-                ...parsedFilters.selectedCountries,
-                ...parsedFilters.selectedStates,
-                ...parsedFilters.selectedCities,
-                ...parsedFilters.selectedStreets,
-                ...parsedFilters.selectedStreets,
-                ...parsedFilters.selectedMaterials,
-                ...parsedFilters.materialItemType,
-            ];
+        //     const combinedFilters = [
+        //         ...parsedFilters.yearBuild,
+        //         ...parsedFilters.selectedBrands,
+        //         ...parsedFilters.selectedMachineryType,
+        //         ...parsedFilters.selectedMaterialType,
+        //         ...parsedFilters.selectedConditions,
+        //         ...parsedFilters.selectedCountries,
+        //         ...parsedFilters.selectedStates,
+        //         ...parsedFilters.selectedCities,
+        //         ...parsedFilters.selectedStreets,
+        //         ...parsedFilters.selectedStreets,
+        //         ...parsedFilters.selectedMaterials,
+        //         ...parsedFilters.materialItemType,
+        //     ];
 
-            setSelectedFilters(combinedFilters);
-        }
+        //     setSelectedFilters(combinedFilters);
+        // }
 
 
 
@@ -338,13 +338,13 @@ const MarketPlace = () => {
             selectedStreets: selectedStreets
         };
         // console.log("marketplace", searchFilters)
-        sessionStorage.setItem('appliedFilters', JSON.stringify(searchFilters))
+        // sessionStorage.setItem('appliedFilters', JSON.stringify(searchFilters))
         setFiltersObj(searchFilters)
         loadData()
     }
 
     const resetAllFilters = () => {
-        sessionStorage.clear()
+        // sessionStorage.clear()
 
         setType('');
         setMinPrice('');
