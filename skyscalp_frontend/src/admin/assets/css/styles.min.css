@@ -20566,3 +20566,11 @@ ul {
 .hZZlND{ 
     border: 1px solid #ccc !important;
 }
+
+
+
+/* for table to not horizontaly overflow */
+.table-container{
+    width: 100%;
+    overflow: auto
+}

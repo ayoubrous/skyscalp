@@ -24,7 +24,7 @@ export default function Experts() {
     const loadData = (page) => {
         setLoading(true);
         const requestOptions = {
-            method: "GET",
+            method: "POST",
             redirect: "follow"
         };
 
@@ -148,6 +148,11 @@ export default function Experts() {
         {
             name: t('Published'),
             selector: row => row.createdAt && new Intl.DateTimeFormat('en-GB').format(new Date(row.createdAt)),
+            sortable: true,
+        },
+        {
+            name: t('Updated At'),
+            selector: row => row.updatedAt && new Intl.DateTimeFormat('en-GB').format(new Date(row.createdAt)),
             sortable: true,
         },
         {

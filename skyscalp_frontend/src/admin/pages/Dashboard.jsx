@@ -35,9 +35,7 @@ export default function Dashboard() {
   const [totalMachinery, setTotalMachinery] = useState(0)
   const [totalFurniture, setTotalFurniture] = useState(0)
 
-  useEffect(() => {
-    document.title = "Skyscalp "
-  }, [])
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
 
   const getUserInfo = () => {
     setIsLoading(true)
@@ -191,6 +189,47 @@ export default function Dashboard() {
   };
 
 
+  const handleEditPassword = (e) => {
+    e.preventDefault()
+    let data = {
+      email: userInfo.email,
+    }
+
+    setIsLoading(true)
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    const raw = JSON.stringify(data);
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
+
+    fetch(`${process.env.REACT_APP_SERVER_URL}/api/forgotPassword`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setIsLoading(false)
+        if (!result.status) {
+          toast.error(result.message)
+        }
+        else {
+          toast.success(result.message)
+        }
+
+      })
+      .catch((error) => {
+        setIsLoading(false)
+        console.error(error)
+      });
+  }
+
+
+const handleDeleteAccount = () => {
+  }
+
+
   return (
     <>
       <Toaster />
@@ -297,9 +336,13 @@ export default function Dashboard() {
                       <div className="form-group mb-2">
                         <label htmlFor="">{t("username")}</label>
                         <input type="text" className='custom-input my-1' value={username} onChange={e => setUsername(e.target.value)} />
+
                       </div>
                       <div className="form-group mb-2">
-                        <button className="custom-btn">{t("update")}</button>
+                        <button type='submit' className="custom-btn">{t("update")}</button>
+                        <button type='button' className="custom-btn outline-btn ms-2 py-2" onClick={handleEditPassword}>{t("Edit Password")}</button>
+                        {/* <button className="custom-btn outline-btn ms-2 py-2 text-danger" style={{border: "2px solid red"}} onClick={() => setShowDeleteModal(true)}>{t("Delete Account")}</button> */}
+                        {/* <button type='button' className="btn btn-outline-danger ms-2" style={{padding: "10px 10px"}} onClick={(e) => {e.preventDefault(); setShowDeleteModal(true)}}>{t("Delete Account")}</button> */}
                       </div>
                     </form>
                   </div>
@@ -310,6 +353,15 @@ export default function Dashboard() {
             <Footer />
           </div>
         </div>
+      </div>
+
+
+      <div className={`custom-modal text-center ${showDeleteModal ? 'show' : ''}`}>
+        <h4 className='mb-1'>{t("Delete My Account")}</h4>
+        <p className="mb-4">{t("This action will remove all of your products and information permanently.")}</p>
+
+        <button className="custom-btn bg-danger" onClick={handleDeleteAccount}>{t("I agree to delete my account")}</button>
+        <button className="custom-btn outline-btn ms-3 py-2" onClick={() => setShowDeleteModal(false)}>{t("Cancel")}</button>
       </div>
     </>
   )

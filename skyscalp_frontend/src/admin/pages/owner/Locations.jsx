@@ -295,7 +295,7 @@ export default function Locations() {
                                 </form>
                             </div>
                             <div className="col-5 card p-3">
-                                <h5>Add New State</h5>
+                                <h5>Add New Region</h5>
                                 <form action="" className='my-3' onSubmit={handleAddState}>
                                     <div className="form-group mb-2">
                                         <label htmlFor="">Select Country</label>
@@ -308,7 +308,7 @@ export default function Locations() {
                                         />
                                     </div>
                                     <div className="form-group mb-2">
-                                        <label htmlFor="">State Name</label>
+                                        <label htmlFor="">Region Name</label>
                                         <input type="text" className="custom-input" value={stateName} onChange={e => setStateName(e.target.value)} />
                                     </div>
                                     <div className="form-group mb-2 row">
@@ -344,7 +344,7 @@ export default function Locations() {
                                         />
                                     </div>
                                     <div className="form-group mb-2">
-                                        <label htmlFor="">Select State*</label>
+                                        <label htmlFor="">Select Region*</label>
                                         <Select
                                             className="custom-input bordor-0 p-0"
                                             classNamePrefix="select"
@@ -373,7 +373,7 @@ export default function Locations() {
                                 </form>
                             </div>
                             <div className="col-5 card p-3">
-                                <h5>Add New Street</h5>
+                                <h5>Add New District</h5>
                                 <form action="" className='my-3' onSubmit={handleAddStreet}>
                                     <div className="form-group mb-2">
                                         <label htmlFor="">Select Country*</label>
@@ -387,7 +387,7 @@ export default function Locations() {
                                         />
                                     </div>
                                     <div className="form-group mb-2">
-                                        <label htmlFor="">Select State*</label>
+                                        <label htmlFor="">Select Region*</label>
                                         <Select
                                             className="custom-input bordor-0 p-0"
                                             classNamePrefix="select"
@@ -407,7 +407,7 @@ export default function Locations() {
                                         />
                                     </div>
                                     <div className="form-group mb-2">
-                                        <label htmlFor="">Street Name*</label>
+                                        <label htmlFor="">District Name*</label>
                                         <input type="text" className="custom-input" value={streetName} onChange={e => setStreetName(e.target.value)} />
                                     </div>
                                     <div className="form-group mb-2 row">

@@ -287,12 +287,14 @@ export default function HomeFilter() {
                     <div className={`module-tab ${activeTab === 'property' ? 'active' : ''}`} onClick={() => handleActiveTab('property')}>
                         <p>{t("property")}</p>
                     </div>
-                    <div className={`module-tab ${activeTab === 'construction' ? 'active' : ''}`} onClick={() => handleActiveTab('construction')}>
-                        <p>{t("buildingMaterial")}</p>
-                    </div>
                     <div className={`module-tab ${activeTab === 'machinery' ? 'active' : ''}`} onClick={() => handleActiveTab('machinery')}>
                         <p>{t("machineryTools")}</p>
                     </div>
+                    
+                    <div className={`module-tab ${activeTab === 'construction' ? 'active' : ''}`} onClick={() => handleActiveTab('construction')}>
+                        <p>{t("buildingMaterial")}</p>
+                    </div>
+                    
                     <div className={`module-tab ${activeTab === 'furniture' ? 'active' : ''}`} onClick={() => handleActiveTab('furniture')}>
                         <p>{t("furnitureAppliances")}</p>
                     </div>

@@ -36,7 +36,7 @@ const updateProduct = async (req, res) => {
         }
 
         // let property = new PropertyModal(req.body)
-        let response = await MaterialsModal.findOneAndUpdate({ _id: id }, req.body)
+        let response = await MaterialsModal.findOneAndUpdate({ _id: id }, req.body, {new: true, timestamps: true})
         if (response) {
             sendResponse(req, res, true, "Product updated successfully", null)
         }

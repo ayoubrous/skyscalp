@@ -32,6 +32,7 @@ export default function Properties() {
             .then((result) => {
                 setLoading(false);
                 if (result.status) {
+                    // console.log(result)
                     setProperties(result.data.documents);
                     setPaginationData({
                         currentPage: result.data.currentPage,
@@ -133,11 +134,12 @@ export default function Properties() {
                                     <tr>
                                         <th className='col-2'>User</th>
                                         <th className='col-2'>Title</th>
-                                        <th className='col-2'>Address</th>
+                                        {/* <th className='col-2'>Address</th> */}
                                         <th className='col-2'>Type</th>
                                         <th className='col-2'>Budget</th>
                                         <th className='col-2'>Favourites</th>
                                         <th className='col-2'>Published</th>
+                                        <th className='col-2'>Updated At</th>
                                         <th className='col-1'>Featured</th>
                                         <th className='col-2'>Action</th>
                                     </tr>
@@ -152,12 +154,19 @@ export default function Properties() {
                                                         <p>{data.user.username}</p>
                                                         <small>{data.user.email}</small>
                                                     </td>
-                                                    <td>{data.title}</td>
-                                                    <td>{data.city} - {data.country}</td>
+                                                    {/* <td>{data.title}</td> */}
+                                                    <td>{data.title && (data.title.slice(0, 20)) + (data.title.length > 20 ? "..." : "")}</td>
+
+                                                    {/* <td>{data.city} - {data.country}</td> */}
                                                     <td>{(data.type && data.type.charAt(0).toUpperCase() + data.type.slice(1))}</td>
                                                     <td>MAD {formatPrice(data.budget)}</td>
                                                     <td>{data.toFavourites && data.toFavourites.length}</td>
                                                     <td>{new Date(data.createdAt).toLocaleString('en-GB', {
+                                                        day: '2-digit',
+                                                        month: 'short',
+                                                        year: 'numeric'
+                                                    })}</td>
+                                                    <td>{new Date(data.updatedAt).toLocaleString('en-GB', {
                                                         day: '2-digit',
                                                         month: 'short',
                                                         year: 'numeric'

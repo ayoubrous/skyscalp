@@ -5,7 +5,7 @@ import { FaBuilding, FaEye, FaRegTrashCan, FaTrash, FaUser } from 'react-icons/f
 import { FaEdit, FaTools } from 'react-icons/fa'
 import { BsBuildingsFill } from 'react-icons/bs'
 import { TbCarCrane } from 'react-icons/tb'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast'
 import Lottie from 'lottie-react'
 import loader from '../../../assets/images/skyscalp-loader.json'
@@ -20,6 +20,13 @@ export default function Materials() {
     const [currentPage, setCurrentPage] = useState(1)
 
     const [activeTab, setActiveTab] = useState('machinery')
+    const location = useLocation()
+
+    useEffect(() => {
+        location.state &&
+        setActiveTab(location.state.activeCat)
+    }, [location])
+    
 
     const handleTabChange = (tab) => {
         setActiveTab(tab)
@@ -168,11 +175,12 @@ export default function Materials() {
                                     <tr>
                                         <th className='col-2'>User</th>
                                         <th className='col-2'>Title</th>
-                                        <th className='col-2'>Address</th>
-                                        <th className='col-2'>Category</th>
+                                        {/* <th className='col-2'>Address</th> */}
+                                        {/* <th className='col-2'>Category</th> */}
                                         <th className='col-2'>Budget</th>
                                         <th className='col-1'>Favourites</th>
                                         <th className='col-2'>Published</th>
+                                        <th className='col-2'>Updated At</th>
                                         <th className='col-2'>Featured</th>
                                         <th className='col-2'>Action</th>
                                     </tr>
@@ -187,12 +195,19 @@ export default function Materials() {
                                                         <p>{data.user.username}</p>
                                                         <small>{data.user.email}</small>
                                                     </td>
-                                                    <td>{data.title}</td>
-                                                    <td><p>{data.city}</p><p>{data.country}</p></td>
-                                                    <td>{data.materialGroup}</td>
+                                                    {/* <td>{data.title}</td> */}
+                                                    <td>{data.title && (data.title.slice(0, 20)) + (data.title.length > 20 ? "..." : "")}</td>
+
+                                                    {/* <td><p>{data.city}</p><p>{data.country}</p></td> */}
+                                                    {/* <td>{data.materialGroup}</td> */}
                                                     <td>MAD {formatPrice(data.budget)}</td>
                                                     <td>{data.toFavourites && data.toFavourites.length}</td>
                                                     <td>{new Date(data.createdAt).toLocaleString('en-GB', {
+                                                        day: '2-digit',
+                                                        month: 'short',
+                                                        year: 'numeric'
+                                                    })}</td>
+                                                    <td>{new Date(data.updatedAt).toLocaleString('en-GB', {
                                                         day: '2-digit',
                                                         month: 'short',
                                                         year: 'numeric'

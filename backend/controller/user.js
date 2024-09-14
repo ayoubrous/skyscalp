@@ -329,6 +329,16 @@ const updateUserStaus = async (req, res) => {
 }
 
 
+const deleteUserAccount = (req, res) =>  {
+    try{
+
+    }
+    catch(err){
+        
+    }
+}
+
+
 module.exports =
 {
     register,

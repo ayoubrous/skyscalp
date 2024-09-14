@@ -105,12 +105,13 @@ export default function Machinery() {
                             <table className="table table-bordered table-hover dashboard-table">
                                 <thead>
                                     <tr>
-                                        <th className='col-1'>S. No</th>
-                                        <th className='col-2'>{t("title")}</th>
+                                        <th className=''>S. No</th>
+                                        <th className='col-3'>{t("title")}</th>
                                         <th className='col-2'>{t("application")}</th>
-                                        <th className='col-1'>{t("budget")}</th>
+                                        <th className='col-2'>{t("budget")}</th>
                                         <th className='col-1'>{t("favourites")}</th>
                                         <th className='col-1'>{t("published")}</th>
+                                        <th className='col-1'>{t("Updated At")}</th>
                                         <th className='col-1'>{t("status")}</th>
                                         <th className='col-1'>{t("action")}</th>
                                     </tr>
@@ -131,11 +132,12 @@ export default function Machinery() {
                                                 return (
                                                     <tr key={data._id}>
                                                         <td>{i + 1}</td>
-                                                        <td>{data.title}</td>
+                                                        <td>{data.title && (data.title.slice(0, 20)) + (data.title.length > 20 ? "..." : "")}</td>
                                                         <td>{t(data.application)}</td>
                                                         <td>MAD {formatPrice(data.budget)}</td>
                                                         <td>{data.toFavourites && data.toFavourites.length}</td>
                                                         <td>{data.createdAt && new Intl.DateTimeFormat('en-GB').format(new Date(data.createdAt))}</td>
+                                                        <td>{data.updatedAt && new Intl.DateTimeFormat('en-GB').format(new Date(data.updatedAt))}</td>
                                                         <td>
                                                             {
                                                                 data.status ?
