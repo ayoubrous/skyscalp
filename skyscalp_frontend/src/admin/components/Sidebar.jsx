@@ -1,6 +1,6 @@
 import React from 'react'
 import logo from '../../assets/images/logo.png'
-import { FaBuilding, FaCashRegister, FaChair, FaClock, FaGear, FaMessage, FaMoneyBill, FaRegHeart, FaRegMessage, FaUser } from 'react-icons/fa6'
+import { FaBuilding, FaCashRegister, FaChair, FaClock, FaGear, FaMessage, FaMoneyBill, FaRegHeart, FaRegMessage, FaUser, FaUsers } from 'react-icons/fa6'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { FaTools } from 'react-icons/fa'
 import { TbCarCrane } from 'react-icons/tb'
@@ -97,6 +97,20 @@ export default function Sidebar() {
                                     <span className="hide-menu">{t("furnitureAppliances")}</span>
                                 </NavLink>
                             </li>
+
+                            <li className="sidebar-item mt-1">
+                                <NavLink
+                                    to='../app/experts'
+                                    className={isRouteActive(['/experts', '/add-expert', '/update-expert']) ? "active sidebar-link" : 'none sidebar-link'}
+                                    aria-expanded="false"
+                                >
+                                    <span>
+                                        <FaUsers className='me-1' />
+                                    </span>
+                                    <span className="hide-menu">{t("Experts")}</span>
+                                </NavLink>
+                            </li>
+
                             <li className="sidebar-item mt-1">
                                 <NavLink
                                     to='../app/favourites'

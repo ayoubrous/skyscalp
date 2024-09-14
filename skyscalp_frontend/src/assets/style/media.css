@@ -336,6 +336,11 @@
     }
 
 
+    .category-cards-grid.agents-cards-grid{
+        grid-template-columns: repeat(3, 33%);
+        min-height: 250px;
+    
+    }
 
     .category-cards-grid .category-card .image img {
         width: 100%;

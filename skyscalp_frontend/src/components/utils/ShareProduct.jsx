@@ -1,8 +1,12 @@
 import React from 'react';
+import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 import { FaShareNodes } from 'react-icons/fa6';
 import Swal from 'sweetalert2';
 
 export default function ShareProduct() {
+    const { t } = useTranslation(); // Corrected destructuring
+
     const handleShare = () => {
         const currentUrl = window.location.href;
 
@@ -10,10 +14,11 @@ export default function ShareProduct() {
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(currentUrl).then(() => {
                 Swal.fire({
-                    title: "Link Copied to clipboard",
-                    text: "Share this link to engage more people",
+                    title: t("Link Copied to clipboard"),
+                    text: t("Share this link to engage more people"),
                     icon: "success"
                 });
+                // toast.success(t("Link Copied to clipboard"))
             }).catch(err => {
                 console.error('Could not copy text: ', err);
                 fallbackCopyTextToClipboard(currentUrl);
@@ -38,15 +43,15 @@ export default function ShareProduct() {
             const msg = successful ? 'successful' : 'unsuccessful';
             console.log('Fallback: Copying text command was ' + msg);
             Swal.fire({
-                title: "Link Copied to clipboard",
-                text: "Share this link to engage more people",
+                title: t("Link Copied to clipboard"),
+                text: t("Share this link to engage more people"),
                 icon: "success"
             });
         } catch (err) {
             console.error('Fallback: Oops, unable to copy', err);
             Swal.fire({
-                title: "Failed to copy link",
-                text: "Please copy the link manually",
+                title: t("Failed to copy link"),
+                text: t("Please copy the link manually"),
                 icon: "error"
             });
         }

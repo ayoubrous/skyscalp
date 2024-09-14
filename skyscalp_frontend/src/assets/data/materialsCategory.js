@@ -826,7 +826,7 @@ let materialCategories = [
     {
         id: 7,
         application: "Heating",
-        ignoreProperties: ['thickness', 'base', 'voltage','finish'],
+        ignoreProperties: ['thickness', 'base', 'voltage', 'finish'],
         categories: [
             {
                 materialName: "Gas Boiler",
@@ -1372,6 +1372,182 @@ let materialCategories = [
                 materialName: 'Photo Frame',
                 unit: "piece",
                 types: ['Wooden', 'Metal', 'Other']
+            }
+        ]
+    }
+];
+let materialCategoriesUpdated = [
+    {
+        id: 1,
+        categoryName: "Structural Work",
+        materials: [
+            {
+                materialName: "Concrete",
+                unit: "m³",
+                filter1: {
+                    filterName: "Type",
+                    options: ['Ready-Mix', 'Precast', 'On-Site', 'Other']
+                },
+                filter2: {
+                    filterName: "Grade",
+                    options: ['C25', 'C30', 'C40', 'Other']
+                },
+                filter3: {
+                    filterName: "Color",
+                    options: ['Grey', 'White', 'Beige', 'Other']
+                },
+                filter4: {
+                    filterName: "Strength",
+                    options: ['High', 'Medium', 'Low', 'Other']
+                },
+                filter5: {
+                    filterName: "Setting Time",
+                    options: ['Fast', 'Slow', 'Medium', 'Other']
+                }
+            },
+            {
+                materialName: "Cement",
+                unit: "kg",
+                filter1: {
+                    filterName: "Type",
+                    options: ['Portland', 'Blended', 'Slag', 'Other']
+                },
+                filter2: {
+                    filterName: "Grade",
+                    options: ['42.5', '52.5', '32.5', 'Other']
+                },
+                filter3: {
+                    filterName: "Color",
+                    options: ['Grey', 'White', 'Beige', 'Other']
+                },
+                filter4: {
+                    filterName: "Strength",
+                    options: ['High', 'Medium', 'Low', 'Other']
+                },
+                filter5: {
+                    filterName: "Setting Time",
+                    options: ['Fast', 'Slow', 'Medium', 'Other']
+                }
+            },
+            {
+                materialName: "Sand",
+                unit: "m³",
+                filter1: {
+                    filterName: "Type",
+                    options: ['River', 'Beach', 'Quarry', 'Other']
+                },
+                filter2: {
+                    filterName: "Grade",
+                    options: ['Fine', 'Coarse', 'Medium', 'Other']
+                },
+                filter3: {
+                    filterName: "Size",
+                    options: ['Small', 'Large', 'Medium', 'Other']
+                },
+                filter4: {
+                    filterName: "Color",
+                    options: ['Beige', 'Brown', 'White', 'Other']
+                },
+                filter5: {
+                    filterName: "Moisture Content",
+                    options: ['Low', 'High', 'Medium', 'Other']
+                }
+            },
+            {
+                materialName: "Gravel",
+                unit: "m³",
+                filter1: {
+                    filterName: "Type",
+                    options: ['Crushed', 'Natural', 'Recycled', 'Other']
+                },
+                filter2: {
+                    filterName: "Grade",
+                    options: ['5mm', '10mm', '20mm', 'Other']
+                },
+                filter3: {
+                    filterName: "Color",
+                    options: ['Grey', 'Brown', 'Black', 'Other']
+                },
+                filter4: {
+                    filterName: "Shape",
+                    options: ['Round', 'Angular', 'Mixed', 'Other']
+                },
+                filter5: {
+                    filterName: "Hardness",
+                    options: ['Soft', 'Hard', 'Medium', 'Other']
+                }
+            },
+            {
+                materialName: "Stone",
+                unit: "m²",
+                filter1: {
+                    filterName: "Type",
+                    options: ['Granite', 'Marble', 'Limestone', 'Other']
+                },
+                filter2: {
+                    filterName: "Finish",
+                    options: ['Polished', 'Rough', 'Honed', 'Other']
+                },
+                filter3: {
+                    filterName: "Color",
+                    options: ['Black', 'White', 'Grey', 'Other']
+                },
+                filter4: {
+                    filterName: "Thickness",
+                    options: ['1cm', '2cm', '3cm', 'Other']
+                },
+                filter5: {
+                    filterName: "Texture",
+                    options: ['Smooth', 'Rough', 'Other']
+                }
+            },
+            {
+                materialName: "Brick",
+                unit: "piece",
+                filter1: {
+                    filterName: "Type",
+                    options: ['Clay', 'Concrete', 'Other']
+                },
+                filter2: {
+                    filterName: "Size",
+                    options: ['Standard', 'Jumbo', 'Other']
+                },
+                filter3: {
+                    filterName: "Color",
+                    options: ['Red', 'Grey', 'Brown', 'Other']
+                },
+                filter4: {
+                    filterName: "Strength",
+                    options: ['High', 'Medium', 'Low', 'Other']
+                },
+                filter5: {
+                    filterName: "Texture",
+                    options: ['Smooth', 'Rough', 'Other']
+                }
+            },
+            {
+                materialName: "Concrete Block",
+                unit: "piece",
+                filter1: {
+                    filterName: "Type",
+                    options: ['Hollow', 'Solid', 'Other']
+                },
+                filter2: {
+                    filterName: "Size",
+                    options: ['8"', '10"', '12"', 'Other']
+                },
+                filter3: {
+                    filterName: "Color",
+                    options: ['Grey', 'White', 'Other']
+                },
+                filter4: {
+                    filterName: "Strength",
+                    options: ['High', 'Medium', 'Low', 'Other']
+                },
+                filter5: {
+                    filterName: "Texture",
+                    options: ['Smooth', 'Rough', 'Other']
+                }
             }
         ]
     }

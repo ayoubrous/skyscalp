@@ -128,6 +128,92 @@ const getServices = async (req, res) => {
     }
 };
 
+const getFilteredServices = async (req, res) => {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 9;
+    const sortby = req.query.sortby || 'createdAt'; // Default to 'createdAt' if not provided
+    const sortOrder = req.query.order || 'desc'; // Default to 'desc' if not provided
+    const skipIndex = (page - 1) * limit;
+
+    // Construct filter object based on provided filters
+    const filters = {
+        status: true
+    };
+    const {
+        minPrice,
+        maxPrice,
+        selectedExperty, // value
+        selectedField,
+        selectedCountries,
+        selectedStates,
+        selectedCities,
+        selectedStreets,
+        selectedAvailibilities, selectedEducations, selectedLanguages, selectedExperience
+    } = req.body;
+
+    if (minPrice) filters.budget = { $gte: parseInt(minPrice) };
+    if (maxPrice) filters.budget = { ...filters.budget, $lte: parseInt(maxPrice) };
+    if (selectedField) filters.field = { ...filters.selectedField, $eq: selectedField };
+    // if (selectedExperty) filters.experty = { ...filters.selectedExperty, $eq: selectedExperty };
+
+
+    // Check if the arrays exists 
+    if (selectedExperty && selectedExperty.length > 0) filters.experty = { $in: selectedExperty };
+    if (selectedAvailibilities && selectedAvailibilities.length > 0) filters.availibility = { $in: selectedAvailibilities };
+    if (selectedEducations && selectedEducations.length > 0) filters.education = { $in: selectedEducations };
+    if (selectedLanguages && selectedLanguages.length > 0) filters.language = { $in: selectedLanguages };
+
+    // for locations
+    if (selectedCountries.length > 0) filters.country = { $in: selectedCountries };
+    if (selectedStates.length > 0) filters.state = { $in: selectedStates };
+    if (selectedCities.length > 0) filters.city = { $in: selectedCities };
+    if (selectedStreets.length > 0) filters.street = { $in: selectedStreets };
+
+    console.log(filters)
+
+    try {
+        const totalItems = await ServiceModal.countDocuments(filters);
+        const totalPages = Math.ceil(totalItems / limit);
+
+        const mongooseSortOrder = sortOrder === 'desc' ? -1 : 1;
+
+        let response = await ServiceModal.find(filters)
+            .skip(skipIndex)
+            .limit(limit)
+            .sort({ [sortby]: mongooseSortOrder }) // Sort properties data by the specified field and order
+            .populate('userID');
+
+        if (response.length > 0) {
+            response = response.map(product => ({
+                ...product.toObject(),
+                user: {
+                    username: product.userID.username,
+                    email: product.userID.email,
+                    profileImage: product.userID.profileImage,
+                    phone: product.userID.phone
+                },
+                userID: product.userID._id
+            }));
+
+            const data = {
+                documents: response,
+                currentPage: page,
+                totalPages: totalPages,
+                totalProducts: totalItems,
+                hasNextPage: page < totalPages,
+                hasPrevPage: page > 1
+            };
+
+            sendResponse(req, res, true, "Services found successfully", data);
+        } else {
+            sendResponse(req, res, false, "No Services found", null);
+        }
+    } catch (err) {
+        console.log(err);
+        sendResponse(req, res, false, "Error proceeding your request, try again", null);
+    }
+}
+
 const getServicesByUserID = async (req, res) => {
     try {
         const id = req.params.id
@@ -135,7 +221,7 @@ const getServicesByUserID = async (req, res) => {
             sendResponse(req, res, false, "ID not found", null)
         }
         let result = await ServiceModal.find({ userID: id }).sort({ createdAt: 1 });
-        
+
         if (result) {
             sendResponse(req, res, true, "Services found successfully", result)
         }
@@ -177,5 +263,6 @@ module.exports = {
     getSingleService,
     getServices,
     getServicesByUserID,
-    deleteService
+    deleteService,
+    getFilteredServices
 }

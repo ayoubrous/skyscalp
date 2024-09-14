@@ -466,7 +466,7 @@ export default function PropertyFilter({
                                         ) : (
                                             <>
                                                 {minPrice === '' ? (
-                                                    <p className='fw-bolder filter-values'>All</p>
+                                                    <p className='fw-bolder filter-values'>{t("all")}</p>
                                                 ) : (
                                                     <>
                                                         <p className="fw-bolder filter-values">{formatNumber(minPrice)}</p>
@@ -475,7 +475,7 @@ export default function PropertyFilter({
                                                 <p className="filter-values"> - </p>
                                                 {maxPrice === '' ? (
                                                     <>
-                                                        <p className='fw-bolder' style={{ display: 'inline' }}> All </p>
+                                                        <p className='fw-bolder' style={{ display: 'inline' }}> {t("all")} </p>
                                                         <p style={{ display: 'inline' }}> (MAD) </p>
                                                     </>
                                                 ) : (
@@ -534,7 +534,7 @@ export default function PropertyFilter({
                                         ) : (
                                             <>
                                                 {minSize === '' ? (
-                                                    <p className='fw-bolder filter-values'>All</p>
+                                                    <p className='fw-bolder filter-values'>{t("all")}</p>
                                                 ) : (
                                                     <>
                                                         <p className='fw-bolder filter-values'>{minSize}</p>
@@ -544,7 +544,7 @@ export default function PropertyFilter({
 
                                                 {maxSize === '' ? (
                                                     <>
-                                                        <p className="fw-bolder" style={{ display: 'inline' }}> All </p>
+                                                        <p className="fw-bolder" style={{ display: 'inline' }}> {t("all")} </p>
                                                         <p style={{ display: 'inline' }}>(m <sup>2</sup>)</p>
                                                     </>
                                                 ) : (
@@ -603,7 +603,7 @@ export default function PropertyFilter({
                                         ) : (
                                             <>
                                                 {minBeds === '' ? (
-                                                    <p className="filter-values fw-bolder">All</p>
+                                                    <p className="filter-values fw-bolder">{t("all")}</p>
                                                 ) : (
                                                     <>
                                                         <p className='fw-bolder filter-values'>{minBeds}</p>
@@ -612,7 +612,7 @@ export default function PropertyFilter({
                                                 <p className='filter-values'> - </p>
                                                 {maxBeds === '' ? (
                                                     <>
-                                                        <p style={{ display: 'inline' }} className='fw-bolder'>All </p>
+                                                        <p style={{ display: 'inline' }} className='fw-bolder'>{t("all")} </p>
                                                         <p style={{ display: 'inline' }}> Rooms </p>
                                                     </>
                                                 ) : (
@@ -671,7 +671,7 @@ export default function PropertyFilter({
                                         ) : (
                                             <>
                                                 {minBath === '' ? (
-                                                    <p className="filter-values fw-bolder">All</p>
+                                                    <p className="filter-values fw-bolder">{t("all")}</p>
                                                 ) : (
                                                     <>
                                                         <p className='fw-bolder filter-values'>{minBath}</p>
@@ -681,7 +681,7 @@ export default function PropertyFilter({
 
                                                 {maxBath === '' ? (
                                                     <>
-                                                        <p className='fw-bolder filter-values'> All </p>
+                                                        <p className='fw-bolder filter-values'> {t("all")} </p>
                                                         <p style={{ display: 'inline' }}> Bathrooms </p>
                                                     </>
                                                 ) : (

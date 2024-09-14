@@ -18,6 +18,7 @@ import ViewBlog from './pages/ViewBlog';
 import ViewProperty from './pages/ViewProperty';
 import ViewMachinery from './pages/ViewMachinery';
 import ViewConstruction from './pages/ViewConstruction';
+import ViewExpert from './pages/ViewExpert';
 
 
 import Dashboard from './admin/pages/Dashboard';
@@ -36,6 +37,7 @@ import { AuthContextProvider } from './context/AuthContext';
 import Private from './routes/Private';
 import ForgotPasswordEmail from './admin/pages/ForgotPasswordEmail';
 import UpdatePassword from './admin/pages/UpdatePassword';
+import AdminExperts from './admin/pages/Experts';
 
 
 import AdminDashboard from './admin/pages/owner/Dashboard';
@@ -50,6 +52,7 @@ import OwnerMaterials from './admin/pages/owner/Materials';
 import Articles from './admin/pages/owner/Articles';
 import OwnerMessages from './admin/pages/owner/Messages';
 import AddArticle from './admin/pages/owner/AddArticle';
+import OwnerExperts from './admin/pages/owner/Experts';
 
 
 import UpdateAnalytics from './components/utils/UpdateAnalytics';
@@ -58,6 +61,8 @@ import { getLocations } from './assets/data/locations';
 import Test from './Test';
 
 import faviconLogo from './assets/images/logo-half.png'
+import Experts from './pages/Experts';
+import AddExpert from './admin/pages/AddExpert';
 
 
 const App = () => {
@@ -84,7 +89,7 @@ const App = () => {
       <ScrollToTop >
         <AuthContextProvider>
           <Routes>
-            {/* <Route path='/' exact index element={<Test />} /> */}
+            <Route path='/test' exact index element={<Test />} />
             <Route path='/' exact index element={<Home />} />
             <Route path='/about' exact element={<About />} />
             <Route path='/estimate' exact element={<Contact />} />
@@ -92,11 +97,13 @@ const App = () => {
             {/* ----- Listing pages -----  */}
             <Route path='/properties' exact element={<Properties />} />
             <Route path='/marketplace' exact element={<MarketPlace />} />
+            <Route path='/experts' exact element={<Experts />} />
             {/* ------ Detailed Pages -------  */}
             <Route path='/property/:id' exact element={<ViewProperty />} />
             <Route path='/materials/:id' exact element={<ViewConstruction />} />
             <Route path='/machines/:id' exact element={<ViewMachinery />} />
             <Route path='/furniture/:id' exact element={<ViewFurniture />} />
+            <Route path='/expert/:id' exact element={<ViewExpert />} />
 
 
             <Route path='/register' exact element={<Register />} />
@@ -116,6 +123,10 @@ const App = () => {
                 <Route path='/admin/add-article' exact element={<AddArticle />} />
                 <Route path='/admin/update-article/:id' exact element={<AddArticle />} />
                 <Route path='/admin/messages' exact element={<OwnerMessages />} />
+
+
+                <Route path='/admin/experts' exact element={<OwnerExperts />} />
+
               </Route>
 
               <Route path='/app/dashboard' exact element={<Dashboard />} />
@@ -133,6 +144,10 @@ const App = () => {
               <Route path='/app/update-material/:id' exact element={<AddConstruction />} />
               <Route path='/app/add-furniture' exact element={<AddFurniture />} />
               <Route path='/app/update-furniture/:id' exact element={<AddFurniture />} />
+
+              <Route path='/app/experts' exact element={<AdminExperts />} />
+              <Route path='/app/add-expert' exact element={<AddExpert />} />
+              <Route path='/app/update-expert/:id' exact element={<AddExpert />} />
             </Route>
 
 

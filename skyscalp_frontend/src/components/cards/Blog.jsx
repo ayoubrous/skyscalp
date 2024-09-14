@@ -14,8 +14,8 @@ export default function Blog({ imgUrl, id, title, description, datePosted }) {
         let blogUrl = currentUrl + `/article/${id}`
         navigator.clipboard.writeText(blogUrl)
         Swal.fire({
-            title: "Link Copied to clipboard",
-            text: "Share this link to engage more people",
+            title: t("Link Copied to clipboard"),
+            text: t("Share this link to engage more people"),
             icon: "success"
         });
     }

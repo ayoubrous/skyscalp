@@ -370,7 +370,7 @@ export default function FurnitureFilter({
                                         ) : (
                                             <>
                                                 {minPrice === '' ? (
-                                                    <p className='fw-bolder filter-values'>All</p>
+                                                    <p className='fw-bolder filter-values'>{t("all")}</p>
                                                 ) : (
                                                     <>
                                                         <p className="fw-bolder filter-values">{formatNumber(minPrice)}</p>
@@ -379,7 +379,7 @@ export default function FurnitureFilter({
                                                 <p className="filter-values"> - </p>
                                                 {maxPrice === '' ? (
                                                     <>
-                                                        <p className='fw-bolder' style={{ display: 'inline' }}> All </p>
+                                                        <p className='fw-bolder' style={{ display: 'inline' }}>{t("all")}</p>
                                                         <p style={{ display: 'inline' }}> (MAD) </p>
                                                     </>
                                                 ) : (

@@ -10,7 +10,7 @@ const { sendMessage, getUserMessages, getMessagesToAdmin } = require('../control
 const { getProductDetails } = require('../controller/utils')
 const { addProduct, updateProduct, getProducts, getProductsByUserID, getSingleProduct, deleteProduct, getMachineryProducts, getConstructionProducts, getFurnitureProducts, updateProductFeature, updateProductFavourites, getProductsByFilters, getFeaturedProducts } = require('../controller/materials')
 const { addArticle, updateArticle, getArticles, getSingleArticle, deleteArticle } = require('../controller/articles')
-const { addService, updateService, getServices, getServicesByUserID, deleteService, getSingleService } = require('../controller/services')
+const { addService, updateService, getServices, getServicesByUserID, deleteService, getSingleService, getFilteredServices } = require('../controller/services')
 
 const router = express.Router()
 
@@ -101,7 +101,8 @@ router.get('/api/getAnalytics', getAnalytics)
 router.post('/api/addService', addService)
 router.put('/api/updateService/:id', updateService)
 router.get('/api/getServiceById/:id', getSingleService)
-router.get('/api/getServices', getServices)
+router.post('/api/getServices', getServices)
+router.post('/api/getFilteredServices', getFilteredServices)
 router.get('/api/getUserServices/:id', getServicesByUserID)
 router.delete('/api/deleteService/:id', deleteService)
 

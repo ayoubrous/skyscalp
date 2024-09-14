@@ -7,6 +7,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { FaTools } from 'react-icons/fa'
 import { TbCarCrane } from 'react-icons/tb'
 import { BsBuildingsFill } from 'react-icons/bs'
+import Navbar from '../../../components/navbar/Navbar'
 
 export default function Sidebar() {
     useEffect(() => {
@@ -18,12 +19,12 @@ export default function Sidebar() {
         document.querySelector(".left-sidebar").style.left = "-270px"
     }
     return (
+        <>
+        <Navbar />
         <aside className="left-sidebar admin">
             <div>
                 <div className="brand-logo d-flex align-items-center justify-content-between mt-2">
-                    <Link to="../app/dashboard" className="text-nowrap logo-img">
-                        <img src={logo} width="130" alt="" />
-                    </Link>
+                   
                     <div className="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse" onClick={hideSidebar}>
                         <i className="ti ti-x fs-8"></i>
                     </div>
@@ -72,6 +73,16 @@ export default function Sidebar() {
                         </li>
 
                         <li className="sidebar-item mt-1">
+                            <NavLink to='../admin/experts' className={(navData) => (navData.isActive ? "active sidebar-link" : 'none sidebar-link')} aria-expanded="false">
+                                <span>
+                                    <FaUsers className='me-1' />
+                                </span>
+                                <span className="hide-menu">Experts</span>
+                            </NavLink>
+                        </li>
+
+
+                        <li className="sidebar-item mt-1">
                             <NavLink to='../admin/articles' className={(navData) => (navData.isActive ? "active sidebar-link" : 'none sidebar-link')} aria-expanded="false">
                                 <span>
                                     <FaNoteSticky className='me-1' />
@@ -92,5 +103,7 @@ export default function Sidebar() {
                 </nav>
             </div>
         </aside>
+        </>
+
     )
 }
