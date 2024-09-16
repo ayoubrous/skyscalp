@@ -6,8 +6,10 @@ import toast, { Toaster } from 'react-hot-toast'
 import Lottie from 'lottie-react'
 import loader from '../../../assets/images/skyscalp-loader.json'
 import Swal from 'sweetalert2'
+import { useTranslation } from 'react-i18next'
 
 export default function Messages() {
+    const [t] = useTranslation()
     const [messages, setMessages] = useState([])
     const [loading, setLoading] = useState(false)
 
@@ -31,7 +33,7 @@ export default function Messages() {
             })
             .catch(error => {
                 console.error("Error fetching product details:", error);
-                toast.error("Error fetching product details");
+                toast.error(t("Error proceeding request"));
             });
     }, []);
 
@@ -45,9 +47,9 @@ export default function Messages() {
                 title: 'Message Details',
                 html: `
                 <div>
-                    <p className="mb-1" style={{fontSize: "12px"}}><b>Email:</b> ${message.email}</p>
-                    <p className="mb-1" style={{fontSize: "12px"}}><b>Phone:</b> ${message.phone}</p>
-                    <p className="mb-1" style={{fontSize: "12px"}}><b>Message:</b></p>
+                    <p className="mb-1" style={{fontSize: "12px"}}><b>${t("email")}:</b> ${message.email}</p>
+                    <p className="mb-1" style={{fontSize: "12px"}}><b>${t("Phone")}:</b> ${message.phone}</p>
+                    <p className="mb-1" style={{fontSize: "12px"}}><b>${t("message")}:</b></p>
                     <p className="mb-1" style={{fontSize: "12px"}}>${message.message}</p>
                     
                 </div>
@@ -81,7 +83,7 @@ export default function Messages() {
                 <div className="body-wrapper">
                     <Header />
                     <div className="container-fluid">
-                        <h2 className='fw-bolder mb-3'>Messages Received</h2>
+                        <h2 className='fw-bolder mb-3'>{t("messages")}</h2>
 
                         <div className="d-flex justify-content-end">
                             <a href=""></a>
@@ -95,11 +97,13 @@ export default function Messages() {
                                 <thead>
                                     <tr>
                                         <th className='col-1'>S. No</th>
-                                        <th className='col-2'>Name</th>
-                                        <th className='col-2'>User email</th>
-                                        <th className='col-4'>Mesasge</th>
-                                        <th className='col-2'>Received At</th>
-                                        <th className='col-1'>Action</th>
+                                        <th className='col-2'>{t("Name")}</th>
+                                        <th className='col-2'>{t("User email")}</th>
+
+                                        <th className='col-3'>{t("message")}</th>
+                                        <th className='col-2'>{t("received")} {t("on")}</th>
+                                        <th className='col-2'>{t("action")}</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -110,7 +114,7 @@ export default function Messages() {
                                                 return (
                                                     <tr key={i}>
                                                         <td>{i + 1}</td>
-                                                        <td>{`${data.firstName} ${data.lastName} ` }</td>
+                                                        <td>{`${data.firstName} ${data.lastName} `}</td>
                                                         <td>{data.email}</td>
                                                         <td>
                                                             {data.message && data.message.length > 0 ?
@@ -124,7 +128,7 @@ export default function Messages() {
                                                             {/* <a href={`mailto:${data.email}`}>
                                                                 <button className="custom-btn px-2 py-1" style={{ fontSize: "12px" }}>Reply</button>
                                                             </a> */}
-                                                            <button className="custom-btn px-2 py-1 ms-1" style={{ fontSize: "12px" }} onClick={() => handleViewMessage(data._id)}>View</button>
+                                                            <button className="custom-btn px-2 py-1 ms-1" style={{ fontSize: "12px" }} onClick={() => handleViewMessage(data._id)}>{t("View")}</button>
                                                         </td>
                                                     </tr>
                                                 )

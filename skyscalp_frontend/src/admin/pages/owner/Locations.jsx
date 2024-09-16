@@ -4,8 +4,11 @@ import Header from '../../components/Header'
 import Select from 'react-select';
 import toast, { Toaster } from 'react-hot-toast';
 import { all } from 'axios';
+import { useTranslation } from 'react-i18next';
 
 export default function Locations() {
+
+    const [t] = useTranslation()
     // addcountry
     const [countryName, setCountryName] = useState('')
     const [countLat, setCountLat] = useState('')
@@ -50,7 +53,8 @@ export default function Locations() {
                     setAllCountries(countriesArray)
                 }
                 else {
-                    toast.error("Error getting countries data")
+                    // toast.error("Error getting countries data")
+                    console.log("Error getting data")
                 }
             })
             .catch((error) => console.error(error));
@@ -74,7 +78,7 @@ export default function Locations() {
                     setAllStates(statesArray)
                 }
                 else {
-                    toast.error("Error getting states data")
+                    console.log(t("Error getting data"))
                 }
             })
             .catch((error) => console.error(error));
@@ -98,7 +102,7 @@ export default function Locations() {
                     setAllCities(citiesArray)
                 }
                 else {
-                    toast.error("Error getting states data")
+                    console.log(t("Error getting data"))
                 }
             })
             .catch((error) => console.error(error));
@@ -119,7 +123,7 @@ export default function Locations() {
         e.preventDefault()
 
         if (countryName.length === 0 || countLat.length === 0 || countLong.length === 0) {
-            toast.error("Fill out empty fields")
+            toast.error(t("Fill out empty fields"))
             return
         }
         const myHeaders = new Headers();
@@ -142,10 +146,10 @@ export default function Locations() {
             .then((response) => response.json())
             .then((result) => {
                 if (result.status) {
-                    toast.success(result.message)
+                    toast.success(t("Location added successfully"))
                 }
                 else {
-                    toast.error(result.message)
+                    toast.error(t("Error proceeding request"))
                 }
             })
             .catch((error) => console.error(error));
@@ -154,7 +158,7 @@ export default function Locations() {
         e.preventDefault()
 
         if (stateName.length === 0 || stateLat.length === 0 || stateLong.length === 0) {
-            toast.error("Fill out empty fields")
+            toast.error(t("Fill out empty fields"))
             return
         }
         const myHeaders = new Headers();
@@ -178,10 +182,10 @@ export default function Locations() {
             .then((response) => response.json())
             .then((result) => {
                 if (result.status) {
-                    toast.success(result.message)
+                    toast.success(t("Location added successfully"))
                 }
                 else {
-                    toast.error(result.message)
+                    toast.error(t("Error proceeding request"))
                 }
             })
             .catch((error) => console.error(error));
@@ -215,10 +219,10 @@ export default function Locations() {
             .then((response) => response.json())
             .then((result) => {
                 if (result.status) {
-                    toast.success(result.message)
+                    toast.success(t("Location added successfully"))
                 }
                 else {
-                    toast.error(result.message)
+                    toast.error(t("Error proceeding request"))
                 }
             })
             .catch((error) => console.error(error));
@@ -253,10 +257,10 @@ export default function Locations() {
             .then((response) => response.json())
             .then((result) => {
                 if (result.status) {
-                    toast.success(result.message)
+                    toast.success(t("Location added successfully"))
                 }
                 else {
-                    toast.error(result.message)
+                    toast.error(t("Error proceeding request"))
                 }
             })
             .catch((error) => console.error(error));
@@ -273,32 +277,32 @@ export default function Locations() {
                     <div className="container-fluid">
                         <div className="row gap-3 justify-content-center">
                             <div className="col-5 card p-3">
-                                <h5>Add New Country</h5>
+                                <h5>{t("Add New Country")}</h5>
                                 <form action="" className='my-3' onSubmit={handleAddCountry}>
                                     <div className="form-group mb-2">
-                                        <label htmlFor="">Country*</label>
+                                        <label htmlFor="">{t("country")}*</label>
                                         <input type="text" className="custom-input" value={countryName} onChange={e => setCountryName(e.target.value)} />
                                     </div>
                                     <div className="form-group mb-2 row">
                                         <div className="col-6">
-                                            <label htmlFor="">Latitude*</label>
+                                            <label htmlFor="">{t("Latitude")}*</label>
                                             <input type="text" className="custom-input" value={countLat} onChange={e => setCountLat(e.target.value)} />
                                         </div>
                                         <div className="col-6">
-                                            <label htmlFor="">Longitude*</label>
+                                            <label htmlFor="">{t("Longitude")}*</label>
                                             <input type="text" className="custom-input" value={countLong} onChange={e => setCountLong(e.target.value)} />
                                         </div>
                                     </div>
                                     <div className="form-group mb-2">
-                                        <button className="custom-btn">Add</button>
+                                        <button className="custom-btn">{t("Add")}</button>
                                     </div>
                                 </form>
                             </div>
                             <div className="col-5 card p-3">
-                                <h5>Add New Region</h5>
+                                <h5>{t("Add New Region")}</h5>
                                 <form action="" className='my-3' onSubmit={handleAddState}>
                                     <div className="form-group mb-2">
-                                        <label htmlFor="">Select Country</label>
+                                        <label htmlFor="">{t("select")} {t("country")}</label>
                                         <Select
                                             className="custom-input bordor-0 p-0"
                                             classNamePrefix="select"
@@ -308,21 +312,21 @@ export default function Locations() {
                                         />
                                     </div>
                                     <div className="form-group mb-2">
-                                        <label htmlFor="">Region Name</label>
+                                        <label htmlFor="">{t("Region Name")}</label>
                                         <input type="text" className="custom-input" value={stateName} onChange={e => setStateName(e.target.value)} />
                                     </div>
                                     <div className="form-group mb-2 row">
                                         <div className="col-6">
-                                            <label htmlFor="">Latitude*</label>
+                                            <label htmlFor="">{t("Latitude")}*</label>
                                             <input type="text" className="custom-input" value={stateLat} onChange={e => setStateLat(e.target.value)} />
                                         </div>
                                         <div className="col-6">
-                                            <label htmlFor="">Longitude*</label>
+                                            <label htmlFor="">{t("Longitude")}*</label>
                                             <input type="text" className="custom-input" value={stateLong} onChange={e => setStateLong(e.target.value)} />
                                         </div>
                                     </div>
                                     <div className="form-group mb-2">
-                                        <button className="custom-btn">Add</button>
+                                        <button className="custom-btn">{t("Add")}</button>
                                     </div>
                                 </form>
                             </div>
@@ -330,10 +334,10 @@ export default function Locations() {
 
                         <div className="row gap-3 justify-content-center">
                             <div className="col-5 card p-3">
-                                <h5>Add New City</h5>
+                                <h5>{t("Add New City")}</h5>
                                 <form action="" className='my-3' onSubmit={handleAddCity}>
                                     <div className="form-group mb-2">
-                                        <label htmlFor="">Select Country*</label>
+                                        <label htmlFor="">{t("select")} {t("country")}*</label>
                                         <Select
                                             className="custom-input bordor-0 p-0"
                                             classNamePrefix="select"
@@ -344,7 +348,7 @@ export default function Locations() {
                                         />
                                     </div>
                                     <div className="form-group mb-2">
-                                        <label htmlFor="">Select Region*</label>
+                                        <label htmlFor="">{t("select")} {t("Region")}*</label>
                                         <Select
                                             className="custom-input bordor-0 p-0"
                                             classNamePrefix="select"
@@ -354,29 +358,29 @@ export default function Locations() {
                                         />
                                     </div>
                                     <div className="form-group mb-2">
-                                        <label htmlFor="">City Name*</label>
+                                        <label htmlFor="">{t("City Name")}*</label>
                                         <input type="text" className="custom-input" value={cityName} onChange={e => setCityName(e.target.value)} />
                                     </div>
                                     <div className="form-group mb-2 row">
                                         <div className="col-6">
-                                            <label htmlFor="">Latitude*</label>
+                                            <label htmlFor="">{t("Latitude")}*</label>
                                             <input type="text" className="custom-input" value={cityLat} onChange={e => setCityLat(e.target.value)} />
                                         </div>
                                         <div className="col-6">
-                                            <label htmlFor="">Longitude*</label>
+                                            <label htmlFor="">{t("Longitude")}*</label>
                                             <input type="text" className="custom-input" value={cityLong} onChange={e => setCityLong(e.target.value)} />
                                         </div>
                                     </div>
                                     <div className="form-group mb-2">
-                                        <button className="custom-btn">Add</button>
+                                        <button className="custom-btn">{t("Add")}</button>
                                     </div>
                                 </form>
                             </div>
                             <div className="col-5 card p-3">
-                                <h5>Add New District</h5>
+                                <h5>{t("Add New District")}</h5>
                                 <form action="" className='my-3' onSubmit={handleAddStreet}>
                                     <div className="form-group mb-2">
-                                        <label htmlFor="">Select Country*</label>
+                                        <label htmlFor="">{t("select")} {t("country")}*</label>
                                         <Select
                                             className="custom-input bordor-0 p-0"
                                             classNamePrefix="select"
@@ -387,7 +391,7 @@ export default function Locations() {
                                         />
                                     </div>
                                     <div className="form-group mb-2">
-                                        <label htmlFor="">Select Region*</label>
+                                        <label htmlFor="">{t("select")} {t("Region")}*</label>
                                         <Select
                                             className="custom-input bordor-0 p-0"
                                             classNamePrefix="select"
@@ -397,7 +401,7 @@ export default function Locations() {
                                         />
                                     </div>
                                     <div className="form-group mb-2">
-                                        <label htmlFor="">Select City*</label>
+                                        <label htmlFor="">{t("select")} {t("city")}*</label>
                                         <Select
                                             className="custom-input bordor-0 p-0"
                                             classNamePrefix="select"
@@ -407,21 +411,21 @@ export default function Locations() {
                                         />
                                     </div>
                                     <div className="form-group mb-2">
-                                        <label htmlFor="">District Name*</label>
+                                        <label htmlFor="">{t("District Name")}*</label>
                                         <input type="text" className="custom-input" value={streetName} onChange={e => setStreetName(e.target.value)} />
                                     </div>
                                     <div className="form-group mb-2 row">
                                         <div className="col-6">
-                                            <label htmlFor="">Latitude*</label>
+                                            <label htmlFor="">{t("Latitude")}*</label>
                                             <input type="text" className="custom-input" value={streetLat} onChange={e => setStreetLat(e.target.value)} />
                                         </div>
                                         <div className="col-6">
-                                            <label htmlFor="">Longitude*</label>
+                                            <label htmlFor="">{t("Longitude")}*</label>
                                             <input type="text" className="custom-input" value={streetLong} onChange={e => setStreetLong(e.target.value)} />
                                         </div>
                                     </div>
                                     <div className="form-group mb-2">
-                                        <button className="custom-btn">Add</button>
+                                        <button className="custom-btn">{t("Add")}</button>
                                     </div>
                                 </form>
                             </div>

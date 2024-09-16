@@ -11,9 +11,10 @@ import Lottie from 'lottie-react'
 import loader from '../../../assets/images/skyscalp-loader.json'
 
 import { formatPrice } from '../../../utils/formatPrice'
+import { useTranslation } from 'react-i18next'
 
 export default function Articles() {
-
+    const [t] = useTranslation()
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -48,7 +49,7 @@ export default function Articles() {
 
 
     const handleDelete = (id) => {
-        let surity = window.confirm("Are you sure to delete this Article?")
+        let surity = window.confirm(t("Are you sure to delete this listing?"))
         if (surity) {
             const requestOptions = {
                 method: "DELETE",
@@ -58,11 +59,11 @@ export default function Articles() {
                 .then((response) => response.json())
                 .then((result) => {
                     if (result.status) {
-                        toast.success(result.message)
+                        toast.success(t("Article Published Successfully"))
                         loadData()
                     }
                     else {
-                        toast.success(result.message)
+                        toast.danger(t("Error proceeding request"))
                     }
                 })
                 .catch((error) => console.error(error));
@@ -70,7 +71,7 @@ export default function Articles() {
     }
 
 
-    
+
     return (
         <>
             <Toaster />
@@ -84,11 +85,11 @@ export default function Articles() {
                 <div className="body-wrapper">
                     <Header />
                     <div className="container-fluid">
-                        <h2 className='fw-bolder mb-3'>Published Articles</h2>
+                        <h2 className='fw-bolder mb-3'>{t("Published Articles")}</h2>
                         <div className="d-flex justify-content-end">
                             <a href=""></a>
                             <Link to='../admin/add-article'>
-                                <button className="outline-btn py-1 px-2">+ Publish New</button>
+                                <button className="outline-btn py-1 px-2">+ {t("Publish New")}</button>
                             </Link>
                         </div>
                         <div className="table-container mt-2">
@@ -96,12 +97,12 @@ export default function Articles() {
                                 <thead >
                                     <tr>
                                         <th className='col-1'>S. No</th>
-                                        <th className='col-2'>Image</th>
-                                        <th className='col-2'>Title</th>
-                                        <th className='col-3'>Description</th>
-                                        <th className='col-1'>Order</th>
-                                        <th className='col-2'>Published On</th>
-                                        <th className='col-1'>Action</th>
+                                        <th className='col-2'>{t("Image")}</th>
+                                        <th className='col-2'>{t("title")}</th>
+                                        <th className='col-3'>{t("description")}</th>
+                                        <th className='col-1'>{t("Order")}</th>
+                                        <th className='col-2'>{("published")}</th>
+                                        <th className='col-1'>{("action")}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -110,7 +111,7 @@ export default function Articles() {
                                         products.map((data, i) => {
                                             return (
                                                 <tr key={data._id}>
-                                                    <td>{i+1}</td>
+                                                    <td>{i + 1}</td>
                                                     <td><img src={data.image} alt="" width={100} /></td>
                                                     <td>{data.title}</td>
                                                     <td><p dangerouslySetInnerHTML={{ __html: data.description.substring(0, 120) }}></p></td>

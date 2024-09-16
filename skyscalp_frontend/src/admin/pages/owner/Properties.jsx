@@ -12,8 +12,10 @@ import loader from '../../../assets/images/skyscalp-loader.json'
 
 import { formatPrice } from '../../../utils/formatPrice'
 import Pagination from '../../../components/utils/Pagination'
+import { useTranslation } from 'react-i18next'
 
 export default function Properties() {
+    const [t] = useTranslation()
 
     const [properties, setProperties] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -42,7 +44,7 @@ export default function Properties() {
                         totalItems: result.data.totalProperties,
                     })
                 } else {
-                    toast.error(result.message);
+                    console.log(t("Error proceeding request"));
                 }
             })
             .catch((error) => {
@@ -67,7 +69,7 @@ export default function Properties() {
     };
 
     const handleDelete = (id) => {
-        let surity = window.confirm("Are you sure to delete this property?")
+        let surity = window.confirm(t("Are you sure to delete this listing?"))
         if (surity) {
             const requestOptions = {
                 method: "DELETE",
@@ -77,11 +79,11 @@ export default function Properties() {
                 .then((response) => response.json())
                 .then((result) => {
                     if (result.status) {
-                        toast.success(result.message)
+                        toast.success(t("Listing deleted successfully"))
                         loadData(currentPage)
                     }
                     else {
-                        toast.error("Error getting states data")
+                        toast.error(t("Error proceeding request"))
                     }
                 })
                 .catch((error) => console.error(error));
@@ -99,7 +101,7 @@ export default function Properties() {
             .then((response) => response.json())
             .then((result) => {
                 if (result.status) {
-                    toast.success(result.message)
+                    toast.success(t("Product Updated Successfully"))
                     loadData(currentPage)
 
                 }
@@ -125,23 +127,23 @@ export default function Properties() {
                 <div className="body-wrapper">
                     <Header />
                     <div className="container-fluid">
-                        <h2 className='fw-bolder mb-3'>Published Properties</h2>
+                        <h2 className='fw-bolder mb-3'>{t("Published Properties")}</h2>
                         <div className="d-flex justify-content-end mb-3">
                         </div>
                         <div className="table-container mt-2">
                             <table className="table table-bordered table-hover dashboard-table">
                                 <thead >
                                     <tr>
-                                        <th className='col-2'>User</th>
-                                        <th className='col-2'>Title</th>
+                                        <th className='col-2'>{t("user")}</th>
+                                        <th className='col-2'>{t("title")}</th>
                                         {/* <th className='col-2'>Address</th> */}
-                                        <th className='col-2'>Type</th>
-                                        <th className='col-2'>Budget</th>
-                                        <th className='col-2'>Favourites</th>
-                                        <th className='col-2'>Published</th>
-                                        <th className='col-2'>Updated At</th>
-                                        <th className='col-1'>Featured</th>
-                                        <th className='col-2'>Action</th>
+                                        <th className='col-1'>{t("type")}</th>
+                                        <th className='col-2'>{t("budget")}</th>
+                                        <th className='col-1'>{t("favourites")}</th>
+                                        <th className='col-2'>{t("published")}</th>
+                                        <th className='col-2'>{t("Updated At")}</th>
+                                        <th className='col-1'>{t("Featured")}</th>
+                                        <th className='col-1'>{t("action")}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -186,8 +188,8 @@ export default function Properties() {
                             </table>
 
                             <div className="buttons-pagination mb-3">
-                                <button className="btn btn-outline btn-primary btn-sm " disabled={!paginationData.hasPrevPage} onClick={() => handlePrevPage(paginationData.currentPage - 1)}>Previous</button>
-                                <button className="btn btn-outline btn-primary btn-sm ms-1" disabled={!paginationData.hasNextPage} onClick={() => handleNextPage(paginationData.currentPage + 1)}>Next</button>
+                                <button className="btn btn-outline btn-primary btn-sm " disabled={!paginationData.hasPrevPage} onClick={() => handlePrevPage(paginationData.currentPage - 1)}>{t("Previous")}</button>
+                                <button className="btn btn-outline btn-primary btn-sm ms-1" disabled={!paginationData.hasNextPage} onClick={() => handleNextPage(paginationData.currentPage + 1)}>{t("Next")}</button>
                             </div>
                         </div>
                         

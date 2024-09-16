@@ -11,10 +11,11 @@ import { uploadImage } from '../../utils/uploadImage'
 import ClipLoader from "react-spinners/ClipLoader";
 import Lottie from 'lottie-react'
 import Editor from '../../components/Editor'
+import { useTranslation } from 'react-i18next'
 
 
 export default function AddArticle() {
-
+    const [t] = useTranslation()
 
     const imageUploadRef = useRef()
 
@@ -48,7 +49,6 @@ export default function AddArticle() {
                 .then((result) => {
                     setIsLoading(false)
                     if (result.status) {
-                        console.log(result)
                         setArticleID(result.data._id);
                         setTitle(result.data.title);
                         setDescription(result.data.description);
@@ -56,7 +56,7 @@ export default function AddArticle() {
                         setUploadedImage(result.data.image)
                     }
                     else {
-                        toast.error(result.message)
+                        toast.error(t("Error getting data"))
                     }
                 })
                 .catch((error) => {
@@ -82,7 +82,7 @@ export default function AddArticle() {
                 setShowUploadedImages(true)
             }
             else {
-                toast.error("Error Uploading Image")
+                toast.error(t("Error proceeding request"))
             }
         } catch (error) {
             console.error("Error uploading image:", error);
@@ -112,7 +112,7 @@ export default function AddArticle() {
     const handleSubmit = e => {
         e.preventDefault()
         if (!validateFields()) {
-            toast.error("Fill out required fields to continue")
+            toast.error(t("Fill out all the required fields"))
         }
         else {
             setIsLoading(true)
@@ -141,10 +141,10 @@ export default function AddArticle() {
                 .then((result) => {
                     setIsLoading(false)
                     if (result.status) {
-                        toast.success(result.message)
+                        toast.success(t("Article Published Successfully"))
                     }
                     else {
-                        toast.error(result.message)
+                        toast.error(t("Error proceeding request"))
                     }
                 })
                 .catch((error) => {
@@ -159,7 +159,7 @@ export default function AddArticle() {
         e.preventDefault()
 
         if (!validateFields()) {
-            toast.error("Fill out required fields to continue")
+            toast.error(t("Fill out all the required fields"))
         }
         else {
             setIsLoading(true)
@@ -189,10 +189,10 @@ export default function AddArticle() {
                 .then((result) => {
                     setIsLoading(false)
                     if (result.status) {
-                        toast.success(result.message)
+                        toast.success(t("Article Updated Successfully"))
                     }
                     else {
-                        toast.error(result.message)
+                        toast.error(t("Error proceeding request"))
                     }
                 })
                 .catch((error) => {
@@ -228,15 +228,15 @@ export default function AddArticle() {
                             updatePage ?
                                 (
                                     <>
-                                        <h2 className='fw-bolder'>Update Article</h2>
-                                        <small className='mb-3'>Update the desired fields and retain others</small>
+                                        <h2 className='fw-bolder'>{t("Update Article")}</h2>
+                                        <small className='mb-3'>{t("Update the desired fields and retain others")}</small>
                                     </>
 
                                 ) :
                                 (
                                     <>
-                                        <h2 className='fw-bolder'>Publish New Article </h2>
-                                        <small className='mb-3'>Fill out all the required fields</small>
+                                        <h2 className='fw-bolder'>{t("Publish New Article")} </h2>
+                                        <small className='mb-3'>{t("Fill out all the required fields")}</small>
                                     </>
                                 )
                         }
@@ -257,7 +257,7 @@ export default function AddArticle() {
                                         <div className="upload-image" onClick={hanldeUploadClick}>
                                             <input type="file" accept='image/*' onChange={handleImageChange} name="" id="" className='invisible' ref={imageUploadRef} />
                                             <FaCloudUploadAlt />
-                                            <p>Upload Image</p>
+                                            <p>{t("Upload Image")}</p>
                                         </div>
                                         {
                                             uploadingImage && (
@@ -270,7 +270,7 @@ export default function AddArticle() {
                                                         data-testid="loader"
                                                         className='mt-1'
                                                     />
-                                                    <p>Uploading Image </p>
+                                                    <p>{t("Uploading Image")} </p>
                                                 </>
 
                                             )
@@ -288,11 +288,11 @@ export default function AddArticle() {
                                 </div>
                                 <div className="row mb-3">
                                     <div className="form-group mb-2">
-                                        <label htmlFor="" className='mb-1'>Sort Order</label>
+                                        <label htmlFor="" className='mb-1'>{t("Sort Order")}</label>
                                         <input type="number" className="custom-input" onChange={e => setOrder(e.target.value)} value={order} />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="" className='mb-1'>Title*</label>
+                                        <label htmlFor="" className='mb-1'>{t("title")}*</label>
                                         <input type="text" className="custom-input" onChange={e => setTitle(e.target.value)} value={title} />
                                     </div>
                                 </div>
@@ -300,14 +300,14 @@ export default function AddArticle() {
 
                                 <div className="row mb-3">
                                     <div className="form-group col-12">
-                                        <label htmlFor="" className='mb-1'>Description*</label>
+                                        <label htmlFor="" className='mb-1'>{t("description")}*</label>
                                         <Editor description={description} setDescription={setDescription} />
                                     </div>
                                 </div>
 
                                 <div className="row mb-2">
                                     <div className="form-group d-flex align-items-center justify-content-end gap-2">
-                                        <div className="outline-btn py-2" onClick={resetAllFields}>Reset</div>
+                                        <div className="outline-btn py-2" onClick={resetAllFields}>{t("reset")}</div>
                                         {/* <button className="custom-btn" type='submit'>Publish</button> */}
                                         <button className="custom-btn" type='submit'>
                                             <div className='d-flex align-items-center justify-content-center'>
@@ -319,7 +319,7 @@ export default function AddArticle() {
                                                     data-testid="loader"
                                                 />
                                                 {
-                                                    !isLoading && ("Publish")
+                                                    !isLoading && t("publish")
                                                 }
 
                                             </div>

@@ -8,8 +8,11 @@ import { FaTools } from 'react-icons/fa'
 import { TbCarCrane } from 'react-icons/tb'
 import { BsBuildingsFill } from 'react-icons/bs'
 import Navbar from '../../../components/navbar/Navbar'
+import { useTranslation } from 'react-i18next'
 
 export default function Sidebar() {
+    const [t] = useTranslation()
+
     useEffect(() => {
         document.title = "Skyscalp - Admin Panel"
         const favicon = document.querySelector('link[rel="icon"]');
@@ -36,7 +39,7 @@ export default function Sidebar() {
                                 <span>
                                     <i className="ti ti-layout-dashboard"></i>
                                 </span>
-                                <span className="hide-menu">Dashboard</span>
+                                <span className="hide-menu">{t("dashboard")}</span>
                             </NavLink>
                         </li>
                         <li className="sidebar-item mt-1">
@@ -44,7 +47,7 @@ export default function Sidebar() {
                                 <span>
                                     <FaLocationArrow className='me-1' />
                                 </span>
-                                <span className="hide-menu">Add Locations</span>
+                                <span className="hide-menu">{t("Add Locations")}</span>
                             </NavLink>
                         </li>
                         <li className="sidebar-item mt-1">
@@ -52,7 +55,7 @@ export default function Sidebar() {
                                 <span>
                                     <FaUsers className='me-1' />
                                 </span>
-                                <span className="hide-menu">Users</span>
+                                <span className="hide-menu">{t("Users")}</span>
                             </NavLink>
                         </li>
                         <li className="sidebar-item mt-1">
@@ -60,7 +63,7 @@ export default function Sidebar() {
                                 <span>
                                     <BsBuildingsFill className='me-1' />
                                 </span>
-                                <span className="hide-menu">Properties</span>
+                                <span className="hide-menu">{t("properties")}</span>
                             </NavLink>
                         </li>
                         <li className="sidebar-item mt-1">
@@ -68,7 +71,7 @@ export default function Sidebar() {
                                 <span>
                                     <FaTools className='me-1' />
                                 </span>
-                                <span className="hide-menu">Marketplace</span>
+                                <span className="hide-menu">{t("marketplace")}</span>
                             </NavLink>
                         </li>
 
@@ -77,7 +80,7 @@ export default function Sidebar() {
                                 <span>
                                     <FaUsers className='me-1' />
                                 </span>
-                                <span className="hide-menu">Experts</span>
+                                <span className="hide-menu">{t("Experts")}</span>
                             </NavLink>
                         </li>
 
@@ -87,7 +90,7 @@ export default function Sidebar() {
                                 <span>
                                     <FaNoteSticky className='me-1' />
                                 </span>
-                                <span className="hide-menu">Articles</span>
+                                <span className="hide-menu">{t("Articles")}</span>
                             </NavLink>
                         </li>
                         <li className="sidebar-item mt-1">
@@ -95,7 +98,7 @@ export default function Sidebar() {
                                 <span>
                                     <FaRegMessage className='me-1' />
                                 </span>
-                                <span className="hide-menu">Messages</span>
+                                <span className="hide-menu">{t("Messages")}</span>
                             </NavLink>
                         </li>
 

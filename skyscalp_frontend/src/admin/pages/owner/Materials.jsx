@@ -11,9 +11,11 @@ import Lottie from 'lottie-react'
 import loader from '../../../assets/images/skyscalp-loader.json'
 
 import { formatPrice } from '../../../utils/formatPrice'
+import { useTranslation } from 'react-i18next'
 
 export default function Materials() {
 
+    const [t] = useTranslation()
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [paginationData, setPaginationData] = useState({});
@@ -24,9 +26,9 @@ export default function Materials() {
 
     useEffect(() => {
         location.state &&
-        setActiveTab(location.state.activeCat)
+            setActiveTab(location.state.activeCat)
     }, [location])
-    
+
 
     const handleTabChange = (tab) => {
         setActiveTab(tab)
@@ -67,7 +69,7 @@ export default function Materials() {
                         totalItems: result.data.totalProperties,
                     })
                 } else {
-                    toast.error(result.message);
+                    toast.error(t("Error proceeding request"));
                 }
             })
             .catch((error) => {
@@ -92,7 +94,7 @@ export default function Materials() {
     };
 
     const handleDelete = (id) => {
-        let surity = window.confirm("Are you sure to delete this product?")
+        let surity = window.confirm(t("Are you sure to delete this listing?"))
         if (surity) {
             const requestOptions = {
                 method: "DELETE",
@@ -102,11 +104,11 @@ export default function Materials() {
                 .then((response) => response.json())
                 .then((result) => {
                     if (result.status) {
-                        toast.success(result.message)
+                        toast.success(t("Listing deleted successfully"))
                         loadData(currentPage)
                     }
                     else {
-                        toast.error("Error getting states data")
+                        toast.error(t("Error proceeding request"))
                     }
                 })
                 .catch((error) => console.error(error));
@@ -126,7 +128,8 @@ export default function Materials() {
                 setLoading(false);
 
                 if (result.status) {
-                    toast.success(result.message)
+                    toast.success(t("Product Updated Successfully"))
+
                     loadData(currentPage)
                 }
                 else {
@@ -150,22 +153,22 @@ export default function Materials() {
                 <div className="body-wrapper">
                     <Header />
                     <div className="container-fluid">
-                        <h2 className='fw-bolder mb-3'>Published Materials</h2>
+                        <h2 className='fw-bolder mb-3'>{t("Published Materials")}</h2>
                         {/* <div className="tabs">
                             <p>Machinery & Tools</p>
                             <p>Building Materials</p>
                             <p>Furniture & Appliances</p>
                         </div> */}
-                        <ul className="nav nav-tabs" style={{cursor: "pointer"}}>
+                        <ul className="nav nav-tabs" style={{ cursor: "pointer" }}>
                             <li className="nav-item">
-                                <p className={`nav-link text-dark ${activeTab === "machinery" ? 'active' : ''}`} aria-current="page" onClick={() => handleTabChange('machinery')}>Machinery & Tools</p>
+                                <p className={`nav-link text-dark ${activeTab === "machinery" ? 'active' : ''}`} aria-current="page" onClick={() => handleTabChange('machinery')}>{t("machineryTools")}</p>
                             </li>
-                            <li className="nav-item" style={{cursor: "pointer"}}>
-                                <p className={`nav-link text-dark ${activeTab === "materials" ? 'active' : ''}`} aria-current="page" onClick={() => handleTabChange('materials')}>Building Materials</p>
+                            <li className="nav-item" style={{ cursor: "pointer" }}>
+                                <p className={`nav-link text-dark ${activeTab === "materials" ? 'active' : ''}`} aria-current="page" onClick={() => handleTabChange('materials')}>{t("Construction Material")}</p>
 
                             </li>
-                            <li className="nav-item" style={{cursor: "pointer"}}>
-                                <p className={`nav-link text-dark ${activeTab === "furniture" ? 'active' : ''}`} aria-current="page" onClick={() => handleTabChange('furniture')}>Furniture & Appliances</p>
+                            <li className="nav-item" style={{ cursor: "pointer" }}>
+                                <p className={`nav-link text-dark ${activeTab === "furniture" ? 'active' : ''}`} aria-current="page" onClick={() => handleTabChange('furniture')}>{t("furnitureAppliances")}</p>
 
                             </li>
                         </ul>
@@ -173,16 +176,16 @@ export default function Materials() {
                             <table className="table table-bordered table-hover dashboard-table">
                                 <thead >
                                     <tr>
-                                        <th className='col-2'>User</th>
-                                        <th className='col-2'>Title</th>
+                                        <th className='col-2'>{t("user")}</th>
+                                        <th className='col-2'>{t("title")}</th>
                                         {/* <th className='col-2'>Address</th> */}
                                         {/* <th className='col-2'>Category</th> */}
-                                        <th className='col-2'>Budget</th>
-                                        <th className='col-1'>Favourites</th>
-                                        <th className='col-2'>Published</th>
-                                        <th className='col-2'>Updated At</th>
-                                        <th className='col-2'>Featured</th>
-                                        <th className='col-2'>Action</th>
+                                        <th className='col-2'>{t("budget")}</th>
+                                        <th className='col-1'>{t("favourites")}</th>
+                                        <th className='col-2'>{t("published")}</th>
+                                        <th className='col-2'>{t("Updated At")}</th>
+                                        <th className='col-1'>{t("Featured")}</th>
+                                        <th className='col-1'>{t("action")}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -227,11 +230,11 @@ export default function Materials() {
                             </table>
 
                             <div className="buttons-pagination mb-3">
-                                <button className="btn btn-outline btn-primary btn-sm " disabled={!paginationData.hasPrevPage} onClick={() => handlePrevPage(paginationData.currentPage - 1)}>Previous</button>
-                                <button className="btn btn-outline btn-primary btn-sm ms-1" disabled={!paginationData.hasNextPage} onClick={() => handleNextPage(paginationData.currentPage + 1)}>Next</button>
+                                <button className="btn btn-outline btn-primary btn-sm " disabled={!paginationData.hasPrevPage} onClick={() => handlePrevPage(paginationData.currentPage - 1)}>{t("Previous")}</button>
+                                <button className="btn btn-outline btn-primary btn-sm ms-1" disabled={!paginationData.hasNextPage} onClick={() => handleNextPage(paginationData.currentPage + 1)}>{t("Next")}</button>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

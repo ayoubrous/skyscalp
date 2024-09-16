@@ -856,7 +856,7 @@ export default function AddExpert() {
 
 
                                     <div className="formSide side_3">
-                                        <div className="info">{t("Expert")} {t("information")}</div>
+                                        <div className="info">{t("Expert Information")}</div>
 
                                         <div className="form-group form-group-sm mb-3">
                                             <label htmlFor="" className='mb-1'>{t("title")}* <small>({t("max")} 100 {t("characters")})</small></label>

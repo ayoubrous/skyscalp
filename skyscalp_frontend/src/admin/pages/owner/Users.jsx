@@ -10,10 +10,11 @@ import { formatPrice } from '../../../utils/formatPrice'
 import toast, { Toaster } from 'react-hot-toast'
 import Lottie from 'lottie-react'
 import loader from '../../../assets/images/skyscalp-loader.json'
+import { useTranslation } from 'react-i18next'
 
 
 export default function Users() {
-
+    const [t] = useTranslation()
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
 
@@ -50,7 +51,7 @@ export default function Users() {
 
 
     const toggleBlock = (id, status) => {
-        let surity = window.confirm("Are you sure to block this user?")
+        let surity = window.confirm(t("Are you sure to block this user?"))
         if (surity) {
             const requestOptions = {
                 method: "GET",
@@ -60,11 +61,11 @@ export default function Users() {
                 .then((response) => response.json())
                 .then((result) => {
                     if (result.status) {
-                        toast.success(result.message)
+                        toast.success(t("User updated Successfully"))
                         loadData()
                     }
                     else {
-                        toast.error("Error getting states data")
+                        toast.error(t("Error proceeding request"))
                     }
                 })
                 .catch((error) => console.error(error));
@@ -85,7 +86,7 @@ export default function Users() {
                 <div className="body-wrapper">
                     <Header />
                     <div className="container-fluid">
-                        <h2 className='fw-bolder mb-3'>All Signed Up Users</h2>
+                        <h2 className='fw-bolder mb-3'>{t("Registered Users")}</h2>
 
                         <div className="d-flex justify-content-end">
                             <a href=""></a>
@@ -96,11 +97,11 @@ export default function Users() {
                                 <thead>
                                     <tr>
                                         <th className=''>S. No</th>
-                                        <th className=''>Username</th>
-                                        <th className=''>Email</th>
-                                        <th className=''>Verified</th>
-                                        <th className=''>Status</th>
-                                        <th className=''>Action</th>
+                                        <th className=''>{t("username")}</th>
+                                        <th className=''>{t("email")}</th>
+                                        <th className=''>{t("Verified")}</th>
+                                        <th className=''>{t("status")}</th>
+                                        <th className=''>{t("action")}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -112,15 +113,15 @@ export default function Users() {
                                                     <td>{i+1}</td>
                                                     <td>{data.username}</td>
                                                     <td>{data.email}</td>
-                                                    <td>{data.isVerified ? 'Verified' : 'Not Verified'}</td>
+                                                    <td>{data.isVerified ? t('Verified') : t('Not Verified')}</td>
                                                     <td>
                                                         {
                                                             data.status ?
                                                                 (
-                                                                    <span className="badge text-bg-success" style={{ fontSize: "12px" }}>Active</span>
+                                                                    <span className="badge text-bg-success" style={{ fontSize: "12px" }}>{t("active")}</span>
                                                                 ) :
                                                                 (
-                                                                    <span className="badge text-bg-danger" style={{ fontSize: "12px" }}>Inactive</span>
+                                                                    <span className="badge text-bg-danger" style={{ fontSize: "12px" }}>{t("inactive")}</span>
                                                                 )
                                                         }
                                                     </td>
@@ -128,11 +129,11 @@ export default function Users() {
                                                         {
                                                             data.status ?
                                                                 (
-                                                                    <button className="btn btn-danger btn-sm ms-1" onClick={() => toggleBlock(data._id, false)}>Block user</button>
+                                                                    <button className="btn btn-danger btn-sm ms-1" onClick={() => toggleBlock(data._id, false)}>{t("Block user")}</button>
 
                                                                 ) :
                                                                 (
-                                                                    <button className="btn btn-success btn-sm ms-1" onClick={() => toggleBlock(data._id, true)}>Unblock user</button>
+                                                                    <button className="btn btn-success btn-sm ms-1" onClick={() => toggleBlock(data._id, true)}>{t("Unblock user")}</button>
                                                                 )
                                                         }
                                                     </td>
