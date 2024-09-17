@@ -47,11 +47,11 @@ export default function Footer() {
                                 <Link to='../' className="text-white">{t("home")}</Link>
                             </div>
                         </div>
-                        <div className="d-flex gap-3 mb-3">
+                        {/* <div clpassName="d-flex gap-3 mb-3">
                             <div>
                                 <Link to='../properties?type=buy' className="text-white">{t("buy")}</Link>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="d-flex gap-3 mb-3">
                             <div>
                                 <Link to='../marketplace?market=1' className="text-white">{t("machineryTools")}</Link>

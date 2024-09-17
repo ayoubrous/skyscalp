@@ -58,14 +58,14 @@ export default function Sidebar() {
                                 <span className="hide-menu">{t("Users")}</span>
                             </NavLink>
                         </li>
-                        <li className="sidebar-item mt-1">
+                        {/* <li className="sidebar-item mt-1">
                             <NavLink to='../admin/properties' className={(navData) => (navData.isActive ? "active sidebar-link" : 'none sidebar-link')} aria-expanded="false">
                                 <span>
                                     <BsBuildingsFill className='me-1' />
                                 </span>
                                 <span className="hide-menu">{t("properties")}</span>
                             </NavLink>
-                        </li>
+                        </li> */}
                         <li className="sidebar-item mt-1">
                             <NavLink to='../admin/materials' className={(navData) => (navData.isActive ? "active sidebar-link" : 'none sidebar-link')} aria-expanded="false">
                                 <span>

@@ -93,7 +93,7 @@ export default function Home() {
       <Hero />
       <FeatureCards />
       <HomeFilter />
-      <Properties properties={properties} />
+      {/* <Properties properties={properties} /> */}
       <Machinery data={materials} />
       <Construction data={materials} />
       <Estimation />

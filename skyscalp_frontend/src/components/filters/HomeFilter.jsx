@@ -28,7 +28,7 @@ export default function HomeFilter() {
     const [location, setLocation] = useState("")
     const [checkedSubcategories, setCheckedSubcategories] = useState([]);
     const [showCategoriesDrp, setShowCategoriesDrp] = useState(false)
-    const [activeTab, setActiveTab] = useState('property')
+    const [activeTab, setActiveTab] = useState('machinery')
     const [activeCategories, setActiveCategories] = useState(propertyCategories)
     const [checkAll, setCheckAll] = useState(false)
     const [selectedFilters, setSelectedFilters] = useState([])
@@ -284,9 +284,9 @@ export default function HomeFilter() {
             <div className="custom-container">
                 <p className="color-primary mb-2">{t("homeFilterTitle")}</p>
                 <div className="module-tabs ">
-                    <div className={`module-tab ${activeTab === 'property' ? 'active' : ''}`} onClick={() => handleActiveTab('property')}>
+                    {/* <div className={`module-tab ${activeTab === 'property' ? 'active' : ''}`} onClick={() => handleActiveTab('property')}>
                         <p>{t("property")}</p>
-                    </div>
+                    </div> */}
                     <div className={`module-tab ${activeTab === 'machinery' ? 'active' : ''}`} onClick={() => handleActiveTab('machinery')}>
                         <p>{t("machineryTools")}</p>
                     </div>

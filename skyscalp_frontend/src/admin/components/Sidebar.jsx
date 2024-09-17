@@ -49,7 +49,7 @@ export default function Sidebar() {
                                     <span className="hide-menu">{t("dashboard")}</span>
                                 </NavLink>
                             </li>
-                            <li className="sidebar-item mt-1">
+                            {/* <li className="sidebar-item mt-1">
                                 <NavLink
                                     to='../app/properties'
                                     className={isRouteActive(['/properties', '/add-property', '/update-property']) ? "active sidebar-link" : 'none sidebar-link'}
@@ -60,7 +60,7 @@ export default function Sidebar() {
                                     </span>
                                     <span className="hide-menu">{t("properties")}</span>
                                 </NavLink>
-                            </li>
+                            </li> */}
                             <li className="sidebar-item mt-1">
                                 <NavLink
                                     to='../app/machines'

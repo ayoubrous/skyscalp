@@ -124,7 +124,12 @@ const Experts = () => {
             .then((result) => {
                 setLoading(false);
                 if (result.status) {
-                    setProducts(result.data.documents);
+                    let currentCountry = localStorage.getItem('country');
+                    let locationBasedCountry = result.data.documents.filter(doc =>
+                        doc.country.toLowerCase() === currentCountry.toLowerCase()
+                    );
+                    setProducts(locationBasedCountry);
+                    // setProducts(result.data.documents);
                     setPaginationData({
                         currentPage: result.data.currentPage,
                         totalPages: result.data.totalPages,
@@ -413,7 +418,7 @@ const Experts = () => {
                     <div className="cards-grid agents-cards-grid">
                         {
                             products.length === 0 && (
-                                <h5 className='my-4'>No Products Found</h5>
+                                <h5 className='my-4'>{t("notProductsFound")}</h5>
                             )
                         }
                         {

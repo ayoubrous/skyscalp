@@ -306,7 +306,7 @@ export default function ViewExpert() {
 
                             <div className="side basic-information mb-2">
                                 <div className="d-flex align-items-center justify-content-between mb-2">
-                                    <h5 className="color-primary fw-bolder">MAD {formatPrice(budget)}/{t("year")}</h5>
+                                    <h5 className="color-primary fw-bolder">MAD {formatPrice(budget)}/hr</h5>
                                 </div>
 
                                 <h4 className="fw-bolder mb-2">{title}</h4>

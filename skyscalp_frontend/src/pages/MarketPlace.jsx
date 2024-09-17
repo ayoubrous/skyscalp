@@ -225,12 +225,12 @@ const MarketPlace = () => {
             .then((result) => {
                 setLoading(false);
                 if (result.status) {
-                    // console.log(currentCountry)
-                    // let locationBasedCountry = result.data.documents.filter(doc =>
-                    //     doc.country.toLowerCase() === currentCountry.toLowerCase()
-                    // );
-                    // console.log(locationBasedCountry)
-                    setProducts(result.data.documents);
+                    let currentCountry = localStorage.getItem('country');
+                    let locationBasedCountry = result.data.documents.filter(doc =>
+                        doc.country.toLowerCase() === currentCountry.toLowerCase()
+                    );
+                    setProducts(locationBasedCountry);
+                    // setProducts(result.data.documents);
                     setPaginationData({
                         currentPage: result.data.currentPage,
                         totalPages: result.data.totalPages,
