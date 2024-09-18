@@ -151,9 +151,14 @@ export default function AddExpert() {
                         setExperty(result.data.experty || '');
                         setField(result.data.field);
 
-                        const filter1Data = JSON.parse(result.data.filter1)
-                        const filter2Data = JSON.parse(result.data.filter2)
-                        const filter3Data = JSON.parse(result.data.filter3)
+                        // const filter1Data = JSON.parse(result.data.filter1)
+                        // const filter2Data = JSON.parse(result.data.filter2)
+                        // const filter3Data = JSON.parse(result.data.filter3)
+
+
+                        const filter1Data = result.data.filter1Data
+                        const filter2Data = result.data.filter2Data
+                        const filter3Data = result.data.filter3Data
 
                         setFilter1({
                             filterName: filter1Data?.filterName || null,
@@ -484,9 +489,22 @@ export default function AddExpert() {
                 title,
                 field,
                 experty,
-                filter1: JSON.stringify(filter1),
-                filter2: JSON.stringify(filter2),
-                filter3: JSON.stringify(filter3),
+                // filter1: JSON.stringify(filter1),
+                // filter2: JSON.stringify(filter2),
+                // filter3: JSON.stringify(filter3),
+
+                filter1Data: {
+                    filterName: filter1.filterName,
+                    selectedOption: filter1.selectedOption
+                },
+                filter2Data: {
+                    filterName: filter2.filterName,
+                    selectedOption: filter2.selectedOption
+                },
+                filter3Data: {
+                    filterName: filter3.filterName,
+                    selectedOption: filter3.selectedOption
+                },
                 otherFilter1Value,
                 otherFilter2Value,
                 otherFilter3Value,
@@ -501,6 +519,8 @@ export default function AddExpert() {
 
                 status: true
             };
+
+            console.log(data)
 
 
             const myHeaders = new Headers();
@@ -563,9 +583,21 @@ export default function AddExpert() {
                 title,
                 field,
                 experty,
-                filter1: JSON.stringify(filter1),
-                filter2: JSON.stringify(filter2),
-                filter3: JSON.stringify(filter3),
+                // filter1: JSON.stringify(filter1),
+                // filter2: JSON.stringify(filter2),
+                // filter3: JSON.stringify(filter3),
+                filter1Data: {
+                    filterName: filter1.filterName,
+                    selectedOption: filter1.selectedOption
+                },
+                filter2Data: {
+                    filterName: filter2.filterName,
+                    selectedOption: filter2.selectedOption
+                },
+                filter3Data: {
+                    filterName: filter3.filterName,
+                    selectedOption: filter3.selectedOption
+                },
                 otherFilter1Value,
                 otherFilter2Value,
                 otherFilter3Value,
@@ -850,7 +882,7 @@ export default function AddExpert() {
                                         <div className="form-group form-group-sm mb-4">
                                             <label htmlFor="" className='mb-1'>{t("Consultation fee (MAD) per hour")}</label>
                                             <input type="number" min={0} className="custom-input" onChange={e => setBudget(e.target.value)} onBlur={handleBudgetCheck} value={budget} />
-                                            <small style={{ fontSize: "10px" }}>{t("Consultation fee (MAD) per hour")} </small>
+                                            {/* <small style={{ fontSize: "10px" }}>{t("Consultation fee (MAD) per hour")} </small> */}
                                         </div>
                                     </div>
 

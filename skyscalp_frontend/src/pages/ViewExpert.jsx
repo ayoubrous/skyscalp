@@ -120,13 +120,14 @@ export default function ViewExpert() {
                     setExperty(result.data.experty || '');
                     setField(result.data.field);
 
-                    const filter1Data = JSON.parse(result.data.filter1)
-                    const filter2Data = JSON.parse(result.data.filter2)
-                    const filter3Data = JSON.parse(result.data.filter3)
+                    // old proceedure of saving filters data as a string 
+                    // const filter1Data = JSON.parse(result.data.filter1)
+                    // const filter2Data = JSON.parse(result.data.filter2)
+                    // const filter3Data = JSON.parse(result.data.filter3)
 
-                    setFilter1Data(filter1Data)
-                    setFilter2Data(filter2Data)
-                    setFilter3Data(filter3Data)
+                    setFilter1Data(result.data.filter1Data)
+                    setFilter2Data(result.data.filter2Data)
+                    setFilter3Data(result.data.filter3Data)
 
 
                     setFilter1({

@@ -46,12 +46,36 @@ const schema = new mongoose.Schema({
     mapLocation: {
         type: [String],
     },
-    
+
     field: {
         type: String,
     },
     experty: {
         type: String,
+    },
+    filter1Data: {
+        filterName: {
+            type: String,
+        },
+        selectedOption: {
+            type: String,
+        }
+    },
+    filter2Data: {
+        filterName: {
+            type: String,
+        },
+        selectedOption: {
+            type: String,
+        }
+    },
+    filter3Data: {
+        filterName: {
+            type: String,
+        },
+        selectedOption: {
+            type: String,
+        }
     },
     filter1: {
         type: String,

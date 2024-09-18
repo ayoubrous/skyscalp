@@ -22,13 +22,14 @@ const ExpertCard = ({ data }) => {
     const { _id, images, title, description, budget, street, city, country, name, field,
         experty, language, otherLanguage, education, otherEducation, availibility,
         otherAvailibility, filter1, filter2, otherFilter1Value, otherFilter2Value, experience,
-        user, createdAt } = data;
+        user, createdAt, filter1Data, filter2Data } = data;
 
-    let filter1Data = JSON.parse(filter1)
-    let filter2Data = JSON.parse(filter2)
+    // let filter1Data = JSON.parse(filter1)
+    // let filter2Data = JSON.parse(filter2)
+    // console.log(filter1Data)
 
-    let filter1Value = filter1Data.selectedOption
-    let filter2Value = filter2Data.selectedOption
+    let filter1Value = filter1Data?.selectedOption
+    let filter2Value = filter2Data?.selectedOption
 
     const [t] = useTranslation();
     const [favourite, setFavourite] = useState(false)
@@ -76,7 +77,7 @@ const ExpertCard = ({ data }) => {
                         <h5 className='color-primary'>MAD {formatPrice(budget)}/hr</h5>
                     </div>
 
-                    <p className="" style={{ fontWeight: "500" }}>{name}</p>
+                    <p className="color-primary" style={{ fontWeight: "500", fontSize: "17px" }}>{name}</p>
                     <p className="">{city} {city === "" ? "" : ","} {country}</p>
                     {/* <p className='mb-1'>{specialization}</p> */}
                     <p className=''>{t(field)}</p>
@@ -92,7 +93,7 @@ const ExpertCard = ({ data }) => {
 
                     <div className="characteristics mt-3 mb-2">
 
-                        {language !== '' && (
+                        {language !== null && (
                             <div className="d-flex align-items-center gap-1">
                                 <IoLanguage className="feature-icon" />
 
@@ -109,14 +110,20 @@ const ExpertCard = ({ data }) => {
                             </div>
                         )}
 
-                        {language !== '' && (
+                        {experience !== null && (
                             <div className="d-flex align-items-center gap-1">
-                                <GrUserExpert className="feature-icon" />
-                                <p className="feature-text">{t(experience)} {t("years")}</p>
+                                {
+                                    experience && (
+                                        <>
+                                            <GrUserExpert className="feature-icon" />
+                                            <p className="feature-text">{t(experience)} {t("years")}</p>
+                                        </>
+                                    )
+                                }
                             </div>
                         )}
 
-                        {education !== '' && (
+                        {education !== null && (
                             <div className="d-flex align-items-center gap-1">
                                 <FaGraduationCap className="feature-icon" />
                                 {
@@ -132,7 +139,7 @@ const ExpertCard = ({ data }) => {
                             </div>
                         )}
 
-                        {availibility !== '' && (
+                        {availibility !== null && (
                             <div className="d-flex align-items-center gap-1">
                                 <MdAccessTime className="feature-icon" />
                                 {
@@ -148,22 +155,22 @@ const ExpertCard = ({ data }) => {
                             </div>
                         )}
 
-                        {filter1Value !== '' && (
+                        {filter1Value !== null && (
                             <div className="d-flex align-items-center gap-1">
                                 <GoBriefcase className="feature-icon" />
                                 {
                                     filter1Value && (
                                         (filter1Value.toLowerCase() === "other" || filter1Value.toLowerCase() === "others") && otherFilter1Value
                                             ? (
-                                                <p className="feature-text">{t(otherFilter1Value).slice(0, 11)}</p>
+                                                <p className="feature-text">{t(otherFilter1Value).slice(0, 18)}</p>
                                             ) : (
-                                                <p className="feature-text">{t(filter1Value).slice(0, 11)}</p>
+                                                <p className="feature-text">{t(filter1Value).slice(0, 18)}</p>
                                             )
                                     )
                                 }
                             </div>
                         )}
-                        {filter2Value !== '' && (
+                        {filter2Value !== null && (
                             <div className="d-flex align-items-center gap-1">
                                 <MdFilterCenterFocus className="feature-icon" />
 
@@ -171,9 +178,9 @@ const ExpertCard = ({ data }) => {
                                     filter2Value && (
                                         (filter2Value.toLowerCase() === "other" || filter2Value.toLowerCase() === "others") && otherFilter2Value
                                             ? (
-                                                <p className="feature-text">{t(otherFilter2Value).slice(0, 11)}</p>
+                                                <p className="feature-text">{t(otherFilter2Value).slice(0, 18)}</p>
                                             ) : (
-                                                <p className="feature-text">{t(filter2Value).slice(0, 11)}</p>
+                                                <p className="feature-text">{t(filter2Value).slice(0, 18)}</p>
                                             )
                                     )
                                 }

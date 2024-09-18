@@ -230,29 +230,25 @@ export default function ExpertsFilter({
     const handleFiltersSelection = (filterNum, val) => {
         if (filterNum === 1) {
             setShowFilter1Drp(false);
-            const updatedFilters = selectedFilters1.includes(val)
-                ? selectedFilters1.filter(edu => edu !== val)
-                : [...selectedFilters1, val];
-            setSelectedFilters1(updatedFilters);
-            // updateSelectedFilters('education', updatedEducations);
+            const updatedFilters = selectedFilters1?.selectedOption?.includes(val)
+                ? selectedFilters1.selectedOption.filter(item => item !== val)
+                : [...(selectedFilters1.selectedOption || []), val];
+            setSelectedFilters1({ filterName: filter1.filterName, selectedOption: updatedFilters });
         }
         else if (filterNum === 2) {
             setShowFilter2Drp(false);
-            const updatedFilters = selectedFilters2.includes(val)
-                ? selectedFilters2.filter(edu => edu !== val)
-                : [...selectedFilters2, val];
-            setSelectedFilters2(updatedFilters);
-            // updateSelectedFilters('education', updatedEducations);
+            const updatedFilters = selectedFilters2?.selectedOption?.includes(val)
+                ? selectedFilters2.selectedOption.filter(item => item !== val)
+                : [...(selectedFilters2.selectedOption || []), val];
+            setSelectedFilters2({ filterName: filter2.filterName, selectedOption: updatedFilters });
         }
         else if (filterNum === 3) {
             setShowFilter3Drp(false);
-            const updatedFilters = selectedFilters3.includes(val)
-                ? selectedFilters3.filter(edu => edu !== val)
-                : [...selectedFilters3, val];
-            setSelectedFilters3(updatedFilters);
-            // updateSelectedFilters('education', updatedEducations);
+            const updatedFilters = selectedFilters3?.selectedOption?.includes(val)
+                ? selectedFilters3.selectedOption.filter(item => item !== val)
+                : [...(selectedFilters3.selectedOption || []), val];
+            setSelectedFilters3({ filterName: filter3.filterName, selectedOption: updatedFilters });
         }
-        
     };
 
 
@@ -375,17 +371,26 @@ export default function ExpertsFilter({
             setCheckedSubcategories(item => item.filter(item => item !== name));
         }
 
-        
-        if (selectedFilters1.includes(name)) {
-            setSelectedFilters1(item => item.filter(item => item !== name));
+
+        if (selectedFilters1?.selectedOption?.includes(name)) {
+            setSelectedFilters1(prev => ({
+                ...prev,
+                selectedOption: prev.selectedOption.filter(item => item !== name)
+            }));
         }
         
-        if (selectedFilters2.includes(name)) {
-            setSelectedFilters2(item => item.filter(item => item !== name));
+        if (selectedFilters2?.selectedOption?.includes(name)) {
+            setSelectedFilters2(prev => ({
+                ...prev,
+                selectedOption: prev.selectedOption.filter(item => item !== name)
+            }));
         }
         
-        if (selectedFilters2.includes(name)) {
-            setSelectedFilters3(item => item.filter(item => item !== name));
+        if (selectedFilters3?.selectedOption?.includes(name)) {
+            setSelectedFilters3(prev => ({
+                ...prev,
+                selectedOption: prev.selectedOption.filter(item => item !== name)
+            }));
         }
 
 
@@ -400,7 +405,7 @@ export default function ExpertsFilter({
         clearAllFilters()
         setCheckAll(false)
 
-       
+
     }
 
 
@@ -557,7 +562,7 @@ export default function ExpertsFilter({
                                                                 type="checkbox"
                                                                 name={data}
                                                                 id={`checkbox-${data}`}
-                                                                checked={selectedLanguages.includes(data)}
+                                                                checked={selectedFilters1?.selectedOption?.includes(data)}
                                                                 onChange={() => handleLanguage(data)}
                                                             />
                                                         </div>
@@ -590,7 +595,7 @@ export default function ExpertsFilter({
                                                                 type="checkbox"
                                                                 name={data}
                                                                 id={`checkbox-${data}`}
-                                                                checked={selectedLanguages.includes(data)}
+                                                                checked={selectedFilters2?.selectedOption?.includes(data)}
                                                                 onChange={() => handleLanguage(data)}
                                                             />
                                                         </div>
@@ -622,7 +627,7 @@ export default function ExpertsFilter({
                                                                 type="checkbox"
                                                                 name={data}
                                                                 id={`checkbox-${data}`}
-                                                                checked={selectedLanguages.includes(data)}
+                                                                checked={selectedFilters3?.selectedOption?.includes(data)}
                                                                 onChange={() => handleLanguage(data)}
                                                             />
                                                         </div>
@@ -795,25 +800,29 @@ export default function ExpertsFilter({
                                     )
                                 })
                             }
-                            
+
+
                             {
-                                selectedFilters1.map((filter, i) => {
+                                selectedFilters1?.selectedOption &&
+                                selectedFilters1?.selectedOption.map((filter, i) => {
                                     return (
                                         <span key={i} className='selected-filter'>{t(filter)} <FaXmark style={{ cursor: "pointer" }} onClick={() => removeTypeFilter(i, filter)} /></span>
                                     )
                                 })
                             }
-                            
+
                             {
-                                selectedFilters2.map((filter, i) => {
+                                selectedFilters2?.selectedOption &&
+                                selectedFilters2?.selectedOption.map((filter, i) => {
                                     return (
                                         <span key={i} className='selected-filter'>{t(filter)} <FaXmark style={{ cursor: "pointer" }} onClick={() => removeTypeFilter(i, filter)} /></span>
                                     )
                                 })
                             }
-                            
+
                             {
-                                selectedFilters3.map((filter, i) => {
+                                selectedFilters3?.selectedOption &&
+                                selectedFilters3?.selectedOption.map((filter, i) => {
                                     return (
                                         <span key={i} className='selected-filter'>{t(filter)} <FaXmark style={{ cursor: "pointer" }} onClick={() => removeTypeFilter(i, filter)} /></span>
                                     )
@@ -848,7 +857,7 @@ export default function ExpertsFilter({
                                 })
                             }
 
-                            
+
                         </div>
                         {
                             // selectedFilters.length > 0 && (

@@ -87,6 +87,12 @@ const Experts = () => {
         selectedStates: [],
         selectedCities: [],
         selectedStreets: [],
+
+
+
+        selectedFilters1: {},
+        selectedFilters2: {},
+        selectedFilters3: {},
     })
 
     const settings = {
@@ -190,8 +196,8 @@ const Experts = () => {
                 if (matchedExpertise) {
 
                     setFilter1(matchedExpertise.filter1)
-                    setFilter3(matchedExpertise.filter2)
-                    setFilter2(matchedExpertise.filter3)
+                    setFilter2(matchedExpertise.filter2)
+                    setFilter3(matchedExpertise.filter3)
 
                 }
             });
@@ -226,7 +232,15 @@ const Experts = () => {
             selectedCities: selectedCities,
             selectedStreets: selectedStreets,
 
+            selectedFilters1: selectedFilters1,
+            selectedFilters2: selectedFilters2,
+            selectedFilters3: selectedFilters3,
+
         };
+
+        // console.log(selectedFilters1)
+        // console.log(selectedFilters2)
+        // console.log(selectedFilters3)
 
         // console.log(searchFilters)
         setFiltersObj(searchFilters)
@@ -285,6 +299,11 @@ const Experts = () => {
             selectedStates: [],
             selectedCities: [],
             selectedStreets: [],
+
+
+            selectedFilters1: {},
+            selectedFilters2: {},
+            selectedFilters3: {},
         })
     }
 

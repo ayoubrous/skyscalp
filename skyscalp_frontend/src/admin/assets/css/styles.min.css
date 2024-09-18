@@ -20566,6 +20566,10 @@ ul {
 .hZZlND{ 
     border: 1px solid #ccc !important;
 }
+.rdt_Table .ejfNUe{
+    /* display: none !important; */
+    visibility: hidden !important;
+}
 
 
 
