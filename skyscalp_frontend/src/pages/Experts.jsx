@@ -19,6 +19,9 @@ import ExpertCard from '../components/cards/ExpertCard'
 import { services } from '../assets/data/services'
 import { FaXmark } from 'react-icons/fa6'
 import ExpertsFilter from '../components/filters/ExpertsFilter'
+import Sortby from '../components/utils/Sortby'
+import Pagination from '../components/utils/Pagination'
+import AllExperts from './AllExperts'
 
 
 const Experts = () => {
@@ -78,7 +81,7 @@ const Experts = () => {
         selectedAvailibilities: [],
         selectedExperience: [],
 
-        
+
 
         selectedCountries: [],
         selectedStates: [],
@@ -406,13 +409,13 @@ const Experts = () => {
 
 
             />
-            <div className="allMachinery allItems">
+            {/* <div className="allMachinery allItems">
                 <div className="custom-container">
                     <div className="d-flex justify-content-between align-items-center mb-4">
                         <h2 className="fw-bolder color-primary text-uppercase">{t("Experts MarketPlace")}</h2>
 
-                        {/* <Sortby sortBy={sortby} setSortBy={setSortBy} sortOrder={sortOrder} setSortOrder={setSortOrder} /> */}
-                        {/* <Sortby handleSortby={handleSortby} handleSortOrder={handleSortOrder} /> */}
+                        <Sortby handleSortby={handleSortby} handleSortOrder={handleSortOrder} />
+
                     </div>
 
                     <div className="cards-grid agents-cards-grid">
@@ -430,11 +433,22 @@ const Experts = () => {
                         }
                     </div>
 
-                    {/* <Pagination hasNextPage={hasNextPage} hasPrevPage={hasPrevPage} onPageChange={onPageChange} pages={pages} currentPage={currentPage} totalPages={totalPages} /> */}
+                    <Pagination hasNextPage={hasNextPage} hasPrevPage={hasPrevPage} onPageChange={onPageChange} pages={pages} currentPage={currentPage} totalPages={totalPages} />
 
                 </div>
-            </div>
+            </div> */}
 
+            <AllExperts
+                data={products}
+                hasNextPage={paginationData.hasNextPage}
+                hasPrevPage={paginationData.hasPrevPage}
+                totalItems={paginationData.totalItems}
+                totalPages={paginationData.totalPages}
+                currentPage={paginationData.currentPage}
+                onPageChange={handlePageChange}
+                handleSortby={handleSortby}
+                handleSortOrder={handleSortOrder}
+            />
             <BlogSection />
 
 
