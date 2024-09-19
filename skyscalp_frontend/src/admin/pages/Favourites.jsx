@@ -40,7 +40,7 @@ export default function Machinery() {
                     // Fetch product details for each favourite item
                     const promises = result.data.map(item => {
                         if (item.productID !== null) {
-                            return fetchProductDetails(item.productID);
+                            return fetchProductDetails(item.productID, item.collectionReference);
                         }
                         // Return null or some other placeholder for items with no productID
                         return Promise.resolve(null);
@@ -75,14 +75,38 @@ export default function Machinery() {
             });
     }
 
-    const fetchProductDetails = async (productID) => {
+    const fetchProductDetails = async (productID, collectionReference) => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/getProductDetails?id=${productID}`);
-            const result = await response.json();
-            if (result.status) {
-                return result.data;
-            } else {
-                return null; // Return null if the product details are not found
+            if (collectionReference === "properties") {
+                const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/getPropertyById/${productID}`);
+                const result = await response.json();
+                if (result.status) {
+                    return { ...result.data, collectionReference: collectionReference };
+                } else {
+                    return null;
+                }
+            }
+            else if (collectionReference === "materials") {
+                const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/getProductById/${productID}`);
+                const result = await response.json();
+                if (result.status) {
+                    // return result.data;
+                    return { ...result.data, collectionReference: collectionReference };
+
+                } else {
+                    return null;
+                }
+            }
+            else if (collectionReference === "services") {
+                const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/getServiceById/${productID}`);
+                const result = await response.json();
+                if (result.status) {
+                    // return result.data;
+                    return { ...result.data, collectionReference: collectionReference };
+
+                } else {
+                    return null;
+                }
             }
         } catch (error) {
             console.error("Error fetching product details:", error);
@@ -181,7 +205,20 @@ export default function Machinery() {
                                                         <td>MAD {formatPrice(data.details.budget)}</td>
                                                         <td>{data.createdAt && new Intl.DateTimeFormat('en-GB').format(new Date(data.createdAt))}</td>
                                                         <td>
-                                                            <Link className='mx-1' to={`../${data.details.materialGroup ? data.details.materialGroup : 'property'}/${data.details._id}`}>
+                                                            {/* <Link className='mx-1' to={`../${data.details.materialGroup ? data.details.materialGroup : 'property'}/${data.details._id}`}>
+                                                                <FaEye className='color-secondary' />
+                                                            </Link> */}
+                                                            <Link className='mx-1'
+                                                                to={
+                                                                    data.collectionReference === "services"
+                                                                        ? `/expert/${data.details._id}` // If collectionReference is "services", use /expert/ID
+                                                                        : data.collectionReference === "properties"
+                                                                            ? `/properties/${data.details._id}` // If collectionReference is "properties", use /properties/ID
+                                                                            : data.collectionReference === "materials" && data.details.materialGroup // If collectionReference is "materials" and materialGroup exists
+                                                                                ? `/${data.details.materialGroup === "construction" ? "materials": data.details.materialGroup === "machinery"? "machines": data.details.materialGroup}/${data.details._id}` // Use materialGroup/ID
+                                                                                : null
+                                                                }
+                                                            >
                                                                 <FaEye className='color-secondary' />
                                                             </Link>
                                                             <Link className='mx-1' onClick={() => handleDelete(data.details._id)}>

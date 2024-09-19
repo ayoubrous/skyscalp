@@ -107,6 +107,9 @@ const schema = new mongoose.Schema({
     otherEducation: {
         type: String,
     },
+    toFavourites: {
+        type: [String]
+    },
     status: {
         type: Boolean,
         required: true

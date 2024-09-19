@@ -1,5 +1,7 @@
-const MaterialsModal = require('../modal/Materials')
+const MaterialsModal = require('../modal/Materials');
+const PropertyModal = require('../modal/Property');
 const sendResponse = require("../utils/sendResponse")
+const ServiceModal = require('../modal/Service')
 
 
 const addProduct = async (req, res) => {
@@ -36,7 +38,7 @@ const updateProduct = async (req, res) => {
         }
 
         // let property = new PropertyModal(req.body)
-        let response = await MaterialsModal.findOneAndUpdate({ _id: id }, req.body, {new: true, timestamps: true})
+        let response = await MaterialsModal.findOneAndUpdate({ _id: id }, req.body, { new: true, timestamps: true })
         if (response) {
             sendResponse(req, res, true, "Product updated successfully", null)
         }
@@ -500,13 +502,17 @@ const updateProductFeature = async (req, res) => {
 
 
 
+// api for updating a specific product favourites (product added to fav by users)
 const updateProductFavourites = async (req, res) => {
     try {
         const productID = req.params.id
         const favouriteID = req.params.favouriteID
+        const ref = req.params.ref
         const action = req.params.action;
-        if (!productID && !favouriteID) {
-            sendResponse(req, res, false, "ID not found", null)
+
+
+        if (!productID && !favouriteID && !ref) {
+            sendResponse(req, res, false, "Data not found", null)
         }
 
         let updateOperation;
@@ -517,11 +523,29 @@ const updateProductFavourites = async (req, res) => {
             updateOperation = { $pull: { toFavourites: favouriteID } };
         }
 
-        let response = await MaterialsModal.findOneAndUpdate(
-            { _id: productID },
-            updateOperation,
-            { new: true }
-        );
+        let response;
+        if (ref === "properties") {
+            response = await PropertyModal.findOneAndUpdate(
+                { _id: productID },
+                updateOperation,
+                { new: true }
+            );
+        }
+        else if (ref === "materials") {
+            response = await MaterialsModal.findOneAndUpdate(
+                { _id: productID },
+                updateOperation,
+                { new: true }
+            );
+        }
+        else if (ref === "services") {
+            response = await ServiceModal.findOneAndUpdate(
+                { _id: productID },
+                updateOperation,
+                { new: true }
+            );
+        }
+
 
         if (response) {
             sendResponse(req, res, true, "Favourite updated successfully", null)

@@ -54,7 +54,7 @@ const FurnitureCard = ({ data }) => {
     }, [])
 
     const handleFavourite = () => {
-        handleProductFavourite(favourite, setFavourite, _id, true)
+        handleProductFavourite(favourite, setFavourite, _id, true, "materials")
     }
     return (
         <div className="custom-card construction-card">

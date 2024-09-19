@@ -40,7 +40,7 @@ const PropertyCard = React.memo(({ propertyData }) => {
     }, [])
 
     const handleFavourite = () => {
-        handleProductFavourite(favourite, setFavourite, _id, false)
+        handleProductFavourite(favourite, setFavourite, _id, false, "properties")
     }
 
     // const handleFavourite = () => {

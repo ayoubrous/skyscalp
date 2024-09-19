@@ -20,20 +20,20 @@ export default function MessageOwner({ userID }) {
     const handleMessageSend = (e) => {
         e.preventDefault()
         if (email.length === 0 || phone.length === 0 || message.length === 0) {
-            toast.error("Fill out required fields to send a message")
+            toast.error(t("Fill out all the required fields"))
             return
         }
         sendMessage(false, userID, params.id, email, phone, null, null, message)
             .then(res => {
                 if (res.status) {
-                    toast.success("Message sent successfully")
+                    toast.success(t("Message sent successfully"))
                     setEmail('');
                     setPhone('');
                     setMessage('');
 
                 }
                 else {
-                    toast.error(res.message)
+                    toast.error(t("Error proceeding request"))
                 }
             })
             .catch(err => {

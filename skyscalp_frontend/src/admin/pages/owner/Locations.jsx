@@ -306,6 +306,7 @@ export default function Locations() {
                                         <Select
                                             className="custom-input bordor-0 p-0"
                                             classNamePrefix="select"
+                                            placeholder={t("select")}
                                             name="color"
                                             options={allCountries}
                                             onChange={(selectedOption) => setCountryForState(selectedOption.value)}
@@ -343,6 +344,7 @@ export default function Locations() {
                                             classNamePrefix="select"
                                             name="color"
                                             options={allCountries}
+                                            placeholder={t("select")}
                                             // onChange={(selectedOption) => setCountryForState(selectedOption.value)}
                                             onChange={handleCountryChangeInCity}
                                         />
@@ -354,6 +356,7 @@ export default function Locations() {
                                             classNamePrefix="select"
                                             name="color"
                                             options={allStates}
+                                            placeholder={t("select")}
                                             onChange={(selectedOption) => setStateInCity(selectedOption.value)}
                                         />
                                     </div>
@@ -386,6 +389,7 @@ export default function Locations() {
                                             classNamePrefix="select"
                                             name="color"
                                             options={allCountries}
+                                            placeholder={t("select")}
                                             // onChange={(selectedOption) => setCountryForState(selectedOption.value)}
                                             onChange={handleCountryChangeInCity}
                                         />
@@ -397,6 +401,7 @@ export default function Locations() {
                                             classNamePrefix="select"
                                             name="color"
                                             options={allStates}
+                                            placeholder={t("select")}
                                             onChange={handleStatesChangeInStreet}
                                         />
                                     </div>
@@ -406,6 +411,7 @@ export default function Locations() {
                                             className="custom-input bordor-0 p-0"
                                             classNamePrefix="select"
                                             name="color"
+                                            placeholder={t("select")}
                                             options={allCities}
                                             onChange={selectedOption => setCityInStreet(selectedOption.value)}
                                         />

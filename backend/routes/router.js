@@ -56,7 +56,9 @@ router.get('/api/getUserProducts/:id', getProductsByUserID)
 router.get('/api/getProductById/:id', getSingleProduct)
 router.delete('/api/deleteProduct/:id', deleteProduct)
 router.get('/api/updateProductFeaturedStatus/:id/:featured', updateProductFeature)
-router.get('/api/updateProductFavourites/:id/:favouriteID/:action', updateProductFavourites)
+
+
+router.get('/api/updateProductFavourites/:ref/:id/:favouriteID/:action', updateProductFavourites)
 
 router.get('/api/getFeaturedProducts', getFeaturedProducts)
 

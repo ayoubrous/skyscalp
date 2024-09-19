@@ -1,11 +1,12 @@
-export async function addToFavourites(userID, productID) {
+export async function addToFavourites(userID, productID, collectionReference) {
     try {
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
         const raw = JSON.stringify({
             userID: userID,
-            productID: productID
+            productID: productID,
+            collectionReference: collectionReference
         });
 
         const requestOptions = {
@@ -78,7 +79,7 @@ export async function checkInFavourites(userID, productID) {
 }
 
 
-export async function addFavouriteToProduct(productID, favouriteID, action, isMaterial) {
+export async function addFavouriteToProduct(productID, favouriteID, action, isMaterial, collectionReference) {
     try {
 
 
@@ -87,13 +88,7 @@ export async function addFavouriteToProduct(productID, favouriteID, action, isMa
             redirect: "follow"
         };
 
-        let apiUrl = ""
-        if (isMaterial) {
-            apiUrl = `${process.env.REACT_APP_SERVER_URL}/api/updateProductFavourites/${productID}/${favouriteID}/${action}`
-        }
-        else {
-            apiUrl = `${process.env.REACT_APP_SERVER_URL}/api/updatePropertyFavourites/${productID}/${favouriteID}/${action}`
-        }
+        let apiUrl = `${process.env.REACT_APP_SERVER_URL}/api/updateProductFavourites/${collectionReference}/${productID}/${favouriteID}/${action}`
         const response = await fetch(apiUrl, requestOptions);
         const result = await response.json();
 

@@ -88,6 +88,9 @@ const getFavourites = async (req, res) => {
             return sendResponse(req, res, false, "Property ID not found", null);
         }
         let results = await FavouritesModal.find({userID: id});
+
+
+        
         if (results.length > 0) {
             return sendResponse(req, res, true, "Favourites found successfully", results);
         } else {

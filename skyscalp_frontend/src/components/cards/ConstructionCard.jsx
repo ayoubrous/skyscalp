@@ -60,7 +60,7 @@ const ConstructionCard = ({ data }) => {
     }, [])
 
     const handleFavourite = () => {
-        handleProductFavourite(favourite, setFavourite, _id, true)
+        handleProductFavourite(favourite, setFavourite, _id, true, "materials")
     }
 
     return (

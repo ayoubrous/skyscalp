@@ -10,6 +10,10 @@ const favouritesSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    collectionReference: {
+        type: String,
+        required: true
+    },
     timestamp: {
         type: String,
         value: Date.now()
