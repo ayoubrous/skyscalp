@@ -404,7 +404,7 @@ export default function MachineryFilter(
                             </div>
                         </div>
                         <div className="filter-btn">
-                            <button className="custom-btn" onClick={handleFilter}>Search</button>
+                            <button className="custom-btn" onClick={handleFilter}>{t("search")}</button>
                         </div>
                     </div>
                     <div className="other-filters p-1 pt-3 pb-0" style={{ flexWrap: "wrap" }}>

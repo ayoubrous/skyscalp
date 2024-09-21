@@ -1,4 +1,10 @@
 /* NAVBAR STYLING  */
+.mobileViewLink{
+    display: none;
+}
+.dekstopViewLink{
+    display: block;
+}
 .navbar {
     display: flex;
     align-items: center;

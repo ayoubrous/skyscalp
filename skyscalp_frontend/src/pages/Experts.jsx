@@ -110,6 +110,21 @@ const Experts = () => {
             { breakpoint: 450, settings: { slidesToShow: 2, slidesToScroll: 2 } },
         ],
     };
+    const fieldsCategoriesSliderSettings = {
+        dots: false,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 7,
+        slidesToScroll: 1,
+        initialSlide: 0,
+        arrows: false,
+        responsive: [
+            { breakpoint: 1124, settings: { slidesToShow: 4, slidesToScroll: 4 } },
+            { breakpoint: 870, settings: { slidesToShow: 4, slidesToScroll: 4 } },
+            { breakpoint: 590, settings: { slidesToShow: 3, slidesToScroll: 3 } },
+            { breakpoint: 450, settings: { slidesToShow: 2, slidesToScroll: 2 } },
+        ],
+    };
 
 
     const loadData = (pageNumber = paginationData.currentPage, sort = sortby, sortOrder = order) => {
@@ -322,7 +337,9 @@ const Experts = () => {
 
             <div className='categories top-section-categories '>
                 <div className='custom-container'>
-                    <div className='category-cards-grid agents-cards-grid'>
+                    {/* <div className='category-cards-grid agents-cards-grid'> */}
+                    <Slider {...fieldsCategoriesSliderSettings}>
+
                         {services.map((category, i) => (
                             <div
                                 key={category.id}
@@ -335,7 +352,8 @@ const Experts = () => {
                                 <h5 className='mt-3 text-center mx-auto fw-bolder'>{t(category.field)}</h5>
                             </div>
                         ))}
-                    </div>
+                    </Slider>
+                    {/* </div> */}
 
                     <div className='subcategories mt-3'>
                         {/* <Slider {...settings}>
@@ -472,10 +490,8 @@ const Experts = () => {
 
 
 
-            <ContactUs
-                supportTitle={"Communicate directly with your advisor for getting Agents services"}
-                supportDescription={"Communicate directly with your advisor for getting Agents services"}
-            />
+            <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} contactEmail={"information.marketplace@skyscalp.com"} contactPhone={"+33771759956"} />
+
             <Footer />
         </>
     );

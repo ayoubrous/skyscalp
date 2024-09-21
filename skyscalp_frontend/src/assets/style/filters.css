@@ -40,7 +40,8 @@
 
 .filter .split {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
+    align-items: stretch;
     gap: 8px;
 }
 
@@ -103,6 +104,10 @@
 .filter .user-input .search-input {
     width: 80%;
     position: relative;
+    /* overflow: hidden; */
+}
+.filter .user-input .search-input p{
+    /* text-wrap: nowrap; */
 }
 
 .filter .user-input .custom-input {
@@ -194,6 +199,7 @@
 
 .filter .filter-btn {
     width: 10%;
+    overflow: hidden;
 }
 
 .filter .filter-btn .custom-btn {
@@ -483,7 +489,8 @@
     }
 
     .filter .filter-btn .custom-btn {
-        padding: 15px 13px;
+        height: 100%;
+        padding: 15px 4px;
         border-radius: 4px;
     }
 

@@ -17,6 +17,8 @@ import CustomLocationsDropdown from './CustomLocationsDropdown';
 import { useNavigate } from 'react-router-dom';
 import { getLocationsInRadius } from './getLocationsInRadius';
 import { materialCategories } from '../../assets/data/materialsCategory';
+import { services } from '../../assets/data/services';
+import ExpertsNestedDropdown2 from './ExpertsNestedDropdown2';
 
 export default function HomeFilter() {
     const [t] = useTranslation();
@@ -60,6 +62,9 @@ export default function HomeFilter() {
         }
         else if (activeTab === 'furniture') {
             setActiveCategories(formattedFurnitureCategories)
+        }
+        else if (activeTab === 'experts') {
+            setActiveCategories(expertsFields)
         }
     }, [activeTab])
 
@@ -136,6 +141,9 @@ export default function HomeFilter() {
         else if (activeTab === "furniture") {
             navigate('../marketplace?market=3')
         }
+        else if (activeTab === "experts") {
+            navigate('../experts')
+        }
     }
 
     let formattedMaterialCategories = materialCategories.map((cat, i) => {
@@ -163,6 +171,16 @@ export default function HomeFilter() {
 
         return acc;
     }, []);
+
+    let expertsFields = services.map((service, i) => {
+        return (
+            {
+                id: i,
+                categoryName: service.field,
+                subcategories: service.expertise.map(expert => expert.expertyName)
+            }
+        )
+    })
 
     const handleActiveTab = (val) => {
         setActiveTab(val);
@@ -290,29 +308,45 @@ export default function HomeFilter() {
                     <div className={`module-tab ${activeTab === 'machinery' ? 'active' : ''}`} onClick={() => handleActiveTab('machinery')}>
                         <p>{t("machineryTools")}</p>
                     </div>
-                    
+
                     <div className={`module-tab ${activeTab === 'construction' ? 'active' : ''}`} onClick={() => handleActiveTab('construction')}>
                         <p>{t("buildingMaterial")}</p>
                     </div>
-                    
+
                     <div className={`module-tab ${activeTab === 'furniture' ? 'active' : ''}`} onClick={() => handleActiveTab('furniture')}>
                         <p>{t("furnitureAppliances")}</p>
+                    </div>
+
+                    <div className={`module-tab ${activeTab === 'experts' ? 'active' : ''}`} onClick={() => handleActiveTab('experts')}>
+                        <p>{t("Experts")}</p>
                     </div>
                 </div>
                 <div className="filter hero-filter">
                     <div className="split">
                         <div className="user-input" >
                             <div className="custom-input" onClick={() => setShowCategoriesDrp(true)}>
+                                {
+                                    activeTab === "experts" ? (
+                                        <ExpertsNestedDropdown2
+                                            show={showCategoriesDrp}
+                                            categoriesRef={categoriesRef}
+                                            categories={expertsFields && expertsFields}
+                                            setCheckedSubcategories={setCheckedSubcategories}
+                                            checkedSubcategories={checkedSubcategories}
+                                        />
+                                    ) : (
+                                        <NestedDropdown
+                                            show={showCategoriesDrp}
+                                            categoriesRef={categoriesRef}
+                                            categories={activeCategories}
+                                            setCheckedSubcategories={setCheckedSubcategories}
+                                            checkedSubcategories={checkedSubcategories}
+                                            setCheckAll={setCheckAll}
+                                            checkAll={checkAll}
+                                        />
+                                    )
+                                }
 
-                                <NestedDropdown
-                                    show={showCategoriesDrp}
-                                    categoriesRef={categoriesRef}
-                                    categories={activeCategories}
-                                    setCheckedSubcategories={setCheckedSubcategories}
-                                    checkedSubcategories={checkedSubcategories}
-                                    setCheckAll={setCheckAll}
-                                    checkAll={checkAll}
-                                />
                             </div>
 
                             <div className="category-list" onClick={() => setShowLocationDropdown(!showLocationDropdown)}>

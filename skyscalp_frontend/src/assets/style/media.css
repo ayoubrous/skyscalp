@@ -122,6 +122,13 @@
 }
 
 @media screen and (max-width: 768px) {
+    .mobileViewLink{
+        display: block;
+        position: relative;
+    }
+    .link.dekstopViewLink{
+        display: none !important;
+    }
     .custom-btn {
         font-size: 13px;
     }
@@ -336,10 +343,14 @@
     }
 
 
-    .category-cards-grid.agents-cards-grid{
+    .category-cards-grid.agents-cards-grid {
         grid-template-columns: repeat(3, 33%);
         min-height: 250px;
-    
+
+    }
+
+    .cards-grid.agents-cards-grid {
+        grid-template-columns: repeat(1, 100%);
     }
 
     .category-cards-grid .category-card .image img {

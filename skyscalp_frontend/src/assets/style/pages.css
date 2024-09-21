@@ -28,6 +28,9 @@
     padding: 8px;
     color: var(--primary-color);
 }
+.allItems .sortby .sorting p{
+    text-wrap: nowrap;
+}
 
 .allItems .sortby .sortby-dropdown {
     position: absolute;
@@ -103,7 +106,7 @@
     cursor: pointer;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.032);
     transition: all .1s ease;
-    /* min-height: 175px; */
+    min-height: 175px;
 }
 
 .categories .category-card.active {
