@@ -22,6 +22,10 @@
 .navbar .logo img {
     width: 140px;
 }
+.navbar .logo img.mobile-logo {
+    width: 30px;
+    display: none;
+}
 
 .navbar .links-section {
     display: flex;

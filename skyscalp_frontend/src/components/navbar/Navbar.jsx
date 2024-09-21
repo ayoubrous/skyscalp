@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import logo from '../../assets/images/logo.png'
+import logoHalf from '../../assets/images/logo-half.png'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
 import { FaAngleDown, FaArrowUp, FaBarsStaggered } from "react-icons/fa6";
@@ -110,6 +111,7 @@ export default function Navbar() {
             <nav className="navbar">
                 <Link to='/' className="logo">
                     <img src={logo} alt="web-logo" />
+                    <img src={logoHalf} alt="web-logo" className='mobile-logo' />
                 </Link>
                 <div className={`links-section ${showNavInPhone ? 'show' : ''}`} ref={mobileNavDropdown}>
                     <div className="commercial-links links">

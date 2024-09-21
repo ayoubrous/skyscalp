@@ -383,11 +383,11 @@ let materialCategories = [
     {
         id: 1,
         application: "Structural Work",
-        // ignoreProperties: [
-        //     "voltage",
-        //     "material",
-        //     "base"
-        // ],
+        ignoreProperties: [
+            "voltage",
+            "material",
+            "base"
+        ],
         categories: [
             {
                 materialName: "Concrete",
@@ -397,12 +397,7 @@ let materialCategories = [
                     "Precast",
                     "On-Site",
                     "Other"
-                ],
-                ignoreProperties: [
-                    "voltage",
-                    "material",
-                    "base"
-                ],
+                ]
             },
             {
                 materialName: "Cement",
@@ -412,12 +407,7 @@ let materialCategories = [
                     "Blended",
                     "Slag",
                     "Other"
-                ],
-                ignoreProperties: [
-                    "voltage",
-                    "material",
-                    "base"
-                ],
+                ]
             },
             {
                 materialName: "Sand",
@@ -427,12 +417,7 @@ let materialCategories = [
                     "Beach",
                     "Quarry",
                     "Other"
-                ],
-                ignoreProperties: [
-                    "voltage",
-                    "material",
-                    "base"
-                ],
+                ]
             },
             {
                 materialName: "Gravel",
@@ -442,12 +427,7 @@ let materialCategories = [
                     "Natural",
                     "Recycled",
                     "Other"
-                ],
-                ignoreProperties: [
-                    "voltage",
-                    "material",
-                    "base"
-                ],
+                ]
             },
             {
                 materialName: "Stone",

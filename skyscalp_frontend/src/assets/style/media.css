@@ -122,6 +122,26 @@
 }
 
 @media screen and (max-width: 768px) {
+    .navbar {
+        padding: 7px 5px;
+    }
+    .navbar .logo img {
+        display: none;
+        width: 90px;
+    }
+    .navbar .logo img.mobile-logo {
+        display: block;
+    }
+    .navbar .account .link{
+        font-size: 12px;
+    }
+    .navbar .account .custom-btn{
+        font-size: 12px;
+    }
+    .navbar .account {
+        gap: 5px;
+        margin-right: 4px;
+    }
     .mobileViewLink{
         display: block;
         position: relative;
