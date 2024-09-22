@@ -612,16 +612,20 @@ export default function AddConstruction() {
     const [disabledFields, setDisabledFields] = useState([])
 
     useEffect(() => {
-        if (application) {
+        if (application && category) {
             const selectedCategory = materialCategories.find(cat => cat.application === application);
             if (selectedCategory) {
-                setDisabledFields(selectedCategory.ignoreProperties)
+                const selectedSubCategory = selectedCategory.categories.find(cat => cat.materialName === category);
+                setDisabledFields(selectedSubCategory.ignoreProperties)
+                
+                console.log(selectedSubCategory)
+
             } else {
                 // console.log("No matching category found.");
                 setDisabledFields([])
             }
         }
-    }, [application]);
+    }, [category]);
 
 
     return (

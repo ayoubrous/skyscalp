@@ -1,393 +1,19 @@
-// let OLDmaterialCategories = [
-//     {
-//         id: 1,
-//         application: "Structural Work",
-//         ignoreProperties: ['voltage', 'material', 'style', 'base'],
-//         categories: [
-//             {
-//                 materialName: 'Concrete',
-//                 unit: "m³",
-//                 types: ['Ready-Mix', 'Precast', 'On-Site', 'Other']
-//             },
-//             {
-//                 materialName: 'Cement',
-//                 unit: "kg",
-//                 types: ['Portland', 'Blended', 'Slag', 'Other']
-//             },
-//             {
-//                 materialName: 'Sand',
-//                 unit: "m³",
-//                 types: ['River', 'Beach', 'Quarry', 'Other']
-//             },
-//             {
-//                 materialName: 'Gravel',
-//                 unit: "m³",
-//                 types: ['Crushed', 'Natural', 'Recycled', 'Other']
-//             },
-//             {
-//                 materialName: 'Stone',
-//                 unit: "m²",
-//                 types: ['Granite', 'Marble', 'Limestone', 'Other']
-//             },
-//             {
-//                 materialName: 'Brick',
-//                 unit: "piece",
-//                 types: ['Clay', 'Concrete', 'Other']
-//             },
-//             {
-//                 materialName: 'Concrete Block',
-//                 unit: "piece",
-//                 types: ['Hollow', 'Solid', 'Other']
-//             }
-//         ]
-//     },
-//     {
-//         id: 2,
-//         application: "Secondary Work",
-//         ignoreProperties: ['voltage', 'style', 'material', 'base'],
-//         categories: [
-//             {
-//                 materialName: 'Timber for Framing',
-//                 unit: "m³",
-//                 types: ['Softwood', 'Hardwood', 'Other']
-//             },
-//             {
-//                 materialName: 'Wood for Joinery',
-//                 unit: "m²",
-//                 types: ['Oak', 'Pine', 'Other']
-//             },
-//             {
-//                 materialName: 'Metal for Framing',
-//                 unit: "kg",
-//                 types: ['Steel', 'Aluminum', 'Other']
-//             },
-//             {
-//                 materialName: 'Metal for Joinery',
-//                 unit: "kg",
-//                 types: ['Brass', 'Copper', 'Other']
-//             },
-//             {
-//                 materialName: 'Glass',
-//                 unit: "m²",
-//                 types: ['Tempered', 'Laminated', 'Other']
-//             },
-//             {
-//                 materialName: 'Aluminum',
-//                 unit: "kg",
-//                 types: ['Extruded', 'Cast', 'Other']
-//             },
-//             {
-//                 materialName: 'PVC',
-//                 unit: "m²",
-//                 types: []
-//             }
-//         ]
-//     },
-//     {
-//         id: 3,
-//         application: "Finishing",
-//         ignoreProperties: ['voltage', 'style', 'base'],
-//         categories: [
-//             {
-//                 materialName: 'Paint',
-//                 unit: "L",
-//                 types: ['Acrylic', 'Oil-Based', 'Other']
-//             },
-//             {
-//                 materialName: 'Varnish',
-//                 unit: "L",
-//                 types: ['Polyurethane', 'Shellac', 'Other']
-//             },
-//             {
-//                 materialName: 'Lacquer',
-//                 unit: "L",
-//                 types: ['Nitrocellulose', 'Polyurethane', 'Other']
-//             },
-//             {
-//                 materialName: 'Wallpaper',
-//                 unit: "m²",
-//                 types: ['Vinyl', 'Paper', 'Other']
-//             },
-//             {
-//                 materialName: 'Tile',
-//                 unit: "m²",
-//                 types: ['Ceramic', 'Porcelain', 'Other']
-//             },
-//             {
-//                 materialName: 'Parquet',
-//                 unit: "m²",
-//                 types: ['Oak', 'Maple', 'Other']
-//             },
-//             {
-//                 materialName: 'Carpet',
-//                 unit: "m²",
-//                 types: ['Wool', 'Synthetic', 'Other']
-//             }
-//         ]
-//     },
-//     {
-//         id: 4,
-//         application: "Insulation",
-//         ignoreProperties: ['voltage', 'size', 'color', 'style', 'material', 'finish', 'base'],
-//         categories: [
-//             {
-//                 materialName: 'Glass Wool',
-//                 unit: "m²",
-//                 types: ['Blown', 'Batt', 'Other']
-//             },
-//             {
-//                 materialName: 'Rock Wool',
-//                 unit: "m²",
-//                 types: ['Blown', 'Batt', 'Other']
-//             },
-//             {
-//                 materialName: 'Polyurethane Foam',
-//                 unit: "m²",
-//                 types: ['Spray', 'Board', 'Other']
-//             },
-//             {
-//                 materialName: 'Polyisocyanurate Foam',
-//                 unit: "m²",
-//                 types: ['Board', 'Other']
-//             },
-//             {
-//                 materialName: 'Wood Fiber',
-//                 unit: "m²",
-//                 types: ['Board', 'Other']
-//             },
-//             {
-//                 materialName: 'Bamboo Fiber',
-//                 unit: "m²",
-//                 types: ['Board', 'Other']
-//             },
-//             {
-//                 materialName: 'Hemp Fiber',
-//                 unit: "m²",
-//                 types: ['Board', 'Other']
-//             }
-//         ]
-//     },
-//     {
-//         id: 5,
-//         application: "Electricity",
-//         ignoreProperties: ['thickness', 'material', 'base', 'finish'],
-//         categories: [
-//             {
-//                 materialName: 'Electrical Cable',
-//                 unit: "m",
-//                 types: ['Copper', 'Aluminum', 'Other']
-//             },
-//             {
-//                 materialName: 'Power Outlet',
-//                 unit: "piece",
-//                 types: ['Standard', 'GFCI', 'Other']
-//             },
-//             {
-//                 materialName: 'Light Switch',
-//                 unit: "piece",
-//                 types: ['Toggle', 'Dimmer', 'Other']
-//             },
-//             {
-//                 materialName: 'Electrical Plug',
-//                 unit: "piece",
-//                 types: ['2-Prong', '3-Prong', 'Other']
-//             },
-//             {
-//                 materialName: 'Lamp',
-//                 unit: "piece",
-//                 types: ['Incandescent', 'LED', 'Other']
-//             },
-//             {
-//                 materialName: 'Light Bulb',
-//                 unit: "piece",
-//                 types: ['Incandescent', 'LED', 'Other']
-//             },
-//             {
-//                 materialName: 'LED Lighting',
-//                 unit: "piece",
-//                 types: ['Strip', 'Bulb', 'Other']
-//             }
-//         ]
-//     },
-//     {
-//         id: 6,
-//         application: "Plumbing",
-//         ignoreProperties: ['voltage', 'material', 'voltage'],
-//         categories: [
-//             {
-//                 materialName: 'Copper Pipe',
-//                 unit: "m",
-//                 types: ['Type L', 'Type K', 'Other']
-//             },
-//             {
-//                 materialName: 'PVC Pipe',
-//                 unit: "m",
-//                 types: ['Schedule 40', 'Schedule 80', 'Other']
-//             },
-//             {
-//                 materialName: 'PE Pipe',
-//                 unit: "m",
-//                 types: ['HDPE', 'LDPE', 'Other']
-//             },
-//             {
-//                 materialName: 'Faucet',
-//                 unit: "piece",
-//                 types: ['Single Handle', 'Double Handle', 'Other']
-//             },
-//             {
-//                 materialName: 'Sink',
-//                 unit: "piece",
-//                 types: ['Single Bowl', 'Double Bowl', 'Other']
-//             },
-//             {
-//                 materialName: 'Bathtub',
-//                 unit: "piece",
-//                 types: ['Freestanding', 'Built-in', 'Other']
-//             },
-//             {
-//                 materialName: 'Shower',
-//                 unit: "piece",
-//                 types: ['Wall-Mounted', 'Ceiling-Mounted', 'Other']
-//             }
-//         ]
-//     },
-//     {
-//         id: 7,
-//         application: "Heating",
-//         ignoreProperties: ['voltage'],
-//         categories: [
-//             {
-//                 materialName: 'Gas Boiler',
-//                 unit: "piece",
-//                 types: ['Condensing', 'Non-Condensing', 'Other']
-//             },
-//             {
-//                 materialName: 'Oil Boiler',
-//                 unit: "piece",
-//                 types: ['Condensing', 'Non-Condensing', 'Other']
-//             },
-//             {
-//                 materialName: 'Wood Boiler',
-//                 unit: "piece",
-//                 types: ['Condensing', 'Non-Condensing', 'Other']
-//             },
-//             {
-//                 materialName: 'Coal Boiler',
-//                 unit: "piece",
-//                 types: ['Condensing', 'Non-Condensing', 'Other']
-//             },
-//             {
-//                 materialName: 'Cast Iron Radiator',
-//                 unit: "piece",
-//                 types: ['Wall-Mounted', 'Floor-Mounted', 'Other']
-//             },
-//             {
-//                 materialName: 'Steel Radiator',
-//                 unit: "piece",
-//                 types: ['Wall-Mounted', 'Floor-Mounted', 'Other']
-//             },
-//             {
-//                 materialName: 'Aluminum Radiator',
-//                 unit: "piece",
-//                 types: ['Wall-Mounted', 'Floor-Mounted', 'Other']
-//             }
-//         ]
-//     },
-//     {
-//         id: 8,
-//         application: "Decoration",
-//         ignoreProperties: ['voltage'],
-//         categories: [
-//             {
-//                 materialName: 'Wooden Furniture',
-//                 unit: "piece",
-//                 types: ['Chair', 'Table', 'Other']
-//             },
-//             {
-//                 materialName: 'Metal Furniture',
-//                 unit: "piece",
-//                 types: ['Chair', 'Table', 'Other']
-//             },
-//             {
-//                 materialName: 'Glass Furniture',
-//                 unit: "piece",
-//                 types: ['Table', 'Shelf', 'Other']
-//             },
-//             {
-//                 materialName: 'Wall Covering',
-//                 unit: "m²",
-//                 types: ['Wallpaper', 'Paint', 'Other']
-//             },
-//             {
-//                 materialName: 'Wallpaper',
-//                 unit: "m²",
-//                 types: ['Vinyl', 'Paper', 'Other']
-//             },
-//             {
-//                 materialName: 'Paint',
-//                 unit: "L",
-//                 types: ['Acrylic', 'Oil-Based', 'Other']
-//             },
-//             {
-//                 materialName: 'Varnish',
-//                 unit: "L",
-//                 types: ['Polyurethane', 'Shellac', 'Other']
-//             }
-//         ]
-//     },
-//     {
-//         id: 9,
-//         application: "Lighting",
-//         ignoreProperties: ['voltage'],
-//         categories: [
-//             {
-//                 materialName: 'Pendant Light',
-//                 unit: "piece",
-//                 types: ['Single', 'Cluster', 'Other']
-//             },
-//             {
-//                 materialName: 'Ceiling Light',
-//                 unit: "piece",
-//                 types: ['Flush', 'Semi-Flush', 'Other']
-//             },
-//             {
-//                 materialName: 'Wall Light',
-//                 unit: "piece",
-//                 types: ['Sconce', 'Swing Arm', 'Other']
-//             },
-//             {
-//                 materialName: 'Floor Lamp',
-//                 unit: "piece",
-//                 types: ['Standard', 'Arc', 'Other']
-//             },
-//             {
-//                 materialName: 'Table Lamp',
-//                 unit: "piece",
-//                 types: ['Desk', 'Bedside', 'Other']
-//             },
-//             {
-//                 materialName: 'Chandelier',
-//                 unit: "piece",
-//                 types: ['Crystal', 'Drum', 'Other']
-//             },
-//             {
-//                 materialName: 'LED Lighting',
-//                 unit: "piece",
-//                 types: ['Strip', 'Bulb', 'Other']
-//             }
-//         ]
-//     }
-// ];
+
+// otherBase,
+//                 otherColor,
+//                 otherFinish,
+//                 otherMaterial,
+//                 otherSize,
+//                 otherThickness,
+//                 otherType,
+//                 otherVoltage,
+
 
 let materialCategories = [
     {
         id: 1,
         application: "Structural Work",
-        ignoreProperties: [
-            "voltage",
-            "material",
-            "base"
-        ],
+
         categories: [
             {
                 materialName: "Concrete",
@@ -397,7 +23,15 @@ let materialCategories = [
                     "Precast",
                     "On-Site",
                     "Other"
-                ]
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "material",
+                    "base",
+                    "size",
+                    "thickness",
+                    "finish"
+                ],
             },
             {
                 materialName: "Cement",
@@ -407,7 +41,15 @@ let materialCategories = [
                     "Blended",
                     "Slag",
                     "Other"
-                ]
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "material",
+                    "base",
+                    "size",
+                    "thickness",
+                    "finish"
+                ],
             },
             {
                 materialName: "Sand",
@@ -417,7 +59,14 @@ let materialCategories = [
                     "Beach",
                     "Quarry",
                     "Other"
-                ]
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "material",
+                    "base",
+                    "thickness",
+                    "finish"
+                ],
             },
             {
                 materialName: "Gravel",
@@ -427,7 +76,15 @@ let materialCategories = [
                     "Natural",
                     "Recycled",
                     "Other"
-                ]
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "material",
+                    "base",
+                    "thickness",
+                    "finish",
+                    "size"
+                ],
             },
             {
                 materialName: "Stone",
@@ -437,7 +94,13 @@ let materialCategories = [
                     "Marble",
                     "Limestone",
                     "Other"
-                ]
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "material",
+                    "base",
+                    "size"
+                ],
             },
             {
                 materialName: "Brick",
@@ -446,7 +109,15 @@ let materialCategories = [
                     "Clay",
                     "Concrete",
                     "Other"
-                ]
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "material",
+                    "base",
+                    "finish",
+                    "thickness"
+
+                ],
             },
             {
                 materialName: "Concrete Block",
@@ -455,18 +126,21 @@ let materialCategories = [
                     "Hollow",
                     "Solid",
                     "Other"
-                ]
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "material",
+                    "base",
+                    "finish",
+                    "thickness"
+                ],
             }
         ]
     },
     {
         id: 2,
         application: "Secondary Work",
-        ignoreProperties: [
-            "voltage",
-            "material",
-            "base"
-        ],
+
         categories: [
             {
                 materialName: "Timber for Framing",
@@ -475,7 +149,14 @@ let materialCategories = [
                     "Softwood",
                     "Hardwood",
                     "Other"
-                ]
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "material",
+                    "base",
+                    "color",
+                    "thickness"
+                ],
             },
             {
                 materialName: "Wood for Joinery",
@@ -484,7 +165,14 @@ let materialCategories = [
                     "Oak",
                     "Pine",
                     "Other"
-                ]
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "material",
+                    "base",
+                    "color",
+                    "thickness"
+                ],
             },
             {
                 materialName: "Metal for Framing",
@@ -493,7 +181,13 @@ let materialCategories = [
                     "Steel",
                     "Aluminum",
                     "Other"
-                ]
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "material",
+                    "base",
+                    "color",
+                ],
             },
             {
                 materialName: "Metal for Joinery",
@@ -502,7 +196,13 @@ let materialCategories = [
                     "Brass",
                     "Copper",
                     "Other"
-                ]
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "material",
+                    "base",
+                    "color",
+                ],
             },
             {
                 materialName: "Glass",
@@ -511,7 +211,14 @@ let materialCategories = [
                     "Tempered",
                     "Laminated",
                     "Other"
-                ]
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "material",
+                    "base",
+                    "size",
+                    "finish",
+                ],
             },
             {
                 materialName: "Aluminum",
@@ -520,13 +227,26 @@ let materialCategories = [
                     "Extruded",
                     "Cast",
                     "Other"
-                ]
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "material",
+                    "base",
+                    "color",
+                ],
             },
             {
                 materialName: "PVC",
                 unit: "m²",
-                types: []
-            }
+                types: [],
+                ignoreProperties: [
+                    "voltage",
+                    "material",
+                    "base",
+                    "size",
+                    "finish",
+                ],
+            },
         ]
     },
     {
@@ -543,7 +263,13 @@ let materialCategories = [
                     "Acrylic",
                     "Oil-Based",
                     "Other"
-                ]
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "material",
+                    "size",
+                    "thickness"
+                ],
             },
             {
                 materialName: "Varnish",
@@ -552,7 +278,13 @@ let materialCategories = [
                     "Polyurethane",
                     "Shellac",
                     "Other"
-                ]
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "material",
+                    "size",
+                    "thickness"
+                ],
             },
             {
                 materialName: "Lacquer",
@@ -561,7 +293,13 @@ let materialCategories = [
                     "Nitrocellulose",
                     "Polyurethane",
                     "Other"
-                ]
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "material",
+                    "size",
+                    "thickness"
+                ],
             },
             {
                 materialName: "Wallpaper",
@@ -570,7 +308,15 @@ let materialCategories = [
                     "Vinyl",
                     "Paper",
                     "Other"
-                ]
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "material",
+                    "base",
+                    "size",
+                    "finish",
+                    "thickness"
+                ],
             },
             {
                 materialName: "Tile",
@@ -579,7 +325,12 @@ let materialCategories = [
                     "Ceramic",
                     "Porcelain",
                     "Other"
-                ]
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "material",
+                    "base",
+                ],
             },
             {
                 materialName: "Parquet",
@@ -588,7 +339,12 @@ let materialCategories = [
                     "Oak",
                     "Maple",
                     "Other"
-                ]
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "material",
+                    "base",
+                ],
             },
             {
                 materialName: "Carpet",
@@ -597,7 +353,13 @@ let materialCategories = [
                     "Wool",
                     "Synthetic",
                     "Other"
-                ]
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "size",
+                    "finish",
+                ],
             }
         ]
     },
@@ -613,64 +375,127 @@ let materialCategories = [
             "finish",
             "base"
         ],
-        categories: [
+        "categories": [
             {
                 materialName: "Glass Wool",
                 unit: "m²",
-                types: [
+                unit: [
                     "Blown",
                     "Batt",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "size",
+                    "color",
+                    "style",
+                    "material",
+                    "finish",
+                    "base"
                 ]
             },
             {
                 materialName: "Rock Wool",
                 unit: "m²",
-                types: [
+                unit: [
                     "Blown",
                     "Batt",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "size",
+                    "color",
+                    "style",
+                    "material",
+                    "finish",
+                    "base"
                 ]
             },
             {
                 materialName: "Polyurethane Foam",
                 unit: "m²",
-                types: [
+                unit: [
                     "Spray",
                     "Board",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "size",
+                    "color",
+                    "style",
+                    "material",
+                    "finish",
+                    "base"
                 ]
             },
             {
                 materialName: "Polyisocyanurate Foam",
                 unit: "m²",
-                types: [
+                unit: [
                     "Board",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "size",
+                    "color",
+                    "style",
+                    "material",
+                    "finish",
+                    "base"
                 ]
             },
             {
                 materialName: "Wood Fiber",
                 unit: "m²",
-                types: [
+                unit: [
                     "Board",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "size",
+                    "color",
+                    "style",
+                    "material",
+                    "finish",
+                    "base"
                 ]
             },
             {
                 materialName: "Bamboo Fiber",
                 unit: "m²",
-                types: [
+                unit: [
                     "Board",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "size",
+                    "color",
+                    "style",
+                    "material",
+                    "finish",
+                    "base"
                 ]
             },
             {
                 materialName: "Hemp Fiber",
                 unit: "m²",
-                types: [
+                unit: [
                     "Board",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "size",
+                    "color",
+                    "style",
+                    "material",
+                    "finish",
+                    "base"
                 ]
             }
         ]
@@ -684,72 +509,124 @@ let materialCategories = [
             "base",
             "finish"
         ],
-        categories: [
+        "categories": [
             {
                 materialName: "Electrical Cable",
                 unit: "m",
-                types: [
+                unit: [
                     "Copper",
                     "Aluminum",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "material",
+                    "base",
+                    "finish"
                 ]
             },
             {
                 materialName: "Power Outlet",
                 unit: "piece",
-                types: [
+                unit: [
                     "Standard",
                     "GFCI",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "material",
+                    "base",
+                    "finish",
+                    "insulation"
                 ]
             },
             {
                 materialName: "Light Switch",
                 unit: "piece",
-                types: [
+                unit: [
                     "Toggle",
                     "Dimmer",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "material",
+                    "base",
+                    "finish",
+                    "insulation"
                 ]
             },
             {
                 materialName: "Electrical Plug",
                 unit: "piece",
-                types: [
+                unit: [
                     "2-Prong",
                     "3-Prong",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "material",
+                    "base",
+                    "finish",
+                    "insulation"
                 ]
             },
             {
                 materialName: "Lamp",
                 unit: "piece",
-                types: [
+                unit: [
                     "Incandescent",
                     "LED",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "material",
+                    "base",
+                    "finish",
+                    "insulation",
+                    "amperage"
                 ]
             },
             {
                 materialName: "Light Bulb",
                 unit: "piece",
-                types: [
+                unit: [
                     "Incandescent",
                     "LED",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "material",
+                    "base",
+                    "finish",
+                    "insulation",
+                    "amperage"
                 ]
             },
             {
                 materialName: "LED Lighting",
                 unit: "piece",
-                types: [
+                unit: [
                     "Strip",
                     "Bulb",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "material",
+                    "base",
+                    "finish",
+                    "insulation",
+                    "amperage"
                 ]
             }
         ]
     },
+
     {
         id: 6,
         application: "Plumbing",
@@ -765,6 +642,11 @@ let materialCategories = [
                     "Type L",
                     "Type K",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "finish",
+                    "brand", "size", "material", "base",
                 ]
             },
             {
@@ -774,6 +656,11 @@ let materialCategories = [
                     "Schedule 40",
                     "Schedule 80",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "finish",
+                    "brand", "size", "material", "base",
                 ]
             },
             {
@@ -783,6 +670,11 @@ let materialCategories = [
                     "HDPE",
                     "LDPE",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "finish",
+                    "brand", "size", "material", "base",
                 ]
             },
             {
@@ -792,6 +684,10 @@ let materialCategories = [
                     "Single Handle",
                     "Double Handle",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "brand","thickness", "material", "base",
                 ]
             },
             {
@@ -801,6 +697,11 @@ let materialCategories = [
                     "Single Bowl",
                     "Double Bowl",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "finish",
+                    "brand", "thickness", "base",
                 ]
             },
             {
@@ -810,6 +711,11 @@ let materialCategories = [
                     "Freestanding",
                     "Built-in",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "finish",
+                    "brand", "thickness", "base",
                 ]
             },
             {
@@ -819,6 +725,11 @@ let materialCategories = [
                     "Wall-Mounted",
                     "Ceiling-Mounted",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "finish",
+                    "brand", "thickness", "base",
                 ]
             }
         ]
@@ -835,6 +746,12 @@ let materialCategories = [
                     "Condensing",
                     "Non-Condensing",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish",
+                    "color", "material", "voltage"
                 ]
             },
             {
@@ -844,6 +761,12 @@ let materialCategories = [
                     "Condensing",
                     "Non-Condensing",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish",
+                    "color", "material", "voltage"
                 ]
             },
             {
@@ -853,6 +776,12 @@ let materialCategories = [
                     "Condensing",
                     "Non-Condensing",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish",
+                    "color", "material", "voltage"
                 ]
             },
             {
@@ -862,6 +791,12 @@ let materialCategories = [
                     "Condensing",
                     "Non-Condensing",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish",
+                    "color", "material", "voltage"
                 ]
             },
             {
@@ -871,6 +806,11 @@ let materialCategories = [
                     "Wall-Mounted",
                     "Floor-Mounted",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish", "voltage"
                 ]
             },
             {
@@ -880,6 +820,11 @@ let materialCategories = [
                     "Wall-Mounted",
                     "Floor-Mounted",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish", "voltage"
                 ]
             },
             {
@@ -889,6 +834,11 @@ let materialCategories = [
                     "Wall-Mounted",
                     "Floor-Mounted",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish", "voltage"
                 ]
             }
         ]
@@ -897,7 +847,6 @@ let materialCategories = [
         id: 8,
         application: "Decoration",
         ignoreProperties: ['thickness', 'voltage'],
-
         categories: [
             {
                 materialName: "Wooden Furniture",
@@ -906,6 +855,11 @@ let materialCategories = [
                     "Chair",
                     "Table",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "brand",
+                    "base", "thickness", "finish"
                 ]
             },
             {
@@ -915,6 +869,11 @@ let materialCategories = [
                     "Chair",
                     "Table",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "brand",
+                    "base", "thickness", "finish"
                 ]
             },
             {
@@ -924,6 +883,11 @@ let materialCategories = [
                     "Table",
                     "Shelf",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "brand",
+                    "base", "thickness", "finish"
                 ]
             },
             {
@@ -933,6 +897,14 @@ let materialCategories = [
                     "Wallpaper",
                     "Paint",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "brand",
+                    "size",
+                    "material",
+                    "base",
+                    "thickness", "finish"
                 ]
             },
             {
@@ -942,6 +914,11 @@ let materialCategories = [
                     "Vinyl",
                     "Paper",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "size",
+                    "thickness", "base", "material", "base", "finish"
                 ]
             },
             {
@@ -951,6 +928,13 @@ let materialCategories = [
                     "Acrylic",
                     "Oil-Based",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "brand",
+                    "size",
+                    "thickness",
+                    "material"
                 ]
             },
             {
@@ -960,6 +944,13 @@ let materialCategories = [
                     "Polyurethane",
                     "Shellac",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "voltage",
+                    "brand",
+                    "size",
+                    "thickness",
+                    "material"
                 ]
             }
         ]
@@ -968,69 +959,98 @@ let materialCategories = [
         id: 9,
         application: "Lighting",
         ignoreProperties: ['thickness', 'base', 'voltage', 'finish'],
-
         categories: [
             {
                 materialName: "Pendant Light",
                 unit: "piece",
                 types: [
-                    "Single",
-                    "Cluster",
-                    "Other"
+                    "Single", "Multiple", "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish",
+                    "voltage"
                 ]
             },
             {
-                materialName: "Ceiling Light",
+                materialName: "Recessed Light",
                 unit: "piece",
                 types: [
-                    "Flush",
-                    "Semi-Flush",
-                    "Other"
-                ]
-            },
-            {
-                materialName: "Wall Light",
-                unit: "piece",
-                types: [
-                    "Sconce",
-                    "Swing Arm",
-                    "Other"
+                    "LED", "Halogen", "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish",
+                    "voltage"
                 ]
             },
             {
                 materialName: "Floor Lamp",
                 unit: "piece",
                 types: [
-                    "Standard",
-                    "Arc",
+                    "Standing", "Arc",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish",
+                    "voltage"
                 ]
             },
             {
                 materialName: "Table Lamp",
                 unit: "piece",
                 types: [
-                    "Desk",
-                    "Bedside",
+                    "Desk", "Bedside",
                     "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish",
+                    "voltage"
                 ]
             },
             {
-                materialName: "Chandelier",
-                unit: "piece",
+                materialName: "LED Strip",
+                unit: "m",
                 types: [
-                    "Crystal",
-                    "Drum",
-                    "Other"
+                    "Flexible", "Rigid", "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish",
+                    "voltage"
                 ]
             },
             {
-                materialName: "LED Lighting",
+                materialName: "Spotlight",
                 unit: "piece",
                 types: [
-                    "Strip",
-                    "Bulb",
-                    "Other"
+                    "LED", "Halogen", "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish",
+                    "voltage"
+                ]
+            },
+            {
+                materialName: "Wall Sconce",
+                unit: "piece",
+                types: [
+                    "Single", "Double", "Other"
+                ],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish",
+                    "voltage"
                 ]
             }
         ]
@@ -1043,27 +1063,57 @@ let materialCategories = [
             {
                 materialName: 'Wall-Mounted Air Conditioner',
                 unit: "piece",
-                types: ['Split', 'Window', 'Other']
+                types: ['Split', 'Window', 'Other'],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish",
+                    "material"
+                ]
             },
             {
                 materialName: 'Split Air Conditioner',
                 unit: "piece",
-                types: ['Ductless', 'Ducted', 'Other']
+                types: ['Ductless', 'Ducted', 'Other'],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish",
+                    "material"
+                ]
             },
             {
                 materialName: 'Ceiling Fan',
                 unit: "piece",
-                types: ['With Light', 'Without Light', 'Other']
+                types: ['With Light', 'Without Light', 'Other'],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish",
+                    "efficiency"
+                ]
             },
             {
                 materialName: 'Standing Fan',
                 unit: "piece",
-                types: ['Oscillating', 'Non-Oscillating', 'Other']
+                types: ['Oscillating', 'Non-Oscillating', 'Other'],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish",
+                    "efficiency"
+                ]
             },
             {
                 materialName: 'Table Fan',
                 unit: "piece",
-                types: ['Oscillating', 'Non-Oscillating', 'Other']
+                types: ['Oscillating', 'Non-Oscillating', 'Other'],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish",
+                    "efficiency"
+                ]
             }
         ]
     },
@@ -1075,32 +1125,66 @@ let materialCategories = [
             {
                 materialName: 'Fire Alarm',
                 unit: "piece",
-                types: ['Smoke', 'Heat', 'Other']
+                types: ['Smoke', 'Heat', 'Other'],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish",
+                    "voltage"
+                ]
             },
             {
                 materialName: 'Smoke Detector',
                 unit: "piece",
-                types: ['Ionization', 'Photoelectric', 'Other']
+                types: ['Ionization', 'Photoelectric', 'Other'],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish",
+                    "voltage"
+                ]
             },
             {
                 materialName: 'Carbon Monoxide Detector',
                 unit: "piece",
-                types: ['Battery-Operated', 'Hardwired', 'Other']
+                types: ['Battery-Operated', 'Hardwired', 'Other'],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish"
+                ]
             },
             {
                 materialName: 'Surveillance Camera',
                 unit: "piece",
-                types: ['Dome', 'Bullet', 'Other']
+                types: ['Dome', 'Bullet', 'Other'],
+                ignoreProperties: [
+                    "thickness",
+                    "base",
+                    "finish"
+                ]
             },
             {
                 materialName: 'Alarm System',
                 unit: "piece",
-                types: ['Wired', 'Wireless', 'Other']
+                types: ['Wired', 'Wireless', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Electronic Lock',
                 unit: "piece",
-                types: ['Keypad', 'Biometric', 'Other']
+                types: ['Keypad', 'Biometric', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             }
         ]
     },
@@ -1112,32 +1196,68 @@ let materialCategories = [
             {
                 materialName: 'Smart Thermostat',
                 unit: "piece",
-                types: ['Wi-Fi', 'Z-Wave', 'Other']
+                types: ['Wi-Fi', 'Z-Wave', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Smart Switch',
                 unit: "piece",
-                types: ['Wi-Fi', 'Z-Wave', 'Other']
+                types: ['Wi-Fi', 'Z-Wave', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Smart Plug',
                 unit: "piece",
-                types: ['Wi-Fi', 'Z-Wave', 'Other']
+                types: ['Wi-Fi', 'Z-Wave', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Smart Lighting',
                 unit: "piece",
-                types: ['Wi-Fi', 'Z-Wave', 'Other']
+                types: ['Wi-Fi', 'Z-Wave', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Motorized Roller Blind',
                 unit: "piece",
-                types: ['Wi-Fi', 'Z-Wave', 'Other']
+                types: ['Wi-Fi', 'Z-Wave', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Voice Assistant',
                 unit: "piece",
-                types: ['Wi-Fi', 'Bluetooth', 'Other']
+                types: ['Wi-Fi', 'Bluetooth', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             }
         ]
     },
@@ -1149,37 +1269,79 @@ let materialCategories = [
             {
                 materialName: 'Artificial Grass',
                 unit: "m²",
-                types: ['Short', 'Long', 'Other']
+                types: ['Short', 'Long', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "finish",
+                    "size"
+                ]
             },
             {
                 materialName: 'Paving Stone',
                 unit: "m²",
-                types: ['Concrete', 'Natural', 'Other']
+                types: ['Concrete', 'Natural', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "finish",
+                    "size"
+                ]
             },
             {
                 materialName: 'Decorative Gravel',
                 unit: "m³",
-                types: ['Natural', 'Synthetic', 'Other']
+                types: ['Natural', 'Synthetic', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Potting Soil',
                 unit: "m³",
-                types: ['Organic', 'Inorganic', 'Other']
+                types: ['Organic', 'Inorganic', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Fertilizer',
                 unit: "kg",
-                types: ['Organic', 'Synthetic', 'Other']
+                types: ['Organic', 'Synthetic', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Potted Plant',
                 unit: "piece",
-                types: ['Indoor', 'Outdoor', 'Other']
+                types: ['Indoor', 'Outdoor', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Shrub',
                 unit: "piece",
-                types: ['Evergreen', 'Deciduous', 'Other']
+                types: ['Evergreen', 'Deciduous', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             }
         ]
     },
@@ -1191,37 +1353,79 @@ let materialCategories = [
             {
                 materialName: 'Wooden Deck',
                 unit: "m²",
-                types: ['Natural', 'Composite', 'Other']
+                types: ['Natural', 'Composite', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Composite Deck',
                 unit: "m²",
-                types: ['Natural', 'Composite', 'Other']
+                types: ['Natural', 'Composite', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Pergola',
                 unit: "piece",
-                types: ['Wooden', 'Metal', 'Other']
+                types: ['Wooden', 'Metal', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Wooden Fence',
                 unit: "m",
-                types: ['Picket', 'Privacy', 'Other']
+                types: ['Picket', 'Privacy', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Metal Fence',
                 unit: "m",
-                types: ['Chain-Link', 'Wrought Iron', 'Other']
+                types: ['Chain-Link', 'Wrought Iron', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'PVC Fence',
                 unit: "m",
-                types: ['Picket', 'Privacy', 'Other']
+                types: ['Picket', 'Privacy', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Gate',
                 unit: "piece",
-                types: ['Wooden', 'Metal', 'Other']
+                types: ['Wooden', 'Metal', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             }
         ]
     },
@@ -1233,22 +1437,46 @@ let materialCategories = [
             {
                 materialName: 'Stainless Steel Sink',
                 unit: "piece",
-                types: ['Single Bowl', 'Double Bowl', 'Other']
+                types: ['Single Bowl', 'Double Bowl', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Ceramic Sink',
                 unit: "piece",
-                types: ['Single Bowl', 'Double Bowl', 'Other']
+                types: ['Single Bowl', 'Double Bowl', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Cooktop',
                 unit: "piece",
-                types: ['Gas', 'Electric', 'Other']
+                types: ['Gas', 'Electric', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Range Hood',
                 unit: "piece",
-                types: ['Ducted', 'Ductless', 'Other']
+                types: ['Ducted', 'Ductless', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             }
         ]
     },
@@ -1260,27 +1488,57 @@ let materialCategories = [
             {
                 materialName: 'Washbasin',
                 unit: "piece",
-                types: ['Pedestal', 'Wall-Mounted', 'Other']
+                types: ['Pedestal', 'Wall-Mounted', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Bidet',
                 unit: "piece",
-                types: ['Floor-Mounted', 'Wall-Mounted', 'Other']
+                types: ['Floor-Mounted', 'Wall-Mounted', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Wall-Mounted Toilet',
                 unit: "piece",
-                types: ['Standard', 'Dual Flush', 'Other']
+                types: ['Standard', 'Dual Flush', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Floor-Mounted Toilet',
                 unit: "piece",
-                types: ['Standard', 'Dual Flush', 'Other']
+                types: ['Standard', 'Dual Flush', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             },
             {
                 materialName: 'Towel Rail',
                 unit: "piece",
-                types: ['Wall-Mounted', 'Floor-Mounted', 'Other']
+                types: ['Wall-Mounted', 'Floor-Mounted', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "thickness",
+                    "finish",
+                ]
             }
         ]
     },
@@ -1292,32 +1550,68 @@ let materialCategories = [
             {
                 materialName: 'Floating Parquet',
                 unit: "m²",
-                types: ['Oak', 'Maple', 'Other']
+                types: ['Oak', 'Maple', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "brand",
+                    "material"
+                ]
             },
             {
                 materialName: 'Solid Parquet',
                 unit: "m²",
-                types: ['Oak', 'Maple', 'Other']
+                types: ['Oak', 'Maple', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "brand",
+                    "material"
+                ]
             },
             {
                 materialName: 'Laminate Parquet',
                 unit: "m²",
-                types: ['Oak', 'Maple', 'Other']
+                types: ['Oak', 'Maple', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "brand",
+                    "material"
+                ]
             },
             {
                 materialName: 'Vinyl',
                 unit: "m²",
-                types: ['Sheet', 'Tile', 'Other']
+                types: ['Sheet', 'Tile', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "brand",
+                    "material"
+                ]
             },
             {
                 materialName: 'Linoleum',
                 unit: "m²",
-                types: ['Sheet', 'Tile', 'Other']
+                types: ['Sheet', 'Tile', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "brand",
+                    "material"
+                ]
             },
             {
                 materialName: 'PVC Tile',
                 unit: "m²",
-                types: ['Sheet', 'Tile', 'Other']
+                types: ['Sheet', 'Tile', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "brand",
+                    "material"
+                ]
             }
         ]
     },
@@ -1329,27 +1623,57 @@ let materialCategories = [
             {
                 materialName: 'Wainscoting',
                 unit: "m²",
-                types: ['Wood', 'Plastic', 'Other']
+                types: ['Wood', 'Plastic', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "brand",
+                    "material"
+                ]
             },
             {
                 materialName: 'Wood Panel',
                 unit: "m²",
-                types: ['Oak', 'Maple', 'Other']
+                types: ['Oak', 'Maple', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "brand",
+                    "material"
+                ]
             },
             {
                 materialName: 'Metal Panel',
                 unit: "m²",
-                types: ['Steel', 'Aluminum', 'Other']
+                types: ['Steel', 'Aluminum', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "brand",
+                    "material"
+                ]
             },
             {
                 materialName: 'Glass Panel',
                 unit: "m²",
-                types: ['Tempered', 'Laminated', 'Other']
+                types: ['Tempered', 'Laminated', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "brand",
+                    "material"
+                ]
             },
             {
                 materialName: 'Plaster Panel',
                 unit: "m²",
-                types: ['Gypsum', 'Fiber', 'Other']
+                types: ['Gypsum', 'Fiber', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "brand",
+                    "material"
+                ]
             }
         ]
     },
@@ -1361,193 +1685,35 @@ let materialCategories = [
             {
                 materialName: 'Blind',
                 unit: "piece",
-                types: ['Roller', 'Venetian', 'Other']
+                types: ['Roller', 'Venetian', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "finish",
+                    "thickness"
+                ]
             },
             {
                 materialName: 'Shutter',
                 unit: "piece",
-                types: ['Wooden', 'Metal', 'Other']
+                types: ['Wooden', 'Metal', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "finish",
+                    "thickness"
+                ]
             },
             {
                 materialName: 'Photo Frame',
                 unit: "piece",
-                types: ['Wooden', 'Metal', 'Other']
-            }
-        ]
-    }
-];
-let materialCategoriesUpdated = [
-    {
-        id: 1,
-        categoryName: "Structural Work",
-        materials: [
-            {
-                materialName: "Concrete",
-                unit: "m³",
-                filter1: {
-                    filterName: "Type",
-                    options: ['Ready-Mix', 'Precast', 'On-Site', 'Other']
-                },
-                filter2: {
-                    filterName: "Grade",
-                    options: ['C25', 'C30', 'C40', 'Other']
-                },
-                filter3: {
-                    filterName: "Color",
-                    options: ['Grey', 'White', 'Beige', 'Other']
-                },
-                filter4: {
-                    filterName: "Strength",
-                    options: ['High', 'Medium', 'Low', 'Other']
-                },
-                filter5: {
-                    filterName: "Setting Time",
-                    options: ['Fast', 'Slow', 'Medium', 'Other']
-                }
-            },
-            {
-                materialName: "Cement",
-                unit: "kg",
-                filter1: {
-                    filterName: "Type",
-                    options: ['Portland', 'Blended', 'Slag', 'Other']
-                },
-                filter2: {
-                    filterName: "Grade",
-                    options: ['42.5', '52.5', '32.5', 'Other']
-                },
-                filter3: {
-                    filterName: "Color",
-                    options: ['Grey', 'White', 'Beige', 'Other']
-                },
-                filter4: {
-                    filterName: "Strength",
-                    options: ['High', 'Medium', 'Low', 'Other']
-                },
-                filter5: {
-                    filterName: "Setting Time",
-                    options: ['Fast', 'Slow', 'Medium', 'Other']
-                }
-            },
-            {
-                materialName: "Sand",
-                unit: "m³",
-                filter1: {
-                    filterName: "Type",
-                    options: ['River', 'Beach', 'Quarry', 'Other']
-                },
-                filter2: {
-                    filterName: "Grade",
-                    options: ['Fine', 'Coarse', 'Medium', 'Other']
-                },
-                filter3: {
-                    filterName: "Size",
-                    options: ['Small', 'Large', 'Medium', 'Other']
-                },
-                filter4: {
-                    filterName: "Color",
-                    options: ['Beige', 'Brown', 'White', 'Other']
-                },
-                filter5: {
-                    filterName: "Moisture Content",
-                    options: ['Low', 'High', 'Medium', 'Other']
-                }
-            },
-            {
-                materialName: "Gravel",
-                unit: "m³",
-                filter1: {
-                    filterName: "Type",
-                    options: ['Crushed', 'Natural', 'Recycled', 'Other']
-                },
-                filter2: {
-                    filterName: "Grade",
-                    options: ['5mm', '10mm', '20mm', 'Other']
-                },
-                filter3: {
-                    filterName: "Color",
-                    options: ['Grey', 'Brown', 'Black', 'Other']
-                },
-                filter4: {
-                    filterName: "Shape",
-                    options: ['Round', 'Angular', 'Mixed', 'Other']
-                },
-                filter5: {
-                    filterName: "Hardness",
-                    options: ['Soft', 'Hard', 'Medium', 'Other']
-                }
-            },
-            {
-                materialName: "Stone",
-                unit: "m²",
-                filter1: {
-                    filterName: "Type",
-                    options: ['Granite', 'Marble', 'Limestone', 'Other']
-                },
-                filter2: {
-                    filterName: "Finish",
-                    options: ['Polished', 'Rough', 'Honed', 'Other']
-                },
-                filter3: {
-                    filterName: "Color",
-                    options: ['Black', 'White', 'Grey', 'Other']
-                },
-                filter4: {
-                    filterName: "Thickness",
-                    options: ['1cm', '2cm', '3cm', 'Other']
-                },
-                filter5: {
-                    filterName: "Texture",
-                    options: ['Smooth', 'Rough', 'Other']
-                }
-            },
-            {
-                materialName: "Brick",
-                unit: "piece",
-                filter1: {
-                    filterName: "Type",
-                    options: ['Clay', 'Concrete', 'Other']
-                },
-                filter2: {
-                    filterName: "Size",
-                    options: ['Standard', 'Jumbo', 'Other']
-                },
-                filter3: {
-                    filterName: "Color",
-                    options: ['Red', 'Grey', 'Brown', 'Other']
-                },
-                filter4: {
-                    filterName: "Strength",
-                    options: ['High', 'Medium', 'Low', 'Other']
-                },
-                filter5: {
-                    filterName: "Texture",
-                    options: ['Smooth', 'Rough', 'Other']
-                }
-            },
-            {
-                materialName: "Concrete Block",
-                unit: "piece",
-                filter1: {
-                    filterName: "Type",
-                    options: ['Hollow', 'Solid', 'Other']
-                },
-                filter2: {
-                    filterName: "Size",
-                    options: ['8"', '10"', '12"', 'Other']
-                },
-                filter3: {
-                    filterName: "Color",
-                    options: ['Grey', 'White', 'Other']
-                },
-                filter4: {
-                    filterName: "Strength",
-                    options: ['High', 'Medium', 'Low', 'Other']
-                },
-                filter5: {
-                    filterName: "Texture",
-                    options: ['Smooth', 'Rough', 'Other']
-                }
+                types: ['Wooden', 'Metal', 'Other'],
+                ignoreProperties: [
+                    "voltage",
+                    "base",
+                    "finish",
+                    "thickness"
+                ]
             }
         ]
     }
