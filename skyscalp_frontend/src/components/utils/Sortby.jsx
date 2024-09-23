@@ -5,6 +5,7 @@ import { FaAngleDown, FaArrowDown, FaArrowUp } from 'react-icons/fa6'
 
 export default function Sortby({ handleSortOrder, handleSortby }) {
     const sortbyRef = useRef()
+    const sortbyLabelRef = useRef()
     const [showSortDropdown, setShowSortDropdown] = useState(false)
     const [t] = useTranslation()
 
@@ -13,7 +14,7 @@ export default function Sortby({ handleSortOrder, handleSortby }) {
 
 
     const handleClickOutside = (e) => {
-        if (sortbyRef.current && !sortbyRef.current.contains(e.target)) {
+        if (sortbyRef.current && !sortbyRef.current.contains(e.target) && !sortbyLabelRef.current.contains(e.target)) {
             setShowSortDropdown(false);
         }
     };
@@ -49,7 +50,7 @@ export default function Sortby({ handleSortOrder, handleSortby }) {
                         )
                 }
             </div>
-            <div className="d-flex gap-2 align-items-center sorting" onClick={() => setShowSortDropdown(!showSortDropdown)}>
+            <div ref={sortbyLabelRef} className="d-flex gap-2 align-items-center sorting" onClick={() => setShowSortDropdown(!showSortDropdown)}>
                 <p>
                     {sortBy === '' ? `${t("sortby")}` : (() => {
                         switch (sortBy) {

@@ -71,6 +71,7 @@ export default function ExpertsFilter({
     const [t] = useTranslation();
 
     const categoryDropdownRef = useRef();
+    const categoriesLabelRef = useRef();
     const minPriceRef = useRef();
     const languageRef = useRef();
     const experienceRef = useRef();
@@ -80,6 +81,16 @@ export default function ExpertsFilter({
     const filter1Ref = useRef()
     const filter2Ref = useRef()
     const filter3Ref = useRef()
+
+    // refs for labels of filters/dropdowns 
+    const budgetLabelRef = useRef()
+    const langLabelRef = useRef()
+    const experienceLabelRef = useRef()
+    const availibilityLabelRef = useRef()
+    const educationLabelRef = useRef()
+    const filter1LabelRef = useRef()
+    const filter2LabelRef = useRef()
+    const filter3LabelRef = useRef()
 
     const [showLocationDropdown, setShowLocationDropdown] = useState(false);
     const [showCategoriesDrp, setShowCategoriesDrp] = useState(false)
@@ -121,34 +132,34 @@ export default function ExpertsFilter({
 
 
     const handleClickOutside = (e) => {
-        if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(e.target)) {
-            setShowLocationDropdown(false);
-        }
-        if (minPriceRef.current && !minPriceRef.current.contains(e.target)) {
+        // if (categoryDropdownRef.current  && !categoryDropdownRef.current.contains(e.target)) {
+        //     setShowLocationDropdown(false);
+        // }
+        if (minPriceRef.current && !minPriceRef.current.contains(e.target) && !budgetLabelRef.current.contains(e.target)) {
             setShowPriceDrp(false);
         }
-        if (languageRef.current && !languageRef.current.contains(e.target)) {
+        if (languageRef.current && !languageRef.current.contains(e.target) && !langLabelRef.current.contains(e.target)) {
             setShowLanguageDrp(false);
         }
-        if (experienceRef.current && !experienceRef.current.contains(e.target)) {
+        if (experienceRef.current && !experienceRef.current.contains(e.target) && !experienceLabelRef.current.contains(e.target)) {
             setShowExperienceDrp(false);
         }
-        if (availabilityRef.current && !availabilityRef.current.contains(e.target)) {
+        if (availabilityRef.current && !availabilityRef.current.contains(e.target) && !availibilityLabelRef.current.contains(e.target)) {
             setShowAvailabilityDrp(false);
         }
-        if (categoriesRef.current && !categoriesRef.current.contains(e.target)) {
+        if (categoriesRef.current && !categoriesRef.current.contains(e.target) && !categoriesLabelRef.current.contains(e.target)) {
             setShowCategoriesDrp(false);
         }
-        if (educationRef.current && !educationRef.current.contains(e.target)) {
+        if (educationRef.current && !educationRef.current.contains(e.target) && !educationLabelRef.current.contains(e.target)) {
             setShowEducationDrp(false);
         }
-        if (filter1Ref.current && !filter1Ref.current.contains(e.target)) {
+        if (filter1Ref.current && !filter1Ref.current.contains(e.target) && !filter1LabelRef.current.contains(e.target)) {
             setShowFilter1Drp(false);
         }
-        if (filter2Ref.current && !filter2Ref.current.contains(e.target)) {
+        if (filter2Ref.current && !filter2Ref.current.contains(e.target) && !filter2LabelRef.current.contains(e.target)) {
             setShowFilter2Drp(false);
         }
-        if (filter3Ref.current && !filter3Ref.current.contains(e.target)) {
+        if (filter3Ref.current && !filter3Ref.current.contains(e.target) && !filter3LabelRef.current.contains(e.target)) {
             setShowFilter3Drp(false);
         }
     };
@@ -458,13 +469,14 @@ export default function ExpertsFilter({
                                 {/* <CustomLocationsDropdown selectedLocations={selectedAllLocations} handleLocationSelect={handleLocationSelect} /> */}
                                 <CustomLocationsDropdown selectedLocations={selectedAllLocations} handleLocationSelect={handleLocationSelect} radius={radius} handleRadiusChange={handleRadiusChange} />
                             </div>
-                            <div className="search-input" onClick={() => setShowCategoriesDrp(true)}>
+                            <div className="search-input" onClick={() => setShowCategoriesDrp(!showCategoriesDrp)}  ref={categoriesLabelRef}> 
                                 <ExpertsNestedDropdown2
                                     show={showCategoriesDrp}
                                     categoriesRef={categoriesRef}
                                     categories={expertsFields && expertsFields}
                                     setCheckedSubcategories={setCheckedSubcategories}
                                     checkedSubcategories={checkedSubcategories}
+                                    categoriesLabelRef={categoriesLabelRef}
                                 />
                             </div>
                         </div>
@@ -475,7 +487,7 @@ export default function ExpertsFilter({
                     <div className="other-filters p-1 pt-3 pb-0" style={{ flexWrap: "wrap" }}>
                         <div className="d-flex gap-4">
                             <div className="other-filter">
-                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowPriceDrp(!showPriceDrp)}>
+                                <div ref={budgetLabelRef} className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowPriceDrp(!showPriceDrp)}>
 
                                     <div className='text-white'>
                                         {minPrice === '' && maxPrice === '' ? (
@@ -547,7 +559,7 @@ export default function ExpertsFilter({
                                 (
 
                                     <div className="other-filter">
-                                        <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowFilter1Drp(!showFilter1Drp)}>
+                                        <div ref={filter1LabelRef} className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowFilter1Drp(!showFilter1Drp)}>
                                             <p className='text-white'>{t(filter1.filterName)}</p>
                                             <FaAngleDown className='text-white' />
                                         </div>
@@ -580,7 +592,7 @@ export default function ExpertsFilter({
                                 (
 
                                     <div className="other-filter">
-                                        <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowFilter2Drp(!showFilter2Drp)}>
+                                        <div ref={filter2LabelRef} className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowFilter2Drp(!showFilter2Drp)}>
                                             <p className='text-white'>{t(filter2.filterName)}</p>
                                             <FaAngleDown className='text-white' />
                                         </div>
@@ -612,7 +624,7 @@ export default function ExpertsFilter({
                                 (
 
                                     <div className="other-filter">
-                                        <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowFilter3Drp(!showFilter3Drp)}>
+                                        <div ref={filter3LabelRef} className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowFilter3Drp(!showFilter3Drp)}>
                                             <p className='text-white'>{t(filter3.filterName)}</p>
                                             <FaAngleDown className='text-white' />
                                         </div>
@@ -641,7 +653,7 @@ export default function ExpertsFilter({
 
                             {/* // language */}
                             <div className="other-filter">
-                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowLanguageDrp(!showLanguageDrp)}>
+                                <div ref={langLabelRef} className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowLanguageDrp(!showLanguageDrp)}>
                                     <p className='text-white'>{t("Language")}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
@@ -667,12 +679,12 @@ export default function ExpertsFilter({
                             </div>
 
                             <div className="other-filter">
-                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowExperienceDrp(!showExperienceDrp)}>
+                                <div ref={experienceLabelRef} className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowExperienceDrp(!showExperienceDrp)}>
                                     <p className='text-white'>{`${t("Experience")}`}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
-                                <div className={`custom-dropdown ${showExperienceDrp ? 'show' : ''}`} ref={experienceRef}>
+                                <div className={`custom-dropdown  ${showExperienceDrp ? 'show' : ''}`} ref={experienceRef}>
                                     {
                                         experienceList.map((data, i) => {
                                             return (
@@ -693,7 +705,7 @@ export default function ExpertsFilter({
                             </div>
 
                             <div className="other-filter">
-                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowAvailabilityDrp(!showAvailabilityDrp)}>
+                                <div ref={availibilityLabelRef} className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowAvailabilityDrp(!showAvailabilityDrp)}>
                                     <p className='text-white'>{t("Availibility")}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
@@ -720,12 +732,12 @@ export default function ExpertsFilter({
                             </div>
 
                             <div className="other-filter">
-                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowEducationDrp(!showEducationDrp)}>
+                                <div ref={educationLabelRef} className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowEducationDrp(!showEducationDrp)}>
                                     <p className='text-white'>{t("Education")}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
-                                <div className={`custom-dropdown squeeze-left ${showEducationDrp ? 'show' : ''}`} ref={educationRef}>
+                                <div className={`custom-dropdown ${showEducationDrp ? 'show' : ''}`} ref={educationRef}>
                                     {
                                         educationData.map((data, i) => {
                                             return (

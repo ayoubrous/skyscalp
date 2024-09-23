@@ -80,7 +80,7 @@ const MachineryCard = ({ data }) => {
 
                     <p className="">{city}{city && ','} {country}</p>
                     <p className='mb-1'>{category.toLowerCase() === "other" || category.toLowerCase() === "others" ? otherMachine.slice(0, 10) : t(category)}</p>
-                    <p className='color-secondary'>{application.toLowerCase() === "other" || application.toLowerCase() === "others" ? otherApplication.slice(0, 10) : t(application)}</p>
+                    <p className='color-secondary'>{application && application.toLowerCase() === "other" || application && application.toLowerCase() === "others" ? otherApplication.slice(0, 10) : t(application)}</p>
                     <p className='color-secondary'>{t(condition)}</p>
 
                     {description && <p className='mb-2 mt-1 color-secondary description' dangerouslySetInnerHTML={{ __html: description.substring(0, 120) }}></p>}

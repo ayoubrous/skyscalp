@@ -14,6 +14,9 @@
     .property-card {
         height: 530px;
     }
+    .navbar .dekstopViewLink{
+        margin-left: 14px  !important;
+    }
 }
 
 @media screen and (max-width: 992px) {
@@ -122,33 +125,48 @@
 }
 
 @media screen and (max-width: 768px) {
+    .custom-container {
+        margin-inline: auto !important;
+        width: min(96%, 80rem) !important;
+    }
+
     .navbar {
         padding: 7px 5px;
     }
+
     .navbar .logo img {
         display: none;
         width: 90px;
     }
+
     .navbar .logo img.mobile-logo {
         display: block;
     }
-    .navbar .account .link{
+
+    .navbar .account .link {
+        font-size: 12px;
+        margin-right: 8px;
+    }
+
+    .navbar .account .custom-btn {
         font-size: 12px;
     }
-    .navbar .account .custom-btn{
-        font-size: 12px;
-    }
+
     .navbar .account {
-        gap: 5px;
+        gap: 15px;
         margin-right: 4px;
     }
-    .mobileViewLink{
+
+    .mobileViewLink {
         display: block;
         position: relative;
+        margin-right: 30px !important;
     }
-    .link.dekstopViewLink{
+
+    .link.dekstopViewLink {
         display: none !important;
     }
+
     .custom-btn {
         font-size: 13px;
     }
@@ -362,6 +380,14 @@
         height: 60px;
     }
 
+
+    .top-section-categories .subcategories{
+        padding: 0 20px;
+    }
+
+    .slick-prev, .slick-next {
+        top: 45% !important;
+    }
 
     .category-cards-grid.agents-cards-grid {
         grid-template-columns: repeat(3, 33%);

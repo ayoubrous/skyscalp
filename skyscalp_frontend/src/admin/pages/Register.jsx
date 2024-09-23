@@ -98,7 +98,7 @@ const [t] = useTranslation()
                 {/* <div className="bg order-1 order-md-2" style={{ backgroundImage: `url(${bg1})` }}></div> */}
                 <div className="bg order-1 order-md-2" style={{ backgroundImage: `url(${window.location.origin}/static/media/building-1.9e4d3fc0e7638a34f5ef.jpg)` }}></div>
 
-                <div className="contents order-2 order-md-1">
+                <div className="contents registerWrapper order-2 order-md-1">
                     <div className="container">
                         <div className="row align-items-center justify-content-center">
                             <div className="col-md-7">

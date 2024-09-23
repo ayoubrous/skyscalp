@@ -60,6 +60,10 @@ export default function FurnitureFilter({
     const yearBuildRef = useRef();
     const categoriesRef = useRef()
     const machineryTypeRef = useRef()
+    
+    const budgetLabelRef = useRef()
+    const brandLabelRef = useRef()
+    const conditionLabelRef = useRef()
 
     const [showLocationDropdown, setShowLocationDropdown] = useState(false);
     const [showCategoriesDrp, setShowCategoriesDrp] = useState(false)
@@ -82,16 +86,16 @@ export default function FurnitureFilter({
         if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(e.target)) {
             setShowLocationDropdown(false);
         }
-        if (minPriceRef.current && !minPriceRef.current.contains(e.target)) {
+        if (minPriceRef.current && !minPriceRef.current.contains(e.target) && !budgetLabelRef.current.contains(e.target)) {
             setShowPriceDrp(false);
         }
-        if (brandRef.current && !brandRef.current.contains(e.target)) {
+        if (brandRef.current && !brandRef.current.contains(e.target) && !brandLabelRef.current.contains(e.target)) {
             setShowBrandDrp(false);
         }
-        if (condtionRef.current && !condtionRef.current.contains(e.target)) {
+        if (condtionRef.current && !condtionRef.current.contains(e.target) && !conditionLabelRef.current.contains(e.target)) {
             setShowConditionDrp(false);
         }
-        if (yearBuildRef.current && !yearBuildRef.current.contains(e.target)) {
+        if (yearBuildRef.current && !yearBuildRef.current.contains(e.target) ) {
             setShowYearDrp(false);
         }
         if (categoriesRef.current && !categoriesRef.current.contains(e.target)) {
@@ -362,7 +366,7 @@ export default function FurnitureFilter({
                     <div className="other-filters p-1 pt-3 pb-0" style={{ flexWrap: "wrap" }}>
                         <div className="d-flex gap-4">
                             <div className="other-filter">
-                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowPriceDrp(!showPriceDrp)}>
+                                <div ref={budgetLabelRef} className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowPriceDrp(!showPriceDrp)}>
 
                                     <div className='text-white'>
                                         {minPrice === '' && maxPrice === '' ? (
@@ -430,7 +434,7 @@ export default function FurnitureFilter({
                             </div>
 
                             <div className="other-filter">
-                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowBrandDrp(!showBrandDrp)}>
+                                <div ref={brandLabelRef} className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowBrandDrp(!showBrandDrp)}>
                                     <p className='text-white'>{t("brand")}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
@@ -456,7 +460,7 @@ export default function FurnitureFilter({
                             </div>
 
                             <div className="other-filter">
-                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowConditionDrp(!showConditionDrp)}>
+                                <div ref={conditionLabelRef} className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowConditionDrp(!showConditionDrp)}>
                                     <p className='text-white'>{condition === '' ? `${t("condition")}` : `Condition: ${condition}`}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>

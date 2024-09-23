@@ -20578,3 +20578,15 @@ ul {
     width: 100%;
     overflow: auto
 }
+
+
+/* login  */
+@media screen and (max-width: 600px) {
+    .loginRow{
+        height: 60vh !important;
+        min-height: 60vh !important;
+    }
+    .registerWrapper{
+        position: relative;
+    }
+}

@@ -317,6 +317,8 @@ a:hover {
 .custom-dropdown.squeeze-left {
     right: 0;
     left: auto;
+    /* right: auto;
+    margin: 0 auto; */
 }
 
 .custom-dropdown.show {

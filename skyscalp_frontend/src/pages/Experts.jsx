@@ -333,7 +333,7 @@ const Experts = () => {
             <Toaster />
             <Navbar />
 
-            <Breadcrumb title={t('skyscalpAgents')} link={t('agents')} />
+            <Breadcrumb title={t('Experts')} link={t('Experts')} />
 
             <div className='categories top-section-categories '>
                 <div className='custom-container'>
@@ -386,7 +386,7 @@ const Experts = () => {
                                             className={`subcat-tab ${activeSubcats.includes(subName) ? 'active' : ''}`}
                                             onClick={() => handleActiveSubcategories(subName)}
                                         >
-                                            {t(subName).slice(0, 20) + (subName.length > 20 ? '...' : '')}
+                                            {t(subName).slice(0, 10) + (subName.length > 10 ? '...' : '')}
 
                                             {activeSubcats.includes(subName) && <FaXmark className='closeTab' />}
                                         </div>

@@ -124,7 +124,7 @@ export default function Login() {
                 <div className="bg order-1 order-md-2" style={{ backgroundImage: `url(${window.location.origin}/static/media/building-1.9e4d3fc0e7638a34f5ef.jpg)` }}></div>
                 <div className="contents order-2 order-md-1">
                     <div className="container">
-                        <div className="row align-items-center justify-content-center">
+                        <div className="row align-items-center justify-content-center loginRow" >
                             <div className="col-md-7">
                                 <h3 className='color-primary'>{t("Login to")} <strong>SKYSCALP</strong></h3>
                                 {/* <small className="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</small> */}

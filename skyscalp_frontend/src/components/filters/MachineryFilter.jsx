@@ -65,6 +65,13 @@ export default function MachineryFilter(
     const categoriesRef = useRef()
     const machineryTypeRef = useRef()
 
+    const categoryLabelRef = useRef()
+    const budgetLabelRef = useRef()
+    const brandLabelRef = useRef()
+    const conditionLabelRef = useRef()
+    const yearLabelRef = useRef()
+    const typeLabelRef = useRef()
+
     const [showLocationDropdown, setShowLocationDropdown] = useState(false);
     const [showCategoriesDrp, setShowCategoriesDrp] = useState(false)
     const [showPriceDrp, setShowPriceDrp] = useState(false);
@@ -105,22 +112,22 @@ export default function MachineryFilter(
         if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(e.target)) {
             setShowLocationDropdown(false);
         }
-        if (minPriceRef.current && !minPriceRef.current.contains(e.target)) {
+        if (minPriceRef.current && !minPriceRef.current.contains(e.target) && !budgetLabelRef.current.contains(e.target)) {
             setShowPriceDrp(false);
         }
-        if (brandRef.current && !brandRef.current.contains(e.target)) {
+        if (brandRef.current && !brandRef.current.contains(e.target) && !brandLabelRef.current.contains(e.target)) {
             setShowBrandDrp(false);
         }
-        if (condtionRef.current && !condtionRef.current.contains(e.target)) {
+        if (condtionRef.current && !condtionRef.current.contains(e.target) && !conditionLabelRef.current.contains(e.target)) {
             setShowConditionDrp(false);
         }
-        if (yearBuildRef.current && !yearBuildRef.current.contains(e.target)) {
+        if (yearBuildRef.current && !yearBuildRef.current.contains(e.target) && !yearLabelRef.current.contains(e.target)) {
             setShowYearDrp(false);
         }
-        if (categoriesRef.current && !categoriesRef.current.contains(e.target)) {
+        if (categoriesRef.current && !categoriesRef.current.contains(e.target) ) {
             setShowCategoriesDrp(false);
         }
-        if (machineryTypeRef.current && !machineryTypeRef.current.contains(e.target)) {
+        if (machineryTypeRef.current && !machineryTypeRef.current.contains(e.target) && !typeLabelRef.current.contains(e.target)) {
             setShowMachineryType(false);
         }
     };
@@ -410,7 +417,7 @@ export default function MachineryFilter(
                     <div className="other-filters p-1 pt-3 pb-0" style={{ flexWrap: "wrap" }}>
                         <div className="d-flex gap-4">
                             <div className="other-filter">
-                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowPriceDrp(!showPriceDrp)}>
+                                <div ref={budgetLabelRef} className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowPriceDrp(!showPriceDrp)}>
 
                                     <div className='text-white'>
                                         {minPrice === '' && maxPrice === '' ? (
@@ -479,7 +486,7 @@ export default function MachineryFilter(
                             </div>
 
                             <div className="other-filter">
-                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowBrandDrp(!showBrandDrp)}>
+                                <div ref={brandLabelRef} className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowBrandDrp(!showBrandDrp)}>
                                     <p className='text-white'>{t("brand")}</p>
                                     
                                     <FaAngleDown className='text-white' />
@@ -506,7 +513,7 @@ export default function MachineryFilter(
                             </div>
 
                             <div className="other-filter">
-                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowConditionDrp(!showConditionDrp)}>
+                                <div ref={conditionLabelRef} className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowConditionDrp(!showConditionDrp)}>
                                     <p className='text-white'>{t("condition")}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
@@ -532,7 +539,7 @@ export default function MachineryFilter(
                             </div>
 
                             <div className="other-filter">
-                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowYearDrp(!showYearDrp)}>
+                                <div ref={yearLabelRef} className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowYearDrp(!showYearDrp)}>
                                     <p className='text-white'>{t("year")}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
@@ -559,12 +566,12 @@ export default function MachineryFilter(
                             </div>
 
                             <div className="other-filter">
-                                <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowMachineryType(!showMachineryType)}>
+                                <div ref={typeLabelRef} className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowMachineryType(!showMachineryType)}>
                                     <p className='text-white'>{t("type")}</p>
                                     <FaAngleDown className='text-white' />
                                 </div>
 
-                                <div className={`custom-dropdown ${showMachineryType ? 'show' : ''}`} ref={machineryTypeRef}>
+                                <div className={`custom-dropdown squeeze-left ${showMachineryType ? 'show' : ''}`} ref={machineryTypeRef}>
                                     {
                                         machineryType.map((data, i) => {
                                             return (

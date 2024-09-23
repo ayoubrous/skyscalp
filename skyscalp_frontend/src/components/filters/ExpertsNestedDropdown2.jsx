@@ -48,7 +48,7 @@ export default function ExpertsNestedDropdown2({ show, categoriesRef, categories
 			<ul className={`categories-select-dropdown ${show ? 'show' : ''}`} ref={categoriesRef}>
 				{categories.map((category, i) => (
 					<li key={i} className='dropdown-item extended p-0'>
-						<div className="d-flex justify-content-between" style={{ backgroundColor: "#f7f7f7", padding: "5px" }}>
+						<div onClick={() => handleExtendCategory(i)} className="d-flex justify-content-between" style={{ backgroundColor: "#f7f7f7", padding: "5px" }}>
 							{/* Remove category checkbox */}
 							<label>{t(category.categoryName)}</label>
 							{

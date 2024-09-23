@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 7px 2rem;
+    padding: 7px 1rem;
     box-shadow: 0 0 18px rgba(0, 0, 0, 0.11);
     z-index: 1034;
     background-color: #fff;
@@ -20,7 +20,7 @@
 }
 
 .navbar .logo img {
-    width: 140px;
+    width: 122px;
 }
 .navbar .logo img.mobile-logo {
     width: 30px;
@@ -35,7 +35,7 @@
 
 .navbar .links {
     display: flex;
-    gap: 25px;
+    gap: 15px;
 }
 
 .navbar .links .link {
@@ -88,7 +88,7 @@
 
 .navbar .account {
     display: flex;
-    gap: 20px;
+    gap: 10px;
     align-items: center;
 }
 

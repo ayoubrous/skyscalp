@@ -10,7 +10,10 @@ import { useAuth } from '../../context/AuthContext';
 export default function Navbar() {
     const navDrpRef = useRef()
     const langDrpRef = useRef()
+    const langDrpLabelRef = useRef()
     const countryDrpRef = useRef()
+    const countryDrpLabelRef = useRef()
+    const countryDrpLabelRefDekstop = useRef()
     const [t, i18n] = useTranslation();
 
     const mobileNavDropdown = useRef()
@@ -23,11 +26,12 @@ export default function Navbar() {
     const authData = useAuth()
     const [showNavInPhone, setShowNavInPhone] = useState(false)
     const [showGoToTopArrow, setShowGoToTopArrow] = useState(false)
-    const [showDrp, setshowDrp] = useState(false)
+    const [showDrp, setShowDrp] = useState(false)
     const [showLangDrp, setShowLangDrp] = useState(false)
     const [showCountryDrp, setShowCountryDrp] = useState(false)
     const [showProfileDrp, setShowProfileDrp] = useState(false)
     const [activeCountry, setActiveCountry] = useState('Morocco')
+    const [userData, setUserData] = useState(null)
 
     const navigate = useNavigate()
     const handleLanguageChange = (newLanguage) => {
@@ -60,15 +64,18 @@ export default function Navbar() {
         else {
             setActiveCountry(localStorage.getItem('country'))
         }
+        if (localStorage.getItem('user')) {
+            setUserData(JSON.parse(localStorage.getItem('user')))
+        }
     }, [])
 
 
 
     const handleClickOutside = (e) => {
         if (navDrpRef.current && !navDrpRef.current.contains(e.target)) {
-            setshowDrp(false);
+            setShowDrp(false);
         }
-        if (langDrpRef.current && !langDrpRef.current.contains(e.target)) {
+        if (langDrpRef.current && !langDrpRef.current.contains(e.target) && !langDrpLabelRef.current.contains(e.target)) {
             setShowLangDrp(false);
         }
         if (mobileNavDropdown.current && !mobileNavDropdown.current.contains(e.target)) {
@@ -77,10 +84,11 @@ export default function Navbar() {
         if (profileDrpRef.current && !profileDrpRef.current.contains(e.target)) {
             setShowProfileDrp(false)
         }
-        if (countryDrpRef.current && !countryDrpRef.current.contains(e.target)) {
+        if (countryDrpRef.current && !countryDrpRef.current.contains(e.target) && !countryDrpLabelRef.current.contains(e.target) && !countryDrpLabelRefDekstop.current.contains(e.target)) {
             setShowCountryDrp(false)
         }
     };
+
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
 
@@ -88,6 +96,7 @@ export default function Navbar() {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
+
 
     const handleGoToTop = () => {
         window.scrollTo(0, 0)
@@ -106,6 +115,27 @@ export default function Navbar() {
         window.location.reload()
     }
 
+
+    const toggleDrp = (e) => {
+        e.stopPropagation();
+        setShowDrp(!showDrp);
+    };
+
+    const toggleLangDrp = (e) => {
+        e.stopPropagation();
+        setShowLangDrp(!showLangDrp);
+    };
+
+    const toggleCountryDrp = (e) => {
+        e.stopPropagation();
+        setShowCountryDrp(!showCountryDrp);
+    };
+
+    const toggleProfileDrp = (e) => {
+        e.stopPropagation();
+        setShowProfileDrp(!showProfileDrp);
+    };
+
     return (
         <>
             <nav className="navbar">
@@ -117,18 +147,18 @@ export default function Navbar() {
                     <div className="commercial-links links">
                         {/* <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/properties?type=buy" >{t("buy")}</NavLink>
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/properties?type=rent" >{t("rent")}</NavLink> */}
-                        <div style={{ cursor: "pointer" }} className="link" onClick={() => setshowDrp(true)} >{t("marketplace")}
+                        <div style={{ cursor: "pointer" }} className="link" onClick={toggleDrp}>{t("marketplace")}
                             <div className={`link-dropdown ${showDrp ? 'show' : ''}`} ref={navDrpRef}>
-                                <Link to="/marketplace?market=1" className='link-dropdown-item' onClick={() => setshowDrp(false)}>{t("machineryTools")}</Link>
-                                <Link to="/marketplace?market=2" className='link-dropdown-item' onClick={() => setshowDrp(false)}>{t("buildingMaterial")}</Link>
-                                <Link to="/marketplace?market=3" className='link-dropdown-item' onClick={() => setshowDrp(false)}>{t("furnitureAppliances")}</Link>
+                                <Link to="/marketplace?market=1" className='link-dropdown-item' onClick={() => setShowDrp(false)}>{t("machineryTools")}</Link>
+                                <Link to="/marketplace?market=2" className='link-dropdown-item' onClick={() => setShowDrp(false)}>{t("buildingMaterial")}</Link>
+                                <Link to="/marketplace?market=3" className='link-dropdown-item' onClick={() => setShowDrp(false)}>{t("furnitureAppliances")}</Link>
                             </div>
                         </div>
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/experts" >{t("Experts")}</NavLink>
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/estimate" >{t("estimate")}</NavLink>
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/app/dashboard" >{t("publish")}</NavLink>
 
-                        <div style={{ cursor: "pointer" }} className="link dekstopViewLink ms-5" onClick={() => setShowCountryDrp(true)} >{activeCountry} {<FaAngleDown />}
+                        <div ref={countryDrpLabelRefDekstop} style={{ cursor: "pointer" }} className="link dekstopViewLink ms-4" onClick={() => setShowCountryDrp(true)} >{activeCountry} {<FaAngleDown />}
                             <div className={`link-dropdown ${showCountryDrp ? 'show' : ''}`} ref={countryDrpRef}>
                                 <div className='link-dropdown-item' onClick={() => handleCountryChange('Morocco')}>Morocco</div>
                                 <div className='link-dropdown-item' onClick={() => handleCountryChange('France')}>France</div>
@@ -142,7 +172,7 @@ export default function Navbar() {
                     </div>
                 </div>
                 <div className="account">
-                    <div style={{ cursor: "pointer" }} className="link mobileViewLink" onClick={() => setShowCountryDrp(true)} >{activeCountry} {<FaAngleDown />}
+                    <div ref={countryDrpLabelRef} style={{ cursor: "pointer" }} className="link mobileViewLink" onClick={toggleCountryDrp}>{activeCountry} {<FaAngleDown />}
                         <div className={`link-dropdown ${showCountryDrp ? 'show' : ''}`} ref={countryDrpRef}>
                             <div className='link-dropdown-item' onClick={() => handleCountryChange('Morocco')}>Morocco</div>
                             <div className='link-dropdown-item' onClick={() => handleCountryChange('France')}>France</div>
@@ -152,7 +182,7 @@ export default function Navbar() {
                         authData.isLoggedIn ? (
                             <>
                                 <div className="profile-nav">
-                                    <div className="image" onClick={() => { showProfileDrp ? setShowProfileDrp(false) : setShowProfileDrp(true) }}>
+                                    <div className="image" onClick={toggleProfileDrp}>
                                         <img src={authData.userData.profileImage} alt="" />
                                     </div>
                                     <div className={`custom-dropdown squeeze-left ${showProfileDrp ? 'show' : ''}`} ref={profileDrpRef}>
@@ -176,9 +206,9 @@ export default function Navbar() {
                     }
 
                     <div className="link" style={{ position: "relative" }}>
-                        <div className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowLangDrp(!showLangDrp)}>
-                            <p>{selectedLanguage}</p>
-                            <FaAngleDown />
+                        <div ref={langDrpLabelRef} className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowLangDrp(!showLangDrp)}>
+                            <p >{selectedLanguage}</p>
+                            <FaAngleDown/>
                         </div>
                         <div className={`custom-dropdown ${showLangDrp ? 'show' : ''}`} style={{ minWidth: "60px" }} ref={langDrpRef}>
                             <div className="custom-dropdown-item" onClick={() => handleLanguageChange('EN')}>EN</div>
