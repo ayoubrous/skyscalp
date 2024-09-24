@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../components/Sidebar'
 import Header from '../components/Header'
-import { FaBuilding, FaChair, FaUser } from 'react-icons/fa6'
+import { FaBuilding, FaChair, FaUser, FaUsers } from 'react-icons/fa6'
 import { FaTools } from 'react-icons/fa'
 import { BsBuildingsFill } from 'react-icons/bs'
 import { TbCarCrane } from 'react-icons/tb'
@@ -34,6 +34,7 @@ export default function Dashboard() {
   const [totalConstruction, setTotalConstruction] = useState(0)
   const [totalMachinery, setTotalMachinery] = useState(0)
   const [totalFurniture, setTotalFurniture] = useState(0)
+  const [totalExperts, setTotalExperts] = useState(0)
 
   const [showDeleteModal, setShowDeleteModal] = useState(false)
 
@@ -123,6 +124,29 @@ export default function Dashboard() {
         }
         else {
           toast.error(result.message)
+        }
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.error(error);
+      });
+
+
+    fetch(`${process.env.REACT_APP_SERVER_URL}/api/getUserServices/${user.userID}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setIsLoading(false)
+        // console.log(result)
+        if (result.status) {
+          let experts = 0
+          result.data.forEach(data => {
+            experts++
+          })
+
+          setTotalExperts(experts)
+        }
+        else {
+          console.log(result.message)
         }
       })
       .catch((error) => {
@@ -226,7 +250,7 @@ export default function Dashboard() {
   }
 
 
-const handleDeleteAccount = () => {
+  const handleDeleteAccount = () => {
   }
 
 
@@ -246,7 +270,7 @@ const handleDeleteAccount = () => {
             <div className="row gap-2">
               <div className="col-4">
 
-                <Link to="../app/properties" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid blue" }}>
+                {/* <Link to="../app/properties" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid blue" }}>
                   <div className="card-body p-3">
                     <h5 className="card-title mb-2 fw-semibold">{t("Published Properties")}</h5>
                     <div className="row align-items-center">
@@ -258,7 +282,7 @@ const handleDeleteAccount = () => {
                       </div>
                     </div>
                   </div>
-                </Link>
+                </Link> */}
 
                 <Link to="../app/machines" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid green" }}>
                   <div className="card-body p-3">
@@ -301,6 +325,20 @@ const handleDeleteAccount = () => {
                   </div>
                 </Link>
 
+
+                <Link to="../app/experts" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid blue" }}>
+                  <div className="card-body p-3">
+                    <h5 className="card-title mb-2 fw-semibold">{t("Published Experts")}</h5>
+                    <div className="row align-items-center">
+                      <div className="d-flex align-items-center justify-content-between">
+                        <h1 className="fw-bolder color-primary" style={{ fontSize: "3rem" }}>
+                          {totalExperts}
+                        </h1>
+                        <FaUsers className='color-primary' style={{ fontSize: "3rem" }} />
+                      </div>
+                    </div>
+                  </div>
+                </Link>
 
               </div>
               <div className="col-7">

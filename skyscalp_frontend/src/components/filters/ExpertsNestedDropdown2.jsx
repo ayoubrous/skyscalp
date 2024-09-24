@@ -31,7 +31,7 @@ export default function ExpertsNestedDropdown2({ show, categoriesRef, categories
 		<>
 			{
 				checkedSubcategories.length < 1 ? (
-					<p>{t("selectCategory")}</p>
+					<p>{t("category")}</p>
 				) : (
 					<p> {t("categories")} ({checkedSubcategories.length} {t("selections")})</p>
 				)

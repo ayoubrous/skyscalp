@@ -20588,5 +20588,6 @@ ul {
     }
     .registerWrapper{
         position: relative;
+        top: -165px;
     }
 }

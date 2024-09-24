@@ -310,11 +310,11 @@ export default function HomeFilter() {
                     </div>
 
                     <div className={`module-tab ${activeTab === 'construction' ? 'active' : ''}`} onClick={() => handleActiveTab('construction')}>
-                        <p>{t("buildingMaterial")}</p>
+                        <p>{t("Materials")}</p>
                     </div>
 
                     <div className={`module-tab ${activeTab === 'furniture' ? 'active' : ''}`} onClick={() => handleActiveTab('furniture')}>
-                        <p>{t("furnitureAppliances")}</p>
+                        <p>{t("Furnitures")}</p>
                     </div>
 
                     <div className={`module-tab ${activeTab === 'experts' ? 'active' : ''}`} onClick={() => handleActiveTab('experts')}>

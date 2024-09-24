@@ -75,7 +75,7 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
     return (
         <>
             {checkedSubcategories.length < 1 ? (
-                <p>{t("selectCategory")}</p>
+                <p>{t("category")}</p>
             ) : (
                 <p>{t("categories")} ({checkAll ? t("all") : checkedSubcategories.length} {t("selections")})</p>
             )}

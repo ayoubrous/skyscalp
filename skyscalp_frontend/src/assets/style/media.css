@@ -14,8 +14,9 @@
     .property-card {
         height: 530px;
     }
-    .navbar .dekstopViewLink{
-        margin-left: 14px  !important;
+
+    .navbar .dekstopViewLink {
+        margin-left: 14px !important;
     }
 }
 
@@ -364,7 +365,7 @@
     }
 
     .details-section .features-grid {
-        grid-template-columns: repeat(2, 49%);
+        grid-template-columns: repeat(1, 100%);
         gap: 10px;
     }
 
@@ -381,11 +382,12 @@
     }
 
 
-    .top-section-categories .subcategories{
+    .top-section-categories .subcategories {
         padding: 0 20px;
     }
 
-    .slick-prev, .slick-next {
+    .slick-prev,
+    .slick-next {
         top: 45% !important;
     }
 
@@ -412,6 +414,10 @@
 }
 
 @media screen and (max-width: 595px) {
+    .paragraph {
+        font-size: 12px;
+    }
+
     .custom-modal {
         top: 20%;
         width: 400px;
@@ -468,7 +474,19 @@
 }
 
 
+@media screen and (max-width: 500px) {
+    .journey .achievements .ach-card {
+        padding: 10px 12px;
+    }
+
+}
+
+
 @media screen and (max-width: 450px) {
+    .mobileViewLink {
+        margin-right: 10px !important;
+    }
+
     .property-card {
         height: 482px;
     }
@@ -483,10 +501,6 @@
         height: 210px;
     }
 
-}
-
-
-@media screen and (max-width: 450px) {
     .property-card {
         height: 477px;
     }
@@ -494,6 +508,13 @@
 
 
 @media screen and (max-width: 400px) {
+    .navbar .account {
+        gap: 5px;
+        margin-right: 0px;
+    }
+    .mobileViewLink {
+        margin-right: 0px !important;
+    }
     .property-card {
         height: 505px;
     }

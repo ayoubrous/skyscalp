@@ -125,6 +125,7 @@
     width: 60%;
 }
 
+
 .filter .user-input .category-list {
     position: relative;
     width: 70%;
@@ -372,7 +373,8 @@
     top: 105%;
     left: 0;
     min-width: 260px;
-    width: fit-content;
+    /* width: fit-content; */
+    width: 100%;
     background-color: white;
     z-index: 10;
     max-height: 350px;
@@ -615,13 +617,19 @@
 }
 
 @media screen and (max-width: 550px) {
+    .categories-select-dropdown {
+        min-width: 160px;
+    }
+
     .machinery-filter .other-filters .custom-dropdown {
         width: 110px;
         min-width: 110px !important;
     }
+
     .machinery-filter .other-filters .custom-dropdown.budget-dropdown {
         width: 160px;
     }
+
     .home-filter .module-tabs .module-tab p {
         font-size: 12px;
     }
