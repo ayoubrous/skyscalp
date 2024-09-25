@@ -469,7 +469,7 @@ export default function ExpertsFilter({
                                 {/* <CustomLocationsDropdown selectedLocations={selectedAllLocations} handleLocationSelect={handleLocationSelect} /> */}
                                 <CustomLocationsDropdown selectedLocations={selectedAllLocations} handleLocationSelect={handleLocationSelect} radius={radius} handleRadiusChange={handleRadiusChange} />
                             </div>
-                            <div className="search-input" onClick={() => setShowCategoriesDrp(!showCategoriesDrp)}  ref={categoriesLabelRef}> 
+                            <div className="search-input" onClick={() => setShowCategoriesDrp(true)}  ref={categoriesLabelRef}> 
                                 <ExpertsNestedDropdown2
                                     show={showCategoriesDrp}
                                     categoriesRef={categoriesRef}

@@ -46,7 +46,7 @@
 }
 
 .filter .user-input {
-    width: 90%;
+    width: 85%;
     position: relative;
     background-color: var(--white-color);
     display: flex;
@@ -202,7 +202,7 @@
 
 
 .filter .filter-btn {
-    width: 10%;
+    width: 15%;
     overflow: hidden;
 }
 
