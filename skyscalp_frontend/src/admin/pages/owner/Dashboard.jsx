@@ -46,6 +46,7 @@ export default function Dashboard() {
         };
 
         const user = JSON.parse(localStorage.getItem("user"))
+        
 
         fetch(`${process.env.REACT_APP_SERVER_URL}/api/getUserById/${user.userID}`, requestOptions)
             .then((response) => response.json())
@@ -59,7 +60,7 @@ export default function Dashboard() {
                     setProfileImage(result.data.profileImage)
                 }
                 else {
-                    toast.error(result.message)
+                    console.log(result.message)
                 }
             })
             .catch((error) => {
@@ -70,98 +71,105 @@ export default function Dashboard() {
 
     const loadData = () => {
         setIsLoading(true)
-        const requestOptions = {
-            method: "GET",
-            redirect: "follow"
-        };
+        let userData = localStorage.getItem('user')
+        if (userData) {
+            const token = JSON.parse(userData).token
+            const requestOptions = {
+                method: "GET",
+                redirect: "follow",
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            };
 
 
-        fetch(`${process.env.REACT_APP_SERVER_URL}/api/getProperties`, requestOptions)
-            .then((response) => response.json())
-            .then((result) => {
-                setIsLoading(false)
-                // console.log(result)
-                if (result.status) {
-                    setTotalProperties(result.data.totalProperties)
-                }
-                else {
-                    console.log(result.message)
-                }
-            })
-            .catch((error) => {
-                setIsLoading(false);
-                console.error(error);
-            });
+            fetch(`${process.env.REACT_APP_SERVER_URL}/api/getProperties`, requestOptions)
+                .then((response) => response.json())
+                .then((result) => {
+                    setIsLoading(false)
+                    // console.log(result)
+                    if (result.status) {
+                        setTotalProperties(result.data.totalProperties)
+                    }
+                    else {
+                        console.log(result.message)
+                    }
+                })
+                .catch((error) => {
+                    setIsLoading(false);
+                    console.error(error);
+                });
 
-        fetch(`${process.env.REACT_APP_SERVER_URL}/api/getAllUsers`, requestOptions)
-            .then((response) => response.json())
-            .then((result) => {
-                setIsLoading(false)
-                // console.log(result)
-                if (result.status) {
-                    setRegisteredUsers(result.data.length)
-                }
-                else {
-                    console.log(result.message)
-                }
-            })
-            .catch((error) => {
-                setIsLoading(false);
-                console.error(error);
-            });
+            fetch(`${process.env.REACT_APP_SERVER_URL}/api/getAllUsers`, requestOptions)
+                .then((response) => response.json())
+                .then((result) => {
+                    setIsLoading(false)
+                    // console.log(result)
+                    if (result.status) {
+                        setRegisteredUsers(result.data.length)
+                    }
+                    else {
+                        console.log(result.message)
+                    }
+                })
+                .catch((error) => {
+                    setIsLoading(false);
+                    console.error(error);
+                });
 
-        fetch(`${process.env.REACT_APP_SERVER_URL}/api/getAnalytics`, requestOptions)
-            .then((response) => response.json())
-            .then((result) => {
-                setIsLoading(false)
-                // console.log(result)
-                if (result.status) {
-                    setTotalViewers(result.data.length)
-                }
-                else {
-                    console.log(result.message)
-                }
-            })
-            .catch((error) => {
-                setIsLoading(false);
-                console.error(error);
-            });
+            fetch(`${process.env.REACT_APP_SERVER_URL}/api/getAnalytics`, requestOptions)
+                .then((response) => response.json())
+                .then((result) => {
+                    setIsLoading(false)
+                    // console.log(result)
+                    if (result.status) {
+                        setTotalViewers(result.data.length)
+                    }
+                    else {
+                        console.log(result.message)
+                    }
+                })
+                .catch((error) => {
+                    setIsLoading(false);
+                    console.error(error);
+                });
 
 
 
-        fetch(`${process.env.REACT_APP_SERVER_URL}/api/getProducts`, requestOptions)
-            .then((response) => response.json())
-            .then((result) => {
-                setIsLoading(false)
-                // console.log(result)
-                if (result.status) {
-                    let machinery = 0
-                    let construction = 0
-                    let furniture = 0
-                    result.data.documents.forEach(data => {
-                        if (data.materialGroup === "machinery") {
-                            machinery = machinery + 1
-                        }
-                        else if (data.materialGroup === "construction") {
-                            construction = construction + 1
-                        }
-                        else if (data.materialGroup === "furniture") {
-                            furniture = furniture + 1
-                        }
-                    })
+            fetch(`${process.env.REACT_APP_SERVER_URL}/api/getProducts`, requestOptions)
+                .then((response) => response.json())
+                .then((result) => {
+                    setIsLoading(false)
+                    // console.log(result)
+                    if (result.status) {
+                        let machinery = 0
+                        let construction = 0
+                        let furniture = 0
+                        result.data.documents.forEach(data => {
+                            if (data.materialGroup === "machinery") {
+                                machinery = machinery + 1
+                            }
+                            else if (data.materialGroup === "construction") {
+                                construction = construction + 1
+                            }
+                            else if (data.materialGroup === "furniture") {
+                                furniture = furniture + 1
+                            }
+                        })
 
-                    setTotalMachinery(machinery)
-                    setTotalConstruction(construction)
-                    setTotalFurniture(furniture)
-                }
-                else {
-                    console.log(result.message)
-                }
-            })
-            .catch((error) => {
-                setIsLoading(false);
-                console.error(error);
-            });
+                        setTotalMachinery(machinery)
+                        setTotalConstruction(construction)
+                        setTotalFurniture(furniture)
+                    }
+                    else {
+                        console.log(result.message)
+                    }
+                })
+                .catch((error) => {
+                    setIsLoading(false);
+                    console.error(error);
+                });
+        }
     }
 
     useEffect(() => {
@@ -260,7 +268,7 @@ export default function Dashboard() {
 
 
     const navigation = (path, activeMeterial) => {
-        navigate(path, {state: { activeCat: activeMeterial}})
+        navigate(path, { state: { activeCat: activeMeterial } })
     }
 
     return (
@@ -319,7 +327,7 @@ export default function Dashboard() {
                         </div>
 
                         <div className="d-flex align-items-center gap-1 mx-1 mb-2">
-                            <div onClick={() => navigation('../admin/materials', 'machinery')} className="card overflow-hidden col-4" style={{ borderRight: "2px solid green", cursor: "pointer"  }}>
+                            <div onClick={() => navigation('../admin/materials', 'machinery')} className="card overflow-hidden col-4" style={{ borderRight: "2px solid green", cursor: "pointer" }}>
                                 <div className="card-body p-4">
                                     <h5 className="card-title mb-9 fw-semibold">{t("PUBLISHED MACHINES")}</h5>
                                     <div className="row align-items-center">
@@ -347,7 +355,7 @@ export default function Dashboard() {
                                 </div>
                             </div>
 
-                            <div onClick={() => navigation('../admin/materials', 'furniture')} className="card overflow-hidden col-4" style={{ borderRight: "2px solid orange", cursor: "pointer"  }}>
+                            <div onClick={() => navigation('../admin/materials', 'furniture')} className="card overflow-hidden col-4" style={{ borderRight: "2px solid orange", cursor: "pointer" }}>
                                 <div className="card-body p-4">
                                     <h5 className="card-title mb-9 fw-semibold">{t("PUBLISHED FURNITURES")}</h5>
                                     <div className="row align-items-center">

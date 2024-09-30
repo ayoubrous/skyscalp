@@ -7,7 +7,7 @@ import { useLocation, useParams } from 'react-router-dom'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 
-export default function MessageOwner({ userID }) {
+export default function MessageOwner({ userID, collectionRef }) {
     const [t] = useTranslation()
 
 
@@ -23,7 +23,7 @@ export default function MessageOwner({ userID }) {
             toast.error(t("Fill out all the required fields"))
             return
         }
-        sendMessage(false, userID, params.id, email, phone, null, null, message)
+        sendMessage(false, userID, params.id, collectionRef, email, phone, null, null, message)
             .then(res => {
                 if (res.status) {
                     toast.success(t("Message sent successfully"))
@@ -51,7 +51,7 @@ export default function MessageOwner({ userID }) {
                 <div className="form-group mb-2">
                     {/* <input type="text" className="custom-input" placeholder={t("phone")} value={phone} onChange={e => setPhone(e.target.value)} /> */}
                     <PhoneInput
-                    className="contactPhone"
+                        className="contactPhone"
                         country={'fr'}
                         value={phone}
                         onChange={setPhone}

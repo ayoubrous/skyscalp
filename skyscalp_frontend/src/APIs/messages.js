@@ -1,4 +1,4 @@
-export async function sendMessage(toAdmin,userID, productID, email, phone, firstName, lastName, message) {
+export async function sendMessage(toAdmin,userID, productID, collectionRef, email, phone, firstName, lastName, message) {
     try {
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -11,7 +11,8 @@ export async function sendMessage(toAdmin,userID, productID, email, phone, first
             phone,
             firstName,
             lastName,
-            message
+            message,
+            collectionReference: collectionRef ? collectionRef : null
         });
 
         const requestOptions = {

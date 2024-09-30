@@ -478,7 +478,7 @@ export default function ViewFurniture() {
 
                             </div>
 
-                            <MessageOwner userID={userID} />
+                            <MessageOwner userID={userID} collectionRef={"materials"}/>
                         </div>
 
 

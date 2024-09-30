@@ -97,10 +97,10 @@ export default function ViewExpert() {
         fetch(`${process.env.REACT_APP_SERVER_URL}/api/getServiceById/${params.id}`, requestOptions)
             .then((response) => response.json())
             .then((result) => {
-                console.log(result)
                 setIsLoading(false)
                 if (result.status) {
                     setExpertID(result.data._id);
+                    setUserID(result.data.userID);
                     setCountry(result.data.country);
                     setState(result.data.state);
                     setCity(result.data.city);
@@ -218,7 +218,7 @@ export default function ViewExpert() {
                 if (result.status) {
                     setSimilarProducts(result.data.documents)
                 } else {
-                    console.log(result.message);
+                    // console.log(result.message);
                     setSimilarProducts([])
                 }
             })
@@ -539,7 +539,7 @@ export default function ViewExpert() {
 
                             </div>
 
-                            <MessageOwner userID={userID} />
+                            <MessageOwner userID={userID} collectionRef={"services"}/>
                         </div>
 
 

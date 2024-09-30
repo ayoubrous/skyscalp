@@ -181,7 +181,7 @@ const updatePassword = async (req, res) => {
                 sendResponse(req, res, false, "Error encrypting password: " + err, null);
                 return
             }
-            UserModal.findOneAndUpdate({ _id: id }, {password: hashPassword})
+            UserModal.findOneAndUpdate({ _id: id }, { password: hashPassword })
                 .then(response => {
                     if (response) {
                         sendResponse(req, res, true, "User password updated successfully", null)
@@ -210,7 +210,7 @@ const login = async (req, res) => {
             return sendResponse(req, res, false, "No data found in your request", null);
         }
 
-        const user = await UserModal.findOne({ email: req.body.email });
+        let user = await UserModal.findOne({ email: req.body.email });
 
         if (!user) {
             return sendResponse(req, res, false, "User with this email not found", null);
@@ -238,13 +238,24 @@ const login = async (req, res) => {
         }
 
         // Generate JWT token
-        const token = jwt.sign({ email: user.email }, 'secret-value', { expiresIn: '1hr' });
+        const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, { expiresIn: '1hr' });
         req.session.jwt = token;
 
+        const userData = {
+            userID: user._id,
+            isAdmin: user.isAdmin, 
+            profileImage: user.profileImage,
+            email: user.email,
+            username: user.username,
+            phone: user.phone,
+            token: token ,
+            status: user.status
+        };
         // Login successful
-        sendResponse(req, res, true, "Login Successful", user);
+        sendResponse(req, res, true, "Login Successful", userData);
     } catch (error) {
         // Handle any unexpected errors
+        console.log(error)
         sendResponse(req, res, false, "An error occurred during login", error);
     }
 };
@@ -329,12 +340,12 @@ const updateUserStaus = async (req, res) => {
 }
 
 
-const deleteUserAccount = (req, res) =>  {
-    try{
+const deleteUserAccount = (req, res) => {
+    try {
 
     }
-    catch(err){
-        
+    catch (err) {
+
     }
 }
 

@@ -25,10 +25,10 @@ const ContactUs = ({ supportTitle, supportDescription, contactEmail, contactPhon
             return
         }
 
-        sendMessage(true, null, null, email, phone, firstName, lastName, message)
+        sendMessage(true, null, null, null, email, phone, firstName, lastName, message)
             .then(res => {
                 if (res.status) {
-                    toast.success("Message sent successfully")
+                    toast.success(t("Message sent successfully"))
                     setFirstName('');
                     setLastName('');
                     setEmail('');

@@ -67,13 +67,15 @@ export default function Login() {
                                 toast.success(result.message)
                                 login(result.data, false)
                                 localStorage.setItem("user", JSON.stringify({
-                                    userID: result.data._id,
+                                    userID: result.data.userID,
                                     isLoggedIn: true,
                                     isAdmin: true,
                                     profileImage: result.data.profileImage,
                                     email: result.data.email,
                                     username: result.data.username,
-                                    phone: result.data.phone
+                                    phone: result.data.phone,
+                                    token: result.data.token
+
                                 }))
                                 setTimeout(() => {
                                     navigate('../admin/dashboard')
@@ -84,13 +86,14 @@ export default function Login() {
                                 login(result.data, false)
                                 // localStorage.setItem("user", JSON.stringify(result.data))
                                 localStorage.setItem("user", JSON.stringify({
-                                    userID: result.data._id,
+                                    userID: result.data.userID,
                                     isLoggedIn: true,
                                     isAdmin: false,
                                     profileImage: result.data.profileImage,
                                     email: result.data.email,
                                     username: result.data.username,
-                                    phone: result.data.phone
+                                    phone: result.data.phone,
+                                    token: result.data.token
                                 }))
                                 setTimeout(() => {
                                     navigate('../app/dashboard')

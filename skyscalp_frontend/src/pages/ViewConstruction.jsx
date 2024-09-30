@@ -562,7 +562,7 @@ export default function ViewConstruction() {
 
                             </div>
 
-                            <MessageOwner userID={userID} />
+                            <MessageOwner userID={userID} collectionRef={"materials"}/>
                         </div>
 
 

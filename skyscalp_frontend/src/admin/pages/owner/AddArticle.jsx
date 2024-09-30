@@ -33,6 +33,9 @@ export default function AddArticle() {
     const location = useLocation()
 
 
+    const user = localStorage.getItem("user")
+    const token = JSON.parse(user).token
+
     let params = useParams()
     useEffect(() => {
         const { pathname } = location;
@@ -126,6 +129,8 @@ export default function AddArticle() {
 
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Authorization", `Bearer ${token}`)
+
 
             const raw = JSON.stringify(data);
 
@@ -173,6 +178,7 @@ export default function AddArticle() {
 
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Authorization", `Bearer ${token}`)
 
             console.log(data)
             const raw = JSON.stringify(data);
@@ -307,7 +313,7 @@ export default function AddArticle() {
 
                                 <div className="row mb-2">
                                     <div className="form-group d-flex align-items-center justify-content-end gap-2">
-                                        <div className="outline-btn py-2" onClick={resetAllFields}>{t("reset")}</div>
+                                        <div className="outline-btn py-2" onClick={resetAllFields}>{t("resetFields")}</div>
                                         {/* <button className="custom-btn" type='submit'>Publish</button> */}
                                         <button className="custom-btn" type='submit'>
                                             <div className='d-flex align-items-center justify-content-center'>

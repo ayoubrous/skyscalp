@@ -21,11 +21,18 @@ export default function Experts() {
 
     const [t] = useTranslation();
 
+
+    const user = localStorage.getItem("user")
+    const token = JSON.parse(user).token
+
     const loadData = (page) => {
         setLoading(true);
         const requestOptions = {
             method: "POST",
-            redirect: "follow"
+            redirect: "follow",
+            headers: {
+                'Authorization': `Bearer ${token}` // Add the token to the request
+            }
         };
 
         fetch(`${process.env.REACT_APP_SERVER_URL}/api/getServices?page=${page}&limit=15`, requestOptions)
@@ -96,7 +103,10 @@ export default function Experts() {
         if (surity) {
             const requestOptions = {
                 method: "DELETE",
-                redirect: "follow"
+                redirect: "follow",
+                headers: {
+                    'Authorization': `Bearer ${token}` // Add the token to the request
+                }
             };
             fetch(`${process.env.REACT_APP_SERVER_URL}/api/deleteService/${id}`, requestOptions)
                 .then((response) => response.json())

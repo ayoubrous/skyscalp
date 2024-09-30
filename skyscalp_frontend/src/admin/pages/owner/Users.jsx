@@ -17,12 +17,17 @@ export default function Users() {
     const [t] = useTranslation()
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
+    const user = localStorage.getItem("user")
+    const token = JSON.parse(user).token
 
     const loadData = () => {
         setLoading(true)
         const requestOptions = {
             method: "GET",
-            redirect: "follow"
+            redirect: "follow",
+            headers: {
+                'Authorization': `Bearer ${token}` 
+            }
         };
 
 
@@ -55,7 +60,10 @@ export default function Users() {
         if (surity) {
             const requestOptions = {
                 method: "GET",
-                redirect: "follow"
+                redirect: "follow",
+                headers: {
+                    'Authorization': `Bearer ${token}` 
+                }
             };
             fetch(`${process.env.REACT_APP_SERVER_URL}/api/updateUserStatus/${id}/${status}`, requestOptions)
                 .then((response) => response.json())

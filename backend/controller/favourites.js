@@ -59,7 +59,8 @@ const removeFromFavourites = async (req, res) => {
 const checkInFavourites = async (req, res) => {
     try {
         if (!req.body || !req.body.userID || !req.body.productID) {
-            sendResponse(req, res, false, "Invalid data provided", null);
+            
+            return sendResponse(req, res, false, "Invalid data provided", null);
         }
 
         const existingFavourite = await FavouritesModal.findOne({
@@ -69,9 +70,11 @@ const checkInFavourites = async (req, res) => {
 
 
         if (existingFavourite) {
-            sendResponse(req, res, true, "Product found in favourites", existingFavourite);
+            return sendResponse(req, res, true, "Product found in favourites", existingFavourite);
+            
         } else {
-            sendResponse(req, res, false, "Product not found in favourites", null);
+            return sendResponse(req, res, false, "Product not found in favourites", null);
+            
         }
 
     } catch (err) {

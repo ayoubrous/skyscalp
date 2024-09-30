@@ -27,12 +27,14 @@ export default function CustomLocationsDropdown({ handleLocationSelect, selected
 
 
     const handleInputChange = (e) => {
-        setShowDrp(true)
+        setShowDrp(true);
         const inputValue = e.target.value.trim(); // Trim input value to remove leading/trailing spaces
         setInputText(inputValue);
 
+        let selectedCountry = localStorage.getItem('country') || 'morocco';
 
         const filteredSuggestions = locations.filter(location =>
+            // location.country.toLowerCase() === selectedCountry.toLowerCase() &&
             location.name.toLowerCase().startsWith(inputValue.toLowerCase())
         );
 

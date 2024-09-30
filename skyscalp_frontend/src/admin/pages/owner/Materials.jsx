@@ -36,10 +36,15 @@ export default function Materials() {
     }
 
     const loadData = (page) => {
+        const user = localStorage.getItem("user")
+        const token = JSON.parse(user).token
         setLoading(true);
         const requestOptions = {
             method: "GET",
-            redirect: "follow"
+            redirect: "follow",
+            headers: {
+                'Authorization': `Bearer ${token}` // Add the token to the request
+            }
         };
 
         let apiUrl;

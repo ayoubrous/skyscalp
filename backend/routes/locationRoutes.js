@@ -1,15 +1,16 @@
 const express   =   require('express')
 const sendResponse = require('../utils/sendResponse')
 const { addCountry, addState, addCity, addStreet, getCountries, getStatesByCountry, getCitiesByState, getStreetsByCity, getLocationsByTyping, getAllLocations } = require('../controller/locations')
+const verifyToken = require('../middlewares/verifyToken')
 
 
 const router    =   express.Router()
 
 
-router.post('/addCountry', addCountry)
-router.post('/addState', addState)
-router.post('/addCity', addCity)
-router.post('/addStreet', addStreet)
+router.post('/addCountry', verifyToken, addCountry)
+router.post('/addState', verifyToken, addState)
+router.post('/addCity', verifyToken, addCity)
+router.post('/addStreet', verifyToken, addStreet)
 
 router.get('/getCountries', getCountries)
 router.get('/getStatesByCountry', getStatesByCountry)

@@ -18,11 +18,17 @@ export default function Articles() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
 
+    const user = localStorage.getItem("user")
+    const token = JSON.parse(user).token
+
     const loadData = () => {
         setLoading(true);
         const requestOptions = {
             method: "GET",
-            redirect: "follow"
+            redirect: "follow",
+            headers: {
+                'Authorization': `Bearer ${token}` 
+            }
         };
 
         fetch(`${process.env.REACT_APP_SERVER_URL}/api/getArticles`, requestOptions)
@@ -53,7 +59,10 @@ export default function Articles() {
         if (surity) {
             const requestOptions = {
                 method: "DELETE",
-                redirect: "follow"
+                redirect: "follow",
+                headers: {
+                    'Authorization': `Bearer ${token}` 
+                }
             };
             fetch(`${process.env.REACT_APP_SERVER_URL}/api/deleteArticle/${id}`, requestOptions)
                 .then((response) => response.json())

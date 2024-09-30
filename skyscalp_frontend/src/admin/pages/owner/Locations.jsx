@@ -36,6 +36,9 @@ export default function Locations() {
     const [allStates, setAllStates] = useState([])
     const [allCities, setAllCities] = useState([])
 
+    const user = localStorage.getItem("user")
+    const token = JSON.parse(user).token
+
     useEffect(() => {
         const requestOptions = {
             method: "GET",
@@ -128,6 +131,7 @@ export default function Locations() {
         }
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", `Bearer ${token}`)
 
         const raw = JSON.stringify({
             country: countryName,
@@ -163,6 +167,7 @@ export default function Locations() {
         }
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", `Bearer ${token}`)
 
         const raw = JSON.stringify({
             country: countryForState,
@@ -199,6 +204,7 @@ export default function Locations() {
         }
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", `Bearer ${token}`)
 
         const raw = JSON.stringify({
             country: countryForState,
@@ -236,6 +242,7 @@ export default function Locations() {
         }
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", `Bearer ${token}`);
 
         const raw = JSON.stringify({
             country: countryForState,

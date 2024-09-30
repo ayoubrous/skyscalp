@@ -482,7 +482,7 @@ export default function ViewProperty() {
                                     <FaEnvelope className='me-1' />Test.owner@skyscalp.com</button>
 
                             </div>
-                            <MessageOwner userID={userID} />
+                            <MessageOwner userID={userID} collectionRef={"properties"}/>
                         </div>
 
 

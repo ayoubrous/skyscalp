@@ -7,6 +7,9 @@ const messageSchema = new mongoose.Schema({
     userID: {
         type: String,
     },
+    collectionReference: {
+        type: String,
+    },
     toAdmin: {
         type: Boolean,
     },

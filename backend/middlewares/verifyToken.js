@@ -4,7 +4,7 @@ const sendResponse = require("../utils/sendResponse")
 // Middleware function to verify JWT token
 const verifyToken = (req, res, next) => {
     // Extract JWT token from session
-    const token = req.session.jwt;
+    const token = req.headers['authorization']?.split(' ')[1];
 
     if (!token) {
         return sendResponse(req, res, false, "Unauthorized - No token provided", null);
@@ -12,14 +12,15 @@ const verifyToken = (req, res, next) => {
     }
 
     try {
-        // Verify the JWT token
-        const decoded = jwt.verify(token, 'secret-value');
+        // Verify token
+        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+            if (err) {
+                return sendResponse(req, res, false, "Unauthorized", null);
+            }
+            req.user = decoded; 
+            next();
+        });
 
-        // Add the decoded user information to the request object (optional)
-        req.user = decoded;
-
-        // Token is valid, proceed to the next middleware or API handler
-        next();
     } catch (error) {
         // Token verification failed
         return sendResponse(req, res, false, "Unauthorized - Invalid token", null);

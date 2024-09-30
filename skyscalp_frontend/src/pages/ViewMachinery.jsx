@@ -455,7 +455,8 @@ export default function ViewMachinery() {
 
                             </div>
 
-                            <MessageOwner userID={userID} />
+                            {/* <MessageOwner userID={userID} /> */}
+                            <MessageOwner userID={userID} collectionRef={"materials"}/>
                         </div>
 
 

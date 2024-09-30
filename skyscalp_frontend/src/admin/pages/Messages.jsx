@@ -58,12 +58,13 @@ export default function Messages() {
             .then((response) => response.json())
             .then((result) => {
                 if (result.status) {
+                    // console.log(result.data)
                     // Fetch product details for each message
                     const promises = result.data.map(message => {
                         if (message.productID !== null) {
-                            return fetchProductDetails(message.productID);
-
+                            return fetchProductDetails(message.productID, message.collectionReference);
                         }
+                        return Promise.resolve(null);
                     });
 
                     Promise.all(promises)
@@ -94,12 +95,50 @@ export default function Messages() {
             });
     }, []);
 
-    const fetchProductDetails = async (productID) => {
-        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/getProductDetails?id=${productID}`);
-        const result = await response.json();
-        if (result.status) {
-            return result.data;
-        } 
+    const fetchProductDetails = async (productID, collectionReference) => {
+        // const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/getProductDetails?id=${productID}`);
+        // const result = await response.json();
+        // if (result.status) {
+        //     return result.data;
+        // } 
+
+
+        try {
+            if (collectionReference === "properties") {
+                const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/getPropertyById/${productID}`);
+                const result = await response.json();
+                if (result.status) {
+                    return { ...result.data, collectionReference: collectionReference };
+                } else {
+                    return null;
+                }
+            }
+            else if (collectionReference === "materials") {
+                const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/getProductById/${productID}`);
+                const result = await response.json();
+                if (result.status) {
+                    // return result.data;
+                    return { ...result.data, collectionReference: collectionReference };
+
+                } else {
+                    return null;
+                }
+            }
+            else if (collectionReference === "services") {
+                const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/getServiceById/${productID}`);
+                const result = await response.json();
+                if (result.status) {
+                    // return result.data;
+                    return { ...result.data, collectionReference: collectionReference };
+
+                } else {
+                    return null;
+                }
+            }
+        } catch (error) {
+            console.error("Error fetching product details:", error);
+            return null;
+        }
     };
 
 
