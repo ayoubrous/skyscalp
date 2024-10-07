@@ -27,14 +27,14 @@
   "baths": "Baths",
   "areaUnit": "Sq ft",
   "machinerySectionTitle": "Build your property",
-  "machinerySectionSubTitle": "Explore all machinery items for sale and rent",
+  "machinerySectionSubTitle": "Buy or rent your machine at each stage of Construction.",
   "modal": "Model",
   "condition": "Condition",
   "category": "Category",
   "datePosted": "Date",
   "viewAllMachinery": "View All Machines",
   "viewAllConstruction": "View All Construction Materials",
-  "constructionSectionTitle": "Explore all construction materials for sale",
+  "constructionSectionTitle": "Find your building materials",
   "quantity": "Quantity",
   "available": "Available",
   "homeEstimateSectionPara": "Discover urban luxury at its finest with this stylish downtown condo. Offering contemporary  design, upscale amenities, and breathtaking city vistas, this property is the epitome of modern urban living.",
@@ -1094,5 +1094,10 @@
   "Expert Information": "Expert Information", 
   "Message sent successfully": "Message sent successfully",
 
-  "Furnitures": "Furnitures"
+  "Furnitures": "Furnitures",
+  "View all": "View all",
+
+  "expertSectionTitle": "Build your team of experts",
+  "View All Experts": "View All Experts",
+  "furnitureSectionSubTitle": "Explore a Wide Range of Furniture and Appliances for Every Need"
 }

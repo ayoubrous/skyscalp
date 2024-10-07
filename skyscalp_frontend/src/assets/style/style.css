@@ -707,3 +707,49 @@
 .owl-next:hover {
     background-color: #e3e0e0 !important;
 }
+
+
+
+/* ----------------- home categories -------------  */
+.home-card-categories-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 23%);
+    justify-content: space-between;
+    gap: 18px;
+}
+.home-card-categories-grid .home-category-card{
+    width: 100%;
+    overflow: hidden;
+
+    background-color: #fff;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.067);
+    border-radius: 16px;
+    padding: 12px 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+}
+.home-card-categories-grid .home-category-card:hover{
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.11);
+    transform: translateY(-3px);
+
+}
+.home-card-categories-grid .home-category-card .image{
+    width: 80%;
+    margin: 0 auto;
+    height: 160px;
+}
+.home-card-categories-grid .home-category-card .image.expertsImage{
+    width: 60%;
+    margin: 0 auto;
+    height: 160px;
+}
+.home-card-categories-grid .home-category-card .image img{
+    width: 70%;
+    height: 100%;
+    object-fit: contain;
+}
+.home-card-categories-grid .home-category-card .home-category-card-text{
+    font-size: 18px;
+    margin-top: 12px;
+}

@@ -172,7 +172,9 @@ const getFilteredServices = async (req, res) => {
     if (selectedField) filters.field = selectedField;
 
     // Array-based filters, only apply if arrays have values
-    if (selectedExperty && selectedExperty.length > 0) filters.experty = { $in: selectedExperty };
+    // if (selectedExperty && selectedExperty.length > 0) filters.experty = { $in: selectedExperty };
+    if (selectedExperty && selectedExperty.length > 0) filters.experty = selectedExperty[0];
+
     if (selectedAvailibilities && selectedAvailibilities.length > 0) filters.availibility = { $in: selectedAvailibilities };
     if (selectedEducations && selectedEducations.length > 0) filters.education = { $in: selectedEducations };
     if (selectedLanguages && selectedLanguages.length > 0) filters.language = { $in: selectedLanguages };

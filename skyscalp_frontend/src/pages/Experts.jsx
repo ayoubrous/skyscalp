@@ -134,7 +134,7 @@ const Experts = () => {
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-
+        console.log(filtersObj)
         const raw = JSON.stringify(filtersObj);
         const requestOptions = {
             method: "POST",
@@ -174,6 +174,20 @@ const Experts = () => {
 
 
     useEffect(() => {
+        if (location.state?.activeID) {
+            setActiveCatId(location.state?.activeID);
+        }
+        if (location.state?.type && !checkedSubcategories.includes(location.state.type)) {
+            setCheckedSubcategories([location.state.type]);
+            setFiltersObj((prevFiltersObj) => ({
+                ...prevFiltersObj,
+                selectedExperty: [location.state.type]  // Add the selected subcategory
+            }));
+        }
+    }, [])
+
+
+    useEffect(() => {
         loadData();
     }, [activeCatId, paginationData.currentPage, sortby, order, activeSubcats]);
 
@@ -182,20 +196,40 @@ const Experts = () => {
         resetAllFilters()
     };
 
-    const handleActiveSubcategories = (subcat) => {
-        // Check if the subcategory is already selected
-        if (activeSubcats.includes(subcat)) {
-            setActiveSubcats([])
-            setCheckedSubcategories([]);
+    // CODE BEFORE LOCATION FROM HOMEPAGE 
+    // const handleActiveSubcategories = (subcat) => {
+    //     // Check if the subcategory is already selected
+    //     if (activeSubcats.includes(subcat)) {
+    //         setActiveSubcats([])
+    //         setCheckedSubcategories([]);
 
-        }
-        else {
-            // If it's not selected, set it as the active one
+    //     }
+    //     else {
+    //         // If it's not selected, set it as the active one
+    //         setActiveSubcats(subcat);
+    //         setCheckedSubcategories([subcat]);
+    //     }
+    // };
+
+    const handleActiveSubcategories = (subcat) => {
+        if (activeSubcats.includes(subcat)) {
+            setActiveSubcats([]);
+            setCheckedSubcategories([]);
+    
+            setFiltersObj((prevFiltersObj) => ({
+                ...prevFiltersObj,
+                selectedExperty: []  
+            }));
+        } else {
             setActiveSubcats(subcat);
             setCheckedSubcategories([subcat]);
+    
+            setFiltersObj((prevFiltersObj) => ({
+                ...prevFiltersObj,
+                selectedExperty: [subcat]  // Add the selected subcategory
+            }));
         }
     };
-
 
     // // when category from search dropdown is selected, select it from the tabs, and fetch the filters based on selected subcategory
     // useEffect(() => {

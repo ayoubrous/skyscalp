@@ -827,4 +827,44 @@ let experienceData = [
 let serviceFeesData = [
     '0', '100', '500', '1000', '2000', '5000', '10000'
 ]
-export { services, educationData, languageData, availibilityData, experienceList, experienceData, serviceFeesData }
+
+
+const servicesHomeCategories = [
+    {
+        id: 1,
+        name: 'Notary',
+        image: lawyer
+    },
+    {
+        id: 2,
+        name: 'Architect',
+        image: construction
+    },
+    {
+        id: 3,
+        name: 'Mortgage',
+        image: finance
+    },
+    {
+        id: 4,
+        name: 'Interior Architect',
+        image: designer
+    },
+    {
+        id: 5,
+        name: 'Moving',
+        image: servicesExpert
+    },
+    {
+        id: 6,
+        name: 'Real Estate Agent',
+        image: realEstate
+    },
+    {
+        id: 7,
+        name: 'Plumbing',
+        image: craft
+    },
+    
+]
+export { services, educationData, languageData, availibilityData, experienceList, experienceData, serviceFeesData, servicesHomeCategories }

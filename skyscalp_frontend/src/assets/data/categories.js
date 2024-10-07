@@ -17,6 +17,33 @@ import wood from '../images/categories/wood.jpg'
 import others from '../images/categories/others.jpeg'
 
 
+// homepage images 
+import bulldozer from '../images/homepage/bulldozer.webp'
+import excavator from '../images/homepage/excavator.webp'
+import crusher from '../images/homepage/crusher.jpg'
+import compactor from '../images/homepage/compactor.jpeg'
+import crane from '../images/homepage/crane.png'
+import generator from '../images/homepage/generator.webp'
+import roller from '../images/homepage/roller.webp'
+
+
+import carpet from '../images/homepage/carpet.jpg'
+import sink from '../images/homepage/sink.png'
+import aluminium from '../images/homepage/aluminium.jpg'
+import lamp from '../images/homepage/lamp.webp'
+import paint from '../images/homepage/paint.jpg'
+import concreteHome from '../images/homepage/concrete.webp'
+import glass from '../images/homepage/glass.jpg'
+
+import sofa from '../images/homepage/sofa.jpg'
+import vacuume from '../images/homepage/vacuume.jpg'
+import diningTable from '../images/homepage/diningTable.png'
+import bathroomCabinet from '../images/homepage/bathroomCabinet.jpg'
+import bed from '../images/homepage/bed.jpg'
+import officeDesk from '../images/homepage/officeDesk.jpg'
+import armchair from '../images/homepage/armchair.jpg'
+
+
 const machineryCategories = [
     {
         id: 1,
@@ -383,4 +410,122 @@ const marketplaceCategories = [
     },
 ]
 
-export { machineryCategories, propertyCategories, constructionCategories, furnitureCategories, marketplaceCategories }
+const machineryHomeCategories = [
+    {
+        id: 1,
+        name: 'Bulldozer',
+        image: bulldozer
+    },
+    {
+        id: 2,
+        name: 'Excavator',
+        image: excavator
+    },
+    {
+        id: 3,
+        name: 'Roller',
+        image: roller
+    },
+    {
+        id: 4,
+        name: 'Crane',
+        image: crane
+    },
+    {
+        id: 5,
+        name: 'Compactor',
+        image: compactor
+    },
+    {
+        id: 6,
+        name: 'Crusher',
+        image: crusher
+    },
+    {
+        id: 7,
+        name: 'Generator',
+        image: generator
+    },
+    
+]
+
+const materialsHomeCategories = [
+    {
+        id: 1,
+        name: 'Concrete',
+        image: concreteHome
+    },
+    {
+        id: 2,
+        name: 'Glass',
+        image: glass
+    },
+    {
+        id: 3,
+        name: 'Paint',
+        image: paint
+    },
+    {
+        id: 4,
+        name: 'Lamp',
+        image: lamp
+    },
+    {
+        id: 5,
+        name: 'Sink',
+        image: sink
+    },
+    {
+        id: 6,
+        name: 'Carpet',
+        image: carpet
+    },
+    {
+        id: 7,
+        name: 'Aluminum',
+        image: aluminium
+    },
+    
+]
+
+
+const furnitureHomeCategories = [
+    {
+        id: 1,
+        name: 'Sofa',
+        image: sofa
+    },
+    {
+        id: 2,
+        name: 'Armchair',
+        image: armchair
+    },
+    {
+        id: 3,
+        name: 'Bed',
+        image: bed
+    },
+    {
+        id: 4,
+        name: 'Kitchen Table',
+        image: diningTable
+    },
+    {
+        id: 5,
+        name: 'Bathroom Cabinet',
+        image: bathroomCabinet
+    },
+    {
+        id: 6,
+        name: 'Desk',
+        image: officeDesk
+    },
+    {
+        id: 7,
+        name: 'Vacuum Cleaner',
+        image: vacuume
+    },
+    
+]
+
+export { materialsHomeCategories, machineryHomeCategories, machineryCategories, propertyCategories, constructionCategories, furnitureCategories, marketplaceCategories, furnitureHomeCategories }

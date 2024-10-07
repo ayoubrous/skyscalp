@@ -23,14 +23,14 @@
     "areaUnit": "pi²",
     "homeFilterTitle": "Vous recherchez quelque chose ?",
     "machinerySectionTitle": "Construisez votre propriété",
-    "machinerySectionSubTitle": "Explorez tous les articles de machinerie à vendre et à louer",
+    "machinerySectionSubTitle": "Achetez ou louez votre machine à chaque étape de Construction.",
     "modal": "Modale",
     "condition": "Condition",
     "category": "Catégorie",
     "datePosted": "Date",
     "viewAllMachinery": "Voir toutes les machines",
     "viewAllConstruction": "Voir tous les Matériaux de Construction",
-    "constructionSectionTitle": "Explorez tous les matériaux de construction à vendre",
+    "constructionSectionTitle": "Trouvez votre matériaux de construction",
     "quantity": "Quantité",
     "available": "Disponible",
     "homeEstimateSectionPara": "Découvrez le luxe urbain dans toute sa splendeur avec ce condo élégant en plein cœur du centre-ville. Offrant un design contemporain, des équipements haut de gamme et une vue imprenable sur la ville, cette propriété est l'incarnation de la vie urbaine moderne.",
@@ -1094,5 +1094,13 @@
     "View": "Voir",
     "Expert Information": "Informations d'experts",
     "Message sent successfully": "Message envoyé avec succès",
-    "Furnitures": "Meubles"
+    "Furnitures": "Meubles",
+
+
+    "View all": "Voir tout",
+
+  "expertSectionTitle": "Construisez votre équipe d'experts",
+  "View All Experts": "Voir tous les experts",
+  "furnitureSectionSubTitle": "Explorez une large gamme de meubles et d'appareils électroménagers pour tous les besoins"
+
 }

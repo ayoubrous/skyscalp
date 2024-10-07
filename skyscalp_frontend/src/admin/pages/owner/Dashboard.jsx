@@ -136,16 +136,15 @@ export default function Dashboard() {
 
 
 
-            fetch(`${process.env.REACT_APP_SERVER_URL}/api/getProducts`, requestOptions)
+            fetch(`${process.env.REACT_APP_SERVER_URL}/api/getAllProducts`, requestOptions)
                 .then((response) => response.json())
                 .then((result) => {
                     setIsLoading(false)
-                    // console.log(result)
                     if (result.status) {
                         let machinery = 0
                         let construction = 0
                         let furniture = 0
-                        result.data.documents.forEach(data => {
+                        result.data.forEach(data => {
                             if (data.materialGroup === "machinery") {
                                 machinery = machinery + 1
                             }

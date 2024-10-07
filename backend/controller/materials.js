@@ -102,6 +102,36 @@ const getProducts = async (req, res) => {
         sendResponse(req, res, false, "Error proceeding your request, try again", null);
     }
 };
+const getAllProducts = async (req, res) => {
+
+    try {
+
+
+        let response = await MaterialsModal.find()
+            .populate('userID');
+
+        if (response.length > 0) {
+            response = response.map(product => ({
+                ...product.toObject(),
+                user: {
+                    username: product.userID.username,
+                    email: product.userID.email,
+                    profileImage: product.userID.profileImage,
+                    phone: product.userID.phone
+                },
+                userID: product.userID._id
+            }));
+
+
+            sendResponse(req, res, true, "Products found successfully", response);
+        } else {
+            sendResponse(req, res, false, "No Products found", null);
+        }
+    } catch (err) {
+        console.log(err);
+        sendResponse(req, res, false, "Error proceeding your request, try again", null);
+    }
+};
 
 const getFeaturedProducts = async (req, res) => {
 
@@ -573,5 +603,6 @@ module.exports = {
     getFurnitureProducts,
     updateProductFeature,
     updateProductFavourites,
-    getProductsByFilters
+    getProductsByFilters,
+    getAllProducts
 }

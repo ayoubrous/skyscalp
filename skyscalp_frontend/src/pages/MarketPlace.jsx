@@ -64,7 +64,16 @@ const MarketPlace = () => {
     const [checkedSubcategories, setCheckedSubcategories] = useState([]);
 
 
+    useEffect(()=> {
+        // if(location.state.type && location.state.type !== ""){
+        //     setCheckedSubcategories([...checkedSubcategories, location.state.type])
+        // }
+        if (location.state?.type && !checkedSubcategories.includes(location.state.type)) {
+            // setCheckedSubcategories(prev => [...prev, location.state.type]);
+            setCheckedSubcategories([...checkedSubcategories, location.state.type])
 
+          }
+    }, [])
 
 
     const [filtersObj, setFiltersObj] = useState({

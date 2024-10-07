@@ -18,6 +18,8 @@ import Lottie from 'lottie-react'
 import { ToastContainer, toast } from 'react-toastify';
 
 import { getLocations } from '../assets/data/locations'
+import FurnitureSection from '../components/sections/FurnitureSection'
+import ExpertsSection from '../components/sections/ExpertsSection'
 
 export default function Home() {
   const [properties, setProperties] = useState([])
@@ -73,12 +75,12 @@ export default function Home() {
   let executed = false
   useEffect(() => {
     const loadData = () => {
-      loadProperties();
+      // loadProperties();
       loadMaterials();
       executed = true
     }
     if (!executed) {
-      loadData()
+      // loadData()
     }
   }, []);
 
@@ -96,6 +98,8 @@ export default function Home() {
       {/* <Properties properties={properties} /> */}
       <Machinery data={materials} />
       <Construction data={materials} />
+      <FurnitureSection />
+      <ExpertsSection />
       <Estimation />
       <Publish />
       <BlogSection />
