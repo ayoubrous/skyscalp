@@ -1,0 +1,30 @@
+# Ignore node_modules in the root
+/node_modules
+
+# Ignore node_modules in subdirectories
+/frontend/node_modules
+/skyscalp_frontend/node_modules
+/backend/node_modules
+
+
+
+# Ignore .DS_Store in the root and subdirectories
+.DS_Store
+/backend/.DS_Store
+/skyscalp_frontend/.DS_Store
+
+# Ignore .env files in the root and subdirectories
+# .env
+# /backend/.env
+# /skyscalp_frontend/.env
+
+# Ignore dist directories in the root and subdirectories
+dist/
+/backend/dist/
+/skyscalp_frontend/dist/
+
+
+# Ignore coverage directories in the root and subdirectories
+coverage/
+/backend/coverage/
+/skyscalp_frontend/coverage/
