@@ -268,7 +268,7 @@ export default function Dashboard() {
           <Header />
           <div className="container-fluid">
             <div className="row gap-2">
-              <div className="col-4">
+              <div className="col-sm-12  col-xs-12 col-md-4">
 
                 {/* <Link to="../app/properties" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid blue" }}>
                   <div className="card-body p-3">
@@ -341,7 +341,7 @@ export default function Dashboard() {
                 </Link>
 
               </div>
-              <div className="col-7">
+              <div className="col-sm-12 col-xs-12 col-md-7">
                 <div className="card p-4">
                   <h5>{t("personalInfo")}</h5>
 
@@ -377,8 +377,8 @@ export default function Dashboard() {
 
                       </div>
                       <div className="form-group mb-2">
-                        <button type='submit' className="custom-btn">{t("update")}</button>
-                        <button type='button' className="custom-btn outline-btn ms-2 py-2" onClick={handleEditPassword}>{t("Edit Password")}</button>
+                        <button type='submit' className="custom-btn mb-1">{t("update")}</button>
+                        <button type='button' className="custom-btn outline-btn ms-2 py-2 mb-1" onClick={handleEditPassword}>{t("Edit Password")}</button>
                         {/* <button className="custom-btn outline-btn ms-2 py-2 text-danger" style={{border: "2px solid red"}} onClick={() => setShowDeleteModal(true)}>{t("Delete Account")}</button> */}
                         {/* <button type='button' className="btn btn-outline-danger ms-2" style={{padding: "10px 10px"}} onClick={(e) => {e.preventDefault(); setShowDeleteModal(true)}}>{t("Delete Account")}</button> */}
                       </div>

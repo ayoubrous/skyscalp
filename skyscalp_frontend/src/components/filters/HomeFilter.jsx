@@ -128,21 +128,20 @@ export default function HomeFilter() {
             searchFilters.isProperties = false;
         }
         // sessionStorage.setItem('appliedFilters', JSON.stringify(searchFilters))
-
         if (activeTab === "property") {
-            navigate('../properties')
+            navigate('../properties', {state: {filters: searchFilters}})
         }
         else if (activeTab === "machinery") {
-            navigate('../marketplace?market=1')
+            navigate('../marketplace?market=1', {state: {filters: searchFilters}})
         }
         else if (activeTab === "construction") {
-            navigate('../marketplace?market=2')
+            navigate('../marketplace?market=2', {state: {filters: searchFilters}})
         }
         else if (activeTab === "furniture") {
-            navigate('../marketplace?market=3')
+            navigate('../marketplace?market=3', {state: {filters: searchFilters}})
         }
         else if (activeTab === "experts") {
-            navigate('../experts')
+            navigate('../experts', {state: {filters: searchFilters}})
         }
     }
 
@@ -217,7 +216,9 @@ export default function HomeFilter() {
         if (selectedAllLocations.includes(name)) {
             setSelectedAllLocations(item => item.filter(item => item !== name));
         }
-
+        if (checkedSubcategories.includes(name)) {
+            setCheckedSubcategories(item => item.filter(item => item !== name));
+        }
         setRadius(null)
 
     };
@@ -397,12 +398,22 @@ export default function HomeFilter() {
                                     )
                                 })
                             }
+                            {
+                                checkedSubcategories.map((filter, i) => {
+                                    return (
+                                        <span key={i} className='selected-filter'>{t(filter)} <FaXmark style={{ cursor: "pointer" }} onClick={() => removeTypeFilter(i, filter)} /></span>
+                                    )
+                                })
+                            }
                         </div>
                         {
-                            selectedFilters.length > 0 && (
-                                <div className="selected-filter" style={{ cursor: "pointer" }} onClick={clearAllFilters}>Clear Filters</div>
-                            )
+                            // selectedFilters.length > 0 && (
+                                // <div className="selected-filter" style={{ cursor: "pointer" }} onClick={clearAllFilters}>Clear Filters</div>
+                                <div className="selected-filter" style={{ cursor: "pointer", alignSelf: "start" }} onClick={clearAllFilters} >{t("reset")}</div>
+
+                            // )
                         }
+
                     </div>
                 </div>
 

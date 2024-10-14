@@ -34,10 +34,9 @@ export default function CustomLocationsDropdown({ handleLocationSelect, selected
         let selectedCountry = localStorage.getItem('country') || 'morocco';
 
         const filteredSuggestions = locations.filter(location =>
-            // location.country.toLowerCase() === selectedCountry.toLowerCase() &&
+            location.country.toLowerCase() === selectedCountry.toLowerCase() && 
             location.name.toLowerCase().startsWith(inputValue.toLowerCase())
         );
-
         setSuggestions(filteredSuggestions);
     };
 

@@ -15,7 +15,12 @@ export default function Construction({ data }) {
     const [t] = useTranslation()
 
     const handleNavigate = (type) => {
-        navigate('/marketplace?market=2', { state: { type: type } })
+        // navigate('/marketplace?market=2', { state: { type: type } })
+        if (type === "") {
+            navigate('/marketplace?market=2', { state: { filters: { checkedSubcategories: [] } } })
+        } else {
+            navigate('/marketplace?market=2', { state: { filters: { checkedSubcategories: [type] } } })
+        }
     }
     return (
         <section className="construction-section">
@@ -62,9 +67,9 @@ export default function Construction({ data }) {
 
                 </div>
                 <div className='text-center'>
-                    <Link to="./marketplace?market=2" style={{ display: "inline-block" }}>
+                    {/* <Link to="./marketplace?market=2" style={{ display: "inline-block" }}>
                         <button className="outline-btn d-block mx-auto my-4">{t("viewAllConstruction")}</button>
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </section>

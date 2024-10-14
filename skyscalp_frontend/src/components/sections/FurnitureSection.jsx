@@ -9,7 +9,13 @@ export default function FurnitureSection() {
     const [t] = useTranslation()
 
     const handleNavigate = (type) => {
-        navigate('/marketplace?market=3', { state: { type: type } })
+        // navigate('/marketplace?market=3', { state: { type: type } })
+
+        if (type === "") {
+            navigate('/marketplace?market=3', { state: { filters: { checkedSubcategories: [] } } })
+        } else {
+            navigate('/marketplace?market=3', { state: { filters: { checkedSubcategories: [type] } } })
+        }
     }
     return (
         <section className="machinery-section">
@@ -44,10 +50,10 @@ export default function FurnitureSection() {
                 </div>
 
                 <div className='text-center'>
-
+{/* 
                     <Link to="./marketplace?market=3" style={{ display: "inline-block" }}>
                         <button className="outline-btn d-block mx-auto my-4">{t("View all")}</button>
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </section>

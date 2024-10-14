@@ -101,9 +101,9 @@ export default function Home() {
       <FurnitureSection />
       <ExpertsSection />
       <Estimation />
-      <Publish />
+      {/* <Publish /> */}
       <BlogSection />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <ContactUs supportTitle="homeSupportTitle" supportDescription="homeSupportDescription" contactEmail={"help@skyscalp.com"} contactPhone={"+33771759956"} />
       <Footer />
     </>

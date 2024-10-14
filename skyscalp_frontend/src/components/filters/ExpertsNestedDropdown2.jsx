@@ -17,12 +17,11 @@ export default function ExpertsNestedDropdown2({ show, categoriesRef, categories
 	}
 
 	// Function to select only one subcategory at a time
-	const toggleSubcategory = (subcategoryName) => {
+	const toggleSubcategory = (event, subcategoryName) => {
+		event.preventDefault(); // Prevent default label behavior
 		if (checkedSubcategories.includes(subcategoryName)) {
-			// If the same subcategory is clicked, deselect it
 			setCheckedSubcategories([]);
 		} else {
-			// Select only the clicked subcategory, unchecking others
 			setCheckedSubcategories([subcategoryName]);
 		}
 	};
@@ -60,17 +59,17 @@ export default function ExpertsNestedDropdown2({ show, categoriesRef, categories
 						{extendedCat === i && (
 							<ul className='nested-dropdown'>
 								{category.subcategories.map((subcategory, i) => (
-									<li key={i} className='dropdown-item nested-dropdown-item'>
-										<div className="d-flex gap-2">
+									<li key={i} className='dropdown-item nested-dropdown-item' onClick={(e) => toggleSubcategory(e, subcategory)}>
+										<div className="d-flex gap-2" >
 											{/* Only one subcategory can be selected */}
 											<input
 												type="checkbox"
 												name={subcategory}
 												id={subcategory}
 												checked={checkedSubcategories.includes(subcategory)}
-												onChange={() => toggleSubcategory(subcategory)}
+												onChange={() => {}}
 											/>
-											<label htmlFor={subcategory}>{t(subcategory)}</label>
+											<label htmlFor={subcategory} onClick={(e) => e.preventDefault()}>{t(subcategory)}</label>
 										</div>
 									</li>
 								))}

@@ -10,7 +10,13 @@ export default function ExpertsSection() {
     const [t] = useTranslation()
 
     const handleNavigate = (type, id) => {
-        navigate('/experts', { state: { type: type, activeID: id } })
+        // navigate('/experts', { state: { type: type, activeID: id } })
+
+        if (type === "") {
+            navigate('/experts', { state: { filters: { checkedSubcategories: [] } } })
+        } else {
+            navigate('/experts', { state: { filters: { checkedSubcategories: [type] } } })
+        }
     }
     return (
         <section className="machinery-section">
@@ -46,9 +52,9 @@ export default function ExpertsSection() {
 
                 <div className='text-center'>
 
-                    <Link to="./experts" style={{ display: "inline-block" }}>
+                    {/* <Link to="./experts" style={{ display: "inline-block" }}>
                         <button className="outline-btn d-block mx-auto my-4">{t("View All Experts")}</button>
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </section>

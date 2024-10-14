@@ -13,7 +13,11 @@ export default function Machinery({ data }) {
     const [t] = useTranslation()
 
     const handleNavigate = (type) => {
-        navigate('/marketplace?market=1', { state: { type: type } })
+        if (type === "") {
+            navigate('/marketplace?market=1', { state: { filters: { checkedSubcategories: [] } } })
+        } else {
+            navigate('/marketplace?market=1', { state: { filters: { checkedSubcategories: [type] } } })
+        }
     }
     return (
         <section className="machinery-section">
@@ -62,9 +66,9 @@ export default function Machinery({ data }) {
 
                 <div className='text-center'>
 
-                    <Link to="./marketplace?market=1" style={{ display: "inline-block" }}>
+                    {/* <Link to="./marketplace?market=1" style={{ display: "inline-block" }}>
                         <button className="outline-btn d-block mx-auto my-4">{t("viewAllMachinery")}</button>
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </section>

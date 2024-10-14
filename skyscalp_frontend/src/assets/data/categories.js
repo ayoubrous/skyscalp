@@ -43,6 +43,55 @@ import bed from '../images/homepage/bed.jpg'
 import officeDesk from '../images/homepage/officeDesk.jpg'
 import armchair from '../images/homepage/armchair.jpg'
 
+// before duplicates values in subcategories which caused issue in filters 
+// const machineryCategories = [
+//     {
+//         id: 1,
+//         image: foundation,
+//         categoryName: 'Earthmoving',
+//         subcategories: [
+//             'Bulldozer', 'Wheel loader', 'Backhoe loader', 'Excavator', 'Scraper', 'Grader', 'Compactor', 'Roller', 'Trencher', 'Skid-steer loader', 'Other'
+//         ]
+//     },
+//     {
+//         id: 2,
+//         image: wall,
+//         categoryName: 'Lifting',
+//         subcategories: [
+//             'Crane', 'Aerial work platform', 'Forklift', 'Telehandler', 'Cherry picker',
+//             'Hoist', 'Winch', 'Boom lift', 'Scissor lift', 'Pallet jack', 'Other'
+//         ]
+//     },
+//     {
+//         id: 3,
+//         image: floor,
+//         categoryName: 'Compaction',
+//         subcategories: [
+//             'Compactor', 'Roller', 'Rammer', 'Plate compactor', 'Vibratory compactor',
+//             'Pneumatic roller', 'Soil compactor', 'Asphalt compactor', 'Hand tamper',
+//             'Reversible plate compactor', 'Other'
+//         ]
+//     },
+//     {
+//         id: 4,
+//         image: roofing,
+//         categoryName: 'Demolition',
+//         subcategories: [
+//             'Crusher', 'Shear', 'Demolition hammer', 'Excavator', 'Breaker',
+//             'Wrecking ball', 'Demolition saw', 'Hydraulic breaker', 'Pneumatic hammer',
+//             'Demolition excavator', 'Other'
+//         ]
+//     },
+//     {
+//         id: 5,
+//         image: excavation,
+//         categoryName: 'Other',
+//         subcategories: [
+//             'Generator', 'Pump', 'Welder', 'Compressor', 'Light tower',
+//             'Saw', 'Drill', 'Grinder', 'Concrete mixer', 'Concrete pump', 'Other'
+//         ]
+//     }
+// ];
 
 const machineryCategories = [
     {
@@ -50,7 +99,7 @@ const machineryCategories = [
         image: foundation,
         categoryName: 'Earthmoving',
         subcategories: [
-            'Bulldozer', 'Wheel loader', 'Backhoe loader', 'Excavator', 'Scraper', 'Grader', 'Compactor', 'Roller', 'Trencher', 'Skid-steer loader', 'Other'
+            'Bulldozer', 'Wheel loader', 'Backhoe loader', 'Excavator', 'Scraper', 'Grader', 'Compactor', 'Roller', 'Trencher', 'Skid-steer loader'
         ]
     },
     {
@@ -59,7 +108,7 @@ const machineryCategories = [
         categoryName: 'Lifting',
         subcategories: [
             'Crane', 'Aerial work platform', 'Forklift', 'Telehandler', 'Cherry picker',
-            'Hoist', 'Winch', 'Boom lift', 'Scissor lift', 'Pallet jack', 'Other'
+            'Hoist', 'Winch', 'Boom lift', 'Scissor lift', 'Pallet jack'
         ]
     },
     {
@@ -67,9 +116,9 @@ const machineryCategories = [
         image: floor,
         categoryName: 'Compaction',
         subcategories: [
-            'Compactor', 'Roller', 'Rammer', 'Plate compactor', 'Vibratory compactor',
+            'Rammer', 'Plate compactor', 'Vibratory compactor',
             'Pneumatic roller', 'Soil compactor', 'Asphalt compactor', 'Hand tamper',
-            'Reversible plate compactor', 'Other'
+            'Reversible plate compactor'
         ]
     },
     {
@@ -77,18 +126,18 @@ const machineryCategories = [
         image: roofing,
         categoryName: 'Demolition',
         subcategories: [
-            'Crusher', 'Shear', 'Demolition hammer', 'Excavator', 'Breaker',
+            'Crusher', 'Shear', 'Demolition hammer', 'Breaker',
             'Wrecking ball', 'Demolition saw', 'Hydraulic breaker', 'Pneumatic hammer',
-            'Demolition excavator', 'Other'
+            'Demolition excavator'
         ]
     },
     {
         id: 5,
-        image: excavation,
+        image: wall,
         categoryName: 'Other',
         subcategories: [
             'Generator', 'Pump', 'Welder', 'Compressor', 'Light tower',
-            'Saw', 'Drill', 'Grinder', 'Concrete mixer', 'Concrete pump', 'Other'
+            'Saw', 'Drill', 'Grinder', 'Concrete mixer', 'Concrete pump'
         ]
     }
 ];

@@ -30,6 +30,7 @@ export default function Dashboard() {
     const [totalConstruction, setTotalConstruction] = useState(0)
     const [totalMachinery, setTotalMachinery] = useState(0)
     const [totalFurniture, setTotalFurniture] = useState(0)
+    const [totalExperts, setTotalExperts] = useState(0)
 
     const [showResetPasswordModal, setShowResetPasswordModal] = useState(false)
 
@@ -46,7 +47,7 @@ export default function Dashboard() {
         };
 
         const user = JSON.parse(localStorage.getItem("user"))
-        
+
 
         fetch(`${process.env.REACT_APP_SERVER_URL}/api/getUserById/${user.userID}`, requestOptions)
             .then((response) => response.json())
@@ -83,13 +84,19 @@ export default function Dashboard() {
             };
 
 
-            fetch(`${process.env.REACT_APP_SERVER_URL}/api/getProperties`, requestOptions)
+            fetch(`${process.env.REACT_APP_SERVER_URL}/api/getServices`, {
+                method: "POST",
+                redirect: "follow",
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
                 .then((response) => response.json())
                 .then((result) => {
                     setIsLoading(false)
                     // console.log(result)
                     if (result.status) {
-                        setTotalProperties(result.data.totalProperties)
+                        setTotalExperts(result.data.totalProducts)
                     }
                     else {
                         console.log(result.message)
@@ -123,7 +130,7 @@ export default function Dashboard() {
                     setIsLoading(false)
                     // console.log(result)
                     if (result.status) {
-                        setTotalViewers(result.data.length)
+                        setTotalViewers(result.data)
                     }
                     else {
                         console.log(result.message)
@@ -283,7 +290,7 @@ export default function Dashboard() {
                 <div className="body-wrapper">
                     <Header />
                     <div className="container-fluid">
-                        <div className="d-flex align-items-center gap-1 mx-1 mb-2">
+                        <div className="d-flex align-items-center gap-1 mx-1 mb-2 dashboardCardRow">
                             <Link to="../admin/users" className="card overflow-hidden col-4" style={{ borderRight: "2px solid blue" }}>
                                 <div className="card-body p-4">
                                     <h5 className="card-title mb-9 fw-semibold">{t("REGISTERED USERS")}</h5>
@@ -310,22 +317,22 @@ export default function Dashboard() {
                                     </div>
                                 </div>
                             </Link>
-                            <Link to="../admin/properties" className="card overflow-hidden col-4" style={{ borderRight: "2px solid orange" }}>
+                            <Link to="../admin/experts" className="card overflow-hidden col-4" style={{ borderRight: "2px solid orange" }}>
                                 <div className="card-body p-4">
-                                    <h5 className="card-title mb-9 fw-semibold">{t("PUBLISHED PROPERTIES")}</h5>
+                                    <h5 className="card-title mb-9 fw-semibold text-uppercase">{t("Published Experts")}</h5>
                                     <div className="row align-items-center">
                                         <div className="d-flex align-items-center justify-content-between">
                                             <h1 className="fw-bolder color-primary" style={{ fontSize: "3rem" }}>
-                                                {totalProperties}
+                                                {totalExperts && totalExperts}
                                             </h1>
-                                            <BsBuildingsFill className='color-primary' style={{ fontSize: "3rem" }} />
+                                            <FaUsers className='color-primary' style={{ fontSize: "3rem" }} />
                                         </div>
                                     </div>
                                 </div>
                             </Link>
                         </div>
 
-                        <div className="d-flex align-items-center gap-1 mx-1 mb-2">
+                        <div className="d-flex align-items-center gap-1 mx-1 mb-2 dashboardCardRow">
                             <div onClick={() => navigation('../admin/materials', 'machinery')} className="card overflow-hidden col-4" style={{ borderRight: "2px solid green", cursor: "pointer" }}>
                                 <div className="card-body p-4">
                                     <h5 className="card-title mb-9 fw-semibold">{t("PUBLISHED MACHINES")}</h5>
@@ -370,7 +377,7 @@ export default function Dashboard() {
                         </div>
 
                         <div className="row">
-                            <div className="col-7">
+                            <div className="col-xs-12 col-md-7">
                                 <div className="card p-4">
                                     <h5>{t("Personal Information")}</h5>
 
@@ -405,8 +412,8 @@ export default function Dashboard() {
                                                 <input type="text" className='custom-input my-1' value={username} onChange={e => setUsername(e.target.value)} />
                                             </div>
                                             <div className="form-group mb-2">
-                                                <button className="custom-btn">{t("Update")}</button>
-                                                <button className="custom-btn outline-btn ms-2 py-2" onClick={handleEditPassword}>{t("Edit Password")}</button>
+                                                <button className="custom-btn mb-2">{t("Update")}</button>
+                                                <button className="custom-btn mb-2 outline-btn ms-2 py-2" onClick={handleEditPassword}>{t("Edit Password")}</button>
                                             </div>
                                         </form>
                                     </div>

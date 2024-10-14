@@ -16,7 +16,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import loader from '../assets/images/skyscalp-loader.json'
 import Lottie from 'lottie-react'
 import ExpertCard from '../components/cards/ExpertCard'
-import { services } from '../assets/data/services'
+import { experienceData, services } from '../assets/data/services'
 import { FaXmark } from 'react-icons/fa6'
 import ExpertsFilter from '../components/filters/ExpertsFilter'
 import Sortby from '../components/utils/Sortby'
@@ -134,7 +134,7 @@ const Experts = () => {
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        console.log(filtersObj)
+        // console.log(filtersObj)
         const raw = JSON.stringify(filtersObj);
         const requestOptions = {
             method: "POST",
@@ -174,15 +174,93 @@ const Experts = () => {
 
 
     useEffect(() => {
-        if (location.state?.activeID) {
-            setActiveCatId(location.state?.activeID);
-        }
-        if (location.state?.type && !checkedSubcategories.includes(location.state.type)) {
-            setCheckedSubcategories([location.state.type]);
-            setFiltersObj((prevFiltersObj) => ({
-                ...prevFiltersObj,
-                selectedExperty: [location.state.type]  // Add the selected subcategory
-            }));
+        // if (location.state?.activeID) {
+        //     setActiveCatId(location.state?.activeID);
+        // }
+        // if (location.state?.type && !checkedSubcategories.includes(location.state.type)) {
+        //     setCheckedSubcategories([location.state.type]);
+        //     setFiltersObj((prevFiltersObj) => ({
+        //         ...prevFiltersObj,
+        //         selectedExperty: [location.state.type]  // Add the selected subcategory
+        //     }));
+        // }
+
+        // console.log(location.state)
+        // ------------ 
+
+
+        if (location.state?.filters) {
+            location.state.filters.checkedSubcategories.forEach(subcat => {
+
+                //checking where the subcat is present in experts catgegories
+                services.forEach(service => {
+                    service.expertise.forEach(experty => {
+                        if (experty.expertyName === subcat) {
+                            // setting the id of service in which the subcat is present 
+                            setActiveCatId(service.id)
+                        }
+                    })
+                })
+                setCheckedSubcategories(prevState => {
+                    if (!prevState.includes(subcat)) {
+                        return [...prevState, subcat];
+                    }
+                    return prevState;
+                });
+            });
+
+
+            if (location.state.filters.selectedCountries) {
+
+                location.state.filters.selectedCountries.forEach(data => {
+                    settingTheOvarallFilters(data)
+                    setSelectedCountries(prevState => {
+                        if (!prevState.includes(data)) {
+                            return [...prevState, data];
+                        }
+                        return prevState;
+                    });
+                });
+                location.state.filters.selectedStates.forEach(data => {
+                    settingTheOvarallFilters(data)
+                    setSelectedStates(prevState => {
+                        if (!prevState.includes(data)) {
+                            return [...prevState, data];
+                        }
+                        return prevState;
+                    });
+                });
+                location.state.filters.selectedCities.forEach(data => {
+                    settingTheOvarallFilters(data)
+                    setSelectedStates(prevState => {
+                        if (!prevState.includes(data)) {
+                            return [...prevState, data];
+                        }
+                        return prevState;
+                    });
+                });
+                location.state.filters.selectedStreets.forEach(data => {
+                    settingTheOvarallFilters(data)
+
+                    setSelectedStreets(prevState => {
+                        if (!prevState.includes(data)) {
+                            return [...prevState, data];
+                        }
+                        return prevState;
+                    });
+                });
+            }
+
+
+            function settingTheOvarallFilters(value) {
+                setSelectedFilters(prevState => {
+                    if (!prevState.includes(value)) {
+                        return [...prevState, value];
+                    }
+                    return prevState;
+                });
+            }
+
         }
     }, [])
 
@@ -215,15 +293,15 @@ const Experts = () => {
         if (activeSubcats.includes(subcat)) {
             setActiveSubcats([]);
             setCheckedSubcategories([]);
-    
+
             setFiltersObj((prevFiltersObj) => ({
                 ...prevFiltersObj,
-                selectedExperty: []  
+                selectedExperty: []
             }));
         } else {
             setActiveSubcats(subcat);
             setCheckedSubcategories([subcat]);
-    
+
             setFiltersObj((prevFiltersObj) => ({
                 ...prevFiltersObj,
                 selectedExperty: [subcat]  // Add the selected subcategory
@@ -420,7 +498,7 @@ const Experts = () => {
                                             className={`subcat-tab ${activeSubcats.includes(subName) ? 'active' : ''}`}
                                             onClick={() => handleActiveSubcategories(subName)}
                                         >
-                                            {t(subName).slice(0, 10) + (subName.length > 10 ? '...' : '')}
+                                            {t(subName).slice(0, 25) + (subName.length > 25 ? '...' : '')}
 
                                             {activeSubcats.includes(subName) && <FaXmark className='closeTab' />}
                                         </div>

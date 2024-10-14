@@ -64,15 +64,77 @@ const MarketPlace = () => {
     const [checkedSubcategories, setCheckedSubcategories] = useState([]);
 
 
-    useEffect(()=> {
-        // if(location.state.type && location.state.type !== ""){
-        //     setCheckedSubcategories([...checkedSubcategories, location.state.type])
-        // }
-        if (location.state?.type && !checkedSubcategories.includes(location.state.type)) {
-            // setCheckedSubcategories(prev => [...prev, location.state.type]);
-            setCheckedSubcategories([...checkedSubcategories, location.state.type])
+    useEffect(() => {
+        // console.log(location.state?.filters)
 
-          }
+        if (location.state?.filters) {
+            location.state.filters.checkedSubcategories.forEach(subcat => {
+                setCheckedSubcategories(prevState => {
+                    if (!prevState.includes(subcat)) {
+                        return [...prevState, subcat];
+                    }
+                    return prevState;
+                });
+            });
+
+            if (location.state.filters.selectedCountries) {
+
+                location.state.filters?.selectedCountries.forEach(data => {
+                    settingTheOvarallFilters(data)
+                    setSelectedCountries(prevState => {
+                        if (!prevState.includes(data)) {
+                            return [...prevState, data];
+                        }
+                        return prevState;
+                    });
+                });
+                location.state.filters?.selectedStates.forEach(data => {
+                    settingTheOvarallFilters(data)
+                    setSelectedStates(prevState => {
+                        if (!prevState.includes(data)) {
+                            return [...prevState, data];
+                        }
+                        return prevState;
+                    });
+                });
+                location.state.filters?.selectedCities.forEach(data => {
+                    settingTheOvarallFilters(data)
+                    setSelectedStates(prevState => {
+                        if (!prevState.includes(data)) {
+                            return [...prevState, data];
+                        }
+                        return prevState;
+                    });
+                });
+                location.state.filters?.selectedStreets.forEach(data => {
+                    settingTheOvarallFilters(data)
+
+                    setSelectedStreets(prevState => {
+                        if (!prevState.includes(data)) {
+                            return [...prevState, data];
+                        }
+                        return prevState;
+                    });
+                });
+            }
+
+
+            function settingTheOvarallFilters(value) {
+                setSelectedFilters(prevState => {
+                    if (!prevState.includes(value)) {
+                        return [...prevState, value];
+                    }
+                    return prevState;
+                });
+            }
+        }
+
+
+        // code for navigating from categories cards 
+        // if (location.state?.type && !checkedSubcategories.includes(location.state.type)) {
+        //     setCheckedSubcategories([...checkedSubcategories, location.state.type])
+
+        // }
     }, [])
 
 
@@ -99,14 +161,14 @@ const MarketPlace = () => {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 7,
-        slidesToScroll: 7,
+        slidesToShow: 5,
+        slidesToScroll: 5,
         initialSlide: 0,
         arrows: true,
         responsive: [
-            { breakpoint: 1024, settings: { slidesToShow: 6, slidesToScroll: 6 } },
-            { breakpoint: 870, settings: { slidesToShow: 4, slidesToScroll: 4 } },
-            { breakpoint: 590, settings: { slidesToShow: 3, slidesToScroll: 3 } },
+            { breakpoint: 1024, settings: { slidesToShow: 4, slidesToScroll: 4 } },
+            { breakpoint: 870, settings: { slidesToShow: 3, slidesToScroll: 3 } },
+            { breakpoint: 590, settings: { slidesToShow: 2, slidesToScroll: 2 } },
             { breakpoint: 450, settings: { slidesToShow: 2, slidesToScroll: 2 } },
         ],
     };
@@ -396,7 +458,8 @@ const MarketPlace = () => {
         })
 
 
-        loadData()
+        // loadData()
+        // window.location.reload()
 
     }
 
@@ -627,7 +690,7 @@ const MarketPlace = () => {
                                         className={`subcat-tab ${activeSubcats.includes(sub) ? 'active' : ''}`}
                                         onClick={() => handleActiveSubcategories(sub)}
                                     >
-                                        {t(sub).slice(0, 10) + (sub.length > 10 ? '...' : '')}
+                                        {t(sub).slice(0, 25) + (sub.length > 25 ? '...' : '')}
                                         {activeSubcats.includes(sub) && <FaXmark className='closeTab' />}
                                     </div>
                                 ))

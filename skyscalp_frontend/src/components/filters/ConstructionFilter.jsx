@@ -132,7 +132,7 @@ export default function ConstructionFilter({
 
     // assume brands and related are materials
     const handleMaterials = brand => {
-        setShowBrandDrp(false)
+        // setShowBrandDrp(false)
         if (!selectedFilters.includes(brand)) {
             setSelectedFilters([...selectedFilters, brand]);
             setSelectedMaterials([...selectedMaterials, brand])
@@ -148,7 +148,7 @@ export default function ConstructionFilter({
 
     // assume condition are types for all the page now
     const handleTypes = val => {
-        setShowConditionDrp(false)
+        // setShowConditionDrp(false)
         if (!selectedFilters.includes(val)) {
             setSelectedFilters([...selectedFilters, val]);
             setMaterialItemType([...materialItemType, val])
@@ -266,6 +266,8 @@ export default function ConstructionFilter({
 
 
     const handleClearFilters = () => {
+        window.location.reload()
+        
         setSelectedFilters([]);
         setSelectedAllLocations([])
         setRadius(null)
@@ -309,6 +311,8 @@ export default function ConstructionFilter({
         setItemUnits(Array.from(newUnitsSet)); // Add this line
 
     }, [checkedSubcategories]);
+
+
 
 
     return (

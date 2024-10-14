@@ -196,7 +196,7 @@ export default function ExpertsFilter({
     }
 
     const handleExperience = val => {
-        setShowExperienceDrp(false)
+        // setShowExperienceDrp(false)
         if (!selectedFilters.includes(val)) {
             setSelectedFilters([...selectedFilters, val]);
             setSelectedExperience([...selectedExperience, val])
@@ -211,7 +211,7 @@ export default function ExpertsFilter({
     }
 
     const handleLanguage = language => {
-        setShowLanguageDrp(false);
+        // setShowLanguageDrp(false);
         const updatedLanguages = selectedLanguages.includes(language)
             ? selectedLanguages.filter(lang => lang !== language)
             : [...selectedLanguages, language];
@@ -220,7 +220,7 @@ export default function ExpertsFilter({
     };
 
     const handleAvailibility = (val) => {
-        setShowAvailabilityDrp(false);
+        // setShowAvailabilityDrp(false);
         const updatedAvailabilities = availibilities.includes(val)
             ? availibilities.filter(avail => avail !== val)
             : [...availibilities, val];
@@ -229,7 +229,7 @@ export default function ExpertsFilter({
     };
 
     const handleEducation = (val) => {
-        setShowEducationDrp(false);
+        // setShowEducationDrp(false);
         const updatedEducations = selectedEducations.includes(val)
             ? selectedEducations.filter(edu => edu !== val)
             : [...selectedEducations, val];
@@ -491,7 +491,7 @@ export default function ExpertsFilter({
 
                                     <div className='text-white'>
                                         {minPrice === '' && maxPrice === '' ? (
-                                            <p className='filter-values'>{t("Consultation Fee/hour")}</p>
+                                            <p className='filter-values'>{t("Rate / Hour")}</p>
                                         ) : (
                                             <>
                                                 {minPrice === '' ? (

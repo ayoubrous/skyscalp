@@ -59,6 +59,7 @@ export default function Messages() {
             .then((result) => {
                 if (result.status) {
                     // console.log(result.data)
+                    
                     // Fetch product details for each message
                     const promises = result.data.map(message => {
                         if (message.productID !== null) {
@@ -224,7 +225,7 @@ export default function Messages() {
                                                                     data.message)
                                                                 : ""}
                                                         </td>
-                                                        <td>{data.details.title ? data.details.title : data.details}</td>
+                                                        <td>{data?.details?.title ? data?.details?.title : data.details}</td>
                                                         <td>{data.createdAt && new Intl.DateTimeFormat('en-GB').format(new Date(data.createdAt))}</td>
                                                         <td>
                                                             {/* <a href={`mailto:${data.email}`}>

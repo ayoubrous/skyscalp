@@ -38,7 +38,7 @@ export default function Users() {
                 // console.log(result)
                 if (result.status) {
                     setData(result.data)
-                    console.log(result)
+                    // console.log(result)
                 }
                 else {
                     toast.error(result.message)

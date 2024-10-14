@@ -10,7 +10,7 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
     const [checkedCategory, setCheckedCategory] = useState([])
 
     useEffect(() => {
-        if(!checkAll){
+        if (!checkAll) {
             setCheckedCategory([])
         }
     }, [checkAll])
@@ -20,7 +20,7 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
         const newCheckedCategories = categories.filter(category =>
             category.subcategories.some(subcategory => checkedSubcategories.includes(subcategory))
         ).map(category => category.categoryName);
-        
+
         setCheckedCategory(newCheckedCategories);
     }, [checkedSubcategories, categories]);
 
@@ -47,7 +47,7 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
         if (!selectedCategory) return;
 
         const subCategories = selectedCategory.subcategories;
-        
+
         if (checkedCategory.includes(catName)) {
             // Uncheck the category and all its subcategories
             setCheckedCategory(checkedCategory.filter((name) => name !== catName));
@@ -64,7 +64,9 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
         }
     };
 
-    const toggleSubcategory = (subcategoryName, categoryName) => {
+    const toggleSubcategory = (e, subcategoryName, categoryName) => {
+        e.preventDefault(); // Prevent default label behavior
+
         if (checkedSubcategories.includes(subcategoryName)) {
             setCheckedSubcategories(checkedSubcategories.filter((name) => name !== subcategoryName));
         } else {
@@ -81,7 +83,7 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
             )}
 
             {show ? <FaAngleUp /> : <FaAngleDown />}
-            
+
             <ul className={`categories-select-dropdown ${show ? 'show' : ''}`} ref={categoriesRef}>
                 <li className='dropdown-item extended p-0'>
                     <div className="d-flex gap-2" style={{ backgroundColor: "#f7f7f7", padding: "5px" }}>
@@ -109,23 +111,25 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
                                 <label htmlFor={category.categoryName}>{t(category.categoryName)}</label>
                             </div>
                             {category.categoryName !== "Others" && (
-                                <FaAngleDown onClick={() => handleExtendCategory(i)} />
+                                <div className='text-end' style={{ width: "50%" }} onClick={() => handleExtendCategory(i)}>
+                                    <FaAngleDown className='' />
+                                </div>
                             )}
                         </div>
 
                         {extendedCat === i && (
                             <ul className='nested-dropdown'>
                                 {category.subcategories.map((subcategory, j) => (
-                                    <li key={j} className='dropdown-item nested-dropdown-item'>
+                                    <li key={j} className='dropdown-item nested-dropdown-item' onClick={(e) => toggleSubcategory(e, subcategory, category.categoryName)}>
                                         <div className="d-flex gap-2">
                                             <input
                                                 type="checkbox"
                                                 name={subcategory}
                                                 id={subcategory}
                                                 checked={checkedSubcategories.includes(subcategory)}
-                                                onChange={() => toggleSubcategory(subcategory, category.categoryName)}
+                                                onChange={() => { }}
                                             />
-                                            <label htmlFor={subcategory}>{t(subcategory)}</label>
+                                            <label htmlFor={subcategory} onClick={(e) => e.preventDefault()}>{t(subcategory)}</label>
                                         </div>
                                     </li>
                                 ))}

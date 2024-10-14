@@ -19656,7 +19656,9 @@ fieldset:disabled .btn {
     transition: 0.2s ease-in;
     height: 100%;
     z-index: 11;
-    border-right: 1px solid rgb(229, 234, 239)
+    border-right: 1px solid rgb(229, 234, 239);
+    z-index: 1001;
+
 }
 
 .left-sidebar.admin {
@@ -20321,16 +20323,18 @@ ul {
 
 /* LOGIN PAGE STYLING FOR ADMIN  */
 
-.registerForm .form-group{
+.registerForm .form-group {
     position: relative;
 }
-.registerForm .form-group .eye-icon{
+
+.registerForm .form-group .eye-icon {
     position: absolute;
     top: 40px;
     right: 15px;
     color: gray;
     cursor: pointer;
 }
+
 .half,
 .half .container>.row {
     height: 90vh;
@@ -20502,7 +20506,7 @@ ul {
     gap: 12px;
 }
 
-.publish-form .publishForm .typeTabs .tab{
+.publish-form .publishForm .typeTabs .tab {
     width: 100%;
     padding: 8px 0;
     margin-bottom: 8px;
@@ -20514,24 +20518,28 @@ ul {
     cursor: pointer;
 
 }
-.publish-form .publishForm .typeTabs .tab.active{
+
+.publish-form .publishForm .typeTabs .tab.active {
     background-color: #076C8F;
     color: #fff;
 }
-.publish-form .publishForm .formSide{
+
+.publish-form .publishForm .formSide {
     padding: 13px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.085);
     border: 1px solid #f9f9f9;
 }
-.publish-form .publishForm .formSide .info{
+
+.publish-form .publishForm .formSide .info {
     font-size: 10px;
     color: #ccc;
     margin-bottom: 15px;
     position: relative;
 }
-.publish-form .publishForm .formSide .info::before{
+
+.publish-form .publishForm .formSide .info::before {
     content: "";
     position: absolute;
     width: 100%;
@@ -20539,12 +20547,15 @@ ul {
     background-color: #f4f4f4;
     bottom: -5px;
 }
+
 .publish-form .publishForm .split .formSide.side_1 {
     width: 13%;
 }
+
 .publish-form .publishForm .split .formSide.side_2 {
     width: 25%;
 }
+
 .publish-form .publishForm .split .formSide.side_3 {
     width: 62%;
 }
@@ -20554,19 +20565,21 @@ ul {
     /* border: solid firebrick; */
 }
 
-.publish-form .publishForm .ck-content{
+.publish-form .publishForm .ck-content {
     height: 100px !important;
 }
 
 
-.furnitureForm .side_2{
+.furnitureForm .side_2 {
     width: 38% !important;
 }
+
 /* for datatable */
-.hZZlND{ 
+.hZZlND {
     border: 1px solid #ccc !important;
 }
-.rdt_Table .ejfNUe{
+
+.rdt_Table .ejfNUe {
     /* display: none !important; */
     visibility: hidden !important;
 }
@@ -20574,20 +20587,68 @@ ul {
 
 
 /* for table to not horizontaly overflow */
-.table-container{
+.table-container {
     width: 100%;
     overflow: auto
 }
 
 
+.toggleSidebarIcon {
+    display: none !important;
+    position: absolute;
+    top: 62px;
+    left: 22px;
+    font-size: 16px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: white;
+    border: 1px solid #076C8F;
+    padding: 6px 8px;
+    border-radius: 6px;
+}
+
 /* login  */
 @media screen and (max-width: 600px) {
-    .loginRow{
+    .loginRow {
         height: 60vh !important;
         min-height: 60vh !important;
     }
-    .registerWrapper{
+
+    .registerWrapper {
         position: relative;
         top: -165px;
     }
+
+
+    .toggleSidebarIcon {
+        display: flex !important;
+        position: absolute;
+        top: 56px;
+        left: 22px;
+        font-size: 18px;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .dashboardCardRow {
+        flex-direction: column !important;
+    }
+
+    .dashboardCardRow .card {
+        width: 100% !important;
+    }
+
+    .left-sidebar.admin {
+        background-color: #e0f7fe;
+    }
 }
+
+
+
+
+
+
+

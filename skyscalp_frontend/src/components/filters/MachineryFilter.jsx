@@ -167,7 +167,7 @@ export default function MachineryFilter(
 
     }
     const handleBrand = brand => {
-        setShowBrandDrp(false)
+        // setShowBrandDrp(false)
         if (!selectedFilters.includes(brand)) {
             setSelectedFilters([...selectedFilters, brand]);
             setSelectedBrands([...selectedBrands, brand])
@@ -181,7 +181,7 @@ export default function MachineryFilter(
         }
     }
     const handleCondtion = val => {
-        setShowConditionDrp(false)
+        // setShowConditionDrp(false)
         if (!selectedFilters.includes(val)) {
             setSelectedFilters([...selectedFilters, val]);
             setSelectedConditions([...selectedConditions, val])
@@ -196,7 +196,7 @@ export default function MachineryFilter(
     }
 
     const handleYearBuild = (val) => {
-        setShowYearDrp(false)
+        // setShowYearDrp(false)
         // setYearBuild(val)
         if (!selectedFilters.includes(val)) {
             setSelectedFilters([...selectedFilters, val]);
@@ -211,7 +211,7 @@ export default function MachineryFilter(
         }
     }
     const handleMachineryType = (val) => {
-        setShowMachineryType(false)
+        // setShowMachineryType(false)
         const isAlreadySelected = selectedFilters.includes(val);
 
         if (isAlreadySelected) {
@@ -335,6 +335,7 @@ export default function MachineryFilter(
     };
 
     const handleClearFilters = () => {
+        window.location.reload()
         setSelectedFilters([]);
         setSelectedAllLocations([])
         setRadius(null)

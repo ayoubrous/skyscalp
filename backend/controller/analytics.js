@@ -30,7 +30,7 @@ const addAnalytics = async (req, res) => {
 const getAnalytics = async (req, res) => {
     try {
 
-        let response = await AnalyticsModal.find()
+        let response = await AnalyticsModal.countDocuments()
 
         if (response) {
             sendResponse(req, res, true, "Analytics Found successfully", response)

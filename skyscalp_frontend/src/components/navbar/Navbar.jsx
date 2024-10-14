@@ -164,10 +164,10 @@ export default function Navbar() {
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/estimate" >{t("estimate")}</NavLink>
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/app/dashboard" >{t("publish")}</NavLink>
 
-                        <div ref={countryDrpLabelRefDekstop} style={{ cursor: "pointer" }} className="link dekstopViewLink ms-4" onClick={() => setShowCountryDrp(!showCountryDrp)} >{activeCountry} {<FaAngleDown />}
+                        <div ref={countryDrpLabelRefDekstop} style={{ cursor: "pointer" }} className="link dekstopViewLink ms-4" onClick={() => setShowCountryDrp(!showCountryDrp)} >{t(activeCountry)} {<FaAngleDown />}
                             <div className={`link-dropdown ${showCountryDrp ? 'show' : ''}`} ref={countryDrpDekstopRef}>
-                                <div className='link-dropdown-item' onClick={() => handleCountryChange('Morocco')}>Morocco</div>
-                                <div className='link-dropdown-item' onClick={() => handleCountryChange('France')}>France</div>
+                                <div className='link-dropdown-item' onClick={() => handleCountryChange('Morocco')}>{t("Morocco")}</div>
+                                <div className='link-dropdown-item' onClick={() => handleCountryChange('France')}>{t("France")}</div>
                             </div>
                         </div>
                     </div>

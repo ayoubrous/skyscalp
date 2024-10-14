@@ -45,10 +45,10 @@ export default function FeatureCards() {
                 </div>
             </div>
             <div className='feature-cards'>
-                <div className="feature-card">
+                {/* <div className="feature-card">
                     <BsBuildingsFill className='icon' />
                     <p className='text-uppercase'>{t("featureCard1")}</p>
-                </div>
+                </div> */}
                 <Link className="feature-card" onClick={() => setShowDropdown(true)}>
                     <GiConcreteBag className='icon' />
                     <p>{t("featureCard2")}</p>

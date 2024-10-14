@@ -402,7 +402,8 @@
 
     .slick-prev,
     .slick-next {
-        top: 45% !important;
+        /* top: 45% !important; */
+        top: 34% !important;
     }
 
     .category-cards-grid.agents-cards-grid {

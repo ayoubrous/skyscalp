@@ -1,6 +1,6 @@
 import React from 'react'
 import logo from '../../assets/images/logo.png'
-import { FaBuilding, FaCashRegister, FaChair, FaClock, FaGear, FaMessage, FaMoneyBill, FaRegHeart, FaRegMessage, FaUser, FaUsers } from 'react-icons/fa6'
+import { FaBars, FaBuilding, FaCashRegister, FaChair, FaClock, FaGear, FaMessage, FaMoneyBill, FaRegHeart, FaRegMessage, FaUser, FaUsers } from 'react-icons/fa6'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { FaTools } from 'react-icons/fa'
 import { TbCarCrane } from 'react-icons/tb'
@@ -17,6 +17,9 @@ export default function Sidebar() {
     const hideSidebar = () => {
         document.querySelector(".left-sidebar").style.left = "-270px"
     }
+    const showSidebar = () => {
+        document.querySelector(".left-sidebar").style.left = "0 "
+    }
 
     const isRouteActive = (paths) => {
         return paths.some(path => location.pathname.includes(path));
@@ -25,6 +28,11 @@ export default function Sidebar() {
     return (
         <>
             <Navbar />
+
+            <div className="toggleSidebarIcon" onClick={showSidebar}>
+                <FaBars className='color-primary'/>
+                <p>More options</p>
+            </div>
             <aside className="left-sidebar">
                 <div>
                     <div className="brand-logo d-flex align-items-center justify-content-between mt-2">

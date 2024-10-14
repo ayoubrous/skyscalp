@@ -139,7 +139,7 @@ export default function FurnitureFilter({
 
 
     const handleBrand = brand => {
-        setShowBrandDrp(false)
+        // setShowBrandDrp(false)
         if (!selectedFilters.includes(brand)) {
             setSelectedFilters([...selectedFilters, brand]);
             setSelectedBrands([...selectedBrands, brand])
@@ -153,7 +153,7 @@ export default function FurnitureFilter({
         }
     }
     const handleCondtion = val => {
-        setShowConditionDrp(false)
+        // setShowConditionDrp(false)
         if (!selectedFilters.includes(val)) {
             setSelectedFilters([...selectedFilters, val]);
             setSelectedConditions([...selectedConditions, val])
@@ -308,6 +308,8 @@ export default function FurnitureFilter({
 
 
     const handleClearFilters = () => {
+        window.location.reload()
+
         setSelectedFilters([]);
         setSelectedAllLocations([])
         setRadius(null)
