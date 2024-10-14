@@ -416,7 +416,6 @@ const MarketPlace = () => {
 
     const resetAllFilters = () => {
         // sessionStorage.clear()
-
         setType('');
         setMinPrice('');
         setMaxPrice('');

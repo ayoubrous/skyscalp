@@ -299,7 +299,7 @@ export default function HomeFilter() {
 
 
     return (
-        <div className="filter-area home-filter">
+        <div className="filter-area home-filter mt-5">
             <div className="custom-container">
                 <p className="color-primary mb-2">{t("homeFilterTitle")}</p>
                 <div className="module-tabs ">

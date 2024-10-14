@@ -191,7 +191,6 @@ const Experts = () => {
 
         if (location.state?.filters) {
             location.state.filters.checkedSubcategories.forEach(subcat => {
-
                 //checking where the subcat is present in experts catgegories
                 services.forEach(service => {
                     service.expertise.forEach(experty => {
@@ -207,6 +206,10 @@ const Experts = () => {
                     }
                     return prevState;
                 });
+                setFiltersObj((prevFiltersObj) => ({
+                    ...prevFiltersObj,
+                    selectedExperty: [subcat]  // Add the selected subcategory
+                }));
             });
 
 
@@ -315,6 +318,7 @@ const Experts = () => {
 
     // }, [checkedSubcategories])
     useEffect(() => {
+        // console.log(checkedSubcategories)
         setActiveSubcats(checkedSubcategories);
         if (checkedSubcategories.length > 0) {
             services.forEach(service => {
@@ -377,6 +381,8 @@ const Experts = () => {
     useEffect(() => {
         loadData()
     }, [filtersObj])
+
+
 
 
 

@@ -44,7 +44,7 @@ export default function FeatureCards() {
                     </Link>
                 </div>
             </div>
-            <div className='feature-cards'>
+            <div className='feature-cards d-none'>
                 {/* <div className="feature-card">
                     <BsBuildingsFill className='icon' />
                     <p className='text-uppercase'>{t("featureCard1")}</p>

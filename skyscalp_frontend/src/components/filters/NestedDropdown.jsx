@@ -99,7 +99,7 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
                 </li>
                 {categories.map((category, i) => (
                     <li key={i} className='dropdown-item extended p-0'>
-                        <div className="d-flex justify-content-between" style={{ backgroundColor: "#f7f7f7", padding: "5px" }}>
+                        <div className="d-flex justify-content-between" style={{ backgroundColor: "#f7f7f7", padding: "5px" }}  onClick={() => handleExtendCategory(i)}>
                             <div className="d-flex gap-2">
                                 <input
                                     type="checkbox"
@@ -108,10 +108,10 @@ export default function NestedDropdown({ show, categoriesRef, categories, setChe
                                     checked={checkedCategory.includes(category.categoryName)}
                                     onChange={() => toggleCategory(category.categoryName)}
                                 />
-                                <label htmlFor={category.categoryName}>{t(category.categoryName)}</label>
+                                <label>{t(category.categoryName)}</label>
                             </div>
                             {category.categoryName !== "Others" && (
-                                <div className='text-end' style={{ width: "50%" }} onClick={() => handleExtendCategory(i)}>
+                                <div className='text-end'>
                                     <FaAngleDown className='' />
                                 </div>
                             )}

@@ -19,6 +19,7 @@ import formatNumber from '../../utils/formatNumber';
 import { getLocationsInRadius } from './getLocationsInRadius';
 import { conditionData, constructionBrands, constructionBudget, materialsBudget } from '../../assets/data/filtersData';
 import { materialCategories, materials } from '../../assets/data/materialsCategory';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function ConstructionFilter({
     minPrice,
@@ -73,7 +74,8 @@ export default function ConstructionFilter({
 
     const [radius, setRadius] = useState(null)
 
-
+    const navigate = useNavigate()
+    const location = useLocation()
 
     const handleClickOutside = (e) => {
         if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(e.target)) {
@@ -266,13 +268,14 @@ export default function ConstructionFilter({
 
 
     const handleClearFilters = () => {
-        window.location.reload()
         
         setSelectedFilters([]);
         setSelectedAllLocations([])
         setRadius(null)
         clearAllFilters()
         setCheckAll(false)
+        navigate(`${location.pathname}${location.search}`, { replace: true, state: {} });
+        window.location.reload();
     }
 
 

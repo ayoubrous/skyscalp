@@ -18,6 +18,7 @@ import { machineryCategories } from '../../assets/data/categories';
 import { conditionData, machineConditionData, machineryBrands, machineryType } from '../../assets/data/filtersData';
 import formatNumber from '../../utils/formatNumber';
 import { getLocationsInRadius } from './getLocationsInRadius';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 
@@ -86,6 +87,9 @@ export default function MachineryFilter(
 
     const [radius, setRadius] = useState(null)
 
+    const navigate = useNavigate()
+    const location = useLocation()
+
 
     const sellType = [
         { value: "buy", label: t("buy") },
@@ -124,7 +128,7 @@ export default function MachineryFilter(
         if (yearBuildRef.current && !yearBuildRef.current.contains(e.target) && !yearLabelRef.current.contains(e.target)) {
             setShowYearDrp(false);
         }
-        if (categoriesRef.current && !categoriesRef.current.contains(e.target) ) {
+        if (categoriesRef.current && !categoriesRef.current.contains(e.target)) {
             setShowCategoriesDrp(false);
         }
         if (machineryTypeRef.current && !machineryTypeRef.current.contains(e.target) && !typeLabelRef.current.contains(e.target)) {
@@ -335,12 +339,14 @@ export default function MachineryFilter(
     };
 
     const handleClearFilters = () => {
-        window.location.reload()
         setSelectedFilters([]);
         setSelectedAllLocations([])
         setRadius(null)
         clearAllFilters()
         setCheckAll(false)
+        // window.location.reload()
+        navigate(`${location.pathname}${location.search}`, { replace: true, state: {} });
+        window.location.reload();
     }
 
 
@@ -489,7 +495,7 @@ export default function MachineryFilter(
                             <div className="other-filter">
                                 <div ref={brandLabelRef} className="d-flex align-items-center gap-1" style={{ cursor: "pointer" }} onClick={() => setShowBrandDrp(!showBrandDrp)}>
                                     <p className='text-white'>{t("brand")}</p>
-                                    
+
                                     <FaAngleDown className='text-white' />
                                 </div>
 
@@ -627,7 +633,7 @@ export default function MachineryFilter(
                         </div>
                         {
                             // selectedFilters.length > 0 && (
-                                <div className="selected-filter" style={{ cursor: "pointer" }} onClick={handleClearFilters}>{t("reset")}</div>
+                            <div className="selected-filter" style={{ cursor: "pointer" }} onClick={handleClearFilters}>{t("reset")}</div>
                             // )
                         }
                     </div>

@@ -18,6 +18,7 @@ import { furnitureCategories } from '../../assets/data/furnitureCategories';
 import { furnitureBrands, furnitureConditionData, furnitureTypes, machineryType, materialsBudget, yearBuildData } from '../../assets/data/filtersData';
 import formatNumber from '../../utils/formatNumber';
 import { getLocationsInRadius } from './getLocationsInRadius';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 
@@ -81,6 +82,8 @@ export default function FurnitureFilter({
     const [checkAll, setCheckAll] = useState(false)
     const [radius, setRadius] = useState(null)
 
+    const navigate = useNavigate()
+    const location = useLocation()
 
     const handleClickOutside = (e) => {
         if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(e.target)) {
@@ -308,13 +311,14 @@ export default function FurnitureFilter({
 
 
     const handleClearFilters = () => {
-        window.location.reload()
 
         setSelectedFilters([]);
         setSelectedAllLocations([])
         setRadius(null)
         clearAllFilters()
         setCheckAll(false)
+        navigate(`${location.pathname}${location.search}`, { replace: true, state: {} });
+        window.location.reload();
     }
 
 
