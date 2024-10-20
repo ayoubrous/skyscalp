@@ -9,18 +9,21 @@ import { Link, useLocation } from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast'
 import Lottie from 'lottie-react'
 import loader from '../../../assets/images/skyscalp-loader.json'
-
 import { formatPrice } from '../../../utils/formatPrice'
 import { useTranslation } from 'react-i18next'
+import Pagination from '../../../components/utils/Pagination'
 
 export default function Materials() {
-
     const [t] = useTranslation()
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [paginationData, setPaginationData] = useState({});
-    const [currentPage, setCurrentPage] = useState(1)
-
+    const [paginationData, setPaginationData] = useState({
+        currentPage: 1,
+        totalPages: 1,
+        hasNextPage: false,
+        hasPrevPage: false,
+        totalItems: 0
+    });
     const [activeTab, setActiveTab] = useState('machinery')
     const location = useLocation()
 
@@ -29,13 +32,11 @@ export default function Materials() {
             setActiveTab(location.state.activeCat)
     }, [location])
 
-
     const handleTabChange = (tab) => {
         setActiveTab(tab)
-        // loadData(currentPage)
     }
 
-    const loadData = (page) => {
+    const loadData = (pageNumber = 1) => {
         const user = localStorage.getItem("user")
         const token = JSON.parse(user).token
         setLoading(true);
@@ -43,7 +44,7 @@ export default function Materials() {
             method: "GET",
             redirect: "follow",
             headers: {
-                'Authorization': `Bearer ${token}` // Add the token to the request
+                'Authorization': `Bearer ${token}`
             }
         };
 
@@ -58,9 +59,7 @@ export default function Materials() {
             apiUrl = `${process.env.REACT_APP_SERVER_URL}/api/getFurniture`;
         }
 
-        // fetch(`${process.env.REACT_APP_SERVER_URL}/api/getProducts?page=${page}&limit=15`, requestOptions)
-        fetch(`${apiUrl}/?page=${page}&limit=15`, requestOptions)
-
+        fetch(`${apiUrl}/?page=${pageNumber}&limit=15`, requestOptions)
             .then((response) => response.json())
             .then((result) => {
                 setLoading(false);
@@ -87,15 +86,8 @@ export default function Materials() {
         loadData(1);
     }, [activeTab]);
 
-
-    const handleNextPage = (page) => {
-        loadData(page)
-        setCurrentPage(page)
-    };
-
-    const handlePrevPage = (page) => {
-        loadData(page)
-        setCurrentPage(page)
+    const handlePageChange = (pageNumber) => {
+        loadData(pageNumber);
     };
 
     const handleDelete = (id) => {
@@ -110,7 +102,7 @@ export default function Materials() {
                 .then((result) => {
                     if (result.status) {
                         toast.success(t("Listing deleted successfully"))
-                        loadData(currentPage)
+                        loadData(paginationData.currentPage)
                     }
                     else {
                         toast.error(t("Error proceeding request"))
@@ -134,11 +126,9 @@ export default function Materials() {
 
                 if (result.status) {
                     toast.success(t("Product Updated Successfully"))
-
-                    loadData(currentPage)
+                    loadData(paginationData.currentPage)
                 }
                 else {
-                    // toast.error("Error getting states data")
                     console.log(result.message)
                 }
             })
@@ -159,22 +149,15 @@ export default function Materials() {
                     <Header />
                     <div className="container-fluid">
                         <h2 className='fw-bolder mb-3'>{t("Published Materials")}</h2>
-                        {/* <div className="tabs">
-                            <p>Machinery & Tools</p>
-                            <p>Building Materials</p>
-                            <p>Furniture & Appliances</p>
-                        </div> */}
                         <ul className="nav nav-tabs" style={{ cursor: "pointer" }}>
                             <li className="nav-item">
                                 <p className={`nav-link text-dark ${activeTab === "machinery" ? 'active' : ''}`} aria-current="page" onClick={() => handleTabChange('machinery')}>{t("machineryTools")}</p>
                             </li>
                             <li className="nav-item" style={{ cursor: "pointer" }}>
                                 <p className={`nav-link text-dark ${activeTab === "materials" ? 'active' : ''}`} aria-current="page" onClick={() => handleTabChange('materials')}>{t("Construction Material")}</p>
-
                             </li>
                             <li className="nav-item" style={{ cursor: "pointer" }}>
                                 <p className={`nav-link text-dark ${activeTab === "furniture" ? 'active' : ''}`} aria-current="page" onClick={() => handleTabChange('furniture')}>{t("furnitureAppliances")}</p>
-
                             </li>
                         </ul>
                         <div className="table-container mt-2">
@@ -183,8 +166,6 @@ export default function Materials() {
                                     <tr>
                                         <th className='col-2'>{t("user")}</th>
                                         <th className='col-2'>{t("title")}</th>
-                                        {/* <th className='col-2'>Address</th> */}
-                                        {/* <th className='col-2'>Category</th> */}
                                         <th className='col-2'>{t("budget")}</th>
                                         <th className='col-1'>{t("favourites")}</th>
                                         <th className='col-2'>{t("published")}</th>
@@ -203,11 +184,7 @@ export default function Materials() {
                                                         <p>{data.user.username}</p>
                                                         <small>{data.user.email}</small>
                                                     </td>
-                                                    {/* <td>{data.title}</td> */}
                                                     <td>{data.title && (data.title.slice(0, 20)) + (data.title.length > 20 ? "..." : "")}</td>
-
-                                                    {/* <td><p>{data.city}</p><p>{data.country}</p></td> */}
-                                                    {/* <td>{data.materialGroup}</td> */}
                                                     <td>MAD {formatPrice(data.budget)}</td>
                                                     <td>{data.toFavourites && data.toFavourites.length}</td>
                                                     <td>{new Date(data.createdAt).toLocaleString('en-GB', {
@@ -230,16 +207,17 @@ export default function Materials() {
                                             )
                                         })
                                     }
-
                                 </tbody>
                             </table>
 
-                            <div className="buttons-pagination mb-3">
-                                <button className="custom-btn py-1 px-2 btn-sm " disabled={!paginationData.hasPrevPage} onClick={() => handlePrevPage(paginationData.currentPage - 1)}>{t("Previous")}</button>
-                                <button className="custom-btn py-1 px-2 btn-sm ms-1" disabled={!paginationData.hasNextPage} onClick={() => handleNextPage(paginationData.currentPage + 1)}>{t("Next")}</button>
-                            </div>
+                            <Pagination 
+                                hasNextPage={paginationData.hasNextPage}
+                                hasPrevPage={paginationData.hasPrevPage}
+                                onPageChange={handlePageChange}
+                                currentPage={paginationData.currentPage}
+                                totalPages={paginationData.totalPages}
+                            />
                         </div>
-
                     </div>
                 </div>
             </div>

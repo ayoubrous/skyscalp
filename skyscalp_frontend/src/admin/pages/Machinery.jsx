@@ -12,18 +12,22 @@ import toast, { Toaster } from 'react-hot-toast'
 import Lottie from 'lottie-react'
 import loader from '../../assets/images/skyscalp-loader.json'
 import Footer from '../components/Footer'
-import { t } from 'i18next'
 import { useTranslation } from 'react-i18next'
+import Pagination from '../../components/utils/Pagination'
 
 export default function Machinery() {
     const [t] = useTranslation()
-
-
+    const [paginationData, setPaginationData] = useState({
+        currentPage: 1,
+        totalPages: 1,
+        hasNextPage: false,
+        hasPrevPage: false,
+        totalItems: 0
+    });
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(false)
 
-
-    const loadData = () => {
+    const loadData = (pageNumber = 1) => {
         setLoading(true)
         const requestOptions = {
             method: "GET",
@@ -32,13 +36,19 @@ export default function Machinery() {
 
         const user = JSON.parse(localStorage.getItem("user"))
 
-        fetch(`${process.env.REACT_APP_SERVER_URL}/api/getUserProducts/${user.userID}`, requestOptions)
+        fetch(`${process.env.REACT_APP_SERVER_URL}/api/getUserProducts/${user.userID}?materialGroup=machinery&page=${pageNumber}`, requestOptions)
             .then((response) => response.json())
             .then((result) => {
                 setLoading(false)
-                // console.log(result)
                 if (result.status) {
-                    setProducts(result.data)
+                    setProducts(result.data.documents)
+                    setPaginationData({
+                        currentPage: result.data.currentPage,
+                        totalPages: result.data.totalPages,
+                        hasNextPage: result.data.hasNextPage,
+                        hasPrevPage: result.data.hasPrevPage,
+                        totalItems: result.data.totalProperties,
+                    });
                 }
                 else {
                     toast.error(result.message)
@@ -47,13 +57,17 @@ export default function Machinery() {
             .catch((error) => {
                 setLoading(false);
                 console.error(error);
+                toast.error("Error loading data");
             });
     }
+
+    const handlePageChange = (pageNumber) => {
+        loadData(pageNumber);
+    };
+
     useEffect(() => {
-        loadData()
+        loadData(1);
     }, [])
-
-
 
     const handleDelete = (id) => {
         let surity = window.confirm(t("Are you sure to delete this product?"))
@@ -67,17 +81,18 @@ export default function Machinery() {
                 .then((result) => {
                     if (result.status) {
                         toast.success(result.message)
-                        loadData()
+                        loadData(paginationData.currentPage) // Reload current page after deletion
                     }
                     else {
-                        toast.error("Error getting states data")
+                        toast.error(t("Error deleting product"))
                     }
                 })
-                .catch((error) => console.error(error));
+                .catch((error) => {
+                    console.error(error);
+                    toast.error(t("Error deleting product"))
+                });
         }
-
     }
-
 
     return (
         <>
@@ -95,7 +110,6 @@ export default function Machinery() {
                         <h4 className='fw-bolder mb-1'>{t("Published Machines")}</h4>
 
                         <div className="d-flex justify-content-end">
-                            <a href=""></a>
                             <Link to='../app/add-machines'>
                                 <button className="outline-btn py-1 px-2">+ {t("publish")} {t("new")}</button>
                             </Link>
@@ -105,7 +119,7 @@ export default function Machinery() {
                             <table className="table table-bordered table-hover dashboard-table">
                                 <thead>
                                     <tr>
-                                        <th className=''>S. No</th>
+                                        {/* <th className=''>S. No</th> */}
                                         <th className='col-3'>{t("title")}</th>
                                         <th className='col-2'>{t("application")}</th>
                                         <th className='col-2'>{t("budget")}</th>
@@ -117,56 +131,50 @@ export default function Machinery() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {
-                                        products &&
-                                        products.length === 0 && (
-                                            <tr>
-                                                <td colSpan={7} className='text-center'>{t("notProductsFound")}</td>
-                                            </tr>
-                                        )
-                                    }
-                                    {
-                                        products &&
-                                        products.map((data, i) => {
-                                            if (data.materialGroup === 'machinery') {
-                                                return (
-                                                    <tr key={data._id}>
-                                                        <td>{i + 1}</td>
-                                                        <td>{data.title && (data.title.slice(0, 20)) + (data.title.length > 20 ? "..." : "")}</td>
-                                                        <td>{t(data.application)}</td>
-                                                        <td>MAD {formatPrice(data.budget)}</td>
-                                                        <td>{data.toFavourites && data.toFavourites.length}</td>
-                                                        <td>{data.createdAt && new Intl.DateTimeFormat('en-GB').format(new Date(data.createdAt))}</td>
-                                                        <td>{data.updatedAt && new Intl.DateTimeFormat('en-GB').format(new Date(data.updatedAt))}</td>
-                                                        <td>
-                                                            {
-                                                                data.status ?
-                                                                    (
-                                                                        <span className="badge text-bg-success" style={{ fontSize: "12px" }}>{t("active")}</span>
-                                                                    ) :
-                                                                    (
-                                                                        <span className="badge text-bg-danger" style={{ fontSize: "12px" }}>{t("inactive")}</span>
-                                                                    )
-                                                            }
-                                                        </td>
-                                                        <td>
-                                                            <Link className='mx-1' to={`../machines/${data._id}`}>
-                                                                <FaEye className='color-secondary' />
-                                                            </Link>
-                                                            <Link className='mx-1' to={`../app/update-machine/${data._id}`}>
-                                                                <FaEdit className='text-warning' />
-                                                            </Link>
-                                                            <Link className='mx-1' onClick={() => handleDelete(data._id)}>
-                                                                <FaRegTrashCan className='text-danger' />
-                                                            </Link>
-                                                        </td>
-                                                    </tr>
-                                                )
-                                            }
-                                        })
-                                    }
+                                    {products.length === 0 && (
+                                        <tr>
+                                            <td colSpan={9} className='text-center'>{t("notProductsFound")}</td>
+                                        </tr>
+                                    )}
+                                    {products.map((data, i) => (
+                                        <tr key={data._id}>
+                                            {/* <td>{((paginationData.currentPage - 1) * 10) + i + 1}</td> */}
+                                            <td>{data.title && (data.title.slice(0, 28)) + (data.title.length > 28 ? "..." : "")}</td>
+                                            <td>{t(data.application)}</td>
+                                            <td>MAD {formatPrice(data.budget)}</td>
+                                            <td>{data.toFavourites && data.toFavourites.length}</td>
+                                            <td>{data.createdAt && new Intl.DateTimeFormat('en-GB').format(new Date(data.createdAt))}</td>
+                                            <td>{data.updatedAt && new Intl.DateTimeFormat('en-GB').format(new Date(data.updatedAt))}</td>
+                                            <td>
+                                                {data.status ? (
+                                                    <span className="badge text-bg-success" style={{ fontSize: "12px" }}>{t("active")}</span>
+                                                ) : (
+                                                    <span className="badge text-bg-danger" style={{ fontSize: "12px" }}>{t("inactive")}</span>
+                                                )}
+                                            </td>
+                                            <td>
+                                                <Link className='mx-1' to={`../machines/${data._id}`}>
+                                                    <FaEye className='color-secondary' />
+                                                </Link>
+                                                <Link className='mx-1' to={`../app/update-machine/${data._id}`}>
+                                                    <FaEdit className='text-warning' />
+                                                </Link>
+                                                <Link className='mx-1' onClick={() => handleDelete(data._id)}>
+                                                    <FaRegTrashCan className='text-danger' />
+                                                </Link>
+                                            </td>
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
+
+                            <Pagination 
+                                hasNextPage={paginationData.hasNextPage}
+                                hasPrevPage={paginationData.hasPrevPage}
+                                onPageChange={handlePageChange}
+                                currentPage={paginationData.currentPage}
+                                totalPages={paginationData.totalPages}
+                            />
                         </div>
                         <Footer />
                     </div>

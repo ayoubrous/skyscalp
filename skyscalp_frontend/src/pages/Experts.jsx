@@ -401,7 +401,7 @@ const Experts = () => {
         // console.log(selectedFilters2)
         // console.log(selectedFilters3)
 
-        console.log(searchFilters)
+        // console.log(searchFilters)
         setFiltersObj(searchFilters)
         // loadData()
     }

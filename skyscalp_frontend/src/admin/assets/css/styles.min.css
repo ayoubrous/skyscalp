@@ -20592,7 +20592,14 @@ ul {
     width: 100%;
     overflow: auto
 }
-
+.table-container .pagination{
+    justify-content: end;
+    gap: 5px;
+}
+.expertsTable .pagination{
+    justify-content: end;
+    gap: 5px;
+}
 
 .toggleSidebarIcon {
     display: none !important;

@@ -9,33 +9,37 @@ import loader from '../../../assets/images/skyscalp-loader.json'
 import { useTranslation } from 'react-i18next'
 import DataTable, { createTheme } from 'react-data-table-component';
 import { formatPrice } from '../../../utils/formatPrice'
-import { FaPencilAlt } from 'react-icons/fa'
+import Pagination from '../../../components/utils/Pagination'
 
 export default function Experts() {
     const [search, setSearch] = useState('');
     const [filteredData, setFilteredData] = useState([]);
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [paginationData, setPaginationData] = useState({})
-    const [currentPage, setCurrentPage] = useState(1)
+    const [paginationData, setPaginationData] = useState({
+        currentPage: 1,
+        totalPages: 1,
+        hasNextPage: false,
+        hasPrevPage: false,
+        totalItems: 0
+    });
 
     const [t] = useTranslation();
-
 
     const user = localStorage.getItem("user")
     const token = JSON.parse(user).token
 
-    const loadData = (page) => {
+    const loadData = (pageNumber = 1) => {
         setLoading(true);
         const requestOptions = {
             method: "POST",
             redirect: "follow",
             headers: {
-                'Authorization': `Bearer ${token}` // Add the token to the request
+                'Authorization': `Bearer ${token}`
             }
         };
 
-        fetch(`${process.env.REACT_APP_SERVER_URL}/api/getServices?page=${page}&limit=15`, requestOptions)
+        fetch(`${process.env.REACT_APP_SERVER_URL}/api/getServices?page=${pageNumber}&limit=10`, requestOptions)
             .then((response) => response.json())
             .then((result) => {
                 setLoading(false);
@@ -46,9 +50,9 @@ export default function Experts() {
                         hasNextPage: result.data.hasNextPage,
                         hasPrevPage: result.data.hasPrevPage,
                         totalItems: result.data.totalProperties,
-                    })
+                    });
                     setProducts(result.data.documents);
-                    setFilteredData(result.data.documents); // Initialize filteredData
+                    setFilteredData(result.data.documents);
                 } else {
                     toast.error(result.message);
                 }
@@ -63,40 +67,30 @@ export default function Experts() {
         loadData(1);
     }, []);
 
+    const handlePageChange = (pageNumber) => {
+        loadData(pageNumber);
+    };
 
     createTheme('customTheme', {
         rows: {
             style: {
-                // backgroundColor: "red",
-                minHeight: '50px', // Set row height
-                borderBottom: '1px solid rgba(0, 0, 0, 0.1)', // Add border between rows
+                minHeight: '50px',
+                borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
             },
         },
         headCells: {
             style: {
-                backgroundColor: '#f1f1f1', // Set background color for header cells
-                fontWeight: 'bold', // Make header text bold
-                // borderBottom: '1px solid rgba(0, 0, 0, 0.2)', // Add border below header row
-                borderBottom: '1px solid rgba(0, 0, 0, 1)', // Add border below header row
+                backgroundColor: '#f1f1f1',
+                fontWeight: 'bold',
+                borderBottom: '1px solid rgba(0, 0, 0, 1)',
             },
         },
         cells: {
             style: {
-                borderRight: '1px solid rgba(0, 0, 0, 0.1)', // Add right border to table cells
+                borderRight: '1px solid rgba(0, 0, 0, 0.1)',
             },
         },
     });
-
-
-    const handleNextPage = (page) => {
-        loadData(page)
-        setCurrentPage(page)
-    };
-
-    const handlePrevPage = (page) => {
-        loadData(page)
-        setCurrentPage(page)
-    };
 
     const handleDelete = (id) => {
         let surity = window.confirm(t("Are you sure to delete this product?"));
@@ -105,7 +99,7 @@ export default function Experts() {
                 method: "DELETE",
                 redirect: "follow",
                 headers: {
-                    'Authorization': `Bearer ${token}` // Add the token to the request
+                    'Authorization': `Bearer ${token}`
                 }
             };
             fetch(`${process.env.REACT_APP_SERVER_URL}/api/deleteService/${id}`, requestOptions)
@@ -113,7 +107,7 @@ export default function Experts() {
                 .then((result) => {
                     if (result.status) {
                         toast.success(t("Data deleted successfully"));
-                        loadData();
+                        loadData(paginationData.currentPage);
                     } else {
                         toast.error(t("Error proceeding request, please try again!"));
                     }
@@ -133,7 +127,6 @@ export default function Experts() {
         setFilteredData(filtered);
     };
 
-    // Define the columns for the DataTable
     const columns = [
         {
             name: t('Name'),
@@ -196,7 +189,7 @@ export default function Experts() {
             <div className="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
                 data-sidebar-position="fixed" data-header-position="fixed">
                 <Sidebar />
-                <div className="body-wrapper">
+                <div className="body-wrapper expertsTable">
                     <Header />
                     <div className="container-fluid">
                         <h4 className='fw-bolder mb-3'>{t("Published Experts")}</h4>
@@ -220,13 +213,17 @@ export default function Experts() {
                                 columns={columns}
                                 theme="customTheme"
                                 data={filteredData}
-                                // pagination
                                 highlightOnHover
+                                pagination={false}
                             />
-                        </div>
-                        <div className="buttons-pagination mb-3">
-                            <button className="custom-btn py-1 px-2 btn-sm " disabled={!paginationData.hasPrevPage} onClick={() => handlePrevPage(paginationData.currentPage - 1)}>{t("Previous")}</button>
-                            <button className="custom-btn py-1 px-2 btn-sm ms-1" disabled={!paginationData.hasNextPage} onClick={() => handleNextPage(paginationData.currentPage + 1)}>{t("Next")}</button>
+                            
+                            <Pagination 
+                                hasNextPage={paginationData.hasNextPage}
+                                hasPrevPage={paginationData.hasPrevPage}
+                                onPageChange={handlePageChange}
+                                currentPage={paginationData.currentPage}
+                                totalPages={paginationData.totalPages}
+                            />
                         </div>
                     </div>
                 </div>

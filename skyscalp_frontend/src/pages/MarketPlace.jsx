@@ -289,7 +289,7 @@ const MarketPlace = () => {
         else {
             updatedFiltersObj.checkedSubcategories = checkedSubcategories
         }
-        console.log(updatedFiltersObj)
+        // console.log(updatedFiltersObj)
         const raw = JSON.stringify(updatedFiltersObj);
         const requestOptions = {
             method: "POST",

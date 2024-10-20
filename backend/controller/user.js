@@ -239,17 +239,17 @@ const login = async (req, res) => {
         }
 
         // Generate JWT token
-        const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET);
+        const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, { expiresIn: '30d' });
         req.session.jwt = token;
 
         const userData = {
             userID: user._id,
-            isAdmin: user.isAdmin, 
+            isAdmin: user.isAdmin,
             profileImage: user.profileImage,
             email: user.email,
             username: user.username,
             phone: user.phone,
-            token: token ,
+            token: token,
             status: user.status
         };
         // Login successful
@@ -284,16 +284,44 @@ const getUserById = (req, res) => {
 }
 
 
-const getAllUsers = (req, res) => {
-    UserModal.find()
-        .then(response => {
-            if (response) {
-                sendResponse(req, res, true, "Users found successfully", response)
-            }
-            else {
-                sendResponse(req, res, false, 'Users not found', null)
-            }
-        })
+const getAllUsers = async (req, res) => {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const sortby = req.query.sortby || 'createdAt';
+    const sortOrder = req.query.order || 'desc';
+    const skipIndex = (page - 1) * limit;
+
+    try {
+
+        const totalItems = await UserModal.countDocuments();
+        const totalPages = Math.ceil(totalItems / limit);
+
+        const mongooseSortOrder = sortOrder === 'desc' ? -1 : 1;
+
+        let response = await UserModal.find()
+            .skip(skipIndex)
+            .limit(limit)
+            .sort({ [sortby]: mongooseSortOrder })
+        const data = {
+            documents: response,
+            currentPage: page,
+            totalPages: totalPages,
+            totalProducts: totalItems,
+            hasNextPage: page < totalPages,
+            hasPrevPage: page > 1
+        };
+
+        if (response) {
+            sendResponse(req, res, true, "Users found successfully", data)
+        }
+        else {
+            sendResponse(req, res, false, "No Users found", null)
+        }
+    }
+    catch (err) {
+        sendResponse(req, res, false, 'Error fetching Users', err)
+        console.log(err)
+    }
 }
 
 const updateUserInfo = async (req, res) => {

@@ -97,30 +97,47 @@ export default function Dashboard() {
 
 
 
-    fetch(`${process.env.REACT_APP_SERVER_URL}/api/getUserProducts/${user.userID}`, requestOptions)
+    fetch(`${process.env.REACT_APP_SERVER_URL}/api/getUserProducts/${user.userID}?materialGroup=machinery`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setIsLoading(false)
         // console.log(result)
         if (result.status) {
-          let machinery = 0
-          let construction = 0
-          let furniture = 0
-          result.data.forEach(data => {
-            if (data.materialGroup === "machinery") {
-              machinery = machinery + 1
-            }
-            else if (data.materialGroup === "construction") {
-              construction = construction + 1
-            }
-            else if (data.materialGroup === "furniture") {
-              furniture = furniture + 1
-            }
-          })
+          setTotalMachinery(result.data.totalProducts)
+        }
+        else {
+          toast.error(result.message)
+        }
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.error(error);
+      });
 
-          setTotalMachinery(machinery)
-          setTotalConstruction(construction)
-          setTotalFurniture(furniture)
+      fetch(`${process.env.REACT_APP_SERVER_URL}/api/getUserProducts/${user.userID}?materialGroup=construction`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setIsLoading(false)
+        // console.log(result)
+        if (result.status) {
+          setTotalConstruction(result.data.totalProducts)
+        }
+        else {
+          toast.error(result.message)
+        }
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.error(error);
+      });
+
+      fetch(`${process.env.REACT_APP_SERVER_URL}/api/getUserProducts/${user.userID}?materialGroup=furniture`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setIsLoading(false)
+        // console.log(result)
+        if (result.status) {
+          setTotalFurniture(result.data.totalProducts)
         }
         else {
           toast.error(result.message)
@@ -138,12 +155,7 @@ export default function Dashboard() {
         setIsLoading(false)
         // console.log(result)
         if (result.status) {
-          let experts = 0
-          result.data.forEach(data => {
-            experts++
-          })
-
-          setTotalExperts(experts)
+          setTotalExperts(result.data.totalProducts)
         }
         else {
           console.log(result.message)

@@ -11,7 +11,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import Lottie from 'lottie-react'
 import loader from '../../../assets/images/skyscalp-loader.json'
 import { useTranslation } from 'react-i18next'
-
+import Pagination from '../../../components/utils/Pagination'
 
 export default function Users() {
     const [t] = useTranslation()
@@ -19,8 +19,15 @@ export default function Users() {
     const [loading, setLoading] = useState(false)
     const user = localStorage.getItem("user")
     const token = JSON.parse(user).token
+    const [paginationData, setPaginationData] = useState({
+        currentPage: 1,
+        totalPages: 1,
+        hasNextPage: false,
+        hasPrevPage: false,
+        totalItems: 0
+    });
 
-    const loadData = () => {
+    const loadData = (pageNumber = 1) => {
         setLoading(true)
         const requestOptions = {
             method: "GET",
@@ -30,15 +37,19 @@ export default function Users() {
             }
         };
 
-
-        fetch(`${process.env.REACT_APP_SERVER_URL}/api/getAllUsers`, requestOptions)
+        fetch(`${process.env.REACT_APP_SERVER_URL}/api/getAllUsers?page=${pageNumber}`, requestOptions)
             .then((response) => response.json())
             .then((result) => {
                 setLoading(false)
-                // console.log(result)
                 if (result.status) {
-                    setData(result.data)
-                    // console.log(result)
+                    setData(result.data.documents)
+                    setPaginationData({
+                        currentPage: result.data.currentPage,
+                        totalPages: result.data.totalPages,
+                        hasNextPage: result.data.hasNextPage,
+                        hasPrevPage: result.data.hasPrevPage,
+                        totalItems: result.data.totalProperties,
+                    });
                 }
                 else {
                     toast.error(result.message)
@@ -49,11 +60,14 @@ export default function Users() {
                 console.error(error);
             });
     }
+
+    const handlePageChange = (pageNumber) => {
+        loadData(pageNumber);
+    };
+
     useEffect(() => {
-        loadData()
+        loadData(1)
     }, [])
-
-
 
     const toggleBlock = (id, status) => {
         let surity = window.confirm(t("Are you sure to block this user?"))
@@ -70,7 +84,7 @@ export default function Users() {
                 .then((result) => {
                     if (result.status) {
                         toast.success(t("User updated Successfully"))
-                        loadData()
+                        loadData(paginationData.currentPage)
                     }
                     else {
                         toast.error(t("Error proceeding request"))
@@ -78,7 +92,6 @@ export default function Users() {
                 })
                 .catch((error) => console.error(error));
         }
-
     }
 
     return (
@@ -113,46 +126,44 @@ export default function Users() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {
-                                        data &&
-                                        data.map((data, i) => {
-                                            return (
-                                                <tr key={data._id}>
-                                                    <td>{i+1}</td>
-                                                    <td>{data.username}</td>
-                                                    <td>{data.email}</td>
-                                                    <td>{data.isVerified ? t('Verified') : t('Not Verified')}</td>
-                                                    <td>
-                                                        {
-                                                            data.status ?
-                                                                (
-                                                                    <span className="badge text-bg-success" style={{ fontSize: "12px" }}>{t("active")}</span>
-                                                                ) :
-                                                                (
-                                                                    <span className="badge text-bg-danger" style={{ fontSize: "12px" }}>{t("inactive")}</span>
-                                                                )
-                                                        }
-                                                    </td>
-                                                    <td>
-                                                        {
-                                                            data.status ?
-                                                                (
-                                                                    <button className="btn btn-danger btn-sm ms-1" onClick={() => toggleBlock(data._id, false)}>{t("Block user")}</button>
-
-                                                                ) :
-                                                                (
-                                                                    <button className="btn btn-success btn-sm ms-1" onClick={() => toggleBlock(data._id, true)}>{t("Unblock user")}</button>
-                                                                )
-                                                        }
-                                                    </td>
-                                                </tr>
-                                            )
-                                        })
-                                    }
+                                    {data.length === 0 && (
+                                        <tr>
+                                            <td colSpan={6} className='text-center'>{t("No users found")}</td>
+                                        </tr>
+                                    )}
+                                    {data.map((data, i) => (
+                                        <tr key={data._id}>
+                                            <td>{((paginationData.currentPage - 1) * 10) + i + 1}</td>
+                                            <td>{data.username}</td>
+                                            <td>{data.email}</td>
+                                            <td>{data.isVerified ? t('Verified') : t('Not Verified')}</td>
+                                            <td>
+                                                {data.status ? (
+                                                    <span className="badge text-bg-success" style={{ fontSize: "12px" }}>{t("active")}</span>
+                                                ) : (
+                                                    <span className="badge text-bg-danger" style={{ fontSize: "12px" }}>{t("inactive")}</span>
+                                                )}
+                                            </td>
+                                            <td>
+                                                {data.status ? (
+                                                    <button className="btn btn-danger btn-sm ms-1" onClick={() => toggleBlock(data._id, false)}>{t("Block user")}</button>
+                                                ) : (
+                                                    <button className="btn btn-success btn-sm ms-1" onClick={() => toggleBlock(data._id, true)}>{t("Unblock user")}</button>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
+
+                            <Pagination 
+                                hasNextPage={paginationData.hasNextPage}
+                                hasPrevPage={paginationData.hasPrevPage}
+                                onPageChange={handlePageChange}
+                                currentPage={paginationData.currentPage}
+                                totalPages={paginationData.totalPages}
+                            />
                         </div>
-                        
                     </div>
                 </div>
             </div>

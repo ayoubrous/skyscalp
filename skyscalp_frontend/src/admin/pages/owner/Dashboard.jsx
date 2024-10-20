@@ -113,7 +113,7 @@ export default function Dashboard() {
                     setIsLoading(false)
                     // console.log(result)
                     if (result.status) {
-                        setRegisteredUsers(result.data.length)
+                        setRegisteredUsers(result.data.totalProducts)
                     }
                     else {
                         console.log(result.message)

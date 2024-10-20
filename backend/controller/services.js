@@ -245,15 +245,38 @@ const getFilteredServices = async (req, res) => {
 
 
 const getServicesByUserID = async (req, res) => {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const sortby = req.query.sortby || 'createdAt';
+    const sortOrder = req.query.order || 'desc';
+    const skipIndex = (page - 1) * limit;
     try {
         const id = req.params.id
         if (!id) {
             sendResponse(req, res, false, "ID not found", null)
         }
-        let result = await ServiceModal.find({ userID: id }).sort({ createdAt: 1 });
+        // let result = await ServiceModal.find({ userID: id }).sort({ createdAt: 1 });
 
-        if (result) {
-            sendResponse(req, res, true, "Services found successfully", result)
+        const totalItems = await ServiceModal.countDocuments({ userID: id });
+        const totalPages = Math.ceil(totalItems / limit);
+
+        const mongooseSortOrder = sortOrder === 'desc' ? -1 : 1;
+
+        let response = await ServiceModal.find({ userID: id })
+            .skip(skipIndex)
+            .limit(limit)
+            .sort({ [sortby]: mongooseSortOrder })
+        const data = {
+            documents: response,
+            currentPage: page,
+            totalPages: totalPages,
+            totalProducts: totalItems,
+            hasNextPage: page < totalPages,
+            hasPrevPage: page > 1
+        };
+
+        if (response) {
+            sendResponse(req, res, true, "Services found successfully", data)
         }
         else {
             sendResponse(req, res, false, "No Services found", null)

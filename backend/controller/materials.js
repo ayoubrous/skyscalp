@@ -463,14 +463,42 @@ const getSingleProduct = async (req, res) => {
 }
 
 const getProductsByUserID = async (req, res) => {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const sortby = req.query.sortby || 'createdAt';
+    const sortOrder = req.query.order || 'desc';
+    const skipIndex = (page - 1) * limit;
+    const materialGroup = req.query.materialGroup;
+
+
     try {
         const id = req.params.id
         if (!id) {
             sendResponse(req, res, false, "ID not found", null)
         }
-        let result = await MaterialsModal.find({ userID: id }).sort({ createdAt: 1 })
-        if (result) {
-            sendResponse(req, res, true, "Products found successfully", result)
+
+
+        const totalItems = await MaterialsModal.countDocuments({ userID: id, materialGroup });
+        const totalPages = Math.ceil(totalItems / limit);
+
+        const mongooseSortOrder = sortOrder === 'desc' ? -1 : 1;
+
+        let response = await MaterialsModal.find({userID: id, materialGroup})
+            .skip(skipIndex)
+            .limit(limit)
+            .sort({ [sortby]: mongooseSortOrder })
+        const data = {
+            documents: response,
+            currentPage: page,
+            totalPages: totalPages,
+            totalProducts: totalItems,
+            hasNextPage: page < totalPages,
+            hasPrevPage: page > 1
+        };
+
+        // let result = await MaterialsModal.find({ userID: id }).sort({ createdAt: 1 })
+        if (response) {
+            sendResponse(req, res, true, "Products found successfully", data)
         }
         else {
             sendResponse(req, res, false, "No Products found", null)

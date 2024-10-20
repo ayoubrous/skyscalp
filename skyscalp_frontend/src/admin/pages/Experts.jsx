@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next'
 import DataTable, { createTheme } from 'react-data-table-component';
 import { formatPrice } from '../../utils/formatPrice'
 import { FaPencilAlt } from 'react-icons/fa'
+import Pagination from '../../components/utils/Pagination'
 
 export default function Experts() {
     const [search, setSearch] = useState('');
@@ -18,8 +19,15 @@ export default function Experts() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [t] = useTranslation();
+    const [paginationData, setPaginationData] = useState({
+        currentPage: 1,
+        totalPages: 1,
+        hasNextPage: false,
+        hasPrevPage: false,
+        totalItems: 0
+    });
 
-    const loadData = () => {
+    const loadData = (pageNumber = 1) => {
         setLoading(true);
         const requestOptions = {
             method: "GET",
@@ -28,13 +36,20 @@ export default function Experts() {
 
         const user = JSON.parse(localStorage.getItem("user"));
 
-        fetch(`${process.env.REACT_APP_SERVER_URL}/api/getUserServices/${user.userID}`, requestOptions)
+        fetch(`${process.env.REACT_APP_SERVER_URL}/api/getUserServices/${user.userID}?page=${pageNumber}`, requestOptions)
             .then((response) => response.json())
             .then((result) => {
                 setLoading(false);
                 if (result.status) {
-                    setProducts(result.data);
-                    setFilteredData(result.data); // Initialize filteredData
+                    setProducts(result.data.documents);
+                    setFilteredData(result.data.documents);
+                    setPaginationData({
+                        currentPage: result.data.currentPage,
+                        totalPages: result.data.totalPages,
+                        hasNextPage: result.data.hasNextPage,
+                        hasPrevPage: result.data.hasPrevPage,
+                        totalItems: result.data.totalProperties,
+                    });
                 } else {
                     toast.error(result.message);
                 }
@@ -45,30 +60,31 @@ export default function Experts() {
             });
     }
 
-    useEffect(() => {
-        loadData();
-    }, []);
+    const handlePageChange = (pageNumber) => {
+        loadData(pageNumber);
+    };
 
+    useEffect(() => {
+        loadData(1);
+    }, []);
 
     createTheme('customTheme', {
         rows: {
             style: {
-                // backgroundColor: "red",
-                minHeight: '50px', // Set row height
-                borderBottom: '1px solid rgba(0, 0, 0, 0.1)', // Add border between rows
+                minHeight: '50px',
+                borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
             },
         },
         headCells: {
             style: {
-                backgroundColor: '#f1f1f1', // Set background color for header cells
-                fontWeight: 'bold', // Make header text bold
-                // borderBottom: '1px solid rgba(0, 0, 0, 0.2)', // Add border below header row
-                borderBottom: '1px solid rgba(0, 0, 0, 1)', // Add border below header row
+                backgroundColor: '#f1f1f1',
+                fontWeight: 'bold',
+                borderBottom: '1px solid rgba(0, 0, 0, 1)',
             },
         },
         cells: {
             style: {
-                borderRight: '1px solid rgba(0, 0, 0, 0.1)', // Add right border to table cells
+                borderRight: '1px solid rgba(0, 0, 0, 0.1)',
             },
         },
     });
@@ -85,7 +101,7 @@ export default function Experts() {
                 .then((result) => {
                     if (result.status) {
                         toast.success(t("Data deleted successfully"));
-                        loadData();
+                        loadData(paginationData.currentPage);
                     } else {
                         toast.error(t("Error proceeding request, please try again!"));
                     }
@@ -105,7 +121,6 @@ export default function Experts() {
         setFilteredData(filtered);
     };
 
-    // Define the columns for the DataTable
     const columns = [
         {
             name: t('Name'),
@@ -176,7 +191,7 @@ export default function Experts() {
                             </Link>
                         </div>
 
-                        <div className='my-4 shadow-lg p-4 rounded'>
+                        <div className='my-4 shadow-lg p-4 rounded expertsTable'>
                             <div className="form-group form-group-sm float-end">
                                 <label htmlFor="">{t("search")}</label>
                                 <input
@@ -193,8 +208,15 @@ export default function Experts() {
                                 columns={columns}
                                 theme="customTheme"
                                 data={filteredData}
-                                // pagination
                                 highlightOnHover
+                            />
+
+                            <Pagination 
+                                hasNextPage={paginationData.hasNextPage}
+                                hasPrevPage={paginationData.hasPrevPage}
+                                onPageChange={handlePageChange}
+                                currentPage={paginationData.currentPage}
+                                totalPages={paginationData.totalPages}
                             />
                         </div>
                         <Footer />
