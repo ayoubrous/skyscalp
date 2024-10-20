@@ -120,8 +120,8 @@
   "allFurniture": "Tous les meubles",
   "furniture": "Meubles",
   "marketplace": "Marketplace",
-  "buildingMaterial": "Matériaux de construction",
-  "furnitureAppliances": "Meubles & Electroménagers",
+  "buildingMaterial": "Matériaux",
+  "furnitureAppliances": "Meubles",
   "machineryTools": "Machines",
   "transaction": "Transaction",
   "subcategory": "Sous-catégorie",
@@ -188,7 +188,7 @@
   "address": "Adresse",
   "messages": "Messages",
   "received": "Reçu",
-  "on": "Sur",
+  "on": "le",
   "user": "Utilisateur",
   "time": "Heure",
   "view": "Voir",
@@ -1101,5 +1101,11 @@
   "furnitureSectionSubTitle": "Explorez une large gamme de meubles et d'appareils électroménagers pour tous les besoins",
   "Rate / Hour": "Tarif / heure",
   "Morocco": "Maroc",
-  "France": "France"
+  "France": "France",
+  "First": "D'abord",
+  "Last": "Dernière",
+  "article": "Article",
+  "Published": "Publié",
+  "Status": "Statut"
+
 }

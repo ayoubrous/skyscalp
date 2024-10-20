@@ -64,80 +64,6 @@ const MarketPlace = () => {
     const [checkedSubcategories, setCheckedSubcategories] = useState([]);
 
 
-    useEffect(() => {
-        // console.log(location.state?.filters)
-
-        if (location.state?.filters) {
-            location.state.filters.checkedSubcategories.forEach(subcat => {
-                setCheckedSubcategories(prevState => {
-                    if (!prevState.includes(subcat)) {
-                        return [...prevState, subcat];
-                    }
-                    return prevState;
-                });
-            });
-
-            if (location.state.filters.selectedCountries) {
-
-                location.state.filters?.selectedCountries.forEach(data => {
-                    settingTheOvarallFilters(data)
-                    setSelectedCountries(prevState => {
-                        if (!prevState.includes(data)) {
-                            return [...prevState, data];
-                        }
-                        return prevState;
-                    });
-                });
-                location.state.filters?.selectedStates.forEach(data => {
-                    settingTheOvarallFilters(data)
-                    setSelectedStates(prevState => {
-                        if (!prevState.includes(data)) {
-                            return [...prevState, data];
-                        }
-                        return prevState;
-                    });
-                });
-                location.state.filters?.selectedCities.forEach(data => {
-                    settingTheOvarallFilters(data)
-                    setSelectedStates(prevState => {
-                        if (!prevState.includes(data)) {
-                            return [...prevState, data];
-                        }
-                        return prevState;
-                    });
-                });
-                location.state.filters?.selectedStreets.forEach(data => {
-                    settingTheOvarallFilters(data)
-
-                    setSelectedStreets(prevState => {
-                        if (!prevState.includes(data)) {
-                            return [...prevState, data];
-                        }
-                        return prevState;
-                    });
-                });
-            }
-
-
-            function settingTheOvarallFilters(value) {
-                setSelectedFilters(prevState => {
-                    if (!prevState.includes(value)) {
-                        return [...prevState, value];
-                    }
-                    return prevState;
-                });
-            }
-        }
-
-
-        // code for navigating from categories cards 
-        // if (location.state?.type && !checkedSubcategories.includes(location.state.type)) {
-        //     setCheckedSubcategories([...checkedSubcategories, location.state.type])
-
-        // }
-    }, [])
-
-
     const [filtersObj, setFiltersObj] = useState({
         type: '',
         checkedSubcategories: [],
@@ -174,6 +100,87 @@ const MarketPlace = () => {
     };
 
 
+
+        //setting the default country as selected by the user in localstorage
+        useEffect(() => {
+            let currentCountry = localStorage.getItem('country');
+            setFiltersObj({ ...filtersObj, selectedCountries: [currentCountry] })
+    
+        }, [])
+    
+        useEffect(() => {
+            // console.log(location.state?.filters)
+    
+            if (location.state?.filters) {
+                location.state.filters.checkedSubcategories.forEach(subcat => {
+                    setCheckedSubcategories(prevState => {
+                        if (!prevState.includes(subcat)) {
+                            return [...prevState, subcat];
+                        }
+                        return prevState;
+                    });
+                });
+    
+                if (location.state.filters.selectedCountries) {
+    
+                    location.state.filters?.selectedCountries.forEach(data => {
+                        settingTheOvarallFilters(data)
+                        setSelectedCountries(prevState => {
+                            if (!prevState.includes(data)) {
+                                return [...prevState, data];
+                            }
+                            return prevState;
+                        });
+                    });
+                    location.state.filters?.selectedStates.forEach(data => {
+                        settingTheOvarallFilters(data)
+                        setSelectedStates(prevState => {
+                            if (!prevState.includes(data)) {
+                                return [...prevState, data];
+                            }
+                            return prevState;
+                        });
+                    });
+                    location.state.filters?.selectedCities.forEach(data => {
+                        settingTheOvarallFilters(data)
+                        setSelectedStates(prevState => {
+                            if (!prevState.includes(data)) {
+                                return [...prevState, data];
+                            }
+                            return prevState;
+                        });
+                    });
+                    location.state.filters?.selectedStreets.forEach(data => {
+                        settingTheOvarallFilters(data)
+    
+                        setSelectedStreets(prevState => {
+                            if (!prevState.includes(data)) {
+                                return [...prevState, data];
+                            }
+                            return prevState;
+                        });
+                    });
+                }
+    
+    
+                function settingTheOvarallFilters(value) {
+                    setSelectedFilters(prevState => {
+                        if (!prevState.includes(value)) {
+                            return [...prevState, value];
+                        }
+                        return prevState;
+                    });
+                }
+            }
+    
+    
+            // code for navigating from categories cards 
+            // if (location.state?.type && !checkedSubcategories.includes(location.state.type)) {
+            //     setCheckedSubcategories([...checkedSubcategories, location.state.type])
+    
+            // }
+        }, [])
+
     // const [currentCountry, setCurrentCountry] = useState(null)
 
     // useEffect(() => {
@@ -199,11 +206,12 @@ const MarketPlace = () => {
     };
 
     const loadData = (pageNumber = paginationData.currentPage, sort = sortby, sortOrder = order) => {
-        // console.log("LOad data called")
-        // return
         setLoading(true);
 
         let updatedFiltersObj = { ...filtersObj };
+
+        let currentCountry = localStorage.getItem('country');
+        updatedFiltersObj.selectedCountries = [...updatedFiltersObj.selectedCountries, currentCountry];
 
         const queryParams = new URLSearchParams(location.search);
         const queryType = queryParams.get('type');
@@ -281,7 +289,7 @@ const MarketPlace = () => {
         else {
             updatedFiltersObj.checkedSubcategories = checkedSubcategories
         }
-
+        console.log(updatedFiltersObj)
         const raw = JSON.stringify(updatedFiltersObj);
         const requestOptions = {
             method: "POST",
@@ -296,12 +304,13 @@ const MarketPlace = () => {
             .then((result) => {
                 setLoading(false);
                 if (result.status) {
-                    let currentCountry = localStorage.getItem('country');
-                    let locationBasedCountry = result.data.documents.filter(doc =>
-                        doc.country.toLowerCase() === currentCountry.toLowerCase()
-                    );
-                    setProducts(locationBasedCountry);
-                    // setProducts(result.data.documents);
+                    // console.log(result)
+                    // let currentCountry = localStorage.getItem('country');
+                    // let locationBasedCountry = result.data.documents.filter(doc =>
+                    //     doc.country.toLowerCase() === currentCountry.toLowerCase()
+                    // );
+                    // setProducts(locationBasedCountry);
+                    setProducts(result.data.documents);
                     setPaginationData({
                         currentPage: result.data.currentPage,
                         totalPages: result.data.totalPages,
@@ -337,6 +346,7 @@ const MarketPlace = () => {
     const handleActiveCategory = (id) => {
         setActiveCatId(id);
         resetAllFilters()
+        setPaginationData({})
 
         const queryParams = new URLSearchParams(location.search);
         queryParams.set('market', id);
@@ -389,6 +399,7 @@ const MarketPlace = () => {
 
 
     const applyFilters = () => {
+        let currentCountry = localStorage.getItem('country');
 
         const searchFilters = {
             type: type,
@@ -403,7 +414,9 @@ const MarketPlace = () => {
             selectedBrands: selectedBrands,
             selectedConditions: selectedConditions,
             yearBuild: yearBuild,
-            selectedCountries: selectedCountries,
+            // selectedCountries: selectedCountries,
+            selectedCountries: [...selectedCountries, currentCountry],
+
             selectedStates: selectedStates,
             selectedCities: selectedCities,
             selectedStreets: selectedStreets
@@ -436,6 +449,7 @@ const MarketPlace = () => {
         setSelectedMaterials([])
 
         setActiveSubcats([])
+        let currentCountry = localStorage.getItem('country');
 
         setFiltersObj({
             type: '',
@@ -448,7 +462,7 @@ const MarketPlace = () => {
             selectedBrands: [],
             selectedConditions: [],
             yearBuild: [],
-            selectedCountries: [],
+            selectedCountries: [currentCountry],
             selectedStates: [],
             selectedCities: [],
             selectedStreets: [],

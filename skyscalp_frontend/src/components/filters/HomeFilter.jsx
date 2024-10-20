@@ -30,7 +30,7 @@ export default function HomeFilter() {
     const [location, setLocation] = useState("")
     const [checkedSubcategories, setCheckedSubcategories] = useState([]);
     const [showCategoriesDrp, setShowCategoriesDrp] = useState(false)
-    const [activeTab, setActiveTab] = useState('machinery')
+    const [activeTab, setActiveTab] = useState('experts')
     const [activeCategories, setActiveCategories] = useState(propertyCategories)
     const [checkAll, setCheckAll] = useState(false)
     const [selectedFilters, setSelectedFilters] = useState([])
@@ -129,19 +129,19 @@ export default function HomeFilter() {
         }
         // sessionStorage.setItem('appliedFilters', JSON.stringify(searchFilters))
         if (activeTab === "property") {
-            navigate('../properties', {state: {filters: searchFilters}})
+            navigate('../properties', { state: { filters: searchFilters } })
         }
         else if (activeTab === "machinery") {
-            navigate('../marketplace?market=1', {state: {filters: searchFilters}})
+            navigate('../marketplace?market=1', { state: { filters: searchFilters } })
         }
         else if (activeTab === "construction") {
-            navigate('../marketplace?market=2', {state: {filters: searchFilters}})
+            navigate('../marketplace?market=2', { state: { filters: searchFilters } })
         }
         else if (activeTab === "furniture") {
-            navigate('../marketplace?market=3', {state: {filters: searchFilters}})
+            navigate('../marketplace?market=3', { state: { filters: searchFilters } })
         }
         else if (activeTab === "experts") {
-            navigate('../experts', {state: {filters: searchFilters}})
+            navigate('../experts', { state: { filters: searchFilters } })
         }
     }
 
@@ -299,13 +299,17 @@ export default function HomeFilter() {
 
 
     return (
-        <div className="filter-area home-filter mt-5">
+        <div className="filter-area home-filter mt-3">
             <div className="custom-container">
                 <p className="color-primary mb-2">{t("homeFilterTitle")}</p>
                 <div className="module-tabs ">
                     {/* <div className={`module-tab ${activeTab === 'property' ? 'active' : ''}`} onClick={() => handleActiveTab('property')}>
                         <p>{t("property")}</p>
                     </div> */}
+                    <div className={`module-tab ${activeTab === 'experts' ? 'active' : ''}`} onClick={() => handleActiveTab('experts')}>
+                        <p>{t("Experts")}</p>
+                    </div>
+
                     <div className={`module-tab ${activeTab === 'machinery' ? 'active' : ''}`} onClick={() => handleActiveTab('machinery')}>
                         <p>{t("machineryTools")}</p>
                     </div>
@@ -318,9 +322,7 @@ export default function HomeFilter() {
                         <p>{t("Furnitures")}</p>
                     </div>
 
-                    <div className={`module-tab ${activeTab === 'experts' ? 'active' : ''}`} onClick={() => handleActiveTab('experts')}>
-                        <p>{t("Experts")}</p>
-                    </div>
+
                 </div>
                 <div className="filter hero-filter">
                     <div className="split">
@@ -408,8 +410,8 @@ export default function HomeFilter() {
                         </div>
                         {
                             // selectedFilters.length > 0 && (
-                                // <div className="selected-filter" style={{ cursor: "pointer" }} onClick={clearAllFilters}>Clear Filters</div>
-                                <div className="selected-filter" style={{ cursor: "pointer", alignSelf: "start" }} onClick={clearAllFilters} >{t("reset")}</div>
+                            // <div className="selected-filter" style={{ cursor: "pointer" }} onClick={clearAllFilters}>Clear Filters</div>
+                            <div className="selected-filter" style={{ cursor: "pointer", alignSelf: "start" }} onClick={clearAllFilters} >{t("reset")}</div>
 
                             // )
                         }

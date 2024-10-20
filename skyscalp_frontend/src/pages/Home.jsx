@@ -96,10 +96,10 @@ export default function Home() {
       <FeatureCards />
       <HomeFilter />
       {/* <Properties properties={properties} /> */}
+      <ExpertsSection />
       <Machinery data={materials} />
       <Construction data={materials} />
       <FurnitureSection />
-      <ExpertsSection />
       <Estimation />
       {/* <Publish /> */}
       <BlogSection />

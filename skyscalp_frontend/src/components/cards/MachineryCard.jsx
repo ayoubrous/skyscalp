@@ -78,7 +78,7 @@ const MachineryCard = ({ data }) => {
                         <h5 className='color-primary'>MAD {formatPrice(budget)}</h5>
                     </div>
 
-                    <p className="">{city}{city && ','} {country}</p>
+                    <p className="">{city}{city && ','} {t(country)}</p>
                     <p className='mb-1'>{category.toLowerCase() === "other" || category.toLowerCase() === "others" ? otherMachine.slice(0, 10) : t(category)}</p>
                     <p className='color-secondary'>{application && application.toLowerCase() === "other" || application && application.toLowerCase() === "others" ? otherApplication.slice(0, 10) : t(application)}</p>
                     <p className='color-secondary'>{t(condition)}</p>

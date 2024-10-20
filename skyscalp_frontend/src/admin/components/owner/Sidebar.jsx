@@ -74,6 +74,15 @@ export default function Sidebar() {
                             </NavLink>
                         </li> */}
                             <li className="sidebar-item mt-1">
+                                <NavLink to='../admin/experts' className={(navData) => (navData.isActive ? "active sidebar-link" : 'none sidebar-link')} aria-expanded="false">
+                                    <span>
+                                        <FaUsers className='me-1' />
+                                    </span>
+                                    <span className="hide-menu">{t("Experts")}</span>
+                                </NavLink>
+                            </li>
+
+                            <li className="sidebar-item mt-1">
                                 <NavLink to='../admin/materials' className={(navData) => (navData.isActive ? "active sidebar-link" : 'none sidebar-link')} aria-expanded="false">
                                     <span>
                                         <FaTools className='me-1' />
@@ -82,14 +91,6 @@ export default function Sidebar() {
                                 </NavLink>
                             </li>
 
-                            <li className="sidebar-item mt-1">
-                                <NavLink to='../admin/experts' className={(navData) => (navData.isActive ? "active sidebar-link" : 'none sidebar-link')} aria-expanded="false">
-                                    <span>
-                                        <FaUsers className='me-1' />
-                                    </span>
-                                    <span className="hide-menu">{t("Experts")}</span>
-                                </NavLink>
-                            </li>
 
 
                             <li className="sidebar-item mt-1">

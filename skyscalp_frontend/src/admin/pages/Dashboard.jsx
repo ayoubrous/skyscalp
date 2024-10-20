@@ -243,7 +243,7 @@ export default function Dashboard() {
         }
 
       })
-      .catch((error) => {
+      .catch((error) => { 
         setIsLoading(false)
         console.error(error)
       });

@@ -30,7 +30,7 @@ export default function Sidebar() {
             <Navbar />
 
             <div className="toggleSidebarIcon" onClick={showSidebar}>
-                <FaBars className='color-primary'/>
+                <FaBars className='color-primary' />
                 <p>More options</p>
             </div>
             <aside className="left-sidebar">
@@ -71,6 +71,18 @@ export default function Sidebar() {
                             </li> */}
                             <li className="sidebar-item mt-1">
                                 <NavLink
+                                    to='../app/experts'
+                                    className={isRouteActive(['/experts', '/add-expert', '/update-expert']) ? "active sidebar-link" : 'none sidebar-link'}
+                                    aria-expanded="false"
+                                >
+                                    <span>
+                                        <FaUsers className='me-1' />
+                                    </span>
+                                    <span className="hide-menu">{t("Experts")}</span>
+                                </NavLink>
+                            </li>
+                            <li className="sidebar-item mt-1">
+                                <NavLink
                                     to='../app/machines'
                                     className={isRouteActive(['/machines', '/add-machine', '/update-machine']) ? "active sidebar-link" : 'none sidebar-link'}
                                     aria-expanded="false"
@@ -106,18 +118,6 @@ export default function Sidebar() {
                                 </NavLink>
                             </li>
 
-                            <li className="sidebar-item mt-1">
-                                <NavLink
-                                    to='../app/experts'
-                                    className={isRouteActive(['/experts', '/add-expert', '/update-expert']) ? "active sidebar-link" : 'none sidebar-link'}
-                                    aria-expanded="false"
-                                >
-                                    <span>
-                                        <FaUsers className='me-1' />
-                                    </span>
-                                    <span className="hide-menu">{t("Experts")}</span>
-                                </NavLink>
-                            </li>
 
                             <li className="sidebar-item mt-1">
                                 <NavLink

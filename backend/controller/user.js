@@ -94,6 +94,7 @@ const forgotPassword = (req, res) => {
                 }
             })
             .catch(err => {
+                console.log(err)
                 sendResponse(req, res, false, "Error finding user: " + err, null);
             });
     } else {

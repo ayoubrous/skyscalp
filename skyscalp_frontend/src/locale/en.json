@@ -126,8 +126,8 @@
   "allFurniture": "All Furniture",
   "furniture": "Furniture",
   "marketplace": "Marketplace",
-  "buildingMaterial": "Construction Materials",
-  "furnitureAppliances": "Furnitures & Appliances",
+  "buildingMaterial": "Materials",
+  "furnitureAppliances": "Furnitures",
   "machineryTools": "Machines",
   "transaction": "Transaction",
   "subcategory": "Sub Category",
@@ -1103,5 +1103,7 @@
 
   "Rate / Hour": "Rate / Hour",
   "Morocco": "Morocco",
-  "France": "France"
+  "France": "France",
+  "First": "First",
+  "Last": "Last"
 }

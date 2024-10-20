@@ -78,7 +78,7 @@ const FurnitureCard = ({ data }) => {
 
                     </div>
 
-                    <p className="paragraph">{city}{city && ','} {country}</p>
+                    <p className="paragraph">{city}{city && ','} {t(country)}</p>
                     <p className=''>{t("quantity")}: {quantity} {quantity > 1 ? 'items' : "item"}</p>
                     <p className='mb-1'>{t(category)}</p>
                     <p className='color-secondary'>{t(article)}</p>

@@ -78,7 +78,7 @@ const ExpertCard = ({ data }) => {
                     </div>
 
                     <p className="color-primary" style={{ fontWeight: "500", fontSize: "17px" }}>{name}</p>
-                    <p className="">{city} {city === "" ? "" : ","} {country}</p>
+                    <p className="">{city} {city === "" ? "" : ","} {t(country)}</p>
                     {/* <p className='mb-1'>{specialization}</p> */}
                     <p className=''>{t(field)}</p>
                     <p className=''>{t(experty)}</p>
@@ -116,7 +116,7 @@ const ExpertCard = ({ data }) => {
                                     experience && (
                                         <>
                                             <GrUserExpert className="feature-icon" />
-                                            <p className="feature-text">{t(experience)} {t("years")}</p>
+                                            <p className="feature-text">{t(experience)} {t("year")}</p>
                                         </>
                                     )
                                 }
@@ -191,7 +191,7 @@ const ExpertCard = ({ data }) => {
                     </div>
 
                     <div className="d-flex justify-content-between align-items-center property-features">
-                        <p className="feature-text ms-0">{t("datePosted")}: {createdAt && new Date(createdAt).toDateString()}</p>
+                        <p className="feature-text ms-0">{t("datePosted")}: {createdAt && new Intl.DateTimeFormat('en-GB').format(new Date(createdAt))}</p>
                     </div>
                     <hr className="line-break my-2" />
                     <div className="seller-info">

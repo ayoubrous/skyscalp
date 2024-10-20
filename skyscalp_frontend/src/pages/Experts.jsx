@@ -76,6 +76,8 @@ const Experts = () => {
         maxPrice: "",
         selectedExperty: [],
 
+        selectedField: '',
+
         selectedEducations: [],
         selectedLanguages: [],
         selectedAvailibilities: [],
@@ -127,9 +129,32 @@ const Experts = () => {
     };
 
 
+    //setting the default country as selected by the user in localstorage
+    useEffect(() => {
+        let currentCountry = localStorage.getItem('country');
+        setFiltersObj({ ...filtersObj, selectedCountries: [currentCountry] })
+
+        let currentService = services.filter(service => service.id === activeCatId)
+        setFiltersObj({ ...filtersObj, selectedField: currentService[0].field })
+
+    }, [])
+
+
     const loadData = (pageNumber = paginationData.currentPage, sort = sortby, sortOrder = order) => {
         setLoading(true);
 
+
+        let currentCountry = localStorage.getItem('country');
+
+        // Check if currentCountry is not already in selectedCountries array
+        if (!filtersObj.selectedCountries.includes(currentCountry)) {
+            filtersObj.selectedCountries = [...filtersObj.selectedCountries, currentCountry];
+        }
+
+        if (filtersObj.selectedExperty.length === 0) {
+            let currentService = services.filter(service => service.id === activeCatId)[0];
+            filtersObj.selectedField = currentService.field
+        }
 
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -148,12 +173,12 @@ const Experts = () => {
             .then((result) => {
                 setLoading(false);
                 if (result.status) {
-                    let currentCountry = localStorage.getItem('country');
-                    let locationBasedCountry = result.data.documents.filter(doc =>
-                        doc.country.toLowerCase() === currentCountry.toLowerCase()
-                    );
-                    setProducts(locationBasedCountry);
-                    // setProducts(result.data.documents);
+                    // let currentCountry = localStorage.getItem('country');
+                    // let locationBasedCountry = result.data.documents.filter(doc =>
+                    //     doc.country.toLowerCase() === currentCountry.toLowerCase()
+                    // );
+                    // setProducts(locationBasedCountry);
+                    setProducts(result.data.documents);
                     setPaginationData({
                         currentPage: result.data.currentPage,
                         totalPages: result.data.totalPages,
@@ -274,6 +299,8 @@ const Experts = () => {
 
     const handleActiveCategory = (id) => {
         setActiveCatId(id);
+        let currentService = services.filter(service => service.id === id)
+        setFiltersObj({ ...filtersObj, selectedField: currentService[0].field })
         resetAllFilters()
     };
 
@@ -346,6 +373,7 @@ const Experts = () => {
 
 
     const applyFilters = () => {
+        let currentCountry = localStorage.getItem('country');
 
 
         const searchFilters = {
@@ -358,7 +386,7 @@ const Experts = () => {
             selectedAvailibilities: availibilities,
             selectedExperience: selectedExperience,
 
-            selectedCountries: selectedCountries,
+            selectedCountries: [...selectedCountries, currentCountry],
             selectedStates: selectedStates,
             selectedCities: selectedCities,
             selectedStreets: selectedStreets,
@@ -373,7 +401,7 @@ const Experts = () => {
         // console.log(selectedFilters2)
         // console.log(selectedFilters3)
 
-        // console.log(searchFilters)
+        console.log(searchFilters)
         setFiltersObj(searchFilters)
         // loadData()
     }
@@ -418,17 +446,23 @@ const Experts = () => {
 
         setActiveSubcats([])
 
+
+        let currentCountry = localStorage.getItem('country');
+        let currentService = services.filter(service => service.id === activeCatId)
+
         setFiltersObj({
             minPrice: "",
             maxPrice: "",
             selectedExperty: "",
+
+            selectedField: currentService[0].field,
 
             selectedEducations: [],
             selectedLanguages: [],
             selectedAvailibilities: [],
             selectedExperience: [],
 
-            selectedCountries: [],
+            selectedCountries: [currentCountry],
             selectedStates: [],
             selectedCities: [],
             selectedStreets: [],
@@ -438,6 +472,40 @@ const Experts = () => {
             selectedFilters2: {},
             selectedFilters3: {},
         })
+    }
+
+
+    const resetSearchFilters = () => {
+        sessionStorage.clear()
+
+        setMinPrice('');
+        setMaxPrice('');
+        setSelectedEducations([]);
+        setAvailibilities([]);
+        setSelectedLanguages([]);
+        setSelectedExperience([]);
+        setCheckedSubcategories([]);
+        setSelectedCountries([])
+        setSelectedStates([])
+        setSelectedCities([])
+        setSelectedStreets([])
+        setSelectedFilters([])
+        setCheckedSubcategories([])
+
+        setSelectedCountries([])
+        setSelectedStates([])
+        setSelectedCities([])
+        setSelectedStreets([])
+
+        setFilter1(null)
+        setFilter2(null)
+        setFilter3(null)
+
+        setSelectedFilters1([])
+        setSelectedFilters2([])
+        setSelectedFilters3([])
+
+        setActiveSubcats([])
     }
 
 
