@@ -131,8 +131,8 @@ const Experts = () => {
 
     //setting the default country as selected by the user in localstorage
     useEffect(() => {
-        let currentCountry = localStorage.getItem('country');
-        setFiltersObj({ ...filtersObj, selectedCountries: [currentCountry] })
+        // let currentCountry = localStorage.getItem('country');
+        // setFiltersObj({ ...filtersObj, selectedCountries: [currentCountry] })
 
         let currentService = services.filter(service => service.id === activeCatId)
         setFiltersObj({ ...filtersObj, selectedField: currentService[0].field })

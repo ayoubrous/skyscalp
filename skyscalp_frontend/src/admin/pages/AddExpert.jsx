@@ -481,7 +481,7 @@ export default function AddExpert() {
                 state: state,
                 city: city,
                 street: street,
-                budget: budget,
+                budget: parseInt(budget),
                 description: description,
                 mapLocation: mapLocation,
 
@@ -575,7 +575,7 @@ export default function AddExpert() {
                 state: state,
                 city: city,
                 street: street,
-                budget: budget,
+                budget: parseInt(budget),
                 description: description,
                 mapLocation: mapLocation,
 

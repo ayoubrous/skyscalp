@@ -28,7 +28,7 @@ const schema = new mongoose.Schema({
         type: String
     },
     budget: {
-        type: String
+        type: Number
     },
     country: {
         type: String,
@@ -124,43 +124,3 @@ const schema = new mongoose.Schema({
 const model = mongoose.model('services', schema);
 
 module.exports = model;
-
-
-// {
-//     "images": [],
-//     "country": "Morocco",
-//     "state": "Oriental",
-//     "city": "Oujda",
-//     "street": "Boulevard Mohammed V",
-//     "budget": "120",
-//     "description": "<p>desc</p>",
-//     "mapLocation": [
-//       26.404991028312054,
-//       -5.903472400143246
-//     ],
-//     "field": "Legal",
-//     "experty": "Lawyer",
-//     "filter1": {
-//       "filterName": "Civil Law",
-//       "selectedOption": "Other"
-//     },
-//     "filter2": {
-//       "filterName": "Criminal Law",
-//       "selectedOption": "Other"
-//     },
-//     "filter3": {
-//       "filterName": "Commercial Law",
-//       "selectedOption": "Other"
-//     },
-//     "otherFilter1Value": "other civil",
-//     "otherFilter2Value": "other Law",
-//     "otherFilter3Value": "otherCommercial",
-//     "experience": "2",
-//     "language": "Other",
-//     "education": "Other",
-//     "availibilty": "Other",
-//     "otherLanguage": "hindko",
-//     "otherEducation": "BS",
-//     "otherAvailibility": "no",
-//     "status": true
-//   }

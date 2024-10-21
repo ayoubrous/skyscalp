@@ -153,6 +153,7 @@ export default function Navbar() {
                     <div className="commercial-links links">
                         {/* <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/properties?type=buy" >{t("buy")}</NavLink>
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/properties?type=rent" >{t("rent")}</NavLink> */}
+                        <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/experts" >{t("Experts")}</NavLink>
                         <div ref={navLabelDrpRef} style={{ cursor: "pointer" }} className="link" onClick={toggleDrp}>{t("marketplace")}
                             <div className={`link-dropdown ${showDrp ? 'show' : ''}`} ref={navDrpRef}>
                                 <Link to="/marketplace?market=1" className='link-dropdown-item' onClick={() => setShowDrp(false)}>{t("machineryTools")}</Link>
@@ -160,7 +161,6 @@ export default function Navbar() {
                                 <Link to="/marketplace?market=3" className='link-dropdown-item' onClick={() => setShowDrp(false)}>{t("furnitureAppliances")}</Link>
                             </div>
                         </div>
-                        <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/experts" >{t("Experts")}</NavLink>
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/estimate" >{t("estimate")}</NavLink>
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/app/dashboard" >{t("publish")}</NavLink>
 
@@ -180,8 +180,8 @@ export default function Navbar() {
                 <div className="account">
                     <div ref={countryDrpLabelRef} style={{ cursor: "pointer" }} className="link mobileViewLink" onClick={() => setShowMobileCountryDrp(!showMobileCountryDrp)}>{activeCountry} {<FaAngleDown />}
                         <div className={`link-dropdown ${showMobileCountryDrp ? 'show' : ''}`} ref={countryDrpRef}>
-                            <div className='link-dropdown-item' onClick={() => handleCountryChange('Morocco')}>Morocco</div>
-                            <div className='link-dropdown-item' onClick={() => handleCountryChange('France')}>France</div>
+                            <div className='link-dropdown-item' onClick={() => handleCountryChange('Morocco')}>{t("Morocco")}</div>
+                            <div className='link-dropdown-item' onClick={() => handleCountryChange('France')}>{t("France")}</div>
                         </div>
                     </div>
                     {

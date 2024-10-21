@@ -296,6 +296,21 @@ export default function Dashboard() {
                   </div>
                 </Link> */}
 
+
+<Link to="../app/experts" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid blue" }}>
+                  <div className="card-body p-3">
+                    <h5 className="card-title mb-2 fw-semibold">{t("Published Experts")}</h5>
+                    <div className="row align-items-center">
+                      <div className="d-flex align-items-center justify-content-between">
+                        <h1 className="fw-bolder color-primary" style={{ fontSize: "3rem" }}>
+                          {totalExperts}
+                        </h1>
+                        <FaUsers className='color-primary' style={{ fontSize: "3rem" }} />
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+
                 <Link to="../app/machines" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid green" }}>
                   <div className="card-body p-3">
                     <h5 className="card-title mb-2 fw-semibold">{t("Published Machines")}</h5>
@@ -338,19 +353,7 @@ export default function Dashboard() {
                 </Link>
 
 
-                <Link to="../app/experts" className="card overflow-hidden mb-2" style={{ borderRight: "2px solid blue" }}>
-                  <div className="card-body p-3">
-                    <h5 className="card-title mb-2 fw-semibold">{t("Published Experts")}</h5>
-                    <div className="row align-items-center">
-                      <div className="d-flex align-items-center justify-content-between">
-                        <h1 className="fw-bolder color-primary" style={{ fontSize: "3rem" }}>
-                          {totalExperts}
-                        </h1>
-                        <FaUsers className='color-primary' style={{ fontSize: "3rem" }} />
-                      </div>
-                    </div>
-                  </div>
-                </Link>
+                
 
               </div>
               <div className="col-sm-12 col-xs-12 col-md-7">
