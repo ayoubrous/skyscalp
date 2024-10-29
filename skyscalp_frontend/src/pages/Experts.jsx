@@ -133,7 +133,6 @@ const Experts = () => {
     useEffect(() => {
         // let currentCountry = localStorage.getItem('country');
         // setFiltersObj({ ...filtersObj, selectedCountries: [currentCountry] })
-
         let currentService = services.filter(service => service.id === activeCatId)
         setFiltersObj({ ...filtersObj, selectedField: currentService[0].field })
 
@@ -155,6 +154,9 @@ const Experts = () => {
             let currentService = services.filter(service => service.id === activeCatId)[0];
             filtersObj.selectedField = currentService.field
         }
+
+        let currentService = services.filter(service => service.id === activeCatId)
+        filtersObj.selectedField = currentService[0].field
 
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -297,6 +299,7 @@ const Experts = () => {
         loadData();
     }, [activeCatId, paginationData.currentPage, sortby, order, activeSubcats]);
 
+
     const handleActiveCategory = (id) => {
         setActiveCatId(id);
         let currentService = services.filter(service => service.id === id)
@@ -339,11 +342,6 @@ const Experts = () => {
         }
     };
 
-    // // when category from search dropdown is selected, select it from the tabs, and fetch the filters based on selected subcategory
-    // useEffect(() => {
-    //     setActiveSubcats(checkedSubcategories);
-
-    // }, [checkedSubcategories])
     useEffect(() => {
         // console.log(checkedSubcategories)
         setActiveSubcats(checkedSubcategories);
@@ -360,6 +358,21 @@ const Experts = () => {
                 }
             });
         }
+
+
+        services.forEach(service => {
+            service.expertise.forEach(experty => {
+                if (experty.expertyName === checkedSubcategories[0]) {
+                    // setting the id of service in which the subcat is present 
+                    setActiveCatId(service.id)
+                }
+            })
+        })
+        
+        setFiltersObj({
+            ...filtersObj,
+            selectedExperty: checkedSubcategories,
+        })
 
     }, [checkedSubcategories]);
 

@@ -178,7 +178,7 @@ export default function Navbar() {
                     </div>
                 </div>
                 <div className="account">
-                    <div ref={countryDrpLabelRef} style={{ cursor: "pointer" }} className="link mobileViewLink" onClick={() => setShowMobileCountryDrp(!showMobileCountryDrp)}>{activeCountry} {<FaAngleDown />}
+                    <div ref={countryDrpLabelRef} style={{ cursor: "pointer" }} className="link mobileViewLink" onClick={() => setShowMobileCountryDrp(!showMobileCountryDrp)}>{t(activeCountry)} {<FaAngleDown />}
                         <div className={`link-dropdown ${showMobileCountryDrp ? 'show' : ''}`} ref={countryDrpRef}>
                             <div className='link-dropdown-item' onClick={() => handleCountryChange('Morocco')}>{t("Morocco")}</div>
                             <div className='link-dropdown-item' onClick={() => handleCountryChange('France')}>{t("France")}</div>

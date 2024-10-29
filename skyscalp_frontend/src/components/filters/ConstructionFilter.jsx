@@ -268,7 +268,7 @@ export default function ConstructionFilter({
 
 
     const handleClearFilters = () => {
-        
+
         setSelectedFilters([]);
         setSelectedAllLocations([])
         setRadius(null)
@@ -296,24 +296,45 @@ export default function ConstructionFilter({
     const [itemUnits, setItemUnits] = useState([]);
 
     useEffect(() => {
-        const newTypesSet = new Set();
-        const newUnitsSet = new Set();
+        if (checkedSubcategories.length > 0) {
+            const newTypesSet = new Set();
+            const newUnitsSet = new Set();
+
+            materialCategories.forEach(data => {
+                data.categories.forEach(category => {
+                    checkedSubcategories.forEach(currentCat => {
+                        if (category.materialName === currentCat) {
+                            category.types.forEach(type => newTypesSet.add(type));
+                            newUnitsSet.add(category.unit);
+                        }
+                    });
+                });
+            });
+
+            setTypes(Array.from(newTypesSet));
+            setItemUnits(Array.from(newUnitsSet)); // Add this line
+        }
+        else{
+            resetAllDefaultTypes()
+        }
+
+    }, [checkedSubcategories]);
+
+
+    // setting all the types by default 
+    const resetAllDefaultTypes = () => {
+        let allTypes = new Set();
 
         materialCategories.forEach(data => {
             data.categories.forEach(category => {
-                checkedSubcategories.forEach(currentCat => {
-                    if (category.materialName === currentCat) {
-                        category.types.forEach(type => newTypesSet.add(type));
-                        newUnitsSet.add(category.unit);
-                    }
-                });
+                if (Array.isArray(category.types) && category.types.length > 0) {
+                    category.types.forEach(type => allTypes.add(type));
+                }
             });
         });
 
-        setTypes(Array.from(newTypesSet));
-        setItemUnits(Array.from(newUnitsSet)); // Add this line
-
-    }, [checkedSubcategories]);
+        setTypes([...allTypes])
+    }
 
 
 

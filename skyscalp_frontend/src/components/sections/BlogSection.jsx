@@ -73,7 +73,7 @@ export default function BlogSection() {
 
                     <OwlCarousel id="" className="owl-carousel owl-theme" {...options}>
                         {
-                            products.length > 0 && products.map(article => {
+                            products && products.length > 0 && products.map(article => {
                                 return (
                                     <Blog key={article._id} id={article._id} datePosted={article.createdAt} title={article.title} imgUrl={article.image} description={article.description} />
                                 )

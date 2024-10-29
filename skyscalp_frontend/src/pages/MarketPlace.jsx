@@ -201,7 +201,7 @@ const MarketPlace = () => {
 
     const loadData = (pageNumber = paginationData.currentPage, sort = sortby, sortOrder = order, filters = filtersObj) => {
         setLoading(true);
-        // console.log(filters)
+        console.log(filters)
         let updatedFiltersObj = { ...filters };
 
 

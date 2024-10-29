@@ -5,6 +5,11 @@ import { Link } from 'react-router-dom';
 import ShareProduct from '../utils/ShareProduct';
 import Swal from 'sweetalert2';
 
+function convertHtmlToText(html) {
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
+  return tempDiv.textContent || tempDiv.innerText || '';
+}
 
 export default function Blog({ imgUrl, id, title, description, datePosted }) {
     const [t] = useTranslation()
@@ -28,8 +33,8 @@ export default function Blog({ imgUrl, id, title, description, datePosted }) {
             </div>
             <div className="content">
                 <Link to={`../article/${id}`}>
-                    <h5>{title && (title.slice(0, 30)) + (title.length > 30 ? "..." : "")}</h5>
-                    <p className="color-secondary my-3" dangerouslySetInnerHTML={{ __html: description.substring(0, 133)+ (description.length > 133 ? "..." : "") }}></p>
+                    <h5 style={{fontWeight: "bold"}}>{title && (title.slice(0, 30)) + (title.length > 30 ? "..." : "")}</h5>
+                    <p className="color-secondary my-3">{convertHtmlToText(description).substring(0, 133)+ (description.length > 133 ? "..." : "")}</p>
                 </Link>
                 <div className="d-flex align-items-center justify-content-between my-2">
                     <small className="color-secondary">{t("datePosted")}: {datePosted && new Intl.DateTimeFormat('en-GB').format(new Date(datePosted))}</small>
