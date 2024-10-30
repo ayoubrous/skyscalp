@@ -1,8 +1,12 @@
 export const getProductByID = async (id) => {
     try {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
         const requestOptions = {
             method: "GET",
-            redirect: "follow"
+            redirect: "follow",
+            headers: myHeaders
         };
 
         const response1 = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/getPropertyById/${id}`, requestOptions);

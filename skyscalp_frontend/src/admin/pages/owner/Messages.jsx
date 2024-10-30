@@ -7,66 +7,93 @@ import Lottie from 'lottie-react'
 import loader from '../../../assets/images/skyscalp-loader.json'
 import Swal from 'sweetalert2'
 import { useTranslation } from 'react-i18next'
+import ReactDOM from 'react-dom/client';
+
+import ChatComponent from '../../../components/utils/ChatComponent'
+// import ReactDOM from 'react-dom';
 
 export default function Messages() {
     const [t] = useTranslation()
-    const [messages, setMessages] = useState([])
+    const [conv, setConv] = useState([])
     const [loading, setLoading] = useState(false)
 
 
     useEffect(() => {
-        setLoading(true);
-        const user = JSON.parse(localStorage.getItem("user"));
-        const requestOptions = {
-            method: "GET",
-            redirect: "follow"
+        const fetchMessages = async () => {
+            try {
+                // Retrieve user info from localStorage
+                const user = JSON.parse(localStorage.getItem("user"));
+
+                if (!user || !user.userID) {
+                    toast.error("User not found");
+                    return;
+                }
+
+                const senderID = String(user.userID);
+                setLoading(true); // Start loading
+
+                // Fetch messages using the senderID
+                const response = await fetch(`http://localhost:5500/api/getAdminMessages?ownerID=${senderID}`);
+                const result = await response.json();
+
+                if (result && result.success) {
+                    // Set the conversation state with the last message from each conversation
+                    const formattedConv = result.data.map((data) => {
+                        // Get the last message from the messages array
+                        // const lastMessage = data.messages.length > 0 ? data.messages[data.messages.length - 1] : null;
+                        const lastMessage = data.messages
+                            .filter(message => message.senderID != senderID) // Filter messages from the specific sender
+                            .slice(-1)[0] || null;
+                        return {
+                            ...data,
+                            lastMessage, // Add the last message to the conversation object
+                        };
+                    });
+                    setConv(formattedConv); // Update messages state
+                    
+                    
+                } else {
+                    toast.error("No messages found");
+                }
+
+                setLoading(false); // End loading
+            } catch (error) {
+                console.error("Error fetching messages:", error);
+                toast.error("Error processing request");
+                setLoading(false); // End loading even in case of an error
+            }
         };
 
-        fetch(`${process.env.REACT_APP_SERVER_URL}/api/getMessagesToAdmin`, requestOptions)
-            .then((response) => response.json())
-            .then((result) => {
-                if (result.status) {
-                    console.log(result)
-                    setMessages(result.data);
-                    setLoading(false);
-                }
-            })
-            .catch(error => {
-                console.error("Error fetching product details:", error);
-                toast.error(t("Error proceeding request"));
-            });
-    }, []);
+        fetchMessages(); // Call the async function inside useEffect
+    }, []); // Empty dependency array, runs only once on mount
+    
 
 
-    const handleViewMessage = (id) => {
-        const message = messages.find(msg => msg._id === id);
+   
 
-        if (message) {
-            // If message is found, display it in SweetAlert2
-            Swal.fire({
-                title: 'Message Details',
-                html: `
-                <div>
-                    <p className="mb-1" style={{fontSize: "12px"}}><b>${t("email")}:</b> ${message.email}</p>
-                    <p className="mb-1" style={{fontSize: "12px"}}><b>${t("Phone")}:</b> ${message.phone}</p>
-                    <p className="mb-1" style={{fontSize: "12px"}}><b>${t("message")}:</b></p>
-                    <p className="mb-1" style={{fontSize: "12px"}}>${message.message}</p>
-                    
-                </div>
-                `,
-                showCloseButton: true,
-                showCancelButton: false,
-                focusConfirm: false,
-                confirmButtonText: 'Close',
-            });
-        } else {
-            // If message is not found, show error message
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Message not found!',
-            });
-        }
+    const handleViewMessage = (data) => {
+        Swal.fire({
+            title: 'Conversation',
+            html: `<div id="chat-container"></div>`, // Create a container for the chat component
+            showCloseButton: true,
+            showCancelButton: false,
+            focusConfirm: false,
+            didOpen: () => {
+                const chatContainer = document.getElementById('chat-container');
+                console.log("open conv");
+                console.log(data);
+                
+                // Render your ChatComponent here
+                // You might need to use ReactDOM.render or similar to render it
+                // ReactDOM.render(<ChatComponent conversationData={data} />, chatContainer);
+
+                const root = ReactDOM.createRoot(chatContainer); // Create a root
+
+                // Render your ChatComponent
+                root.render(<ChatComponent conversationData={data} isVisible={true} />);
+            },
+            confirmButtonText: 'Close',
+        });
     }
 
 
@@ -97,8 +124,8 @@ export default function Messages() {
                                 <thead>
                                     <tr>
                                         <th className='col-1'>S. No</th>
-                                        <th className='col-2'>{t("Name")}</th>
-                                        <th className='col-2'>{t("User email")}</th>
+                                        {/* <th className='col-2'>{t("Name")}</th>
+                                        <th className='col-2'>{t("User email")}</th> */}
 
                                         <th className='col-3'>{t("message")}</th>
                                         <th className='col-2'>{t("received")} {t("on")}</th>
@@ -107,31 +134,22 @@ export default function Messages() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {
-                                        messages &&
-                                            messages.length > 0 ?
-                                            messages.map((data, i) => {
+                                {
+                                        conv && conv.length > 0 ?
+                                            conv.map((data, i) => {
                                                 return (
                                                     <tr key={i}>
                                                         <td>{i + 1}</td>
-                                                        <td>{`${data.firstName} ${data.lastName} `}</td>
-                                                        <td>{data.email}</td>
                                                         <td>
-                                                            {data.message && data.message.length > 0 ?
-                                                                (data.message.length > 40 ?
-                                                                    data.message.substring(0, 40) + '...' :
-                                                                    data.message)
-                                                                : ""}
+                                                            {data.lastMessage ? data.lastMessage.message : "No messages available"}
                                                         </td>
                                                         <td>{new Date(data.createdAt).toDateString()}</td>
                                                         <td>
-                                                            {/* <a href={`mailto:${data.email}`}>
-                                                                <button className="custom-btn px-2 py-1" style={{ fontSize: "12px" }}>Reply</button>
-                                                            </a> */}
-                                                            <button className="custom-btn px-2 py-1 ms-1" style={{ fontSize: "12px" }} onClick={() => handleViewMessage(data._id)}>{t("View")}</button>
+                                                            {/* Implement reply action if needed */}
+                                                            <button className="custom-btn px-2 py-1" style={{ fontSize: "12px" }} onClick={() => handleViewMessage(data)}>{t("View")}</button>
                                                         </td>
                                                     </tr>
-                                                )
+                                                );
                                             })
                                             : (
                                                 <tr className='border'>

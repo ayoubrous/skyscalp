@@ -19,16 +19,16 @@ export default function MessageOwner({ userID, collectionRef }) {
     let params = useParams()
     const handleMessageSend = (e) => {
         e.preventDefault()
-        if (email.length === 0 || phone.length === 0 || message.length === 0) {
+        if (message.length === 0) {
             toast.error(t("Fill out all the required fields"))
             return
         }
-        sendMessage(false, userID, params.id, collectionRef, email, phone, null, null, message)
+        sendMessage(false, userID, params.id, collectionRef, null,null,null,null, message)
             .then(res => {
                 if (res.status) {
                     toast.success(t("Message sent successfully"))
-                    setEmail('');
-                    setPhone('');
+                    // setEmail('');
+                    // setPhone('');
                     setMessage('');
 
                 }
@@ -48,18 +48,18 @@ export default function MessageOwner({ userID, collectionRef }) {
             <form className="side mb-2" onSubmit={handleMessageSend}>
                 <h5 className="fw-bold mb-3">{t("messageOwner")}</h5>
 
-                <div className="form-group mb-2">
-                    {/* <input type="text" className="custom-input" placeholder={t("phone")} value={phone} onChange={e => setPhone(e.target.value)} /> */}
+                {/* <div className="form-group mb-2">
+                    {/* <input type="text" className="custom-input" placeholder={t("phone")} value={phone} onChange={e => setPhone(e.target.value)} /> 
                     <PhoneInput
                         className="contactPhone"
                         country={'fr'}
                         value={phone}
                         onChange={setPhone}
                     />
-                </div>
-                <div className="form-group mb-2">
+                </div> */}
+                {/* <div className="form-group mb-2">
                     <input type="email" className="custom-input" placeholder={t("email")} value={email} onChange={e => setEmail(e.target.value)} />
-                </div>
+                </div> */}
                 <div className="form-group mb-2">
                     <textarea name="" id="" cols="30" rows="3" placeholder={t("message")} className="custom-textarea" value={message} onChange={e => setMessage(e.target.value)}></textarea>
                 </div>

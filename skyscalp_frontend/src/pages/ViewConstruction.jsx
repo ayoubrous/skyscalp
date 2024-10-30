@@ -13,6 +13,7 @@ import { Link, useParams } from 'react-router-dom'
 import ShareProduct from '../components/utils/ShareProduct'
 import Map from '../components/map/Map'
 import { FaAngleLeft, FaAngleRight, FaRegCheckSquare } from 'react-icons/fa'
+import { IoChatbubbleSharp } from "react-icons/io5";
 import { TbCar } from 'react-icons/tb'
 import { GrStatusInfo } from 'react-icons/gr'
 import toast from 'react-hot-toast'
@@ -20,6 +21,7 @@ import { formatPrice } from '../utils/formatPrice'
 import { checkInFavourites } from '../APIs/favourites'
 import handleProductFavourite from '../components/utils/manangeFavourite'
 import ConstructionCard from '../components/cards/ConstructionCard'
+import ChatComponent from '../components/utils/ChatComponent'
 
 
 import loader from '../assets/images/skyscalp-loader.json'
@@ -57,6 +59,7 @@ export default function ViewConstruction() {
     const [createdAt, setCreatedAt] = useState('')
     const [userInfo, setUserInfo] = useState('')
     const [userID, setUserID] = useState('')
+    const [ownerID , setOwnerID] = useState('')
 
     const [otherMaterial, setOtherMaterial] = useState('');
     const [otherSize, setOtherSize] = useState('');
@@ -74,6 +77,7 @@ export default function ViewConstruction() {
     const [voltage, setVoltage] = useState('')
     const [type, setType] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+
 
     const [similarProducts, setSimilarProducts] = useState([])
     let params = useParams()
@@ -140,6 +144,7 @@ export default function ViewConstruction() {
                     // check if the product is in favourites 
                     const user = JSON.parse(localStorage.getItem("user"))
                     if (user) {
+                        setOwnerID(user.userID)
                         checkInFavourites(user.userID, result.data._id)
                             .then(res => {
                                 if (!res.status) {
@@ -245,6 +250,12 @@ export default function ViewConstruction() {
     const handleFavourite = () => {
         handleProductFavourite(favourite, setFavourite, constructionID, true)
     }
+
+    const [isChatVisible, setIsChatVisible] = useState(false);
+
+    const toggleChat = () => {
+        setIsChatVisible(!isChatVisible);
+    };
     return (
         <>
             <div className={`lottie-wrapper ${isLoading ? 'show' : ''}`}>
@@ -561,8 +572,9 @@ export default function ViewConstruction() {
                                     <FaEnvelope className='me-1' />Test.owner@skyscalp.com</button>
 
                             </div>
+                            {/* {ownerID !== userID ? <ChatComponent collectionRef={"materials"} /> : null} */}
+                            {ownerID !== userID ? <div className='fixed-bottom-left-div'><IoChatbubbleSharp className='chat-icon-style' onClick={toggleChat}/> <ChatComponent isVisible={isChatVisible} isFixed={true}/> </div>: null}
 
-                            <MessageOwner userID={userID} collectionRef={"materials"}/>
                         </div>
 
 
