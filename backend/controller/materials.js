@@ -472,7 +472,10 @@ const getProductsByUserID = async (req, res) => {
 
 
     try {
-        const id = req.params.id
+        const id = req.params.id;
+        
+        
+
         if (!id) {
             sendResponse(req, res, false, "ID not found", null)
         }

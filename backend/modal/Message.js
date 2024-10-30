@@ -1,33 +1,36 @@
 const mongoose = require('mongoose')
 
 const messageSchema = new mongoose.Schema({
-    productID: {
+    senderID: {
         type: String,
     },
-    userID: {
-        type: String,
+    receiverID:{
+        type:String,
     },
-    collectionReference: {
-        type: String,
-    },
-    toAdmin: {
-        type: Boolean,
-    },
-    phone: {
-        type: String,
-    },
-    email: {
-        type: String,
-    },
+    // collectionReference: {
+    //     type: String,
+    // },
+    // toAdmin: {
+        //     type: Boolean,
+        // },
+        // phone: {
+            //     type: String,
+            // },
+            // email: {
+                //     type: String,
+    // },
     message: {
         type: String
     },
-    firstName: {
-        type: String
+    productID: {
+        type: String,
     },
-    lastName: {
-        type: String
-    },
+    // firstName: {
+    //     type: String
+    // },
+    // lastName: {
+    //     type: String
+    // },
     timestamp: {
         type: String,
         value: Date.now()

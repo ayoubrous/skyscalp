@@ -707,6 +707,14 @@
 .owl-next:hover {
     background-color: #e3e0e0 !important;
 }
+/* .carousel-image {
+    width: auto;  
+    height: auto;  
+    /* max-width: 100%; 
+    max-height: 100%;   
+    display: block; 
+    margin: auto; 
+}  */
 
 
 
@@ -753,3 +761,133 @@
     font-size: 18px;
     margin-top: 12px;
 }
+
+/* message */
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+    
+    background-color: #f1f1f1; /* Background color for chat area */
+    border-radius: 8px;
+    
+}
+
+
+.chat-container{
+    max-width: 100%;
+    max-height: 400px;
+    background-color: #f1f1f1;
+    transition: bottom 0.5s ease;
+    z-index: 999;
+    
+}
+.fixed-position {
+    position: fixed;
+    bottom: -100%;
+    left: 50px;
+    transition: bottom 0.5s ease;
+
+
+}
+
+.chat-container.active.fixed-position {
+    bottom: 70px;
+}
+
+/* Normal container, when not fixed */
+.chat-container.active:not(.fixed-position) {
+    margin-top: 10px;
+/* Any other styling for a normal layout */
+}
+.message-bubble {
+    max-width: 70%;
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+}
+
+.sent {
+    align-self: flex-end; /* Align sent messages to the right */
+    background-color: #dcf8c6; /* Light green for sent messages */
+}
+
+.received {
+    align-self: flex-start; /* Align received messages to the left */
+    background-color: #ffffff; /* White for received messages */
+    border: 1px solid #e1e1e1; /* Border for received messages */
+}
+
+
+.fixed-bottom-left-div{
+    position: fixed;
+    bottom: 30px;  /* 20px from the bottom of the screen */
+    left: 50px;    /* 20px from the left side of the screen */
+    
+    z-index: 1000;
+    width: 300px;
+}
+
+@media screen and (max-width: 500px) {
+    .fixed-bottom-left-div{
+        left: 10px;
+    }
+    .fixed-position{
+        left: 10px;
+    }
+    
+}
+
+.fixed-bottom-left-div:hover {
+    /* background-color: #0a5c24; Slightly darker on hover */
+}
+
+.chat-icon-style{
+    font-size: 30px;
+    color: #076c8f;
+    cursor: pointer;
+}
+.chat-icon-style:hover {
+    color: #0056b3;
+  }
+
+/* Use flexbox for the form */
+.form-inline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f1f1f1;
+    padding: 0 15px;
+    
+}
+  
+  /* Style for the textarea */
+.form-inline .custom-input {
+
+/* margin-right: 10px; Space between textarea and button */
+    
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+  
+  /* Style for the button */
+.form-inline .custom-btn {
+/* padding: 10px 20px; */
+    
+    background-color: #076c8f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+/* Optional: Button sizing */
+.custom-btn {
+white-space: nowrap; /* Prevent button text wrapping */
+}
+  

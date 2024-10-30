@@ -64,6 +64,8 @@ import faviconLogo from './assets/images/logo-half.png'
 import Experts from './pages/Experts';
 import AddExpert from './admin/pages/AddExpert';
 
+import ChatComponent from './components/utils/ChatComponent';
+
 
 const App = () => {
   useEffect(() => {
@@ -110,6 +112,7 @@ const App = () => {
             <Route path='/login' exact element={<Login />} />
             <Route path='/forgot-password' exact element={<ForgotPasswordEmail />} />
             <Route path='/update-password' exact element={<UpdatePassword />} />
+            <Route path='/chat' exact element={<ChatComponent />} />
 
             <Route element={<Private />}>
               {/* ------ OWNER ---------  */}

@@ -18,16 +18,20 @@ import { checkInFavourites } from '../APIs/favourites'
 import handleProductFavourite from '../components/utils/manangeFavourite'
 import { formatPrice } from '../utils/formatPrice'
 import FurnitureCard from '../components/cards/FurnitureCard'
+// import ChatComponent from '../components/utils/ChatComponent'
+import { IoChatbubbleSharp } from "react-icons/io5";
 
 import loader from '../assets/images/skyscalp-loader.json'
 import Lottie from 'lottie-react'
 import ExpertCard from '../components/cards/ExpertCard'
+import ChatComponentService from '../components/utils/ChatComponentService'
 
 export default function ViewExpert() {
     const [isLoading, setIsLoading] = useState(false)
 
 
     const [userID, setUserID] = useState('')
+    const [ownerID , setOwnerID] = useState('')
     const [uploadedImages, setUploadedImages] = useState([])
 
     const [country, setCountry] = useState('')
@@ -159,6 +163,7 @@ export default function ViewExpert() {
                     // check if the product is in favourites 
                     const user = JSON.parse(localStorage.getItem("user"))
                     if (user) {
+                        setOwnerID(user.userID)
                         checkInFavourites(user.userID, result.data._id)
                             .then(res => {
                                 if (!res.status) {
@@ -261,6 +266,12 @@ export default function ViewExpert() {
     const handleFavourite = () => {
         handleProductFavourite(favourite, setFavourite, expertID, true)
     }
+
+    const [isChatVisible, setIsChatVisible] = useState(false);
+
+    const toggleChat = () => {
+        setIsChatVisible(!isChatVisible);
+    };
     return (
         <>
             <div className={`lottie-wrapper ${isLoading ? 'show' : ''}`}>
@@ -539,7 +550,8 @@ export default function ViewExpert() {
 
                             </div>
 
-                            <MessageOwner userID={userID} collectionRef={"services"}/>
+                            {/* {ownerID !== userID ?<ChatComponentService /> : null} */}
+                            {ownerID !== userID ? <div className='fixed-bottom-left-div'><IoChatbubbleSharp className='chat-icon-style' onClick={toggleChat}/> <ChatComponentService isVisible={isChatVisible} isFixed={true}/> </div>: null}
                         </div>
 
 

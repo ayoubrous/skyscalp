@@ -6,7 +6,8 @@ const { addProperty, updateProperty, getProperties, getSingleProperty, deletePro
 const { getAnalytics, addAnalytics } = require('../controller/analytics')
 const locationRoutes = require('./locationRoutes')
 const { addToFavourites, removeFromFavourites, checkInFavourites, getFavourites } = require('../controller/favourites')
-const { sendMessage, getUserMessages, getMessagesToAdmin } = require('../controller/messages')
+const { sendMessage, getMessagesToAdmin,getreceiverMessages } = require('../controller/messages')
+const { sendMessageConv ,getUserMessages, getMessagesConv , getAdminMessages } = require('../controller/conversation')
 const { getProductDetails } = require('../controller/utils')
 const { addProduct, updateProduct, getProducts, getProductsByUserID, getSingleProduct, deleteProduct, getMachineryProducts, getConstructionProducts, getFurnitureProducts, updateProductFeature, updateProductFavourites, getProductsByFilters, getFeaturedProducts, getAllProducts } = require('../controller/materials')
 const { addArticle, updateArticle, getArticles, getSingleArticle, deleteArticle } = require('../controller/articles')
@@ -83,8 +84,16 @@ router.get('/api/getFavourites/:id', getFavourites)
 
 // APIS for messages 
 router.post('/api/sendMessage', sendMessage)
-router.get('/api/getMessagesByUserID', getUserMessages)
+router.post('/api/sendMessageConv', sendMessageConv)
+// router.get('/api/getMessagesByUserId/:id', getUserMessages)
+router.get('/api/getMessagesByReceiverId/:id', getreceiverMessages)
+// router.get('/api/getMessages', getMessages)
 router.get('/api/getMessagesToAdmin', getMessagesToAdmin)
+router.get('/api/getMessages', getMessagesConv);
+router.get('/api/getAdminMessages', getAdminMessages);
+router.get('/api/getUserMessages', getUserMessages);
+
+
 
 
 

@@ -18,6 +18,8 @@ import { checkInFavourites } from '../APIs/favourites'
 import handleProductFavourite from '../components/utils/manangeFavourite'
 import { formatPrice } from '../utils/formatPrice'
 import FurnitureCard from '../components/cards/FurnitureCard'
+import ChatComponent from '../components/utils/ChatComponent'
+import { IoChatbubbleSharp } from "react-icons/io5";
 
 import loader from '../assets/images/skyscalp-loader.json'
 import Lottie from 'lottie-react'
@@ -49,6 +51,7 @@ export default function ViewFurniture() {
     const [feature, setFeature] = useState('')
     const [quantity, setQuantity] = useState('')
     const [article, setArticle] = useState('')
+    const [ownerID , setOwnerID] = useState('')
 
     const [otherColor, setOtherColor] = useState('')
     const [otherBrand, setOtherBrand] = useState('')
@@ -105,6 +108,7 @@ export default function ViewFurniture() {
                     // check if the product is in favourites 
                     const user = JSON.parse(localStorage.getItem("user"))
                     if (user) {
+                        setOwnerID(user.userID)
                         checkInFavourites(user.userID, result.data._id)
                             .then(res => {
                                 if (!res.status) {
@@ -212,6 +216,12 @@ export default function ViewFurniture() {
     const handleFavourite = () => {
         handleProductFavourite(favourite, setFavourite, furnitureID, true)
     }
+
+    const [isChatVisible, setIsChatVisible] = useState(false);
+
+    const toggleChat = () => {
+        setIsChatVisible(!isChatVisible);
+    };
     return (
         <>
             <div className={`lottie-wrapper ${isLoading ? 'show' : ''}`}>
@@ -478,7 +488,7 @@ export default function ViewFurniture() {
 
                             </div>
 
-                            <MessageOwner userID={userID} collectionRef={"materials"}/>
+                            {ownerID !== userID ? <div className='fixed-bottom-left-div'><IoChatbubbleSharp className='chat-icon-style' onClick={toggleChat}/> <ChatComponent isVisible={isChatVisible} isFixed={true}/> </div>: null}
                         </div>
 
 

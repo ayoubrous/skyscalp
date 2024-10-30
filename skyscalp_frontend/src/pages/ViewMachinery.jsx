@@ -11,6 +11,7 @@ import MessageOwner from '../components/utils/MessageOwner'
 import { FaAngleLeft, FaAngleRight, FaRegArrowAltCircleRight, FaRegCheckSquare, FaSwimmingPool } from 'react-icons/fa'
 import { TbBed, TbCar } from 'react-icons/tb'
 import { GrStatusInfo } from "react-icons/gr";
+import { IoChatbubbleSharp } from "react-icons/io5";
 
 
 
@@ -29,6 +30,8 @@ import MachineryCard from '../components/cards/MachineryCard'
 
 import loader from '../assets/images/skyscalp-loader.json'
 import Lottie from 'lottie-react'
+import ChatComponent from '../components/utils/ChatComponent'
+
 export default function ViewMachinery() {
 
     const [userID, setUserID] = useState('')
@@ -62,6 +65,7 @@ export default function ViewMachinery() {
     const [color, setColor] = useState('')
     const [certification, setCertification] = useState('')
     const [createdAt, setCreatedAt] = useState('')
+    const [ownerID , setOwnerID] = useState('')
 
 
     const [otherApplication, setOtherApplication] = useState('')
@@ -128,6 +132,7 @@ export default function ViewMachinery() {
                     // check if the product is in favourites 
                     const user = JSON.parse(localStorage.getItem("user"))
                     if (user) {
+                        setOwnerID(user.userID)
                         checkInFavourites(user.userID, result.data._id)
                             .then(res => {
                                 if (!res.status) {
@@ -236,7 +241,11 @@ export default function ViewMachinery() {
     const handleFavourite = () => {
         handleProductFavourite(favourite, setFavourite, machineryID, true)
     }
+    const [isChatVisible, setIsChatVisible] = useState(false);
 
+    const toggleChat = () => {
+        setIsChatVisible(!isChatVisible);
+    };
     return (
         <>
             <Toaster />
@@ -456,7 +465,9 @@ export default function ViewMachinery() {
                             </div>
 
                             {/* <MessageOwner userID={userID} /> */}
-                            <MessageOwner userID={userID} collectionRef={"materials"}/>
+                            {/* <MessageOwner userID={userID} collectionRef={"materials"}/> */}
+                            {/* {ownerID !== userID ? <ChatComponent /> : null} */}
+                            {ownerID !== userID ? <div className='fixed-bottom-left-div'><IoChatbubbleSharp className='chat-icon-style' onClick={toggleChat}/> <ChatComponent isVisible={isChatVisible} isFixed={true}/> </div>: null}
                         </div>
 
 
