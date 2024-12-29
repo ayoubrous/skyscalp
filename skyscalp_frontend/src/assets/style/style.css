@@ -133,21 +133,49 @@
 
 /* ========== HERO ==============  */
 .hero {
-    background-color: var(--primary-color);
+    background-image: url('../images/homepage/construction.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     padding: 1.5rem 0;
     color: var(--white-color);
     text-align: center;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.hero-overlay{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: #00000093;
+}
+
+.hero .custom-container {
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero .hero-heading {
     color: var(--white-color);
     margin-bottom: 12px;
-    font-size: 2rem;
+    font-size: 3rem;
+    font-weight: bold;
+    max-width: 700px;
 }
 
 .hero .slogan {
     font-size: 15px;
     margin-bottom: 6px;
+    background-color: var(--primary-color);
+    padding: 5px 13px 5px 13px;
+    border-radius: 5px;
 }
 
 .hero img {
@@ -631,7 +659,7 @@
 }
 
 .contactUs .wraper .support .supportDescription {
-    color: var(--semi-dark-color-2) !important;
+    color: lightgray !important;
 }
 
 .contactUs .wraper .form {

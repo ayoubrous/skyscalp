@@ -32,11 +32,12 @@ export default function Hero() {
     <>
       <section className="hero">
         <div className="custom-container">
-          <h1 className="hero-heading">{t("heroTitle")}</h1>
           <p className="slogan">{t("heroSlogan")}</p>
+          <h1 className="hero-heading">{t("heroTitle")}</h1>
           <p>{t("heroPara")}</p>
-          <img src={map} alt="hero-img" />
+          {/* <img src={map} alt="hero-img" /> */}
         </div>
+        <div className='hero-overlay' />
       </section>
       {/* <div className={`up-arrow ${showGoToTopArrow ? 'show' : ''}`} onClick={handleGoToTop}>
         <FaArrowUp className='icon' />

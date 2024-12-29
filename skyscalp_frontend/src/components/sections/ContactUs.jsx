@@ -59,18 +59,18 @@ const ContactUs = ({ supportTitle, supportDescription, contactEmail, contactPhon
                             <p className="supportDescription ">{t(supportDescription)}</p>
 
                             <div className="information">
-                                <div className="info-group d-flex align-items-center gap-2 mb-4">
+                                {/* <div className="info-group d-flex align-items-center gap-2 mb-4">
                                     <FaPhone className='text-white' />
                                     <p className="paragraph text-white">{contactPhone}</p>
-                                </div>
+                                </div> */}
                                 <div className="info-group d-flex align-items-center gap-2 mb-4">
                                     <FaEnvelope className='text-white' />
                                     <p className="paragraph text-white">{contactEmail}</p>
                                 </div>
-                                <div className="info-group d-flex align-items-start gap-2 mb-4">
+                                {/* <div className="info-group d-flex align-items-start gap-2 mb-4">
                                     <FaLocationDot className='text-white mt-1' />
                                     <p className="paragraph text-white pe-4">132 Dartmouth Street Boston, Massachusetts 02156 United States [Test Address]</p>
-                                </div>
+                                </div> */}
                             </div>
 
                         </div>

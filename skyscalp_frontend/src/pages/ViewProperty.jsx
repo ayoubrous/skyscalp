@@ -512,7 +512,7 @@ export default function ViewProperty() {
 
 
             <BlogSection />
-            <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} contactEmail={"information.properties@skyscalp.com"} contactPhone={"+33771759956"} />
+            {/* <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} contactEmail={"information.properties@skyscalp.com"} contactPhone={"+33771759956"} /> */}
 
             <Footer />
         </>

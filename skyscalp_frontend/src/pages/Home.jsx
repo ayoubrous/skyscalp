@@ -100,7 +100,7 @@ export default function Home() {
       <Machinery data={materials} />
       <Construction data={materials} />
       <FurnitureSection />
-      <Estimation />
+      {/* <Estimation /> */}
       {/* <Publish /> */}
       <BlogSection />
       {/* <Testimonials /> */}

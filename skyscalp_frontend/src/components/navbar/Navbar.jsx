@@ -115,12 +115,13 @@ export default function Navbar() {
     }
 
 
-    const handleCountryChange = (country) => {
-        setActiveCountry(country)
-        localStorage.setItem('country', country)
-        window.location.reload()
-    }
-
+    useEffect(() => {
+        const handleCountryChange = () => {
+            setActiveCountry('Morocco')
+            localStorage.setItem('country', 'Morocco')
+        }
+        handleCountryChange()
+    }, []);
 
     const toggleDrp = (e) => {
         e.stopPropagation();
@@ -161,15 +162,15 @@ export default function Navbar() {
                                 <Link to="/marketplace?market=3" className='link-dropdown-item' onClick={() => setShowDrp(false)}>{t("furnitureAppliances")}</Link>
                             </div>
                         </div>
-                        <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/estimate" >{t("estimate")}</NavLink>
+                        {/* <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/estimate" >{t("estimate")}</NavLink> */}
                         <NavLink className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false" to="/app/dashboard" >{t("publish")}</NavLink>
 
-                        <div ref={countryDrpLabelRefDekstop} style={{ cursor: "pointer" }} className="link dekstopViewLink ms-4" onClick={() => setShowCountryDrp(!showCountryDrp)} >{t(activeCountry)} {<FaAngleDown />}
+                        {/* <div ref={countryDrpLabelRefDekstop} style={{ cursor: "pointer" }} className="link dekstopViewLink ms-4" onClick={() => setShowCountryDrp(!showCountryDrp)} >{t(activeCountry)} {<FaAngleDown />}
                             <div className={`link-dropdown ${showCountryDrp ? 'show' : ''}`} ref={countryDrpDekstopRef}>
                                 <div className='link-dropdown-item' onClick={() => handleCountryChange('Morocco')}>{t("Morocco")}</div>
                                 <div className='link-dropdown-item' onClick={() => handleCountryChange('France')}>{t("France")}</div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="about-company-links links">
                         <NavLink to='/' className={(navData) => (navData.isActive ? "active link" : 'link')} aria-expanded="false">{t("home")}</NavLink>
@@ -178,12 +179,12 @@ export default function Navbar() {
                     </div>
                 </div>
                 <div className="account">
-                    <div ref={countryDrpLabelRef} style={{ cursor: "pointer" }} className="link mobileViewLink" onClick={() => setShowMobileCountryDrp(!showMobileCountryDrp)}>{t(activeCountry)} {<FaAngleDown />}
+                    {/* <div ref={countryDrpLabelRef} style={{ cursor: "pointer" }} className="link mobileViewLink" onClick={() => setShowMobileCountryDrp(!showMobileCountryDrp)}>{t(activeCountry)} {<FaAngleDown />}
                         <div className={`link-dropdown ${showMobileCountryDrp ? 'show' : ''}`} ref={countryDrpRef}>
                             <div className='link-dropdown-item' onClick={() => handleCountryChange('Morocco')}>{t("Morocco")}</div>
                             <div className='link-dropdown-item' onClick={() => handleCountryChange('France')}>{t("France")}</div>
                         </div>
-                    </div>
+                    </div> */}
                     {
                         authData.isLoggedIn ? (
                             <>

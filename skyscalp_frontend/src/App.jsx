@@ -94,7 +94,7 @@ const App = () => {
             <Route path='/test' exact index element={<Test />} />
             <Route path='/' exact index element={<Home />} />
             <Route path='/about' exact element={<About />} />
-            <Route path='/estimate' exact element={<Contact />} />
+            {/* <Route path='/estimate' exact element={<Contact />} /> */}
             <Route path='/article/:id' exact element={<ViewBlog />} />
             {/* ----- Listing pages -----  */}
             <Route path='/properties' exact element={<Properties />} />

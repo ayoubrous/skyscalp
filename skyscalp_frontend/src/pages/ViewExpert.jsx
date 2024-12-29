@@ -581,7 +581,7 @@ export default function ViewExpert() {
             </section>
 
             <BlogSection />
-            <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} contactEmail={"information.marketplace@skyscalp.com"} contactPhone={"+33771759956"} />
+            {/* <ContactUs supportTitle={t("homeSupportTitle")} supportDescription={t("homeSupportDescription")} contactEmail={"information.marketplace@skyscalp.com"} contactPhone={"+33771759956"} /> */}
             <Footer />
         </>
     )

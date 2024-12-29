@@ -18,25 +18,25 @@ export default function Footer() {
                     <div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 mb-3">
                         <h4 className='mb-5 text-white'>{t("supportInfo")}</h4>
 
-                        <div className="d-flex gap-3 mb-3">
+                        {/* <div className="d-flex gap-3 mb-3">
                             <FaLocationArrow />
                             <div>
                                 <p>093 Street Paris,</p>
                                 <p>Paris, France</p>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="d-flex gap-3 mb-3">
                             <FaEnvelope />
                             <div>
                                 <p>help@skyscalp.com</p>
                             </div>
                         </div>
-                        <div className="d-flex gap-3 mb-3">
+                        {/* <div className="d-flex gap-3 mb-3">
                             <FaPhone />
                             <div>
                                 <p>+33 771759956</p>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 mb-3">
