@@ -468,25 +468,25 @@ export default function ViewFurniture() {
 
 
                         <div className="seller-details side-sm">
-                            <div className="side mb-2">
+                            {/* <div className="side mb-2">
                                 <div className="seller-info mb-3">
                                     <div className="image">
                                         <img src={userInfo && userInfo.profileImage} alt="" />
                                     </div>
                                     <div className="content">
                                         <h5 className="fw-bolder">{userInfo && userInfo.username}</h5>
-                                        {/* <p className="color-secondary">{userInfo && userInfo.email.slice(0, 20)}{userInfo.email.length > 20 ? '...': ''}</p> */}
-                                        {/* <p className="color-secondary" style={{ fontSize: "11px" }}>{userInfo && userInfo.email}</p> */}
                                         <p className="color-secondary" style={{ fontSize: "11px" }}>Test.owner@skyscalp.com</p>
                                     </div>
                                 </div>
-                                {/* <button className="outline-btn mb-2 w-100" style={{ fontSize: "13px" }}><FaPhone className='me-1' />{userInfo && userInfo.phone}</button> */}
                                 <button className="outline-btn mb-2 w-100" style={{ fontSize: "13px" }}><FaPhone className='me-1' />+212625818117</button>
                                 <button className="outline-btn mb-2 w-100 d-flex justify-content-center align-items-center" style={{ fontSize: "13px" }}>
-                                    {/* <FaEnvelope className='me-1' />{userInfo && userInfo.email}</button> */}
                                     <FaEnvelope className='me-1' />Test.owner@skyscalp.com</button>
 
-                            </div>
+                            </div> */}
+                                        {/* <p className="color-secondary">{userInfo && userInfo.email.slice(0, 20)}{userInfo.email.length > 20 ? '...': ''}</p> */}
+                                        {/* <p className="color-secondary" style={{ fontSize: "11px" }}>{userInfo && userInfo.email}</p> */}
+                                {/* <button className="outline-btn mb-2 w-100" style={{ fontSize: "13px" }}><FaPhone className='me-1' />{userInfo && userInfo.phone}</button> */}
+                                    {/* <FaEnvelope className='me-1' />{userInfo && userInfo.email}</button> */}
 
                             {ownerID !== userID ? <div className='fixed-bottom-left-div'><IoChatbubbleSharp className='chat-icon-style' onClick={toggleChat}/> <ChatComponent isVisible={isChatVisible} isFixed={true}/> </div>: null}
                         </div>
