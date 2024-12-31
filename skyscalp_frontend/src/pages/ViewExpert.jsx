@@ -553,7 +553,69 @@ export default function ViewExpert() {
                             {/* {ownerID !== userID ?<ChatComponentService /> : null} */}
                             {ownerID !== userID ? <div className='fixed-bottom-left-div'><IoChatbubbleSharp className='chat-icon-style' onClick={toggleChat}/> <ChatComponentService isVisible={isChatVisible} isFixed={true}/> </div>: null}
                         </div>
+<div>
+    {/* <Routes>
+            <Route path='/test' exact index element={<Test />} />
+            <Route path='/' exact index element={<Home />} />
+            <Route path='/about' exact element={<About />} />
+            <Route path='/article/:id' exact element={<ViewBlog />} />
+            <Route path='/properties' exact element={<Properties />} />
+            <Route path='/marketplace' exact element={<MarketPlace />} />
+            <Route path='/experts' exact element={<Experts />} />
+            <Route path='/property/:id' exact element={<ViewProperty />} />
+            <Route path='/materials/:id' exact element={<ViewConstruction />} />
+            <Route path='/machines/:id' exact element={<ViewMachinery />} />
+            <Route path='/furniture/:id' exact element={<ViewFurniture />} />
+            <Route path='/expert/:id' exact element={<ViewExpert />} />
 
+
+            <Route path='/register' exact element={<Register />} />
+            <Route path='/login' exact element={<Login />} />
+            <Route path='/forgot-password' exact element={<ForgotPasswordEmail />} />
+            <Route path='/update-password' exact element={<UpdatePassword />} />
+            <Route path='/chat' exact element={<ChatComponent />} />
+
+            <Route element={<Private />}>
+              <Route element={<AdminPrivate />}>
+                <Route path='/admin/dashboard' exact element={<AdminDashboard />} />
+                <Route path='/admin/locations' exact element={<AdminLocations />} />
+                <Route path='/admin/users' exact element={<Users />} />
+                <Route path='/admin/properties' exact element={<OwnerProperties />} />
+                <Route path='/admin/materials' exact element={<OwnerMaterials />} />
+                <Route path='/admin/articles' exact element={<Articles />} />
+                <Route path='/admin/add-article' exact element={<AddArticle />} />
+                <Route path='/admin/update-article/:id' exact element={<AddArticle />} />
+                <Route path='/admin/messages' exact element={<OwnerMessages />} />
+
+
+                <Route path='/admin/experts' exact element={<OwnerExperts />} />
+
+              </Route>
+
+              <Route path='/app/dashboard' exact element={<Dashboard />} />
+              <Route path='/app/properties' exact element={<DashboardProperties />} />
+              <Route path='/app/machines' exact element={<DashboardMachinery />} />
+              <Route path='/app/materials' exact element={<DashboardConstruction />} />
+              <Route path='/app/furniture' exact element={<DashboardFurniture />} />
+              <Route path='/app/favourites' exact element={<DashboardFavourites />} />
+              <Route path='/app/messages' exact element={<DashboardMessages />} />
+              <Route path='/app/add-property' exact element={<AddProperty />} />
+              <Route path='/app/update-property/:id' exact element={<AddProperty />} />
+              <Route path='/app/add-machines' exact element={<AddMachinery />} />
+              <Route path='/app/update-machine/:id' exact element={<AddMachinery />} />
+              <Route path='/app/add-material' exact element={<AddConstruction />} />
+              <Route path='/app/update-material/:id' exact element={<AddConstruction />} />
+              <Route path='/app/add-furniture' exact element={<AddFurniture />} />
+              <Route path='/app/update-furniture/:id' exact element={<AddFurniture />} />
+
+              <Route path='/app/experts' exact element={<AdminExperts />} />
+              <Route path='/app/add-expert' exact element={<AddExpert />} />
+              <Route path='/app/update-expert/:id' exact element={<AddExpert />} />
+            </Route>
+
+
+          </Routes> */}
+</div>
 
                     </div>
                 </div>
